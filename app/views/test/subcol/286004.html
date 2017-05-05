@@ -490,7 +490,7 @@
                 <div class="col-md-2">
                     <div class="form-group padding-right-5">
                         <label class="control-label">กว้าง x ยาว (ตร.ม.)</label>
-                        <input type="text" class="form-control" id="FLOOR_{{item.ORDER_LIST}}" name="FLOOR_{{item.ORDER_LIST}}" ng-model="item.DSC_FLOORXSZ">
+                        <input type="text" format maxlength="30" class="form-control" id="FLOOR_{{item.ORDER_LIST}}" name="FLOOR_{{item.ORDER_LIST}}" ng-model="item.DSC_FLOORXSZ">
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -548,7 +548,7 @@
                             {{'DSC_GUEST_ROOM'|translate}}
                         </label>
                         <div class="col-sm-8">
-                            <input count type="text" placeholder="" class="form-control" id="DSC_GUEST_ROOM" name="DSC_GUEST_ROOM" ng-model="formData.DSC_GUEST_ROOM">
+                            <input count type="text" maxlength="10" placeholder="" class="form-control" id="DSC_GUEST_ROOM" name="DSC_GUEST_ROOM" ng-model="formData.DSC_GUEST_ROOM">
                         </div>
                     </div>
                     <div class="form-group">
@@ -584,7 +584,7 @@
                             {{'DSC_GUEST_ROOM'|translate}}
                         </label>
                         <div class="col-sm-8">
-                            <input count type="text" placeholder="" class="form-control" id="DSC_HALL_ROOM" name="DSC_HALL_ROOM" ng-model="formData.DSC_HALL_ROOM">
+                            <input count type="text" maxlength="10" placeholder="" class="form-control" id="DSC_HALL_ROOM" name="DSC_HALL_ROOM" ng-model="formData.DSC_HALL_ROOM">
                         </div>
                     </div>
                     <div class="form-group">
@@ -622,7 +622,7 @@
                             {{'DSC_GUEST_ROOM'|translate}}
                         </label>
                         <div class="col-sm-8">
-                            <input count type="text" placeholder="" class="form-control" id="DSC_BATH_ROOM" name="DSC_BATH_ROOM" ng-model="formData.DSC_BATH_ROOM">
+                            <input count type="text" maxlength="10" placeholder="" class="form-control" id="DSC_BATH_ROOM" name="DSC_BATH_ROOM" ng-model="formData.DSC_BATH_ROOM">
                         </div>
                     </div>
                     <div class="form-group">
@@ -658,7 +658,7 @@
                             {{'DSC_GUEST_ROOM'|translate}}
                         </label>
                         <div class="col-sm-8">
-                            <input count type="text" placeholder="" class="form-control" id="DSC_BED_ROOM" name="DSC_BED_ROOM" ng-model="formData.DSC_BED_ROOM">
+                            <input count type="text" maxlength="10" placeholder="" class="form-control" id="DSC_BED_ROOM" name="DSC_BED_ROOM" ng-model="formData.DSC_BED_ROOM">
                         </div>
                     </div>
                     <div class="form-group">
@@ -695,7 +695,7 @@
                     {{'OTHER_ROOM'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input count type="text" placeholder="" class="form-control" id="DSC_OTH_DESC" name="DSC_OTH_DESC" ng-model="formData.DSC_OTH_DESC">
+                    <input type="text" placeholder="" class="form-control" id="DSC_OTH_DESC" name="DSC_OTH_DESC" ng-model="formData.DSC_OTH_DESC">
                 </div>
             </div>
 
@@ -704,7 +704,7 @@
                     {{'DSC_GUEST_ROOM'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input type="text" placeholder="" class="form-control" id="DSC_OTH_NO" name="DSC_OTH_NO" ng-model="formData.DSC_OTH_NO">
+                    <input count type="text" maxlength="10" placeholder="" class="form-control" id="DSC_OTH_NO" name="DSC_OTH_NO" ng-model="formData.DSC_OTH_NO">
                 </div>
             </div>
             <div class="form-group">
