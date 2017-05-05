@@ -155,7 +155,7 @@
                             {{'YEAR'|translate}}<span class="symbol required"></span>
                         </label>
                         <div ng-class="formControlCss">
-                            <input type="text" count maxlength="22" required class="form-control" id="AGE_STD_YEAR" name="AGE_STD_YEAR" ng-model="formData.AGE_STD_YEAR">
+                            <input type="text" count maxlength="22" ng-max="999" required class="form-control" id="AGE_STD_YEAR" name="AGE_STD_YEAR" ng-model="formData.AGE_STD_YEAR">
                             <span class="error text-small block" ng-if="form.AGE_STD_YEAR.$dirty && form.AGE_STD_YEAR.$invalid">{{requireNotificationPrefix}} {{'AGE_STD'|translate}}</span>
                         </div>
                     </div>
@@ -179,7 +179,7 @@
                             {{'YEAR'|translate}}<span class="symbol required"></span>
                         </label>
                         <div ng-class="formControlCss">
-                            <input type="text" count maxlength="22" required class="form-control" id="AGE_YEAR" name="AGE_YEAR" ng-model="formData.AGE_YEAR">
+                            <input type="text" count maxlength="22" ng-max="999" required class="form-control" id="AGE_YEAR" name="AGE_YEAR" ng-model="formData.AGE_YEAR">
                             <span class="error text-small block" ng-if="form.AGE_YEAR.$dirty && form.AGE_YEAR.$invalid">{{requireNotificationPrefix}} {{'AGE_USAGE_REM'|translate}}</span>
                         </div>
                     </div>
@@ -203,7 +203,7 @@
                             {{'YEAR'|translate}}
                         </label>
                         <div ng-class="formControlCss">
-                            <input type="text" count maxlength="22" class="form-control" id="ES_SALE_YEAR" name="ES_SALE_YEAR" ng-model="formData.ES_SALE_YEAR" />
+                            <input type="text" count maxlength="22" ng-max="999" class="form-control" id="ES_SALE_YEAR" name="ES_SALE_YEAR" ng-model="formData.ES_SALE_YEAR" />
                         </div>
                     </div>
                     <div class="form-group">

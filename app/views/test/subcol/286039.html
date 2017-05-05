@@ -9,7 +9,7 @@
                     {{'REGIS_NO'|translate}}<span class="symbol required"></span>
                 </label>
                 <div ng-class="formControlCss">
-                    <input required type="text" placeholder="" class="form-control" id="REGIS_NO" name="REGIS_NO" ng-model="formData.REGIS_NO">
+                    <input required type="text" maxlength="30" placeholder="" class="form-control" id="REGIS_NO" name="REGIS_NO" ng-model="formData.REGIS_NO">
                 </div>
             </div>
             <div class="form-group">
@@ -17,7 +17,7 @@
                     {{'REGIS_DATE'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.REGIS_DATE" ng-click="openDatePicker($event,'REGIS_DATE')" class="form-control" id="REGIS_DATE" name="REGIS_DATE" ng-model="formData.REGIS_DATE">
+                    <input type="text" max-date="formData.TAX_DUE_DATE" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.REGIS_DATE" ng-click="openDatePicker($event,'REGIS_DATE')" class="form-control" id="REGIS_DATE" name="REGIS_DATE" ng-model="formData.REGIS_DATE">
                 </div>
             </div>
             <div class="form-group">
@@ -25,7 +25,7 @@
                     {{'TAX_DUE_DATE'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TAX_DUE_DATE" ng-click="openDatePicker($event,'TAX_DUE_DATE')" class="form-control" id="TAX_DUE_DATE" name="TAX_DUE_DATE" ng-model="formData.TAX_DUE_DATE">
+                    <input type="text" min-date="formData.REGIS_DATE" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TAX_DUE_DATE" ng-click="openDatePicker($event,'TAX_DUE_DATE')" class="form-control" id="TAX_DUE_DATE" name="TAX_DUE_DATE" ng-model="formData.TAX_DUE_DATE">
                 </div>
             </div>
             <div class="form-group">
@@ -63,7 +63,7 @@
                     {{'SHIP_USAGE'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text" placeholder="" class="form-control" id="USAGE" name="USAGE" ng-model="formData.USAGE">
+                    <input type="text" placeholder="" maxlength="300" class="form-control" id="USAGE" name="USAGE" ng-model="formData.USAGE">
                 </div>
             </div>
             <div class="form-group" ng-class="{'has-error':form.YEAR.$dirty && form.YEAR.$invalid}">
@@ -71,7 +71,7 @@
                     {{'MADE_YEAR'|translate}} <span class="symbol"></span>
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="number" ng-minlength="4" ng-maxlength="4" class="form-control" id="YEAR" name="YEAR" ng-model="formData.YEAR" />
+                    <input type="number" minlength="4" maxlength="4" class="form-control" id="YEAR" name="YEAR" ng-model="formData.YEAR" />
                 </div>
             </div>
 
@@ -80,7 +80,7 @@
                     {{'SHIP_NAME'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text" placeholder="" class="form-control" id="NAME" name="NAME" ng-model="formData.NAME">
+                    <input type="text" placeholder="" maxlength="100" class="form-control" id="NAME" name="NAME" ng-model="formData.NAME">
                 </div>
             </div>
             <div class="form-group" ng-class="{'has-error':form.HORSE_POWER.$dirty && form.HORSE_POWER.$invalid}">
@@ -88,7 +88,7 @@
                     {{'HORSE_POWER'|translate}} <span class="symbol"></span>
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="number" min="0" class="form-control" id="HORSE_POWER" name="HORSE_POWER" ng-model="formData.HORSE_POWER">
+                    <input type="text" count maxlength="10" min="0" class="form-control" id="HORSE_POWER" name="HORSE_POWER" ng-model="formData.HORSE_POWER">
                 </div>
             </div>
             <div class="form-group">
@@ -96,7 +96,7 @@
                     {{'SHIP_BODY'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text" placeholder="" class="form-control" id="BODY" name="BODY" ng-model="formData.BODY">
+                    <input type="text" placeholder="" maxlength="50" class="form-control" id="BODY" name="BODY" ng-model="formData.BODY">
                 </div>
             </div>
             <div class="form-group">
@@ -104,7 +104,7 @@
                     {{'TONNAGE'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text" class="form-control" id="TONNAGE" name="TONNAGE" ng-model="formData.TONNAGE">
+                    <input type="text" maxlength="10" class="form-control" id="TONNAGE" name="TONNAGE" ng-model="formData.TONNAGE">
                 </div>
             </div>
         </fieldset>
@@ -117,7 +117,7 @@
                             {{'YEAR'|translate}}<span class="symbol required"></span>
                         </label>
                         <div ng-class="formControlCss">
-                            <input required type="number" min="0" class="form-control" id="AGE_STD_YEAR" name="AGE_STD_YEAR" ng-model="formData.AGE_STD_YEAR">
+                            <input required type="text" count maxlength="22" ng-max="999" min="0" class="form-control" id="AGE_STD_YEAR" name="AGE_STD_YEAR" ng-model="formData.AGE_STD_YEAR">
                         </div>
                     </div>
                     <div class="form-group" ng-class="{'has-error':form.AGE_STD_MONTH.$dirty && form.AGE_STD_MONTH.$invalid, 'has-success':form.AGE_STD_MONTH.$valid}">
@@ -125,7 +125,7 @@
                             {{'MONTH'|translate}}<span class="symbol required"></span>
                         </label>
                         <div ng-class="formControlCss">
-                            <input required type="number" min="0" max="12" class="form-control" id="AGE_STD_MONTH" name="AGE_STD_MONTH" ng-model="formData.AGE_STD_MONTH">
+                            <input required type="text" count maxlength="22" min="0" ng-max="12" class="form-control" id="AGE_STD_MONTH" name="AGE_STD_MONTH" ng-model="formData.AGE_STD_MONTH">
                         </div>
                     </div>
                 </fieldset>
@@ -138,7 +138,7 @@
                             {{'YEAR'|translate}}<span class="symbol required"></span>
                         </label>
                         <div ng-class="formControlCss">
-                            <input required type="number" min="0" class="form-control" id="AGE_YEAR" name="AGE_YEAR" ng-model="formData.AGE_YEAR">
+                            <input required type="text" count maxlength="22" min="0" ng-max="999" class="form-control" id="AGE_YEAR" name="AGE_YEAR" ng-model="formData.AGE_YEAR">
                         </div>
                     </div>
                     <div class="form-group" ng-class="{'has-error':form.AGE_MONTH.$dirty && form.AGE_MONTH.$invalid, 'has-success':form.AGE_MONTH.$valid}">
@@ -146,7 +146,7 @@
                             {{'MONTH'|translate}}<span class="symbol required"></span>
                         </label>
                         <div ng-class="formControlCss">
-                            <input required type="number" min="0" max="12" class="form-control" id="AGE_MONTH" name="AGE_MONTH" ng-model="formData.AGE_MONTH">
+                            <input required type="text" count maxlength="22" min="0" ng-max="12" class="form-control" id="AGE_MONTH" name="AGE_MONTH" ng-model="formData.AGE_MONTH">
                         </div>
                     </div>
                 </fieldset>
@@ -159,7 +159,7 @@
                             {{'YEAR'|translate}} <span class="symbol"></span>
                         </label>
                         <div ng-class="formControlCss">
-                            <input type="number" min="0" class="form-control" id="ES_SALE_YEAR" name="ES_SALE_YEAR" ng-model="formData.ES_SALE_YEAR">
+                            <input type="text" count maxlength="22" ng-max="999" min="0" class="form-control" id="ES_SALE_YEAR" name="ES_SALE_YEAR" ng-model="formData.ES_SALE_YEAR">
                         </div>
                     </div>
                     <div class="form-group" ng-class="{'has-error':form.ES_SALE_MONTH.$dirty && form.ES_SALE_MONTH.$invalid}">
@@ -167,7 +167,7 @@
                             {{'MONTH'|translate}} <span class="symbol"></span>
                         </label>
                         <div ng-class="formControlCss">
-                            <input type="number" min="0" max="12" class="form-control" id="ES_SALE_MONTH" name="ES_SALE_MONTH" ng-model="formData.ES_SALE_MONTH">
+                            <input type="text" count maxlength="22" min="0" ng-max="12" class="form-control" id="ES_SALE_MONTH" name="ES_SALE_MONTH" ng-model="formData.ES_SALE_MONTH">
                         </div>
                     </div>
                 </fieldset>
@@ -225,7 +225,7 @@
                 {{'POLICY_NO'|translate}}
             </label>
             <div ng-class="formControlCss">
-                <input type="text" class="form-control" id="POLICY_NO" name="POLICY_NO" ng-model="formData.POLICY_NO">
+                <input type="text" maxlength="50" class="form-control" id="POLICY_NO" name="POLICY_NO" ng-model="formData.POLICY_NO">
             </div>
         </div>
         <div class="form-group">
@@ -233,7 +233,7 @@
                 {{'INSURED_AMT'|translate}}
             </label>
             <div ng-class="formControlCss">
-                <input price type="text" class="form-control" id="INSURED_AMT" name="INSURED_AMT" ng-model="formData.INSURED_AMT">
+                <input price type="text" maxlength="22" class="form-control" id="INSURED_AMT" name="INSURED_AMT" ng-model="formData.INSURED_AMT">
             </div>
         </div>
         <div class="form-group">
@@ -241,7 +241,7 @@
                 {{'INSURED_ISSUE_DATE'|translate}}
             </label>
             <div ng-class="formControlCss">
-                <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.INSURED_ISSUE_DATE" ng-click="openDatePicker($event,'INSURED_ISSUE_DATE')" class="form-control" id="INSURED_ISSUE_DATE" name="INSURED_ISSUE_DATE" ng-model="formData.INSURED_ISSUE_DATE">
+                <input type="text" datepicker-popup="dd/MM/yyyy" max-date="formData.INSURED_EXP_DATE" is-open="dpOpenState.INSURED_ISSUE_DATE" ng-click="openDatePicker($event,'INSURED_ISSUE_DATE')" class="form-control" id="INSURED_ISSUE_DATE" name="INSURED_ISSUE_DATE" ng-model="formData.INSURED_ISSUE_DATE">
             </div>
         </div>
         <div class="form-group">
@@ -249,7 +249,7 @@
                 {{'INSURED_EXP_DATE'|translate}}
             </label>
             <div ng-class="formControlCss">
-                <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.INSURED_EXP_DATE" ng-click="openDatePicker($event,'INSURED_EXP_DATE')" class="form-control" id="INSURED_EXP_DATE" name="INSURED_EXP_DATE" ng-model="formData.INSURED_EXP_DATE">
+                <input type="text" datepicker-popup="dd/MM/yyyy" min-date="formData.INSURED_EXP_DATE" is-open="dpOpenState.INSURED_EXP_DATE" ng-click="openDatePicker($event,'INSURED_EXP_DATE')" class="form-control" id="INSURED_EXP_DATE" name="INSURED_EXP_DATE" ng-model="formData.INSURED_EXP_DATE">
             </div>
         </div>
         <div class="form-group">
