@@ -5,7 +5,7 @@
     <div class="panel-body">
         <fieldset class="no-radius">
             <legend>{{'RENT_COL'|translate}}</legend>
-            <textarea class="form-control" id="RENT_COL" name="RENT_COL" ng-model="formData.RENT_COL"></textarea>
+            <textarea class="form-control" maxlength="300" id="RENT_COL" name="RENT_COL" ng-model="formData.RENT_COL"></textarea>
         </fieldset>
 
         <fieldset class="no-radius">
@@ -15,7 +15,7 @@
                         {{'TRANSFER_NO'|translate}}<span class="symbol required"></span>
                     </label>
                     <div class="col-sm-6">
-                        <input required type="text" placeholder="" class="form-control" id="TRANSFER_NO" name="TRANSFER_NO" ng-model="formData.TRANSFER_NO">
+                        <input required type="text" maxlength="10" placeholder="" class="form-control" id="TRANSFER_NO" name="TRANSFER_NO" ng-model="formData.TRANSFER_NO">
                         <!--<span class="error text-small block" ng-if="form.TRANSFER_NO.$dirty && form.TRANSFER_NO.$invalid">{{requireNotificationPrefix}} {{'TRANSFER_NO'|translate}}</span>-->
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                         {{'RENTAL_NO'|translate}}<span class="symbol required"></span>
                     </label>
                     <div class="col-sm-6">
-                        <input required type="text" placeholder="" class="form-control" id="RENTAL_NO" name="RENTAL_NO" ng-model="formData.RENTAL_NO">
+                        <input required type="text" maxlength="30" placeholder="" class="form-control" id="RENTAL_NO" name="RENTAL_NO" ng-model="formData.RENTAL_NO">
                         <!--<span class="error text-small block" ng-if="form.RENTAL_NO.$dirty && form.RENTAL_NO.$invalid">{{requireNotificationPrefix}} {{'RENTAL_NO'|translate}}</span>-->
                     </div>
                 </div>

@@ -45,9 +45,18 @@
                 });
 
                 $element.bind('keyup', function (event) {
+                    var max = $attrs.ngMax;
                     var regNum = /[^^\d*\.?\d*$]/;
                     var value = $element.val().replace(regNum, '');
-                    $element.val(value);
+                    if(max){
+                        if(parseFloat(value) > parseFloat(max)){
+                            $element.val(0);
+                        }else{
+                            $element.val(value);
+                        }
+                    }else{
+                        $element.val(value);
+                    }
                 });
 
             }
@@ -195,12 +204,12 @@
                 // This runs when we update the text field
                 ngModelCtrl.$parsers.push(function (viewValue) {
 
-                    return parseFloat(viewValue.replace(/,/g, ''));
+                    return parseInt(viewValue.replace(/,/g, ''));
                 })
 
                 // This runs when the model gets updated on the scope directly and keeps our view in sync
                 ngModelCtrl.$render = function () {
-                    $element.val($filter('number')(ngModelCtrl.$viewValue, 2));
+                    $element.val($filter('number')(ngModelCtrl.$viewValue, 0));
                 };
 
                 $element.bind('change', listener)
@@ -212,12 +221,19 @@
                     $element.val(value);
                 });
 
-                $element.bind('keydown', function (event) {
-                    var charCode = event.keyCode;
-                    if (event.keyCode == 0 || charCode > 31 && (charCode < 48 || (charCode > 57 && charCode != 190 && charCode != 110))) {
-                        if (!(charCode > 34 && charCode < 41)) {
-                            event.preventDefault();
+                $element.bind('keyup', function (event) {
+                   
+                    var max = $attrs.ngMax;
+                    var regNum = /[^^\d+$]/;
+                    var value = $element.val().replace(regNum, '');
+                    if(max){
+                        if(parseInt(value) > parseInt(max)){
+                            $element.val(0);
+                        }else{
+                            $element.val(value);
                         }
+                    }else{
+                        $element.val(value);
                     }
                 });
 
