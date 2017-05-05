@@ -14,7 +14,7 @@
     };
 
     //$scope.includeUrl = params.includeUrl || '';
-    $scope.includeUrl = 'app/views/test/subform0206.html';
+    $scope.includeUrl = '/app/views/test/subform0206.html';
     //$scope.showButtonSave = params.showButtonSave || false;
     $scope.showButtonSave = true;
     $scope.showButtonDelete = true;
@@ -28,7 +28,7 @@
         $modal.open({
             backdrop: 'static',
             keyboard: false,
-            templateUrl: 'app/views/tools/uploader.html',
+            templateUrl: '/app/views/tools/uploader.html',
             controller: 'uploaderController',
             size: 'lg',
             resolve: {
@@ -199,7 +199,7 @@
 }]);
 
 app.controller('wqsFactorListCtrl', ['$scope', '$modalInstance', 'radasoft', 'params', '$translate', function ($scope, $modalInstance, radasoft, params, $translate) {
-    $scope.includeUrl = 'app/views/test/wqsFactorList.html';
+    $scope.includeUrl = '/app/views/test/wqsFactorList.html';
     $scope.title = $translate.instant('WQS_FACTOR');
     //$scope.showBtnOK = true;
 

@@ -774,7 +774,7 @@
 
                 params = params || {};
 
-                params.templateUrl = params.templateUrl || 'app/views/common/dialogWrapper.html';
+                params.templateUrl = params.templateUrl || '/app/views/common/dialogWrapper.html';
                 params.windowClass = params.windowClass || '';
 
                 return $modal.open({

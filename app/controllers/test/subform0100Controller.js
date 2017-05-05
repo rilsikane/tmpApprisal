@@ -250,7 +250,7 @@
 app.controller('subform0101Controller', ['$scope', '$state', 'radasoft', '$modalInstance', '$timeout', 'params', function ($scope, $state, radasoft, $modalInstance, $timeout, params) {
 
     $scope.title = params.title;
-    $scope.includeUrl = 'app/views/test/subform0101.html';
+    $scope.includeUrl = '/app/views/test/subform0101.html';
     $scope.formData = angular.copy(params.formData);
     $scope.showBtnOK = true;
 
