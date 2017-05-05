@@ -1,0 +1,32 @@
+﻿<div class="panel-body border-light" ng-controller="subform0100Controller">
+    <div class="panel panel-white no-radius">
+        <div class="panel-heading bg-light-grey no-radius">
+            <h4 class="panel-title text-primary">รายละเอียด</h4>
+            <!--<ct-paneltool class="panel-tools" tool-refresh="load1"></ct-paneltool>-->
+        </div>
+        <div class="panel-body">
+            <form name="form" role="form" class="form-horizontal" novalidate ng-submit="submit(form)">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="REQUEST_NO">
+                        {{'SUBFORM0100.REQUEST_NO'|translate}}
+                    </label>
+                    <div class="col-sm-4 no-padding">
+                        <input type="text" ng-disabled="inputReadOnly" class="form-control" id="REQUEST_NO" name="REQUEST_NO" ng-model="formData.REQUEST_NO">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="LOAN_AMOUNT">
+                        {{'SUBFORM0100.AMOUNT'|translate}}
+                    </label>
+                    <div class="col-sm-4 no-padding">
+                        <input type="text" required ng-disabled="inputDisabled" class="form-control" id="LOAN_AMOUNT" name="LOAN_AMOUNT" ng-model="formData.LOAN_AMOUNT">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <a ladda="ldloading.expand_left" ng-disabled="btnDisabled" class="btn btn-primary btn-squared pull-right" data-style="expand-left" ng-click="submit(form,'expand-left')">
+        <i class="glyphicon glyphicon-floppy-save"></i>{{BUTTON.SAVE}}
+    </a>
+</div>

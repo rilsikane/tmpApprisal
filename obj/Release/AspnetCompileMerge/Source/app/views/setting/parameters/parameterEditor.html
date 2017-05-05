@@ -1,0 +1,28 @@
+﻿<div class="form-group">
+    <label class="col-sm-3 control-label" for="OU_ID">
+        {{'CODE_MINOR'|translate}}
+    </label>
+    <div class="col-sm-8 no-padding">
+        <input ng-readonly="formData.P_RUNNING_ID > 0" type="text" required class="form-control" id="CODE_MINOR" name="CODE_MINOR" ng-model="formData.CODE_MINOR">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label" for="CODE_MINOR_NAME">
+        {{'CODE_MINOR_NAME'|translate}}
+    </label>
+    <div class="col-sm-8 no-padding">
+        <input type="text" required class="form-control" id="CODE_MINOR_NAME" name="CODE_MINOR_NAME" ng-model="formData.CODE_MINOR_NAME">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label" for="RECORD_STATUS">
+    </label>
+    <div class="col-sm-8 no-padding">
+        <div class="checkbox clip-check check-primary">
+            <input type="checkbox" id="CONFIRM_FLAG" ng-true-value="'I'" ng-false-value="'A'" ng-model="formData.RECORD_STATUS" />
+            <label for="CONFIRM_FLAG">
+                {{'INACTIVE'|translate}}
+            </label>
+        </div>
+    </div>
+</div>

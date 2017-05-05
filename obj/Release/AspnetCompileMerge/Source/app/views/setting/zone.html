@@ -1,0 +1,50 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{title1}} <i class="ti-angle-right"></i> {{title2}} </h3>
+</div>
+<div class="modal-body bg-light-grey">
+    <form name="form" role="form" class="form-horizontal" novalidate ng-submit="submit(form)">
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="PHASE">
+                {{'PHASE'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <ui-select ng-disabled="true" theme="selectize" ng-model="formData.PROJECT_PHASE_RUNNING_ID" id="PROJECT_PHASE_RUNNING_ID" name="PROJECT_PHASE_RUNNING_ID">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.PHASE_NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item.PROJECT_PHASE_RUNNING_ID as item in selectProjectPhase | filter: $select.search">
+                        <div ng-bind-html="item.PHASE_NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.ZONE_NAME.$dirty && form.ZONE_NAME.$invalid, 'has-success':form.ZONE_NAME.$valid}">
+            <label class="col-sm-4 control-label" for="ZONE_NAME">
+                {{'ZONE_NAME'|translate}}<span class="symbol required"></span>
+            </label>
+            <div class="col-sm-8">
+                <input required type="text" placeholder="" class="form-control" id="ZONE_NAME" name="ZONE_NAME" ng-model="formData.ZONE_NAME">
+                <span class="error text-small block" ng-if="form.ZONE_NAME.$dirty && form.ZONE_NAME.$invalid">{{requireNotificationPrefix}} {{'ZONE_NAME'|translate}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="ZONE_REMARK">
+                {{'REMARK'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input type="text" placeholder="" class="form-control" id="ZONE_REMARK" name="ZONE_REMARK" ng-model="formData.ZONE_REMARK">
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary  btn-squared" ng-disabled="btnDisabled" ng-click="save(form)">
+        <i class="glyphicon glyphicon-floppy-save"></i> {{'BUTTON.SAVE'|translate}}
+    </button>
+    <button class="btn btn-primary  btn-squared" ng-disabled="btnDisabled" ng-click="delete()">
+        <i class="glyphicon glyphicon-remove-circle"></i> {{'BUTTON.DELETE'|translate}}
+    </button>
+    <button class="btn btn-primary  btn-squared" ng-disabled="btnDisabled" ng-click="cancel()">
+        <i class="glyphicon glyphicon-chevron-left"></i> {{'BUTTON.BACK'|translate}}
+    </button>
+</div>

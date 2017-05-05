@@ -1,0 +1,143 @@
+﻿<div class="panel-body" ng-controller="projectController">
+    <div class="row">
+        <form name="form" role="form" class="form-horizontal">
+            <div class="col-md-4">
+                <div class="form-group" ng-class="{'has-error':form.DEVELOPER.$dirty && form.DEVELOPER.$invalid, 'has-success':form.DEVELOPER.$valid}">
+                    <label class="col-sm-4 control-label" for="DEVELOPER">
+                        {{'DEVELOPER'|translate}}<span class="symbol required"></span>
+                    </label>
+                    <div class="col-sm-8 no-padding">
+                        <ui-select ng-required="true" theme="selectize" ng-model="$parent.formData.DEVELOPER" name="DEVELOPER" id="DEVELOPER" on-select="searchProject($item)">
+                            <ui-select-match placeholder="">
+                                {{$select.selected.DEV_NAME}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in $parent.selectDeveloper | filter: $select.search">
+                                <div ng-bind-html="item.DEV_NAME | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="error text-small block" ng-if="form.DEVELOPER.$dirty && form.DEVELOPER.$invalid">{{requireNotificationPrefix}} {{'DEVELOPER'|translate}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group" ng-class="{'has-error':form.PROJECT.$dirty && form.PROJECT.$invalid, 'has-success':form.PROJECT.$valid}">
+                    <label class="col-sm-4 control-label" for="PROJECT">
+                        {{'PROJECT'|translate}}<span class="symbol required"></span>
+                    </label>
+                    <div class="col-sm-8 no-padding">
+                        <ui-select ng-required="true" theme="selectize" ng-model="$parent.formData.PROJECT" name="PROJECT" id="PROJECT">
+                            <ui-select-match placeholder="">
+                                {{$select.selected.PROJECT_NAME}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in $parent.selectProject | filter: $select.search">
+                                <div ng-bind-html="item.PROJECT_NAME | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="error text-small block" ng-if="form.PROJECT.$dirty && form.PROJECT.$invalid">{{requireNotificationPrefix}} {{'PROJECT'|translate}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <a ladda="ldloading.expand_left" ng-disabled="$parent.formData.CUSTOMERS.length==0" class="btn btn-primary btn-squared" data-style="expand-left" ng-click="submit(form,'expand-left')">
+                    <i class="glyphicon glyphicon-floppy-save"></i>{{'BUTTON.SAVE'|translate}}
+                </a>
+            </div>
+        </form>
+    </div>
+
+
+    <tabset class="tabbable">
+        <tab heading="{{'UNIT_TYPE'|translate}}">
+            <div class="search-form">
+                <div class="navbar-form" role="search">
+                    <div class="form-group" style="height: 25px;">
+                        <button class="btn search-button" type="button" style="right:-5px;" tooltip="{{'BUTTON.ADD'|translate}}" ng-click="addUnitType()">
+                            <i class="ti-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <ul class="list-group">
+                <li ng-repeat="unit in projectUnit" class="list-group-item no-radius">
+                    <a>{{unit.UNIT_NAME}}</a><a class="pull-right" ng-click="editProjectUnit(unit)"><i class="fa fa-pencil"></i></a>
+                </li>
+            </ul>
+        </tab>
+
+        <tab heading="{{'PHASE'|translate}}">
+            <div class="navbar-form" role="search">
+                <div class="form-group" style="height:25px;">
+                    <button class="btn search-button" type="button" style="right:-5px;" tooltip="{{'BUTTON.ADD'|translate}}" ng-click="addPhase()">
+                        <i class="ti-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <ul class="list-group">
+                <li ng-repeat="phase in projectPhase" class="list-group-item no-radius">
+                    <a>{{phase.PHASE_NAME}}</a><a class="pull-right" ng-click="editPhase(phase)"><i class="fa fa-pencil"></i></a>
+                </li>
+            </ul>
+        </tab>
+
+        <tab heading="{{'ZONE'|translate}}">
+            <div class="navbar-form" role="search">
+                <div class="form-group" style="height:25px;">
+                    <button class="btn search-button" type="button" style="right:-5px;" tooltip="{{'BUTTON.ADD'|translate}}" ng-click="addZone()">
+                        <i class="ti-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <ul class="list-group">
+                <li ng-repeat="zone in projectZone" class="list-group-item no-radius media">
+                    <a href="#">
+                        <div class="media-body">
+                            <h4 class="media-heading">{{zone.ZONE_NAME}}</h4>
+                            <span>{{zone.PHASE_NAME}}</span>
+                        </div>
+                    </a>
+                    <a href="#" class="pull-right" style="position:absolute;top:5px;right:5px;" ng-click="editZone(zone)"><i class="fa fa-pencil"></i></a>
+                </li>
+            </ul>
+        </tab>
+        <!--<tab heading="{{'PRICE'|translate}}">
+            <div class="navbar-form" role="search">
+                <div class="form-group" style="height:25px;">
+                    <button class="btn search-button" type="button" style="right:-5px;" tooltip="{{'BUTTON.ADD'|translate}}" ng-click="addPrice()">
+                        <i class="ti-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <ul class="list-group">
+                <li ng-repeat="price in projectPrice" class="list-group-item no-radius media">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="text-grey">{{'UNIT_TYPE'|translate}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="text-grey">{{'ZONE'|translate}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="text-grey">{{'PROJ_PRICE'|translate}}</span>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>{{price.UNIT_TYPE.UNIT_NAME}}</h4>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>{{price.ZONE.ZONE_NAME}}</h4>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>{{price.PROJ_PRICE|number:2}}</h4>
+                        </div>
+
+
+                    </div>
+                    <a class="pull-right" ng-click="editPrice(price)" style="position:absolute;top:30px;right:5px;"><i class="fa fa-pencil"></i></a>
+                </li>
+            </ul>
+        </tab>-->
+    </tabset>
+</div>

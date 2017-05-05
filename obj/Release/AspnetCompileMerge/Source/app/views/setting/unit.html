@@ -1,0 +1,138 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{title1}} <i class="ti-angle-right"></i> {{title2}} </h3>
+</div>
+<div class="modal-body bg-light-grey">
+    <form name="form" role="form" class="form-horizontal" novalidate ng-submit="submit(form)">
+        <div class="panel panel-white">
+            <div class="panel-heading bg-light-azure no-radius">
+                <h5 class="panel-title">รายละเอียดแบบบ้าน</h5>
+            </div>
+            <div class="panel-body">
+                <!--<div class="form-group">
+                    <label class="col-sm-4 control-label" for="PROJECT_RUNNING_ID">
+                        {{'PROJECT_RUNNING_ID'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="PROJECT_RUNNING_ID" name="PROJECT_RUNNING_ID" ng-model="formData.UNIT_NAME">
+                    </div>
+                </div>-->
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="UNIT_NAME">
+                        {{'UNIT_NAME'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="UNIT_NAME" name="UNIT_NAME" ng-model="formData.UNIT_NAME">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="UNIT_TYPE_HEAD">
+                        {{'UNIT_TYPE_HEAD'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="UNIT_TYPE_HEAD" name="UNIT_TYPE_HEAD" ng-model="formData.UNIT_TYPE_HEAD">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="UNIT_TYPE">
+                        {{'UNIT_TYPE'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <ui-select theme="selectize" ng-model="formData.UNIT_TYPE" id="UNIT_TYPE" name="UNIT_TYPE">
+                            <ui-select-match placeholder="">
+                                {{$select.selected.NAME}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in selectUnitType | filter: $select.search">
+                                <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="UNIT_DETAIL">
+                        {{'UNIT_DETAIL'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="UNIT_DETAIL" name="UNIT_DETAIL" ng-model="formData.UNIT_DETAIL">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="AREA_WA">
+                        {{'AREA_WA'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="AREA_WA" name="AREA_WA" ng-model="formData.AREA_WA">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="AREA_METER">
+                        {{'AREA_METER'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="AREA_METER" name="AREA_METER" ng-model="formData.AREA_METER">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="UNIT_PROJ_PRICE">
+                        {{'UNIT_PROJ_PRICE'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="UNIT_PROJ_PRICE" name="UNIT_PROJ_PRICE" ng-model="formData.UNIT_PROJ_PRICE">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="UNIT_PRICE_MIN">
+                        {{'UNIT_PRICE_MIN'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="UNIT_PRICE_MIN" name="UNIT_PRICE_MIN" ng-model="formData.UNIT_PRICE_MIN">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="UNIT_PRICE_MAX">
+                        {{'UNIT_PRICE_MAX'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="UNIT_PRICE_MAX" name="UNIT_PRICE_MAX" ng-model="formData.UNIT_PRICE_MAX">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="UNIT_APPR_PERCENT">
+                        {{'UNIT_APPR_PERCENT'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="UNIT_APPR_PERCENT" name="UNIT_APPR_PERCENT" ng-model="formData.UNIT_APPR_PERCENT">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="UNIT_APPR_PRICE">
+                        {{'UNIT_APPR_PRICE'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="UNIT_APPR_PRICE" name="UNIT_APPR_PRICE" ng-model="formData.UNIT_APPR_PRICE">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="UNIT_APPR_PRICE_MIN">
+                        {{'UNIT_APPR_PRICE_MIN'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="UNIT_APPR_PRICE_MIN" name="UNIT_APPR_PRICE_MIN" ng-model="formData.UNIT_APPR_PRICE_MIN">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="UNIT_APPR_PRICE_MAX">
+                        {{'UNIT_APPR_PRICE_MAX'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="UNIT_APPR_PRICE_MAX" name="UNIT_APPR_PRICE_MAX" ng-model="formData.UNIT_APPR_PRICE_MAX">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary  btn-squared" ng-disabled="btnDisabled" ng-click="save(form)">{{'BUTTON.SAVE'|translate}}</button>
+    <button class="btn btn-primary  btn-squared" ng-disabled="btnDisabled" ng-click="delete()">{{'BUTTON.DELETE'|translate}}</button>
+    <button class="btn btn-primary  btn-squared" ng-disabled="btnDisabled" ng-click="cancel()">{{'BUTTON.BACK'|translate}}</button>
+</div>

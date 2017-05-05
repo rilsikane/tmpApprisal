@@ -1,0 +1,63 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">ผู้ถือกรรมสิทธิ์</h3>
+</div>
+<div class="modal-body bg-light-grey">
+    <form name="form" role="form" class="form-horizontal" novalidate ng-submit="submit(form)">
+        <div class="panel panel-white">
+            <div class="panel-heading bg-light-azure no-radius">
+                <h5 class="panel-title">ผู้ถือกรรมสิทธิ์</h5>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label ng-class="labelControlCss" for="CUS_NAME">
+                        {{'NAME'|translate}}
+                    </label>
+                    <div ng-class="formControlCss">
+                        <input type="text" required class="form-control" id="CUS_NAME" name="CUS_NAME" ng-model="formData.CUS_NAME">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label ng-class="labelControlCss" for="ACQUIRED_VIA">
+                        {{'ACQUIRED_VIA'|translate}}
+                    </label>
+                    <div ng-class="formControlCss">
+                        <ui-select theme="selectize" ng-model="formData.ACQUIRED_VIA" id="ACQUIRED_VIA" name="ACQUIRED_VIA">
+                            <ui-select-match placeholder="">
+                                {{$select.selected.NAME}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in selectAcquiredVia | filter: $select.search">
+                                <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label ng-class="labelControlCss" for="CUS_RELATION">
+                        {{'CUS_RELATION'|translate}}
+                    </label>
+                    <div ng-class="formControlCss">
+                        <ui-select theme="selectize" ng-model="formData.CUS_RELATION" id="CUS_RELATION" name="CUS_RELATION">
+                            <ui-select-match placeholder="">
+                                {{$select.selected.NAME}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in selectCusRelation | filter: $select.search">
+                                <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    <div class="pull-right">
+        <button class="btn btn-primary btn-o" ng-disabled="btnDisabled" ng-click="submit(form,'expand-left')">
+            <i class="glyphicon glyphicon-ok"></i> {{'BUTTON.OK'|translate}}
+        </button>
+        <button class="btn btn-primary btn-o" ng-disabled="btnDisabled" ng-click="cancel()">
+            <i class="glyphicon glyphicon-chevron-left"></i> {{'BUTTON.BACK'|translate}}
+        </button>
+    </div>
+</div>

@@ -1,0 +1,160 @@
+﻿<!-- WQS -->
+<!--<tabset class="tabbable">
+    <tab heading="{{'WQS'|translate}}">-->
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr class="bg-light-azure">
+                    <th><span class="text-white">{{'WQS_FACTOR'|translate}}</span></th>
+                    <th ng-style="tdValue" class="center"><span class="text-white">{{'WEIGHT'|translate}}</span></th>
+                    <th ng-style="tdValue" class="center"><span class="text-white">{{'DATA_SET_1'|translate}}</span></th>
+                    <th ng-style="tdValue" class="center"><span class="text-white">{{'DATA_SET_2'|translate}}</span></th>
+                    <th ng-style="tdValue" class="center"><span class="text-white">{{'DATA_SET_3'|translate}}</span></th>
+                    <th ng-style="tdValue" class="center"><span class="text-white">{{'DATA_SET_4'|translate}}</span></th>
+                    <th ng-if="MARKET_COMPAIR==5" ng-style="tdValue" class="center"><span class="text-white">{{'DATA_SET_5'|translate}}</span></th>
+                    <th ng-style="tdValue" class="center"><span class="text-white">{{'DATA_SET_0'|translate}}</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="wqs in WQS.WQS_FACTOR">
+                    <td class="no-padding">
+                        <input ng-if="wqs.FACTOR_OTHER=='Y'" type="text" class="form-control" ng-model="wqs.FACTOR_NAME" placeholder="{{'OTHER'|translate}}" />
+                        <span ng-if="wqs.FACTOR_OTHER!='Y'" class="margin-left-5">{{wqs.FACTOR_NAME}}</span>
+                    </td>
+                    <td class="no-padding">
+                        <input ng-readonly="wqs.WQS_FACTOR_ID==-1" ng-model="wqs.FACTOR_WEIGHT" type="number" class="form-control input-sm center no-padding" ng-style="inputStyle" ng-change="cal()" min="0" />
+                    </td>
+                    <td class="no-padding">
+                        <input ng-readonly="wqs.WQS_FACTOR_ID==-1" ng-model="wqs.MKT1_SCORE" type="number" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" min="0" max="10" />
+                    </td>
+                    <td class="no-padding">
+                        <input ng-readonly="wqs.WQS_FACTOR_ID==-1" ng-model="wqs.MKT2_SCORE" type="number" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" min="0" max="10" />
+                    </td>
+                    <td class="no-padding">
+                        <input ng-readonly="wqs.WQS_FACTOR_ID==-1" ng-model="wqs.MKT3_SCORE" type="number" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" min="0" max="10" />
+                    </td>
+                    <td class="no-padding">
+                        <input ng-readonly="wqs.WQS_FACTOR_ID==-1" ng-model="wqs.MKT4_SCORE" type="number" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" min="0" max="10" />
+                    </td>
+                    <td ng-if="MARKET_COMPAIR==5" class="no-padding">
+                        <input ng-readonly="wqs.WQS_FACTOR_ID==-1" ng-model="wqs.MKT5_SCORE" type="number" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" min="0" max="10" />
+                    </td>
+                    <td class="no-padding">
+                        <input ng-readonly="wqs.WQS_FACTOR_ID==-1" ng-model="wqs.COL_SCORE" type="number" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover table-bordered">
+            <tbody>
+                <tr ng-repeat="wqs in WQS.WQS_SUMMARY">
+                    <td class="no-padding"><span class="margin-left-5">{{wqs.FACTOR_NAME}}</span></td>
+                    <td class="no-padding"></td>
+                    <td ng-style="tdValue" class="no-padding">
+                        <input ng-if="wqs.WQS_FACTOR_ID == -1 || wqs.WQS_FACTOR_ID == -3" ng-readonly="wqs.WQS_FACTOR_ID < -1 && wqs.WQS_FACTOR_ID!=-3" ng-model="wqs.MKT1_VALUE" type="number" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" />
+                        <input ng-if="wqs.WQS_FACTOR_ID == -2" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT1_VALUE|number:2}}" ng-style="inputStyle" />
+                        <input ng-if="wqs.WQS_FACTOR_ID <= -4" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT1_VALUE|number:2}}" ng-style="inputStyle" />
+                    </td>
+                    <td ng-style="tdValue" class="no-padding">
+                        <input ng-if="wqs.WQS_FACTOR_ID == -1 || wqs.WQS_FACTOR_ID == -3" ng-readonly="wqs.WQS_FACTOR_ID < -1 && wqs.WQS_FACTOR_ID!=-3" ng-model="wqs.MKT2_VALUE" type="number" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" />
+                        <input ng-if="wqs.WQS_FACTOR_ID == -2" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT2_VALUE|number:2}}" ng-style="inputStyle" />
+                        <input ng-if="wqs.WQS_FACTOR_ID <= -4" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT2_VALUE|number:2}}" ng-style="inputStyle" />
+                    </td>
+                    <td ng-style="tdValue" class="no-padding">
+                        <input ng-if="wqs.WQS_FACTOR_ID == -1 || wqs.WQS_FACTOR_ID == -3" ng-readonly="wqs.WQS_FACTOR_ID < -1 && wqs.WQS_FACTOR_ID!=-3" ng-model="wqs.MKT3_VALUE" type="number" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" />
+                        <input ng-if="wqs.WQS_FACTOR_ID == -2" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT3_VALUE|number:2}}" ng-style="inputStyle" />
+                        <input ng-if="wqs.WQS_FACTOR_ID <= -4" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT3_VALUE|number:2}}" ng-style="inputStyle" />
+                    </td>
+                    <td ng-style="tdValue" class="no-padding">
+                        <input ng-if="wqs.WQS_FACTOR_ID == -1 || wqs.WQS_FACTOR_ID == -3" ng-readonly="wqs.WQS_FACTOR_ID < -1 && wqs.WQS_FACTOR_ID!=-3" ng-model="wqs.MKT4_VALUE" type="number" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" />
+                        <input ng-if="wqs.WQS_FACTOR_ID == -2" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT4_VALUE|number:2}}" ng-style="inputStyle" />
+                        <input ng-if="wqs.WQS_FACTOR_ID <= -4" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT4_VALUE|number:2}}" ng-style="inputStyle" />
+                    </td>
+                    <td ng-if="MARKET_COMPAIR==5" ng-style="tdValue" class="no-padding">
+                        <input ng-if="wqs.WQS_FACTOR_ID == -1 || wqs.WQS_FACTOR_ID == -3" ng-readonly="wqs.WQS_FACTOR_ID < -1 && wqs.WQS_FACTOR_ID!=-3" ng-model="wqs.MKT5_VALUE" type="number" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" />
+                        <input ng-if="wqs.WQS_FACTOR_ID == -2" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT5_VALUE|number:2}}" ng-style="inputStyle" />
+                        <input ng-if="wqs.WQS_FACTOR_ID <= -4" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT5_VALUE|number:2}}" ng-style="inputStyle" />
+                    </td>
+                    <td ng-style="tdValue" class="no-padding">
+                        <input ng-hide="wqs.WQS_FACTOR_ID == -5 || wqs.WQS_FACTOR_ID == -6" ng-if="wqs.WQS_FACTOR_ID <= -4" type="text" class="form-control input-sm center" readonly value="{{wqs.COL_VALUE|number:2}}" ng-style="inputStyle" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr class="bg-light-azure">
+                    <th><span class="text-white">{{'WQS_FACTOR'|translate}}</span></th>
+                    <th ng-style="tdValue" class="center"></th>
+                    <th ng-style="tdValue" class="center"><span class="text-white">{{'DATA_SET_1'|translate}}</span></th>
+                    <th ng-style="tdValue" class="center"><span class="text-white">{{'DATA_SET_2'|translate}}</span></th>
+                    <th ng-style="tdValue" class="center"><span class="text-white">{{'DATA_SET_3'|translate}}</span></th>
+                    <th ng-style="tdValue" class="center"><span class="text-white">{{'DATA_SET_4'|translate}}</span></th>
+                    <th ng-if="MARKET_COMPAIR==5" ng-style="tdValue" class="center"><span class="text-white">{{'DATA_SET_5'|translate}}</span></th>
+                    <th ng-style="tdValue" class="center"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="wqs in WQS.WQS_FACTOR" ng-if="wqs.WQS_FACTOR_ID!=-1">
+                    <td class="no-padding"><span class="margin-left-5">{{wqs.FACTOR_NAME}}</span></td>
+                    <td class="no-padding"></td>
+                    <td class="no-padding center">
+                        <span ng-if="wqs.MKT1_SCORE>wqs.COL_SCORE" class="label label-success no-radius block">{{'COMPAIR_H'|translate}}</span>
+                        <span ng-if="wqs.MKT1_SCORE==wqs.COL_SCORE" class="label label-warning no-radius block">{{'COMPAIR_M'|translate}}</span>
+                        <span ng-if="wqs.MKT1_SCORE<wqs.COL_SCORE" class="label label-danger no-radius block">{{'COMPAIR_L'|translate}}</span>
+                    </td>
+                    <td class="no-padding center">
+                        <span ng-if="wqs.MKT2_SCORE>wqs.COL_SCORE" class="label label-success no-radius block">{{'COMPAIR_H'|translate}}</span>
+                        <span ng-if="wqs.MKT2_SCORE==wqs.COL_SCORE" class="label label-warning no-radius block">{{'COMPAIR_M'|translate}}</span>
+                        <span ng-if="wqs.MKT2_SCORE<wqs.COL_SCORE" class="label label-danger no-radius block">{{'COMPAIR_L'|translate}}</span>
+                    </td>
+                    <td class="no-padding center">
+                        <span ng-if="wqs.MKT3_SCORE>wqs.COL_SCORE" class="label label-success no-radius block">{{'COMPAIR_H'|translate}}</span>
+                        <span ng-if="wqs.MKT3_SCORE==wqs.COL_SCORE" class="label label-warning no-radius block">{{'COMPAIR_M'|translate}}</span>
+                        <span ng-if="wqs.MKT3_SCORE<wqs.COL_SCORE" class="label label-danger no-radius block">{{'COMPAIR_L'|translate}}</span>
+                    </td>
+                    <td class="no-padding center">
+                        <span ng-if="wqs.MKT4_SCORE>wqs.COL_SCORE" class="label label-success no-radius block">{{'COMPAIR_H'|translate}}</span>
+                        <span ng-if="wqs.MKT4_SCORE==wqs.COL_SCORE" class="label label-warning no-radius block">{{'COMPAIR_M'|translate}}</span>
+                        <span ng-if="wqs.MKT4_SCORE<wqs.COL_SCORE" class="label label-danger no-radius block">{{'COMPAIR_L'|translate}}</span>
+                    </td>
+                    <td class="no-padding center" ng-if="MARKET_COMPAIR==5">
+                        <span ng-if="wqs.MKT5_SCORE>wqs.COL_SCORE" class="label label-success no-radius block">{{'COMPAIR_H'|translate}}</span>
+                        <span ng-if="wqs.MKT5_SCORE==wqs.COL_SCORE" class="label label-warning no-radius block">{{'COMPAIR_M'|translate}}</span>
+                        <span ng-if="wqs.MKT5_SCORE<wqs.COL_SCORE" class="label label-danger no-radius block">{{'COMPAIR_L'|translate}}</span>
+                    </td>
+                    <td class="no-padding"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<fieldset class="no-radius">
+    <legend>{{'REMARK'|translate}}</legend>
+    <div class="col-md-12">
+        <textarea style="max-width: 100%" rows="5" ng-model="WQS.WQS_REMARK" class="form-control"></textarea>
+    </div>
+</fieldset>
+<!--</tab>
+
+    <tab heading="{{'MARKETPRICE'|translate}}">
+        <div class="container-fluid container-fullw">
+            <div class="panel panel-white no-radius">
+                <div class="panel-body no-padding">
+                    <div class="form-horizontal" ng-include="'app/views/setting/marketprice/priceCompare.html'" ng-controller="priceCompareController" ng-init="headCol=headCol;dataMode=0"></div>
+                </div>
+            </div>
+        </div>
+    </tab>
+</tabset>-->

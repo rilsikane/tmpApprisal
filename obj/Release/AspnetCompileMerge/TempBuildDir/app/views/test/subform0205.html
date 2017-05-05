@@ -1,0 +1,60 @@
+﻿<!--<div class="modal-header">
+    <h3 class="modal-title">
+        {{colAct.COL_ACT_NAME}}
+    </h3>
+
+</div>
+<div class="modal-body bg-light-grey">-->
+<div class="panel panel-white">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">{{colAct.COL_ACT_NAME}}</h5>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th width="90%">{{'DOC_TYPE'|translate}}</th>
+                        <th class="center">{{'REQUIRED'|translate}}</th>
+                        <!--<th>{{'FILE'|translate}}</th>
+                        <th></th>-->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="attach in headCol.ATTACH_DOC">
+                        <td class="vertical-top">
+                            <div><a href="#" ng-click="upload($index,attach)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'ATTACH_FILE'|translate}}"><i class="fa fa-plus"></i></a> {{attach.NAME}}</div>
+                            <ul>
+                                <li ng-repeat="file in attach.ATTACH_DOC"><a ng-if="!inputDisabled" ng-click="deleteAttach($index,attach,file)" tooltip="{{'DELETE_ATTACH'|translate}}"><i class="fa fa-remove"></i></a>  <a target="_blank" href="Home/Download/{{file.ATTACHDOC_RUNNING_ID}}">{{file.DOC_NAME}} </a></li>
+                            </ul>
+                        </td>
+                        <td class="center">
+                            <i class="ti-check" ng-if="attach.L_FLAG=='M'"></i>
+                        </td>
+                        <!--<td class="vertical-top">
+                            {{attach.NAME}}
+                        </td>
+                        
+                        <td>
+                            <ul>
+                                <li ng-repeat="file in attach.ATTACH_DOC"><a target="_blank" href="Home/Download/{{file.ATTACHDOC_RUNNING_ID}}">{{file.DOC_NAME}}</a><a ng-click="deleteAttach($index,attach,file)"><i class="glyphicon glyphicon-trash"></i></a></li>
+                            </ul>
+                        </td>
+                        <td class="center">
+                            <div class="visible-md visible-lg hidden-sm hidden-xs">
+                                <a href="#" ng-click="upload($index,attach)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'ATTACH_FILE'|translate}}"><i class="glyphicon glyphicon-plus-sign"></i></a>
+                            </div>
+                        </td>-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--</div>
+<div class="modal-footer">
+    <a ladda="ldloading.expand_left" class="btn btn-primary btn-squared" ng-disabled="btnSubmitDisabled" data-style="expand-left" ng-click="submit()">
+        {{'BUTTON.OK'|translate}}
+    </a>
+    <button class="btn btn-primary  btn-squared" ng-disabled="btnDisabled" ng-click="cancel()">{{'BUTTON.BACK'|translate}}</button>
+</div>-->

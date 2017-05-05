@@ -1,0 +1,42 @@
+﻿<div class="container-fluid container-fullw" ng-controller="parameterController">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-white no-radius">
+                <div class="panel-heading no-radius bg-deep-pink border-light">
+                    <h4 class="panel-title">{{MAJOR_CODE|translate}}</h4>
+                </div>
+                <div class="panel-body border-light">
+                    <div class="col-md-12">
+                        <div class="search-form">
+                            <form class="navbar-form" role="search">
+                                <a class="s-remove" href="#" ng-toggle-class="search-open" target=".navbar-form">
+                                    <i class="ti-close"></i>
+                                </a>
+                                <div class="form-group">
+                                    <input type="text" placeholder="{{'SEARCH'|translate}}" class="form-control" ng-keypress="searchEnter($event)" ng-model="searchKeyword" />
+                                    <button class="btn search-button" type="button" style="right:20px;" tooltip="{{'BUTTON.SEARCH'|translate}}" ng-click="searchClick()">
+                                        <i class="ti-search"></i>
+                                    </button>
+                                    <button class="btn search-button" type="button" style="right:-5px;" tooltip="{{'BUTTON.ADD'|translate}}" ng-click="add()">
+                                        <i class="ti-plus"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <ul class="list-group">
+                            <li ng-repeat="item in parameters" class="list-group-item no-radius">
+                                <div>
+                                    <h4 class="text-info">{{item.CODE_MINOR}} {{item.CODE_MINOR_NAME}}</h4>
+                                    <i class="text-extra-small">{{'E_DATE'|translate}} : {{item.E_DATE | date:'dd/MM/yyyy HH:mm'}} {{'E_BY'|translate}} : {{item.E_BY}}</i>
+                                    <span style="cursor:pointer;" class="pull-right" ng-click="edit(item)"><i class="fa fa-pencil"></i></span>
+                                </div>
+                            </li>
+                        </ul>
+                        <!--<pager total-items="provinceTotalItems" ng-model="currentProvincePage" ng-change="getProvince()"></pager>-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

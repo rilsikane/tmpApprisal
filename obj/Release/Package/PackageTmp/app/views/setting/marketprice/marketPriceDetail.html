@@ -1,0 +1,663 @@
+﻿<div class="container-fluid container-fullw">
+    <div class="panel panel-white no-radius">
+        <div class="panel-heading no-radius bg-light-azure border-light">
+            <h4 class="panel-title">{{'MARKETPRICE'|translate}}</h4>
+        </div>
+        <div class="panel-body border-light">
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="HEAD_COL_TYPE_ID">
+                    {{'PICTURE'|translate}} <a ng-click="upload()"><i class="fa fa-picture-o"></i></a>
+                </label>
+                <div class="col-sm-8">
+                    <div class="row padding-15">
+                        <img ng-if="formData.PICTURE.base64string!=''" ng-src="data:image/png;base64,{{formData.PICTURE.base64string}}" width="200" height="300" />
+                    </div>
+                    <div class="row padding-15">
+                        <span>{{formData.PICTURE_DATE_TEXT}}</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">
+                </label>
+                <div class="col-sm-8">
+                    <a class="btn btn-wide btn-squared btn-orange" href="#" ng-click="openMap()"><i class="glyphicon glyphicon-map-marker"></i> {{'MAP'|translate}}</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="LOCATION_LAT">
+                    {{'LAT'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" readonly class="form-control" id="LOCATION_LAT" name="LOCATION_LAT" ng-model="formData.LATITUDE">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="LOCATION_LONG">
+                    {{'LONG'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" readonly class="form-control" id="LOCATION_LONG" name="LOCATION_LONG" ng-model="formData.LONGITUDE">
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':form.TEMPLATE_TYPE.$dirty && form.TEMPLATE_TYPE.$viewValue==undefined, 'has-success':form.TEMPLATE_TYPE.$viewValue!=undefined && form.TEMPLATE_TYPE.$viewValue.VALUE != undefined}">
+                <label class="col-sm-3 control-label" for="TEMPLATE_TYPE">
+                    {{'TEMPLATE_TYPE'|translate}}<span class="symbol required"></span>
+                </label>
+                <div class="col-sm-8">
+                    <ui-select required theme="selectize" ng-model="formData.TEMPLATE_TYPE" id="TEMPLATE_TYPE" name="TEMPLATE_TYPE">
+                        <ui-select-match>
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in marketTemplateType | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                    <!--<span class="error text-small block" ng-if="form.TEMPLATE_TYPE.$dirty && form.TEMPLATE_TYPE.$viewValue==undefined">{{requireNotificationPrefix}} {{'TEMPLATE_TYPE'|translate}}</span>-->
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="HEAD_COL_TYPE_ID">
+                    {{'MARKET_TYPE'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.MARKET_TYPE" id="MARKET_TYPE" name="MARKET_TYPE">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in marketType | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="HEAD_COL_TYPE_ID">
+                    {{'HEAD_COL_TYPE_ID'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.HEAD_COL_TYPE_ID" id="HEAD_COL_TYPE_ID" name="HEAD_COL_TYPE_ID" on-select="getHeadColSubType($item)">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in headColType | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="HEAD_COL_TYPE_ID">
+                    {{'HEAD_COL_SUB_TYPE'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.HEAD_COL_SUB_TYPE_ID" id="HEAD_COL_SUB_TYPE" name="HEAD_COL_SUB_TYPE">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in headColSubType | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="DOC_CERT_TYPE">
+                    {{'DOC_CERT_TYPE'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.DOC_CERT_TYPE" id="DOC_CERT_TYPE" name="DOC_CERT_TYPE">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in colCertType | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <!--<div class="form-group">
+                <label class="col-sm-3 control-label" for="PICTURE">
+                    {{'PICTURE'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="PICTURE" name="PICTURE" ng-model="formData.PICTURE">
+                </div>
+            </div>-->
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="AREA_LAND">
+                    {{'AREA_LAND'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="AREA_LAND" name="AREA_LAND" ng-model="formData.AREA_LAND">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="PROPERTY_NAME">
+                    {{'PROPERTY_NAME'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="PROPERTY_NAME" name="PROPERTY_NAME" ng-model="formData.PROPERTY_NAME">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="PROPERTY_FLOOR">
+                    {{'PROPERTY_FLOOR'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="PROPERTY_FLOOR" name="PROPERTY_FLOOR" ng-model="formData.PROPERTY_FLOOR">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="ADD_NO">
+                    {{'ADD_NO'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="ADD_NO" name="ADD_NO" ng-model="formData.ADD_NO">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="ADD_NO">
+                    {{'ADD_MOO'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="ADD_MOO" name="ADD_MOO" ng-model="formData.ADD_MOO">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="ADD_MOOBAAN">
+                    {{'ADD_MOOBAAN'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="ADD_MOOBAAN" name="ADD_MOOBAAN" ng-model="formData.ADD_MOOBAAN">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="ADD_ROAD">
+                    {{'ADD_ROAD'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="ADD_ROAD" name="ADD_ROAD" ng-model="formData.ADD_ROAD">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="ADD_SOI">
+                    {{'ADD_SOI'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="ADD_SOI" name="ADD_SOI" ng-model="formData.ADD_SOI">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="ADD_COUNTRY">
+                    {{'COUNTRY'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.ADD_COUNTRY" id="ADD_COUNTRY" name="ADD_COUNTRY">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME_THAI}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in selectCountry | filter: $select.search">
+                            <div ng-bind-html="item.NAME_THAI | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="ADD_PROVINCE">
+                    {{'PROVINCE'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.ADD_PROVINCE" id="ADD_PROVINCE" name="ADD_PROVINCE" on-select="onProvinceChange($item)">
+                        <ui-select-match>
+                            {{$select.selected.PROV_NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in province | filter: $select.search">
+                            <div ng-bind-html="item.PROV_NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="ADD_CITY">
+                    {{'DISTRICT'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.ADD_CITY" id="ADD_CITY" name="ADD_CITY" on-select="onDistrictChange($item)">
+                        <ui-select-match>
+                            {{$select.selected.CITY}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in district | filter: $select.search">
+                            <div ng-bind-html="item.CITY | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="ADD_DISTRICT">
+                    {{'SUBDISTRICT'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.ADD_DISTRICT" id="ADD_DISTRICT" name="ADD_DISTRICT">
+                        <ui-select-match>
+                            {{$select.selected.DISTRICT}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in subDistrict | filter: $select.search">
+                            <div ng-bind-html="item.DISTRICT | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="AREA_USE">
+                    {{'AREA_USE'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="AREA_USE" name="AREA_USE" ng-model="formData.AREA_USE">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="PROPERTY_FLOOR_MAX">
+                    {{'PROPERTY_FLOOR_MAX'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="PROPERTY_FLOOR_MAX" name="PROPERTY_FLOOR_MAX" ng-model="formData.PROPERTY_FLOOR_MAX">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="PROPERTY_SIZE">
+                    {{'PROPERTY_SIZE'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="PROPERTY_SIZE" name="PROPERTY_SIZE" ng-model="formData.PROPERTY_SIZE">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="PROPERTY_AGE">
+                    {{'PROPERTY_AGE'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="PROPERTY_AGE" name="PROPERTY_AGE" ng-model="formData.PROPERTY_AGE">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="PROPERTY_ROAD">
+                    {{'PROPERTY_ROAD'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="PROPERTY_ROAD" name="PROPERTY_ROAD" ng-model="formData.PROPERTY_ROAD">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="ROAD_TYPE">
+                    {{'ROAD_TYPE'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.ROAD_TYPE" id="ROAD_TYPE" name="ROAD_TYPE">
+                        <ui-select-match>
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in roadType | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="ROAD_SIZE">
+                    {{'ROAD_SIZE'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" maxlength="10" placeholder="" class="form-control" id="ROAD_SIZE" name="ROAD_SIZE" ng-model="formData.ROAD_SIZE">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="PROPERTY_USAGE">
+                    {{'PROPERTY_USAGE'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.PROPERTY_USAGE" id="PROPERTY_USAGE" name="PROPERTY_USAGE">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in colUsage | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="PROPERTY_ENVIRONMENT">
+                    {{'PROPERTY_ENVIRONMENT'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.PROPERTY_ENVIRONMENT" id="PROPERTY_ENVIRONMENT" name="PROPERTY_ENVIRONMENT">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in propEnvironment | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="PROPERTY_SHAPE">
+                    {{'PROPERTY_SHAPE'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.PROPERTY_SHAPE" id="PROPERTY_SHAPE" name="PROPERTY_SHAPE">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in landShape | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="PROPERTY_WIDTH">
+                    {{'PROPERTY_WIDTH'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="PROPERTY_WIDTH" name="PROPERTY_WIDTH" ng-model="formData.PROPERTY_WIDTH">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="PROPERTY_LANDSCAPE">
+                    {{'PROPERTY_LANDSCAPE'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.PROPERTY_LANDSCAPE" id="PROPERTY_LANDSCAPE" name="PROPERTY_LANDSCAPE">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in landScape | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="PROPERTY_USAGE">
+                    {{'PUBLIC_UTILITY'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <div class="col-sm-3 no-padding">
+                        <div class="checkbox clip-check check-primary">
+                            <input type="checkbox" id="PROPERTY_INFRA_ELEC" ng-model="formData.PROPERTY_INFRA_ELEC">
+                            <label for="PROPERTY_INFRA_ELEC">
+                                {{'ELECTRICITY'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="checkbox clip-check check-primary">
+                            <input type="checkbox" id="PROPERTY_INFRA_WATER" ng-model="formData.PROPERTY_INFRA_WATER">
+                            <label for="PROPERTY_INFRA_WATER">
+                                {{'WATER_SUPPLY'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="checkbox clip-check check-primary">
+                            <input type="checkbox" id="PROPERTY_INFRA_PHONE" ng-model="formData.PROPERTY_INFRA_PHONE">
+                            <label for="PROPERTY_INFRA_PHONE">
+                                {{'DRAIN'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="PROPERTY_USAGE">
+                    {{'FACILITIES'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <div class="col-sm-3 no-padding">
+                        <div class="checkbox clip-check check-primary">
+                            <input type="checkbox" id="PROPERTY_FACILITY_1" ng-model="formData.PROPERTY_FACILITY_1">
+                            <label for="PROPERTY_FACILITY_1">
+                                {{'CLUB'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="checkbox clip-check check-primary">
+                            <input type="checkbox" id="PROPERTY_FACILITY_2" ng-model="formData.PROPERTY_FACILITY_2">
+                            <label for="PROPERTY_FACILITY_2">
+                                {{'PLAYGROUND'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="checkbox clip-check check-primary">
+                            <input type="checkbox" id="PROPERTY_FACILITY_3" ng-model="formData.PROPERTY_FACILITY_3">
+                            <label for="PROPERTY_FACILITY_3">
+                                {{'GARDEN'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">
+
+                </label>
+                <div class="col-sm-8">
+                    <div class="col-sm-3 no-padding">
+                        <div class="checkbox clip-check check-primary">
+                            <input type="checkbox" id="PROPERTY_FACILITY_4" ng-model="formData.PROPERTY_FACILITY_4">
+                            <label for="PROPERTY_FACILITY_4">
+                                {{'SWIMMING_POOL'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="checkbox clip-check check-primary">
+                            <input type="checkbox" id="PROPERTY_FACILITY_5" ng-model="formData.PROPERTY_FACILITY_5">
+                            <label for="PROPERTY_FACILITY_5">
+                                {{'SECURITY_GUARD'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="checkbox clip-check check-primary">
+                            <input type="checkbox" id="PROPERTY_FACILITY_6" ng-model="formData.PROPERTY_FACILITY_6">
+                            <label for="PROPERTY_FACILITY_6">
+                                {{'FITNESS'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">
+
+                </label>
+                <div class="col-sm-8">
+                    <div class="col-sm-3 no-padding">
+                        <div class="checkbox clip-check check-primary">
+                            <input type="checkbox" id="PROPERTY_FACILITY_7" ng-model="formData.PROPERTY_FACILITY_7">
+                            <label for="PROPERTY_FACILITY_7">
+                                {{'OTHER'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" placeholder="" class="form-control" id="PROPERTY_FACILITY_OTHER" name="PROPERTY_FACILITY_OTHER" ng-model="formData.PROPERTY_FACILITY_OTHER">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">
+                    {{'POTENTIAL'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <div class="col-md-3 no-padding" ng-repeat="item in potential">
+                        <div class="radio clip-radio radio-primary">
+                            <input type="radio" name="PROPERTY_POTEN" ng-value="item.VALUE" ng-model="formData.PROPERTY_POTEN" id="PROPERTY_POTEN{{$index}}" />
+                            <label for="PROPERTY_POTEN{{$index}}">{{item.NAME}}</label>
+                        </div>
+                    </div>
+                    <!--<div class="col-sm-3 no-padding">
+                        <div class="radio clip-radio radio-primary">
+                            <input type="radio" name="POTENTIAL" ng-model="formData.PROPERTY_POTEN_GOOD" id="POTENTIAL1" />
+                            <label for="POTENTIAL1">{{'HEIGHT'|translate}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 no-padding">
+                        <div class="radio clip-radio radio-primary">
+                            <input type="radio" name="POTENTIAL" ng-model="formData.PROPERTY_POTEN_MID" id="POTENTIAL2" />
+                            <label for="POTENTIAL2">{{'MEDIUM'|translate}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 no-padding">
+                        <div class="radio clip-radio radio-primary">
+                            <input type="radio" name="POTENTIAL" ng-model="formData.PROPERTY_POTEN_LOW" id="POTENTIAL3" />
+                            <label for="POTENTIAL3">{{'LOW'|translate}}</label>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="INTERIOR_LEVEL">
+                    {{'INTERIOR_LEVEL'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <div class="col-md-3 no-padding" ng-repeat="item in interiorLevel">
+                        <div class="radio clip-radio radio-primary">
+                            <input type="radio" name="INTERIOR_LEVEL" ng-value="item.VALUE" ng-model="formData.INTERIOR_LEVEL" id="INTERIOR_LEVEL{{$index}}" />
+                            <label for="INTERIOR_LEVEL{{$index}}">{{item.NAME}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="MAINTAIN_LEVEL">
+                    {{'MAINTAIN_LEVEL'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <div class="col-md-3 no-padding" ng-repeat="item in maintainLevel">
+                        <div class="radio clip-radio radio-primary">
+                            <input type="radio" name="MAINTAIN_LEVEL" ng-value="item.VALUE" ng-model="formData.MAINTAIN_LEVEL" id="MAINTAIN_LEVEL{{$index}}" />
+                            <label for="MAINTAIN_LEVEL{{$index}}">{{item.NAME}}</label>
+                        </div>
+                    </div>
+                    <!--<ui-select theme="selectize" ng-model="formData.MAINTAIN_LEVEL" id="MAINTAIN_LEVEL" name="MAINTAIN_LEVEL">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in maintainLevel | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>-->
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="PROPERTY_SELL">
+                    {{'PROPERTY_SELL'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <div class="col-md-3 no-padding" ng-repeat="item in marketSell">
+                        <div class="radio clip-radio radio-primary">
+                            <input type="radio" name="PROPERTY_SELL" ng-value="item.VALUE" ng-model="formData.PROPERTY_SELL" id="PROPERTY_SELL{{$index}}" />
+                            <label for="PROPERTY_SELL{{$index}}">{{item.NAME}}</label>
+                        </div>
+                    </div>
+                    <!--<ui-select theme="selectize" ng-model="formData.PROPERTY_SELL" id="AREA_COLOR" name="PROPERTY_SELL">
+                        <ui-select-match>
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in marketSell | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>-->
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="AREA_COLOR">
+                    {{'AREA_COLOR'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.AREA_COLOR" id="AREA_COLOR" name="AREA_COLOR">
+                        <ui-select-match>
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in landColor | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="PRICE_SELL">
+                    {{'PRICE_SELL'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control" ng-model="formData.PRICE_SELL" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="INFO_STATUS">
+                    {{'INFO_STATUS'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.INFO_STATUS" id="INFO_STATUS" name="INFO_STATUS">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in marketStatus | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="INFO_FROM_CHOOSE">
+                    {{'INFO_FROM_CHOOSE'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.INFO_FROM_CHOOSE" id="INFO_FROM_CHOOSE" name="INFO_FROM_CHOOSE">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in marketInfo | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="INFO_FROM_TEXT">
+
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="INFO_FROM_TEXT" name="INFO_FROM_TEXT" ng-model="formData.INFO_FROM_TEXT">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="REMARK">
+                    {{'REMARK'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="REMARK" name="REMARK" ng-model="formData.REMARK">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

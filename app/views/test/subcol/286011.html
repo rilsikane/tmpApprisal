@@ -1,0 +1,308 @@
+﻿<div class="panel panel-white">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ข้อมูลเครื่องจักร</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="SURVEY_APPR_DATE">
+                {{'SURVEY_APPR_DATE'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.SURVEY_APPR_DATE" ng-click="openDatePicker($event,'SURVEY_APPR_DATE')" type="text" class="form-control" ng-model="formData.SURVEY_APPR_DATE" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="REPLACEMENT_COST">
+                ราคาต้นทุนทดแทนใหม่ (บาท/หน่วย)
+            </label>
+            <div class="col-sm-8">
+                <input format type="text" class="form-control" ng-model="formData.REPLACEMENT_COST" />
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.APPR_CUR_NET_TOTAL.$dirty && form.APPR_CUR_NET_TOTAL.$invalid, 'has-success':form.APPR_CUR_NET_TOTAL.$valid}">
+            <label ng-class="labelControlCss" for="APPR_CUR_NET_TOTAL">
+                ราคาประเมินหลักทรัพย์ <span class="symbol required"></span>
+            </label>
+            <div ng-class="formControlCss">
+                <input price required type="text" placeholder="" class="form-control" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" ng-model="formData.APPR_CUR_NET_TOTAL">
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.MACHINE_LOCATION.$dirty && form.MACHINE_LOCATION.$invalid, 'has-success':form.MACHINE_LOCATION.$valid}">
+            <label ng-class="labelControlCss" for="MACHINE_LOCATION">
+                {{'MACHINE_LOCATION'|translate}}<span class="symbol required"></span>
+            </label>
+            <div ng-class="formControlCss">
+                <input required type="text" placeholder="" class="form-control" id="MACHINE_LOCATION" name="MACHINE_LOCATION" ng-model="formData.MACHINE_LOCATION">
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.REGIS_NO.$dirty && form.REGIS_NO.$invalid, 'has-success':form.REGIS_NO.$valid}">
+            <label ng-class="labelControlCss" for="REGIS_NO">
+                <i class="fa fa-bolt"></i> {{'MACHINE_NO'|translate}}<span class="symbol required"></span>
+            </label>
+            <div ng-class="formControlCss">
+                <input required type="text" placeholder="" class="form-control" id="REGIS_NO" name="REGIS_NO" ng-model="formData.REGIS_NO">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="REGIS_YN">
+                {{'REGIS_YN'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <div class="col-sm-4" ng-repeat="item in radioRegisYN">
+                    <div class="form-group radio clip-radio radio-primary">
+                        <input type="radio" name="REGIS_YN" ng-value="item.VALUE" ng-model="formData.REGIS_YN" id="REGIS_YN{{item.VALUE}}" />
+                        <label for="REGIS_YN{{item.VALUE}}">{{ item.NAME }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.MACHINE_NAME.$dirty && form.MACHINE_NAME.$invalid, 'has-success':form.MACHINE_NAME.$valid}">
+            <label ng-class="labelControlCss" for="MACHINE_NAME">
+                {{'MACHINE_NAME'|translate}}<span class="symbol required"></span>
+            </label>
+            <div ng-class="formControlCss">
+                <input required type="text" placeholder="" class="form-control" id="MACHINE_NAME" name="MACHINE_NAME" ng-model="formData.MACHINE_NAME">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="BRAND_NAME">
+                แบบ
+            </label>
+            <div ng-class="formControlCss">
+                <input type="text" placeholder="" class="form-control" id="BRAND_NAME" name="BRAND_NAME" ng-model="formData.BRAND_NAME">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="MODEL">
+                {{'BRAND_MODEL'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <input type="text" placeholder="" class="form-control" id="MODEL" name="MODEL" ng-model="formData.MODEL">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="BRAND">
+                ยี่ห้อ
+            </label>
+            <div ng-class="formControlCss">
+                <input type="text" maxlength="30" class="form-control" id="BRAND" name="BRAND" ng-model="formData.BRAND">
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.QUANTITY.$invalid}">
+            <label ng-class="labelControlCss" for="QUANTITY">
+                จำนวน (เครื่อง) <span class="symbol"></span>
+            </label>
+            <div ng-class="formControlCss">
+                <input type="number" min="0" class="form-control" id="QUANTITY" name="QUANTITY" ng-model="formData.QUANTITY">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="SERIAL_NO_FROM">
+                {{'SERIAL_NO_FROM'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <input type="text" placeholder="" class="form-control" id="SERIAL_NO_FROM" name="SERIAL_NO_FROM" ng-model="formData.SERIAL_NO_FROM">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="SERIAL_NO_TO">
+                {{'SERIAL_NO_TO'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <input type="text" placeholder="" class="form-control" id="SERIAL_NO_TO" name="SERIAL_NO_TO" ng-model="formData.SERIAL_NO_TO">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="MACHINE_USAGE">
+                {{'MACHINE_USAGE'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <input type="text" placeholder="" class="form-control" id="MACHINE_USAGE" name="MACHINE_USAGE" ng-model="formData.MACHINE_USAGE">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="MACHINE_SIZE">
+                {{'MACHINE_SIZE'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <input type="text" placeholder="" class="form-control" id="MACHINE_SIZE" name="MACHINE_SIZE" ng-model="formData.MACHINE_SIZE">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="MACHINE_VOLUME">
+                ขนาดความสามารถ (เกวียน/วัน,เกวียน/ลิตร)
+            </label>
+            <div ng-class="formControlCss">
+                <input type="text" class="form-control" id="MACHINE_VOLUME" name="MACHINE_VOLUME" ng-model="formData.MACHINE_VOLUME">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="MACHINE_ENERGY">
+                {{'MACHINE_ENERGY'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <div ng-repeat="item in radioEnergy" class="col-sm-3">
+                    <div class="radio clip-radio radio-primary form-group">
+                        <input type="radio" name="MACHINE_ENERGY" ng-value="item.VALUE" ng-model="formData.MACHINE_ENERGY" id="MACHINE_ENERGY{{item.VALUE}}" />
+                        <label for="MACHINE_ENERGY{{item.VALUE}}">{{ item.NAME }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="MADE_IN_COUNTRY">
+                {{'MADE_IN_COUNTRY'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <ui-select theme="selectize" ng-model="formData.MADE_IN_COUNTRY" id="MADE_IN_COUNTRY" name="MADE_IN_COUNTRY">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.NAME_THAI}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectCountry | filter: $select.search">
+                        <div ng-bind-html="item.NAME_THAI | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="GUARANTEE_COUNTRY">
+                ประเทศที่ตั้งหลักประกัน
+            </label>
+            <div ng-class="formControlCss">
+                <ui-select theme="selectize" ng-model="formData.GUARANTEE_COUNTRY" id="GUARANTEE_COUNTRY" name="GUARANTEE_COUNTRY">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.NAME_THAI}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectCountry | filter: $select.search">
+                        <div ng-bind-html="item.NAME_THAI | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.MARKET_NEED.$dirty && form.MARKET_NEED.$viewValue==undefined, 'has-success':form.MARKET_NEED.$viewValue!=undefined}">
+            <label ng-class="labelControlCss">
+                {{'MARKET_NEED'|translate}}<span class="symbol required"></span>
+            </label>
+            <div ng-class="formControlCss">
+                <div ng-repeat="item in radioYN" class="col-sm-3">
+                    <div class="radio clip-radio radio-primary form-group">
+                        <input type="radio" name="MARKET_NEED" ng-value="item.VALUE" ng-model="formData.MARKET_NEED" id="MARKET_NEED{{item.VALUE}}" />
+                        <label for="MARKET_NEED{{item.VALUE}}">{{ item.NAME }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="IS_INSURANCE">
+                {{'INSURE_YN'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <div ng-repeat="item in radioYN" class="col-sm-3">
+                    <div class="radio clip-radio radio-primary form-group">
+                        <input type="radio" name="IS_INSURANCE" ng-value="item.VALUE" ng-model="formData.IS_INSURANCE" id="IS_INSURANCE{{item.VALUE}}" />
+                        <label for="IS_INSURANCE{{item.VALUE}}">{{ item.NAME }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="PURCHASE_DATE">
+                {{'PURCHASE_DATE'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <input type="text" class="form-control" id="PURCHASE_DATE" name="PURCHASE_DATE" ng-model="formData.PURCHASE_DATE" datepicker-popup="dd/MM/yyyy" is-open="dpOpened" ng-click="dpOpened=true">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="DETAIL">
+                {{'DETAIL'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <textarea class="form-control" style="max-width:100%;" maxlength="1000" ng-model="formData.DETAIL" id="DETAIL" name="DETAIL"></textarea>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.AGE_USED_YEAR.$invalid}">
+            <label ng-class="labelControlCss" for="AGE_USED_YEAR">
+                อายุผ่านการใช้งานเครื่องจักร <span class="symbol"></span>
+            </label>
+            <div ng-class="formControlCss">
+                <div class="col-sm-3 no-padding">
+                    <input type="number" min="0" class="form-control" id="AGE_USED_YEAR" name="AGE_USED_YEAR" ng-model="formData.AGE_USED_YEAR">
+                </div>
+                <div class="col-sm-1">
+                    <label class="control-label">{{'YEAR'|translate}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':(form.AGE_STD_YEAR.$dirty && form.AGE_STD_YEAR.$invalid) || (form.AGE_STD_MONTH.$dirty && form.AGE_STD_MONTH.$invalid), 'has-success':form.AGE_STD_YEAR.$valid && form.AGE_STD_MONTH.$valid}">
+            <label ng-class="labelControlCss" for="AGE_STD_YEAR">
+                {{'AGE_USAGE_REM'|translate}} <span class="symbol required"></span>
+            </label>
+            <div ng-class="formControlCss">
+                <div class="col-sm-3 no-padding">
+                    <input required type="text" placeholder="" class="form-control" id="AGE_STD_YEAR" name="AGE_STD_YEAR" ng-model="formData.AGE_STD_YEAR">
+                </div>
+                <div class="col-sm-1">
+                    <label class="control-label">{{'YEAR'|translate}}</label>
+                </div>
+                <div class="col-sm-3">
+                    <input type="number" min="0" max="11" class="form-control" id="AGE_STD_MONTH" name="AGE_STD_MONTH" ng-model="formData.AGE_STD_MONTH">
+                </div>
+                <div class="col-sm-1">
+                    <label class="control-label">{{'MONTH'|translate}}</label>
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':(form.AGE_YEAR.$dirty && form.AGE_YEAR.$invalid)||(form.AGE_MONTH.$dirty && form.AGE_MONTH.$invalid), 'has-success':form.AGE_YEAR.$valid && form.AGE_MONTH.$valid}">
+            <label ng-class="labelControlCss" for="AGE_YEAR">
+                {{'AGE_STD'|translate}} <span class="symbol required"></span>
+            </label>
+            <div ng-class="formControlCss">
+                <div class="col-sm-3 no-padding">
+                    <input required type="number" min="0" class="form-control" id="AGE_YEAR" name="AGE_YEAR" ng-model="formData.AGE_YEAR">
+                </div>
+                <div class="col-sm-1">
+                    <label class="control-label">{{'YEAR'|translate}}</label>
+                </div>
+                <div class="col-sm-3">
+                    <input type="number" min="0" max="11" class="form-control" id="AGE_MONTH" name="AGE_MONTH" ng-model="formData.AGE_MONTH">
+                </div>
+                <div class="col-sm-1">
+                    <label class="control-label">{{'MONTH'|translate}}</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error':form.ES_SALE_MONTH.$invalid}">
+            <label ng-class="labelControlCss" for="ES_SALE_YEAR">
+                {{'ES_SALE'|translate}}<span class="symbol"></span>
+            </label>
+            <div ng-class="formControlCss">
+                <div class="col-sm-3 no-padding">
+                    <input type="number" min="0" class="form-control" id="ES_SALE_YEAR" name="ES_SALE_YEAR" ng-model="formData.ES_SALE_YEAR">
+                </div>
+                <div class="col-sm-1">
+                    <label class="control-label">{{'YEAR'|translate}}</label>
+                </div>
+                <div class="col-sm-3">
+                    <input type="number" min="0" max="11" class="form-control" id="ES_SALE_MONTH" name="ES_SALE_MONTH" ng-model="formData.ES_SALE_MONTH">
+                </div>
+                <div class="col-sm-1">
+                    <label class="control-label" for="ES_SALE_MONTH">
+                        {{'MONTH'|translate}}
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.REMARK.$dirty && form.REMARK.$invalid, 'has-success':form.REMARK.$valid}">
+            <label ng-class="labelControlCss" for="REMARK">
+                {{'REMARK'|translate}}
+                <!--<span class="symbol required"></span>-->
+            </label>
+            <div ng-class="formControlCss">
+                <textarea style="max-width:100%;" maxlength="300" ng-model="formData.REMARK" id="REMARK" name="REMARK" class="form-control"></textarea>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿<div class="container-fluid container-fullw" ng-controller="formController">
+    <div class="panel no-radius  border-light">
+        <div class="panel-heading no-radius bg-deep-pink">
+            <h4 class="panel-title">{{title}}</h4>
+            <ul class="panel-heading-tabs border-light">
+
+                <li ng-if="changableState.length > 0">
+                    <div class="pull-right">
+                        <div class="btn-group" dropdown is-open="status.isopen">
+                            <button type="button" class="btn btn-o btn-squared border-white dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                                {{'BUTTON.CHANGE_STATUS'|translate}}<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu no-radius" role="menu">
+                                <li ng-repeat="state in changableState">
+                                    <a href="#" ng-click="changeState(state)">
+                                        {{state.STATE_NAME}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <button ng-repeat="button in w4buttons" type="button" class="btn btn-o btn-squared margin-left-5 border-white" ng-click="action(button)">
+                        {{button.ACT_TEXT}}
+                    </button>
+                    <!--<button type="button" class="btn btn-o btn-squared border-white" ng-click="back()">
+                        <i class="glyphicon glyphicon-arrow-left"></i> {{'BUTTON.BACK'|translate}}
+                    </button>-->
+                </li>
+            </ul>
+        </div>
+        <div class="panel-body border-around no-radius border-white" ng-if="formData.REQUEST_RUNNING_ID > 0">
+            <form role="form">
+                <div class="form-group col-md-3">
+                    <label for="REQUEST_NO">
+                        {{'REQUEST_NO'|translate}}
+                    </label>
+                    <input readonly type="text" class="form-control" id="REQUEST_NO" ng-model="formData.REQUEST_NO" />
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="DATE_REQ">
+                        {{'DATE_REQ'|translate}}
+                    </label>
+                    <input readonly type="text" class="form-control" id="DATE_REQ" ng-model="formData.DATE_REQ" datepicker-popup="dd/MM/yyyy" />
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="CA_NO">
+                        {{'CA_NO'|translate}}
+                    </label>
+                    <input readonly type="text" class="form-control" id="CA_NO" ng-model="formData.CA_NO" />
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleInputPassword1">
+                        {{'REQ_TYPE'|translate}}
+                    </label>
+                    <input readonly type="text" class="form-control" id="REQ_TYPE" ng-model="formData.REQ_TYPE.NAME" />
+                </div>
+            </form>
+        </div>
+        <tabset class="tabbable">
+            <tab ng-repeat="tab in tabs" active="tab.active" select="onTabChange(tab)" title="[{{tab.code}}][{{(tab.create?'C':'')}}{{(tab.read?'R':'')}}{{(tab.update?'U':'')}}{{(tab.delete?'D':'')}}]" heading="{{tab.title}}">
+                <div class="container-fluid container-fullw" ng-include="'app/views/test/subform'+tab.code+'.html'" ng-init="tab=tab"></div>
+            </tab>
+        </tabset>
+    </div>
+</div>

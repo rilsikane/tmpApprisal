@@ -1,0 +1,49 @@
+﻿<div class="container-fluid container-fullw" ng-controller="userController">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-white no-radius">
+                <div class="panel-heading no-radius bg-deep-pink border-light">
+                    <h4 class="panel-title">{{'USER'|translate}}</h4>
+                    <ul class="panel-heading-tabs no-border border-light">
+                        <li>
+                            <button type="button" class="btn btn-o border-white" ng-click="add()">
+                                <i class="glyphicon glyphicon-plus-sign"></i> {{'BUTTON.NEW'|translate}}
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-body border-light">
+                    <div class="col-md-12">
+                        <div class="search-form">
+                            <form class="navbar-form" role="search">
+                                <a class="s-remove" href="#" ng-toggle-class="search-open" target=".navbar-form">
+                                    <i class="ti-close"></i>
+                                </a>
+                                <div class="form-group">
+                                    <input type="text" placeholder="{{'SEARCH'|translate}}" class="form-control" ng-keypress="searchEnter($event)" ng-model="searchKeyword" />
+                                    <button class="btn search-button" type="button" style="right:0px;" tooltip="{{'BUTTON.SEARCH'|translate}}" ng-click="searchClick()">
+                                        <i class="ti-search"></i>
+                                    </button>
+                                    <!--<button class="btn search-button" type="button" style="right:-5px;" tooltip="{{'BUTTON.ADD'|translate}}" ng-click="add()">
+                                        <i class="ti-plus"></i>
+                                    </button>-->
+                                </div>
+                            </form>
+                        </div>
+                        <ul class="list-group">
+                            <li ng-repeat="item in users" class="list-group-item no-radius">
+                                <div>
+                                    <h4 class="text-info">{{item.USER_NAME}} / {{item.PREFIX.NAME}} {{item.EMP_F_NAME}} {{item.EMP_L_NAME}}</h4>
+                                    <i>{{'OU'|translate}} : {{item.OU.OU_NAME}}</i>
+                                    <span style="cursor:pointer;" class="pull-right" ng-click="edit(item)"><i class="fa fa-pencil"></i></span>
+                                </div>
+                            </li>
+                        </ul>
+                        <!--<pager total-items="provinceTotalItems" ng-model="currentProvincePage" ng-change="getProvince()"></pager>-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

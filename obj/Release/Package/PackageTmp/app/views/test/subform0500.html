@@ -1,0 +1,53 @@
+﻿<div class="panel-body border-light" ng-controller="subform0500Controller">
+    <form role="form" class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="">
+            </label>
+            <div class="col-sm-6">
+                <div class="radio clip-radio radio-primary">
+                    <input type="radio" name="APPRAISER_TYPE" ng-value="'I'" ng-model="formData.APPRAISER_TYPE" id="APPRAISER_TYPE_I" ng-change="appraiserTypeChange('I')"  ng-disabled="inputDisabled" />
+                    <label for="APPRAISER_TYPE_I">{{ 'I_APPRAISER'|translate }}</label>
+                </div>
+                <div class="radio clip-radio radio-primary">
+                    <input type="radio" name="APPRAISER_TYPE" ng-value="'E'" ng-model="formData.APPRAISER_TYPE" id="APPRAISER_TYPE_E" ng-change="appraiserTypeChange('E')"  ng-disabled="inputDisabled" />
+                    <label for="APPRAISER_TYPE_E">{{ 'E_APPRAISER'|translate }}</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="">
+                หน่วยงานประเมิน
+            </label>
+            <div class="col-sm-6">
+                <ui-select theme="selectize" ng-model="formData.APPRAISER" ng-disabled="inputDisabled">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.OU_NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in $parent.appraiser | filter: formData.APPRAISER_TYPE:true:'OU_TYPE'">
+                        <div ng-bind-html="item.OU_NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="">
+                หน่วยงานผู้ตรวจสอบ
+            </label>
+            <div class="col-sm-6">
+                <ui-select theme="selectize" ng-model="formData.APPROVER" ng-disabled="inputDisabled">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.OU_NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in $parent.approvers | filter: $select.search">
+                        <div ng-bind-html="item.OU_NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </form>
+    <div class="height-155"></div>
+    <button type="button" ng-disabled="btnDisabled" class="btn btn-primary btn-squared pull-right" ng-click="save()">
+        <i class="glyphicon glyphicon-floppy-save"></i> {{'BUTTON.SAVE'|translate}}
+    </button>
+</div>

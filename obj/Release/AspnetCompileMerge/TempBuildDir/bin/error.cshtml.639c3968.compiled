@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="2" virtualPath="/Views/Shared/Error.cshtml" hash="1dc92fa5" filehash="ffffd2b71709bb5d" flags="110000" assembly="App_Web_vy0x1yju" type="ASP._Page_Views_Shared_Error_cshtml">
+    <filedeps>
+        <filedep name="/Views/Shared/Error.cshtml" />
+    </filedeps>
+</preserve>

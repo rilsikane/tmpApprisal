@@ -1,0 +1,14 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{title}}</h3>
+</div>
+<div class="modal-body bg-light-grey">
+    <div ng-include="'app/views/setting/project.html'"></div>
+</div>
+<div class="modal-footer">
+    <button ng-if="showProject" class="btn btn-primary btn-o" ng-disabled="btnDisabled" ng-click="selectDevPro(form,'expand-left')">
+        <i class="glyphicon glyphicon-ok"></i> {{'BUTTON.OK'|translate}}
+    </button>
+    <button class="btn btn-primary  btn-o" ng-disabled="btnDisabled" ng-click="cancel()">
+        <i class="glyphicon glyphicon-chevron-left"></i> {{'BUTTON.BACK'|translate}}
+    </button>
+</div>

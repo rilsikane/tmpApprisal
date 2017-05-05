@@ -1,0 +1,274 @@
+﻿<div ng-controller="subform0100Controller">
+    <div class="panel panel-white no-radius">
+        <div class="panel-heading border-light bg-azure no-radius">
+            <h4 class="panel-title">รายละเอียด</h4>
+            <!--<ct-paneltool class="panel-tools" tool-refresh="load1"></ct-paneltool>-->
+        </div>
+        <div class="panel-body">
+            <form name="form" role="form" class="form-horizontal" novalidate ng-submit="submit(form)" ng-disabled="inputDisabled">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="NPA_TYPE">
+                    </label>
+                    <div class="col-sm-2 no-padding">
+                        <div class="checkbox clip-check check-primary">
+                            <input ng-disabled="inputDisabled" type="checkbox" id="NPA_TYPE" ng-model="$parent.formData.NPA_TYPE" ng-change="onNPAChange()" />
+                            <label for="NPA_TYPE">
+                                {{'NPA_TYPE'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-9 no-padding">
+                        <div class="checkbox clip-check check-primary">
+                            <input type="checkbox" id="JOB_TYPE" ng-model="$parent.formData.JOB_TYPE" ng-disabled="$parent.formData.REQUEST_RUNNING_ID > 0 || inputDisabled" />
+                            <label for="JOB_TYPE">
+                                {{'JOB_TYPE'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error':form.PROJECT_TYPE.$dirty && form.PROJECT_TYPE.$invalid && $parent.formData.JOB_TYPE, 'has-success':form.PROJECT_TYPE.$valid && $parent.formData.JOB_TYPE}">
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="radio clip-radio radio-primary">
+                            <input ng-required="$parent.formData.JOB_TYPE" type="radio" name="PROJECT_TYPE" value="B" ng-model="$parent.formData.PROJECT_TYPE" id="PRE_PROJECT" ng-disabled="!$parent.formData.JOB_TYPE || $parent.formData.REQUEST_RUNNING_ID > 0 || inputDisabled" />
+                            <label for="PRE_PROJECT">{{ 'PRE_PROJECT'|translate }}</label>
+                        </div>
+                        <div class="radio clip-radio radio-primary">
+                            <input ng-required="$parent.formData.JOB_TYPE" type="radio" name="PROJECT_TYPE" value="A" ng-model="$parent.formData.PROJECT_TYPE" id="POST_PROJECT" ng-disabled="!$parent.formData.JOB_TYPE || $parent.formData.REQUEST_RUNNING_ID > 0 || inputDisabled" />
+                            <label for="POST_PROJECT">{{ 'POST_PROJECT'|translate }}</label>
+                        </div>
+                        <span class="error text-small block" ng-if="form.PROJECT_TYPE.$dirty && form.PROJECT_TYPE.$invalid">{{requireNotificationPrefix}} {{'PROJECT_TYPE'|translate}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="REQUEST_NO">
+                        {{'REQUEST_NO'|translate}}
+                    </label>
+                    <div class="col-sm-4 no-padding">
+                        <input type="text" readonly class="form-control" id="REQUEST_NO" name="REQUEST_NO" ng-model="$parent.formData.REQUEST_NO">
+                    </div>
+                </div>                
+                <div class="form-group" ng-class="{'has-error':form.DATE_REQ.$dirty && form.DATE_REQ.$invalid, 'has-success':form.DATE_REQ.$valid}">
+                    <label class="col-sm-3 control-label" for="DATE_REQ">
+                        {{'DATE_REQ'|translate}}<span class="symbol required"></span>
+                    </label>
+                    <div class="col-sm-4 no-padding">
+                        <input required ng-disabled="inputDisabled" ng-model="$parent.formData.DATE_REQ" class="form-control no-radius" id="DATE_REQ" name="DATE_REQ" datepicker-popup="dd/MM/yyyy" is-open="dpOpened" ng-click="dpOpened=true" />
+                        <span class="error text-small block" ng-if="form.DATE_REQ.$dirty && form.DATE_REQ.$invalid">{{requireNotificationPrefix}} วันที่ใบคำขอประเมิน</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error':form.CA_NO.$dirty && form.CA_NO.$invalid, 'has-success':form.CA_NO.$valid}">
+                    <label class="col-sm-3 control-label" for="CA_NO">
+                        {{'CA_NO'|translate}}<span class="symbol required"></span>
+                    </label>
+                    <div class="col-sm-4 no-padding">
+                        <input required type="text" ng-disabled="inputDisabled" class="form-control" id="CA_NO" name="CA_NO" ng-model="$parent.formData.CA_NO">
+                        <span class="error text-small block" ng-if="form.CA_NO.$dirty && form.CA_NO.$invalid">{{requireNotificationPrefix}} CA NO.</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error':form.REQ_TYPE.$dirty && form.REQ_TYPE.$viewValue==undefined, 'has-success':form.REQ_TYPE.$viewValue!=undefined && form.REQ_TYPE.$viewValue.VALUE != undefined}">
+                    <label class="col-sm-3 control-label" for="REQ_TYPE">
+                        {{'REQ_TYPE'|translate}}<span class="symbol required"></span>
+                    </label>
+                    <div class="col-sm-4 no-padding">
+                        <ui-select ng-required="true" ng-disabled="true" theme="selectize" ng-model="$parent.formData.REQ_TYPE" name="REQ_TYPE" id="REQ_TYPE">
+                            <ui-select-match>
+                                {{$select.selected.NAME}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in requestType | filter: $select.search">
+                                <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="error text-small block" ng-if="form.REQ_TYPE.$dirty && form.REQ_TYPE.$viewValue==undefined">{{requireNotificationPrefix}} ประเภทการประเมิน</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error':form.OBJECTIVE.$dirty && form.OBJECTIVE.$viewValue==undefined, 'has-success':form.OBJECTIVE.$viewValue != undefined && form.OBJECTIVE.$viewValue.VALUE != undefined}">
+                    <label class="col-sm-3 control-label" for="OBJECTIVE">
+                        {{'OBJECTIVE'|translate}}<span class="symbol required"></span>
+                    </label>
+                    <div class="col-sm-4 no-padding">
+                        <ui-select ng-required="true" ng-disabled="inputDisabled" theme="selectize" ng-model="$parent.formData.OBJECTIVE" name="OBJECTIVE" id="OBJECTIVE">
+                            <ui-select-match>
+                                {{$select.selected.NAME}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in objective | filter: $select.search">
+                                <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="error text-small block" ng-if="form.OBJECTIVE.$dirty && form.OBJECTIVE.$invalid">{{requireNotificationPrefix}} วัตถุประสงค์</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error':form.DEBT_TYPE.$dirty && form.DEBT_TYPE.$invalid, 'has-success':form.DEBT_TYPE.$viewValue != undefined && form.DEBT_TYPE.$viewValue.VALUE != undefined}">
+                    <label class="col-sm-3 control-label" for="DEBT_TYPE">
+                        {{'DEBT_TYPE'|translate}}<span class="symbol required" ng-if="!$parent.formData.NPA_TYPE"></span>
+                    </label>
+                    <div class="col-sm-4 no-padding">
+                        <ui-select ng-disabled="inputDisabled" ng-required="!$parent.formData.NPA_TYPE" theme="selectize" ng-model="$parent.formData.DEBT_TYPE" name="DEBT_TYPE" id="DEBT_TYPE">
+                            <ui-select-match>
+                                {{$select.selected.NAME}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in debtType | filter: $select.search">
+                                <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="error text-small block" ng-if="form.DEBT_TYPE.$dirty && form.DEBT_TYPE.$invalid">{{requireNotificationPrefix}} ประเภทสินเชื่อที่ขอกู้</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error':form.CUST_TYPE.$dirty && form.CUST_TYPE.$invalid, 'has-success':form.CUST_TYPE.$viewValue != undefined && form.CUST_TYPE.$viewValue.VALUE != undefined}">
+                    <label class="col-sm-3 control-label" for="CUST_TYPE">
+                        {{'CUSTOMER_TYPE'|translate}}<span class="symbol required" ng-if="!$parent.formData.NPA_TYPE"></span>
+                    </label>
+                    <div class="col-sm-4 no-padding">
+                        <ui-select ng-disabled="inputDisabled" ng-required="$parent.formData.NPA_TYPE==false" theme="selectize" ng-model="$parent.formData.CUST_TYPE" name="CUST_TYPE" id="CUST_TYPE">
+                            <ui-select-match>
+                                {{$select.selected.NAME}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in custType | filter: $select.search">
+                                <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="error text-small block" ng-if="form.CUST_TYPE.$dirty && form.CUST_TYPE.$invalid">{{requireNotificationPrefix}} ประเภทลูกค้า</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error':form.OU.$dirty && form.OU.$invalid, 'has-success':form.OU.$viewValue != undefined && form.OU.$viewValue.OU_ID != undefined}">
+                    <label class="col-sm-3 control-label" for="OU">
+                        {{'REQUEST_OU'|translate}}<span class="symbol required"></span>
+                    </label>
+                    <div class="col-sm-4 no-padding">
+                        <ui-select ng-required="true" ng-disabled="true" theme="selectize" ng-model="$parent.formData.REQUEST_OU" name="OU" id="OU">
+                            <ui-select-match>
+                                {{$select.selected.OU_NAME}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in dept | filter: $select.search">
+                                <div ng-bind-html="item.OU_NAME | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="error text-small block" ng-if="form.OU.$dirty && form.OU.$invalid">{{requireNotificationPrefix}} {{'REQUEST_OU'|translate}}</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error':form.EMPLOYEE.$dirty && form.EMPLOYEE.$invalid, 'has-success':form.EMPLOYEE.$valid}">
+                    <label class="col-sm-3 control-label" for="EMPLOYEE">
+                        {{'BANK_EMPLOYEE'|translate}}<span class="symbol required"></span>
+                    </label>
+                    <div class="col-sm-4 no-padding">
+                        <input required ng-model="$parent.formData.EMPLOYEE" type="text" ng-disabled="inputDisabled" class="form-control" id="EMPLOYEE" name="EMPLOYEE" />
+                        <span class="error text-small block" ng-if="form.EMPLOYEE.$dirty && form.EMPLOYEE.$invalid">{{requireNotificationPrefix}} เจ้าหน้าที่ธนาคาร</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error':form.CREDIT_REQUEST.$dirty && form.CREDIT_REQUEST.$invalid, 'has-success':form.CREDIT_REQUEST.$valid}">
+                    <label class="col-sm-3 control-label" for="CREDIT_REQUEST">
+                        {{'CREDIT_REQUEST'|translate}}<span class="symbol required" ng-if="!$parent.formData.NPA_TYPE"></span>
+                    </label>
+                    <div class="col-sm-4 no-padding">
+                        <input format ng-disabled="inputDisabled" ng-required="!$parent.formData.NPA_TYPE" ng-model="$parent.formData.CREDIT_REQUEST" type="text" ng-change="calDebt()" class="form-control" id="CREDIT_REQUEST" name="CREDIT_REQUEST" />
+                        <span class="error text-small block" ng-if="form.CREDIT_REQUEST.$dirty && form.CREDIT_REQUEST.$invalid">{{requireNotificationPrefix}} {{'CREDIT_REQUEST'|translate}}</span>
+                    </div>
+                </div>
+                <div class="form-group"  ng-class="{'has-error':form.CREDIT_BALANCE.$dirty && form.CREDIT_BALANCE.$invalid, 'has-success':form.CREDIT_BALANCE.$valid}">
+                    <label class="col-sm-3 control-label" for="CREDIT_BALANCE">
+                        {{'CREDIT_BALANCE'|translate}}<span class="symbol required" ng-if="!$parent.formData.NPA_TYPE"></span>
+                    </label>
+                    <div class="col-sm-4 no-padding">
+                        <input format ng-disabled="inputDisabled" ng-required="!$parent.formData.NPA_TYPE" ng-model="$parent.formData.CREDIT_BALANCE" type="text" ng-change="calDebt()" class="form-control" id="CREDIT_BALANCE" name="CREDIT_BALANCE" />
+                        <span class="error text-small block" ng-if="form.CREDIT_BALANCE.$dirty && form.CREDIT_BALANCE.$invalid">{{requireNotificationPrefix}} ภาระหนี้คงเหลือ</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="CREDIT_LIMIT">
+                        {{'CREDIT_LIMIT'|translate}}
+                    </label>
+                    <div class="col-sm-4 no-padding">
+                        <input format ng-model="$parent.formData.CREDIT_LIMIT" disabled type="text" class="form-control" id="CREDIT_LIMIT" name="CREDIT_LIMIT" />
+                        <span class="error text-small block" ng-if="form.CREDIT_LIMIT.$dirty && form.CREDIT_LIMIT.$invalid">{{requireNotificationPrefix}} {{'CREDIT_LIMIT'|translate}}</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <alert ng-if="$parent.formData.CUSTOMERS.length==0 && !$parent.formData.NPA_TYPE" type="danger" class="no-radius">
+        {{'FORM.REQUIRE_PREFIX'|translate}} {{'LENDER_NAME'|translate}}
+    </alert>
+    <div class="panel panel-white no-radius">
+        <div class="panel-heading border-light bg-azure no-radius">
+            <h4 class="panel-title">{{'LENDER_NAME'|translate}}</h4>
+            <ul class="panel-heading-tabs border-light" ng-if="!inputDisabled">
+                <li>
+                    <div class="pull-right">
+                        <a class="" ng-click="addLender()"><span class="text-white"><i class="glyphicon glyphicon-plus-sign"></i></span></a>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-hover" id="sample-table-4">
+                <thead>
+                    <tr>
+                        <th class="col-sm-4">ชื่อ/นามสกุล ผู้กู้</th>
+                        <th class="col-sm-3">เบอร์โทรติดต่อ</th>
+                        <th class="col-sm-4"><i class="fa fa-time"></i> บัตรประชาชน/ทะเบียนการค้า </th>
+                        <th class="col-sm-1" ng-if="!inputDisabled"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in $parent.formData.CUSTOMERS">
+                        <td>{{item.LENDER_NAME}}</td>
+                        <td>{{item.LENDER_PHONE}}</td>
+                        <td>{{item.REGISTER_ID | idNumber}}</td>
+                        <td class="center" ng-if="!inputDisabled">
+                            <div class="visible-md visible-lg hidden-sm hidden-xs">
+                                <a href="#" ng-click="editLenderContact(item)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="แก้ไข"><i class="fa fa-pencil"></i></a>
+                                <a href="#" ng-click="delLender(item)" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="ลบรายการ"><i class="fa fa-times fa fa-white"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-white no-radius">
+        <div class="panel-heading border-light bg-azure no-radius">
+            <h4 class="panel-title">{{'LENDER_CONTACT'|translate}}</h4>
+            <ul class="panel-heading-tabs border-light" ng-if="!inputDisabled">
+                <li>
+                    <div class="pull-right">
+                        <a ng-click="addContact()"><span class="text-white"><i class="glyphicon glyphicon-plus-sign"></i></span></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-hover" id="sample-table-4">
+                <thead>
+                    <tr>
+                        <th class="col-sm-4">ชื่อผู้ติดต่อ</th>
+                        <th class="col-sm-7">เบอร์โทรติดต่อ</th>
+                        <th class="col-sm-1" ng-if="!inputDisabled"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in $parent.formData.CONTACTS">
+                        <td>{{item.LENDER_NAME}}</td>
+                        <td>{{item.LENDER_PHONE}}</td>
+                        <td class="center" ng-if="!inputDisabled">
+                            <div class="visible-md visible-lg hidden-sm hidden-xs">
+                                <a href="#" ng-click="editLenderContact(item)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="แก้ไข"><i class="fa fa-pencil"></i></a>
+                                <a href="#" ng-click="delContact(item)" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="ลบรายการ"><i class="fa fa-times fa fa-white"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="pull-right">
+        <button class="btn btn-primary btn-o" ng-click="submit(form,'expand-left')" ng-disabled="($parent.formData.CUSTOMERS.length==0 && !$parent.formData.NPA_TYPE) || inputDisabled">
+            <i class="glyphicon glyphicon-floppy-save"></i>{{'BUTTON.SAVE'|translate}}
+        </button>
+    </div>
+</div>

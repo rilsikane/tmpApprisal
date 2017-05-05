@@ -1,0 +1,40 @@
+﻿<div ng-controller="subform0300Controller">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr class="bg-azure" style="height:50px;">
+                    <th width="50%"><span class="text-white">{{'DOC_TYPE'|translate}}</span></th>
+                    <!--<th class="center"><span class="text-white"></span></th>
+                    <th><span class="text-white">{{'FILE'|translate}}</span></th>
+                    <th></th>-->
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="attach in requestAttach">
+                    <td class="vertical-top">
+                        <div><a ng-if="!inputDisabled" href="#" ng-click="upload($index,attach)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'ATTACH_FILE'|translate}}"><i class="fa fa-plus"></i></a> {{attach.NAME}}</div>
+                        <ul>
+                            <li ng-repeat="file in attach.ATTACH_DOC"><a ng-if="!inputDisabled" ng-click="deleteAttach($index,attach,file)" tooltip="{{'DELETE_ATTACH'|translate}}"><i class="fa fa-remove"></i></a>  <a target="_blank" href="Home/Download/{{file.ATTACHDOC_RUNNING_ID}}">{{file.DOC_NAME}} </a></li>
+                        </ul>
+                    </td>
+                    <!--<td class="center">
+                        <i class="ti-check" ng-if="attach.L_FLAG=='M'"></i>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td class="center">
+                        <div class="visible-md visible-lg hidden-sm hidden-xs" ng-if="!inputDisabled">
+                            <a href="#" ng-click="upload($index,attach)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'ATTACH_FILE'|translate}}"><i class="glyphicon glyphicon-plus-sign"></i></a>
+                        </div>
+                    </td>-->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="pull-right">
+        <button class="btn btn-primary btn-o" ng-disabled="btnDisabled" ng-click="submit(form,'expand-left')">
+            <i class="glyphicon glyphicon-floppy-save"></i> {{'BUTTON.SAVE'|translate}}
+        </button>
+    </div>
+</div>

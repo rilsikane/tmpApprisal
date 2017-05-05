@@ -1,0 +1,53 @@
+﻿<!-- start: TOP NAVBAR -->
+<!-- start: NAVBAR HEADER -->
+<div class="navbar-header">
+    <a href="#" class="sidebar-mobile-toggler pull-left hidden-md hidden-lg" ng-click="toggle('sidebar')" class="btn btn-navbar sidebar-toggle">
+        <i class="ti-align-justify"></i>
+    </a>
+    <a class="navbar-brand" href="#">
+        <img ng-src="{{app.layout.logo}}" alt="{{app.name}}" />
+    </a>
+    <a href="#" class="sidebar-toggler pull-right visible-md visible-lg" ng-click="app.layout.isSidebarClosed = !app.layout.isSidebarClosed">
+        <i class="ti-align-justify"></i>
+    </a>
+    <a class="pull-right menu-toggler visible-xs-block" id="menu-toggler" ng-click="navbarCollapsed = !navbarCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="ti-view-grid"></i>
+    </a>
+</div>
+<!-- end: NAVBAR HEADER -->
+<!-- start: NAVBAR COLLAPSE -->
+<!--<div class="navbar-collapse collapse" collapse="navbarCollapsed" ng-init="navbarCollapsed = true" off-click="navbarCollapsed = true" off-click-if='!navbarCollapsed' off-click-filter="#menu-toggler">
+    <ul class="nav navbar-right">
+        <li class="margin-top-15 text-large">
+            <span>{{'NAME'|translate}}</span><span class="text-pink margin-left-10 margin-right-10">{{user.EMP_NAME}}</span>
+            <span>{{'OU'|translate}}</span><span class="text-pink margin-left-10 margin-right-10">{{user.OU_NAME}}</span>
+            <span>{{'ROLE'|translate}}</span>
+        </li>
+        <li class="dropdown margin-top-15 text-large" dropdown on-toggle="toggled(open)">
+            <!--<a href class="dropdown-toggle" dropdown-toggle>-->
+            <span>
+                <span class="text-pink margin-left-10 margin-right-10 text-large">{{role.ROLE_NAME}}</span>
+                <!--<i ng-if="roles.length > 1" class="ti-angle-down"></i>-->
+            </span>
+            <!--</a>-->
+            <!--<ul role="menu" class="dropdown-menu dropdown-light fadeInUpShort" ng-if="roles.length > 1">
+                <li ng-repeat="item in roles" ng-if="item.ROLE_RUNNING_ID != role.ROLE_RUNNING_ID">
+                    <a ng-click="changeRole(item)" href="#" class="menu-toggler">
+                        {{item.ROLE_NAME}}
+                    </a>
+                </li>
+            </ul>-->
+        </li>
+        <li>
+            <a href ng-click="logout()"><i class="fa fa-power-off"></i> {{'LOGOUT'|translate}}</a>
+        </li>
+        <!-- end: USER OPTIONS DROPDOWN -->
+    </ul>
+    <!-- start: MENU TOGGLER FOR MOBILE DEVICES -->
+    <div class="close-handle visible-xs-block menu-toggler" ng-click="navbarCollapsed = true">
+        <div class="arrow-left"></div>
+        <div class="arrow-right"></div>
+    </div>
+    <!-- end: MENU TOGGLER FOR MOBILE DEVICES -->
+</div>-->

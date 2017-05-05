@@ -1,0 +1,49 @@
+﻿<div class="container-fluid container-fullw" ng-controller="marketPriceController">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-white no-radius">
+                <div class="panel-heading no-radius bg-deep-pink border-light">
+                    <h4 class="panel-title">{{'MARKETPRICE'|translate}}</h4>
+                    <ul class="panel-heading-tabs border-light" ng-show="role.ROLE_RUNNING_ID==11">
+                        <li>
+                            <button type="button" class="btn btn-o btn-squared border-white" ng-click="addMarketPrice()">
+                                <i class="glyphicon glyphicon-plus-sign"></i> {{'BUTTON.NEW'|translate}}
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-body border-light">
+                    <div class="col-md-12">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="col-sm-1">{{'HEAD_COL_TYPE'|translate}}</th>
+                                    <th class="col-sm-1">{{'HEAD_COL_SUB_TYPE'|translate}}</th>
+                                    <th class="col-sm-2">{{'DOC_CERT_TYPE'|translate}}</th>
+                                    <th class="col-sm-2">{{'PROVINCE'|translate}}</th>
+                                    <th class="col-sm-2">{{'DISTRICT'|translate}}</th>
+                                    <th class="col-sm-2">{{'SUBDISTRICT'|translate}}</th>
+                                    <th class="col-sm-2">{{'PRICE_SELL'|translate}}</th>
+                                    <th class="col-sm-1"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in marketprices">
+                                    <td>{{item.HEAD_COL_TYPE_ID.NAME}}</td>
+                                    <td>{{item.HEAD_COL_SUB_TYPE_ID.NAME}}</td>
+                                    <td>{{item.DOC_CERT_TYPE.NAME}}</td>
+                                    <td>{{item.ADD_PROVINCE.PROV_NAME}}</td>
+                                    <td>{{item.ADD_CITY.CITY}}</td>
+                                    <td>{{item.ADD_DISTRICT.DISTRICT}}</td>
+                                    <td>{{item.PRICE_SELL|number:2}}</td>
+                                    <td><a ng-click="editMarketPrice(item)"><i class="ti-pencil"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pager total-items="marketPriceTotalItems" ng-model="marketPriceCurrentPage" ng-change="getMarketPrice()"></pager>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

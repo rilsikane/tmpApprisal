@@ -1,0 +1,317 @@
+﻿<div class="panel panel-white">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ข้อมูลยานพาหนะ</h5>
+    </div>
+    <div class="panel-body">
+        <fieldset class="no-radius">
+            <div class="form-group" ng-class="{'has-error':form.REGIS_NO.$dirty && form.REGIS_NO.$invalid, 'has-success':form.REGIS_NO.$valid}">
+                <label ng-class="labelControlCss" for="REGIS_NO">
+                    {{'REGIS_NO'|translate}}<span class="symbol required"></span>
+                </label>
+                <div ng-class="formControlCss">
+                    <input required type="text" placeholder="" class="form-control" id="REGIS_NO" name="REGIS_NO" ng-model="formData.REGIS_NO">
+                    <span class="error text-small block" ng-if="form.REGIS_NO.$dirty && form.REGIS_NO.$invalid">{{requireNotificationPrefix}} {{'REGIS_NO'|translate}}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="REGIS_DATE">
+                    {{'REGIS_DATE'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.REGIS_DATE" ng-click="openDatePicker($event,'REGIS_DATE')" class="form-control" id="REGIS_DATE" name="REGIS_DATE" ng-model="formData.REGIS_DATE">
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="TAX_DUE_DATE">
+                    {{'TAX_DUE_DATE'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TAX_DUE_DATE" ng-click="openDatePicker($event,'TAX_DUE_DATE')" class="form-control" id="TAX_DUE_DATE" name="TAX_DUE_DATE" ng-model="formData.TAX_DUE_DATE">
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="REGIS_COUNTRY">
+                    {{'REGIS_COUNTRY'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <ui-select theme="selectize" ng-model="formData.REGIS_COUNTRY" id="REGIS_COUNTRY" name="REGIS_COUNTRY">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME_THAI}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in selectCountry | filter: $select.search">
+                            <div ng-bind-html="item.NAME_THAI | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':form.REGIS_PROVINCE.$dirty && form.REGIS_PROVINCE.$viewValue==undefined, 'has-success':form.REGIS_PROVINCE.$viewValue!=undefined}">
+                <label ng-class="labelControlCss" for="REGIS_PROVINCE">
+                    {{'REGIS_PROVINCE'|translate}}<span class="symbol required"></span>
+                </label>
+                <div ng-class="formControlCss">
+                    <ui-select ng-required theme="selectize" ng-model="formData.REGIS_PROVINCE" id="REGIS_PROVINCE" name="REGIS_PROVINCE">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.PROV_NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in selectProvince | filter: $select.search">
+                            <div ng-bind-html="item.PROV_NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                    <span class="error text-small block" ng-if="form.REGIS_PROVINCE.$dirty && form.REGIS_PROVINCE.$viewValue==undefined">{{requireNotificationPrefix}} {{'REGIS_PROVINCE'|translate}}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="MADE_IN_COUNTRY">
+                    {{'MADE_IN_COUNTRY'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <ui-select theme="selectize" ng-model="formData.MADE_IN_COUNTRY" id="MADE_IN_COUNTRY" name="MADE_IN_COUNTRY">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME_THAI}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in selectCountry | filter: $select.search">
+                            <div ng-bind-html="item.NAME_THAI | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="YEAR">
+                    {{'MADE_YEAR'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <input numberonly type="text" maxlength="4" class="form-control" id="YEAR" name="YEAR" ng-model="formData.YEAR">
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="BRAND_NAME">
+                    {{'BRAND_NAME'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <ui-select theme="selectize" ng-model="formData.BRAND_NAME" id="BRAND_NAME" name="BRAND_NAME">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in selectBrand | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="MODEL">
+                    {{'BRAND_MODEL'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <ui-select theme="selectize" ng-model="formData.MODEL" id="MODEL" name="MODEL">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in selectModel | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="HORSE_POWER">
+                    {{'HORSE_POWER'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <input count type="text" class="form-control" id="HORSE_POWER" name="HORSE_POWER" ng-model="formData.HORSE_POWER">
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="CHASSIS_NO">
+                    {{'CHASSIS_NO'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <input type="text" placeholder="" class="form-control" id="CHASSIS_NO" name="CHASSIS_NO" ng-model="formData.CHASSIS_NO">
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="ENGINE_NO">
+                    {{'ENGINE_NO'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <input type="text" placeholder="" class="form-control" id="ENGINE_NO" name="ENGINE_NO" ng-model="formData.ENGINE_NO">
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="COLOR">
+                    {{'COLOR'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <input type="text" placeholder="" class="form-control" id="COLOR" name="COLOR" ng-model="formData.COLOR">
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <div class="col-sm-4">
+                <fieldset class="no-radius">
+                    <legend>{{'AGE_STD'|translate}}</legend>
+                    <div class="form-group" ng-class="{'has-error':form.AGE_STD_YEAR.$dirty && form.AGE_STD_YEAR.$invalid, 'has-success':form.AGE_STD_YEAR.$valid}">
+                        <label ng-class="labelControlCss" for="AGE_STD_YEAR">
+                            {{'YEAR'|translate}}<span class="symbol required"></span>
+                        </label>
+                        <div ng-class="formControlCss">
+                            <input type="number" required class="form-control" id="AGE_STD_YEAR" name="AGE_STD_YEAR" ng-model="formData.AGE_STD_YEAR">
+                            <span class="error text-small block" ng-if="form.AGE_STD_YEAR.$dirty && form.AGE_STD_YEAR.$invalid">{{requireNotificationPrefix}} {{'AGE_STD'|translate}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':form.AGE_STD_MONTH.$dirty && form.AGE_STD_MONTH.$invalid, 'has-success':form.AGE_STD_MONTH.$valid}">
+                        <label ng-class="labelControlCss" for="AGE_STD_MONTH">
+                            {{'MONTH'|translate}}<span class="symbol required"></span>
+                        </label>
+                        <div ng-class="formControlCss">
+                            <input type="number" min="0" max="12" required class="form-control" id="AGE_STD_MONTH" name="AGE_STD_MONTH" ng-model="formData.AGE_STD_MONTH">
+                            <span class="error text-small block" ng-if="form.AGE_STD_YEAR.$dirty && form.AGE_STD_YEAR.$invalid">{{requireNotificationPrefix}} {{'AGE_STD'|translate}}</span>
+                        </div>
+                    </div>
+                    
+                </fieldset>
+            </div>
+            <div class="col-sm-4">
+                <fieldset class="no-radius">
+                    <legend>{{'AGE_USAGE_REM'|translate}}</legend>
+                    <div class="form-group" ng-class="{'has-error':form.AGE_YEAR.$dirty && form.AGE_YEAR.$invalid, 'has-success':form.AGE_YEAR.$valid}">
+                        <label ng-class="labelControlCss" for="AGE_YEAR">
+                            {{'YEAR'|translate}}<span class="symbol required"></span>
+                        </label>
+                        <div ng-class="formControlCss">
+                            <input type="number" required class="form-control" id="AGE_YEAR" name="AGE_YEAR" ng-model="formData.AGE_YEAR">
+                            <span class="error text-small block" ng-if="form.AGE_YEAR.$dirty && form.AGE_YEAR.$invalid">{{requireNotificationPrefix}} {{'AGE_USAGE_REM'|translate}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':form.AGE_MONTH.$dirty && form.AGE_MONTH.$invalid, 'has-success':form.AGE_MONTH.$valid}">
+                        <label ng-class="labelControlCss" for="AGE_MONTH">
+                            {{'MONTH'|translate}}<span class="symbol required"></span>
+                        </label>
+                        <div ng-class="formControlCss">
+                            <input type="number" min="0" max="12" required class="form-control" id="AGE_MONTH" name="AGE_MONTH" ng-model="formData.AGE_MONTH">
+                            <span class="error text-small block" ng-if="form.AGE_YEAR.$dirty && form.AGE_YEAR.$invalid">{{requireNotificationPrefix}} {{'AGE_USAGE_REM'|translate}}</span>
+                        </div>
+                    </div>
+                    
+                </fieldset>
+            </div>
+            <div class="col-sm-4">
+                <fieldset class="no-radius">
+                    <legend>{{'ES_SALE'|translate}}</legend>
+                    <div class="form-group">
+                        <label ng-class="labelControlCss" for="ES_SALE_YEAR">
+                            {{'YEAR'|translate}}
+                        </label>
+                        <div ng-class="formControlCss">
+                            <input type="number" class="form-control" id="ES_SALE_YEAR" name="ES_SALE_YEAR" ng-model="formData.ES_SALE_YEAR" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label ng-class="labelControlCss" for="ES_SALE_MONTH">
+                            {{'MONTH'|translate}}
+                        </label>
+                        <div ng-class="formControlCss">
+                            <input type="number" min="0" max="12" class="form-control" id="ES_SALE_MONTH" name="ES_SALE_MONTH" ng-model="formData.ES_SALE_MONTH" />
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <fieldset class="no-radius">
+            <legend></legend>
+            <div class="form-group" ng-class="{'has-error':form.APPR_CUR_NET_TOTAL.$dirty && form.APPR_CUR_NET_TOTAL.$invalid, 'has-success':form.APPR_CUR_NET_TOTAL.$valid}">
+                <label ng-class="labelControlCss" for="APPR_CUR_NET_TOTAL">
+                    {{'APPR_CUR_NET_TOTAL'|translate}}<span class="symbol required"></span>
+                </label>
+                <div ng-class="formControlCss">
+                    <input price required type="text" placeholder="" class="form-control" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" ng-model="formData.APPR_CUR_NET_TOTAL">
+                    <span class="error text-small block" ng-if="form.APPR_CUR_NET_TOTAL.$dirty && form.APPR_CUR_NET_TOTAL.$invalid">{{requireNotificationPrefix}} {{'APPR_CUR_NET_TOTAL'|translate}}</span>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':form.MARKET_NEED.$dirty && form.MARKET_NEED.$viewValue==undefined, 'has-success':form.MARKET_NEED.$viewValue!=undefined}">
+                <label ng-class="labelControlCss">
+                    {{'MARKET_NEED'|translate}}<span class="symbol required"></span>
+                </label>
+                <div ng-class="formControlCss">
+                    <div ng-repeat="item in radioYN" class="radio clip-radio radio-primary radio-inline">
+                        <input required type="radio" name="MARKET_NEED" ng-value="item.VALUE" ng-model="formData.MARKET_NEED" id="MARKET_NEED{{item.VALUE}}" />
+                        <label for="MARKET_NEED{{item.VALUE}}">{{ item.NAME }}</label>
+                    </div>
+                    <span class="error text-small block" ng-if="form.MARKET_NEED.$dirty && form.MARKET_NEED.$viewValue==undefined">{{requireNotificationPrefix}} {{'MARKET_NEED'|translate}}</span>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+</div>
+<div class="panel panel-white">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ข้อมูลการทำประกัน</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="IS_INSURANCE">
+                {{'INSURE_YN'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <div class="col-sm-3" ng-repeat="item in radioYN">
+                    <div class="form-group radio clip-radio radio-primary">
+                        <input type="radio" name="IS_INSURANCE" ng-value="item.VALUE" ng-model="formData.IS_INSURANCE" id="IS_INSURANCE{{item.VALUE}}" />
+                        <label for="IS_INSURANCE{{item.VALUE}}">{{ item.NAME }}</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="POLICY_NO">
+                {{'POLICY_NO'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <input type="text" placeholder="" class="form-control" id="POLICY_NO" name="POLICY_NO" ng-model="formData.POLICY_NO">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="INSURED_AMT">
+                {{'INSURED_AMT'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <input price type="text" placeholder="" class="form-control" id="INSURED_AMT" name="INSURED_AMT" ng-model="formData.INSURED_AMT">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="INSURED_ISSUE_DATE">
+                {{'INSURED_ISSUE_DATE'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.INSURED_ISSUE_DATE" ng-click="openDatePicker($event,'INSURED_ISSUE_DATE')" class="form-control" id="INSURED_ISSUE_DATE" name="INSURED_ISSUE_DATE" ng-model="formData.INSURED_ISSUE_DATE">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="INSURED_EXP_DATE">
+                {{'INSURED_EXP_DATE'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.INSURED_EXP_DATE" ng-click="openDatePicker($event,'INSURED_EXP_DATE')" class="form-control" id="INSURED_EXP_DATE" name="INSURED_EXP_DATE" ng-model="formData.INSURED_EXP_DATE">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="INSURED_CODE">
+                {{'INSURED_CODE'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <ui-select theme="selectize" ng-model="formData.INSURED_CODE" id="INSURED_CODE" name="INSURED_CODE">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectInsuredCode | filter: $select.search">
+                        <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+
+    </div>
+</div>
+

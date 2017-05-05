@@ -1,0 +1,14 @@
+﻿<div ng-controller="damController">
+    <div class="col-lg-2">
+        <ul>
+            <li ng-repeat="item in tables">
+                <a ng-click="openTable(item)">{{item.NAME}}</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-lg-10">
+        <div ui-view></div>
+    </div>
+
+</div>

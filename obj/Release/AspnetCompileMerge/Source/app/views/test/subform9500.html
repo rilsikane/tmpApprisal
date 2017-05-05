@@ -1,0 +1,24 @@
+﻿<div ng-controller="subform9500Controller">
+    <table class="table table-bordered table-hover disabled" style="max-width:100%;">
+        <thead>
+            <tr class="bg-azure">
+                <th class="col-md-2"><span class="text-white">{{'BPM.OU_NAME'|translate}}</span></th>
+                <th class="col-md-1"><span class="text-white">{{'BPM.STEP_NAME'|translate}}</span></th>
+                <th class="col-md-1"><span class="text-white">{{'BPM.ACT_TEXT'|translate}}</span></th>
+                <th class="col-md-3"><span class="text-white">{{'BPM.REASON_TEXT'|translate}}<br />{{'BPM.NOTE'|translate}}</span></th>
+                <th class="col-md-2"><span class="text-white">{{'BPM.USER_FULLNAME'|translate}}<br />{{'BPM.ACT_TIME'|translate}}</span></th>
+                <!--<th>{{'BPM.TO_STATE_NAME'|translate}}</th>-->
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in history">
+                <td>{{item.OU_NAME}}<br />&nbsp;&nbsp;&nbsp;<i class="fa fa-hand-o-right"></i><span class="text-small text-grey"> {{item.TO_OU_NAME}}</span></td>
+                <td>{{item.STEP_NAME}}</td>
+                <td>{{item.ACT_TEXT}}</td>
+                <td>{{item.REASON_TEXT}}<br />{{item.NOTE}}</td>
+                <td>{{item.USER_FULLNAME}}<br />{{item.ACT_TIME_TEXT}}</td>
+                <!--<td>{{item.TO_STATE_NAME}}</td>-->
+            </tr>
+        </tbody>
+    </table>
+</div>

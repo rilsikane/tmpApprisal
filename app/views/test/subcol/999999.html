@@ -1,0 +1,56 @@
+﻿<div class="panel panel-white">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ข้อมูลหลักทรัพย์ประเภทอื่น</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="SURVEY_APPR_DATE">
+                {{'SURVEY_APPR_DATE'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.SURVEY_APPR_DATE" ng-click="openDatePicker($event,'SURVEY_APPR_DATE')" type="text" class="form-control" ng-model="formData.SURVEY_DATE" />
+            </div>
+        </div>
+        
+        <div class="form-group" ng-class="{'has-error':form.APPR_CUR_NET_TOTAL.$dirty && form.APPR_CUR_NET_TOTAL.$invalid, 'has-success': form.APPR_CUR_NET_TOTAL.$valid}">
+            <label class="col-sm-4 control-label" for="APPR_CUR_NET_TOTAL">
+                {{'ราคาหลักทรัพย์'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input format type="text" class="form-control" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" ng-model="formData.APPR_CUR_NET_TOTAL">
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.OTHERS_COL.$dirty && form.OTHERS_COL.$invalid, 'has-success': form.OTHERS_COL.$valid}">
+            <label class="col-sm-4 control-label" for="OTHERS_COL">
+                {{'OTHERS_COL'|translate}}<span class="symbol required"></span>
+            </label>
+            <div class="col-sm-8">
+                <input type="text" required class="form-control" id="OTHERS_COL" name="OTHERS_COL" ng-model="formData.OTHERS_COL">
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.OTHERS_PRICE_PAWN.$dirty && form.OTHERS_PRICE_PAWN.$invalid, 'has-success':form.OTHERS_PRICE_PAWN.$valid}">
+            <label class="col-sm-4 control-label" for="OTHERS_PRICE_PAWN">
+                {{'OTHERS_PRICE_PAWN'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input price type="text" class="form-control" id="OTHERS_PRICE_PAWN" name="OTHERS_PRICE_PAWN" ng-model="formData.OTHERS_PRICE_PAWN">
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.OTHERS_AMOUNT.$dirty && form.OTHERS_AMOUNT.$invalid, 'has-success': form.OTHERS_AMOUNT.$valid}">
+            <label class="col-sm-4 control-label" for="OTHERS_AMOUNT">
+                {{'จำนวนรายการ'|translate}}<span class="symbol required"></span>
+            </label>
+            <div class="col-sm-8">
+                <input numberonly type="text" required class="form-control" id="OTHERS_AMOUNT" name="OTHERS_AMOUNT" ng-model="formData.OTHERS_AMOUNT">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="REMARK">
+                {{'REMARK'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <textarea class="form-control" id="REMARK" name="REMARK" ng-model="formData.REMARK"></textarea>
+            </div>
+        </div>
+    </div>
+</div>

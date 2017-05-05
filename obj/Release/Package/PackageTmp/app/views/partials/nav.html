@@ -1,0 +1,16 @@
+﻿<ul class="main-navigation-menu">
+    <li ng-repeat="item in app.menuItems" ui-sref-active="active">
+        <a ng-if="item.MENU_LEVEL == 2" ui-sref="{{item.URL}}" ng-click="openState(item)">
+            <div class="item-content">
+                <div class="item-media">
+                </div>
+                <div class="item-inner">
+                    <span class="title"> {{item.MENU_NAME}}</span>
+                    <span ng-if="item.URL=='app.mydocs'" class="badge badge-inverse pull-right">{{app.COUNT_MYDOC}}</span>
+                    <span ng-if="item.URL=='app.inbox'" class="badge badge-inverse pull-right">{{app.COUNT_INBOX}}</span>
+                    <span ng-if="item.URL=='app.inboxhist'" class="badge badge-inverse pull-right">{{app.COUNT_HISTORY}}</span>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>

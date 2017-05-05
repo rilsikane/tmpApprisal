@@ -1,0 +1,68 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{params.item.ACT_TEXT}}</h3>
+</div>
+<div class="modal-body">
+    <div class="panel-body border-light" ng-class="{'hidden':params.item.ACT_TYPE=='history'}">
+        <form name="form2" role="form" class="form-horizontal" novalidate ng-submit="submit(form2)">
+            <div ng-hide="params.item.REASON_TYPE=='H'||hiddenInput" class="form-group" ng-class="{'has-error':form2.REASON.$dirty && form2.REASON.$invalid, 'has-success':form2.REASON.$valid}">
+                <label class="col-sm-2 control-label" for="REASON">
+                    {{'BPM.REASON_TEXT'|translate}}
+                </label>
+                <div class="col-sm-10 no-padding">
+                    <select ng-required="params.item.REASON_TYPE=='M'" ng-model="formData.REASON" ng-options="item.REASON_TEXT for item in reasons track by item.REASON_ID" class="form-control" id="REASON" name="REASON">
+                        <option value=""></option>
+                    </select>
+                    <span class="error text-small block" ng-if="form2.REASON.$dirty && form2.REASON.$invalid">กรุณาระบุเหตุผล</span>
+                </div>
+            </div>
+            <div ng-hide="formData.REASON.NOTE_TYPE=='H'||hiddenInput" class="form-group" ng-class="{'has-error':form2.NOTE.$dirty && form2.NOTE.$invalid, 'has-success':form2.NOTE.$valid}">
+                <label class="col-sm-2 control-label" for="NOTE">
+                    {{'BPM.NOTE'|translate}}
+                </label>
+                <div class="col-sm-10 no-padding">
+                    <textarea style="max-width: 100%" rows="5" ng-disabled="formData.REASON.NOTE_TYPE=='D'" ng-model="formData.NOTE" id="NOTE" name="NOTE" ng-required="formData.REASON.NOTE_TYPE=='M'" class="form-control"></textarea>
+                    <span class="error text-small block" ng-if="form2.NOTE.$dirty && form2.NOTE.$invalid">กรุณาระบุหมายเหตุ</span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <alert ng-repeat="item in notifications" type="{{item.type}}">
+        {{item.message}}
+    </alert>
+    <alert ng-repeat="item in validations" type="{{item.ALERT_TYPE}}" ng-hide="item.INVALID==false || item.VALIDATED==false" class="no-radius">
+        {{item.VALID_TEXT}}
+    </alert>
+    <div class="panel-body border-light bg-white" ng-class="{'hidden':params.item.ACT_TYPE!='history'}">
+        <table class="table table-bordered" style="max-width:100%;">
+            <thead>
+                <tr>
+                    <th style="width:30%;">{{'BPM.OU_NAME'|translate}}<br />{{'BPM.STEP_NAME'|translate}}</th>
+                    <th style="width:20%;">{{'BPM.ACT_TEXT'|translate}}</th>
+                    <th style="width:30%;">{{'BPM.REASON_TEXT'|translate}}<br />{{'BPM.NOTE'|translate}}</th>
+                    <th style="width:20%;">{{'BPM.ACT_TIME'|translate}}<br />{{'BPM.USER_NAME'|translate}}</th>
+                    <!--<th>{{'BPM.TO_STATE_NAME'|translate}}</th>-->
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in history">
+                    <td>{{item.OU_NAME}}<br />{{item.STEP_NAME}}</td>
+                    <td>{{item.ACT_TEXT}}</td>
+                    <td>{{item.REASON_TEXT}}<br />{{item.NOTE}}</td>
+                    <td>{{item.ACT_TIME_TEXT}}<br />{{item.USER_NAME}}</td>
+                    <!--<td>{{item.TO_STATE_NAME}}</td>-->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <!--<a ng-if="" ladda="ldloading.expand_left" class="btn btn-primary" ng-class="{'hidden':params.item.ACT_TYPE=='history'||hiddenSubmitButton}" ng-disabled="btnSubmitDisabled" data-style="expand-left" ng-click="submit(form2,'expand-left')">
+        <i class="glyphicon glyphicon-ok"></i> {{params.item.SUBMIT_TEXT}}
+    </a>-->
+    <button ladda="ldloading.expand_left" data-style="expand-left" class="btn btn-primary" ng-disabled="!showSubmitButton" ng-click="submit(form2,'expand-left')">
+        <i class="glyphicon glyphicon-ok"></i> {{params.item.SUBMIT_TEXT}}
+    </button>
+    <button class="btn btn-primary" ng-disabled="btnDisabled" ng-click="cancel()">
+        <i class="glyphicon glyphicon-chevron-left"></i> {{params.item.CANCEL_TEXT}}
+    </button>
+</div>

@@ -1,0 +1,91 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">
+        {{'UPLOADER'|translate}}
+    </h3>
+
+</div>
+<div class="modal-body bg-light-grey">
+    <div class="panel panel-white">
+        <div class="panel-heading bg-light-azure no-radius">
+            <h5 class="panel-title">{{'QUEUE_LENGTH'|translate}}: {{ uploader.queue.length }}/{{limit}}</h5>
+            <ul class="panel-heading-tabs border-light">
+                <li>
+                    <div class="pull-right">
+                        <span ng-disabled="uploader.queue.length>=limit && limit>0" class="btn btn-o btn-file btn-squared border-white">{{'BUTTON.SELECT_FILES'|translate}}<input type="file" nv-file-select="" uploader="uploader" multiple /></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="panel-body" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+            <div class="panel panel-transparent">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th width="50%">{{'FILE_NAME'|translate}}</th>
+                                    <th ng-show="uploader.isHTML5">{{'FILE_SIZE'|translate}}</th>
+                                    <th ng-show="uploader.isHTML5">{{'UPLOAD_PROGRESS'|translate}}</th>
+                                    <th>{{'UPLOAD_STATUS'|translate}}</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in uploader.queue">
+                                    <td><strong>{{ item.file.name }}</strong></td>
+                                    <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                    <td ng-show="uploader.isHTML5">
+                                        <div class="progress progress-xs margin-bottom-0">
+                                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>
+                                    <td nowrap>
+                                        <!--<button type="button" class="btn btn-success btn-xs btn-squared" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                            <span class="glyphicon glyphicon-upload"></span> {{'BUTTON.UPLOAD'|translate}}
+                                        </button>-->
+                                        <button type="button" class="btn btn-warning btn-xs btn-squared" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                            <span class="glyphicon glyphicon-ban-circle"></span> {{'BUTTON.CANCEL'|translate}}
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-xs btn-squared" ng-click="item.remove()">
+                                            <span class="glyphicon glyphicon-trash"></span> {{'BUTTON.REMOVE'|translate}}
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <div>
+                            {{'QUEUE_PROGRESS'|translate}}:
+                            <div class="progress progress-xs margin-top-5 margin-bottom-20">
+                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-s btn-squared" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length ||(uploader.queue.length>limit && limit>0)">
+                            <span class="glyphicon glyphicon-upload"></span> {{'BUTTON.UPLOAD'|translate}}
+                        </button>
+                        <button type="button" class="btn btn-primary btn-o  btn-s btn-squared" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+                            <span class="glyphicon glyphicon-ban-circle"></span> {{'BUTTON.CANCEL_ALL'|translate}}
+                        </button>
+                        <!--<button type="button" class="btn btn-primary btn-o btn-s btn-squared" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                            <span class="glyphicon glyphicon-trash"></span> {{'BUTTON.REMOVE_ALL'|translate}}
+                        </button>-->
+                    </div>
+                </div>
+            </div>
+
+           <div class="col-md-12">
+               <span class="text-info">{{'MAX_UPLOAD_FILE_SIZE'|translate}} {{appConfig.maxUploadFileSize}} MB</span>
+           </div>
+            <div ng-if="hasError" class="col-sm-12">
+                <div class="text-large text-danger" ng-bind-html="errorMessage"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary btn-o" ng-disabled="btnDisabled" ng-click="cancel()">
+        <i class="glyphicon glyphicon-chevron-left"></i> {{'BUTTON.BACK'|translate}}
+    </button>
+</div>

@@ -1,0 +1,25 @@
+﻿<div class="panel-body border-light" ng-controller="subform0400Controller">
+    <form role="form" class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">
+                หน่วยงานผู้จ่ายงาน
+            </label>
+            <div class="col-sm-6">
+                <ui-select theme="selectize" ng-model="formData.OWNER_OU" ng-disabled="inputDisabled" class="form-control">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.OU_NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in $parent.dispathcer | filter: $select.search">
+                        <div ng-bind-html="item.OU_NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </form>
+
+    <div class="pull-right">
+        <button class="btn btn-primary btn-o" ng-disabled="btnDisabled" ng-click="save('expand-left')">
+            <i class="glyphicon glyphicon-floppy-save"></i> {{'BUTTON.SAVE'|translate}}
+        </button>
+    </div>
+</div>

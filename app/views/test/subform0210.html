@@ -1,0 +1,75 @@
+﻿<!--ราคาประเมิน-->
+<div class="panel panel-white">
+    <div class="panel-body">
+        <fieldset class="no-radius">
+            <legend>{{'APPRAISAL_METHOD'|translate}}</legend>
+            <div class="form-group" ng-repeat="item in formData.APPRAISAL_METHOD">
+                <div class="col-sm-8 no-padding">
+                    <div class="radio clip-radio radio-primary">
+                        <input type="radio" name="ASSPA_METH_ID" id="ASSPA_METH_ID_{{item.VALUE}}" ng-value="{{item.VALUE}}" ng-model="formData.ASSPA_METH_ID" ng-change="methodChange(item)" />
+                        <label for="ASSPA_METH_ID_{{item.VALUE}}">{{ item.NAME }}</label>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div ng-switch="item.VALUE">
+                        <input format ng-switch-when="3" type="text" class="form-control text-right" ng-model="item.AMOUNT" ng-disabled="formData.ASSPA_METH_ID != '3'" ng-change="methodAmountChange($event,item)" />
+                        <input format ng-switch-when="2" type="text" class="form-control text-right" ng-model="item.AMOUNT" readonly />
+                        <input format ng-switch-when="1" type="text" class="form-control text-right" ng-model="item.AMOUNT" readonly />
+                    </div>                    
+                </div>
+            </div>
+            <br />
+        </fieldset>
+        <fieldset class="no-radius">
+            <legend>{{'APPRAISAL_METHOD_DETAIL'|translate}}</legend>
+            <!--<div class="form-group">
+                <label class="col-sm-4 control-label" for="APPR_CUR_LAND_AMOUNT">
+                    {{'APPR_CUR_LAND_AMOUNT'|translate}}
+                </label>
+                <div class="col-sm-6 no-padding">
+                    <input format ng-disabled="inputDisabled" type="text" class="form-control" ng-model="formData.APPR_CUR_LAND_AMOUNT" id="APPR_CUR_LAND_AMOUNT" name="APPR_CUR_LAND_AMOUNT" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="APPR_CUR_BUILD_AMOUNT">
+                    {{'APPR_CUR_BUILD_AMOUNT'|translate}}
+                </label>
+                <div class="col-sm-6 no-padding">
+                    <input format ng-disabled="inputDisabled" type="text" class="form-control" ng-model="formData.APPR_CUR_BUILD_AMOUNT" id="APPR_CUR_BUILD_AMOUNT" name="APPR_CUR_BUILD_AMOUNT" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="APPR_CUR_OTHER_AMOUNT">
+                    {{'APPR_CUR_OTHER_AMOUNT'|translate}}
+                </label>
+                <div class="col-sm-6 no-padding">
+                    <input format ng-disabled="inputDisabled" type="text" class="form-control" ng-model="formData.APPR_CUR_OTHER_AMOUNT" id="APPR_CUR_OTHER_AMOUNT" name="APPR_CUR_OTHER_AMOUNT" />
+                </div>
+            </div>-->
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="APPR_CUR_NET_TOTAL">
+                    {{'APPR_CUR_NET_TOTAL'|translate}}
+                </label>
+                <div class="col-sm-6 no-padding">
+                    <input format ng-disabled="inputDisabled" type="text" class="form-control" ng-model="formData.APPR_CUR_NET_TOTAL" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="APPR_GOV_AMOUNT">
+                    {{'APPR_GOV_AMOUNT'|translate}}
+                </label>
+                <div class="col-sm-6 no-padding">
+                    <input format ng-disabled="inputDisabled" type="text" class="form-control" ng-model="formData.APPR_GOV_AMOUNT" id="APPR_GOV_AMOUNT" name="APPR_GOV_AMOUNT" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="APPR_CUR_FIRE_INSURE">
+                    {{'APPR_CUR_FIRE_INSURE'|translate}}
+                </label>
+                <div class="col-sm-6 no-padding">
+                    <input format ng-disabled="inputDisabled" type="text" class="form-control" ng-model="formData.APPR_CUR_FIRE_INSURE" id="APPR_CUR_FIRE_INSURE" name="APPR_CUR_FIRE_INSURE" />
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

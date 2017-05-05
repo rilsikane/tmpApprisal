@@ -1,0 +1,387 @@
+﻿<div class="panel panel-white">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">สิทธิการเช่า</h5>
+    </div>
+    <div class="panel-body">
+        <fieldset class="no-radius">
+            <legend>{{'RENT_COL'|translate}}</legend>
+            <textarea class="form-control" id="RENT_COL" name="RENT_COL" ng-model="formData.RENT_COL"></textarea>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <div class="form-group">
+                <div class="form-group col-sm-6" ng-class="{'has-error':form.TRANSFER_NO.$dirty && form.TRANSFER_NO.$invalid, 'has-success':form.TRANSFER_NO.$valid}">
+                    <label class="col-sm-6 control-label" for="TRANSFER_NO">
+                        {{'TRANSFER_NO'|translate}}<span class="symbol required"></span>
+                    </label>
+                    <div class="col-sm-6">
+                        <input required type="text" placeholder="" class="form-control" id="TRANSFER_NO" name="TRANSFER_NO" ng-model="formData.TRANSFER_NO">
+                        <!--<span class="error text-small block" ng-if="form.TRANSFER_NO.$dirty && form.TRANSFER_NO.$invalid">{{requireNotificationPrefix}} {{'TRANSFER_NO'|translate}}</span>-->
+                    </div>
+                </div>
+                <div class="form-group col-sm-6" ng-class="{'has-error':form.RENTAL_NO.$dirty && form.RENTAL_NO.$invalid, 'has-success':form.RENTAL_NO.$valid}">
+                    <label class="col-sm-6 control-label" for="RENTAL_NO">
+                        {{'RENTAL_NO'|translate}}<span class="symbol required"></span>
+                    </label>
+                    <div class="col-sm-6">
+                        <input required type="text" placeholder="" class="form-control" id="RENTAL_NO" name="RENTAL_NO" ng-model="formData.RENTAL_NO">
+                        <!--<span class="error text-small block" ng-if="form.RENTAL_NO.$dirty && form.RENTAL_NO.$invalid">{{requireNotificationPrefix}} {{'RENTAL_NO'|translate}}</span>-->
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-6 control-label" for="RENTAL_DATE">
+                        {{'RENTAL_DATE'|translate}}
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.RENTAL_DATE" ng-click="openDatePicker($event,'RENTAL_DATE')" class="form-control" id="RENTAL_DATE" name="RENTAL_DATE" ng-model="formData.RENTAL_DATE" />
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-6 control-label" for="TRANSFER_DATE">
+                        {{'TRANSFER_DATE'|translate}}
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TRANSFER_DATE" ng-click="openDatePicker($event,'TRANSFER_DATE')"  class="form-control" id="TRANSFER_DATE" name="TRANSFER_DATE" ng-model="formData.TRANSFER_DATE">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-6 control-label" for="RENTAL_DATE_BEGIN">
+                        {{'RENTAL_DATE_BEGIN'|translate}}
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.RENTAL_DATE_BEGIN" ng-click="openDatePicker($event,'RENTAL_DATE_BEGIN')"  class="form-control" id="RENTAL_DATE_BEGIN" name="RENTAL_DATE_BEGIN" ng-model="formData.RENTAL_DATE_BEGIN">
+                    </div>
+                </div>
+                <div class="form-group col-sm-6" ng-class="{'has-error':form.TRANSFER_DATE_BEGIN.$dirty && form.TRANSFER_DATE_BEGIN.$invalid, 'has-success':form.TRANSFER_DATE_BEGIN.$valid}">
+                    <label class="col-sm-6 control-label" for="TRANSFER_DATE_BEGIN">
+                        {{'TRANSFER_DATE_BEGIN'|translate}}<span class="symbol required"></span>
+                    </label>
+                    <div class="col-sm-6">
+                        <input required type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TRANSFER_DATE_BEGIN" ng-click="openDatePicker($event,'TRANSFER_DATE_BEGIN')"  class="form-control" id="TRANSFER_DATE_BEGIN" name="TRANSFER_DATE_BEGIN" ng-model="formData.TRANSFER_DATE_BEGIN">
+                        <!--<span class="error text-small block" ng-if="form.TRANSFER_DATE_BEGIN.$dirty && form.TRANSFER_DATE_BEGIN.$invalid">{{requireNotificationPrefix}} {{'TRANSFER_DATE_BEGIN'|translate}}</span>-->
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group col-sm-6" ng-class="{'has-error':form.TRANSFER_DATE_DUE.$dirty && form.TRANSFER_DATE_DUE.$invalid, 'has-success':form.TRANSFER_DATE_DUE.$valid}">
+                    <label class="col-sm-6 control-label" for="TRANSFER_DATE_DUE">
+                        {{'TRANSFER_DATE_DUE'|translate}}<span class="symbol required"></span>
+                    </label>
+                    <div class="col-sm-6">
+                        <input required type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TRANSFER_DATE_DUE" ng-click="openDatePicker($event,'TRANSFER_DATE_DUE')" class="form-control" id="TRANSFER_DATE_DUE" name="TRANSFER_DATE_DUE" ng-model="formData.TRANSFER_DATE_DUE">
+                        <!--<span class="error text-small block" ng-if="form.TRANSFER_DATE_DUE.$dirty && form.TRANSFER_DATE_DUE.$invalid">{{requireNotificationPrefix}} {{'TRANSFER_DATE_DUE'|translate}}</span>-->
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>{{'RENTAL_PERIOD'|translate}}</legend>
+            <div class="form-group col-sm-6" ng-class="{'has-error':form.RENTAL_PERIOD_YEAR.$dirty && form.RENTAL_PERIOD_YEAR.$invalid, 'has-success':form.RENTAL_PERIOD_YEAR.$valid}">
+                <label class="col-sm-6 control-label" for="RENTAL_PERIOD_YEAR">
+                    {{'YEAR'|translate}}<span class="symbol required"></span>
+                </label>
+                <div class="col-sm-6">
+                    <input required type="number" min="0" class="form-control" id="RENTAL_PERIOD_YEAR" name="RENTAL_PERIOD_YEAR" ng-model="formData.RENTAL_PERIOD_YEAR">
+                    <!--<span class="error text-small block" ng-if="form.RENTAL_PERIOD_YEAR.$dirty && form.RENTAL_PERIOD_YEAR.$invalid">{{requireNotificationPrefix}} {{'RENTAL_PERIOD_YEAR'|translate}}</span>-->
+                </div>
+            </div>
+            <div class="form-group col-sm-6" ng-class="{'has-error':form.RENTAL_PERIOD_MONTH.$dirty && form.RENTAL_PERIOD_MONTH.$invalid, 'has-success':form.RENTAL_PERIOD_MONTH.$valid}">
+                <label class="col-sm-6 control-label" for="RENTAL_PERIOD_MONTH">
+                    {{'MONTH'|translate}}<span class="symbol required"></span>
+                </label>
+                <div class="col-sm-6">
+                    <input required type="number" min="0" max="12" class="form-control" id="RENTAL_PERIOD_MONTH" name="RENTAL_PERIOD_MONTH" ng-model="formData.RENTAL_PERIOD_MONTH">
+                    <!--<span class="error text-small block" ng-if="form.RENTAL_PERIOD_MONTH.$dirty && form.RENTAL_PERIOD_MONTH.$invalid">{{requireNotificationPrefix}} {{'RENTAL_PERIOD_MONTH'|translate}}</span>-->
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="no-radius">
+            <legend>{{'RENTAL_AVAILABLE'|translate}}</legend>
+            <div class="form-group col-sm-6" ng-class="{'has-error':form.RENTAL_AVAILABLE_YEAR.$dirty && form.RENTAL_AVAILABLE_YEAR.$invalid, 'has-success':form.RENTAL_AVAILABLE_YEAR.$valid}">
+                <label class="col-sm-6 control-label" for="RENTAL_AVAILABLE_YEAR">
+                    {{'YEAR'|translate}}<span class="symbol required"></span>
+                </label>
+                <div class="col-sm-6">
+                    <input required type="number" min="0" class="form-control" id="RENTAL_AVAILABLE_YEAR" name="RENTAL_AVAILABLE_YEAR" ng-model="formData.RENTAL_AVAILABLE_YEAR">
+                    <!--<span class="error text-small block" ng-if="form.RENTAL_AVAILABLE_YEAR.$dirty && form.RENTAL_AVAILABLE_YEAR.$invalid">{{requireNotificationPrefix}} {{'RENTAL_AVAILABLE_YEAR'|translate}}</span>-->
+                </div>
+            </div>
+            <div class="form-group col-sm-6" ng-class="{'has-error':form.RENTAL_AVAILABLE_MONTH.$dirty && form.RENTAL_AVAILABLE_MONTH.$invalid, 'has-success':form.RENTAL_AVAILABLE_MONTH.$valid}">
+                <label class="col-sm-6 control-label" for="RENTAL_AVAILABLE_MONTH">
+                    {{'MONTH'|translate}}<span class="symbol required"></span>
+                </label>
+                <div class="col-sm-6">
+                    <input required type="number" min="0" max="12" class="form-control" id="RENTAL_AVAILABLE_MONTH" name="RENTAL_AVAILABLE_MONTH" ng-model="formData.RENTAL_AVAILABLE_MONTH">
+                    <!--<span class="error text-small block" ng-if="form.RENTAL_AVAILABLE_MONTH.$dirty && form.RENTAL_AVAILABLE_MONTH.$invalid">{{requireNotificationPrefix}} {{'RENTAL_AVAILABLE_MONTH'|translate}}</span>-->
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="no-radius">
+            <legend>{{'TRANSFER_AGE'|translate}}</legend>
+            <div class="form-group col-sm-6" ng-class="{'has-error':form.TRANSFER_AGE_YEAR.$dirty && form.TRANSFER_AGE_YEAR.$invalid, 'has-success':form.TRANSFER_AGE_YEAR.$valid}">
+                <label class="col-sm-6 control-label" for="TRANSFER_AGE_YEAR">
+                    {{'YEAR'|translate}}<span class="symbol required"></span>
+                </label>
+                <div class="col-sm-6">
+                    <input required type="number" min="0" class="form-control" id="TRANSFER_AGE_YEAR" name="TRANSFER_AGE_YEAR" ng-model="formData.TRANSFER_AGE_YEAR">
+                    <!--<span class="error text-small block" ng-if="form.TRANSFER_AGE_YEAR.$dirty && form.TRANSFER_AGE_YEAR.$invalid">{{requireNotificationPrefix}} {{'TRANSFER_AGE_YEAR'|translate}}</span>-->
+                </div>
+            </div>
+            <div class="form-group col-sm-6" ng-class="{'has-error':form.TRANSFER_AGE_MONTH.$dirty && form.TRANSFER_AGE_MONTH.$invalid, 'has-success':form.TRANSFER_AGE_MONTH.$valid}">
+                <label class="col-sm-6 control-label" for="TRANSFER_AGE_MONTH">
+                    {{'MONTH'|translate}}<span class="symbol required"></span>
+                </label>
+                <div class="col-sm-6">
+                    <input required type="number" min="0" max="12" class="form-control" id="TRANSFER_AGE_MONTH" name="TRANSFER_AGE_MONTH" ng-model="formData.TRANSFER_AGE_MONTH">
+                    <!--<span class="error text-small block" ng-if="form.TRANSFER_AGE_MONTH.$dirty && form.TRANSFER_AGE_MONTH.$invalid">{{requireNotificationPrefix}} {{'TRANSFER_AGE_MONTH'|translate}}</span>-->
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="MARGET_PRICE">
+                    {{'MARGET_PRICE'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <input price type="text" placeholder="" class="form-control" id="MARGET_PRICE" name="MARGET_PRICE" ng-model="formData.MARGET_PRICE">
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="RENTAL_PRICE">
+                    {{'RENTAL_PRICE'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <input price type="text" placeholder="" class="form-control" id="RENTAL_PRICE" name="RENTAL_PRICE" ng-model="formData.RENTAL_PRICE">
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="RENTAL_OWNER_NAME">
+                    {{'RENTAL_OWNER_NAME'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <input type="text" placeholder="" class="form-control" id="RENTAL_OWNER_NAME" name="RENTAL_OWNER_NAME" ng-model="formData.RENTAL_OWNER_NAME">
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="RENTAL_ALLOWING_NO">
+                    {{'RENTAL_ALLOWING_NO'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <input type="text" placeholder="" class="form-control" id="RENTAL_ALLOWING_NO" name="RENTAL_ALLOWING_NO" ng-model="formData.RENTAL_ALLOWING_NO">
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="DEED_OFFICE">
+                    {{'DEED_OFFICE'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <ui-select theme="selectize" ng-model="formData.DEED_OFFICE" id="DEED_OFFICE" name="DEED_OFFICE">
+                        <ui-select-match>
+                            {{$select.selected.CODE}} {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in selectDeedOffice | filter: $select.search">
+                            <div ng-bind-html="item.CODE+' '+item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':form.RENT_TYPE.$dirty && form.RENT_TYPE.$viewValue==undefined, 'has-success':form.RENT_TYPE.$viewValue!=undefined}">
+                <label class="col-sm-4 control-label">
+                    {{'RENT_TYPE'|translate}}<span class="symbol required"></span>
+                </label>
+                <div class="col-sm-8 form-group">
+                    <div ng-repeat="item in radioRentType" class="col-sm-4">
+                        <div class="radio clip-radio radio-primary">
+                            <input required type="radio" name="RENT_TYPE" ng-value="item.VALUE" ng-model="formData.RENT_TYPE" id="RENT_TYPE{{item.VALUE}}" />
+                            <label for="RENT_TYPE{{item.VALUE}}">{{ item.NAME }}</label>
+                        </div>                        
+                    </div>
+                    <!--<span class="error text-small block" ng-if="form.RENT_TYPE.$dirty && form.RENT_TYPE.$viewValue==undefined">{{requireNotificationPrefix}} {{'RENT_TYPE'|translate}}</span>-->
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="panel panel-white" >
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">เช่าที่ดิน</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group" ng-class="{'has-error':form.DEED_NO.$dirty && form.DEED_NO.$invalid && formData.RENT_TYPE=='L', 'has-success':form.DEED_NO.$valid && formData.RENT_TYPE=='L'}">
+            <label ng-class="labelControlCss" for="DEED_NO">
+                {{'DEED_NO'|translate}}<span class="symbol required" ng-if="formData.RENT_TYPE=='L'"></span>
+            </label>
+            <div ng-class="formControlCss">
+                <input ng-required="formData.RENT_TYPE=='L'" type="text" placeholder="" class="form-control" id="DEED_NO" name="DEED_NO" ng-model="formData.DEED_NO">
+                <!--<span class="error text-small block" ng-if="form.DEED_NO.$dirty && form.DEED_NO.$invalid">{{requireNotificationPrefix}} {{'DEED_NO'|translate}}</span>-->
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.RAWANG.$dirty && form.RAWANG.$invalid && formData.RENT_TYPE=='L', 'has-success':form.RAWANG.$valid && formData.RENT_TYPE=='L'}">
+            <label ng-class="labelControlCss" for="RAWANG">
+                {{'RAWANG'|translate}}<span class="symbol required" ng-if="formData.RENT_TYPE=='L'"></span>
+            </label>
+            <div ng-class="formControlCss">
+                <input ng-required="formData.RENT_TYPE=='L'" type="text" class="form-control" id="RAWANG" name="RAWANG" ng-model="formData.RAWANG">
+                <!--<span class="error text-small block" ng-if="form.RAWANG.$dirty && form.RAWANG.$invalid">{{requireNotificationPrefix}} {{'RAWANG'|translate}}</span>-->
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.LAND_NO.$dirty && form.LAND_NO.$invalid && formData.RENT_TYPE=='L', 'has-success':form.LAND_NO.$valid && formData.RENT_TYPE=='L'}">
+            <label ng-class="labelControlCss" for="LAND_NO">
+                {{'LAND_NO'|translate}}<span class="symbol required" ng-if="formData.RENT_TYPE=='L'"></span>
+            </label>
+            <div ng-class="formControlCss">
+                <input ng-required="formData.RENT_TYPE=='L'" type="text" placeholder="" class="form-control" id="LAND_NO" name="LAND_NO" ng-model="formData.LAND_NO">
+                <!--<span class="error text-small block" ng-if="form.LAND_NO.$dirty && form.LAND_NO.$invalid">{{requireNotificationPrefix}} {{'LAND_NO'|translate}}</span>-->
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.SURVEY_NO.$dirty && form.SURVEY_NO.$invalid && formData.RENT_TYPE=='L', 'has-success':form.SURVEY_NO.$valid && formData.RENT_TYPE=='L'}">
+            <label ng-class="labelControlCss" for="SURVEY_NO">
+                {{'SURVEY_NO'|translate}}<span class="symbol required" ng-if="formData.RENT_TYPE=='L'"></span>
+            </label>
+            <div ng-class="formControlCss">
+                <input ng-required="formData.RENT_TYPE=='L'" type="text" placeholder="" class="form-control" id="SURVEY_NO" name="SURVEY_NO" ng-model="formData.SURVEY_NO">
+                <!--<span class="error text-small block" ng-if="form.SURVEY_NO.$dirty && form.SURVEY_NO.$invalid">{{requireNotificationPrefix}} {{'SURVEY_NO'|translate}}</span>-->
+            </div>
+        </div>
+        <fieldset class="no-radius">
+            <legend>เนื้อที่</legend>
+            <div class="form-group">
+                <div class="form-group col-sm-4">
+                    <label class="col-sm-4 control-label" for="RAI">
+                        {{'RAI'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input landarea type="text" placeholder="" class="form-control" id="RAI" name="RAI" ng-model="formData.RAI">
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label class="col-sm-4 control-label" for="NGAN">
+                        {{'NGAN'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input landarea type="text" placeholder="" class="form-control" id="NGAN" name="NGAN" ng-model="formData.NGAN">
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label class="col-sm-4 control-label" for="WA">
+                        {{'WA'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input landarea type="text" placeholder="" class="form-control" id="WA" name="WA" ng-model="formData.WA">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group col-sm-4">
+                    <label class="col-sm-4 control-label" for="AREA_WA">
+                        {{'AREA_WA'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input landarea type="text" placeholder="" class="form-control" id="AREA_WA" name="AREA_WA" ng-model="formData.AREA_WA">
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="panel panel-white">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">เช่าอาคาร สำนักงาน</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="CONSTRUCT_PERMIT">
+                {{'CONSTRUCT_PERMIT'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <input type="text" placeholder="" class="form-control" id="CONSTRUCT_PERMIT" name="CONSTRUCT_PERMIT" ng-model="formData.CONSTRUCT_PERMIT">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="PROJECT_NAME">
+                {{'PROJECT_NAME'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <input type="text" placeholder="" class="form-control" id="PROJECT_NAME" name="PROJECT_NAME" ng-model="formData.PROJECT_NAME">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="FLOOR_NO">
+                {{'FLOOR_NO'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <input type="text" placeholder="" class="form-control" id="FLOOR_NO" name="FLOOR_NO" ng-model="formData.FLOOR_NO">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="AREA_METER">
+                {{'AREA_METER'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <input usespace type="text" placeholder="" class="form-control" id="AREA_METER" name="AREA_METER" ng-model="formData.AREA_METER">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-white" ng-if="isAppraiser">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ข้อมูลสำหรับ BOT Report</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="CONSTRUCT_YEAR">
+                {{'CONSTRUCT_YEAR'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <input type="number" class="form-control" id="CONSTRUCT_YEAR" name="CONSTRUCT_YEAR" ng-model="formData.CONSTRUCT_YEAR">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="CONSTRUCT_AGE">
+                {{'CONSTRUCT_AGE'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <input type="number" class="form-control" id="CONSTRUCT_AGE" name="CONSTRUCT_AGE" ng-model="formData.CONSTRUCT_AGE">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="DECORATED">
+                {{'DECORATED'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <div  ng-repeat="item in radioDecorated" class="form-horizontal">
+                    <div class="radio clip-radio radio-primary">
+                        <input type="radio" name="DECORATED" ng-value="item.VALUE" ng-model="formData.DECORATED" id="DECORATED{{item.VALUE}}" />
+                        <label for="DECORATED{{item.VALUE}}">{{ item.NAME }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="DEVELOPER_DUMMY">
+                {{'DEVELOPER_DUMMY'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <div ng-repeat="item in radioDeveloper" class="form-horizontal">
+                    <div class="radio clip-radio radio-primary">
+                        <input type="radio" name="DEVELOPER_DUMMY" ng-value="item.VALUE" ng-model="formData.DEVELOPER_DUMMY" id="DEVELOPER_DUMMY{{item.VALUE}}" />
+                        <label for="DEVELOPER_DUMMY{{item.VALUE}}">{{ item.NAME }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<fieldset class="no-radius">
+    <legend>{{'REMARK'|translate}}</legend>
+    <textarea class="form-control" id="REMARK" name="REMARK" ng-model="formData.REMARK"></textarea>
+</fieldset>
+

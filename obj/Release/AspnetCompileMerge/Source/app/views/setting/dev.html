@@ -1,0 +1,36 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{title1}} <i class="ti-angle-right"></i> {{title2}} </h3>
+</div>
+<div class="modal-body bg-light-grey">
+    <form name="form" role="form" class="form-horizontal" novalidate>
+        <!--<div class="form-group" ng-class="{'has-error':form.DEV_CODE.$dirty && form.DEV_CODE.$invalid, 'has-success':form.DEV_CODE.$valid}">
+            <label class="col-sm-4 control-label" for="DEV_CODE">
+                {{'DEV_CODE'|translate}}<span class="symbol required"></span>
+            </label>
+            <div class="col-sm-8">
+                <input required type="text" class="form-control" id="DEV_CODE" name="DEV_CODE" ng-model="formData.DEV_CODE">
+                <span class="error text-small block" ng-if="form.DEV_CODE.$dirty && form.DEV_CODE.$invalid">{{requireNotificationPrefix}} {{'DEV_CODE'|translate}}</span>
+            </div>
+        </div>-->
+        <div class="form-group" ng-class="{'has-error':form.DEV_NAME.$dirty && form.DEV_NAME.$invalid, 'has-success':form.DEV_NAME.$valid}">
+            <label class="col-sm-4 control-label" for="DEV_NAME">
+                {{'DEV_NAME'|translate}}<span class="symbol required"></span>
+            </label>
+            <div class="col-sm-8">
+                <input required type="text" placeholder="" class="form-control" id="DEV_NAME" name="DEV_NAME" ng-model="formData.DEV_NAME">
+                <span class="error text-small block" ng-if="form.DEV_NAME.$dirty && form.DEV_NAME.$invalid">{{requireNotificationPrefix}} {{'DEV_NAME'|translate}}</span>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary btn-o" ng-disabled="btnDisabled" ng-click="save(form)">
+        <i class="glyphicon glyphicon-floppy-save"></i> {{'BUTTON.SAVE'|translate}}
+    </button>
+    <button class="btn btn-primary btn-o" ng-disabled="btnDisabled" ng-click="delete()">
+        <i class="glyphicon glyphicon-remove-circle"></i> {{'BUTTON.DELETE'|translate}}
+    </button>
+    <button class="btn btn-primary btn-o" ng-disabled="btnDisabled" ng-click="cancel()">
+        <i class="glyphicon glyphicon-chevron-left"></i> {{'BUTTON.BACK'|translate}}
+    </button>
+</div>

@@ -1,0 +1,48 @@
+﻿<!-- ราคาประเมิน -->
+<div ng-controller="subform1000Controller">
+    <!--<div class="row">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-o btn-primary pull-right" ng-click="reload()">
+                <i class="glyphicon glyphicon-refresh"></i> {{'RELOAD'|translate}}
+            </button>
+        </div>
+    </div>
+    <br />-->
+    <table class="table table-bordered table-hover disabled" style="max-width:100%;">
+        <thead>
+            <tr class="bg-azure">
+                <!--<th class="col-md-2"><span class="text-white">{{'HEAD_COL_TYPE_ID'|translate}}</span></th>-->
+                <th class="col-md-8"><span class="text-white">{{'LIST'|translate}}</span></th>
+                <th class="col-md-2 text-right"><span class="text-white">{{'APPR_CUR_NET_TOTAL'|translate}}</span></th>
+                <th class="col-md-2 text-center"><span class="text-white text-center">{{'APPRAISAL_REPORT_OK'|translate}}</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in headColAppraisalList">
+                <!--<td>{{item.HEAD_COL_TYPE_ID}}</td>-->
+                <td>{{item.HEAD_COL_DETAIL}}</td>
+                <td class="text-right">{{item.APPR_CUR_NET_TOTAL | number : 2}}</td>
+                <td class="text-center center"><i ng-if="item.APPRAISAL_REPORT_OK" class="fa fa-check"></i></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-o btn-primary pull-right" ng-disabled="btnDisabled" ng-click="genAppraisalReport()">
+                {{'GEN_APP_REPORT'|translate}}
+            </button>
+        </div>
+    </div>
+    <br />
+    <div class="row" ng-if="$parent.formData.APPRAISAL_REPORT.ATTACHDOC_RUNNING_ID > 0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <!--<i class="fa fa-2x fa-file-pdf-o"></i>-->
+                <a href="Home/Download/{{$parent.formData.APPRAISAL_REPORT.ATTACHDOC_RUNNING_ID}}">
+                    <h3>{{$parent.formData.APPRAISAL_REPORT.DOC_NAME|translate}}</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

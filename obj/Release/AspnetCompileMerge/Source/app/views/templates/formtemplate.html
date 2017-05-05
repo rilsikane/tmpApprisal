@@ -1,0 +1,43 @@
+﻿<div class="container-fluid container-fullw" ng-controller="formtemplateController">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-white no-radius">
+                <div class="panel-heading no-radius bg-deep-pink border-light">
+                    <h4 class="panel-title">ตัวอย่าง</h4>
+                    <ul class="panel-heading-tabs border-light">
+                        <li ng-if="changableState.length > 0">
+                            <div class="pull-right">
+                                <div class="btn-group" dropdown is-open="status.isopen">
+                                    <button type="button" class="btn btn-o btn-squared border-white dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                                        เปลี่ยนสถานะ<span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu no-radius" role="menu">
+                                        <li ng-repeat="state in changableState">
+                                            <a href="#" ng-click="changeState(state)">
+                                                {{state.STATE_NAME}}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <button ng-repeat="button in w4buttons" type="button" class="btn btn-o btn-squared margin-left-5 border-white" ng-click="action(button.ACT_ID,button.ACT_TEXT,button.ACT_TYPE)">
+                                {{button.ACT_TEXT}}
+                            </button>
+                            <button type="button" class="btn btn-o btn-squared border-white" ng-click="back()">
+                                <i class="glyphicon glyphicon-arrow-left"></i> กลับ
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="panel-body border-light">
+                    <div class="form-horizontal">
+                        <div ng-include="include"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

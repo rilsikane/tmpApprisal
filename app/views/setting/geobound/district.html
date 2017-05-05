@@ -1,0 +1,39 @@
+﻿<div class="form-group" ng-class="{'has-error':form.CITY_ID.$dirty && form.CITY_ID.$invalid, 'has-success':form.CITY_ID.$valid}">
+    <label class="col-sm-4 control-label" for="CITY_ID">
+        {{'CITY_ID'|translate}}<span class="symbol required"></span>
+    </label>
+    <div class="col-sm-8">
+        <input required type="text" placeholder="" class="form-control" id="CITY_ID" name="CITY_ID" ng-model="formData.CITY_ID">
+        <span class="error text-small block" ng-if="form.CITY_ID.$dirty && form.CITY_ID.$invalid">{{requireNotificationPrefix}} {{'CITY_ID'|translate}}</span>
+    </div>
+</div>
+<div class="form-group" ng-class="{'has-error':form.CITY.$dirty && form.CITY.$invalid, 'has-success':form.CITY.$valid}">
+    <label class="col-sm-4 control-label" for="CITY">
+        {{'CITY'|translate}}<span class="symbol required"></span>
+    </label>
+    <div class="col-sm-8">
+        <input required type="text" placeholder="" class="form-control" id="CITY" name="CITY" ng-model="formData.CITY">
+        <span class="error text-small block" ng-if="form.CITY.$dirty && form.CITY.$invalid">{{requireNotificationPrefix}} {{'CITY'|translate}}</span>
+    </div>
+</div>
+<div class="form-group" ng-class="{'has-error':form.AREABKK.$dirty && form.AREABKK.$invalid, 'has-success':form.AREABKK.$valid}">
+    <label class="col-sm-4 control-label" for="AREABKK">
+        {{'AREABKK'|translate}}<span class="symbol required"></span>
+    </label>
+    <div class="col-sm-8">
+        <input required type="text" placeholder="" class="form-control" id="AREABKK" name="AREABKK" ng-model="formData.AREABKK">
+        <span class="error text-small block" ng-if="form.AREABKK.$dirty && form.AREABKK.$invalid">{{requireNotificationPrefix}} {{'AREABKK'|translate}}</span>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-4 control-label" for="RECORD_STATUS">
+    </label>
+    <div class="col-sm-8">
+        <div class="checkbox clip-check check-primary checkbox-inline">
+            <input type="checkbox" id="RECORD_STATUS" ng-model="formData.RECORD_STATUS" checked="">
+            <label for="RECORD_STATUS">
+                {{'RECORD_STATUS'|translate}}
+            </label>
+        </div>
+    </div>
+</div>

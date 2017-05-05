@@ -1,0 +1,24 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{title}}</h3><button ng-click="cancel()" class="btn btn-o btn-squared modalClose">{{'CLOSE'|translate}}</button>
+</div>
+<div class="modal-body bg-light-grey">
+    <form name="form" role="form" class="form-horizontal" novalidate>
+        <div ng-include="includeUrl"></div>
+    </form>
+</div>
+<div class="modal-footer">
+    <div class="pull-right">
+        <button ng-if="showBtnOK" class="btn btn-primary btn-o" ng-disabled="btnDisabled" ng-click="save(form)">
+            <i class="glyphicon glyphicon-ok"></i> {{'BUTTON.OK'|translate}}
+        </button>
+        <button ng-if="showBtnSave" class="btn btn-primary btn-o" ng-disabled="btnDisabled" ng-click="save(form)">
+            <i class="glyphicon glyphicon-floppy-save"></i> {{'BUTTON.SAVE'|translate}}
+        </button>
+        <button ng-if="showBtnDelete" class="btn btn-primary btn-o" ng-disabled="btnDisabled" ng-click="delete()">
+            <i class="glyphicon glyphicon-remove"></i> {{'BUTTON.DELETE'|translate}}
+        </button>
+        <button class="btn btn-primary btn-o" ng-disabled="btnDisabled" ng-click="cancel()">
+            <i class="glyphicon glyphicon-chevron-left"></i> {{'BUTTON.BACK'|translate}}
+        </button>
+    </div>
+</div>

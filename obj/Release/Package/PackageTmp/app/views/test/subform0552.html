@@ -1,0 +1,84 @@
+﻿<div class="panel panel-white">
+    <div class="panel-body">
+        <div class="col-md-12">
+            <div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-center margin-bottom-20 margin-top-20">{{ calendarControl.getTitle() }}</h2>
+                        <button ng-click="cancel()" class="btn btn-o btn-squared modalClose">{{'CLOSE'|translate}}</button>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="btn-group">
+                            <button class="btn btn-primary" ng-click="calendarControl.prev()">
+                                <i class="ti-angle-left"></i>
+                            </button>
+                            <button class="btn btn-primary" ng-click="calendarControl.next()">
+                                <i class="ti-angle-right"></i>
+                            </button>
+                        </div>
+                        <button class="btn btn-primary btn-o" ng-click="setCalendarToToday()">
+                            Today
+                        </button>
+                    </div>
+                    <div class="col-xs-4 text-right">
+
+                        <div class="visible-md visible-lg hidden-sm hidden-xs">
+                            <div class="btn-group">
+                                <label class="btn btn-primary" ng-model="calendarView" btn-radio="'year'">
+                                    Year
+                                </label>
+                                <label class="btn btn-primary" ng-model="calendarView" btn-radio="'month'">
+                                    Month
+                                </label>
+                                <label class="btn btn-primary" ng-model="calendarView" btn-radio="'week'">
+                                    Week
+                                </label>
+                                <label class="btn btn-primary" ng-model="calendarView" btn-radio="'day'">
+                                    Day
+                                </label>
+                            </div>
+                        </div>
+                        <div class="visible-xs visible-sm hidden-md hidden-lg">
+                            <div class="btn-group" dropdown>
+                                <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                                    <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu pull-right dropdown-light" role="menu">
+                                    <li>
+                                        <a ng-model="calendarView" btn-radio="'year'" href="">
+                                            Year
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-model="calendarView" btn-radio="'month'" href="">
+                                            Month
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-model="calendarView" btn-radio="'week'" href="">
+                                            Week
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-model="calendarView" btn-radio="'day'" href="">
+                                            Day
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <mwl-calendar calendar-events="events"
+                              calendar-view="calendarView"
+                              calendar-current-day="calendarDay"
+                              calendar-control="calendarControl"
+                              calendar-auto-open="false"
+                              custom-template-urls="{calendarMonthCell: 'customMonthCell.html'}">
+                </mwl-calendar>
+
+            </div>
+        </div>
+    </div>
+</div>

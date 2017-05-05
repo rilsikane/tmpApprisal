@@ -1,0 +1,194 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{title1}} <i class="ti-angle-right"></i> {{title2}} </h3>
+</div>
+<div class="modal-body bg-light-grey">
+    <form name="form" role="form" class="form-horizontal" novalidate ng-submit="submit(form)">
+        <div class="panel panel-white">
+            <div class="panel-heading bg-light-azure no-radius">
+                <h5 class="panel-title">รายละเอียดโครงการ</h5>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="RECORD_STATUS">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="RECORD_STATUS" ng-model="formData.RECORD_STATUS" checked="">
+                            <label for="RECORD_STATUS">
+                                {{'RECORD_STATUS'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error':form.PROJECT_CODE.$dirty && form.PROJECT_CODE.$invalid, 'has-success':form.PROJECT_CODE.$valid}">
+                    <label class="col-sm-4 control-label" for="PROJECT_CODE">
+                        {{'PROJECT_CODE'|translate}}<span class="symbol required"></span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input required type="text" class="form-control" id="PROJECT_CODE" name="PROJECT_CODE" ng-model="formData.PROJECT_CODE">
+                        <span class="error text-small block" ng-if="form.PROJECT_CODE.$dirty && form.PROJECT_CODE.$invalid">{{requireNotificationPrefix}} {{'PROJECT_CODE'|translate}}</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error':form.PROJECT_NAME.$dirty && form.PROJECT_NAME.$invalid, 'has-success':form.PROJECT_NAME.$valid}">
+                    <label class="col-sm-4 control-label" for="PROJECT_NAME">
+                        {{'PROJECT_NAME'|translate}}<span class="symbol required"></span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input required type="text" class="form-control" id="PROJECT_NAME" name="PROJECT_NAME" ng-model="formData.PROJECT_NAME">
+                        <span class="error text-small block" ng-if="form.PROJECT_NAME.$dirty && form.PROJECT_NAME.$invalid">{{requireNotificationPrefix}} {{'PROJECT_NAME'|translate}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="ADD_NO">
+                        {{'ADD_NO'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="ADD_NO" name="ADD_NO" ng-model="formData.ADD_NO">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="ADD_MOO">
+                        {{'ADD_MOO'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="ADD_MOO" name="ADD_MOO" ng-model="formData.ADD_MOO">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="ADD_BANN">
+                        {{'ADD_BANN'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="ADD_BANN" name="ADD_BANN" ng-model="formData.ADD_BANN">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="ADD_SOI">
+                        {{'ADD_SOI'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="ADD_SOI" name="ADD_SOI" ng-model="formData.ADD_SOI">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="ADD_ROAD">
+                        {{'ADD_ROAD'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="ADD_ROAD" name="ADD_ROAD" ng-model="formData.ADD_ROAD">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="ADD_COUNTRY">
+                        {{'COUNTRY'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <ui-select theme="selectize" ng-model="formData.ADD_COUNTRY" id="ADD_COUNTRY" name="ADD_COUNTRY">
+                            <ui-select-match placeholder="">
+                                {{$select.selected.NAME_THAI}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in selectCountry | filter: $select.search">
+                                <div ng-bind-html="item.NAME_THAI | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="ADD_PROVINCE">
+                        {{'PROVINCE'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <ui-select theme="selectize" ng-model="formData.ADD_PROVINCE" id="ADD_PROVINCE" name="ADD_PROVINCE" on-select="getDistrict($item,$model)">
+                            <ui-select-match placeholder="">
+                                {{$select.selected.PROV_NAME}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in selectProvince | filter: $select.search">
+                                <div ng-bind-html="item.PROV_NAME | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="ADD_CITY">
+                        {{'DISTRICT'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <ui-select theme="selectize" ng-model="formData.ADD_CITY" id="ADD_CITY" name="ADD_CITY" on-select="getSubDistrict($item,$model)">
+                            <ui-select-match>
+                                {{$select.selected.CITY}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in selectDistrict | filter: $select.search">
+                                <div ng-bind-html="item.CITY | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="ADD_DISTRICT">
+                        {{'SUBDISTRICT'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <ui-select theme="selectize" ng-model="formData.ADD_DISTRICT" id="ADD_DISTRICT" name="ADD_DISTRICT">
+                            <ui-select-match placeholder="">
+                                {{$select.selected.DISTRICT}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in selectSubDistrict | filter: $select.search">
+                                <div ng-bind-html="item.DISTRICT | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>                
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="ADD_POSTCODE">
+                        {{'POSTCODE'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="ADD_POSTCODE" name="ADD_POSTCODE" ng-model="formData.ADD_POSTCODE">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="ADD_DEED_CODE">
+                        {{'DEED_CODE'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="" class="form-control" id="ADD_DEED_CODE" name="ADD_DEED_CODE" ng-model="formData.ADD_DEED_CODE">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">
+                    </label>
+                    <div class="col-sm-8">
+                        <a class="btn btn-wide btn-squared btn-orange" href="#" ng-click="openMap()"><i class="glyphicon glyphicon-map-marker"></i> {{'MAP'|translate}}</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="LOCATION_LAT">
+                        {{'LAT'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control" id="LOCATION_LAT" name="LOCATION_LAT" ng-model="formData.LOCATION_LAT">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="LOCATION_LONG">
+                        {{'LONG'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control" id="LOCATION_LONG" name="LOCATION_LONG" ng-model="formData.LOCATION_LONG">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary  btn-o" ng-disabled="btnDisabled" ng-click="save(form)">
+        <i class="glyphicon glyphicon-floppy-save"></i> {{'BUTTON.SAVE'|translate}}
+    </button>
+    <button class="btn btn-primary  btn-o" ng-disabled="btnDisabled" ng-click="delete()">
+        <i class="glyphicon glyphicon-remove-circle"></i> {{'BUTTON.DELETE'|translate}}
+    </button>
+    <button class="btn btn-primary  btn-o" ng-disabled="btnDisabled" ng-click="cancel()">
+        <i class="glyphicon glyphicon-chevron-left"></i> {{'BUTTON.BACK'|translate}}
+    </button>
+</div>

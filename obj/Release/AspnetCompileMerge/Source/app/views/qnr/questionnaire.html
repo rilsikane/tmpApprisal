@@ -1,0 +1,122 @@
+﻿<div ng-controller="qnrController">
+    <div class="form-horizontal" ng-if="(QNR_ID==undefined && RESULT_ID==undefined) || (QNR_ID==null && RESULT_ID==null)">
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="PACKAGE">
+                {{'PACKAGE'|translate}}
+            </label>
+            <div class="col-sm-4 no-padding">
+                <ui-select ng-required="true" theme="selectize" ng-model="formData.QNR_PACKAGE" name="QNR_PACKAGE" id="QNR_PACKAGE" on-select="getQuestionnaire()">
+                    <ui-select-match>
+                        {{$select.selected.DSC1}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in qnrPackage | filter: $select.search">
+                        <div ng-bind-html="item.DSC1 | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="QNR_PACKAGE_RESULT">
+                {{'RESULT'|translate}}
+            </label>
+            <div class="col-sm-4 no-padding">
+                <ui-select ng-required="true" theme="selectize" ng-model="formData.RESULT" name="QNR_PACKAGE_RESULT" id="QNR_PACKAGE_RESULT" on-select="getQuestionnaireResult()">
+                    <ui-select-match>
+                        {{$select.selected.RESULT_ID}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in qnrResult | filter: $select.search">
+                        <div ng-bind-html="item.RESULT_ID | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover" style="max-width:100%;">
+            <thead>
+                <tr class="bg-azure" style="height:50px;">
+                    <th class="col-md-2"><span class="text-white">{{'QNR_TOPIC'|translate}}</span></th>
+                    <th class="col-md-1 text-center" ng-repeat="header in questionnaire.QNR_HEADER"><span class="text-white">{{header.DSC1}}</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in questionnaire.QNR_ITEM" ng-if="item.FLAG != 'H'">
+                    <td>
+                        <div ng-switch="item.INPUT">
+                            <div ng-switch-when="RADIO">
+                                <span>{{item.DSC1}}</span>
+                                <div class="radio clip-radio radio-primary" ng-repeat="choice in item.CHILD">
+                                    <input type="radio" id="qnr_radio_{{choice.QNR_ID}}" ng-value="{{choice.QNR_ID}}" name="qnr_radio_{{item.QNR_ID}}" ng-model="item.CHOICE_QNR_ID" />
+                                    <label for="qnr_radio_{{choice.QNR_ID}}">{{choice.DSC1}}</label>
+                                </div>
+                            </div>
+
+                            <div ng-switch-when="CHECK" class="horizontal">
+                                <table ng-if="item.CHILD.length > 0">
+                                    <tr ng-repeat="choice in item.CHILD" >
+                                        <td>
+                                            <div class="checkbox clip-check check-primary checkbox-inline">
+                                                <input id="qnr_{{choice.QNR_ID}}" type="checkbox" ng-true-value="{{choice.QNR_ID}}" ng-false-value="0" ng-model="choice.CHOICE_QNR_ID" />
+                                                <label for="qnr_{{choice.QNR_ID}}"></label>
+                                            </div>
+                                        </td>
+                                        <td><p>{{choice.DSC1}}</p></td>
+                                    </tr>                                    
+                                </table>
+                                <div ng-if="item.CHILD.length == 0">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="checkbox clip-check check-primary">
+                                                    <input id="qnr_{{item.QNR_ID}}" type="checkbox" ng-true-value="{{item.QNR_ID}}" ng-false-value="0" ng-model="item.CHOICE_QNR_ID" />
+                                                    <label for="qnr_{{item.QNR_ID}}"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p>{{item.DSC1}}</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    
+                                    
+                                </div>
+                            </div>
+
+                            <div ng-switch-when="TEXT" class="form-group">
+                                <label for="qnr_{{item.QNR_ID}}">
+                                    {{item.DSC1}}
+                                </label>
+                                <br />
+                                <input id="qnr_{{item.QNR_ID}}" type="text" class="form-control" ng-model="item.NOTE" />
+                            </div>
+
+                            <h4 ng-switch-default>{{item.DSC1}}</h4>
+                        </div>
+                    </td>
+                    <td ng-if="item.TYPE!='Q' && questionnaire.QNR_HEADER.length > 0" colspan="{{questionnaire.QNR_HEADER.length}}"></td>
+                    <td ng-if="item.TYPE=='Q' && questionnaire.QNR_HEADER.length > 0" ng-repeat="choice in item.CHILD" class="text-center">
+                        <div ng-switch="choice.INPUT">
+                            <div class="radio clip-radio radio-primary" ng-switch-when="RADIO">
+                                <input type="radio" id="qnr_rate_{{item.QNR_ID}}_{{choice.QNR_ID}}" name="qnr_rate_{{item.QNR_ID}}" ng-value="choice.QNR_ID" ng-model="item.CHOICE_QNR_ID" />
+                                <label for="qnr_rate_{{item.QNR_ID}}_{{choice.QNR_ID}}"></label>
+                            </div>
+                            <div class="checkbox clip-check check-primary" ng-switch-when="CHECK">
+                                <input id="qnr_rate_{{item.QNR_ID}}_{{choice.QNR_ID}}" type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="choice.CHOICE_QNR_ID" />
+                                <label for="qnr_rate_{{item.QNR_ID}}_{{choice.QNR_ID}}"></label>
+                            </div>
+                            <div ng-switch-when="TEXT">
+                                <input type="text" ng-model="choice.NOTE" />
+                            </div>
+                            <span ng-switch-default>{{choice.DSC1}}</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="pull-right">
+        <button class="btn btn-primary btn-o" ng-click="submit()" ng-if="QNR_ID==undefined && RESULT_ID==undefined">
+            <i class="glyphicon glyphicon-floppy-save"></i>{{'BUTTON.SAVE'|translate}}
+        </button>
+    </div>
+</div>

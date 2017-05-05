@@ -1,0 +1,68 @@
+﻿<div class="container-fluid container-fullw" ng-controller="docsController">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-white no-radius">
+                <div class="panel-heading no-radius bg-deep-pink">
+                    <h4 class="panel-title"><span>{{ title }}</span></h4>
+                </div>
+                <div class="panel-heading border-light">
+                    <div class="row border-right">
+                        <div class="form-inline col-sm-10">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="email" placeholder="xxxx" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="email" placeholder="xxxx" class="form-control">
+                                </div>
+                            </div>
+                            <button class="btn btn-wide btn-primary btn-squared btn-o" ng-click="pageChanged()">
+                                {{'BUTTON.SEARCH'|translate}}
+                            </button>
+
+                        </div>
+                        <!--<div class="form-inline col-sm-2 ">
+                            <button type="button" class="btn btn-wide btn-primary btn-squared btn-o pull-right" ng-click="new()">
+                                สร้าง
+                            </button>
+                        </div>-->
+                    </div>
+
+                </div>
+                <div class="panel-body border-light">
+                    <div class="row">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>REQUEST NO.</th>
+                                    <th>STATE ID</th>
+                                    <th>STATE NAME</th>
+                                    <th>STEP NAME</th>
+                                    <th>OU ID</th>
+                                    <th>OU NAME</th>
+                                    <th>DATE TIME</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in data" ng-click="test(item)">
+                                    <td><a ui-sref="app.testform({ACT_HIST_ID:item.ACT_HIST_ID})">{{item.REQUEST_NO}}</a></td>
+                                    <td>{{item.STATE_ID}}</td>
+                                    <td>{{item.STATE_NAME}}</td>
+                                    <td>{{item.STEP_NAME}}</td>
+                                    <td>{{item.OU_ID}}</td>
+                                    <td>{{item.OU_NAME}}</td>
+                                    <td>{{item.C_DATE_TEXT}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <pagination boundary-links="true" items-per-page="itemsPerPage" ng-change="pageChanged()" max-size="5" total-items="totalItems" ng-model="currentPage" class="pagination-sm  no-padding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

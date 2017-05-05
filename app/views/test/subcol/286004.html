@@ -1,0 +1,2073 @@
+﻿<div class="panel panel-white">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ข้อมูลสิ่งปลูกสร้าง</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="SURVEY_APPR_DATE">
+                {{'SURVEY_APPR_DATE'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.DATE_APPRAI_EVALUATE" ng-click="openDatePicker($event,'DATE_APPRAI_EVALUATE')" type="text" class="form-control" ng-model="formData.DATE_APPRAI_EVALUATE" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="IS_ONE_OWNER">
+                {{'IS_ONE_OWNER'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <div class="radio clip-radio radio-primary">
+                    <input type="radio" name="IS_ONE_OWNER" ng-value="'Y'" ng-model="formData.IS_ONE_OWNER" id="IS_ONE_OWNER_Y" />
+                    <label for="IS_ONE_OWNER_Y">มีเจ้าของกรรมสิทตรงกันทั้งหมด</label>
+                </div>
+                <div class="radio clip-radio radio-primary radio-inline">
+                    <input type="radio" name="IS_ONE_OWNER" ng-value="'N'" ng-model="formData.IS_ONE_OWNER" id="IS_ONE_OWNER_N" />
+                    <label for="IS_ONE_OWNER_N">ต่างกรรมสิทธิกัน</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="FLAG_BUILDING">
+                {{'FLAG_BUILDING'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <div class="radio clip-radio radio-primary" ng-repeat="item in radioYesNo">
+                    <input type="radio" name="FLAG_BUILDING" ng-value="item.VALUE" ng-model="formData.FLAG_BUILDING" id="FLAG_BUILDING{{item.VALUE}}" />
+                    <label for="FLAG_BUILDING{{item.VALUE}}">{{ item.NAME }}</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="BUILD_LICENSE_FLAG">
+                {{'BUILD_LICENSE_FLAG'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <div class="radio clip-radio radio-primary">
+                    <input type="radio" name="BUILD_LICENSE_FLAG" ng-value="'Y'" ng-model="formData.BUILD_LICENSE_FLAG" id="BUILD_LICENSE_FLAG_Y" />
+                    <label for="BUILD_LICENSE_FLAG_Y">มี</label>
+                </div>
+                <div class="radio clip-radio radio-primary radio-inline">
+                    <input type="radio" name="BUILD_LICENSE_FLAG" ng-value="'N'" ng-model="formData.BUILD_LICENSE_FLAG" id="BUILD_LICENSE_FLAG_N" />
+                    <label for="BUILD_LICENSE_FLAG_N">ไม่มี</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="BUILD_LICENSE">
+                {{'BUILD_LICENSE'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input type="text" maxlength="30" class="form-control" id="BUILD_LICENSE" name="BUILD_LICENSE" ng-model="formData.BUILD_LICENSE">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="CHK_CONTR_DOC">
+                ตรวจสอบจาก
+            </label>
+            <div class="col-sm-8">
+                <div class="checkbox clip-check check-primary">
+                    <input type="checkbox" id="CHK_CONTR_DOC" ng-model="formData.CHK_CONTR_DOC" ng-true-value="'Y'" ng-false-value="'N'" />
+                    <label for="CHK_CONTR_DOC">
+                        {{'CHK_CONTR_DOC'|translate}}
+                    </label>
+                </div>
+                <div class="checkbox clip-check check-primary">
+                    <input type="checkbox" id="CHK_BUILD_LICENSE" ng-model="formData.CHK_BUILD_LICENSE" ng-true-value="'Y'" ng-false-value="'N'" />
+                    <label for="CHK_BUILD_LICENSE">
+                        {{'CHK_BUILD_LICENSE'|translate}}
+                    </label>
+                </div>
+                <div class="checkbox clip-check check-primary">
+                    <input type="checkbox" id="CHK_OTHER" ng-model="formData.CHK_OTHER" ng-true-value="'Y'" ng-false-value="'N'" />
+                    <label for="CHK_OTHER">
+                        {{'CHK_OTHER'|translate}}
+                    </label>
+                    <input type="text" class="form-control" ng-disabled="formData.CHK_OTHER!='Y'" ng-model="formData.CHK_OTHER_DETAIL" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="COL_NO">
+                โฉนดเลขที่
+            </label>
+            <div class="col-sm-8">
+                <input type="text" placeholder="" class="form-control" id="COL_NO" name="COL_NO" ng-model="formData.COL_NO">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="USAGES">
+                {{'USAGES'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <ui-select theme="selectize" ng-model="formData.USAGES" id="USAGES" name="USAGES">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectUsageType | filter: $select.search">
+                        <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="USAGE_TYPE">
+                {{'USAGE_TYPE'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <ui-select theme="selectize" ng-model="formData.USAGE_TYPE" id="USAGE_TYPE" name="USAGE_TYPE">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in riskcde | filter: $select.search">
+                        <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <fieldset class="no-radius">
+            <legend>ราคา</legend>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="APPR_CUR_BUILD_PRICE">
+                    {{'APPR_CUR_BUILD_PRICE'|translate}}
+                </label>
+                <div class="col-sm-8 form-group">
+                    <input format type="text" class="form-control" id="APPR_CUR_BUILD_PRICE" name="APPR_CUR_BUILD_PRICE" ng-model="formData.APPR_CUR_BUILD_PRICE" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="APPR_CUR_BUILD_AMOUNT">
+                    {{'TOTAL_PRICE'|translate}}
+                </label>
+                <div class="col-sm-8 form-group">
+                    <input format type="text" class="form-control" id="APPR_CUR_BUILD_AMOUNT" name="APPR_CUR_BUILD_AMOUNT" ng-model="formData.APPR_CUR_BUILD_AMOUNT" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="APPR_CUR_BUILD_AMOUNT">
+                    {{'FIRE_INSURE_AMOUNT'|translate}}
+                </label>
+                <div class="col-sm-8 form-group">
+                    <input format type="text" class="form-control" id="APPR_CUR_FIRE_INSURE" name="APPR_CUR_FIRE_INSURE" ng-model="formData.APPR_CUR_FIRE_INSURE" />
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="panel panel-white">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ที่ตั้ง</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DEED_ADD_NO">
+                <i class="fa fa-bolt"></i> {{'DEED_ADD_NO'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input type="text" placeholder="" class="form-control" id="DEED_ADD_NO" name="DEED_ADD_NO" ng-model="formData.DEED_ADD_NO">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DEED_ADD_MOO">
+                {{'DEED_ADD_MOO'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input type="text" placeholder="" class="form-control" id="DEED_ADD_MOO" name="DEED_ADD_MOO" ng-model="formData.DEED_ADD_MOO">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DEED_ADD_BANN">
+                {{'DEED_ADD_BANN'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input type="text" placeholder="" class="form-control" id="DEED_ADD_BANN" name="DEED_ADD_BANN" ng-model="formData.DEED_ADD_BANN">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DEED_ADD_SOI">
+                {{'SOI'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input type="text" placeholder="" class="form-control" id="DEED_ADD_SOI" name="DEED_ADD_SOI" ng-model="formData.DEED_ADD_SOI">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DEED_ADD_ROAD">
+                {{'ROAD'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input type="text" placeholder="" class="form-control" id="DEED_ADD_ROAD" name="DEED_ADD_ROAD" ng-model="formData.DEED_ADD_ROAD">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DEED_PROVINCE">
+                {{'PROVINCE'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <ui-select theme="selectize" ng-model="formData.DEED_PROVINCE" id="DEED_PROVINCE" name="DEED_PROVINCE" on-select="getDistrict($item,$model)">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.PROV_NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectProvince | filter: $select.search">
+                        <div ng-bind-html="item.PROV_NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DEED_CITY">
+                {{'DISTRICT'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <ui-select theme="selectize" ng-model="formData.DEED_CITY" id="DEED_CITY" name="DEED_CITY" on-select="getSubDistrict($item,$model)">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.CITY}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectDistrict | filter: $select.search">
+                        <div ng-bind-html="item.CITY | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DEED_DISTRICT">
+                {{'SUBDISTRICT'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <ui-select theme="selectize" ng-model="formData.DEED_DISTRICT" id="DEED_DISTRICT" name="DEED_DISTRICT">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.DISTRICT}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectSubDistrict | filter: $select.search">
+                        <div ng-bind-html="item.DISTRICT | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DEED_DISTRICT_OLD">
+                {{'DEED_DISTRICT_OLD'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="DEED_DISTRICT_OLD" name="DEED_DISTRICT_OLD" ng-model="formData.DEED_DISTRICT_OLD">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-white" ng-if="isAppriaiser">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ประเภทของสิ่งปลูกสร้าง</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="BTYP_HOUSE">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="BTYP_HOUSE" ng-model="formData.BTYP_HOUSE" checked="">
+                        <label for="BTYP_HOUSE">
+                            {{'BTYP_HOUSE'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="BTYP_THOUSE">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="BTYP_THOUSE" ng-model="formData.BTYP_THOUSE" checked="">
+                        <label for="BTYP_THOUSE">
+                            {{'BTYP_THOUSE'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="BTYP_HOUSESINGLE">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="BTYP_HOUSESINGLE" ng-model="formData.BTYP_HOUSESINGLE" checked="">
+                        <label for="BTYP_HOUSESINGLE">
+                            {{'BTYP_HOUSESINGLE'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="BTYP_HOUSEDOUBLE">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="BTYP_HOUSEDOUBLE" ng-model="formData.BTYP_HOUSEDOUBLE" checked="">
+                        <label for="BTYP_HOUSEDOUBLE">
+                            {{'BTYP_HOUSEDOUBLE'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="BTYP_ROW">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="BTYP_ROW" ng-model="formData.BTYP_ROW" checked="">
+                        <label for="BTYP_ROW">
+                            {{'BTYP_ROW'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="BTYP_OFFICE">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="BTYP_OFFICE" ng-model="formData.BTYP_OFFICE" checked="">
+                        <label for="BTYP_OFFICE">
+                            {{'BTYP_OFFICE'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="BTYP_FACTORY">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="BTYP_FACTORY" ng-model="formData.BTYP_FACTORY" checked="">
+                        <label for="BTYP_FACTORY">
+                            {{'BTYP_FACTORY'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="BTYP_BLD">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="BTYP_BLD" ng-model="formData.BTYP_BLD" checked="">
+                        <label for="BTYP_BLD">
+                            {{'BTYP_BLD'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="BTYP_BLDWOOD">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="BTYP_BLDWOOD" ng-model="formData.BTYP_BLDWOOD" checked="">
+                        <label for="BTYP_BLDWOOD">
+                            {{'BTYP_BLDWOOD'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="BTYP_BLDTILE">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="BTYP_BLDTILE" ng-model="formData.BTYP_BLDTILE" checked="">
+                        <label for="BTYP_BLDTILE">
+                            {{'BTYP_BLDTILE'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="BTYP_WOOD">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="BTYP_WOOD" ng-model="formData.BTYP_WOOD" checked="">
+                        <label for="BTYP_WOOD">
+                            {{'BTYP_WOOD'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="BTYP_OTH">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="BTYP_OTH" ng-model="formData.BTYP_OTH" checked="">
+                        <label for="BTYP_OTH">
+                            {{'BTYP_OTH'|translate}}
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group col-sm-8">
+                <input type="text" placeholder="" class="form-control" id="BTYP_OTH_DESC" name="BTYP_OTH_DESC" ng-model="formData.BTYP_OTH_DESC">
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.USAGE_AREA.$invalid}">
+            <label class="col-sm-4 control-label" for="USAGE_AREA">
+                พื้นที่ใช้สอยรวม (ตร.ม.) <span class="symbol"></span>
+            </label>
+            <div class="col-sm-8">
+                <input type="number" min="0" class="form-control" id="USAGE_AREA" name="USAGE_AREA" ng-model="formData.USAGE_AREA">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="BUILD_SIZE_X">
+                ขนาดสิ่งปลูกสร้าง กว้าง  x ยาว (ตร.ม.)
+            </label>
+            <div class="col-sm-8">
+                <div class="col-sm-2 no-padding">
+                    <input numberonly type="text" class="form-control" id="BUILD_SIZE_X" name="BUILD_SIZE_X" ng-model="formData.BUILD_SIZE_X">
+                </div>
+                <div class="col-sm-1">
+                    <label class="control-label">X</label>
+                </div>
+                <div class="col-sm-2 no-padding">
+                    <input numberonly type="text" class="form-control" id="BUILD_SIZE_Y" name="BUILD_SIZE_Y" ng-model="formData.BUILD_SIZE_Y">
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.NO_OF_FLOOR.$invalid}">
+            <label class="col-sm-4 control-label" for="NO_OF_FLOOR">
+                จำนวนชั้น (ชั้น) <span class="symbol"></span>
+            </label>
+            <div class="col-sm-8">
+                <input required numberonly type="text" min="0" class="form-control" id="NO_OF_FLOOR" name="NO_OF_FLOOR" ng-model="formData.NO_OF_FLOOR">
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.CONSTRUCT_YEAR.$invalid}">
+            <label class="col-sm-4 control-label" for="CONSTRUCT_YEAR">
+                ปีที่ปลูกสร้าง (พศ.) <span class="symbol"></span>
+            </label>
+            <div class="col-sm-8">
+                <input required numberonly type="text" maxlength="4" ng-minlength="4" ng-maxlength="4" class="form-control" id="CONSTRUCT_YEAR" name="CONSTRUCT_YEAR" ng-model="formData.CONSTRUCT_YEAR">
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.CONSTRUCT_AGE.$invalid}">
+            <label class="col-sm-4 control-label" for="CONSTRUCT_AGE">
+                ปลูกสร้างมาประมาณ (ปี) <span class="symbol"></span>
+            </label>
+            <div class="col-sm-8">
+                <input required numberonly type="text" min="0" class="form-control" id="CONSTRUCT_AGE" name="CONSTRUCT_AGE" ng-model="formData.CONSTRUCT_AGE">
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.AREA_METER.$invalid}">
+            <label class="col-sm-4 control-label" for="AREA_METER">
+                คิดเป็นพื้นที่ก่อสร้างโดยประมาณ (ตร.ม.) <span class="symbol"></span>
+            </label>
+            <div class="col-sm-8">
+                <input type="number" min="0" class="form-control" id="AREA_METER" name="AREA_METER" ng-model="formData.AREA_METER">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-white" ng-if="isAppriaiser">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">รายละเอียดเกี่ยวกับอาคาร</h5>
+    </div>
+    <div class="panel-body">
+        <fieldset class="no-radius">
+            <legend>ชั้น</legend>
+            <div class="col-md-12 border-around border-right margin-bottom-5" ng-repeat="item in formData.BUILDING_FLOOR" ng-if="!item.DELETE">
+                <div class="col-md-2">
+                    <div class="form-group padding-right-5">
+                        <label class="control-label" for="FLOOR_{{item.ORDER_LIST}}">ชั้น</label>
+                        <input ng-disabled="$index <= 2" type="text" class="form-control" ng-model="item.DSC_FLOORNAME" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group padding-right-5">
+                        <label class="control-label">กว้าง x ยาว (ตร.ม.)</label>
+                        <input type="text" class="form-control" id="FLOOR_{{item.ORDER_LIST}}" name="FLOOR_{{item.ORDER_LIST}}" ng-model="item.DSC_FLOORXSZ">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label class="control-label" for="USAGE_FLOOR_{{item.ORDER_LIST}}">การแบ่งพื้นที่ใช้ประโยชน์</label>
+                        <input type="text" class="form-control" id="USAGE_FLOOR_{{item.ORDER_LIST}}" name="USAGE_FLOOR_{{item.ORDER_LIST}}" ng-model="item.USAGE_FLOOR">
+                    </div>
+                </div>
+                <a ng-if="$index > 2" ng-click="item.DELETE=true" tooltip="ลบชั้น" style="position:absolute;right:2px;top:2px;"><i class="glyphicon glyphicon-remove border-around"></i></a>
+            </div>
+
+            <button type="button" class="btn btn-o btn-primary pull-right" ng-click="addFloor()">
+                {{'BUTTON.ADD'|translate}}
+            </button>
+        </fieldset>
+
+        <!--<div class="form-group">
+            <label class="col-sm-4 control-label" for="DSC_FLOOR1SZ">
+                {{'DSC_FLOOR1SZ'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input usespace type="text" placeholder="" class="form-control" id="DSC_FLOOR1SZ" name="DSC_FLOOR1SZ" ng-model="formData.DSC_FLOOR1SZ">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DSC_FLOOR2SZ">
+                {{'DSC_FLOOR2SZ'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input usespace type="text" placeholder="" class="form-control" id="DSC_FLOOR2SZ" name="DSC_FLOOR2SZ" ng-model="formData.DSC_FLOOR2SZ">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DSC_FLOOR3SZ">
+                {{'DSC_FLOOR3SZ'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input usespace type="text" placeholder="" class="form-control" id="DSC_FLOOR3SZ" name="DSC_FLOOR3SZ" ng-model="formData.DSC_FLOOR3SZ">
+            </div>
+        </div>-->
+        <!--<div class="form-group">
+            <label class="col-sm-4 control-label" for="DSC_FLOORXSZ">
+                {{'DSC_FLOORXSZ'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input usespace type="text"  placeholder="" class="form-control" id="DSC_FLOORXSZ" name="DSC_FLOORXSZ" ng-model="formData.DSC_FLOORXSZ">
+            </div>
+        </div>-->
+        <div class="row">
+            <div class="col-sm-6 padding-5">
+                <fieldset class="no-radius">
+                    <legend>ห้องรับแขก</legend>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="DSC_GUEST_ROOM">
+                            {{'DSC_GUEST_ROOM'|translate}}
+                        </label>
+                        <div class="col-sm-8">
+                            <input count type="text" placeholder="" class="form-control" id="DSC_GUEST_ROOM" name="DSC_GUEST_ROOM" ng-model="formData.DSC_GUEST_ROOM">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="DSC_GUEST_SZ">
+                            {{'DSC_GUEST_SZ'|translate}}
+                        </label>
+                        <div class="col-sm-8">
+                            <input usespace type="text" placeholder="" class="form-control" id="DSC_GUEST_SZ" name="DSC_GUEST_SZ" ng-model="formData.DSC_GUEST_SZ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="DSC_GUEST_FLOOR">
+                            {{'DSC_GUEST_FLOOR'|translate}}
+                        </label>
+                        <div class="col-sm-8">
+                            <ui-select theme="selectize" ng-model="formData.DSC_GUEST_FLOOR" id="DSC_GUEST_FLOOR" name="DSC_GUEST_FLOOR">
+                                <ui-select-match placeholder="">
+                                    {{$select.selected.NAME}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in selectMaterial | filter: $select.search">
+                                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-sm-6 padding-5">
+                <fieldset class="no-radius">
+                    <legend>ห้องโถง</legend>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="DSC_HALL_ROOM">
+                            {{'DSC_GUEST_ROOM'|translate}}
+                        </label>
+                        <div class="col-sm-8">
+                            <input count type="text" placeholder="" class="form-control" id="DSC_HALL_ROOM" name="DSC_HALL_ROOM" ng-model="formData.DSC_HALL_ROOM">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="DSC_HALL_SZ">
+                            {{'DSC_GUEST_SZ'|translate}}
+                        </label>
+                        <div class="col-sm-8">
+                            <input usespace type="text" placeholder="" class="form-control" id="DSC_HALL_SZ" name="DSC_HALL_SZ" ng-model="formData.DSC_HALL_SZ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="DSC_HALL_FLOOR">
+                            {{'DSC_GUEST_FLOOR'|translate}}
+                        </label>
+                        <div class="col-sm-8">
+                            <ui-select theme="selectize" ng-model="formData.DSC_HALL_FLOOR" id="DSC_HALL_FLOOR" name="DSC_HALL_FLOOR">
+                                <ui-select-match placeholder="">
+                                    {{$select.selected.NAME}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in selectMaterial | filter: $select.search">
+                                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 padding-5">
+                <fieldset class="no-radius">
+                    <legend>ห้องน้ำ</legend>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="DSC_BATH_ROOM">
+                            {{'DSC_GUEST_ROOM'|translate}}
+                        </label>
+                        <div class="col-sm-8">
+                            <input count type="text" placeholder="" class="form-control" id="DSC_BATH_ROOM" name="DSC_BATH_ROOM" ng-model="formData.DSC_BATH_ROOM">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="DSC_BATH_SZ">
+                            {{'DSC_GUEST_SZ'|translate}}
+                        </label>
+                        <div class="col-sm-8">
+                            <input usespace type="text" placeholder="" class="form-control" id="DSC_BATH_SZ" name="DSC_BATH_SZ" ng-model="formData.DSC_BATH_SZ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="DSC_BATH_FLOOR">
+                            {{'DSC_GUEST_FLOOR'|translate}}
+                        </label>
+                        <div class="col-sm-8">
+                            <ui-select theme="selectize" ng-model="formData.DSC_BATH_FLOOR" id="DSC_BATH_FLOOR" name="DSC_BATH_FLOOR">
+                                <ui-select-match placeholder="">
+                                    {{$select.selected.NAME}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in selectMaterial | filter: $select.search">
+                                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-sm-6 padding-5">
+                <fieldset class="no-radius">
+                    <legend>ห้องนอน</legend>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="DSC_BED_ROOM">
+                            {{'DSC_GUEST_ROOM'|translate}}
+                        </label>
+                        <div class="col-sm-8">
+                            <input count type="text" placeholder="" class="form-control" id="DSC_BED_ROOM" name="DSC_BED_ROOM" ng-model="formData.DSC_BED_ROOM">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="DSC_BED_SZ">
+                            {{'DSC_GUEST_SZ'|translate}}
+                        </label>
+                        <div class="col-sm-8">
+                            <input usespace type="text" placeholder="" class="form-control" id="DSC_BED_SZ" name="DSC_BED_SZ" ng-model="formData.DSC_BED_SZ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="DSC_BED_FLOOR">
+                            {{'DSC_GUEST_FLOOR'|translate}}
+                        </label>
+                        <div class="col-sm-8">
+                            <ui-select theme="selectize" ng-model="formData.DSC_BED_FLOOR" id="DSC_BED_FLOOR" name="DSC_BED_FLOOR">
+                                <ui-select-match placeholder="">
+                                    {{$select.selected.NAME}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in selectMaterial | filter: $select.search">
+                                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <fieldset class="no-radius">
+            <legend>ห้องอื่นๆ</legend>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="DSC_OTH_DESC">
+                    {{'OTHER_ROOM'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input count type="text" placeholder="" class="form-control" id="DSC_OTH_DESC" name="DSC_OTH_DESC" ng-model="formData.DSC_OTH_DESC">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="DSC_OTH_NO">
+                    {{'DSC_GUEST_ROOM'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="DSC_OTH_NO" name="DSC_OTH_NO" ng-model="formData.DSC_OTH_NO">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="DSC_OTH_SZ">
+                    {{'DSC_GUEST_SZ'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input usespace type="text" placeholder="" class="form-control" id="DSC_OTH_SZ" name="DSC_OTH_SZ" ng-model="formData.DSC_OTH_SZ">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="DSC_OTH_FLOOR">
+                    {{'DSC_GUEST_FLOOR'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.DSC_OTH_FLOOR" id="DSC_OTH_FLOOR" name="DSC_OTH_FLOOR">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in selectMaterial | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+
+        </fieldset>
+
+    </div>
+</div>
+<div class="panel panel-white" ng-if="isAppriaiser">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">โครงสร้างทั่วไป</h5>
+    </div>
+    <div class="panel-body">
+        <fieldset class="no-radius">
+            <legend>เสา</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_PILLAR_CONG" ng-model="formData.STRU_PILLAR_CONG" checked="">
+                        <label for="STRU_PILLAR_CONG">
+                            {{'STRU_PILLAR_CONG'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_PILLAR_WOOD" ng-model="formData.STRU_PILLAR_WOOD" checked="">
+                        <label for="STRU_PILLAR_WOOD">
+                            {{'STRU_PILLAR_WOOD'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_PILLAR_IRON" ng-model="formData.STRU_PILLAR_IRON" checked="">
+                        <label for="STRU_PILLAR_IRON">
+                            {{'STRU_PILLAR_IRON'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_PILLAR_OTH" ng-model="formData.STRU_PILLAR_OTH" checked="">
+                        <label for="STRU_PILLAR_OTH">
+                            {{'STRU_PILLAR_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" ng-disabled="!formData.STRU_PILLAR_OTH" class="form-control" id="STRU_PILLAR_OTHDSC" name="STRU_PILLAR_OTHDSC" ng-model="formData.STRU_PILLAR_OTHDSC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>คาน</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BEAM_CONG" ng-model="formData.STRU_BEAM_CONG" checked="">
+                        <label for="STRU_BEAM_CONG">
+                            {{'STRU_PILLAR_CONG'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BEAM_WOOD" ng-model="formData.STRU_BEAM_WOOD" checked="">
+                        <label for="STRU_BEAM_WOOD">
+                            {{'STRU_PILLAR_WOOD'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BEAM_IRON" ng-model="formData.STRU_BEAM_IRON" checked="">
+                        <label for="STRU_BEAM_IRON">
+                            {{'STRU_PILLAR_IRON'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BEAM_OTH" ng-model="formData.STRU_BEAM_OTH" checked="">
+                        <label for="STRU_BEAM_OTH">
+                            {{'STRU_PILLAR_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" ng-disabled="!formData.STRU_BEAM_OTH" class="form-control" id="STRU_BEAM_OTHDSC" name="STRU_BEAM_OTHDSC" ng-model="formData.STRU_BEAM_OTHDSC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>พื้น</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_FLOOR_TILE" ng-model="formData.STRU_FLOOR_TILE" checked="">
+                        <label for="STRU_FLOOR_TILE">
+                            {{'STRU_FLOOR_TILE'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_FLOOR_WOOD" ng-model="formData.STRU_FLOOR_WOOD" checked="">
+                        <label for="STRU_FLOOR_WOOD">
+                            {{'STRU_PILLAR_WOOD'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_FLOOR_CONG" ng-model="formData.STRU_FLOOR_CONG" checked="">
+                        <label for="STRU_FLOOR_CONG">
+                            {{'STRU_FLOOR_CONG'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_FLOOR_OTH" ng-model="formData.STRU_FLOOR_OTH" checked="">
+                        <label for="STRU_FLOOR_OTH">
+                            {{'STRU_PILLAR_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" ng-disabled="!formData.STRU_FLOOR_OTH" class="form-control" id="STRU_FLOOR_OTHDSC" name="STRU_FLOOR_OTHDSC" ng-model="formData.STRU_FLOOR_OTHDSC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>บันใด</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_STAIR_CONG" ng-model="formData.STRU_STAIR_CONG" checked="">
+                        <label for="STRU_STAIR_CONG">
+                            {{'STRU_PILLAR_CONG'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_STAIR_WOOD" ng-model="formData.STRU_STAIR_WOOD" checked="">
+                        <label for="STRU_STAIR_WOOD">
+                            {{'STRU_PILLAR_WOOD'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_STAIR_IRON" ng-model="formData.STRU_STAIR_IRON" checked="">
+                        <label for="STRU_STAIR_IRON">
+                            {{'STRU_PILLAR_IRON'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_STAIR_OTH" ng-model="formData.STRU_STAIR_OTH" checked="">
+                        <label for="STRU_STAIR_OTH">
+                            {{'STRU_PILLAR_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" ng-disabled="!formData.STRU_STAIR_OTH" class="form-control" id="STRU_STAIR_OTHDSC" name="STRU_STAIR_OTHDSC" ng-model="formData.STRU_STAIR_OTHDSC">
+                </div>
+            </div>
+
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>ผนัง</legend>
+
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_WALL_BRICK" ng-model="formData.STRU_WALL_BRICK" checked="">
+                        <label for="STRU_WALL_BRICK">
+                            {{'STRU_WALL_BRICK'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_WALL_CONG" ng-model="formData.STRU_WALL_CONG" checked="">
+                        <label for="STRU_WALL_CONG">
+                            {{'STRU_PILLAR_CONG'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_WALL_WOOD" ng-model="formData.STRU_WALL_WOOD" checked="">
+                        <label for="STRU_WALL_WOOD">
+                            {{'STRU_PILLAR_WOOD'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_WALL_CONG2" ng-model="formData.STRU_WALL_CONG2" checked="">
+                        <label for="STRU_WALL_CONG2">
+                            {{'STRU_FLOOR_CONG'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_WALL_OTH" ng-model="formData.STRU_WALL_OTH" checked="">
+                        <label for="STRU_WALL_OTH">
+                            {{'STRU_PILLAR_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" ng-disabled="!formData.STRU_WALL_OTH" class="form-control" id="STRU_WALL_OTHDSC" name="STRU_WALL_OTHDSC" ng-model="formData.STRU_WALL_OTHDSC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>ฝ้าเพดาน</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_CEIL_TILE" ng-model="formData.STRU_CEIL_TILE" checked="">
+                        <label for="STRU_CEIL_TILE">
+                            {{'STRU_CEIL_TILE'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_CEIL_YIBSOM" ng-model="formData.STRU_CEIL_YIBSOM" checked="">
+                        <label for="STRU_CEIL_YIBSOM">
+                            {{'STRU_CEIL_YIBSOM'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_CEIL_TBAR" ng-model="formData.STRU_CEIL_TBAR" checked="">
+                        <label for="STRU_CEIL_TBAR">
+                            {{'STRU_CEIL_TBAR'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_CEIL_OTH" ng-model="formData.STRU_CEIL_OTH" checked="">
+                        <label for="STRU_CEIL_OTH">
+                            {{'STRU_PILLAR_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" ng-disabled="!formData.STRU_CEIL_OTH" class="form-control" id="STRU_CEIL_OTHDSC" name="STRU_CEIL_OTHDSC" ng-model="formData.STRU_CEIL_OTHDSC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>โครงหลังคา</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_FMROOF_CONG" ng-model="formData.STRU_FMROOF_CONG" checked="">
+                        <label for="STRU_FMROOF_CONG">
+                            {{'STRU_PILLAR_CONG'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_FMROOF_WOOD" ng-model="formData.STRU_FMROOF_WOOD" checked="">
+                        <label for="STRU_FMROOF_WOOD">
+                            {{'STRU_PILLAR_WOOD'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_FMROOF_IRON" ng-model="formData.STRU_FMROOF_IRON" checked="">
+                        <label for="STRU_FMROOF_IRON">
+                            {{'STRU_PILLAR_IRON'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_FMROOF_OTH" ng-model="formData.STRU_FMROOF_OTH" checked="">
+                        <label for="STRU_FMROOF_OTH">
+                            {{'STRU_PILLAR_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" ng-disabled="!formData.STRU_FMROOF_OTH" class="form-control" id="STRU_FMROOF_OTHDSC" name="STRU_FMROOF_OTHDSC" ng-model="formData.STRU_FMROOF_OTHDSC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>หลังคา</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_ROOF_TILE" ng-model="formData.STRU_ROOF_TILE" checked="">
+                        <label for="STRU_ROOF_TILE">
+                            {{'STRU_ROOF_TILE'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_ROOF_CPACK" ng-model="formData.STRU_ROOF_CPACK" checked="">
+                        <label for="STRU_ROOF_CPACK">
+                            {{'STRU_ROOF_CPACK'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_ROOF_CONG" ng-model="formData.STRU_ROOF_CONG" checked="">
+                        <label for="STRU_ROOF_CONG">
+                            {{'STRU_ROOF_CONG'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_ROOF_ZINC" ng-model="formData.STRU_ROOF_ZINC" checked="">
+                        <label for="STRU_ROOF_ZINC">
+                            {{'STRU_ROOF_ZINC'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_ROOF_OTH" ng-model="formData.STRU_ROOF_OTH" checked="">
+                        <label for="STRU_ROOF_OTH">
+                            {{'STRU_PILLAR_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group col-sm-9">
+                    <input type="text" ng-disabled="!formData.STRU_ROOF_OTH" class="form-control" id="STRU_ROOF_OTHDSC" name="STRU_ROOF_OTHDSC" ng-model="formData.STRU_ROOF_OTHDSC">
+                </div>
+            </div>
+
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>รั้วบริเวณ</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_FENCE_BRICK" ng-model="formData.STRU_FENCE_BRICK" checked="">
+                        <label for="STRU_FENCE_BRICK">
+                            {{'STRU_FENCE_BRICK'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_FENCE_WOOD" ng-model="formData.STRU_FENCE_WOOD" checked="">
+                        <label for="STRU_FENCE_WOOD">
+                            {{'STRU_FENCE_WOOD'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_FENCE_WIRE" ng-model="formData.STRU_FENCE_WIRE" checked="">
+                        <label for="STRU_FENCE_WIRE">
+                            {{'STRU_FENCE_WIRE'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-9">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_FENCE_NO" ng-model="formData.STRU_FENCE_NO" checked="">
+                        <label for="STRU_FENCE_NO">
+                            {{'STRU_FENCE_NO'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_FENCE_OTH" ng-model="formData.STRU_FENCE_OTH" checked="">
+                        <label for="STRU_FENCE_OTH">
+                            {{'STRU_PILLAR_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9 form-group">
+                    <input type="text" ng-disabled="!formData.STRU_FENCE_OTH" class="form-control" style="max-width:100%;" id="STRU_FENCE_OTHDSC" name="STRU_FENCE_OTHDSC" ng-model="formData.STRU_FENCE_OTHDSC">
+                </div>
+            </div>
+
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>โครงสร้างอาคาร</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BLD_CONG" ng-model="formData.STRU_BLD_CONG" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_BLD_CONG">
+                            {{'STRU_BLD_CONG'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BLD_WOOD" ng-model="formData.STRU_BLD_WOOD" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_BLD_WOOD">
+                            {{'STRU_BLD_WOOD'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BLD_IRON" ng-model="formData.STRU_BLD_IRON" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_BLD_IRON">
+                            {{'STRU_BLD_IRON'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BLD_HWOOD" ng-model="formData.STRU_BLD_HWOOD" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_BLD_HWOOD">
+                            {{'STRU_BLD_HWOOD'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BLD_OTH" ng-model="formData.STRU_BLD_OTH" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_BLD_OTH">
+                            {{'STRU_BLD_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9 form-group">
+                    <input type="text" ng-disabled="formData.STRU_BLD_OTH!='Y'" class="form-control" style="max-width:100%;" id="STRU_BLD_OTHDESC" name="STRU_BLD_OTHDESC" ng-model="formData.STRU_BLD_OTHDESC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>ผิวผนังภายนอก</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_EXTWALL_CONG" ng-model="formData.STRU_EXTWALL_CONG" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_EXTWALL_CONG">
+                            {{'STRU_EXTWALL_CONG'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_EXTWALL_BRICK1" ng-model="formData.STRU_EXTWALL_BRICK1" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_EXTWALL_BRICK1">
+                            {{'STRU_EXTWALL_BRICK1'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_EXTWALL_BRICK2" ng-model="formData.STRU_EXTWALL_BRICK2" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_EXTWALL_BRICK2">
+                            {{'STRU_EXTWALL_BRICK2'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_EXTWALL_OTH" ng-model="formData.STRU_EXTWALL_OTH" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_EXTWALL_OTH">
+                            {{'STRU_EXTWALL_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9 form-group">
+                    <input type="text" ng-disabled="formData.STRU_EXTWALL_OTH!='Y'" class="form-control" style="max-width:100%;" id="STRU_EXTWALL_OTHDESC" name="STRU_EXTWALL_OTHDESC" ng-model="formData.STRU_EXTWALL_OTHDESC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>ผิวผนังภายใน</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_INTWALL_CONG" ng-model="formData.STRU_INTWALL_CONG" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_INTWALL_CONG">
+                            {{'STRU_INTWALL_CONG'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_INTWALL_PAPER" ng-model="formData.STRU_INTWALL_PAPER" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_INTWALL_PAPER">
+                            {{'STRU_INTWALL_PAPER'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_INTWALL_WOOD" ng-model="formData.STRU_INTWALL_WOOD" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_INTWALL_WOOD">
+                            {{'STRU_INTWALL_WOOD'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_INTWALL_OTH" ng-model="formData.STRU_INTWALL_OTH" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_INTWALL_OTH">
+                            {{'STRU_INTWALL_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9 form-group">
+                    <input type="text" ng-disabled="formData.STRU_INTWALL_OTH!='Y'" class="form-control" style="max-width:100%;" id="STRU_INTWALL_OTHDESC" name="STRU_INTWALL_OTHDESC" ng-model="formData.STRU_INTWALL_OTHDESC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>ประตู</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_DOOR_MULWOOD" ng-model="formData.STRU_DOOR_MULWOOD" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_INTWALL_CONG">
+                            {{'STRU_DOOR_MULWOOD'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_DOOR_MULMIRROR" ng-model="formData.STRU_DOOR_MULMIRROR" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_DOOR_MULMIRROR">
+                            {{'STRU_DOOR_MULMIRROR'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_DOOR_PLYWOOD" ng-model="formData.STRU_DOOR_PLYWOOD" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_INTWALL_WOOD">
+                            {{'STRU_DOOR_PLYWOOD'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_DOOR_OTH" ng-model="formData.STRU_DOOR_OTH" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_DOOR_OTH">
+                            {{'STRU_DOOR_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9 form-group">
+                    <input type="text" ng-disabled="formData.STRU_DOOR_OTH!='Y'" class="form-control" style="max-width:100%;" id="STRU_DOOR_OTHDESC" name="STRU_DOOR_OTHDESC" ng-model="formData.STRU_DOOR_OTHDESC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>หน้าต่าง</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_WD_MULMIRROR" ng-model="formData.STRU_WD_MULMIRROR" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_WD_MULMIRROR">
+                            {{'STRU_WD_MULMIRROR'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_WD_MIRROR" ng-model="formData.STRU_WD_MIRROR" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_WD_MIRROR">
+                            {{'STRU_WD_MIRROR'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_WD_LOUVER" ng-model="formData.STRU_WD_LOUVER" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_WD_LOUVER">
+                            {{'STRU_WD_LOUVER'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_WD_OTH" ng-model="formData.STRU_WD_OTH" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_WD_OTH">
+                            {{'STRU_WD_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9 form-group">
+                    <input type="text" ng-disabled="formData.STRU_WD_OTH!='Y'" class="form-control" style="max-width:100%;" id="STRU_WD_OTHDESC" name="STRU_WD_OTHDESC" ng-model="formData.STRU_WD_OTHDESC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>วงกบ</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_JAMB_HWOOD" ng-model="formData.STRU_JAMB_HWOOD" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_JAMB_HWOOD">
+                            {{'STRU_JAMB_HWOOD'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_JAMB_ALLUMINIUM" ng-model="formData.STRU_JAMB_ALLUMINIUM" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_JAMB_ALLUMINIUM">
+                            {{'STRU_JAMB_ALLUMINIUM'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_JAMB_IRON" ng-model="formData.STRU_JAMB_IRON" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_JAMB_IRON">
+                            {{'STRU_JAMB_IRON'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_JAMB_OTH" ng-model="formData.STRU_JAMB_OTH" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_JAMB_OTH">
+                            {{'STRU_JAMB_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9 form-group">
+                    <input type="text" ng-disabled="formData.STRU_JAMB_OTH!='Y'" class="form-control" style="max-width:100%;" id="STRU_JAMB_OTHDESC" name="STRU_JAMB_OTHDESC" ng-model="formData.STRU_JAMB_OTHDESC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>ห้องน้ำ - สุขภัณฑ์</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BATH_FLOOR" ng-model="formData.STRU_BATH_FLOOR" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_BATH_FLOOR">
+                            {{'STRU_BATH_FLOOR'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BATH_WALL" ng-model="formData.STRU_BATH_WALL" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_BATH_WALL">
+                            {{'STRU_BATH_WALL'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BATH_OTH" ng-model="formData.STRU_BATH_OTH" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_BATH_OTH">
+                            {{'STRU_BATH_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9 form-group">
+                    <input type="text" ng-disabled="formData.STRU_BATH_OTH!='Y'" class="form-control" style="max-width:100%;" id="STRU_BATH_OTHDESC" name="STRU_BATH_OTHDESC" ng-model="formData.STRU_BATH_OTHDESC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>สุขภัณฑ์</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BWARE_TOILET" ng-model="formData.STRU_BWARE_TOILET" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_BWARE_TOILET">
+                            {{'STRU_BWARE_TOILET'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BWARE_SQUAT" ng-model="formData.STRU_BWARE_SQUAT" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_BWARE_SQUAT">
+                            {{'STRU_BWARE_SQUAT'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BWARE_PLANE" ng-model="formData.STRU_BWARE_PLANE" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_BWARE_PLANE">
+                            {{'STRU_BWARE_PLANE'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BWARE_SHOWER" ng-model="formData.STRU_BWARE_SHOWER" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_BWARE_SHOWER">
+                            {{'STRU_BWARE_SHOWER'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BWARE_BATHTUB" ng-model="formData.STRU_BWARE_BATHTUB" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_BWARE_BATHTUB">
+                            {{'STRU_BWARE_BATHTUB'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BWARE_SINK" ng-model="formData.STRU_BWARE_SINK" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_BWARE_SINK">
+                            {{'STRU_BWARE_SINK'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BWARE_MIRROR" ng-model="formData.STRU_BWARE_MIRROR" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_BWARE_MIRROR">
+                            {{'STRU_BWARE_MIRROR'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BWARE_BIDET" ng-model="formData.STRU_BWARE_BIDET" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_BWARE_BIDET">
+                            {{'STRU_BWARE_BIDET'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_BWARE_OTH" ng-model="formData.STRU_BWARE_OTH" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="STRU_BWARE_OTH">
+                            {{'STRU_BWARE_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9 form-group">
+                    <input type="text" ng-disabled="formData.STRU_BWARE_OTH!='Y'" class="form-control" style="max-width:100%;" id="STRU_BATH_OTHDESC" name="STRU_BWARE_OTHDESC" ng-model="formData.STRU_BWARE_OTHDESC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>งานระบบภายในอาคาร</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="SYS_INT_FIRE" ng-model="formData.SYS_INT_FIRE" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="SYS_INT_FIRE">
+                            {{'SYS_INT_FIRE'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="SYS_INT_WATER" ng-model="formData.SYS_INT_WATER" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="SYS_INT_WATER">
+                            {{'SYS_INT_WATER'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="SYS_INT_PHONE" ng-model="formData.SYS_INT_PHONE" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="SYS_INT_PHONE">
+                            {{'SYS_INT_PHONE'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="SYS_INT_NETWORK" ng-model="formData.SYS_INT_NETWORK" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="SYS_INT_NETWORK">
+                            {{'SYS_INT_NETWORK'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="SYS_INT_OTH" ng-model="formData.SYS_INT_OTH" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="SYS_INT_OTH">
+                            {{'SYS_INT_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9 form-group">
+                    <input type="text" ng-disabled="formData.SYS_INT_OTH!='Y'" class="form-control" style="max-width:100%;" id="SYS_INT_OTHDESC" name="SYS_INT_OTHDESC" ng-model="formData.SYS_INT_OTHDESC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>แบบแปลนอาคาร</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="BLD_PLAN_RECEIVE" ng-model="formData.BLD_PLAN_RECEIVE" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="BLD_PLAN_RECEIVE">
+                            {{'BLD_PLAN_RECEIVE'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="BLD_NOPLAN" ng-model="formData.BLD_NOPLAN" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="BLD_NOPLAN">
+                            {{'BLD_NOPLAN'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="BLD_PLAN_OTH" ng-model="formData.BLD_PLAN_OTH" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="BLD_PLAN_OTH">
+                            {{'BLD_PLAN_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9 form-group">
+                    <input type="text" ng-disabled="formData.BLD_PLAN_OTH!='Y'" class="form-control" style="max-width:100%;" id="BLD_PLAN_OTHDESC" name="BLD_PLAN_OTHDESC" ng-model="formData.BLD_PLAN_OTHDESC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>กฏหมายควบคุมอาคาร</legend>
+            <div>
+                <div class="col-sm-12 form-group">
+                    <label class="control-label">{{'LOCATE_LOCAL_AREA'|translate}}</label>
+                    <input type="text" class="form-control" id="LOCATE_LOCAL_AREA" maxlength="50" name="LOCATE_LOCAL_AREA" ng-model="formData.LOCATE_LOCAL_AREA">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>การเข้าสำรวจและตรวจสอบอาคาร</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="SUR_BLD_BOTH" ng-model="formData.SUR_BLD_BOTH" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="SUR_BLD_BOTH">
+                            {{'SUR_BLD_BOTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="SUR_BLD_PART" ng-model="formData.SUR_BLD_PART" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="SUR_BLD_PART">
+                            {{'SUR_BLD_PART'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="SUR_BLD_EXT" ng-model="formData.SUR_BLD_EXT" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="SUR_BLD_EXT">
+                            {{'SUR_BLD_EXT'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="SUR_BLD_INT" ng-model="formData.SUR_BLD_INT" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="SUR_BLD_INT">
+                            {{'SUR_BLD_INT'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="SUR_BLD_APPRAREA" ng-model="formData.SUR_BLD_APPRAREA" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="SUR_BLD_APPRAREA">
+                            {{'SUR_BLD_APPRAREA'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="SUR_BLD_OTH" ng-model="formData.SUR_BLD_OTH" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="SUR_BLD_OTH">
+                            {{'SUR_BLD_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9 form-group">
+                    <input type="text" ng-disabled="formData.SUR_BLD_OTH!='Y'" class="form-control" style="max-width:100%;" id="SUR_BLD_OTHDESC" name="SUR_BLD_OTHDESC" ng-model="formData.SUR_BLD_OTHDESC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>การดูแลบำรุงรักษา</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="MA_CARE" ng-model="formData.MA_CARE" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="MA_CARE">
+                            {{'MA_CARE'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="MA_FAIR" ng-model="formData.MA_FAIR" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="MA_FAIR">
+                            {{'MA_FAIR'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="MA_MEDIUM" ng-model="formData.MA_MEDIUM" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="MA_MEDIUM">
+                            {{'MA_MEDIUM'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="MA_WELL" ng-model="formData.MA_WELL" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="MA_WELL">
+                            {{'MA_WELL'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="MA_NONE" ng-model="formData.MA_NONE" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="MA_NONE">
+                            {{'MA_NONE'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="MA_OTH" ng-model="formData.MA_OTH" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label for="MA_OTH">
+                            {{'MA_OTH'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9 form-group">
+                    <input type="text" ng-disabled="formData.MA_OTH!='Y'" class="form-control" style="max-width:100%;" id="MA_OTHDESC" name="MA_OTHDESC" ng-model="formData.MA_OTHDESC">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>สภาพอาคาร</legend>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STATUS_NEW" ng-model="formData.STATUS_NEW" checked="">
+                        <label for="STATUS_NEW">
+                            {{'STATUS_NEW'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STATUS_HALF" ng-model="formData.STATUS_HALF" checked="">
+                        <label for="STATUS_HALF">
+                            {{'STATUS_HALF'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STATUS_OLD" ng-model="formData.STATUS_OLD" checked="">
+                        <label for="STATUS_OLD">
+                            {{'STATUS_OLD'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STATUS_OTH" ng-model="formData.STATUS_OTH" checked="">
+                        <label for="STATUS_OTH">
+                            {{'OTHER'|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" placeholder="" ng-readonly="formData.STATUS_OTH!=true" class="form-control" id="STATUS_OTHDSC" name="STATUS_OTHDSC" ng-model="formData.STATUS_OTHDSC">
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="panel panel-white" ng-if="isAppriaiser">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ภาระผูกพัน</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="HOUSING_TYPE">
+
+            </label>
+            <div class="col-sm-8">
+                <div ng-repeat="item in radioHousingType" class="radio clip-radio radio-primary radio-inline">
+                    <input type="radio" name="HOUSING_TYPE" ng-value="item.VALUE" ng-model="formData.HOUSING_TYPE" id="HOUSING_TYPE{{item.VALUE}}" />
+                    <label for="HOUSING_TYPE{{item.VALUE}}">{{ item.NAME }}</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="REMARK">
+                {{'REMARK'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input type="text" placeholder="" class="form-control" id="REMARK" name="REMARK" ng-model="formData.REMARK">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-white" ng-if="isAppriaiser">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ข้อมูลสำหรับ BOT Report</h5>
+    </div>
+    <div class="panel-body">
+        <fieldset class="no-radius">
+            <legend>{{'DECORATED'|translate}}</legend>
+            <div ng-repeat="item in radioDecorated" class="radio clip-radio radio-primary radio-inline">
+                <input type="radio" name="DECORATED" ng-value="item.VALUE" ng-model="formData.DECORATED" id="DECORATED{{item.VALUE}}" />
+                <label for="DECORATED{{item.VALUE}}">{{ item.NAME }}</label>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>{{'DEVELOPER_DUMMY'|translate}}</legend>
+            <div ng-repeat="item in radioDeveloper" class="radio clip-radio radio-primary radio-inline">
+                <input type="radio" name="DEVELOPER_DUMMY" ng-value="item.VALUE" ng-model="formData.DEVELOPER_DUMMY" id="DEVELOPER_DUMMY{{item.VALUE}}" />
+                <label for="DEVELOPER_DUMMY{{item.VALUE}}">{{ item.NAME }}</label>
+            </div>
+        </fieldset>
+        <fieldset class="no-radius">
+            <legend>{{'CONSTRUCT_COMPLETE'|translate}}</legend>
+            <div ng-repeat="item in radioContructComplete" class="radio clip-radio radio-primary radio-inline">
+                <input type="radio" name="CONSTRUCT_COMPLETE" ng-value="item.VALUE" ng-model="formData.CONSTRUCT_COMPLETE" id="CONSTRUCT_COMPLETE{{item.VALUE}}" />
+                <label for="CONSTRUCT_COMPLETE{{item.VALUE}}">{{ item.NAME }}</label>
+            </div>
+        </fieldset>
+        <fieldset class="no-radius">
+            <legend>{{'INSURE_YN'|translate}}</legend>
+            <div class="radio clip-radio radio-primary radio-inline" ng-repeat="item in radioInsureYN">
+                <input type="radio" name="INSURE_YN" ng-value="item.VALUE" ng-model="formData.INSURE_YN" id="INSURE_YN{{item.VALUE}}" />
+                <label for="INSURE_YN{{item.VALUE}}">{{ item.NAME }}</label>
+            </div>
+        </fieldset>
+    </div>
+</div>

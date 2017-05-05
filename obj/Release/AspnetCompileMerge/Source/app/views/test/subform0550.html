@@ -1,0 +1,37 @@
+﻿<div ng-controller="subform0550Controller">
+    <div class="pull-right">
+        <button class="btn btn-primary" ng-click="add()" ng-disabled="inputDisabled">
+            <i class="glyphicon glyphicon-plus"></i> {{'BUTTON.ADD'|translate}}
+        </button>
+        <button class="btn btn-primary" ng-click="calendar()">
+            <i class="glyphicon glyphicon-calendar"></i> {{'CALENDAR'|translate}}
+        </button>
+    </div>
+    <table class="table table-bordered table-hover disabled" style="max-width:100%;">
+        <thead>
+            <tr class="bg-azure">
+                <th class="col-md-2"><span class="text-white">{{'CONTACT_DATE'|translate}}</span></th>
+                <th class="col-md-2"><span class="text-white">{{'CUSCONTACT_NAME'|translate}}</span></th>
+                <th class="col-md-2"><span class="text-white">{{'CONTACT_RESULT'|translate}}</span></th>
+                <!--<th class="col-md-2 center"><span class="text-white">{{'CONFIRM_FLAG'|translate}}</span></th>-->
+                <th class="col-md-2"><span class="text-white">{{'DATE_CUST_APPOINTMENT'|translate}}</span></th>
+                <th class="col-sm-1" ng-if="!inputDisabled"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in custContact">
+                <td>{{item.CONTACT_DATE | date:'dd/MM/yyyy'}}</td>
+                <td>{{item.CUSCONTACT_NAME}}</td>
+                <td>{{item.CONTACT_RESULT.NAME}}</td>
+                <!--<td class="center"><i ng-if="item.CONFIRM_FLAG=='Y'" class="glyphicon glyphicon-ok"></i></td>-->
+                <td>{{item.DATE_CUST_APPOINTMENT | date:'dd/MM/yyyy'}}</td>
+                <td class="center" ng-if="!inputDisabled">
+                    <div class="visible-md visible-lg hidden-sm hidden-xs">
+                        <a href="#" ng-click="edit(item)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i class="fa fa-pencil"></i></a>
+                        <a href="#" ng-click="delete(item)" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i class="fa fa-times fa fa-white"></i></a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

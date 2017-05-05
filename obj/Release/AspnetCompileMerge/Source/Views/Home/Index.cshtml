@@ -1,0 +1,161 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en" data-ng-app="AppraisalWebApp">
+<head>
+    <base href="~/" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="{{app.description}}">
+    <meta name="keywords" content="app, responsive, angular, bootstrap, dashboard, admin">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <title data-ng-bind="pageTitle()"></title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="vendor/bootstrapC/css/bootstrap.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
+    <!-- Themify Icons -->
+    <link rel="stylesheet" href="vendor/themify-icons/themify-icons.min.css">
+    <!-- Loading Bar -->
+    <link rel="stylesheet" href="vendor/loadingbar/loading-bar.min.css">
+    <!-- Animate Css -->
+    <link rel="stylesheet" href="vendor/animate-css/animate.css">
+
+    <link rel="stylesheet" href="vendor/sweet-alert/sweetalert.css" />
+
+    <!-- Clip-Two CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/plugins.css">
+    <!-- Clip-Two Theme -->
+    <link rel="stylesheet" href="assets/css/themes/theme-1.css" />
+    <script id="customMonthCell.html" type="text/ng-template">
+        <div class="cal-month-day">
+
+            <span class="pull-right"
+                  data-cal-date
+                  ng-click="vm.calendarCtrl.dateClicked(day.date)"
+                  ng-bind="day.label">
+            </span>
+
+            <small style="position: absolute; bottom: 10px; left: 5px">
+                There are {{ day.events.length }} events on this day
+            </small>
+
+        </div>
+    </script>
+    <script type="text/javascript">
+        function mapLoadSuccess(args) {
+            if (window.currentCallBack) {
+                window.currentCallBack(args);
+            }
+        }
+        function clone(obj) {
+            if (null == obj || "object" != typeof obj) return obj;
+            var copy = obj.constructor();
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+            }
+            return copy;
+        }
+        function selectLocationSuccess(args) {
+
+            var attributes = angular.copy(args.graphic[0].attributes);
+            var geometry = angular.copy(args.graphic[0].geometry);
+
+            var newArgs = {
+                featureUrl: args.featureUrl,
+                token: args.token,
+                graphic: [{
+                    attributes: attributes,
+                    geometry: geometry
+                }]
+            };
+
+            var result = {
+                response: newArgs,
+                location: {
+                    lat: args.graphic[0].attributes.Latitude,
+                    lon: args.graphic[0].attributes.Longitude
+                }
+            };
+
+            if (window.openMapCallback) {
+                window.openMapCallback(result);
+            }
+        }
+    </script>
+</head>
+<body ng-controller="AppCtrl">
+    <div ui-view id="app" ng-class="{'app-mobile' : app.isMobile, 'app-navbar-fixed' : app.layout.isNavbarFixed, 'app-sidebar-fixed' : app.layout.isSidebarFixed, 'app-sidebar-closed':app.layout.isSidebarClosed, 'app-footer-fixed':app.layout.isFooterFixed}">
+    </div>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- Fastclick -->
+    <script src="vendor/fastclick/fastclick.min.js"></script>
+    <!-- Angular -->
+    <script src="vendor/angular-1.4.1/angular.min.js"></script>
+    <script src="vendor/angular-1.4.1/angular-cookies.min.js"></script>
+    <script src="vendor/angular-1.4.1/angular-animate.min.js"></script>
+    <script src="vendor/angular/angular-ui-router.min.js"></script>
+    <script src="vendor/angular-1.4.1/angular-touch.min.js"></script>
+    <script src="vendor/angular-1.4.1/angular-sanitize.min.js"></script>
+    <!-- Angular storage -->
+    <script src="vendor/angularstorage/ngStorage.min.js"></script>
+    <!-- Angular Translate -->
+    <script src="vendor/angulartranslate/angular-translate.min.js"></script>
+    <script src="vendor/angulartranslate/angular-translate-loader-url.min.js"></script>
+    <script src="vendor/angulartranslate/angular-translate-loader-static-files.min.js"></script>
+    <script src="vendor/angulartranslate/angular-translate-storage-local.min.js"></script>
+    <script src="vendor/angulartranslate/angular-translate-storage-cookie.min.js"></script>
+
+    <script src="vendor/angular-i18n/angular-locale_th-th.js"></script>
+
+    <script src="vendor/mask/mask.js"></script>
+
+    <!-- oclazyload -->
+    <script src="vendor/oclazyload/ocLazyLoad.min.js"></script>
+    <!-- breadcrumb -->
+    <script src="vendor/angular-breadcrumb/angular-breadcrumb.min.js"></script>
+    <!-- UI Bootstrap -->
+    <script src="~/vendor/bootstrap/js/ui-bootstrap-tpls-0.12.1aaa.js"></script>
+    <!-- Loading Bar -->
+    <script src="vendor/loadingbar/loading-bar.min.js"></script>
+    <!-- Angular Scroll -->
+    <script src="vendor/angular-scroll/angular-scroll.min.js"></script>
+
+    <script src="vendor/sweet-alert/ngSweetAlert.min.js"></script>
+    <script src="vendor/sweet-alert/sweetalert.min.js"></script>
+
+    <!-- Clip-Two Scripts -->
+    <script src="app/app.js"></script>
+    <script src="app/main.js"></script>
+
+    <script src="app/config.constant.js"></script>
+    <script src="app/config.router.js"></script>
+    <script src="app/services/radasoft.js"></script>
+    <script src="app/directive/directive.js"></script>
+    <!-- Clip-Two Directives -->
+    <script src="assets/js/directives/toggle.js"></script>
+    <script src="assets/js/directives/empty-links.js"></script>
+    <script src="assets/js/directives/sidebars.js"></script>
+    <script src="assets/js/directives/off-click.js"></script>
+    <script src="assets/js/directives/full-height.js"></script>
+    <script src="assets/js/directives/panel-tools.js"></script>
+    <script src="assets/js/directives/char-limit.js"></script>
+    <script src="assets/js/directives/dismiss.js"></script>
+    <script src="assets/js/directives/compare-to.js"></script>
+    <script src="assets/js/directives/select.js"></script>
+    <script src="assets/js/directives/messages.js"></script>
+    <script src="assets/js/directives/chat.js"></script>
+    <script src="vendor/toaster/toaster.js"></script>
+    <script src="assets/js/controllers/mainCtrl.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+﻿<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-white no-radius">
+                <div class="panel-heading no-radius bg-light-azure border-light">
+                    <h4 class="panel-title">{{selectedDev.DEV_NAME}} <span ng-hide="selectedPro==undefined">/</span> {{selectedPro.PROJECT_NAME}}</h4>
+                </div>
+                <div class="panel-body border-light">
+                    <div class="col-md-6" ng-show="showProject">
+                        <h5>{{'DEVELOPER'|translate}}</h5>
+                        <div class="search-form">
+                            <div name="form1" class="navbar-form" role="search">
+                                <a class="s-remove" href="#" ng-toggle-class="search-open" target=".navbar-form">
+                                    <i class="ti-close"></i>
+                                </a>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="devSearchKeyword" placeholder="{{'SEARCH'|translate}}" ng-keypress="searchDevEnter($event)" ng-model="formData.devSearchKeyword" />
+                                    <button class="btn search-button" type="button" style="right:20px;" tooltip="{{'BUTTON.SEARCH'|translate}}" ng-click="getDeveloper()">
+                                        <i class="ti-search"></i>
+                                    </button>
+                                    <button ng-disabled="btnDevDisabled" class="btn search-button" type="button" style="right:-5px;" tooltip="{{'BUTTON.ADD'|translate}}" ng-click="addDev()">
+                                        <i class="ti-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="list-group">
+                            <li ng-repeat="dev in developers" class="list-group-item no-radius" ng-class="{'bg-light-primary':dev.DEV_RUNNING_ID==selectedDev.DEV_RUNNING_ID}">
+                                <a ng-click="searchProject(dev)"><span ng-class="{'text-white':dev.DEV_RUNNING_ID==selectedDev.DEV_RUNNING_ID}">{{dev.DEV_NAME}}</span></a><span style="cursor:pointer;" class="pull-right" ng-click="editDev(dev)"><i class="fa fa-pencil"></i></span>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-md-6" ng-show="showProject">
+                        <h5>{{'PROJECT'|translate}}</h5>
+                        <div class="search-form">
+                            <div name="form2" class="navbar-form" role="search">
+                                <a class="s-remove" href="#" ng-toggle-class="search-open" target=".navbar-form">
+                                    <i class="ti-close"></i>
+                                </a>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="proSearchKeyword" placeholder="{{'SEARCH'|translate}}" ng-keypress="searchProjectEnter($event)" ng-model="formData.proSearchKeyword" />
+                                    <button class="btn search-button" type="button" style="right:20px;" tooltip="{{'BUTTON.SEARCH'|translate}}" ng-click="getProject()">
+                                        <i class="ti-search"></i>
+                                    </button>
+                                    <button ng-disabled="btnProDisabled" class="btn search-button" type="button" style="right:-5px;" tooltip="{{'BUTTON.ADD'|translate}}" ng-click="addPro()">
+                                        <i class="ti-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="list-group">
+                            <li ng-repeat="pro in projects" class="list-group-item no-radius " ng-class="{'bg-light-primary':pro.PROJECT_RUNNING_ID==selectedPro.PROJECT_RUNNING_ID}">
+                                <div ng-switch="pro.JOB_RUNNING_ID">
+                                    <a ng-click="getProjectDetail(pro)"><span ng-class="{'text-white':pro.PROJECT_RUNNING_ID==selectedPro.PROJECT_RUNNING_ID}">{{pro.PROJECT_NAME}}</span></a><span style="cursor:pointer;" class="pull-right" ng-click="editProject(pro)"><i class="fa fa-pencil"></i></span>
+                                    <!--<div ng-switch-when="0">
+                                        <a ng-click="getProjectDetail(pro)"><span ng-class="{'text-white':pro.PROJECT_RUNNING_ID==selectedPro.PROJECT_RUNNING_ID}">{{pro.PROJECT_NAME}}</span></a><span style="cursor:pointer;" class="pull-right" ng-click="editProject(pro)"><i class="fa fa-pencil"></i></span>
+                                    </div>
+                                    <div ng-switch-default>
+                                        <span ng-class="{'text-white':pro.PROJECT_RUNNING_ID==selectedPro.PROJECT_RUNNING_ID}">{{pro.PROJECT_NAME}}</span> <i class="pull-right text-grey">{{'REQUEST_NO'|translate}} : {{pro.REQUEST_NO}}</i>
+                                    </div>-->
+                                </div>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6" ng-show="showPhaseZone">
+                        <h5>{{'PHASE'|translate}}</h5>
+                        <div class="navbar-form" role="search">
+                            <div class="form-group" style="height:25px;">
+                                <button class="btn search-button" type="button" style="right:-5px;" tooltip="{{'BUTTON.ADD'|translate}}" ng-click="addPhase()">
+                                    <i class="ti-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <ul class="list-group">
+                            <li ng-repeat="phase in projectPhase" class="list-group-item no-radius" ng-class="{'bg-light-primary':phase.PROJECT_PHASE_RUNNING_ID==selectedPhase.PROJECT_PHASE_RUNNING_ID}">
+                                <a ng-click="selectPhase(phase)"><span ng-class="{'text-white':phase.PROJECT_PHASE_RUNNING_ID==selectedPhase.PROJECT_PHASE_RUNNING_ID}">{{phase.PHASE_NAME}}</span></a><a class="pull-right" ng-click="editPhase(phase)"><i class="fa fa-pencil"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6" ng-show="showPhaseZone">
+                        <h5>{{'ZONE'|translate}}</h5>
+                        <div class="navbar-form" role="search">
+                            <div class="form-group" style="height:25px;">
+                                <button class="btn search-button" type="button" style="right:-5px;" tooltip="{{'BUTTON.ADD'|translate}}" ng-click="addZone()">
+                                    <i class="ti-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <ul class="list-group">
+                            <li ng-repeat="zone in projectZone" class="list-group-item no-radius">
+                                <a><span>{{zone.ZONE_NAME}}</span></a><a class="pull-right" ng-click="editZone(zone)"><i class="fa fa-pencil"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

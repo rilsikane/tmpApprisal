@@ -1,0 +1,95 @@
+﻿<div class="form-group" ng-class="{'has-error':form.USER_NAME.$dirty && form.USER_NAME.$invalid, 'has-success':form.USER_NAME.$valid}">
+    <label class="col-sm-3 control-label" for="USER_NAME">
+        {{'USER_NAME'|translate}} <span class="symbol required"></span>
+    </label>
+    <div class="col-sm-8 no-padding">
+        <input type="text" required ng-readonly="formData.USER_RUNNING_ID > -1" class="form-control" id="USER_NAME" name="USER_NAME" ng-model="formData.USER_NAME">
+        <a ng-if="formData.USER_RUNNING_ID>-1" ng-click="changePwd()" style="position:absolute;right:25px;top:9px;" tooltip="{{'CHANGE_PASSWORD'|translate}}"><i class="fa fa-key"></i></a>
+    </div>
+</div>
+<div ng-if="formData.USER_RUNNING_ID==-1" class="form-group" ng-class="{'has-error':form.VALUE1.$dirty && form.VALUE1.$invalid, 'has-success':form.VALUE1.$valid}">
+    <label class="col-sm-3 control-label" for="VALUE1">
+        {{'PASS_WORD'|translate}} <span class="symbol required"></span>
+    </label>
+    <div class="col-sm-8 no-padding">
+        <input type="password" ng-required="formData.USER_RUNNING_ID==-1" class="form-control" id="VALUE1" name="VALUE1" ng-model="formData.VALUE1" />
+    </div>
+</div>
+<div ng-if="formData.USER_RUNNING_ID==-1" class="form-group" ng-class="{'has-error':form.VALUE2.$dirty && form.VALUE2.$invalid, 'has-success':form.VALUE2.$valid}">
+    <label class="col-sm-3 control-label" for="VALUE2">
+        {{'CONFIRM_PASS_WORD'|translate}} <span class="symbol required"></span>
+    </label>
+    <div class="col-sm-8 no-padding">
+        <input type="password" ng-required="formData.USER_RUNNING_ID==-1" class="form-control" id="VALUE2" name="VALUE2" ng-model="formData.VALUE2" />
+    </div>
+</div>
+
+<div class="form-group" ng-class="{'has-error':form.PREFIX.$dirty && form.PREFIX.$invalid, 'has-success':form.PREFIX.$valid}">
+    <label class="col-sm-3 control-label" for="PREFIX">
+        {{'PREFIX'|translate}} <span class="symbol required"></span>
+    </label>
+    <div class="col-sm-8 no-padding">
+        <ui-select ng-required="true" theme="selectize" ng-model="formData.PREFIX" name="PREFIX" id="PREFIX">
+            <ui-select-match placeholder="">
+                {{$select.selected.NAME}}
+            </ui-select-match>
+            <ui-select-choices repeat="item in selectPrefix | filter: $select.search">
+                <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+</div>
+<div class="form-group" ng-class="{'has-error':form.EMP_F_NAME.$dirty && form.EMP_F_NAME.$invalid, 'has-success':form.EMP_F_NAME.$valid}">
+    <label class="col-sm-3 control-label" for="EMP_F_NAME">
+        {{'EMP_F_NAME'|translate}} <span class="symbol required"></span>
+    </label>
+    <div class="col-sm-8 no-padding">
+        <input type="text" required class="form-control" id="EMP_F_NAME" name="EMP_F_NAME" ng-model="formData.EMP_F_NAME">
+    </div>
+</div>
+<div class="form-group" ng-class="{'has-error':form.EMP_L_NAME.$dirty && form.EMP_L_NAME.$invalid, 'has-success':form.EMP_L_NAME.$valid}">
+    <label class="col-sm-3 control-label" for="EMP_L_NAME">
+        {{'EMP_L_NAME'|translate}} <span class="symbol required"></span>
+    </label>
+    <div class="col-sm-8 no-padding">
+        <input type="text" required class="form-control" id="EMP_L_NAME" name="EMP_L_NAME" ng-model="formData.EMP_L_NAME">
+    </div>
+</div>
+<div class="form-group" ng-class="{'has-error':form.OU.$dirty && form.OU.$invalid, 'has-success':form.OU.$valid}">
+    <label class="col-sm-3 control-label" for="OU">
+        {{'OU'|translate}} <span class="symbol required"></span>
+    </label>
+    <div class="col-sm-8 no-padding">
+        <ui-select ng-required="true" theme="selectize" ng-model="formData.OU" name="OU" id="OU">
+            <ui-select-match>
+                {{$select.selected.OU_NAME}}
+            </ui-select-match>
+            <ui-select-choices repeat="item in selectOU | filter: 'E':true:'OU_TYPE'">
+                <div ng-bind-html="item.OU_NAME | highlight: $select.search"></div>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+</div>
+
+<!--<div class="form-group">
+    <label class="col-sm-3 control-label" for="OU_NAME">
+        {{'OU_TYPE'|translate}}
+    </label>
+    <div class="col-sm-8 no-padding" ng-switch="formData.OU.OU_TYPE">
+        <input ng-switch-when="I" readonly type="text" required class="form-control" id="OU_NAME" name="OU_NAME" value="{{'I_APPRAISER'|translate}}" />
+        <input ng-switch-when="E" readonly type="text" required class="form-control" id="OU_NAME" name="OU_NAME" value="{{'E_APPRAISER'|translate}}" />
+    </div>
+</div>-->
+
+<div class="form-group">
+    <label class="col-sm-3 control-label" for="RECORD_STATUS">
+    </label>
+    <div class="col-sm-8 no-padding">
+        <div class="checkbox clip-check check-primary">
+            <input type="checkbox" id="CONFIRM_FLAG" ng-true-value="'I'" ng-false-value="'A'" ng-model="formData.RECORD_STATUS" />
+            <label for="CONFIRM_FLAG">
+                {{'INACTIVE'|translate}}
+            </label>
+        </div>
+    </div>
+</div>

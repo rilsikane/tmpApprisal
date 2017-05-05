@@ -1,0 +1,21 @@
+﻿<div ng-controller="subform1300Controller">
+    <table class="table table-bordered table-hover disabled" style="max-width:100%;">
+        <thead>
+            <tr class="bg-azure">
+                <th class="col-md-10"><span class="text-white">{{'LIST'|translate}}</span></th>
+                <th class="col-md-2 text-right"><span class="text-white">{{'APPR_CUR_NET_TOTAL'|translate}}</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in headColAppraisalList">
+                <td>{{item.HEAD_COL_DETAIL}}</td>
+                <td class="text-right">{{item.APPR_CUR_NET_TOTAL | number:2}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="pull-right">
+        <button class="btn btn-primary btn-o" ng-click="print()">
+            <i class="glyphicon glyphicon-print"></i> {{'BUTTON.PRINT'|translate}}
+        </button>
+    </div>  
+</div>

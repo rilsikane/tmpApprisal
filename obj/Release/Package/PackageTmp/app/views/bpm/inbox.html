@@ -1,0 +1,70 @@
+﻿<div class="container-fluid container-fullw no-border" ng-controller="inboxController">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white no-radius">
+                <div class="panel-heading no-radius bg-deep-pink">
+                    <h4 class="panel-title"><span>{{ app.inboxTitle }}</span></h4>
+
+                    <!--<ul class="panel-heading-tabs no-border border-light" ng-if="role.ROLE_RUNNING_ID==11">
+                        <li>
+                            <button type="button" class="btn btn-o border-white" ng-click="new({VALUE:'1'})">
+                                <i class="glyphicon glyphicon-plus-sign"></i> {{'BUTTON.NEW'|translate}}
+                            </button>
+                        </li>
+                    </ul>-->
+                    <ul class="panel-heading-tabs border-light" ng-if="role.ROLE_RUNNING_ID==11">
+                        <li ng-if="requestType.length > 0">
+                            <div class="pull-right">
+                                <div class="btn-group" dropdown is-open="status.isopen">
+                                    <button type="button" class="btn btn-o btn-squared border-white dropdown-toggle" dropdown-toggle>
+                                        {{'CREATE_REQUEST'|translate}}  <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu no-radius" role="menu">
+                                        <li ng-repeat="button in requestType">
+                                            <a href="#" ng-click="new(button)">
+                                                {{button.NAME}}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="panel-body border-light">
+                    <div class="row">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-1">{{'ACT_TIME_TEXT'|translate}}</th>
+                                    <th class="col-md-1">{{'REQUEST_NO'|translate}}</th>
+                                    <th class="col-md-1">{{'CA_NO'|translate}}</th>
+                                    <th class="col-md-1">{{'REQ_TYPE'|translate}}</th>
+                                    <th class="col-md-2">{{'REQUEST_OU'|translate}}</th>
+                                    <th class="col-md-1">{{'STATE_NAME'|translate}}</th>
+                                    <th class="col-md-1">{{'USER_FULLNAME'|translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in data">
+                                    <td>{{item.ACT_TIME_TEXT}}</td>
+                                    <td ng-if="item.CHANGE_MODE==1"><a ui-sref="app.testform({ACT_HIST_ID:item.ACT_HIST_ID,H:0})">{{item.REQUEST_NO}}</a></td>
+                                    <td ng-if="!(item.CHANGE_MODE==1)">{{item.REQUEST_NO}}</td>
+                                    <td>{{item.CA_NO}}</td>
+                                    <td>{{item.REQ_TYPE}}</td>
+                                    <td>{{item.REQUEST_OU}}</td>
+                                    <td>{{item.STATE_NAME}}</td>
+                                    <td>{{item.USER_FULLNAME}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <pagination boundary-links="true" items-per-page="app.itemsPerPage" ng-change="pageChanged()" max-size="5" total-items="totalItems" ng-model="currentPage" class="pagination-sm  no-padding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

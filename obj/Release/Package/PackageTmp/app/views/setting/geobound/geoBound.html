@@ -1,0 +1,79 @@
+﻿<div class="container-fluid container-fullw" ng-controller="geoBoundController">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-white no-radius">
+                <div class="panel-heading no-radius bg-deep-pink border-light">
+                    <h4 class="panel-title">{{'GEO_BOUND'|translate}}</h4>
+                </div>
+                <div class="panel-body border-light">
+                    <div class="col-md-4">
+                        <h5>{{'PROVINCE'|translate}}</h5>
+                        <div class="search-form">
+                            <form class="navbar-form" role="search">
+                                <a class="s-remove" href="#" ng-toggle-class="search-open" target=".navbar-form">
+                                    <i class="ti-close"></i>
+                                </a>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" ng-keypress="searchProvince($event)" ng-model="provinceSearchKeyword" />
+                                    <button class="btn search-button" type="button" style="right:20px;" tooltip="{{'BUTTON.SEARCH'|translate}}" ng-click="searchProvince()">
+                                        <i class="ti-search"></i>
+                                    </button>
+                                    <button class="btn search-button" type="button" style="right:-5px;" tooltip="{{'BUTTON.ADD'|translate}}" ng-click="addProvince()">
+                                        <i class="ti-plus"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <ul class="list-group">
+                            <li ng-repeat="item in provinces" class="list-group-item no-radius" ng-class="{'bg-light-primary':item.PROV_ID==selectedProvince.PROV_ID}">
+                                <a ng-click="selectProvince(item)"><span ng-class="{'text-white':item.PROV_ID==selectedProvince.PROV_ID}">{{item.PROV_NAME}}</span></a><span style="cursor:pointer;" class="pull-right" ng-click="editProvince(item)"><i class="fa fa-pencil"></i></span>
+                            </li>
+                        </ul>
+                        <pager total-items="provinceTotalItems" ng-model="currentProvincePage" ng-change="getProvince()"></pager>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>{{'DISTRICT'|translate}}</h5>
+                        <div class="search-form">
+                            <form class="navbar-form" role="search">
+                                <a class="s-remove" href="#" ng-toggle-class="search-open" target=".navbar-form">
+                                    <i class="ti-close"></i>
+                                </a>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" ng-keypress="searchDistrict($event)" ng-model="districtSearchKeyword" />
+                                    <button class="btn search-button" type="button" style="right:20px;" tooltip="{{'BUTTON.SEARCH'|translate}}" ng-click="searchDistrict()">
+                                        <i class="ti-search"></i>
+                                    </button>
+                                    <button class="btn search-button" type="button" style="right:-5px;" tooltip="{{'BUTTON.ADD'|translate}}" ng-click="addDistrict()">
+                                        <i class="ti-plus"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <ul class="list-group">
+                            <li ng-repeat="item in districts" class="list-group-item no-radius " ng-class="{'bg-light-primary':item.CITY_ID==selectedDistrict.CITY_ID}">
+                                <a ng-click="selectDistrict(item)"><span ng-class="{'text-white':item.CITY_ID==selectedDistrict.CITY_ID}">{{item.CITY}}</span></a><span style="cursor:pointer;" class="pull-right" ng-click="editDistrict(item)"><i class="fa fa-pencil"></i></span>
+                            </li>
+                        </ul>
+                        <pager total-items="districtTotalItems" ng-model="currentDistrictPage" ng-change="getDistrict()"></pager>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h5>{{'SUBDISTRICT'|translate}}</h5>
+                        <div class="navbar-form" role="search">
+                            <div class="form-group" style="height:25px;">
+                                <button class="btn search-button" type="button" style="right:-5px;" tooltip="{{'BUTTON.ADD'|translate}}" ng-click="addSubDistrict()">
+                                    <i class="ti-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <ul class="list-group">
+                            <li ng-repeat="item in subDistricts" class="list-group-item no-radius">
+                                <a><span>{{item.DISTRICT}}</span></a><a class="pull-right" ng-click="editSubDistrict(item)"><i class="fa fa-pencil"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

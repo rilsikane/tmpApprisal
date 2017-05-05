@@ -1,0 +1,70 @@
+﻿<div ng-controller="subform1400Controller">
+    <div class="panel panel-white no-radius">
+        <div class="panel-heading border-light bg-azure no-radius">
+            <h4 class="panel-title">บันทึกผลคณะกรรมการประเมินราคา</h4>
+        </div>
+        <div class="panel-body">
+            <form name="form" role="form" class="form-horizontal" novalidate ng-submit="submit(form)">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="COMMITTEE_MEETING_NO">
+                        {{'การประชุมครั้งที่'|translate}}
+                    </label>
+                    <div class="col-sm-2 no-padding">
+                        <input type="text" class="form-control" ng-model="$parent.formData.COMMITTEE_MEETING_NO" id="COMMITTEE_MEETING_NO" name="COMMITTEE_MEETING_NO" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="COMMITTEE_MEETING_DATE">
+                        {{'วันที่ประชุม'|translate}}
+                    </label>
+                    <div class="col-sm-2 no-padding">
+                        <input datepicker-popup="dd/MM/yyyy" is-open="dpOpened" ng-model-options="{timezone :'+0700'}" ng-click="dpOpened=true" class="form-control" ng-model="$parent.formData.COMMITTEE_MEETING_DATE" id="COMMITTEE_MEETING_DATE" name="COMMITTEE_MEETING_DATE" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="COMMITTEE_NAME">
+                        {{'รายชื่อคณะกรรมการ'|translate}}
+                    </label>
+                    <div class="col-sm-9 no-padding">
+                        <textarea style="max-width:100%;" class="form-control" ng-model="$parent.formData.COMMITTEE_NAME" id="COMMITTEE_NAME" name="COMMITTEE_NAME"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="COMMITTEE_NOTE1">
+                        {{'สรุปผลการประเมินราคาของคณะกรรมการ'|translate}}
+                    </label>
+                    <div class="col-sm-9 no-padding">
+                        <!--<div ckeditor="options" ng-model="$parent.formData.COMMITTEE_NOTE1" ready="onReady()"></div>-->
+                        <textarea style="max-width:100%;" class="form-control" ng-model="$parent.formData.COMMITTEE_NOTE1" id="COMMITTEE_NOTE1" name="COMMITTEE_NOTE1"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="COMMITTEE_NOTE2">
+                        {{'รายละเอียดที่สรุปผลได้แก่'|translate}}
+                    </label>
+                    <div class="col-sm-9 no-padding">
+                        <input type="text" class="form-control" ng-model="$parent.formData.COMMITTEE_NOTE2" id="COMMITTEE_NOTE2" name="COMMITTEE_NOTE2" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        {{'แนบไฟล์ผลสรุปจากคณะกรรมการ'|translate}}
+                    </label>
+                    <div class="col-sm-9 no-padding">
+                        <div ng-if="$parent.formData.APPRAISAL_COMMITTEE_SIGNED_FORM.ATTACHDOC_RUNNING_ID>0">
+                            <a href="Home/Download/{{$parent.formData.APPRAISAL_COMMITTEE_SIGNED_FORM.ATTACHDOC_RUNNING_ID}}">{{$parent.formData.APPRAISAL_COMMITTEE_SIGNED_FORM.DOC_NAME}}</a>  <a ng-click="deleteAttach($parent.formData.APPRAISAL_COMMITTEE_SIGNED_FORM)"><i class="glyphicon glyphicon-trash"></i></a>
+                        </div>
+                        <div>
+                            <button ng-if="$parent.formData.APPRAISAL_COMMITTEE_SIGNED_FORM.ATTACHDOC_RUNNING_ID==0" class="btn btn-primary btn-o" ng-click="upload()"><i class="glyphicon glyphicon-upload"></i> {{'ATTACH'|translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div class="pull-right">
+        <button class="btn btn-primary btn-o" ng-click="save()"><i class="glyphicon glyphicon-floppy-save"></i> {{'BUTTON.SAVE'|translate}}</button>
+        <button class="btn btn-primary btn-o" ng-click="savesend()"><i class="glyphicon glyphicon-send"></i> {{'BUTTON.SAVESEND'|translate}}</button>
+    </div>
+</div>

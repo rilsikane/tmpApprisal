@@ -1,0 +1,30 @@
+﻿<div ng-controller="subform1200Controller">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr class="bg-azure" style="height:50px;">
+                    <th width="50%"><span class="text-white">{{'ATTACH'|translate}}</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="attach in requestAttach" ng-if="attach.ATTACH_DOC.length>0">
+                    <td class="vertical-top">
+                        <div>{{attach.NAME}}</div>
+                        <ul>
+                            <li ng-repeat="file in attach.ATTACH_DOC"><a target="_blank" href="Home/Download/{{file.ATTACHDOC_RUNNING_ID}}">{{file.DOC_NAME}} </a></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-include="'app/views/qnr/questionnaire.html'" ng-init="QNR_ID=$parent.formData.APPROVE_QNR_ID;RESULT_ID=$parent.formData.APPROVE_RESULT_ID;">
+
+    </div>
+    <div class="pull-right">
+        <button class="btn btn-primary btn-o" ng-click="submit()">
+            <i class="glyphicon glyphicon-floppy-save"></i>{{'BUTTON.SAVE'|translate}}
+        </button>
+    </div>
+
+</div>

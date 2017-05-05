@@ -1,0 +1,30 @@
+﻿<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-sm-12">
+            <h5 class="over-title margin-bottom-15">Radar <span class="text-bold">Chart</span></h5>
+            <div class="row">
+                <!-- /// controller:  'ChartCtrl6' -  localtion: assets/js/controllers/chartsCtrl.js /// -->
+                <div ng-controller="testChartController">
+                    <div class="col-sm-6">
+                        <p>
+                            A radar chart is a way of showing multiple data points and the variation between them.
+                        </p>
+                        <p>
+                            They are often useful for comparing the points of two or more different data sets.
+                        </p>
+                        <p>
+                            For a radar chart, to provide context of what each point means, we include an array of strings that show around each point in the chart.
+                            For the radar chart data, we have an array of datasets. Each of these is an object, with a fill colour, a stroke colour, a colour for the fill of each point, and a colour for the stroke of each point. We also have an array of data values.
+                        </p>
+                        <p class="margin-top-20">
+                            <div tc-chartjs-legend chart-legend="lineChart6"></div>
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <canvas class="tc-chart" tc-chartjs-radar chart-options="options" chart-data="data" chart-legend="lineChart6"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

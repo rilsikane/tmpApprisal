@@ -1,0 +1,42 @@
+﻿<div class="container-fluid container-fullw" ng-controller="inboxHistController">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white no-radius">
+                <div class="panel-heading no-radius bg-deep-pink">
+                    <h4 class="panel-title"><span>{{ app.inboxHistTitle }}</span></h4>
+                </div>
+                <div class="panel-body border-light">
+                    <div class="row">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-1">{{'ACT_TIME_TEXT'|translate}}</th>
+                                    <th class="col-md-1">{{'ACT_TEXT'|translate}}</th>
+                                    <th class="col-md-1">{{'REQUEST_NO'|translate}}</th>
+                                    <th class="col-md-1">{{'DATE_REQ'|translate}}</th>
+                                    <th class="col-md-1">{{'CA_NO'|translate}}</th>
+                                    <th class="col-md-1">{{'REQ_TYPE'|translate}}</th>
+                                    <th class="col-md-2">{{'REQUEST_OU'|translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in data">
+                                    <td>{{item.ACT_TIME_TEXT}}</td>
+                                    <td>{{item.ACT_TEXT}}</td>
+                                    <td><a ui-sref="app.testform({ACT_HIST_ID:item.ACT_HIST_ID,H:1})">{{item.REQUEST_NO}}</a></td>
+                                    <td>{{item.DATE_REQ_TEXT}}</td>
+                                    <td>{{item.CA_NO}}</td>
+                                    <td>{{item.REQ_TYPE}}</td>
+                                    <td>{{item.REQUEST_OU}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <pagination boundary-links="true" items-per-page="app.itemsPerPage" ng-change="pageChanged()" max-size="5" total-items="totalItems" ng-model="currentPage" class="pagination-sm  no-padding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

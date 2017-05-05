@@ -1,0 +1,169 @@
+﻿<div ng-controller="diagCrystalReport">
+    <tabset class="tabbable">
+        <tab heading="REPORTS">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>FILE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="file in rptfiles">
+                        <td><a ng-click="diag(file)"><i class="glyphicon glyphicon-play-circle"></i></a> {{file}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </tab>
+        <tab heading="REST Interface">
+            <div class="row">
+                <div class="panel panel-white no-radius">
+                    <div class="panel-heading border-light bg-azure no-radius">
+                        <h4 class="panel-title">CALENDAR</h4>
+                    </div>
+                    <div class="panel-body form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="calendarUrl">
+                                URL
+                            </label>
+                            <div class="col-sm-8 no-padding">
+                                <input type="text" id="calendarUrl" class="form-control" ng-model="formData.calendarUrl" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="OU_ID">
+                                OI_ID
+                            </label>
+                            <div class="col-sm-2 no-padding">
+                                <input type="text" id="OU_ID" class="form-control"  ng-model="formData.OU_ID" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="APPRAISAL_CODE">
+                                APPRAISAL_CODE
+                            </label>
+                            <div class="col-sm-2 no-padding">
+                                <input type="text" id="APPRAISAL_CODE" class="form-control"  ng-model="formData.APPRAISAL_CODE" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                            </label>
+                            <div class="col-sm-2 no-padding">
+                                <button class="btn btn-o btn-primary" ng-click="goCalendar()"><i class="glyphicon glyphicon-play-circle"></i> GO</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-white no-radius">
+                    <div class="panel-heading border-light bg-azure no-radius">
+                        <h4 class="panel-title">JOB REPORT</h4>
+                    </div>
+                    <div class="panel-body form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="jobReportUrl">
+                                URL
+                            </label>
+                            <div class="col-sm-8 no-padding">
+                                <input type="text" id="jobReportUrl" class="form-control" ng-model="formData.jobReportUrl" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="JOB_RUNNING_ID">
+                                JOB_RUNNING_ID
+                            </label>
+                            <div class="col-sm-2 no-padding">
+                                <input type="text" id="JOB_RUNNING_ID" class="form-control"  ng-model="formData.JOB_RUNNING_ID" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                            </label>
+                            <div class="col-sm-2 no-padding">
+                                <button class="btn btn-o btn-primary" ng-click="goJobReport()"><i class="glyphicon glyphicon-play-circle"></i> GO</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-white no-radius">
+                    <div class="panel-heading border-light bg-azure no-radius">
+                        <h4 class="panel-title">HEAD COL REPORT</h4>
+                    </div>
+                    <div class="panel-body form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="jobReportUrl">
+                                URL
+                            </label>
+                            <div class="col-sm-8 no-padding">
+                                <input type="text" id="jobReportUrl" class="form-control" ng-model="formData.jobReportUrl" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="HEAD_JOB_RUNNING_ID">
+                                JOB_RUNNING_ID
+                            </label>
+                            <div class="col-sm-2 no-padding">
+                                <input type="text" id="HEAD_JOB_RUNNING_ID" class="form-control"  ng-model="formData.JOB_RUNNING_ID" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="HEAD_COL_RUNNING_ID">
+                                HEAD_COL_RUNNING_ID
+                            </label>
+                            <div class="col-sm-2 no-padding">
+                                <input type="text" id="HEAD_COL_RUNNING_ID" class="form-control"  ng-model="formData.HEAD_COL_RUNNING_ID" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                            </label>
+                            <div class="col-sm-2 no-padding">
+                                <button class="btn btn-o btn-primary" ng-click="goHeadColReport()"><i class="glyphicon glyphicon-play-circle"></i> GO</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-white no-radius">
+                    <div class="panel-heading border-light bg-azure no-radius">
+                        <h4 class="panel-title">AD FS LOGIN</h4>
+                    </div>
+                    <div class="panel-body form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="adfsLoginUrl">
+                                URL
+                            </label>
+                            <div class="col-sm-8 no-padding">
+                                <input type="text" id="adfsLoginUrl" class="form-control" ng-model="formData.adfsLoginUrl" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="USER">
+                                USER
+                            </label>
+                            <div class="col-sm-2 no-padding">
+                                <input type="text" id="USER" class="form-control" ng-model="formData.USER" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="PASSWORD">
+                                PASSWORD
+                            </label>
+                            <div class="col-sm-2 no-padding">
+                                <input type="text" id="PASSWORD" class="form-control" ng-model="formData.PASSWORD" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                            </label>
+                            <div class="col-sm-2 no-padding">
+                                <button class="btn btn-o btn-primary" ng-click="goAdFsLogin()"><i class="glyphicon glyphicon-play-circle"></i> GO</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </tab>
+    </tabset>
+</div>

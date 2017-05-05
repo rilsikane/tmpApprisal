@@ -1,0 +1,1097 @@
+﻿<div class="panel panel-white">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ข้อมูลที่ดิน</h5>
+    </div>
+    <div class="panel-body">
+        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.COL_NO.$dirty && form.COL_NO.$invalid, 'has-success':form.COL_NO.$dirty && form.COL_NO.$valid}">
+            <label class="col-sm-4 control-label" for="COL_NO">
+                <i class="fa fa-bolt"></i> {{'COL_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
+            </label>
+            <div class="col-sm-8">
+                <input ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" type="text" placeholder="" class="form-control" id="COL_NO" name="COL_NO" ng-model="formData.COL_NO">
+                <span class="error text-small block" ng-if="form.COL_NO.$dirty && form.COL_NO.$invalid">{{requireNotificationPrefix}} {{'COL_NO'|translate}}</span>
+            </div>
+        </div>
+        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.RAWANG.$dirty && form.RAWANG.$invalid, 'has-success':form.RAWANG.$dirty && form.RAWANG.$valid}">
+            <label class="col-sm-4 control-label" for="RAWANG">
+                {{'RAWANG'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
+            </label>
+            <div class="col-sm-8">
+                <input ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='01')" type="text" placeholder="" class="form-control" id="RAWANG" name="RAWANG" ng-model="formData.RAWANG">
+                <span class="error text-small block" ng-if="form.RAWANG.$dirty && form.RAWANG.$invalid">{{requireNotificationPrefix}} {{'RAWANG'|translate}}</span>
+            </div>
+        </div>
+        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.LAND_NO.$dirty && form.LAND_NO.$invalid, 'has-success':form.LAND_NO.$dirty && form.LAND_NO.$valid}">
+            <label class="col-sm-4 control-label" for="LAND_NO">
+                {{'LAND_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
+            </label>
+            <div class="col-sm-8">
+                <input ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" type="text" placeholder="" class="form-control" id="LAND_NO" name="LAND_NO" ng-model="formData.LAND_NO">
+                <span class="error text-small block" ng-if="form.LAND_NO.$dirty && form.LAND_NO.$invalid">{{requireNotificationPrefix}} {{'LAND_NO'|translate}}</span>
+            </div>
+        </div>
+        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='02'))" class="form-group" ng-class="{'has-error':form.AIRIAL_PHOTO_NO.$dirty && form.AIRIAL_PHOTO_NO.$invalid, 'has-success':form.AIRIAL_PHOTO_NO.$dirty && form.AIRIAL_PHOTO_NO.$valid}">
+            <label class="col-sm-4 control-label" for="AIRIAL_PHOTO_NO">
+                {{'AIRIAL_PHOTO_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
+            </label>
+            <div class="col-sm-8">
+                <input ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='02')" type="text" placeholder="" class="form-control" id="AIRIAL_PHOTO_NO" name="AIRIAL_PHOTO_NO" ng-model="formData.AIRIAL_PHOTO_NO">
+                <span class="error text-small block" ng-if="form.AIRIAL_PHOTO_NO.$dirty && form.AIRIAL_PHOTO_NO.$invalid">{{requireNotificationPrefix}} {{'AIRIAL_PHOTO_NO'|translate}}</span>
+            </div>
+        </div>
+        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='02'))" class="form-group" ng-class="{'has-error':form.AIRIAL_SHEET_NO.$dirty && form.AIRIAL_SHEET_NO.$invalid, 'has-success':form.AIRIAL_SHEET_NO.$dirty && form.AIRIAL_SHEET_NO.$valid}">
+            <label class="col-sm-4 control-label" for="AIRIAL_SHEET_NO">
+                {{'AIRIAL_SHEET_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
+            </label>
+            <div class="col-sm-8">
+                <input ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='02')" type="text" placeholder="" class="form-control" id="AIRIAL_SHEET_NO" name="AIRIAL_SHEET_NO" ng-model="formData.AIRIAL_SHEET_NO">
+                <span class="error text-small block" ng-if="form.AIRIAL_SHEET_NO.$dirty && form.AIRIAL_SHEET_NO.$invalid">{{requireNotificationPrefix}} {{'AIRIAL_SHEET_NO'|translate}}</span>
+            </div>
+        </div>
+        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='02'))" class="form-group" ng-class="{'has-error':form.AIRIAL_CODE_NO.$dirty && form.AIRIAL_CODE_NO.$invalid, 'has-success':form.AIRIAL_CODE_NO.$dirty && form.AIRIAL_CODE_NO.$valid}">
+            <label class="col-sm-4 control-label" for="AIRIAL_CODE_NO">
+                {{'AIRIAL_CODE_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
+            </label>
+            <div class="col-sm-8">
+                <input ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='02')" type="text" placeholder="" class="form-control" id="AIRIAL_CODE_NO" name="AIRIAL_CODE_NO" ng-model="formData.AIRIAL_CODE_NO">
+                <span class="error text-small block" ng-if="form.AIRIAL_CODE_NO.$dirty && form.AIRIAL_CODE_NO.$invalid">{{requireNotificationPrefix}} {{'AIRIAL_CODE_NO'|translate}}</span>
+            </div>
+        </div>
+        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='03'))" class="form-group" ng-class="{'has-error':form.SCHOLAR_NO.$dirty && form.SCHOLAR_NO.$invalid, 'has-success':form.SCHOLAR_NO.$dirty && form.SCHOLAR_NO.$valid}">
+            <label class="col-sm-4 control-label" for="SCHOLAR_NO">
+                {{'SCHOLAR_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
+            </label>
+            <div class="col-sm-8">
+                <input ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='03')" type="text" placeholder="" class="form-control" id="SCHOLAR_NO" name="SCHOLAR_NO" ng-model="formData.SCHOLAR_NO">
+                <span class="error text-small block" ng-if="form.SCHOLAR_NO.$dirty && form.SCHOLAR_NO.$invalid">{{requireNotificationPrefix}} {{'SCHOLAR_NO'|translate}}</span>
+            </div>
+        </div>
+        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='01' && formData.SUB_TYPE.CODE!='04'))" class="form-group" ng-class="{'has-error':form.SURVEY_NO.$dirty && form.SURVEY_NO.$invalid, 'has-success':form.SURVEY_NO.$dirty && form.SURVEY_NO.$valid}">
+            <label class="col-sm-4 control-label" for="SURVEY_NO">
+                {{'SURVEY_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
+            </label>
+            <div class="col-sm-8">
+                <input ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='01')" type="text" placeholder="" class="form-control" id="SURVEY_NO" name="SURVEY_NO" ng-model="formData.SURVEY_NO">
+                <span class="error text-small block" ng-if="form.SURVEY_NO.$dirty && form.SURVEY_NO.$invalid">{{requireNotificationPrefix}} {{'SURVEY_NO'|translate}}</span>
+            </div>
+        </div>
+        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.BOOK_NO.$dirty && form.BOOK_NO.$invalid, 'has-success':form.BOOK_NO.$dirty && form.BOOK_NO.$valid}">
+            <label class="col-sm-4 control-label" for="BOOK_NO">
+                {{'BOOK_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
+            </label>
+            <div class="col-sm-8">
+                <input ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" type="text" placeholder="" class="form-control" id="BOOK_NO" name="BOOK_NO" ng-model="formData.BOOK_NO">
+                <span class="error text-small block" ng-if="form.BOOK_NO.$dirty && form.BOOK_NO.$invalid">{{requireNotificationPrefix}} {{'BOOK_NO'|translate}}</span>
+            </div>
+        </div>
+        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.PAGE_NO.$dirty && form.PAGE_NO.$invalid, 'has-success':form.PAGE_NO.$dirty && form.PAGE_NO.$valid}">
+            <label class="col-sm-4 control-label" for="PAGE_NO">
+                {{'PAGE_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
+            </label>
+            <div class="col-sm-8">
+                <input ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" type="text" placeholder="" class="form-control" id="PAGE_NO" name="PAGE_NO" ng-model="formData.PAGE_NO">
+                <span class="error text-small block" ng-if="form.PAGE_NO.$dirty && form.PAGE_NO.$invalid">{{requireNotificationPrefix}} {{'PAGE_NO'|translate}}</span>
+            </div>
+        </div>
+        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.RAI.$dirty && form.RAI.$invalid}">
+            <label class="col-sm-4 control-label" for="RAI">
+                {{'RAI'|translate}}<span class="symbol" ng-hide="!displayAllFiled"></span>
+            </label>
+            <div class="col-sm-8">
+                <input type="number" step="1" min="0" ng-change="calLandArea()" ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" class="form-control" id="RAI" name="RAI" ng-model="formData.RAI">
+                <!--<span class="error text-small block" ng-if="form.RAI.$dirty && form.RAI.$invalid">{{requireNotificationPrefix}} {{'RAI'|translate}}</span>-->
+            </div>
+        </div>
+        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.NGAN.$dirty && form.NGAN.$invalid}">
+            <label class="col-sm-4 control-label" for="NGAN">
+                {{'NGAN'|translate}}<span class="symbol" ng-hide="!displayAllFiled"></span>
+            </label>
+            <div class="col-sm-8">
+                <input type="number" step="1" min="0" ng-change="calLandArea()" ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" class="form-control" id="NGAN" name="NGAN" ng-model="formData.NGAN">
+                <!--<span class="error text-small block" ng-if="form.NGAN.$dirty && form.NGAN.$invalid">{{requireNotificationPrefix}} {{'NGAN'|translate}}</span>-->
+            </div>
+        </div>
+        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.WA.$dirty && form.WA.$invalid">
+            <label class="col-sm-4 control-label" for="WA">
+                {{'WA'|translate}}<span class="symbol" ng-hide="!displayAllFiled"></span>
+            </label>
+            <div class="col-sm-8">
+                <input type="number" step="1" min="0" ng-change="calLandArea()" ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" class="form-control" id="WA" name="WA" ng-model="formData.WA">
+                <!--<span class="error text-small block" ng-if="form.WA.$dirty && form.WA.$invalid">{{requireNotificationPrefix}} {{'WA'|translate}}</span>-->
+            </div>
+        </div>
+        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group">
+            <label class="col-sm-4 control-label" for="AREA_WA">
+                {{'AREA_WA'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input landarea type="text" step="1" class="form-control" id="AREA_WA" name="AREA_WA" ng-model="formData.AREA_WA">
+                <!--<span class="error text-small block" ng-if="form.AREA_WA.$dirty && form.AREA_WA.$invalid">{{requireNotificationPrefix}} {{'AREA_WA'|translate}}</span>-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-white">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ที่ตั้ง</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DEED_PROVINCE">
+                {{'PROVINCE'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <ui-select theme="selectize" ng-model="formData.DEED_PROVINCE" id="DEED_PROVINCE" name="DEED_PROVINCE" on-select="onProvinceChange($item,$model)">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.PROV_NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectProvince | filter: $select.search">
+                        <div ng-bind-html="item.PROV_NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DEED_CITY">
+                {{'DISTRICT'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <ui-select theme="selectize" ng-model="formData.DEED_CITY" id="DEED_CITY" name="DEED_CITY" on-select="getSubDistrict($item,$model)">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.CITY}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectDistrict | filter: $select.search">
+                        <div ng-bind-html="item.CITY | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DEED_DISTRICT">
+                {{'SUBDISTRICT'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <ui-select theme="selectize" ng-model="formData.DEED_DISTRICT" id="DEED_DISTRICT" name="DEED_DISTRICT">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.DISTRICT}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectSubDistrict | filter: $select.search">
+                        <div ng-bind-html="item.DISTRICT | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-white" ng-if="isAppriaiser">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ระยะกว้างยาว โดยประมาณ และเขตติดต่อ</h5>
+    </div>
+    <div class="panel-body">
+        <fieldset class="no-radius">
+            <legend>ทิศเหนือ</legend>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label" for="NORTH_LENGTH">
+                    {{'NORTH_LENGTH'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input distance type="text" placeholder="" class="form-control" id="NORTH_LENGTH" name="NORTH_LENGTH" ng-model="formData.NORTH_LENGTH">
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label" for="NORTH_BORDER">
+                    {{'NORTH_BORDER'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="NORTH_BORDER" name="NORTH_BORDER" ng-model="formData.NORTH_BORDER">
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="no-radius">
+            <legend>ทิศใต้</legend>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label" for="SOUTH_LENGTH">
+                    {{'NORTH_LENGTH'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input distance type="text" placeholder="" class="form-control" id="SOUTH_LENGTH" name="SOUTH_LENGTH" ng-model="formData.SOUTH_LENGTH">
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label" for="SOUTH_BORDER">
+                    {{'NORTH_BORDER'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="SOUTH_BORDER" name="SOUTH_BORDER" ng-model="formData.SOUTH_BORDER">
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="no-radius">
+            <legend>ทิศตะวันออก</legend>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label" for="EAST_LENGTH">
+                    {{'NORTH_LENGTH'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input distance type="text" placeholder="" class="form-control" id="EAST_LENGTH" name="EAST_LENGTH" ng-model="formData.EAST_LENGTH">
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label" for="EAST_BORDER">
+                    {{'NORTH_BORDER'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="EAST_BORDER" name="EAST_BORDER" ng-model="formData.EAST_BORDER">
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="no-radius">
+            <legend>ทิศตะวันตก</legend>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label" for="WEST_LENGTH">
+                    {{'NORTH_LENGTH'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input distance type="text" placeholder="" class="form-control" id="WEST_LENGTH" name="WEST_LENGTH" ng-model="formData.WEST_LENGTH">
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label" for="WEST_BORDER">
+                    {{'NORTH_BORDER'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="WEST_BORDER" name="WEST_BORDER" ng-model="formData.WEST_BORDER">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="no-radius">
+            <legend>หลักเขต</legend>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="BOUND">
+                    {{'BOUND'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <div ng-repeat="item in radioBound" class="radio clip-radio radio-primary">
+                        <input type="radio" name="BOUND" ng-value="item.VALUE" ng-model="formData.BOUND" id="BOUND{{item.VALUE}}" />
+                        <label for="BOUND{{item.VALUE}}">{{ item.NAME }}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="BOUND_FOUND">
+                    {{'BOUND_FOUND'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <div ng-repeat="item in radioBoundFound" class="radio clip-radio radio-primary">
+                        <input type="radio" name="BOUND_FOUND" ng-value="item.VALUE" ng-model="formData.BOUND_FOUND" id="BOUND_FOUND{{item.VALUE}}" />
+                        <label for="BOUND_FOUND{{item.VALUE}}">{{ item.NAME }}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="BOUND_NO">
+                    {{'BOUND_NO'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="BOUND_NO" name="BOUND_NO" ng-model="formData.BOUND_NO">
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+</div>
+<div class="panel panel-white" ng-if="isAppriaiser">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">สภาพที่ดิน</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="LAND_STATUS1">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="LAND_STATUS1" ng-model="formData.LAND_STATUS1" />
+                        <label for="LAND_STATUS1">
+                            {{'LAND_STATUS1'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="LAND_STATUS2">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="LAND_STATUS2" ng-model="formData.LAND_STATUS2" />
+                        <label for="LAND_STATUS2">
+                            {{'LAND_STATUS2'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="LAND_STATUS3">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="LAND_STATUS3" ng-model="formData.LAND_STATUS3" checked="">
+                        <label for="LAND_STATUS3">
+                            {{'LAND_STATUS3'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="LAND_STATUS4">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="LAND_STATUS4" ng-model="formData.LAND_STATUS4" checked="">
+                        <label for="LAND_STATUS4">
+                            {{'LAND_STATUS4'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="LAND_STATUS5">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="LAND_STATUS5" ng-model="formData.LAND_STATUS5" checked="">
+                        <label for="LAND_STATUS5">
+                            {{'LAND_STATUS5'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="LAND_STATUS6">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="LAND_STATUS6" ng-model="formData.LAND_STATUS6" checked="">
+                        <label for="LAND_STATUS6">
+                            {{'LAND_STATUS6'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="LAND_STATUS7">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="LAND_STATUS7" ng-model="formData.LAND_STATUS7" checked="">
+                        <label for="LAND_STATUS7">
+                            {{'LAND_STATUS7'|translate}}
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group col-sm-9">
+                <input type="text" placeholder="" class="form-control" id="LAND_OTHER" name="LAND_OTHER" ng-model="formData.LAND_OTHER">
+            </div>
+        </div>
+
+        <div class="form-group form-inline">
+            <label class="col-sm-4 control-label" for="LEVEL_LANDFILL_CODE">
+                {{'LEVEL_LANDFILL_CODE'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <ui-select theme="selectize" ng-model="formData.LEVEL_LANDFILL_CODE" id="LEVEL_LANDFILL_CODE" name="LEVEL_LANDFILL_CODE">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectLevelLandFill | filter: $select.search">
+                        <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="LEVEL_LANDFILL_METER">
+                {{'LEVEL_LANDFILL_METER'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input distance type="text" placeholder="" class="form-control" id="LEVEL_LANDFILL_METER" name="LEVEL_LANDFILL_METER" ng-model="formData.LEVEL_LANDFILL_METER">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-white" ng-if="isAppriaiser">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ทำเล</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="LOCATION1">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="LOCATION1" ng-model="formData.LOCATION1" checked="">
+                        <label for="LOCATION1">
+                            {{'LOCATION1'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="LOCATION2">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="LOCATION2" ng-model="formData.LOCATION2" checked="">
+                        <label for="LOCATION2">
+                            {{'LOCATION2'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="LOCATION7">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="LOCATION7" ng-model="formData.LOCATION7" checked="">
+                        <label for="LOCATION7">
+                            {{'LOCATION7'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="LOCATION3">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="LOCATION3" ng-model="formData.LOCATION3" checked="">
+                        <label for="LOCATION3">
+                            {{'LOCATION3'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="LOCATION4">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="LOCATION4" ng-model="formData.LOCATION4" checked="">
+                        <label for="LOCATION4">
+                            {{'LOCATION4'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="LOCATION5">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="LOCATION5" ng-model="formData.LOCATION5" checked="">
+                        <label for="LOCATION5">
+                            {{'LOCATION5'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="LOCATION6">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="LOCATION6" ng-model="formData.LOCATION6" checked="">
+                        <label for="LOCATION6">
+                            {{'LOCATION6'|translate}}
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group col-sm-9">
+                <input type="text" placeholder="" class="form-control" id="LOCATION_OTHER" name="LOCATION_OTHER" ng-model="formData.LOCATION_OTHER">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-white" ng-if="isAppriaiser">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ความสะดวกในการอยู่อาศัยและใช้ประโยชน์</h5>
+    </div>
+    <div class="panel-body">
+        <fieldset class="no-radius">
+            <legend>สภาพที่</legend>
+            <div class="form-group">
+                <div class="form-group col-sm-3">
+                    <label class="col-sm-4 control-label" for="POSITION1">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="POSITION1" ng-model="formData.POSITION1" checked="">
+                            <label for="POSITION1">
+                                {{'POSITION1'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label class="col-sm-4 control-label" for="POSITION2">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="POSITION2" ng-model="formData.POSITION2" checked="">
+                            <label for="POSITION2">
+                                {{'POSITION2'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label class="col-sm-4 control-label" for="POSITION3">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="POSITION3" ng-model="formData.POSITION3" checked="">
+                            <label for="POSITION3">
+                                {{'POSITION3'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group col-sm-3">
+                    <label class="col-sm-4 control-label" for="POSITION4">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="POSITION4" ng-model="formData.POSITION4" checked="">
+                            <label for="POSITION4">
+                                {{'POSITION4'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label class="col-sm-4 control-label" for="POSITION5">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="POSITION5" ng-model="formData.POSITION5" checked="">
+                            <label for="POSITION5">
+                                {{'POSITION5'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="no-radius">
+            <legend>ติดถนน/ซอย</legend>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="ROAD_NAME">
+                    {{'ROAD_NAME'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" placeholder="" class="form-control" id="ROAD_NAME" name="ROAD_NAME" ng-model="formData.ROAD_NAME">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="ROAD_CODE">
+                    {{'ROAD_CODE'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <ui-select theme="selectize" ng-model="formData.ROAD_CODE" id="ROAD_CODE" name="ROAD_CODE">
+                        <ui-select-match placeholder="">
+                            {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in selectRoadType  | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="ROAD_WIDTH">
+                    {{'ROAD_WIDTH'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" format placeholder="" class="form-control" id="ROAD_WIDTH" name="ROAD_WIDTH" ng-model="formData.ROAD_WIDTH">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="ROAD1">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                        <input type="checkbox" id="ROAD1" ng-model="formData.ROAD1" checked="">
+                        <label for="ROAD1">
+                            {{'ROAD1'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="ROAD2">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                        <input type="checkbox" id="ROAD2" ng-model="formData.ROAD2" checked="">
+                        <label for="ROAD2">
+                            {{'ROAD2'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="ROAD3">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                        <input type="checkbox" id="ROAD3" ng-model="formData.ROAD3" checked="">
+                        <label for="ROAD3">
+                            {{'ROAD3'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group form-inline">
+                <label class="col-sm-4 control-label" for="ROAD4">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                        <input type="checkbox" id="ROAD4" ng-model="formData.ROAD4" checked="">
+                        <label for="ROAD4">
+                            {{'ROAD4'|translate}}
+                        </label>
+                    </div>
+                    <input type="text" placeholder="" class="form-control" id="ROAD_OTH_DESC" name="ROAD_OTH_DESC" ng-model="formData.ROAD_OTH_DESC">
+                </div>
+            </div>
+            <!--<div class="form-group">
+                <label class="col-sm-4 control-label" for="ROAD_OTH_DESC">
+                    {{'ROAD_OTH_DESC'|translate}}
+                </label>
+                <div class="col-sm-8">
+
+                </div>
+            </div>-->
+        </fieldset>
+        <fieldset class="no-radius">
+            <legend>ไฟฟ้า,ประปา</legend>
+            <div class="form-group form-inline">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="UTILITY6">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="UTILITY6" ng-model="formData.UTILITY6" checked="">
+                            <label for="UTILITY6">
+                                {{'UTILITY6'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="UTILITY1">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="UTILITY1" ng-model="formData.UTILITY1" checked="">
+                            <label for="UTILITY1">
+                                {{'UTILITY1'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="UTILITY2">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="UTILITY2" ng-model="formData.UTILITY2" checked="">
+                            <label for="UTILITY2">
+                                {{'UTILITY2'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="UTILITY3">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="UTILITY3" ng-model="formData.UTILITY3" checked="">
+                            <label for="UTILITY3">
+                                {{'UTILITY3'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="UTILITY4">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="UTILITY4" ng-model="formData.UTILITY4" checked="">
+                            <label for="UTILITY4">
+                                {{'UTILITY4'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="no-radius">
+            <legend>ท่อระบายน้ำ</legend>
+            <div class="form-group form-inline">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="GUTTER1">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="GUTTER1" ng-model="formData.GUTTER1" checked="">
+                            <label for="GUTTER1">
+                                {{'GUTTER1'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="GUTTER2">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="GUTTER2" ng-model="formData.GUTTER2" checked="">
+                            <label for="GUTTER2">
+                                {{'GUTTER2'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </fieldset>
+        <fieldset class="no-radius">
+            <legend>โทรศัพท์</legend>
+            <div class="form-group form-inline">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="TELE_Y">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="TELE_Y" ng-model="formData.TELE_Y" checked="">
+                            <label for="TELE_Y">
+                                {{'GUTTER1'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="TELE_N">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="TELE_N" ng-model="formData.TELE_N" checked="">
+                            <label for="TELE_N">
+                                {{'GUTTER2'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </fieldset>
+        <fieldset class="no-radius">
+            <legend>ไฟส่องทาง</legend>
+            <div class="form-group form-inline">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="ELEC_Y">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="ELEC_Y" ng-model="formData.ELEC_Y" checked="">
+                            <label for="ELEC_Y">
+                                {{'GUTTER1'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="ELEC_N">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="ELEC_N" ng-model="formData.ELEC_N" checked="">
+                            <label for="ELEC_N">
+                                {{'GUTTER2'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </fieldset>
+
+    </div>
+</div>
+<div class="panel panel-white" ng-if="isAppriaiser">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">การใช้ประโยชน์</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="USE1">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                        <input type="checkbox" id="USE1" ng-model="formData.USE1" checked="">
+                        <label for="USE1">
+                            {{'USE1'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="USE2">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                        <input type="checkbox" id="USE2" ng-model="formData.USE2" checked="">
+                        <label for="USE2">
+                            {{'USE2'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="USE3">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                        <input type="checkbox" id="USE3" ng-model="formData.USE3" checked="">
+                        <label for="USE3">
+                            {{'USE3'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="USE4">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                        <input type="checkbox" id="USE4" ng-model="formData.USE4" checked="">
+                        <label for="USE4">
+                            {{'USE4'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="USE5">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                        <input type="checkbox" id="USE5" ng-model="formData.USE5" checked="">
+                        <label for="USE5">
+                            {{'USE5'|translate}}
+                        </label>
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-9">
+                <input type="text" id="USE_OTHER" name="USE_OTHER" ng-model="formData.USE_OTHER" class="form-control" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-white" ng-if="isAppriaiser">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ภาระผูกพัน</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="RESPOND1">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                        <input type="checkbox" id="RESPOND1" ng-model="formData.RESPOND1" checked="">
+                        <label for="RESPOND1">
+                            {{'RESPOND1'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="RESPOND2">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                        <input type="checkbox" id="RESPOND2" ng-model="formData.RESPOND2" checked="">
+                        <label for="RESPOND2">
+                            {{'RESPOND2'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="RESPOND3">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                        <input type="checkbox" id="RESPOND3" ng-model="formData.RESPOND3" checked="">
+                        <label for="RESPOND3">
+                            {{'RESPOND3'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="RESPOND3">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="RESPOND4" ng-model="formData.RESPOND4" checked="">
+                        <label for="RESPOND4">
+                            {{'RESPOND4'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-9">
+                <label class="col-sm-2 control-label" for="RESPOND_OTHER">
+                    {{'RESPOND_OTHER'|translate}}
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" placeholder="" class="form-control" id="RESPOND_OTHER" name="RESPOND_OTHER" ng-model="formData.RESPOND_OTHER">
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="panel panel-white" ng-if="isAppriaiser">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ศักยภาพ</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="CAPACITY1">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                        <input type="checkbox" id="CAPACITY1" ng-model="formData.CAPACITY1" checked="">
+                        <label for="CAPACITY1">
+                            {{'CAPACITY1'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="CAPACITY2">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                        <input type="checkbox" id="CAPACITY2" ng-model="formData.CAPACITY2" checked="">
+                        <label for="CAPACITY2">
+                            {{'CAPACITY2'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="CAPACITY3">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                        <input type="checkbox" id="CAPACITY3" ng-model="formData.CAPACITY3" checked="">
+                        <label for="CAPACITY3">
+                            {{'CAPACITY3'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="CAPACITY4">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="CAPACITY4" ng-model="formData.CAPACITY4" checked="">
+                        <label for="CAPACITY4">
+                            {{'CAPACITY4'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" placeholder="" class="form-control" id="CAPACITY_OTHER" name="CAPACITY_OTHER" ng-model="formData.CAPACITY_OTHER">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-white" ng-if="isAppriaiser">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ภาระและสิทธิอื่นๆ</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-4 control-label" for="OTHER1">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="OTHER1" ng-model="formData.OTHER1" checked="">
+                        <label for="OTHER1">
+                            {{'GUTTER2'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-2">
+                <label class="col-sm-4 control-label" for="OTHER2">
+                </label>
+                <div class="col-sm-8">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="OTHER2" ng-model="formData.OTHER2" checked="">
+                        <label for="OTHER2">
+                            {{'GUTTER1'|translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-7">
+                <input type="text" placeholder="" class="form-control" id="OTHER_REMARK" name="OTHER_REMARK" ng-model="formData.OTHER_REMARK">
+            </div>
+        </div>
+
+    </div>
+</div>

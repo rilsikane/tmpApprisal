@@ -1,0 +1,35 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{title1}} <i class="ti-angle-right"></i> {{title2}} </h3>
+</div>
+<div class="modal-body bg-light-grey">
+    <form name="form" role="form" class="form-horizontal" novalidate ng-submit="submit(form)">
+        <div class="form-group" ng-class="{'has-error':form.PHASE_NAME.$dirty && form.PHASE_NAME.$invalid, 'has-success':form.PHASE_NAME.$valid}">
+            <label class="col-sm-4 control-label" for="PHASE_NAME">
+                {{'PHASE_NAME'|translate}}<span class="symbol required"></span>
+            </label>
+            <div class="col-sm-8">
+                <input required type="text" placeholder="" class="form-control" id="PHASE_NAME" name="PHASE_NAME" ng-model="formData.PHASE_NAME">
+                <span class="error text-small block" ng-if="form.PHASE_NAME.$dirty && form.PHASE_NAME.$invalid">{{requireNotificationPrefix}} {{'PHASE_NAME'|translate}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="PHASE_REMARK">
+                {{'REMARK'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input type="text" placeholder="" class="form-control" id="PHASE_REMARK" name="PHASE_REMARK" ng-model="formData.PHASE_REMARK">
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary  btn-o" ng-disabled="btnDisabled" ng-click="save(form)">
+        <i class="glyphicon glyphicon-floppy-save"></i> {{'BUTTON.SAVE'|translate}}
+    </button>
+    <button class="btn btn-primary  btn-o" ng-disabled="btnDisabled" ng-click="delete()">
+        <i class="glyphicon glyphicon-remove-circle"></i> {{'BUTTON.DELETE'|translate}}
+    </button>
+    <button class="btn btn-primary  btn-o" ng-disabled="btnDisabled" ng-click="cancel()">
+        <i class="glyphicon glyphicon-chevron-left"></i> {{'BUTTON.BACK'|translate}}
+    </button>
+</div>

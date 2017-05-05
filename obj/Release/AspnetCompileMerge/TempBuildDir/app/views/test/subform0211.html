@@ -1,0 +1,11 @@
+﻿
+<div class="panel panel-white height-350">
+    <div class="pull-right">
+        <button class="btn btn-o btn-primary" ng-click="genHeadCollReport()"><i class="glyphicon glyphicon-stats"></i> {{'GEN_REPORT'|translate}}</button>
+    </div>
+    <div ng-if="headCol.APPRAISAL_REPORT.ATTACHDOC_RUNNING_ID > 0">
+        <ul>
+            <li><i class="icon32 pdf"></i> <a target="_blank" href="Home/Download/{{headCol.APPRAISAL_REPORT.ATTACHDOC_RUNNING_ID}}">{{headCol.APPRAISAL_REPORT.DOC_NAME}}</a></li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{'PROJECT_COLLETERAL'|translate}}</h3>
+</div>
+<div class="modal-body bg-light-grey">
+    <form name="form" role="form" class="form-horizontal" novalidate>
+        <div ng-include="includeUrl"></div>
+    </form>
+</div>
+<div class="modal-footer">
+    <div class="pull-right">
+        <button class="btn btn-primary btn-o" ng-disabled="btnDisabled" ng-click="cancel()">
+            <i class="glyphicon glyphicon-chevron-left"></i> {{'BUTTON.BACK'|translate}}
+        </button>
+    </div>
+</div>

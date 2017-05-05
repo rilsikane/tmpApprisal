@@ -1,0 +1,198 @@
+﻿<fieldset class="no-radius">
+    <legend>{{'FIND_REQUEST'|translate}}</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="REQUEST_NO">
+            {{'REQUEST_NO'|translate}}
+        </label>
+        <div class="col-sm-4 no-padding">
+            <input type="text" class="form-control" id="REQUEST_NO" name="REQUEST_NO" ng-model="formData.REQUEST_NO" ng-keydown="find($event)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">
+        </label>
+        <div class="col-sm-4 no-padding">
+            <button ladda="ldloading.expand_left" data-style="expand-left" class="btn btn-primary" ng-click="findRequest()">
+                <i class="glyphicon glyphicon-search"></i> {{'SEARCH'|translate}}
+            </button>
+
+        </div>
+    </div>
+</fieldset>
+<div ng-if="foundFormData.REQUEST_RUNNING_ID==0 && searchHit">
+    <span>{{'NO_DATA_FOUND'|translate}}</span>
+</div>
+<fieldset class="no-radius" ng-if="foundFormData.REQUEST_RUNNING_ID > 0">
+    <legend>{{'DETAIL'|translate}}</legend>
+
+    <div class="form-group no-padding">
+        <label class="col-sm-3 control-label" for="NPA_TYPE">
+        </label>
+        <div class="col-sm-2 no-padding">
+            <div class="checkbox clip-check check-primary">
+                <input ng-disabled="inputDisabled" type="checkbox" id="NPA_TYPE" ng-model="foundFormData.NPA_TYPE" />
+                <label for="NPA_TYPE">
+                    {{'NPA_TYPE'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group no-padding">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-9 no-padding">
+            <div class="checkbox clip-check check-primary">
+                <input type="checkbox" id="JOB_TYPE" ng-model="foundFormData.JOB_TYPE" ng-disabled="foundFormData.REQUEST_RUNNING_ID > 0 || inputDisabled" />
+                <label for="JOB_TYPE">
+                    {{'JOB_TYPE'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group no-padding">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-9">
+            <div class="radio clip-radio radio-primary">
+                <input type="radio" name="PROJECT_TYPE" value="B" ng-model="foundFormData.PROJECT_TYPE" id="PRE_PROJECT" ng-disabled="!foundFormData.JOB_TYPE || foundFormData.REQUEST_RUNNING_ID > 0 || inputDisabled" />
+                <label for="PRE_PROJECT">{{ 'PRE_PROJECT'|translate }}</label>
+            </div>
+            <div class="radio clip-radio radio-primary">
+                <input type="radio" name="PROJECT_TYPE" value="A" ng-model="foundFormData.PROJECT_TYPE" id="POST_PROJECT" ng-disabled="!foundFormData.JOB_TYPE || foundFormData.REQUEST_RUNNING_ID > 0 || inputDisabled" />
+                <label for="POST_PROJECT">{{ 'POST_PROJECT'|translate }}</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group no-padding">
+        <label class="col-sm-3 control-label" for="REQUEST_NO">
+            {{'REQUEST_NO'|translate}}
+        </label>
+        <div class="col-sm-4 no-padding">
+            <input type="text" readonly class="form-control" id="REQUEST_NO" name="REQUEST_NO" ng-model="foundFormData.REQUEST_NO">
+        </div>
+    </div>
+    <div class="form-group no-padding">
+        <label class="col-sm-3 control-label" for="DATE_REQ">
+            {{'DATE_REQ'|translate}}
+        </label>
+        <div class="col-sm-4 no-padding">
+            <input ng-disabled="inputDisabled" ng-model="foundFormData.DATE_REQ" class="form-control no-radius" id="DATE_REQ" name="DATE_REQ" datepicker-popup="dd/MM/yyyy" />
+        </div>
+    </div>
+    <div class="form-group no-padding">
+        <label class="col-sm-3 control-label" for="CA_NO">
+            {{'CA_NO'|translate}}
+        </label>
+        <div class="col-sm-4 no-padding">
+            <input required type="text" ng-disabled="inputDisabled" class="form-control" id="CA_NO" name="CA_NO" ng-model="foundFormData.CA_NO">
+        </div>
+    </div>
+    <div class="form-group no-padding">
+        <label class="col-sm-3 control-label" for="REQ_TYPE">
+            {{'REQ_TYPE'|translate}}
+        </label>
+        <div class="col-sm-4 no-padding">
+            <ui-select ng-required="true" ng-disabled="inputDisabled" theme="selectize" ng-model="foundFormData.REQ_TYPE" name="REQ_TYPE" id="REQ_TYPE">
+                <ui-select-match>
+                    {{$select.selected.NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in requestType | filter: $select.search">
+                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="form-group no-padding">
+        <label class="col-sm-3 control-label" for="OBJECTIVE">
+            {{'OBJECTIVE'|translate}}
+        </label>
+        <div class="col-sm-4 no-padding">
+            <ui-select ng-required="true" ng-disabled="inputDisabled" theme="selectize" ng-model="foundFormData.OBJECTIVE" name="OBJECTIVE" id="OBJECTIVE">
+                <ui-select-match>
+                    {{$select.selected.NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in objective | filter: $select.search">
+                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="form-group no-padding">
+        <label class="col-sm-3 control-label" for="DEBT_TYPE">
+            {{'DEBT_TYPE'|translate}}
+        </label>
+        <div class="col-sm-4 no-padding">
+            <ui-select ng-disabled="inputDisabled" ng-required="!foundFormData.NPA_TYPE" theme="selectize" ng-model="foundFormData.DEBT_TYPE" name="DEBT_TYPE" id="DEBT_TYPE">
+                <ui-select-match>
+                    {{$select.selected.NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in debtType | filter: $select.search">
+                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="form-group no-padding">
+        <label class="col-sm-3 control-label" for="CUST_TYPE">
+            {{'CUSTOMER_TYPE'|translate}}
+        </label>
+        <div class="col-sm-4 no-padding">
+            <ui-select ng-disabled="inputDisabled" ng-required="foundFormData.NPA_TYPE==false" theme="selectize" ng-model="foundFormData.CUST_TYPE" name="CUST_TYPE" id="CUST_TYPE">
+                <ui-select-match>
+                    {{$select.selected.NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in custType | filter: $select.search">
+                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="form-group no-padding">
+        <label class="col-sm-3 control-label" for="OU">
+            {{'REQUEST_OU'|translate}}
+        </label>
+        <div class="col-sm-4 no-padding">
+            <ui-select ng-required="true" ng-disabled="true" theme="selectize" ng-model="foundFormData.REQUEST_OU" name="OU" id="OU">
+                <ui-select-match>
+                    {{$select.selected.OU_NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in dept | filter: $select.search">
+                    <div ng-bind-html="item.OU_NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="form-group no-padding">
+        <label class="col-sm-3 control-label" for="EMPLOYEE">
+            {{'BANK_EMPLOYEE'|translate}}
+        </label>
+        <div class="col-sm-4 no-padding">
+            <input required ng-model="foundFormData.EMPLOYEE" type="text" ng-disabled="inputDisabled" class="form-control" id="EMPLOYEE" name="EMPLOYEE" />
+        </div>
+    </div>
+    <div class="form-group no-padding">
+        <label class="col-sm-3 control-label" for="CREDIT_REQUEST">
+            {{'CREDIT_REQUEST'|translate}}
+        </label>
+        <div class="col-sm-4 no-padding">
+            <input format ng-disabled="inputDisabled" ng-required="!foundFormData.NPA_TYPE" ng-model="foundFormData.CREDIT_REQUEST" type="text" ng-change="calDebt()" class="form-control" id="CREDIT_REQUEST" name="CREDIT_REQUEST" />
+        </div>
+    </div>
+    <div class="form-group no-padding">
+        <label class="col-sm-3 control-label" for="CREDIT_BALANCE">
+            {{'CREDIT_BALANCE'|translate}}
+        </label>
+        <div class="col-sm-4 no-padding">
+            <input format ng-disabled="inputDisabled" ng-required="!foundFormData.NPA_TYPE" ng-model="foundFormData.CREDIT_BALANCE" type="text" ng-change="calDebt()" class="form-control" id="CREDIT_BALANCE" name="CREDIT_BALANCE" />
+        </div>
+    </div>
+    <div class="form-group no-padding">
+        <label class="col-sm-3 control-label" for="CREDIT_LIMIT">
+            {{'CREDIT_LIMIT'|translate}}
+        </label>
+        <div class="col-sm-4 no-padding">
+            <input format ng-model="foundFormData.CREDIT_LIMIT" readonly type="text" class="form-control" id="CREDIT_LIMIT" name="CREDIT_LIMIT" />
+        </div>
+    </div>
+
+</fieldset>
