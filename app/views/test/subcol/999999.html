@@ -17,7 +17,7 @@
                 {{'ราคาหลักทรัพย์'|translate}}
             </label>
             <div class="col-sm-8">
-                <input format type="text" class="form-control" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" ng-model="formData.APPR_CUR_NET_TOTAL">
+                <input format type="text" maxlength="24" class="form-control" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" ng-model="formData.APPR_CUR_NET_TOTAL">
             </div>
         </div>
         <div class="form-group" ng-class="{'has-error':form.OTHERS_COL.$dirty && form.OTHERS_COL.$invalid, 'has-success': form.OTHERS_COL.$valid}">
@@ -25,7 +25,7 @@
                 {{'OTHERS_COL'|translate}}<span class="symbol required"></span>
             </label>
             <div class="col-sm-8">
-                <input type="text" required class="form-control" id="OTHERS_COL" name="OTHERS_COL" ng-model="formData.OTHERS_COL">
+                <input type="text" maxlength="300" required class="form-control" id="OTHERS_COL" name="OTHERS_COL" ng-model="formData.OTHERS_COL">
             </div>
         </div>
         <div class="form-group" ng-class="{'has-error':form.OTHERS_PRICE_PAWN.$dirty && form.OTHERS_PRICE_PAWN.$invalid, 'has-success':form.OTHERS_PRICE_PAWN.$valid}">
@@ -33,7 +33,7 @@
                 {{'OTHERS_PRICE_PAWN'|translate}}
             </label>
             <div class="col-sm-8">
-                <input price type="text" class="form-control" id="OTHERS_PRICE_PAWN" name="OTHERS_PRICE_PAWN" ng-model="formData.OTHERS_PRICE_PAWN">
+                <input price type="text" maxlength="22" class="form-control" id="OTHERS_PRICE_PAWN" name="OTHERS_PRICE_PAWN" ng-model="formData.OTHERS_PRICE_PAWN">
             </div>
         </div>
         <div class="form-group" ng-class="{'has-error':form.OTHERS_AMOUNT.$dirty && form.OTHERS_AMOUNT.$invalid, 'has-success': form.OTHERS_AMOUNT.$valid}">
@@ -41,7 +41,7 @@
                 {{'จำนวนรายการ'|translate}}<span class="symbol required"></span>
             </label>
             <div class="col-sm-8">
-                <input numberonly type="text" required class="form-control" id="OTHERS_AMOUNT" name="OTHERS_AMOUNT" ng-model="formData.OTHERS_AMOUNT">
+                <input numberonly type="text" maxlength="22" required class="form-control" id="OTHERS_AMOUNT" name="OTHERS_AMOUNT" ng-model="formData.OTHERS_AMOUNT">
             </div>
         </div>
         <div class="form-group">
@@ -49,7 +49,7 @@
                 {{'REMARK'|translate}}
             </label>
             <div class="col-sm-8">
-                <textarea class="form-control" id="REMARK" name="REMARK" ng-model="formData.REMARK"></textarea>
+                <textarea class="form-control" maxlength="300" id="REMARK" name="REMARK" ng-model="formData.REMARK"></textarea>
             </div>
         </div>
     </div>
