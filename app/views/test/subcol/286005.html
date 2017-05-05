@@ -35,7 +35,7 @@
                         {{'RENTAL_DATE'|translate}}
                     </label>
                     <div class="col-sm-6">
-                        <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.RENTAL_DATE" ng-click="openDatePicker($event,'RENTAL_DATE')" class="form-control" id="RENTAL_DATE" name="RENTAL_DATE" ng-model="formData.RENTAL_DATE" />
+                        <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.RENTAL_DATE" ng-click="openDatePicker($event,'RENTAL_DATE')" class="form-control" id="RENTAL_DATE" name="RENTAL_DATE" ng-model="formData.RENTAL_DATE"/>
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
@@ -43,7 +43,7 @@
                         {{'TRANSFER_DATE'|translate}}
                     </label>
                     <div class="col-sm-6">
-                        <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TRANSFER_DATE" ng-click="openDatePicker($event,'TRANSFER_DATE')"  class="form-control" id="TRANSFER_DATE" name="TRANSFER_DATE" ng-model="formData.TRANSFER_DATE">
+                        <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TRANSFER_DATE" ng-click="openDatePicker($event,'TRANSFER_DATE')"  class="form-control" id="TRANSFER_DATE" name="TRANSFER_DATE" ng-model="formData.TRANSFER_DATE" >
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                         {{'TRANSFER_DATE_BEGIN'|translate}}<span class="symbol required"></span>
                     </label>
                     <div class="col-sm-6">
-                        <input required type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TRANSFER_DATE_BEGIN" ng-click="openDatePicker($event,'TRANSFER_DATE_BEGIN')"  class="form-control" id="TRANSFER_DATE_BEGIN" name="TRANSFER_DATE_BEGIN" ng-model="formData.TRANSFER_DATE_BEGIN">
+                        <input required type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TRANSFER_DATE_BEGIN" ng-click="openDatePicker($event,'TRANSFER_DATE_BEGIN')"  class="form-control" id="TRANSFER_DATE_BEGIN" name="TRANSFER_DATE_BEGIN" ng-model="formData.TRANSFER_DATE_BEGIN" max-date="formData.TRANSFER_DATE_DUE">
                         <!--<span class="error text-small block" ng-if="form.TRANSFER_DATE_BEGIN.$dirty && form.TRANSFER_DATE_BEGIN.$invalid">{{requireNotificationPrefix}} {{'TRANSFER_DATE_BEGIN'|translate}}</span>-->
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                         {{'TRANSFER_DATE_DUE'|translate}}<span class="symbol required"></span>
                     </label>
                     <div class="col-sm-6">
-                        <input required type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TRANSFER_DATE_DUE" ng-click="openDatePicker($event,'TRANSFER_DATE_DUE')" class="form-control" id="TRANSFER_DATE_DUE" name="TRANSFER_DATE_DUE" ng-model="formData.TRANSFER_DATE_DUE">
+                        <input required type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TRANSFER_DATE_DUE" ng-click="openDatePicker($event,'TRANSFER_DATE_DUE')" class="form-control" id="TRANSFER_DATE_DUE" name="TRANSFER_DATE_DUE" ng-model="formData.TRANSFER_DATE_DUE" min-date="formData.TRANSFER_DATE_BEGIN">
                         <!--<span class="error text-small block" ng-if="form.TRANSFER_DATE_DUE.$dirty && form.TRANSFER_DATE_DUE.$invalid">{{requireNotificationPrefix}} {{'TRANSFER_DATE_DUE'|translate}}</span>-->
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                     {{'YEAR'|translate}}<span class="symbol required"></span>
                 </label>
                 <div class="col-sm-6">
-                    <input required type="number" min="0" class="form-control" id="RENTAL_PERIOD_YEAR" name="RENTAL_PERIOD_YEAR" ng-model="formData.RENTAL_PERIOD_YEAR">
+                    <input required type="text" min="0" class="form-control" id="RENTAL_PERIOD_YEAR" name="RENTAL_PERIOD_YEAR" ng-model="formData.RENTAL_PERIOD_YEAR" count ng-max="9999">
                     <!--<span class="error text-small block" ng-if="form.RENTAL_PERIOD_YEAR.$dirty && form.RENTAL_PERIOD_YEAR.$invalid">{{requireNotificationPrefix}} {{'RENTAL_PERIOD_YEAR'|translate}}</span>-->
                 </div>
             </div>
@@ -95,7 +95,7 @@
                     {{'MONTH'|translate}}<span class="symbol required"></span>
                 </label>
                 <div class="col-sm-6">
-                    <input required type="number" min="0" max="12" class="form-control" id="RENTAL_PERIOD_MONTH" name="RENTAL_PERIOD_MONTH" ng-model="formData.RENTAL_PERIOD_MONTH">
+                    <input required type="text" min="0" max="12" class="form-control" id="RENTAL_PERIOD_MONTH" name="RENTAL_PERIOD_MONTH" ng-model="formData.RENTAL_PERIOD_MONTH" count ng-max="11">
                     <!--<span class="error text-small block" ng-if="form.RENTAL_PERIOD_MONTH.$dirty && form.RENTAL_PERIOD_MONTH.$invalid">{{requireNotificationPrefix}} {{'RENTAL_PERIOD_MONTH'|translate}}</span>-->
                 </div>
             </div>
@@ -107,7 +107,7 @@
                     {{'YEAR'|translate}}<span class="symbol required"></span>
                 </label>
                 <div class="col-sm-6">
-                    <input required type="number" min="0" class="form-control" id="RENTAL_AVAILABLE_YEAR" name="RENTAL_AVAILABLE_YEAR" ng-model="formData.RENTAL_AVAILABLE_YEAR">
+                    <input required type="text" min="0" class="form-control" id="RENTAL_AVAILABLE_YEAR" name="RENTAL_AVAILABLE_YEAR" ng-model="formData.RENTAL_AVAILABLE_YEAR" count ng-max="9999">
                     <!--<span class="error text-small block" ng-if="form.RENTAL_AVAILABLE_YEAR.$dirty && form.RENTAL_AVAILABLE_YEAR.$invalid">{{requireNotificationPrefix}} {{'RENTAL_AVAILABLE_YEAR'|translate}}</span>-->
                 </div>
             </div>
@@ -116,7 +116,7 @@
                     {{'MONTH'|translate}}<span class="symbol required"></span>
                 </label>
                 <div class="col-sm-6">
-                    <input required type="number" min="0" max="12" class="form-control" id="RENTAL_AVAILABLE_MONTH" name="RENTAL_AVAILABLE_MONTH" ng-model="formData.RENTAL_AVAILABLE_MONTH">
+                    <input required type="text" min="0" max="12" class="form-control" id="RENTAL_AVAILABLE_MONTH" name="RENTAL_AVAILABLE_MONTH" ng-model="formData.RENTAL_AVAILABLE_MONTH" count ng-max="11">
                     <!--<span class="error text-small block" ng-if="form.RENTAL_AVAILABLE_MONTH.$dirty && form.RENTAL_AVAILABLE_MONTH.$invalid">{{requireNotificationPrefix}} {{'RENTAL_AVAILABLE_MONTH'|translate}}</span>-->
                 </div>
             </div>
@@ -128,7 +128,7 @@
                     {{'YEAR'|translate}}<span class="symbol required"></span>
                 </label>
                 <div class="col-sm-6">
-                    <input required type="number" min="0" class="form-control" id="TRANSFER_AGE_YEAR" name="TRANSFER_AGE_YEAR" ng-model="formData.TRANSFER_AGE_YEAR">
+                    <input required type="text" min="0" class="form-control" id="TRANSFER_AGE_YEAR" name="TRANSFER_AGE_YEAR" ng-model="formData.TRANSFER_AGE_YEAR" count ng-max="9999">
                     <!--<span class="error text-small block" ng-if="form.TRANSFER_AGE_YEAR.$dirty && form.TRANSFER_AGE_YEAR.$invalid">{{requireNotificationPrefix}} {{'TRANSFER_AGE_YEAR'|translate}}</span>-->
                 </div>
             </div>
@@ -137,7 +137,7 @@
                     {{'MONTH'|translate}}<span class="symbol required"></span>
                 </label>
                 <div class="col-sm-6">
-                    <input required type="number" min="0" max="12" class="form-control" id="TRANSFER_AGE_MONTH" name="TRANSFER_AGE_MONTH" ng-model="formData.TRANSFER_AGE_MONTH">
+                    <input required type="text" min="0" max="12" class="form-control" id="TRANSFER_AGE_MONTH" name="TRANSFER_AGE_MONTH" ng-model="formData.TRANSFER_AGE_MONTH" count ng-max="11">
                     <!--<span class="error text-small block" ng-if="form.TRANSFER_AGE_MONTH.$dirty && form.TRANSFER_AGE_MONTH.$invalid">{{requireNotificationPrefix}} {{'TRANSFER_AGE_MONTH'|translate}}</span>-->
                 </div>
             </div>
@@ -257,7 +257,7 @@
                         {{'RAI'|translate}}
                     </label>
                     <div class="col-sm-8">
-                        <input landarea type="text" placeholder="" class="form-control" id="RAI" name="RAI" ng-model="formData.RAI">
+                        <input  type="text" placeholder="" class="form-control" id="RAI" name="RAI" ng-model="formData.RAI" ng-model="formData.RAI" maxlength="22" ng-change="calLandArea()" format>
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -265,7 +265,7 @@
                         {{'NGAN'|translate}}
                     </label>
                     <div class="col-sm-8">
-                        <input landarea type="text" placeholder="" class="form-control" id="NGAN" name="NGAN" ng-model="formData.NGAN">
+                        <input  type="text" placeholder="" class="form-control" id="NGAN" name="NGAN" ng-model="formData.NGAN" ng-max="3" ng-change="calLandArea()" count>
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -273,7 +273,7 @@
                         {{'WA'|translate}}
                     </label>
                     <div class="col-sm-8">
-                        <input landarea type="text" placeholder="" class="form-control" id="WA" name="WA" ng-model="formData.WA">
+                        <input  type="text" placeholder="" class="form-control" id="WA" name="WA" ng-model="formData.WA" ng-max="99.99" ng-change="calLandArea()" format>
                     </div>
                 </div>
             </div>
@@ -283,7 +283,7 @@
                         {{'AREA_WA'|translate}}
                     </label>
                     <div class="col-sm-8">
-                        <input landarea type="text" placeholder="" class="form-control" id="AREA_WA" name="AREA_WA" ng-model="formData.AREA_WA">
+                        <input  type="text" placeholder="" class="form-control" id="AREA_WA" name="AREA_WA" ng-model="formData.AREA_WA" format>
                     </div>
                 </div>
             </div>
@@ -340,7 +340,7 @@
                 {{'CONSTRUCT_YEAR'|translate}}
             </label>
             <div ng-class="formControlCss">
-                <input type="number" class="form-control" id="CONSTRUCT_YEAR" name="CONSTRUCT_YEAR" ng-model="formData.CONSTRUCT_YEAR">
+                <input type="text" class="form-control" id="CONSTRUCT_YEAR" name="CONSTRUCT_YEAR" ng-model="formData.CONSTRUCT_YEAR">
             </div>
         </div>
         <div class="form-group">
@@ -348,7 +348,7 @@
                 {{'CONSTRUCT_AGE'|translate}}
             </label>
             <div ng-class="formControlCss">
-                <input type="number" class="form-control" id="CONSTRUCT_AGE" name="CONSTRUCT_AGE" ng-model="formData.CONSTRUCT_AGE">
+                <input type="text" class="form-control" id="CONSTRUCT_AGE" name="CONSTRUCT_AGE" ng-model="formData.CONSTRUCT_AGE">
             </div>
         </div>
         <div class="form-group">
