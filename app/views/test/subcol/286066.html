@@ -16,7 +16,7 @@
                 <i class="fa fa-bolt"></i> {{'ROOM_NO'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" placeholder="" class="form-control" id="ROOM_NO" name="ROOM_NO" ng-model="formData.ROOM_NO">
+                <input type="text" maxlength="30" placeholder="" class="form-control" id="ROOM_NO" name="ROOM_NO" ng-model="formData.ROOM_NO">
             </div>
         </div>
         <div class="form-group" ng-class="{'has-error':form.FLOOR_NO.$dirty && form.FLOOR_NO.$invalid}">
@@ -24,7 +24,7 @@
                 {{'FLOOR_NO'|translate}} <span class="symbol"></span>
             </label>
             <div class="col-sm-8">
-                <input numberonly type="text" class="form-control" id="FLOOR_NO" name="FLOOR_NO" ng-model="formData.FLOOR_NO">
+                <input numberonly type="text" maxlength="5" class="form-control" id="FLOOR_NO" name="FLOOR_NO" ng-model="formData.FLOOR_NO">
             </div>
         </div>
         <div class="form-group">
@@ -32,7 +32,7 @@
                 {{'BUILDING_NO'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" placeholder="" class="form-control" id="BUILDING_NO" name="BUILDING_NO" ng-model="formData.BUILDING_NO">
+                <input type="text" maxlength="20" placeholder="" class="form-control" id="BUILDING_NO" name="BUILDING_NO" ng-model="formData.BUILDING_NO">
             </div>
         </div>
         <div class="form-group">
@@ -40,7 +40,7 @@
                 {{'BUILDING_NAME'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" placeholder="" class="form-control" id="BUILDING_NAME" name="BUILDING_NAME" ng-model="formData.BUILDING_NAME">
+                <input type="text" maxlength="80" placeholder="" class="form-control" id="BUILDING_NAME" name="BUILDING_NAME" ng-model="formData.BUILDING_NAME">
             </div>
         </div>
         <div class="form-group">
@@ -48,7 +48,7 @@
                 {{'CONDO_NO'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" placeholder="" class="form-control" id="CONDO_NO" name="CONDO_NO" ng-model="formData.CONDO_NO">
+                <input type="text" maxlength="20" placeholder="" class="form-control" id="CONDO_NO" name="CONDO_NO" ng-model="formData.CONDO_NO">
             </div>
         </div>
         <div class="form-group">
@@ -56,7 +56,7 @@
                 {{'NO_OF_FLOOR'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" placeholder="" class="form-control" id="NO_OF_FLOOR" name="NO_OF_FLOOR" ng-model="formData.NO_OF_FLOOR">
+                <input type="text" maxlength="5" placeholder="" class="form-control" id="NO_OF_FLOOR" name="NO_OF_FLOOR" ng-model="formData.NO_OF_FLOOR">
             </div>
         </div>
         <div class="form-group">
@@ -64,7 +64,7 @@
                 สร้างอยู่บนโฉนดเลขที่
             </label>
             <div class="col-sm-8">
-                <input type="text" placeholder="" class="form-control" id="DEED_NO" name="DEED_NO" ng-model="formData.DEED_NO">
+                <input type="text" maxlength="100" placeholder="" class="form-control" id="DEED_NO" name="DEED_NO" ng-model="formData.DEED_NO">
             </div>
         </div>
         <div class="form-group">
@@ -72,7 +72,7 @@
                 {{'AREA_METER'|translate}}
             </label>
             <div class="col-sm-8">
-                <input usespace type="text" placeholder="" class="form-control" id="AREA_METER" name="AREA_METER" ng-model="formData.AREA_METER">
+                <input usespace type="text" maxlength="24" format placeholder="" class="form-control" id="AREA_METER" name="AREA_METER" ng-model="formData.AREA_METER">
             </div>
         </div>
         <div class="form-group">
@@ -80,7 +80,7 @@
                 {{'BALCONY_METER'|translate}}
             </label>
             <div class="col-sm-8">
-                <input usespace type="text" placeholder="" class="form-control" id="BALCONY_METER" name="BALCONY_METER" ng-model="formData.BALCONY_METER">
+                <input usespace type="text" maxlength="24" format placeholder="" class="form-control" id="BALCONY_METER" name="BALCONY_METER" ng-model="formData.BALCONY_METER">
             </div>
         </div>
         <div class="form-group">
@@ -133,7 +133,7 @@
                 {{'SUBDISTRICT_OLD'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" placeholder="" class="form-control" id="DEED_DISTRICT_OLD" name="DEED_DISTRICT_OLD" ng-model="formData.DEED_DISTRICT_OLD">
+                <input type="text" maxlength="100" placeholder="" class="form-control" id="DEED_DISTRICT_OLD" name="DEED_DISTRICT_OLD" ng-model="formData.DEED_DISTRICT_OLD">
             </div>
         </div>
         <fieldset class="no-radius">
@@ -141,7 +141,7 @@
             <div class="form-group">
                 <label  class="col-sm-4 control-label" for="APPR_CUR_OTHER_PRICE">ราคาต่อตารางเมตร (บาท)</label>
                 <div class="col-sm-8">
-                    <input format type="text" class="form-control" id="APPR_CUR_OTHER_PRICE" name="APPR_CUR_OTHER_PRICE" ng-model="formData.APPR_CUR_OTHER_PRICE" />
+                    <input format type="text" maxlength="17" class="form-control" id="APPR_CUR_OTHER_PRICE" name="APPR_CUR_OTHER_PRICE" ng-model="formData.APPR_CUR_OTHER_PRICE" />
                 </div>
             </div>
             <div class="form-group">
@@ -149,7 +149,7 @@
                     {{'APPR_CUR_LAND_AMOUNT'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input format type="text" class="form-control" ng-model="formData.APPR_CUR_OTHER_AMOUNT" />
+                    <input format type="text" maxlength="17" class="form-control" ng-model="formData.APPR_CUR_OTHER_AMOUNT" />
                 </div>
             </div>
             <div class="form-group">
@@ -157,7 +157,7 @@
                     {{'APPR_GOV_PRICE'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input format type="text" class="form-control" ng-model="formData.APPR_GOV_PRICE" />
+                    <input format type="text" maxlength="22" class="form-control" ng-model="formData.APPR_GOV_PRICE" />
                 </div>
             </div>
             <div class="form-group">
@@ -165,7 +165,7 @@
                     {{'APPR_GOV_AMOUNT'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input format type="text" class="form-control" ng-model="formData.APPR_GOV_AMOUNT" />
+                    <input format type="text" maxlength="17" class="form-control" ng-model="formData.APPR_GOV_AMOUNT" />
                 </div>
             </div>
         </fieldset>
@@ -181,7 +181,7 @@
                 {{'DEED_ADD_NO'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" placeholder="" class="form-control" id="DEED_ADD_NO" name="DEED_ADD_NO" ng-model="formData.DEED_ADD_NO">
+                <input type="text" maxlength="10" placeholder="" class="form-control" id="DEED_ADD_NO" name="DEED_ADD_NO" ng-model="formData.DEED_ADD_NO">
             </div>
         </div>
         <div class="form-group">
@@ -189,7 +189,7 @@
                 {{'DEED_ADD_MOO'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" placeholder="" class="form-control" id="DEED_ADD_MOO" name="DEED_ADD_MOO" ng-model="formData.DEED_ADD_MOO">
+                <input type="text" maxlength="5" placeholder="" class="form-control" id="DEED_ADD_MOO" name="DEED_ADD_MOO" ng-model="formData.DEED_ADD_MOO">
             </div>
         </div>
         <div class="form-group">
@@ -197,7 +197,7 @@
                 {{'DEED_ADD_BANN'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" placeholder="" class="form-control" id="DEED_ADD_BANN" name="DEED_ADD_BANN" ng-model="formData.DEED_ADD_BANN">
+                <input type="text" maxlength="100" placeholder="" class="form-control" id="DEED_ADD_BANN" name="DEED_ADD_BANN" ng-model="formData.DEED_ADD_BANN">
             </div>
         </div>
         <div class="form-group">
@@ -205,7 +205,7 @@
                 {{'SOI'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" placeholder="" class="form-control" id="DEED_ADD_SOI" name="DEED_ADD_SOI" ng-model="formData.DEED_ADD_SOI">
+                <input type="text" maxlength="50" placeholder="" class="form-control" id="DEED_ADD_SOI" name="DEED_ADD_SOI" ng-model="formData.DEED_ADD_SOI">
             </div>
         </div>
         <div class="form-group">
@@ -213,7 +213,7 @@
                 {{'ROAD'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" placeholder="" class="form-control" id="DEED_ADD_ROAD" name="DEED_ADD_ROAD" ng-model="formData.DEED_ADD_ROAD">
+                <input type="text" maxlength="50" placeholder="" class="form-control" id="DEED_ADD_ROAD" name="DEED_ADD_ROAD" ng-model="formData.DEED_ADD_ROAD">
             </div>
         </div>
         <div class="form-group">
