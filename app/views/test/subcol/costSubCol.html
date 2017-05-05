@@ -21,14 +21,14 @@
             <tbody>
                 <tr ng-repeat="cost in subcolCost">
                     <td>{{cost.DETAIL}}</td>
-                    <td><input type="number" ng-model="cost.AREA" class="form-control input-sm center" ng-change="calSubColCost(cost)" /></td>
-                    <td><input type="number" ng-model="cost.UNITPRICE" class="form-control input-sm center" ng-change="calSubColCost(cost)" /></td>
+                    <td><input type="text" format maxlength="24" ng-model="cost.AREA" class="form-control input-sm center" ng-change="calSubColCost(cost)" /></td>
+                    <td><input type="text" format maxlength="24" ng-model="cost.UNITPRICE" class="form-control input-sm center" ng-change="calSubColCost(cost)" /></td>
 
                     <td class="text-right">{{cost.TOTALPRICE|number:2}}</td>
 
-                    <td><input type="number" ng-model="cost.AGE" class="form-control input-sm center" ng-change="calSubColCost(cost)" /></td>
+                    <td><input type="text" format maxlength="24" ng-model="cost.AGE" class="form-control input-sm center" ng-change="calSubColCost(cost)" /></td>
                     <td></td>
-                    <td><input type="number" min="0" max="100" ng-model="cost.DEPLICIATIONPERCENT" class="form-control input-sm center" ng-change="calSubColCost(cost)" /></td>
+                    <td><input type="text" format maxlength="24" min="0" ng-max="100" ng-model="cost.DEPLICIATIONPERCENT" class="form-control input-sm center" ng-change="calSubColCost(cost)" /></td>
 
                     <td class="text-right">{{cost.DEPLICIATIONPRICE|number:2}}</td>
                     <td class="text-right">{{cost.AFTERDEPLICIATIONPRICE|number:2}}</td>
