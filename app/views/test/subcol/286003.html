@@ -3,13 +3,13 @@
         <h5 class="panel-title">ข้อมูลที่ดิน</h5>
     </div>
     <div class="panel-body">
-        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.COL_NO.$dirty && form.COL_NO.$invalid, 'has-success':form.COL_NO.$dirty && form.COL_NO.$valid}">
+        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.COL_NO.$dirty && form.COL_NO.$invalid, 'has-success':form.COL_NO.$dirty && form.COL_NO.$valid}" >
             <label class="col-sm-4 control-label" for="COL_NO">
                 <i class="fa fa-bolt"></i> {{'COL_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
             </label>
             <div class="col-sm-8">
-                <input ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" type="text" placeholder="" class="form-control" id="COL_NO" name="COL_NO" ng-model="formData.COL_NO">
-                <span class="error text-small block" ng-if="form.COL_NO.$dirty && form.COL_NO.$invalid">{{requireNotificationPrefix}} {{'COL_NO'|translate}}</span>
+                <input ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" type="text" placeholder="" class="form-control" id="COL_NO" name="COL_NO" ng-model="formData.COL_NO" maxlength="5">
+                <span class="error text-small block" ng-if="form.COL_NO.$dirty && form.COL_NO.$invalid" >{{requireNotificationPrefix}} {{'COL_NO'|translate}}</span>
             </div>
         </div>
         <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.RAWANG.$dirty && form.RAWANG.$invalid, 'has-success':form.RAWANG.$dirty && form.RAWANG.$valid}">
@@ -98,7 +98,7 @@
                 {{'RAI'|translate}}<span class="symbol" ng-hide="!displayAllFiled"></span>
             </label>
             <div class="col-sm-8">
-                <input type="number" step="1" min="0" ng-change="calLandArea()" ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" class="form-control" id="RAI" name="RAI" ng-model="formData.RAI">
+                <input type="text" step="1" min="0" ng-change="calLandArea()" ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" class="form-control" id="RAI" name="RAI" ng-model="formData.RAI" count>
                 <!--<span class="error text-small block" ng-if="form.RAI.$dirty && form.RAI.$invalid">{{requireNotificationPrefix}} {{'RAI'|translate}}</span>-->
             </div>
         </div>
@@ -107,16 +107,16 @@
                 {{'NGAN'|translate}}<span class="symbol" ng-hide="!displayAllFiled"></span>
             </label>
             <div class="col-sm-8">
-                <input type="number" step="1" min="0" ng-change="calLandArea()" ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" class="form-control" id="NGAN" name="NGAN" ng-model="formData.NGAN">
+                <input type="text" step="1" min="0" ng-max="3" ng-change="calLandArea()" ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" class="form-control" id="NGAN" name="NGAN" ng-model="formData.NGAN" count>
                 <!--<span class="error text-small block" ng-if="form.NGAN.$dirty && form.NGAN.$invalid">{{requireNotificationPrefix}} {{'NGAN'|translate}}</span>-->
             </div>
         </div>
         <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.WA.$dirty && form.WA.$invalid}">
-            <label class="col-sm-4 control-label" for="WA">
+            <label class="col-sm-4 control-label" for="WA" >
                 {{'WA'|translate}}<span class="symbol" ng-hide="!displayAllFiled"></span>
             </label>
             <div class="col-sm-8">
-                <input type="number" step="1" min="0" ng-change="calLandArea()" ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" class="form-control" id="WA" name="WA" ng-model="formData.WA">
+                <input type="text" step="1" min="0" ng-max="99.99" ng-change="calLandArea()" ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" class="form-control" id="WA" name="WA" ng-model="formData.WA" format>
                 <!--<span class="error text-small block" ng-if="form.WA.$dirty && form.WA.$invalid">{{requireNotificationPrefix}} {{'WA'|translate}}</span>-->
             </div>
         </div>
