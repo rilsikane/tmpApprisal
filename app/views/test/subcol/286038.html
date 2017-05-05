@@ -9,7 +9,7 @@
                     {{'REGIS_NO'|translate}}<span class="symbol required"></span>
                 </label>
                 <div ng-class="formControlCss">
-                    <input required type="text" placeholder="" class="form-control" id="REGIS_NO" name="REGIS_NO" ng-model="formData.REGIS_NO">
+                    <input required type="text" maxlength="30" placeholder="" class="form-control" id="REGIS_NO" name="REGIS_NO" ng-model="formData.REGIS_NO">
                     <span class="error text-small block" ng-if="form.REGIS_NO.$dirty && form.REGIS_NO.$invalid">{{requireNotificationPrefix}} {{'REGIS_NO'|translate}}</span>
                 </div>
             </div>
@@ -118,7 +118,7 @@
                     {{'HORSE_POWER'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input count type="text" class="form-control" id="HORSE_POWER" name="HORSE_POWER" ng-model="formData.HORSE_POWER">
+                    <input count type="text" maxlength="10" class="form-control" id="HORSE_POWER" name="HORSE_POWER" ng-model="formData.HORSE_POWER">
                 </div>
             </div>
             <div class="form-group">
@@ -126,7 +126,7 @@
                     {{'CHASSIS_NO'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text" placeholder="" class="form-control" id="CHASSIS_NO" name="CHASSIS_NO" ng-model="formData.CHASSIS_NO">
+                    <input type="text" placeholder="" maxlength="50" class="form-control" id="CHASSIS_NO" name="CHASSIS_NO" ng-model="formData.CHASSIS_NO">
                 </div>
             </div>
             <div class="form-group">
@@ -134,7 +134,7 @@
                     {{'ENGINE_NO'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text" placeholder="" class="form-control" id="ENGINE_NO" name="ENGINE_NO" ng-model="formData.ENGINE_NO">
+                    <input type="text" placeholder="" maxlength="50" class="form-control" id="ENGINE_NO" name="ENGINE_NO" ng-model="formData.ENGINE_NO">
                 </div>
             </div>
             <div class="form-group">
@@ -142,7 +142,7 @@
                     {{'COLOR'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text" placeholder="" class="form-control" id="COLOR" name="COLOR" ng-model="formData.COLOR">
+                    <input type="text" placeholder="" maxlength="30" class="form-control" id="COLOR" name="COLOR" ng-model="formData.COLOR">
                 </div>
             </div>
         </fieldset>
@@ -155,7 +155,7 @@
                             {{'YEAR'|translate}}<span class="symbol required"></span>
                         </label>
                         <div ng-class="formControlCss">
-                            <input type="number" required class="form-control" id="AGE_STD_YEAR" name="AGE_STD_YEAR" ng-model="formData.AGE_STD_YEAR">
+                            <input type="text" count maxlength="22" required class="form-control" id="AGE_STD_YEAR" name="AGE_STD_YEAR" ng-model="formData.AGE_STD_YEAR">
                             <span class="error text-small block" ng-if="form.AGE_STD_YEAR.$dirty && form.AGE_STD_YEAR.$invalid">{{requireNotificationPrefix}} {{'AGE_STD'|translate}}</span>
                         </div>
                     </div>
@@ -164,7 +164,7 @@
                             {{'MONTH'|translate}}<span class="symbol required"></span>
                         </label>
                         <div ng-class="formControlCss">
-                            <input type="number" min="0" max="12" required class="form-control" id="AGE_STD_MONTH" name="AGE_STD_MONTH" ng-model="formData.AGE_STD_MONTH">
+                            <input type="text" count maxlength="22" min="0" ng-max="12" required class="form-control" id="AGE_STD_MONTH" name="AGE_STD_MONTH" ng-model="formData.AGE_STD_MONTH">
                             <span class="error text-small block" ng-if="form.AGE_STD_YEAR.$dirty && form.AGE_STD_YEAR.$invalid">{{requireNotificationPrefix}} {{'AGE_STD'|translate}}</span>
                         </div>
                     </div>
@@ -179,7 +179,7 @@
                             {{'YEAR'|translate}}<span class="symbol required"></span>
                         </label>
                         <div ng-class="formControlCss">
-                            <input type="number" required class="form-control" id="AGE_YEAR" name="AGE_YEAR" ng-model="formData.AGE_YEAR">
+                            <input type="text" count maxlength="22" required class="form-control" id="AGE_YEAR" name="AGE_YEAR" ng-model="formData.AGE_YEAR">
                             <span class="error text-small block" ng-if="form.AGE_YEAR.$dirty && form.AGE_YEAR.$invalid">{{requireNotificationPrefix}} {{'AGE_USAGE_REM'|translate}}</span>
                         </div>
                     </div>
@@ -188,7 +188,7 @@
                             {{'MONTH'|translate}}<span class="symbol required"></span>
                         </label>
                         <div ng-class="formControlCss">
-                            <input type="number" min="0" max="12" required class="form-control" id="AGE_MONTH" name="AGE_MONTH" ng-model="formData.AGE_MONTH">
+                            <input type="text" count maxlength="22" min="0" ng-max="12" required class="form-control" id="AGE_MONTH" name="AGE_MONTH" ng-model="formData.AGE_MONTH">
                             <span class="error text-small block" ng-if="form.AGE_YEAR.$dirty && form.AGE_YEAR.$invalid">{{requireNotificationPrefix}} {{'AGE_USAGE_REM'|translate}}</span>
                         </div>
                     </div>
@@ -203,7 +203,7 @@
                             {{'YEAR'|translate}}
                         </label>
                         <div ng-class="formControlCss">
-                            <input type="number" class="form-control" id="ES_SALE_YEAR" name="ES_SALE_YEAR" ng-model="formData.ES_SALE_YEAR" />
+                            <input type="text" count maxlength="22" class="form-control" id="ES_SALE_YEAR" name="ES_SALE_YEAR" ng-model="formData.ES_SALE_YEAR" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -211,7 +211,7 @@
                             {{'MONTH'|translate}}
                         </label>
                         <div ng-class="formControlCss">
-                            <input type="number" min="0" max="12" class="form-control" id="ES_SALE_MONTH" name="ES_SALE_MONTH" ng-model="formData.ES_SALE_MONTH" />
+                            <input type="text" count maxlength="22" min="0" ng-max="12" class="form-control" id="ES_SALE_MONTH" name="ES_SALE_MONTH" ng-model="formData.ES_SALE_MONTH" />
                         </div>
                     </div>
                 </fieldset>
