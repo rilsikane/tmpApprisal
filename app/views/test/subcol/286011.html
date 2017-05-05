@@ -117,7 +117,7 @@
                 {{'MACHINE_USAGE'|translate}}
             </label>
             <div ng-class="formControlCss">
-                <input type="text" placeholder="" class="form-control" id="MACHINE_USAGE" name="MACHINE_USAGE" ng-model="formData.MACHINE_USAGE">
+                <input type="text" maxlength="300" placeholder="" class="form-control" id="MACHINE_USAGE" name="MACHINE_USAGE" ng-model="formData.MACHINE_USAGE">
             </div>
         </div>
         <div class="form-group">
@@ -125,7 +125,7 @@
                 {{'MACHINE_SIZE'|translate}}
             </label>
             <div ng-class="formControlCss">
-                <input type="text" placeholder="" class="form-control" id="MACHINE_SIZE" name="MACHINE_SIZE" ng-model="formData.MACHINE_SIZE">
+                <input type="text" maxlength="50" placeholder="" class="form-control" id="MACHINE_SIZE" name="MACHINE_SIZE" ng-model="formData.MACHINE_SIZE">
             </div>
         </div>
         <div class="form-group">
@@ -133,7 +133,7 @@
                 ขนาดความสามารถ (เกวียน/วัน,เกวียน/ลิตร)
             </label>
             <div ng-class="formControlCss">
-                <input type="text" class="form-control" id="MACHINE_VOLUME" name="MACHINE_VOLUME" ng-model="formData.MACHINE_VOLUME">
+                <input type="text" maxlength="50" class="form-control" id="MACHINE_VOLUME" name="MACHINE_VOLUME" ng-model="formData.MACHINE_VOLUME">
             </div>
         </div>
         <div class="form-group">
@@ -227,7 +227,7 @@
             </label>
             <div ng-class="formControlCss">
                 <div class="col-sm-3 no-padding">
-                    <input type="number" min="0" class="form-control" id="AGE_USED_YEAR" name="AGE_USED_YEAR" ng-model="formData.AGE_USED_YEAR">
+                    <input type="text" count maxlength="24" min="0" class="form-control" id="AGE_USED_YEAR" name="AGE_USED_YEAR" ng-model="formData.AGE_USED_YEAR">
                 </div>
                 <div class="col-sm-1">
                     <label class="control-label">{{'YEAR'|translate}}</label>
@@ -240,13 +240,13 @@
             </label>
             <div ng-class="formControlCss">
                 <div class="col-sm-3 no-padding">
-                    <input required type="text" placeholder="" class="form-control" id="AGE_STD_YEAR" name="AGE_STD_YEAR" ng-model="formData.AGE_STD_YEAR">
+                    <input required type="text" count maxlength="22" placeholder="" class="form-control" id="AGE_STD_YEAR" name="AGE_STD_YEAR" ng-model="formData.AGE_STD_YEAR">
                 </div>
                 <div class="col-sm-1">
                     <label class="control-label">{{'YEAR'|translate}}</label>
                 </div>
                 <div class="col-sm-3">
-                    <input type="number" min="0" max="11" class="form-control" id="AGE_STD_MONTH" name="AGE_STD_MONTH" ng-model="formData.AGE_STD_MONTH">
+                    <input type="text" count maxlength="22" min="0" ng-max="11" class="form-control" id="AGE_STD_MONTH" name="AGE_STD_MONTH" ng-model="formData.AGE_STD_MONTH">
                 </div>
                 <div class="col-sm-1">
                     <label class="control-label">{{'MONTH'|translate}}</label>
@@ -260,13 +260,13 @@
             </label>
             <div ng-class="formControlCss">
                 <div class="col-sm-3 no-padding">
-                    <input required type="number" min="0" class="form-control" id="AGE_YEAR" name="AGE_YEAR" ng-model="formData.AGE_YEAR">
+                    <input required type="text" count maxlength="22" min="0" class="form-control" id="AGE_YEAR" name="AGE_YEAR" ng-model="formData.AGE_YEAR">
                 </div>
                 <div class="col-sm-1">
                     <label class="control-label">{{'YEAR'|translate}}</label>
                 </div>
                 <div class="col-sm-3">
-                    <input type="number" min="0" max="11" class="form-control" id="AGE_MONTH" name="AGE_MONTH" ng-model="formData.AGE_MONTH">
+                    <input type="text" count maxlength="22" min="0" ng-max="11" class="form-control" id="AGE_MONTH" name="AGE_MONTH" ng-model="formData.AGE_MONTH">
                 </div>
                 <div class="col-sm-1">
                     <label class="control-label">{{'MONTH'|translate}}</label>
@@ -280,13 +280,13 @@
             </label>
             <div ng-class="formControlCss">
                 <div class="col-sm-3 no-padding">
-                    <input type="number" min="0" class="form-control" id="ES_SALE_YEAR" name="ES_SALE_YEAR" ng-model="formData.ES_SALE_YEAR">
+                    <input type="text" count maxlength="22" min="0" class="form-control" id="ES_SALE_YEAR" name="ES_SALE_YEAR" ng-model="formData.ES_SALE_YEAR">
                 </div>
                 <div class="col-sm-1">
                     <label class="control-label">{{'YEAR'|translate}}</label>
                 </div>
                 <div class="col-sm-3">
-                    <input type="number" min="0" max="11" class="form-control" id="ES_SALE_MONTH" name="ES_SALE_MONTH" ng-model="formData.ES_SALE_MONTH">
+                    <input type="text" count maxlength="22" min="0" ng-max="11" class="form-control" id="ES_SALE_MONTH" name="ES_SALE_MONTH" ng-model="formData.ES_SALE_MONTH">
                 </div>
                 <div class="col-sm-1">
                     <label class="control-label" for="ES_SALE_MONTH">
