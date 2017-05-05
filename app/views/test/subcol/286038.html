@@ -44,12 +44,12 @@
                     </ui-select>
                 </div>
             </div>
-            <div class="form-group" ng-class="{'has-error':form.REGIS_PROVINCE.$dirty && form.REGIS_PROVINCE.$viewValue==undefined, 'has-success':form.REGIS_PROVINCE.$viewValue!=undefined}">
+            <div class="form-group" ng-class="{'has-error':form.REGIS_PROVINCE.$dirty && (form.REGIS_PROVINCE.$viewValue.PROV_ID==undefined||form.REGIS_PROVINCE.$viewValue.PROV_ID==''), 'has-success':form.REGIS_PROVINCE.$viewValue.PROV_ID!=undefined && form.REGIS_PROVINCE.$viewValue.PROV_ID!=''}">
                 <label ng-class="labelControlCss" for="REGIS_PROVINCE">
                     {{'REGIS_PROVINCE'|translate}}<span class="symbol required"></span>
                 </label>
                 <div ng-class="formControlCss">
-                    <ui-select ng-required theme="selectize" ng-model="formData.REGIS_PROVINCE" id="REGIS_PROVINCE" name="REGIS_PROVINCE">
+                    <ui-select required theme="selectize" ng-model="formData.REGIS_PROVINCE" id="REGIS_PROVINCE" name="REGIS_PROVINCE">
                         <ui-select-match placeholder="">
                             {{$select.selected.PROV_NAME}}
                         </ui-select-match>
@@ -155,7 +155,7 @@
                             {{'YEAR'|translate}}<span class="symbol required"></span>
                         </label>
                         <div ng-class="formControlCss">
-                            <input type="text" count maxlength="22" required class="form-control" id="AGE_STD_YEAR" name="AGE_STD_YEAR" ng-model="formData.AGE_STD_YEAR">
+                            <input required type="text" count maxlength="22"  class="form-control" id="AGE_STD_YEAR" name="AGE_STD_YEAR" ng-model="formData.AGE_STD_YEAR">
                             <span class="error text-small block" ng-if="form.AGE_STD_YEAR.$dirty && form.AGE_STD_YEAR.$invalid">{{requireNotificationPrefix}} {{'AGE_STD'|translate}}</span>
                         </div>
                     </div>
@@ -277,7 +277,7 @@
                 {{'INSURED_AMT'|translate}}
             </label>
             <div ng-class="formControlCss">
-                <input price type="text" placeholder="" class="form-control" id="INSURED_AMT" name="INSURED_AMT" ng-model="formData.INSURED_AMT">
+                <input count type="text" placeholder="" class="form-control" id="INSURED_AMT" name="INSURED_AMT" ng-model="formData.INSURED_AMT">
             </div>
         </div>
         <div class="form-group">
