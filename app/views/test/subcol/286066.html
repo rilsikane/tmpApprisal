@@ -592,7 +592,7 @@
                     {{'ROAD_WIDTH'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input type="number" min="0" class="form-control" id="ROAD_WIDTH" name="ROAD_WIDTH" ng-model="formData.ROAD_WIDTH">
+                    <input type="text" format maxlength="24" min="0" class="form-control" id="ROAD_WIDTH" name="ROAD_WIDTH" ng-model="formData.ROAD_WIDTH">
                 </div>
             </div>
             <div class="form-group">
@@ -600,7 +600,7 @@
                     {{'LANE_NO'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input type="number" min="0" class="form-control" id="LANE_NO" name="LANE_NO" ng-model="formData.LANE_NO">
+                    <input type="text" format maxlength="24" min="0" class="form-control" id="LANE_NO" name="LANE_NO" ng-model="formData.LANE_NO">
                 </div>
             </div>
             <div class="form-group">
@@ -608,7 +608,7 @@
                     {{'LANE_WIDTH'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input type="number" min="0" class="form-control" id="LANE_WIDTH" name="LANE_WIDTH" ng-model="formData.LANE_WIDTH">
+                    <input type="text" format maxlength="24" min="0" class="form-control" id="LANE_WIDTH" name="LANE_WIDTH" ng-model="formData.LANE_WIDTH">
                 </div>
             </div>
             <div class="form-group">
@@ -616,7 +616,7 @@
                     {{'WAY_WIDTH'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input type="number" min="0" class="form-control" id="WAY_WIDTH" name="WAY_WIDTH" ng-model="formData.WAY_WIDTH">
+                    <input type="text" format maxlength="24" min="0" class="form-control" id="WAY_WIDTH" name="WAY_WIDTH" ng-model="formData.WAY_WIDTH">
                 </div>
             </div>
             <div class="form-group">
@@ -1146,7 +1146,7 @@
                 {{'CONSTRUCT_YEAR'|translate}} <span class="symbol"></span>
             </label>
             <div class="col-sm-8">
-                <input numberonly type="text" ng-minlength="4" ng-maxlength="4" class="form-control" id="CONSTRUCT_YEAR" name="CONSTRUCT_YEAR" ng-model="formData.CONSTRUCT_YEAR">
+                <input numberonly type="text" minlength="4" maxlength="4" class="form-control" id="CONSTRUCT_YEAR" name="CONSTRUCT_YEAR" ng-model="formData.CONSTRUCT_YEAR">
             </div>
         </div>
         <div class="form-group">
@@ -1154,7 +1154,7 @@
                 {{'CONSTRUCT_AGE'|translate}}
             </label>
             <div class="col-sm-8">
-                <input numberonly type="text" class="form-control" id="CONSTRUCT_AGE" name="CONSTRUCT_AGE" ng-model="formData.CONSTRUCT_AGE">
+                <input format type="text" maxlength="10" class="form-control" id="CONSTRUCT_AGE" name="CONSTRUCT_AGE" ng-model="formData.CONSTRUCT_AGE">
             </div>
         </div>
     </div>
