@@ -186,7 +186,7 @@
             <div ng-class="formControlCss">
                 <div ng-repeat="item in radioYN" class="col-sm-3">
                     <div class="radio clip-radio radio-primary form-group">
-                        <input type="radio" name="MARKET_NEED" ng-value="item.VALUE" ng-model="formData.MARKET_NEED" id="MARKET_NEED{{item.VALUE}}" />
+                        <input required type="radio" name="MARKET_NEED" ng-value="item.VALUE" ng-model="formData.MARKET_NEED" id="MARKET_NEED{{item.VALUE}}" />
                         <label for="MARKET_NEED{{item.VALUE}}">{{ item.NAME }}</label>
                     </div>
                 </div>
