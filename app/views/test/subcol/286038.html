@@ -14,6 +14,22 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-sm-4 control-label" for="SURVEY_APPR_DATE">
+                    {{'SURVEY_APPR_DATE'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.SURVEY_APPR_DATE" ng-click="openDatePicker($event,'SURVEY_APPR_DATE')" type="text" class="form-control" ng-model="formData.SURVEY_APPR_DATE" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="APPR_CUR_OTHER_AMOUNT">
+                    ราคาประเมินหลักทรัพย์ (บาท)
+                </label>
+                <div class="col-sm-8">
+                    <input format type="text" class="form-control" ng-model="formData.APPR_CUR_OTHER_AMOUNT" id="APPR_CUR_OTHER_AMOUNT" name="APPR_CUR_OTHER_AMOUNT" />
+                </div>
+            </div>
+            <div class="form-group">
                 <label ng-class="labelControlCss" for="REGIS_DATE">
                     {{'REGIS_DATE'|translate}}
                 </label>
@@ -145,6 +161,18 @@
                     <input type="text" placeholder="" maxlength="30" class="form-control" id="COLOR" name="COLOR" ng-model="formData.COLOR">
                 </div>
             </div>
+            <div class="form-group" ng-class="{'has-error':form.MARKET_NEED.$dirty && form.MARKET_NEED.$viewValue==undefined, 'has-success':form.MARKET_NEED.$viewValue!=undefined}">
+                <label ng-class="labelControlCss">
+                    {{'MARKET_NEED'|translate}}<span class="symbol required"></span>
+                </label>
+                <div ng-class="formControlCss">
+                    <div ng-repeat="item in radioYN" class="radio clip-radio radio-primary radio-inline">
+                        <input required type="radio" name="MARKET_NEED" ng-value="item.VALUE" ng-model="formData.MARKET_NEED" id="MARKET_NEED{{item.VALUE}}" />
+                        <label for="MARKET_NEED{{item.VALUE}}">{{ item.NAME }}</label>
+                    </div>
+                    <span class="error text-small block" ng-if="form.MARKET_NEED.$dirty && form.MARKET_NEED.$viewValue==undefined">{{requireNotificationPrefix}} {{'MARKET_NEED'|translate}}</span>
+                </div>
+            </div>
         </fieldset>
         <div class="form-group">
             <div class="col-sm-4">
@@ -168,7 +196,7 @@
                             <span class="error text-small block" ng-if="form.AGE_STD_YEAR.$dirty && form.AGE_STD_YEAR.$invalid">{{requireNotificationPrefix}} {{'AGE_STD'|translate}}</span>
                         </div>
                     </div>
-                    
+
                 </fieldset>
             </div>
             <div class="col-sm-4">
@@ -192,7 +220,7 @@
                             <span class="error text-small block" ng-if="form.AGE_YEAR.$dirty && form.AGE_YEAR.$invalid">{{requireNotificationPrefix}} {{'AGE_USAGE_REM'|translate}}</span>
                         </div>
                     </div>
-                    
+
                 </fieldset>
             </div>
             <div class="col-sm-4">
@@ -217,8 +245,7 @@
                 </fieldset>
             </div>
         </div>
-
-        <fieldset class="no-radius">
+        <!--<fieldset class="no-radius">
             <legend></legend>
             <div class="form-group" ng-class="{'has-error':form.APPR_CUR_NET_TOTAL.$dirty && form.APPR_CUR_NET_TOTAL.$invalid, 'has-success':form.APPR_CUR_NET_TOTAL.$valid}">
                 <label ng-class="labelControlCss" for="APPR_CUR_NET_TOTAL">
@@ -241,7 +268,7 @@
                     <span class="error text-small block" ng-if="form.MARKET_NEED.$dirty && form.MARKET_NEED.$viewValue==undefined">{{requireNotificationPrefix}} {{'MARKET_NEED'|translate}}</span>
                 </div>
             </div>
-        </fieldset>
+        </fieldset>-->
 
     </div>
 </div>
@@ -261,7 +288,6 @@
                         <label for="IS_INSURANCE{{item.VALUE}}">{{ item.NAME }}</label>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="form-group">
@@ -311,7 +337,9 @@
                 </ui-select>
             </div>
         </div>
-
     </div>
 </div>
-
+<fieldset class="no-radius">
+    <legend>{{'REMARK'|translate}}</legend>
+    <textarea class="form-control" id="REMARK" name="REMARK" style="max-width:100%;" ng-model="formData.REMARK"></textarea>
+</fieldset>

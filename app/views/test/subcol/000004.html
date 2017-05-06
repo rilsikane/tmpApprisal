@@ -1,0 +1,125 @@
+﻿<div class="panel panel-white">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">เช่าอาคาร สำนักงาน</h5>
+    </div>
+    <div class="panel-body">
+        <fieldset class="no-radius">
+            <legend>ใบอนุญาตปลูกสร้างอาคาร</legend>
+            <table class="table table-bordered table-hover" id="sample-table-4">
+                <thead>
+                    <tr>
+                        <th class="col-md-2">{{'PERMIT_LICENSE_CNT'|translate}}</th>
+                        <th class="col-md-3">{{'PERMIT_LICENSE'|translate}}</th>
+                        <th class="col-md-2">{{'PERMIT_YEAR'|translate}}</th>
+                        <th class="col-md-2">{{'PERMIT_START'|translate}}</th>
+                        <th class="col-md-2">{{'PERMIT_END'|translate}}</th>
+                        <th class="col-md-1">
+                            <button type="button" class="btn btn-primary" ng-click="addRentPermit()">
+                                <i class="ti-plus"></i> {{'BUTTON.ADD'|translate}}
+                            </button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in formData.RENT_PERMIT" ng-if="!item.DELETE">
+                        <td>{{item.PERMIT_LICENSE_CNT}}</td>
+                        <td>{{item.PERMIT_LICENSE}}</td>
+                        <td>{{item.PERMIT_YEAR}}</td>
+                        <td>{{item.PERMIT_START | date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.PERMIT_END | date:'dd/MM/yyyy'}}</td>
+                        <td class="center">
+                            <div class="visible-md visible-lg hidden-sm hidden-xs">
+                                <a href="#" ng-click="modRentPermit(item)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i class="fa fa-pencil"></i></a>
+                                <a href="#" ng-click="delRentPermit(item)" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i class="fa fa-times fa fa-white"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+        
+        <fieldset class="no-radius">
+            <legend>ข้อมูลอาคาร</legend>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="PROJECT_NAME">
+                    {{'PROJECT_NAME'|translate}}
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" placeholder="" class="form-control" id="PROJECT_NAME" name="PROJECT_NAME" ng-model="formData.PROJECT_NAME">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="FLOOR_NO">
+                    {{'FLOOR_NO'|translate}}
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" placeholder="" class="form-control" id="FLOOR_NO" name="FLOOR_NO" ng-model="formData.FLOOR_NO">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="AREA_METER">
+                    ขนาดพื้นที่ (ตร.ม.)
+                </label>
+                <div class="col-sm-9">
+                    <input usespace type="text" class="form-control" id="AREA_METER" name="AREA_METER" ng-model="formData.AREA_METER">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="USAGE_AREA">
+                    พื้นที่ใช้สอย (ตร.ม.)
+                </label>
+                <div class="col-sm-9">
+                    <input usespace type="text" class="form-control" id="USAGE_AREA" name="USAGE_AREA" ng-model="formData.USAGE_AREA">
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="no-radius">
+            <legend>ข้อมูลแบบแปลนอาคารที่ใช้</legend>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="EVALUATE_PLAN">
+                    แบบแปลนที่ใช้ประเมิน
+                </label>
+                <div class="col-sm-9">
+                    <ui-select theme="selectize" ng-model="formData.EVALUATE_PLAN" id="EVALUATE_PLAN" name="EVALUATE_PLAN">
+                        <ui-select-match>
+                            {{$select.selected.NAME}} {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in EVALUATE_PLAN | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="ONST_COMPLETE">
+                    ความสมบูรณ์ในการก่อสร้าง
+                </label>
+                <div class="col-sm-9">
+                    <ui-select theme="selectize" ng-model="formData.ONST_COMPLETE" id="ONST_COMPLETE" name="ONST_COMPLETE">
+                        <ui-select-match>
+                            {{$select.selected.NAME}} {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in ONST_COMPLETE | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="SURVEY_CHKBUILD">
+                    การเข้าสำรวจตรวจสอบอาคาร
+                </label>
+                <div class="col-sm-9">
+                    <ui-select theme="selectize" ng-model="formData.SURVEY_CHKBUILD" id="SURVEY_CHKBUILD" name="SURVEY_CHKBUILD">
+                        <ui-select-match>
+                            {{$select.selected.NAME}} {{$select.selected.NAME}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in SURVEY_CHKBUILD | filter: $select.search">
+                            <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

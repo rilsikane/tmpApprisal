@@ -16,7 +16,7 @@
                 ราคาต้นทุนทดแทนใหม่ (บาท/หน่วย)
             </label>
             <div class="col-sm-8">
-                <input format maxlength="24" type="text" class="form-control" ng-model="formData.REPLACEMENT_COST"/>
+                <input format maxlength="24" type="text" class="form-control" ng-model="formData.REPLACEMENT_COST" />
             </div>
         </div>
         <div class="form-group" ng-class="{'has-error':form.APPR_CUR_NET_TOTAL.$dirty && form.APPR_CUR_NET_TOTAL.$invalid, 'has-success':form.APPR_CUR_NET_TOTAL.$valid}">
@@ -251,7 +251,6 @@
                 <div class="col-sm-1">
                     <label class="control-label">{{'MONTH'|translate}}</label>
                 </div>
-
             </div>
         </div>
         <div class="form-group" ng-class="{'has-error':(form.AGE_YEAR.$dirty && form.AGE_YEAR.$invalid)||(form.AGE_MONTH.$dirty && form.AGE_MONTH.$invalid), 'has-success':form.AGE_YEAR.$valid && form.AGE_MONTH.$valid}">
@@ -273,7 +272,6 @@
                 </div>
             </div>
         </div>
-
         <div class="form-group" ng-class="{'has-error':form.ES_SALE_MONTH.$invalid}">
             <label ng-class="labelControlCss" for="ES_SALE_YEAR">
                 {{'ES_SALE'|translate}}<span class="symbol"></span>

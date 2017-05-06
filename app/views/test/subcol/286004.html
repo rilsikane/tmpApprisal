@@ -153,7 +153,6 @@
         </fieldset>
     </div>
 </div>
-
 <div class="panel panel-white">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ที่ตั้ง</h5>
@@ -204,11 +203,11 @@
                 {{'PROVINCE'|translate}}
             </label>
             <div class="col-sm-8">
-                <ui-select theme="selectize" ng-model="formData.DEED_PROVINCE" id="DEED_PROVINCE" name="DEED_PROVINCE" on-select="getDistrict($item,$model)">
+                <ui-select theme="selectize" ng-model="formData.DEED_PROVINCE" id="DEED_PROVINCE" name="DEED_PROVINCE" on-select="getDistrictDOL($item,$model)">
                     <ui-select-match placeholder="">
                         {{$select.selected.PROV_NAME}}
                     </ui-select-match>
-                    <ui-select-choices repeat="item in selectProvince | filter: $select.search">
+                    <ui-select-choices repeat="item in selectProvinceDOL | filter: $select.search">
                         <div ng-bind-html="item.PROV_NAME | highlight: $select.search"></div>
                     </ui-select-choices>
                 </ui-select>
@@ -219,11 +218,11 @@
                 {{'DISTRICT'|translate}}
             </label>
             <div class="col-sm-8">
-                <ui-select theme="selectize" ng-model="formData.DEED_CITY" id="DEED_CITY" name="DEED_CITY" on-select="getSubDistrict($item,$model)">
+                <ui-select theme="selectize" ng-model="formData.DEED_CITY" id="DEED_CITY" name="DEED_CITY" on-select="getSubDistrictDOL($item,$model)">
                     <ui-select-match placeholder="">
                         {{$select.selected.CITY}}
                     </ui-select-match>
-                    <ui-select-choices repeat="item in selectDistrict | filter: $select.search">
+                    <ui-select-choices repeat="item in selectDistrictDOL | filter: $select.search">
                         <div ng-bind-html="item.CITY | highlight: $select.search"></div>
                     </ui-select-choices>
                 </ui-select>
@@ -234,11 +233,11 @@
                 {{'SUBDISTRICT'|translate}}
             </label>
             <div class="col-sm-8">
-                <ui-select theme="selectize" ng-model="formData.DEED_DISTRICT" id="DEED_DISTRICT" name="DEED_DISTRICT">
+                <ui-select theme="selectize" ng-model="formData.DEED_DISTRICT" id="DEED_DISTRICT" name="DEED_DISTRICT" >
                     <ui-select-match placeholder="">
                         {{$select.selected.DISTRICT}}
                     </ui-select-match>
-                    <ui-select-choices repeat="item in selectSubDistrict | filter: $select.search">
+                    <ui-select-choices repeat="item in selectSubDistrictDOL | filter: $select.search">
                         <div ng-bind-html="item.DISTRICT | highlight: $select.search"></div>
                     </ui-select-choices>
                 </ui-select>
@@ -408,7 +407,6 @@
                             {{'BTYP_OTH'|translate}}
                         </label>
                     </div>
-
                 </div>
             </div>
             <div class="form-group col-sm-8">
@@ -490,7 +488,7 @@
                 <div class="col-md-2">
                     <div class="form-group padding-right-5">
                         <label class="control-label">กว้าง x ยาว (ตร.ม.)</label>
-                        <input type="text" format maxlength="30" class="form-control" id="FLOOR_{{item.ORDER_LIST}}" name="FLOOR_{{item.ORDER_LIST}}" ng-model="item.DSC_FLOORXSZ">
+                        <input type="text"  maxlength="30" class="form-control" id="FLOOR_{{item.ORDER_LIST}}" name="FLOOR_{{item.ORDER_LIST}}" ng-model="item.DSC_FLOORXSZ">
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -501,12 +499,10 @@
                 </div>
                 <a ng-if="$index > 2" ng-click="item.DELETE=true" tooltip="ลบชั้น" style="position:absolute;right:2px;top:2px;"><i class="glyphicon glyphicon-remove border-around"></i></a>
             </div>
-
             <button type="button" class="btn btn-o btn-primary pull-right" ng-click="addFloor()">
                 {{'BUTTON.ADD'|translate}}
             </button>
         </fieldset>
-
         <!--<div class="form-group">
             <label class="col-sm-4 control-label" for="DSC_FLOOR1SZ">
                 {{'DSC_FLOOR1SZ'|translate}}
@@ -542,7 +538,7 @@
         <div class="row">
             <div class="col-sm-6 padding-5">
                 <fieldset class="no-radius">
-                    <legend>ห้องรับแขก</legend>
+                    <legend>ห้องนั่งเล่น</legend>
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="DSC_GUEST_ROOM">
                             {{'DSC_GUEST_ROOM'|translate}}
@@ -556,7 +552,7 @@
                             {{'DSC_GUEST_SZ'|translate}}
                         </label>
                         <div class="col-sm-8">
-                            <input usespace type="text" placeholder="" class="form-control" id="DSC_GUEST_SZ" name="DSC_GUEST_SZ" ng-model="formData.DSC_GUEST_SZ">
+                            <input  type="text" placeholder="" class="form-control" id="DSC_GUEST_SZ" name="DSC_GUEST_SZ" ng-model="formData.DSC_GUEST_SZ">
                         </div>
                     </div>
                     <div class="form-group">
@@ -592,7 +588,7 @@
                             {{'DSC_GUEST_SZ'|translate}}
                         </label>
                         <div class="col-sm-8">
-                            <input usespace type="text" placeholder="" class="form-control" id="DSC_HALL_SZ" name="DSC_HALL_SZ" ng-model="formData.DSC_HALL_SZ">
+                            <input type="text" placeholder="" class="form-control" id="DSC_HALL_SZ" name="DSC_HALL_SZ" ng-model="formData.DSC_HALL_SZ">
                         </div>
                     </div>
                     <div class="form-group">
@@ -630,7 +626,7 @@
                             {{'DSC_GUEST_SZ'|translate}}
                         </label>
                         <div class="col-sm-8">
-                            <input usespace type="text" placeholder="" class="form-control" id="DSC_BATH_SZ" name="DSC_BATH_SZ" ng-model="formData.DSC_BATH_SZ">
+                            <input type="text" placeholder="" class="form-control" id="DSC_BATH_SZ" name="DSC_BATH_SZ" ng-model="formData.DSC_BATH_SZ">
                         </div>
                     </div>
                     <div class="form-group">
@@ -666,7 +662,7 @@
                             {{'DSC_GUEST_SZ'|translate}}
                         </label>
                         <div class="col-sm-8">
-                            <input usespace type="text" placeholder="" class="form-control" id="DSC_BED_SZ" name="DSC_BED_SZ" ng-model="formData.DSC_BED_SZ">
+                            <input type="text" placeholder="" class="form-control" id="DSC_BED_SZ" name="DSC_BED_SZ" ng-model="formData.DSC_BED_SZ">
                         </div>
                     </div>
                     <div class="form-group">
@@ -687,7 +683,6 @@
                 </fieldset>
             </div>
         </div>
-
         <fieldset class="no-radius">
             <legend>ห้องอื่นๆ</legend>
             <div class="form-group">
@@ -698,7 +693,6 @@
                     <input type="text" placeholder="" class="form-control" id="DSC_OTH_DESC" name="DSC_OTH_DESC" ng-model="formData.DSC_OTH_DESC">
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="DSC_OTH_NO">
                     {{'DSC_GUEST_ROOM'|translate}}
@@ -712,7 +706,7 @@
                     {{'DSC_GUEST_SZ'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input usespace type="text" placeholder="" class="form-control" id="DSC_OTH_SZ" name="DSC_OTH_SZ" ng-model="formData.DSC_OTH_SZ">
+                    <input type="text" placeholder="" class="form-control" id="DSC_OTH_SZ" name="DSC_OTH_SZ" ng-model="formData.DSC_OTH_SZ" maxlength="30">
                 </div>
             </div>
             <div class="form-group">
@@ -730,9 +724,7 @@
                     </ui-select>
                 </div>
             </div>
-
         </fieldset>
-
     </div>
 </div>
 <div class="panel panel-white" ng-if="isAppriaiser">
@@ -790,7 +782,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>คาน</legend>
             <div class="form-group">
@@ -841,7 +832,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>พื้น</legend>
             <div class="form-group">
@@ -892,7 +882,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>บันใด</legend>
             <div class="form-group">
@@ -942,12 +931,9 @@
                     <input type="text" ng-disabled="!formData.STRU_STAIR_OTH" class="form-control" id="STRU_STAIR_OTHDSC" name="STRU_STAIR_OTHDSC" ng-model="formData.STRU_STAIR_OTHDSC">
                 </div>
             </div>
-
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>ผนัง</legend>
-
             <div class="form-group">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-2">
@@ -1007,7 +993,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>ฝ้าเพดาน</legend>
             <div class="form-group">
@@ -1058,7 +1043,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>โครงหลังคา</legend>
             <div class="form-group">
@@ -1109,7 +1093,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>หลังคา</legend>
             <div class="form-group">
@@ -1170,9 +1153,7 @@
                     <input type="text" ng-disabled="!formData.STRU_ROOF_OTH" class="form-control" id="STRU_ROOF_OTHDSC" name="STRU_ROOF_OTHDSC" ng-model="formData.STRU_ROOF_OTHDSC">
                 </div>
             </div>
-
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>รั้วบริเวณ</legend>
             <div class="form-group">
@@ -1233,9 +1214,7 @@
                     <input type="text" ng-disabled="!formData.STRU_FENCE_OTH" class="form-control" style="max-width:100%;" id="STRU_FENCE_OTHDSC" name="STRU_FENCE_OTHDSC" ng-model="formData.STRU_FENCE_OTHDSC">
                 </div>
             </div>
-
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>โครงสร้างอาคาร</legend>
             <div class="form-group">
@@ -1288,7 +1267,7 @@
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_BLD_OTH" ng-model="formData.STRU_BLD_OTH" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="STRU_BLD_OTH">
-                            {{'STRU_BLD_OTH'|translate}}
+                            {{'OTHER'|translate}}
                         </label>
                     </div>
                 </div>
@@ -1297,7 +1276,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>ผิวผนังภายนอก</legend>
             <div class="form-group">
@@ -1339,7 +1317,7 @@
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_EXTWALL_OTH" ng-model="formData.STRU_EXTWALL_OTH" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="STRU_EXTWALL_OTH">
-                            {{'STRU_EXTWALL_OTH'|translate}}
+                            {{'OTHER'|translate}}
                         </label>
                     </div>
                 </div>
@@ -1348,7 +1326,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>ผิวผนังภายใน</legend>
             <div class="form-group">
@@ -1390,7 +1367,7 @@
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_INTWALL_OTH" ng-model="formData.STRU_INTWALL_OTH" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="STRU_INTWALL_OTH">
-                            {{'STRU_INTWALL_OTH'|translate}}
+                            {{'OTHER'|translate}}
                         </label>
                     </div>
                 </div>
@@ -1399,7 +1376,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>ประตู</legend>
             <div class="form-group">
@@ -1441,7 +1417,7 @@
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_DOOR_OTH" ng-model="formData.STRU_DOOR_OTH" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="STRU_DOOR_OTH">
-                            {{'STRU_DOOR_OTH'|translate}}
+                            {{'OTHER'|translate}}
                         </label>
                     </div>
                 </div>
@@ -1450,7 +1426,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>หน้าต่าง</legend>
             <div class="form-group">
@@ -1492,7 +1467,7 @@
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_WD_OTH" ng-model="formData.STRU_WD_OTH" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="STRU_WD_OTH">
-                            {{'STRU_WD_OTH'|translate}}
+                            {{'OTHER'|translate}}
                         </label>
                     </div>
                 </div>
@@ -1501,7 +1476,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>วงกบ</legend>
             <div class="form-group">
@@ -1543,7 +1517,7 @@
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_JAMB_OTH" ng-model="formData.STRU_JAMB_OTH" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="STRU_JAMB_OTH">
-                            {{'STRU_JAMB_OTH'|translate}}
+                            {{'OTHER'|translate}}
                         </label>
                     </div>
                 </div>
@@ -1552,7 +1526,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>ห้องน้ำ - สุขภัณฑ์</legend>
             <div class="form-group">
@@ -1583,7 +1556,7 @@
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_BATH_OTH" ng-model="formData.STRU_BATH_OTH" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="STRU_BATH_OTH">
-                            {{'STRU_BATH_OTH'|translate}}
+                            {{'OTHER'|translate}}
                         </label>
                     </div>
                 </div>
@@ -1592,7 +1565,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>สุขภัณฑ์</legend>
             <div class="form-group">
@@ -1689,7 +1661,7 @@
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_BWARE_OTH" ng-model="formData.STRU_BWARE_OTH" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="STRU_BWARE_OTH">
-                            {{'STRU_BWARE_OTH'|translate}}
+                            {{'OTHER'|translate}}
                         </label>
                     </div>
                 </div>
@@ -1698,7 +1670,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>งานระบบภายในอาคาร</legend>
             <div class="form-group">
@@ -1751,7 +1722,7 @@
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="SYS_INT_OTH" ng-model="formData.SYS_INT_OTH" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="SYS_INT_OTH">
-                            {{'SYS_INT_OTH'|translate}}
+                            {{'OTHER'|translate}}
                         </label>
                     </div>
                 </div>
@@ -1760,7 +1731,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>แบบแปลนอาคาร</legend>
             <div class="form-group">
@@ -1791,7 +1761,7 @@
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="BLD_PLAN_OTH" ng-model="formData.BLD_PLAN_OTH" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="BLD_PLAN_OTH">
-                            {{'BLD_PLAN_OTH'|translate}}
+                            {{'OTHER'|translate}}
                         </label>
                     </div>
                 </div>
@@ -1800,7 +1770,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>กฏหมายควบคุมอาคาร</legend>
             <div>
@@ -1810,7 +1779,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>การเข้าสำรวจและตรวจสอบอาคาร</legend>
             <div class="form-group">
@@ -1874,7 +1842,7 @@
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="SUR_BLD_OTH" ng-model="formData.SUR_BLD_OTH" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="SUR_BLD_OTH">
-                            {{'SUR_BLD_OTH'|translate}}
+                            {{'OTHER'|translate}}
                         </label>
                     </div>
                 </div>
@@ -1883,7 +1851,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>การดูแลบำรุงรักษา</legend>
             <div class="form-group">
@@ -1947,7 +1914,7 @@
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="MA_OTH" ng-model="formData.MA_OTH" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="MA_OTH">
-                            {{'MA_OTH'|translate}}
+                            {{'OTHER'|translate}}
                         </label>
                     </div>
                 </div>
@@ -1956,7 +1923,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>สภาพอาคาร</legend>
             <div class="form-group">
@@ -2015,22 +1981,53 @@
     </div>
     <div class="panel-body">
         <div class="form-group">
-            <label class="col-sm-4 control-label" for="HOUSING_TYPE">
-
-            </label>
-            <div class="col-sm-8">
-                <div ng-repeat="item in radioHousingType" class="radio clip-radio radio-primary radio-inline">
-                    <input type="radio" name="HOUSING_TYPE" ng-value="item.VALUE" ng-model="formData.HOUSING_TYPE" id="HOUSING_TYPE{{item.VALUE}}" />
-                    <label for="HOUSING_TYPE{{item.VALUE}}">{{ item.NAME }}</label>
-                </div>
+            <label class="control-label col-sm-3"></label>
+            <div ng-repeat="item in radioHousingType" class="radio clip-radio radio-primary col-sm-2">
+                <input type="radio" name="HOUSING_TYPE" ng-value="item.VALUE" ng-model="formData.HOUSING_TYPE" id="HOUSING_TYPE{{item.VALUE}}" />
+                <label for="HOUSING_TYPE{{item.VALUE}}">{{ item.NAME }}</label>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-4 control-label" for="REMARK">
+            <label class="control-label col-sm-3">ให้เช่า</label>
+            <div class="col-sm-8">
+                <div class="checkbox clip-check check-primary">
+                    <input type="checkbox" id="RESPON_NO" ng-model="formData.RESPON_NO" ng-true-value="'Y'" ng-false-value="'N'" ng-disabled="formData.HOUSING_TYPE!='2'" />
+                    <label for="RESPON_NO">
+                        {{'RESPON_NO'|translate}}
+                    </label>
+                </div>
+                <div class="checkbox clip-check check-primary">
+                    <input type="checkbox" id="RESPON_LIVE" ng-model="formData.RESPON_LIVE" ng-true-value="'Y'" ng-false-value="'N'" ng-disabled="formData.HOUSING_TYPE!='2'" />
+                    <label for="RESPON_LIVE">
+                        {{'RESPON_LIVE'|translate}}
+                    </label>
+                </div>
+                <div class="checkbox clip-check check-primary">
+                    <input type="checkbox" id="RESPON_RENT" ng-model="formData.RESPON_RENT" ng-true-value="'Y'" ng-false-value="'N'" ng-disabled="formData.HOUSING_TYPE!='2'" />
+                    <label for="RESPON_RENT">
+                        {{'RESPON_RENT'|translate}}
+                    </label>
+                </div>
+                <div class="checkbox clip-check check-primary">
+                    <input type="checkbox" id="RESPON_RENT2" ng-model="formData.RESPON_RENT2" ng-true-value="'Y'" ng-false-value="'N'" ng-disabled="formData.HOUSING_TYPE!='2'" />
+                    <label for="RESPON_RENT2">
+                        {{'RESPON_RENT2'|translate}}
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.RESPON_RENT_AGE.$invalid}">
+            <label class="control-label col-sm-3" for="RESPON_RENT_AGE">ระยะเวลาคงเหลือ (ปี) <span class="symbol"></span></label>
+            <div class="col-sm-8">
+                <input type="number" min="0" class="form-control" ng-disabled="formData.HOUSING_TYPE!='2'" ng-model="formData.RESPON_RENT_AGE" id="RESPON_RENT_AGE" name="RESPON_RENT_AGE" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="REMARK">
                 {{'REMARK'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" placeholder="" class="form-control" id="REMARK" name="REMARK" ng-model="formData.REMARK">
+                <textarea style="max-width:100%;" class="form-control" id="REMARK" name="REMARK" ng-model="formData.REMARK"></textarea>
             </div>
         </div>
     </div>
@@ -2057,9 +2054,27 @@
         </fieldset>
         <fieldset class="no-radius">
             <legend>{{'CONSTRUCT_COMPLETE'|translate}}</legend>
-            <div ng-repeat="item in radioContructComplete" class="radio clip-radio radio-primary radio-inline">
-                <input type="radio" name="CONSTRUCT_COMPLETE" ng-value="item.VALUE" ng-model="formData.CONSTRUCT_COMPLETE" id="CONSTRUCT_COMPLETE{{item.VALUE}}" />
-                <label for="CONSTRUCT_COMPLETE{{item.VALUE}}">{{ item.NAME }}</label>
+            <div class="form-group">
+                <div ng-repeat="item in radioContructComplete" class="radio clip-radio radio-primary radio-inline">
+                    <input type="radio" name="CONSTRUCT_COMPLETE" ng-value="item.VALUE" ng-model="formData.CONSTRUCT_COMPLETE" id="CONSTRUCT_COMPLETE{{item.VALUE}}" />
+                    <label for="CONSTRUCT_COMPLETE{{item.VALUE}}">{{ item.NAME }}</label>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':form.CONSTR_PERCENT_COMPLETE.$invalid}">
+                <label class="col-sm-3 control-label" for="CONSTR_PERCENT_COMPLETE">
+                    อาคารก่อสร้างแล้วเสร็จ (%) <span class="symbol"></span>
+                </label>
+                <div class="col-sm-8">
+                    <input ng-disabled="formData.CONSTRUCT_COMPLETE!='2'" type="number" min="0" max="100" class="form-control" ng-model="formData.CONSTR_PERCENT_COMPLETE" id="CONSTR_PERCENT_COMPLETE" name="CONSTR_PERCENT_COMPLETE" />
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':form.CONSTR_PERCENT_REMAIN.$invalid}">
+                <label class="col-sm-3 control-label" for="CONSTR_PERCENT_REMAIN">
+                    ยังคงเหลืองาน (%) <span class="symbol"></span>
+                </label>
+                <div class="col-sm-8">
+                    <input ng-disabled="formData.CONSTRUCT_COMPLETE!='2'" type="number" min="0" max="100" class="form-control" ng-model="formData.CONSTR_PERCENT_REMAIN" id="CONSTR_PERCENT_REMAIN" name="CONSTR_PERCENT_REMAIN" />
+                </div>
             </div>
         </fieldset>
         <fieldset class="no-radius">

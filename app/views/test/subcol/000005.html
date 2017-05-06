@@ -1,0 +1,32 @@
+﻿<div class="form-group" ng-class="{'has-error':form.PERMIT_LICENSE.$dirty && form.PERMIT_LICENSE.$invalid}">
+    <label class="col-sm-4 control-label" for="PERMIT_LICENSE">
+        {{'PERMIT_LICENSE'|translate}} <span class="required symbol"></span>
+    </label>
+    <div class="col-sm-8">
+        <input type="text" required class="form-control" id="PERMIT_LICENSE" name="PERMIT_LICENSE" ng-model="formData.PERMIT_LICENSE" />
+    </div>
+</div>
+<div class="form-group" ng-class="{'has-error':form.PERMIT_YEAR.$dirty && form.PERMIT_YEAR.$invalid}">
+    <label class="col-sm-4 control-label" for="PERMIT_YEAR">
+        {{'PERMIT_YEAR'|translate}} <span class="symbol"></span>
+    </label>
+    <div class="col-sm-8">
+        <input numberonly type="text" ng-maxlength="4" ng-minlength="4" required class="form-control" id="PERMIT_YEAR" name="PERMIT_YEAR" ng-model="formData.PERMIT_YEAR" />
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-4 control-label" for="PERMIT_START">
+        {{'PERMIT_START'|translate}}
+    </label>
+    <div class="col-sm-8">
+        <input datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.PERMIT_START" ng-click="openDatePicker($event,'PERMIT_START')" type="text" class="form-control" ng-model="formData.PERMIT_START" />
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-4 control-label" for="PERMIT_END">
+        {{'PERMIT_END'|translate}}
+    </label>
+    <div class="col-sm-8">
+        <input datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.PERMIT_END" ng-click="openDatePicker($event,'PERMIT_END')" type="text" class="form-control" ng-model="formData.PERMIT_END" />
+    </div>
+</div>

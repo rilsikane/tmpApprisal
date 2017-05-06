@@ -6,10 +6,26 @@
         <fieldset class="no-radius">
             <div class="form-group" ng-class="{'has-error':form.REGIS_NO.$dirty && form.REGIS_NO.$invalid, 'has-success':form.REGIS_NO.$valid}">
                 <label ng-class="labelControlCss" for="REGIS_NO">
-                    {{'REGIS_NO'|translate}}<span class="symbol required"></span>
+                    เลขทะเบียนเรือ<span class="symbol required"></span>
                 </label>
                 <div ng-class="formControlCss">
-                    <input required type="text" maxlength="30" placeholder="" class="form-control" id="REGIS_NO" name="REGIS_NO" ng-model="formData.REGIS_NO">
+                    <input required type="text" placeholder="" class="form-control" id="REGIS_NO" name="REGIS_NO" ng-model="formData.REGIS_NO" maxlength="30">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="SURVEY_APPR_DATE">
+                    {{'SURVEY_APPR_DATE'|translate}}
+                </label>
+                <div class="col-sm-8">
+                    <input datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.SURVEY_APPR_DATE" ng-click="openDatePicker($event,'SURVEY_APPR_DATE')" type="text" class="form-control" ng-model="formData.SURVEY_APPR_DATE" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="APPR_CUR_NET_TOTAL">
+                    ราคาประเมินหลักทรัพย์
+                </label>
+                <div class="col-sm-8">
+                    <input format type="text" class="form-control" ng-model="formData.APPR_CUR_NET_TOTAL" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" />
                 </div>
             </div>
             <div class="form-group">
@@ -17,15 +33,7 @@
                     {{'REGIS_DATE'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text" max-date="formData.TAX_DUE_DATE" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.REGIS_DATE" ng-click="openDatePicker($event,'REGIS_DATE')" class="form-control" id="REGIS_DATE" name="REGIS_DATE" ng-model="formData.REGIS_DATE">
-                </div>
-            </div>
-            <div class="form-group">
-                <label ng-class="labelControlCss" for="TAX_DUE_DATE">
-                    {{'TAX_DUE_DATE'|translate}}
-                </label>
-                <div ng-class="formControlCss">
-                    <input type="text" min-date="formData.REGIS_DATE" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TAX_DUE_DATE" ng-click="openDatePicker($event,'TAX_DUE_DATE')" class="form-control" id="TAX_DUE_DATE" name="TAX_DUE_DATE" ng-model="formData.TAX_DUE_DATE">
+                    <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.REGIS_DATE" ng-click="openDatePicker($event,'REGIS_DATE')" class="form-control" id="REGIS_DATE" name="REGIS_DATE" ng-model="formData.REGIS_DATE">
                 </div>
             </div>
             <div class="form-group">
@@ -58,29 +66,21 @@
                     </ui-select>
                 </div>
             </div>
-            <div class="form-group">
-                <label ng-class="labelControlCss" for="USAGE">
-                    {{'SHIP_USAGE'|translate}}
-                </label>
-                <div ng-class="formControlCss">
-                    <input type="text" placeholder="" maxlength="300" class="form-control" id="USAGE" name="USAGE" ng-model="formData.USAGE">
-                </div>
-            </div>
-            <div class="form-group" ng-class="{'has-error':form.YEAR.$dirty && form.YEAR.$invalid}">
-                <label ng-class="labelControlCss" for="YEAR">
-                    {{'MADE_YEAR'|translate}} <span class="symbol"></span>
-                </label>
-                <div ng-class="formControlCss">
-                    <input type="number" minlength="4" maxlength="4" class="form-control" id="YEAR" name="YEAR" ng-model="formData.YEAR" />
-                </div>
-            </div>
 
             <div class="form-group">
                 <label ng-class="labelControlCss" for="NAME">
                     {{'SHIP_NAME'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text" placeholder="" maxlength="100" class="form-control" id="NAME" name="NAME" ng-model="formData.NAME">
+                    <input type="text" placeholder="" class="form-control" id="NAME" name="NAME" ng-model="formData.NAME" maxlength="100">
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="USAGE">
+                    {{'SHIP_USAGE'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <input type="text" placeholder="" class="form-control" id="USAGE" name="USAGE" ng-model="formData.USAGE" maxlength="300">
                 </div>
             </div>
             <div class="form-group" ng-class="{'has-error':form.HORSE_POWER.$dirty && form.HORSE_POWER.$invalid}">
@@ -88,7 +88,7 @@
                     {{'HORSE_POWER'|translate}} <span class="symbol"></span>
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text" count maxlength="10" min="0" class="form-control" id="HORSE_POWER" name="HORSE_POWER" ng-model="formData.HORSE_POWER">
+                    <input  type="text" class="form-control" id="HORSE_POWER" name="HORSE_POWER" ng-model="formData.HORSE_POWER" count maxlength="10">
                 </div>
             </div>
             <div class="form-group">
@@ -96,7 +96,7 @@
                     {{'SHIP_BODY'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text" placeholder="" maxlength="50" class="form-control" id="BODY" name="BODY" ng-model="formData.BODY">
+                    <input type="text" placeholder="" class="form-control" id="BODY" name="BODY" ng-model="formData.BODY" maxlength="50">
                 </div>
             </div>
             <div class="form-group">
@@ -107,80 +107,20 @@
                     <input type="text" maxlength="10" class="form-control" id="TONNAGE" name="TONNAGE" ng-model="formData.TONNAGE">
                 </div>
             </div>
-        </fieldset>
-        <div class="form-group">
-            <div class="col-sm-4">
-                <fieldset class="no-radius">
-                    <legend>{{'AGE_STD'|translate}}</legend>
-                    <div class="form-group" ng-class="{'has-error':form.AGE_STD_YEAR.$dirty && form.AGE_STD_YEAR.$invalid, 'has-success':form.AGE_STD_YEAR.$valid}">
-                        <label ng-class="labelControlCss" for="AGE_STD_YEAR">
-                            {{'YEAR'|translate}}<span class="symbol required"></span>
-                        </label>
-                        <div ng-class="formControlCss">
-                            <input required type="text" count maxlength="22" ng-max="999" min="0" class="form-control" id="AGE_STD_YEAR" name="AGE_STD_YEAR" ng-model="formData.AGE_STD_YEAR">
-                        </div>
-                    </div>
-                    <div class="form-group" ng-class="{'has-error':form.AGE_STD_MONTH.$dirty && form.AGE_STD_MONTH.$invalid, 'has-success':form.AGE_STD_MONTH.$valid}">
-                        <label ng-class="labelControlCss" for="AGE_STD_MONTH">
-                            {{'MONTH'|translate}}<span class="symbol required"></span>
-                        </label>
-                        <div ng-class="formControlCss">
-                            <input required type="text" count maxlength="22" min="0" ng-max="12" class="form-control" id="AGE_STD_MONTH" name="AGE_STD_MONTH" ng-model="formData.AGE_STD_MONTH">
-                        </div>
-                    </div>
-                </fieldset>
-            </div>
-            <div class="col-sm-4">
-                <fieldset class="no-radius">
-                    <legend>{{'AGE_USAGE_REM'|translate}}</legend>
-                    <div class="form-group" ng-class="{'has-error':form.AGE_YEAR.$dirty && form.AGE_YEAR.$invalid, 'has-success':form.AGE_YEAR.$valid}">
-                        <label ng-class="labelControlCss" for="AGE_YEAR">
-                            {{'YEAR'|translate}}<span class="symbol required"></span>
-                        </label>
-                        <div ng-class="formControlCss">
-                            <input required type="text" count maxlength="22" min="0" ng-max="999" class="form-control" id="AGE_YEAR" name="AGE_YEAR" ng-model="formData.AGE_YEAR">
-                        </div>
-                    </div>
-                    <div class="form-group" ng-class="{'has-error':form.AGE_MONTH.$dirty && form.AGE_MONTH.$invalid, 'has-success':form.AGE_MONTH.$valid}">
-                        <label ng-class="labelControlCss" for="AGE_MONTH">
-                            {{'MONTH'|translate}}<span class="symbol required"></span>
-                        </label>
-                        <div ng-class="formControlCss">
-                            <input required type="text" count maxlength="22" min="0" ng-max="12" class="form-control" id="AGE_MONTH" name="AGE_MONTH" ng-model="formData.AGE_MONTH">
-                        </div>
-                    </div>
-                </fieldset>
-            </div>
-            <div class="col-sm-4">
-                <fieldset class="no-radius">
-                    <legend>{{'ES_SALE'|translate}}</legend>
-                    <div class="form-group" ng-class="{'has-error':form.ES_SALE_YEAR.$dirty && form.ES_SALE_YEAR.$invalid}">
-                        <label ng-class="labelControlCss" for="ES_SALE_YEAR">
-                            {{'YEAR'|translate}} <span class="symbol"></span>
-                        </label>
-                        <div ng-class="formControlCss">
-                            <input type="text" count maxlength="22" ng-max="999" min="0" class="form-control" id="ES_SALE_YEAR" name="ES_SALE_YEAR" ng-model="formData.ES_SALE_YEAR">
-                        </div>
-                    </div>
-                    <div class="form-group" ng-class="{'has-error':form.ES_SALE_MONTH.$dirty && form.ES_SALE_MONTH.$invalid}">
-                        <label ng-class="labelControlCss" for="ES_SALE_MONTH">
-                            {{'MONTH'|translate}} <span class="symbol"></span>
-                        </label>
-                        <div ng-class="formControlCss">
-                            <input type="text" count maxlength="22" min="0" ng-max="12" class="form-control" id="ES_SALE_MONTH" name="ES_SALE_MONTH" ng-model="formData.ES_SALE_MONTH">
-                        </div>
-                    </div>
-                </fieldset>
-            </div>
-        </div>
-
-        <fieldset class="no-radius">
-            <div class="form-group">
-                <label ng-class="labelControlCss" for="APPR_CUR_NET_TOTAL">
-                    {{'APPR_CUR_NET_TOTAL'|translate}}
+            <div class="form-group" ng-class="{'has-error':form.YEAR.$dirty && form.YEAR.$invalid}">
+                <label ng-class="labelControlCss" for="YEAR">
+                    {{'MADE_YEAR'|translate}} <span class="symbol"></span>
                 </label>
                 <div ng-class="formControlCss">
-                    <input price type="text" placeholder="" class="form-control" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" ng-model="formData.APPR_CUR_NET_TOTAL">
+                    <input required type="text" count maxlength="22" ng-max="999" type="text"  class="form-control" id="YEAR" name="YEAR" ng-model="formData.YEAR" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="TAX_DUE_DATE">
+                    {{'TAX_DUE_DATE'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TAX_DUE_DATE" ng-click="openDatePicker($event,'TAX_DUE_DATE')" class="form-control" id="TAX_DUE_DATE" name="TAX_DUE_DATE" ng-model="formData.TAX_DUE_DATE">
                 </div>
             </div>
             <div class="form-group" ng-class="{'has-error':form.MARKET_NEED.$dirty && form.MARKET_NEED.$viewValue==undefined, 'has-success':form.MARKET_NEED.$viewValue!=undefined}">
@@ -194,10 +134,74 @@
                             <label for="MARKET_NEED{{item.VALUE}}">{{ item.NAME }}</label>
                         </div>
                     </div>
-                    <!--<span class="error text-small block" ng-if="form.MARKET_NEED.$dirty && form.MARKET_NEED.$viewValue==undefined">{{requireNotificationPrefix}} {{'MARKET_NEED'|translate}}</span>-->
                 </div>
             </div>
         </fieldset>
+        <div class="form-group">
+            <div class="col-sm-4">
+                <fieldset class="no-radius">
+                    <legend>{{'AGE_STD'|translate}}</legend>
+                    <div class="form-group" ng-class="{'has-error':form.AGE_STD_YEAR.$dirty && form.AGE_STD_YEAR.$invalid, 'has-success':form.AGE_STD_YEAR.$valid}">
+                        <label ng-class="labelControlCss" for="AGE_STD_YEAR">
+                            {{'YEAR'|translate}}<span class="symbol required"></span>
+                        </label>
+                        <div ng-class="formControlCss">
+                            <input required type="text" min="0" class="form-control" id="AGE_STD_YEAR" name="AGE_STD_YEAR" ng-model="formData.AGE_STD_YEAR" count ng-max="999">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':form.AGE_STD_MONTH.$dirty && form.AGE_STD_MONTH.$invalid, 'has-success':form.AGE_STD_MONTH.$valid}">
+                        <label ng-class="labelControlCss" for="AGE_STD_MONTH">
+                            {{'MONTH'|translate}}<span class="symbol required"></span>
+                        </label>
+                        <div ng-class="formControlCss">
+                            <input required type="text" min="0" max="12" class="form-control" id="AGE_STD_MONTH" name="AGE_STD_MONTH" ng-model="formData.AGE_STD_MONTH" count ng-max="11">
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-sm-4">
+                <fieldset class="no-radius">
+                    <legend>{{'AGE_USAGE_REM'|translate}}</legend>
+                    <div class="form-group" ng-class="{'has-error':form.AGE_YEAR.$dirty && form.AGE_YEAR.$invalid, 'has-success':form.AGE_YEAR.$valid}">
+                        <label ng-class="labelControlCss" for="AGE_YEAR">
+                            {{'YEAR'|translate}}<span class="symbol required"></span>
+                        </label>
+                        <div ng-class="formControlCss">
+                            <input required type="text" min="0" class="form-control" id="AGE_YEAR" name="AGE_YEAR" ng-model="formData.AGE_YEAR" count ng-max="999">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':form.AGE_MONTH.$dirty && form.AGE_MONTH.$invalid, 'has-success':form.AGE_MONTH.$valid}">
+                        <label ng-class="labelControlCss" for="AGE_MONTH">
+                            {{'MONTH'|translate}}<span class="symbol required"></span>
+                        </label>
+                        <div ng-class="formControlCss">
+                            <input required type="text" min="0" max="12" class="form-control" id="AGE_MONTH" name="AGE_MONTH" ng-model="formData.AGE_MONTH" count ng-max="11">
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-sm-4">
+                <fieldset class="no-radius">
+                    <legend>{{'ES_SALE'|translate}}</legend>
+                    <div class="form-group" ng-class="{'has-error':form.ES_SALE_YEAR.$dirty && form.ES_SALE_YEAR.$invalid}">
+                        <label ng-class="labelControlCss" for="ES_SALE_YEAR">
+                            {{'YEAR'|translate}} <span class="symbol"></span>
+                        </label>
+                        <div ng-class="formControlCss">
+                            <input type="text" min="0" class="form-control" id="ES_SALE_YEAR" name="ES_SALE_YEAR" ng-model="formData.ES_SALE_YEAR" count ng-max="999">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':form.ES_SALE_MONTH.$dirty && form.ES_SALE_MONTH.$invalid}">
+                        <label ng-class="labelControlCss" for="ES_SALE_MONTH">
+                            {{'MONTH'|translate}} <span class="symbol"></span>
+                        </label>
+                        <div ng-class="formControlCss">
+                            <input type="text" min="0" max="12" class="form-control" id="ES_SALE_MONTH" name="ES_SALE_MONTH" ng-model="formData.ES_SALE_MONTH" count ng-max="11">
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
     </div>
 </div>
 <div class="panel panel-white">
@@ -223,7 +227,7 @@
                 {{'POLICY_NO'|translate}}
             </label>
             <div ng-class="formControlCss">
-                <input type="text" maxlength="50" class="form-control" id="POLICY_NO" name="POLICY_NO" ng-model="formData.POLICY_NO">
+                <input type="text" class="form-control" id="POLICY_NO" name="POLICY_NO" ng-model="formData.POLICY_NO" maxlength="50">
             </div>
         </div>
         <div class="form-group">
@@ -231,7 +235,7 @@
                 {{'INSURED_AMT'|translate}}
             </label>
             <div ng-class="formControlCss">
-                <input count type="text" maxlength="22" class="form-control" id="INSURED_AMT" name="INSURED_AMT" ng-model="formData.INSURED_AMT">
+                <input count type="text" class="form-control" id="INSURED_AMT" name="INSURED_AMT" ng-model="formData.INSURED_AMT" maxlength="22">
             </div>
         </div>
         <div class="form-group">
@@ -239,7 +243,7 @@
                 {{'INSURED_ISSUE_DATE'|translate}}
             </label>
             <div ng-class="formControlCss">
-                <input type="text" datepicker-popup="dd/MM/yyyy" max-date="formData.INSURED_EXP_DATE" is-open="dpOpenState.INSURED_ISSUE_DATE" ng-click="openDatePicker($event,'INSURED_ISSUE_DATE')" class="form-control" id="INSURED_ISSUE_DATE" name="INSURED_ISSUE_DATE" ng-model="formData.INSURED_ISSUE_DATE">
+                <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.INSURED_ISSUE_DATE" ng-click="openDatePicker($event,'INSURED_ISSUE_DATE')" class="form-control" id="INSURED_ISSUE_DATE" name="INSURED_ISSUE_DATE" ng-model="formData.INSURED_ISSUE_DATE">
             </div>
         </div>
         <div class="form-group">
@@ -247,7 +251,7 @@
                 {{'INSURED_EXP_DATE'|translate}}
             </label>
             <div ng-class="formControlCss">
-                <input type="text" datepicker-popup="dd/MM/yyyy" min-date="formData.INSURED_EXP_DATE" is-open="dpOpenState.INSURED_EXP_DATE" ng-click="openDatePicker($event,'INSURED_EXP_DATE')" class="form-control" id="INSURED_EXP_DATE" name="INSURED_EXP_DATE" ng-model="formData.INSURED_EXP_DATE">
+                <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.INSURED_EXP_DATE" ng-click="openDatePicker($event,'INSURED_EXP_DATE')" class="form-control" id="INSURED_EXP_DATE" name="INSURED_EXP_DATE" ng-model="formData.INSURED_EXP_DATE">
             </div>
         </div>
         <div class="form-group">
@@ -267,3 +271,8 @@
         </div>
     </div>
 </div>
+
+<fieldset class="no-radius">
+    <legend>{{'REMARK'|translate}}</legend>
+    <textarea class="form-control" id="REMARK" name="REMARK" style="max-width:100%;" ng-model="formData.REMARK"></textarea>
+</fieldset>

@@ -3,14 +3,13 @@
         <h5 class="panel-title">ข้อมูลที่ดิน</h5>
     </div>
     <div class="panel-body">
-        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.COL_NO.$dirty && form.COL_NO.$invalid, 'has-success':form.COL_NO.$dirty && form.COL_NO.$valid}" >
+        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.COL_NO.$dirty && form.COL_NO.$invalid, 'has-success':form.COL_NO.$dirty && form.COL_NO.$valid}">
             <label class="col-sm-4 control-label" for="COL_NO">
                 <i class="fa fa-bolt"></i> {{'COL_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
             </label>
             <div class="col-sm-8">
                 <input ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" type="text" maxlength="500" placeholder="" class="form-control" id="COL_NO" name="COL_NO" ng-model="formData.COL_NO">
                 <span class="error text-small block" ng-if="form.COL_NO.$dirty && form.COL_NO.$invalid">{{requireNotificationPrefix}} {{'COL_NO'|translate}}</span>
-
             </div>
         </div>
         <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.RAWANG.$dirty && form.RAWANG.$invalid, 'has-success':form.RAWANG.$dirty && form.RAWANG.$valid}">
@@ -113,7 +112,7 @@
             </div>
         </div>
         <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.WA.$dirty && form.WA.$invalid}">
-            <label class="col-sm-4 control-label" for="WA" >
+            <label class="col-sm-4 control-label" for="WA">
                 {{'WA'|translate}}<span class="symbol" ng-hide="!displayAllFiled"></span>
             </label>
             <div class="col-sm-8">
@@ -138,7 +137,6 @@
                 <input datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.SURVEY_APPR_DATE" ng-click="openDatePicker($event,'SURVEY_APPR_DATE')" type="text" class="form-control" ng-model="formData.SURVEY_APPR_DATE" />
             </div>
         </div>
-
         <div class="form-group">
             <label class="col-sm-4 control-label" for="PROPERTY_SHAPE">
                 {{'PROPERTY_SHAPE'|translate}}
@@ -159,7 +157,7 @@
                 {{'REMARK'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" maxlength="1000"  class="form-control" ng-model="formData.PROPERTY_OTHER_REMARK" />
+                <input type="text" maxlength="1000" class="form-control" ng-model="formData.PROPERTY_OTHER_REMARK" />
             </div>
         </div>
         <div class="form-group">
@@ -216,7 +214,7 @@
                     {{'APPR_GOV_PRICE'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input format type="text" class="form-control" ng-model="formData.APPR_GOV_PRICE" count/>
+                    <input format type="text" class="form-control" ng-model="formData.APPR_GOV_PRICE" count />
                 </div>
             </div>
             <div class="form-group">
@@ -244,7 +242,7 @@
                     <ui-select-match placeholder="">
                         {{$select.selected.PROV_NAME}}
                     </ui-select-match>
-                    <ui-select-choices repeat="item in selectProvince | filter: $select.search">
+                    <ui-select-choices repeat="item in selectProvinceDOL | filter: $select.search">
                         <div ng-bind-html="item.PROV_NAME | highlight: $select.search"></div>
                     </ui-select-choices>
                 </ui-select>
@@ -259,7 +257,7 @@
                     <ui-select-match placeholder="">
                         {{$select.selected.CITY}}
                     </ui-select-match>
-                    <ui-select-choices repeat="item in selectDistrict | filter: $select.search">
+                    <ui-select-choices repeat="item in selectDistrictDOL | filter: $select.search">
                         <div ng-bind-html="item.CITY | highlight: $select.search"></div>
                     </ui-select-choices>
                 </ui-select>
@@ -274,7 +272,7 @@
                     <ui-select-match placeholder="">
                         {{$select.selected.DISTRICT}}
                     </ui-select-match>
-                    <ui-select-choices repeat="item in selectSubDistrict | filter: $select.search">
+                    <ui-select-choices repeat="item in selectSubDistrictDOL | filter: $select.search">
                         <div ng-bind-html="item.DISTRICT | highlight: $select.search"></div>
                     </ui-select-choices>
                 </ui-select>
@@ -371,7 +369,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>หลักเขต</legend>
             <div class="form-group">
@@ -500,13 +497,11 @@
                         </label>
                     </div>
                 </div>
-
             </div>
             <div class="form-group col-sm-9">
                 <input type="text" placeholder="" class="form-control" id="LAND_OTHER" name="LAND_OTHER" ng-model="formData.LAND_OTHER">
             </div>
         </div>
-
         <div class="form-group form-inline">
             <label class="col-sm-4 control-label" for="LEVEL_LANDFILL_CODE">
                 {{'LEVEL_LANDFILL_CODE'|translate}}
@@ -624,7 +619,6 @@
                             {{'LOCATION6'|translate}}
                         </label>
                     </div>
-
                 </div>
             </div>
             <div class="form-group col-sm-9">
@@ -888,7 +882,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset class="no-radius">
             <legend>ท่อระบายน้ำ</legend>
             <div class="form-group form-inline">
@@ -917,7 +910,6 @@
                     </div>
                 </div>
             </div>
-
         </fieldset>
         <fieldset class="no-radius">
             <legend>โทรศัพท์</legend>
@@ -947,7 +939,6 @@
                     </div>
                 </div>
             </div>
-
         </fieldset>
         <fieldset class="no-radius">
             <legend>ไฟส่องทาง</legend>
@@ -1007,7 +998,6 @@
                 </div>
             </div>
         </fieldset>
-
     </div>
 </div>
 <div class="panel panel-white" ng-if="isAppriaiser">
@@ -1044,7 +1034,7 @@
                         <ui-select-match placeholder="">
                             {{$select.selected.PROV_NAME}}
                         </ui-select-match>
-                        <ui-select-choices repeat="item in selectOutCityPlanProvince | filter: $select.search">
+                        <ui-select-choices repeat="item in selectProvince | filter: $select.search">
                             <div ng-bind-html="item.PROV_NAME | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
@@ -1246,7 +1236,6 @@
                         <label for="USE5">
                             {{'USE5'|translate}}
                         </label>
-
                     </div>
                 </div>
             </div>
@@ -1256,7 +1245,6 @@
         </div>
     </div>
 </div>
-
 <div class="panel panel-white" ng-if="isAppriaiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ภาระผูกพัน</h5>
@@ -1320,13 +1308,10 @@
                 <div class="col-sm-10">
                     <input type="text" placeholder="" class="form-control" id="RESPOND_OTHER" name="RESPOND_OTHER" ng-model="formData.RESPOND_OTHER">
                 </div>
-
             </div>
         </div>
-
     </div>
 </div>
-
 <div class="panel panel-white" ng-if="isAppriaiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ศักยภาพ</h5>
@@ -1369,7 +1354,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="form-group">
             <div class="form-group col-sm-3">
@@ -1390,7 +1374,6 @@
         </div>
     </div>
 </div>
-
 <div class="panel panel-white" ng-if="isAppriaiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ภาระและสิทธิอื่นๆ</h5>
@@ -1425,6 +1408,5 @@
                 <input type="text" placeholder="" class="form-control" id="OTHER_REMARK" name="OTHER_REMARK" ng-model="formData.OTHER_REMARK">
             </div>
         </div>
-
     </div>
 </div>
