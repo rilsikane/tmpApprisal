@@ -104,7 +104,7 @@
                     {{'TONNAGE'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text" maxlength="10" class="form-control" id="TONNAGE" name="TONNAGE" ng-model="formData.TONNAGE">
+                    <input count type="text" maxlength="10" class="form-control" id="TONNAGE" name="TONNAGE" ng-model="formData.TONNAGE">
                 </div>
             </div>
             <div class="form-group" ng-class="{'has-error':form.YEAR.$dirty && form.YEAR.$invalid}">
@@ -112,7 +112,7 @@
                     {{'MADE_YEAR'|translate}} <span class="symbol"></span>
                 </label>
                 <div ng-class="formControlCss">
-                    <input required type="text" count maxlength="22" ng-max="9999" class="form-control" id="YEAR" name="YEAR" ng-model="formData.YEAR" />
+                    <input required year type="text" maxlength="4" ng-max="9999" class="form-control" id="YEAR" name="YEAR" ng-model="formData.YEAR" />
                 </div>
             </div>
             <div class="form-group">
