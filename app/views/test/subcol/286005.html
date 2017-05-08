@@ -322,7 +322,7 @@
                 {{'CONSTRUCT_YEAR'|translate}}
             </label>
             <div ng-class="formControlCss">
-                <input numberonly type="text" class="form-control" id="CONSTRUCT_YEAR" name="CONSTRUCT_YEAR" ng-model="formData.CONSTRUCT_YEAR">
+                <input year type="text" ng-max="9999" maxlength="4" class="form-control" id="CONSTRUCT_YEAR" name="CONSTRUCT_YEAR" ng-model="formData.CONSTRUCT_YEAR">
             </div>
         </div>
         <div class="form-group">
