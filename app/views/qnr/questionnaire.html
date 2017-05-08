@@ -1,4 +1,4 @@
-﻿<div ng-controller="qnrController">
+﻿<div ng-controller="qnrController" class="questionnaire">
     <div class="form-horizontal" ng-if="(QNR_ID==undefined && RESULT_ID==undefined) || (QNR_ID==null && RESULT_ID==null)">
         <div class="form-group">
             <label class="col-sm-3 control-label" for="PACKAGE">
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    <div class="table-responsive questionnaire">
+    <div  class="table-responsive">
         <table class="table table-bordered table-hover" style="max-width:100%;">
             <thead>
                 <tr class="bg-azure" style="height:50px;">
@@ -40,7 +40,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in questionnaire.QNR_ITEM" ng-if="item.FLAG != 'H'">
+                <tr ng-class="{'forLv1' : item.LEV =='1' && $index > 1,'forLv2' : item.LEV =='2'}" ng-repeat="item in questionnaire.QNR_ITEM" ng-if="item.FLAG != 'H'">
                     <td>
                         <div ng-switch="item.INPUT">
                             <!-- style="height:30px !important;" -->
