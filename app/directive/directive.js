@@ -195,8 +195,7 @@
                     if (value && !isNaN(value)) {
                         $element.val($filter('number')(value, 0));
                     } else {
-                        $element.val('');
-                        $element.val(undefined);
+                        $element.val(0);
                     }
 
                 }
