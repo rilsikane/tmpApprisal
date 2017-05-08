@@ -17,7 +17,9 @@
             resolve: {
                 params: function () {
                     return {
-                        limit: 0
+                        limit: 0,
+                        config: 'upload/document',
+                        id1: $scope.headCol.JOB_RUNNING_ID
                     };
                 }
             }

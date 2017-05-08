@@ -4,6 +4,8 @@ app.controller('uploaderController', ['$scope', '$state', '$stateParams', 'radas
     $scope.hasError = false;
     $scope.uploadedFile = [];
     $scope.limit = params.limit || 0;
+    $scope.config = params.config || '';
+    $scope.id1 = params.id1 || '';
     $scope.queue = 0;
 
     var uploader = $scope.uploader = new FileUploader({
@@ -25,7 +27,8 @@ app.controller('uploaderController', ['$scope', '$state', '$stateParams', 'radas
     //    console.info('onWhenAddingFileFailed', item, filter, options);
     //};
     uploader.onAfterAddingFile = function (fileItem) {
-
+        fileItem.formData.push({ "CONFIG": $scope.config });
+        fileItem.formData.push({ "ID1": $scope.id1 });
     };
     //uploader.onAfterAddingAll = function (addedFileItems) {
     //    console.info('onAfterAddingAll', addedFileItems);

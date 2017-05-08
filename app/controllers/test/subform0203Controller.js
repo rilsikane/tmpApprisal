@@ -80,7 +80,9 @@
             resolve: {
                 params: function () {
                     return {
-                        limit: limit
+                        limit: limit,
+                        config: 'upload/photo',
+                        id1: $scope.headCol.JOB_RUNNING_ID
                     };
                 }
             }

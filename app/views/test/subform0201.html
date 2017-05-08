@@ -24,7 +24,8 @@
                         {{'MACHINE_NO'|translate}}
                     </label>
                     <div class="col-sm-8">
-                        <input type="text" maxlength="1000" class="form-control" id="DEED_NO" name="DEED_NO" ng-model="formData.DEED_NO">
+                        <input type="text" maxlength="1000" class="form-control" id="DEED_NO" name="DEED_NO" ng-model="formData.DEED_NO" ng-if="formData.HEAD_COL_TYPE_ID!='286011'">
+                        <input type="text" maxlength="1000" class="form-control" id="DEED_NO" name="DEED_NO" ng-model="formData.DEED_NO" model-view-value="true" ui-mask="99-999-999-9999" ui-mask-placeholder-char="_" ng-if="formData.HEAD_COL_TYPE_ID=='286011'">
                     </div>
                 </div>
                 <div class="form-group" ng-show="formData.HEAD_COL_TYPE_ID=='286011'">
@@ -72,7 +73,7 @@
                             <ui-select-choices repeat="item in selectCountry | filter: $select.search">
                                 <div ng-bind-html="item.NAME_THAI | highlight: $select.search"></div>
                             </ui-select-choices>
-                        </ui-select>                        
+                        </ui-select>
                     </div>
                 </div>
                 <div class="form-group" ng-class="{'has-error':form.DEED_PROVINCE.$dirty && form.DEED_PROVINCE.$viewValue==undefined && formData.DEED_COUNTRY.CODE=='TH', 'has-success':form.DEED_PROVINCE.$viewValue!=undefined && form.DEED_PROVINCE.$viewValue.PROV_ID!=undefined && formData.DEED_COUNTRY.CODE=='TH'}">
@@ -152,7 +153,7 @@
                             <ui-select-match>
                                 {{$select.selected.PROV_NAME}}
                             </ui-select-match>
-                            <ui-select-choices repeat="item in selectProvince | filter: $select.search">
+                            <ui-select-choices repeat="item in selectLocProvince | filter: $select.search">
                                 <div ng-bind-html="item.PROV_NAME | highlight: $select.search"></div>
                             </ui-select-choices>
                         </ui-select>
@@ -178,7 +179,7 @@
                         {{'SUBDISTRICT'|translate}}
                     </label>
                     <div ng-class="formControlCss">
-                        <ui-select theme="selectize" ng-model="formData.LOC_DISTRICT" id="LOC_DISTRICT" name="LOC_DISTRICT">
+                        <ui-select theme="selectize" ng-model="formData.LOC_DISTRICT" id="LOC_DISTRICT" name="LOC_DISTRICT" on-select="onLocSubDistrictChange($item)">
                             <ui-select-match>
                                 {{$select.selected.DISTRICT}}
                             </ui-select-match>
@@ -236,9 +237,93 @@
                         <input type="text" maxlength="50" placeholder="" class="form-control" id="LOC_ADD_ROAD" name="LOC_ADD_ROAD" ng-model="formData.LOC_ADD_ROAD">
                     </div>
                 </div>
-
+                <div class="form-group">
+                    <label ng-class="labelControlCss" for="USE_CITY_PLAN">
+                        {{'USE_CITY_PLAN'|translate}}
+                    </label>
+                    <div ng-class="formControlCss">
+                        <ui-select theme="selectize" ng-model="formData.USE_CITY_PLAN" id="USE_CITY_PLAN" name="USE_CITY_PLAN">
+                            <ui-select-match>
+                                {{$select.selected.NAME}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in selectUseCityPlan | filter: $select.search">
+                                <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <div class="panel panel-white">
+            <div class="panel-heading bg-light-azure no-radius">
+                <h5 class="panel-title">{{'ข้อมูลอื่นๆ'|translate}}</h5>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="REDEEM_FLAG">
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                            <input type="checkbox" id="REDEEM_FLAG" ng-model="formData.REDEEM_FLAG" ng-true-value="'Y'" ng-false-value="'N'">
+                            <label for="REDEEM_FLAG">
+                                {{'REDEEM_FLAG'|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="HEAD_GROUP">
+                        {{'HEAD_GROUP'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" maxlength="3" class="form-control" ng-model="formData.HEAD_GROUP" id="HEAD_GROUP" name="HEAD_GROUP" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="AREA_WA">
+                        {{'รวมพื้นที่ตารางวาทั้งหมด'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input count type="text" class="form-control" ng-model="formData.AREA_WA" id="AREA_WA" name="AREA_WA" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="AREA_METER">
+                        {{'รวมพื้นที่ตารางเมตรทั้งหมด'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input count type="text" class="form-control" ng-model="formData.AREA_METER" id="AREA_METER" name="AREA_METER" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="NPA_NO">
+                        {{'NPA_NO'|translate}}
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" maxlength="50" class="form-control" ng-model="formData.NPA_NO" id="NPA_NO" name="NPA_NO" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="NPA_STATUS">ใช้เป็นหลักประกัน</label>
+                    <div class="col-sm-8">
+                        <div class="col-sm-3 no-padding">
+                            <div class="radio clip-radio radio-primary">
+                                <input type="radio" name="NPA_STATUS" ng-value="'Y'" ng-model="formData.NPA_STATUS" id="NPA_STATUS_Y" />
+                                <label for="NPA_STATUS_Y">{{ 'ขายแล้ว'|translate }}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="radio clip-radio radio-primary">
+                                <input type="radio" name="NPA_STATUS" ng-value="'N'" ng-model="formData.NPA_STATUS" id="NPA_STATUS_N" />
+                                <label for="NPA_STATUS_N">{{ 'ยังไม่ขาย'|translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="panel panel-white">
             <div class="panel-heading bg-light-azure no-radius">
                 <h5 class="panel-title">{{'LAT_LONG'|translate}}</h5>
@@ -269,7 +354,6 @@
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="LOCATION_CONFIG">
-
                     </label>
                     <div class="col-sm-8">
                         <div class="checkbox clip-check check-primary checkbox-inline">

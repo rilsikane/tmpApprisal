@@ -19,7 +19,7 @@
                     ราคาต่อตารางเมตร/วา (บาท)
                 </label>
                 <div class="col-sm-8">
-                    <input format type="text" class="form-control" ng-model="formData.APPR_CUR_OTHER_PRICE" id="APPR_CUR_OTHER_PRICE" name="APPR_CUR_OTHER_PRICE"  maxlength="25"/>
+                    <input format type="text" class="form-control" ng-model="formData.APPR_CUR_OTHER_PRICE" id="APPR_CUR_OTHER_PRICE" name="APPR_CUR_OTHER_PRICE" maxlength="25" />
                 </div>
             </div>
             <div class="form-group">
@@ -27,7 +27,7 @@
                     ราคารวม
                 </label>
                 <div class="col-sm-8">
-                    <input format type="text" class="form-control" ng-model="formData.APPR_CUR_NET_TOTAL" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" maxlength="25"/>
+                    <input format type="text" class="form-control" ng-model="formData.APPR_CUR_NET_TOTAL" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" maxlength="25" />
                 </div>
             </div>
             <div class="form-group">
@@ -35,7 +35,7 @@
                     พื้นที่รวม
                 </label>
                 <div class="col-sm-8">
-                    <input numberonly type="text" class="form-control" ng-model="formData.APPR_CUR_OTHER_AREA" id="APPR_CUR_OTHER_AREA" name="APPR_CUR_OTHER_AREA" maxlength="25"/>
+                    <input numberonly type="text" class="form-control" ng-model="formData.APPR_CUR_OTHER_AREA" id="APPR_CUR_OTHER_AREA" name="APPR_CUR_OTHER_AREA" maxlength="25" />
                 </div>
             </div>
         </fieldset>
@@ -105,7 +105,7 @@
                     {{'RENTAL_PERIOD'|translate}}
                 </label>
                 <div class="col-sm-2">
-                    <input  type="text" min="0" class="form-control" id="RENTAL_PERIOD_YEAR" name="RENTAL_PERIOD_YEAR" ng-model="formData.RENTAL_PERIOD_YEAR" count ng-max="9999">
+                    <input type="text" min="0" class="form-control" id="RENTAL_PERIOD_YEAR" name="RENTAL_PERIOD_YEAR" ng-model="formData.RENTAL_PERIOD_YEAR" count ng-max="9999">
                 </div>
                 <div class="col-sm-1 no-padding">
                     <label class="control-label" for="RENTAL_PERIOD_YEAR">
@@ -113,7 +113,7 @@
                     </label>
                 </div>
                 <div class="col-sm-2">
-                    <input  type="text" min="0" max="12" class="form-control" id="RENTAL_PERIOD_MONTH" name="RENTAL_PERIOD_MONTH" ng-model="formData.RENTAL_PERIOD_MONTH" count ng-max="11">
+                    <input type="text" min="0" max="12" class="form-control" id="RENTAL_PERIOD_MONTH" name="RENTAL_PERIOD_MONTH" ng-model="formData.RENTAL_PERIOD_MONTH" count ng-max="11">
                 </div>
                 <label class="control-label" for="RENTAL_PERIOD_MONTH">
                     {{'MONTH'|translate}}
@@ -263,7 +263,7 @@
             </div>
         </div>
         <div class="form-group" ng-class="{'has-error':form.SURVEY_NO.$dirty && form.SURVEY_NO.$invalid && formData.RENT_TYPE=='L', 'has-success':form.SURVEY_NO.$valid && formData.RENT_TYPE=='L'}">
-            <label  class="col-sm-3 control-label" for="SURVEY_NO">
+            <label class="col-sm-3 control-label" for="SURVEY_NO">
                 {{'SURVEY_NO'|translate}}<span class="symbol required" ng-if="formData.RENT_TYPE=='L'"></span>
             </label>
             <div class="col-sm-9">
@@ -275,7 +275,7 @@
             <div class="col-sm-9">
                 <div class="form-group">
                     <div class="col-sm-3">
-                        <input type="text" count ng-change="calLandArea()"  class="form-control" id="RAI" name="RAI" ng-model="formData.RAI" maxlength="22">
+                        <input type="text" count ng-change="calLandArea()" class="form-control" id="RAI" name="RAI" ng-model="formData.RAI" maxlength="22">
                     </div>
                     <label class="control-label" for="RAI">
                         {{'RAI'|translate}}
@@ -304,7 +304,7 @@
                 {{'AREA_WA'|translate}}
             </label>
             <div class="col-sm-3">
-                <input readonly type="text" class="form-control" id="AREA_WA" name="AREA_WA" ng-model="formData.AREA_WA" ng-model="formData.AREA_WA" format>
+                <input landarea type="text" class="form-control" id="AREA_WA" name="AREA_WA" ng-model="formData.AREA_WA" ng-model="formData.AREA_WA" format>
             </div>
         </div>
     </div>

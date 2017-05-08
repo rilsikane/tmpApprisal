@@ -41,10 +41,10 @@
             </thead>
             <tbody>
                 <tr ng-repeat="item in questionnaire.QNR_ITEM" ng-if="item.FLAG != 'H'">
-                    <td >
+                    <td>
                         <div ng-switch="item.INPUT">
                             <!-- style="height:30px !important;" -->
-                            <div  ng-switch-when="RADIO" >
+                            <div ng-switch-when="RADIO">
                                 <span>{{item.DSC1}}</span>
                                 <div style="padding-left:1.5%;" class="radio clip-radio radio-primary" ng-repeat="choice in item.CHILD">
                                     <input type="radio" id="qnr_radio_{{choice.QNR_ID}}" ng-value="{{choice.QNR_ID}}" name="qnr_radio_{{item.QNR_ID}}" ng-model="item.CHOICE_QNR_ID" />
@@ -54,7 +54,7 @@
                             <!-- height:30px !important; -->
                             <div style="padding-left:2.5%;" ng-switch-when="CHECK" class="horizontal">
                                 <table ng-if="item.CHILD.length > 0">
-                                    <tr ng-repeat="choice in item.CHILD" >
+                                    <tr ng-repeat="choice in item.CHILD">
                                         <td>
                                             <div class="checkbox clip-check check-primary checkbox-inline">
                                                 <input id="qnr_{{choice.QNR_ID}}" type="checkbox" ng-true-value="{{choice.QNR_ID}}" ng-false-value="0" ng-model="choice.CHOICE_QNR_ID" />
@@ -62,7 +62,7 @@
                                             </div>
                                         </td>
                                         <td><p>{{choice.DSC1}}</p></td>
-                                    </tr>                                    
+                                    </tr>
                                 </table>
                                 <div ng-if="item.CHILD.length == 0">
                                     <table>
@@ -78,8 +78,8 @@
                                             </td>
                                         </tr>
                                     </table>
-                                    
-                                    
+
+
                                 </div>
                             </div>
 

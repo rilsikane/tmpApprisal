@@ -88,7 +88,7 @@
                     {{'HORSE_POWER'|translate}} <span class="symbol"></span>
                 </label>
                 <div ng-class="formControlCss">
-                    <input  type="text" class="form-control" id="HORSE_POWER" name="HORSE_POWER" ng-model="formData.HORSE_POWER" count maxlength="10">
+                    <input type="text" class="form-control" id="HORSE_POWER" name="HORSE_POWER" ng-model="formData.HORSE_POWER" count maxlength="10">
                 </div>
             </div>
             <div class="form-group">
@@ -112,7 +112,7 @@
                     {{'MADE_YEAR'|translate}} <span class="symbol"></span>
                 </label>
                 <div ng-class="formControlCss">
-                    <input required type="text" count maxlength="22" ng-max="999" type="text"  class="form-control" id="YEAR" name="YEAR" ng-model="formData.YEAR" />
+                    <input required type="text" count maxlength="22" ng-max="9999" class="form-control" id="YEAR" name="YEAR" ng-model="formData.YEAR" />
                 </div>
             </div>
             <div class="form-group">
@@ -134,6 +134,14 @@
                             <label for="MARKET_NEED{{item.VALUE}}">{{ item.NAME }}</label>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-class="labelControlCss" for="RESPONSE_MONTH">
+                    {{'RESPONSE_MONTH'|translate}}
+                </label>
+                <div ng-class="formControlCss">
+                    <input type="text" count class="form-control" id="RESPONSE_MONTH" name="RESPONSE_MONTH" ng-model="formData.RESPONSE_MONTH">
                 </div>
             </div>
         </fieldset>

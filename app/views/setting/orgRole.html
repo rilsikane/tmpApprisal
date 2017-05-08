@@ -32,8 +32,8 @@
                             <li ng-repeat="item in ou" class="list-group-item no-radius" ng-class="{'bg-light-primary':item.OU_ID==selectedOU.OU_ID}">
                                 <div>
                                     <h4 class="text-info">{{item.OU_NAME}}</h4>
-                                    <i>{{'OU_ID'|translate}} : {{item.OU_ID}}</i>
-                                    <i>{{'COST_CENTER'|translate}} : {{item.COST_CENTER}}</i>
+                                    <span>{{'OU_ID'|translate}} : {{item.OU_ID}}</span>
+                                    <span>{{'COST_CENTER'|translate}} : {{item.COST_CENTER}}</span>
                                     <span style="cursor:pointer;" class="pull-right" ng-click="edit(item)"><i class="fa fa-pencil"></i></span>
                                 </div>
                             </li>

@@ -48,13 +48,13 @@
                     var max = $attrs.ngMax;
                     var regNum = /[^^\d*\.?\d*$]/;
                     var value = $element.val().replace(regNum, '');
-                    if(max){
-                        if(parseFloat(value) > parseFloat(max)){
+                    if (max) {
+                        if (parseFloat(value) > parseFloat(max)) {
                             $element.val(0);
-                        }else{
+                        } else {
                             $element.val(value);
                         }
-                    }else{
+                    } else {
                         $element.val(value);
                     }
                 });
@@ -222,17 +222,17 @@
                 });
 
                 $element.bind('keyup', function (event) {
-                   
+
                     var max = $attrs.ngMax;
                     var regNum = /[^^\d+$]/;
                     var value = $element.val().replace(regNum, '');
-                    if(max){
-                        if(parseInt(value) > parseInt(max)){
+                    if (max) {
+                        if (parseInt(value) > parseInt(max)) {
                             $element.val(0);
-                        }else{
+                        } else {
                             $element.val(value);
                         }
-                    }else{
+                    } else {
                         $element.val(value);
                     }
                 });
@@ -391,12 +391,12 @@
                     $element.val(value);
                 });
 
-               $element.bind('keyup', function (event) {
-                   
+                $element.bind('keyup', function (event) {
+
                     var max = $attrs.ngMax;
                     var regNum = /[^^\d+$]/;
                     var value = $element.val().replace(regNum, '');
-                    
+
                     $element.val(value);
                 });
 
@@ -435,7 +435,6 @@
                         }
                     }
                 });
-
             }
         };
     }]).directive('year', ['$filter', function ($filter) {
@@ -472,6 +471,37 @@
                     }
                 });
 
+            }
+        };
+    }])
+    .directive('numeric', ['$filter', function ($filter) {
+        return {
+            require: '?ngModel',
+            link: function ($scope, $element, $attrs, ngModelCtrl) {
+                if (!ngModelCtrl) {
+                    return;
+                }
+                var listener = function () {
+                    var value = $element.val();
+                    if (value && !isNaN(value)) {
+                        $element.val(value);
+                    } else {
+                        $element.val('');
+                        $element.val(undefined);
+                    }
+                }
+
+                $element.bind('change', listener)
+                $element.bind('blur', listener)
+                $element.bind('focus', function () {
+                    var value = $element.val();//.replace(/,/g, '');
+
+                    $element.val(value);
+                });
+
+                $element.bind('keydown', function (event) {
+                   
+                });
             }
         };
     }])

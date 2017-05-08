@@ -34,7 +34,7 @@
                             <li ng-repeat="item in users" class="list-group-item no-radius">
                                 <div>
                                     <h4 class="text-info">{{item.USER_NAME}} / {{item.PREFIX.NAME}} {{item.EMP_F_NAME}} {{item.EMP_L_NAME}}</h4>
-                                    <i>{{'OU'|translate}} : {{item.OU.OU_NAME}}</i>
+                                    <span>{{'OU'|translate}} : {{item.OU.OU_NAME}}</span>
                                     <span style="cursor:pointer;" class="pull-right" ng-click="edit(item)"><i class="fa fa-pencil"></i></span>
                                 </div>
                             </li>

@@ -11,10 +11,16 @@
                 <div ng-include="'app/views/project/price.html'"></div>
             </div>
         </div>
+        
         <div class="form-group" ng-class="{'has-error':form.SUB_TYPE.$dirty && form.SUB_TYPE.$viewValue.CODE==undefined, 'has-success':form.SUB_TYPE.$dirty && form.SUB_TYPE.$viewValue.CODE!=undefined}">
-            <label ng-class="labelControlCss" control-label" for="SUB_TYPE">
+            
+            <label ng-class="labelControlCss" control-label" for="SUB_TYPE" ng-if="botColForm.COL_FORM_ID!='286003'">
                 {{'SUB_TYPE'|translate}} <span class="symbol required"></span>
             </label>
+            <label ng-class="labelControlCss" control-label" for="SUB_TYPE" ng-if="botColForm.COL_FORM_ID=='286003'">
+                {{'ประเภทเอกสารสิทธิ'|translate}} <span class="symbol required"></span>
+            </label>
+
             <div ng-class="formControlCss">
                 <ui-select ng-required="true" theme="selectize" ng-model="formData.SUB_TYPE" name="SUB_TYPE" id="SUB_TYPE" on-select="onSubTypeChange($item,$model)">
                     <ui-select-match placeholder="">
@@ -24,22 +30,10 @@
                         <div ng-bind-html="sub.SUB_TYPE | highlight: $select.search"></div>
                     </ui-select-choices>
                 </ui-select>
-                <!--<span class="error text-small block" ng-if="form.SUB_TYPE.$dirty && form.SUB_TYPE.$viewValue==undefined">{{requireNotificationPrefix}} {{'SUB_TYPE'|translate}}</span>-->
             </div>
         </div>
-        <!--<div class="form-group" ng-class="{'has-error':form.QUANTITY.$dirty && form.QUANTITY.$invalid, 'has-success':formData.QUANTITY>0}">
-            <label ng-class="labelControlCss" for="QUANTITY">
-                {{'QUANTITY'|translate}}<span class="symbol required"></span>
-            </label>
-            <div ng-class="formControlCss">
-                <input required type="number" min="1" class="form-control" id="QUANTITY" name="QUANTITY" ng-model="formData.QUANTITY">
-                <span class="error text-small block" ng-if="form.QUANTITY.$dirty && form.QUANTITY.$invalid">{{requireNotificationPrefix}} {{'QUANTITY'|translate}}</span>
-            </div>
-        </div>-->
         <div ng-include="includeTemplateUrl1"></div>
         <div ng-include="includeTemplateUrl2"></div>
-        <!--<ng-include src="includeTemplateUrl1"></ng-include>
-        <ng-include src="includeTemplateUrl2"></ng-include>-->
     </form>
 </div>
 <div class="modal-footer">

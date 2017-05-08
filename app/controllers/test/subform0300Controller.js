@@ -2,7 +2,7 @@
     $scope.ldloading = {};
     $scope.btnDisabled = false;
     $scope.inputDisabled = false;
-    
+
     $scope.province = [];
     $scope.district = [[], []];
     $scope.requestAttach = [];
@@ -23,7 +23,9 @@
             resolve: {
                 params: function () {
                     return {
-                        limit: 0
+                        limit: 0,
+                        config: 'upload/document',
+                        id1: $scope.$parent.formData.JOB_RUNNING_ID
                     };
                 }
             }

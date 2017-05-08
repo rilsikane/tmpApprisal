@@ -4,46 +4,57 @@
             <h4 class="panel-title">บันทึกผลคณะกรรมการประเมินราคา</h4>
         </div>
         <div class="panel-body">
-            <form name="form" role="form" class="form-horizontal" novalidate ng-submit="submit(form)">
-                <div class="form-group">
+            <form name="form" role="form" class="form-horizontal" novalidate >
+                <div class="form-group" ng-class="{'has-error':form.COMMITTEE_MEETING_NO.$dirty && form.COMMITTEE_MEETING_NO.$invalid, 'has-success':form.COMMITTEE_MEETING_NO.$valid}">
                     <label class="col-sm-3 control-label" for="COMMITTEE_MEETING_NO">
-                        {{'การประชุมครั้งที่'|translate}}
+                        {{'การประชุมครั้งที่'|translate}} <span class="required symbol"></span>
                     </label>
                     <div class="col-sm-2 no-padding">
-                        <input type="text" class="form-control" ng-model="$parent.formData.COMMITTEE_MEETING_NO" id="COMMITTEE_MEETING_NO" name="COMMITTEE_MEETING_NO" />
+                        <input required maxlength="10" type="text" class="form-control" ng-model="$parent.formData.COMMITTEE_MEETING_NO" id="COMMITTEE_MEETING_NO" name="COMMITTEE_MEETING_NO" />
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-class="{'has-error':form.COMMITTEE_MEETING_DATE.$dirty && form.COMMITTEE_MEETING_DATE.$invalid, 'has-success':form.COMMITTEE_MEETING_DATE.$valid}">
                     <label class="col-sm-3 control-label" for="COMMITTEE_MEETING_DATE">
-                        {{'วันที่ประชุม'|translate}}
+                        {{'วันที่ประชุม'|translate}}<span class="symbol required"></span>
                     </label>
                     <div class="col-sm-2 no-padding">
-                        <input datepicker-popup="dd/MM/yyyy" is-open="dpOpened" ng-model-options="{timezone :'+0700'}" ng-click="dpOpened=true" class="form-control" ng-model="$parent.formData.COMMITTEE_MEETING_DATE" id="COMMITTEE_MEETING_DATE" name="COMMITTEE_MEETING_DATE" />
+                        <input required datepicker-popup="dd/MM/yyyy" is-open="dpOpened" ng-model-options="{timezone :'+0700'}" ng-click="dpOpened=true" class="form-control" ng-model="$parent.formData.COMMITTEE_MEETING_DATE" id="COMMITTEE_MEETING_DATE" name="COMMITTEE_MEETING_DATE" />
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-class="{'has-error':form.COMMITTEE_NAME.$dirty && form.COMMITTEE_NAME.$invalid, 'has-success':form.COMMITTEE_NAME.$valid}">
                     <label class="col-sm-3 control-label" for="COMMITTEE_NAME">
-                        {{'รายชื่อคณะกรรมการ'|translate}}
+                        {{'รายชื่อคณะกรรมการ'|translate}}<span class="symbol required"></span>
                     </label>
                     <div class="col-sm-9 no-padding">
-                        <textarea style="max-width:100%;" class="form-control" ng-model="$parent.formData.COMMITTEE_NAME" id="COMMITTEE_NAME" name="COMMITTEE_NAME"></textarea>
+                        <textarea required rows="6" style="max-width:100%;" class="form-control" ng-model="$parent.formData.COMMITTEE_NAME" id="COMMITTEE_NAME" name="COMMITTEE_NAME" maxlength="4000"></textarea>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-class="{'has-error':form.COMMITTEE_NOTE1.$dirty && form.COMMITTEE_NOTE1.$invalid, 'has-success':form.COMMITTEE_NOTE1.$valid}">
                     <label class="col-sm-3 control-label" for="COMMITTEE_NOTE1">
-                        {{'สรุปผลการประเมินราคาของคณะกรรมการ'|translate}}
+                        {{'สรุปผลการประเมินราคาของคณะกรรมการ'|translate}}<span class="symbol required"></span>
                     </label>
                     <div class="col-sm-9 no-padding">
                         <!--<div ckeditor="options" ng-model="$parent.formData.COMMITTEE_NOTE1" ready="onReady()"></div>-->
-                        <textarea style="max-width:100%;" class="form-control" ng-model="$parent.formData.COMMITTEE_NOTE1" id="COMMITTEE_NOTE1" name="COMMITTEE_NOTE1"></textarea>
+                        <textarea required rows="10" style="max-width:100%;" class="form-control" ng-model="$parent.formData.COMMITTEE_NOTE1" id="COMMITTEE_NOTE1" name="COMMITTEE_NOTE1" maxlength="4000"></textarea>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label" for="COMMITTEE_NOTE2">
-                        {{'รายละเอียดที่สรุปผลได้แก่'|translate}}
+                <!--<div class="form-group">
+                    <label class="col-sm-3 control-label" for="COMMITTEE_NOTE1">
+                        {{'รับราคา/ไม่รับราคา'|translate}}
                     </label>
                     <div class="col-sm-9 no-padding">
-                        <input type="text" class="form-control" ng-model="$parent.formData.COMMITTEE_NOTE2" id="COMMITTEE_NOTE2" name="COMMITTEE_NOTE2" />
+                            <div ng-repeat="item in radioYN" class="radio clip-radio radio-primary radio-inline">
+                                <input required type="radio" name="MARKET_NEED" ng-value="item.VALUE" ng-model="formData.MARKET_NEED" id="MARKET_NEED{{item.VALUE}}" />
+                                <label for="MARKET_NEED{{item.VALUE}}">{{ item.NAME }}</label>
+                            </div>
+                    </div>
+                </div>-->
+                <div class="form-group" ng-class="{'has-error':form.COMMITTEE_NOTE2.$dirty && form.COMMITTEE_NOTE2.$invalid, 'has-success':form.COMMITTEE_NOTE2.$valid}">
+                    <label class="col-sm-3 control-label" for="COMMITTEE_NOTE2">
+                        {{'รายละเอียดที่สรุปผลได้แก่'|translate}}<span class="symbol required"></span>
+                    </label>
+                    <div class="col-sm-9 no-padding">
+                        <textarea required rows="6" style="max-width:100%;" type="text" class="form-control" ng-model="$parent.formData.COMMITTEE_NOTE2" id="COMMITTEE_NOTE2" name="COMMITTEE_NOTE2" maxlength="4000" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -59,12 +70,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="pull-right">
+                    <button class="btn btn-primary btn-o" ng-click="save(form)" ng-disabled="inputDisabled"><i class="glyphicon glyphicon-floppy-save"></i> {{'BUTTON.SAVE'|translate}}</button>
+                    <button class="btn btn-primary btn-o" ng-click="savesend(form)" ng-disabled="inputDisabled"><i class="glyphicon glyphicon-send"></i> {{'BUTTON.SAVESEND'|translate}}</button>
+                </div>
             </form>
-
         </div>
     </div>
-    <div class="pull-right">
-        <button class="btn btn-primary btn-o" ng-click="save()"><i class="glyphicon glyphicon-floppy-save"></i> {{'BUTTON.SAVE'|translate}}</button>
-        <button class="btn btn-primary btn-o" ng-click="savesend()"><i class="glyphicon glyphicon-send"></i> {{'BUTTON.SAVESEND'|translate}}</button>
-    </div>
+
 </div>
