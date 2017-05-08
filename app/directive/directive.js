@@ -462,12 +462,18 @@
                     $element.val(value);
                 });
 
-                $element.bind('keydown', function (event) {
-                    var charCode = event.keyCode;
-                    if (event.keyCode == 0 || charCode > 31 && (charCode < 48 || (charCode > 57 && charCode != 190 && charCode != 110))) {
-                        if (!(charCode > 34 && charCode < 41)) {
-                            event.preventDefault();
+                $element.bind('keyup', function (event) {
+                    var max = $attrs.ngMax;
+                    var regNum = /[^^\d*\.?\d*$]/;
+                    var value = $element.val().replace(regNum, '');
+                    if (max) {
+                        if (parseFloat(value) > parseFloat(max)) {
+                            $element.val(0);
+                        } else {
+                            $element.val(value);
                         }
+                    } else {
+                        $element.val(value);
                     }
                 });
 
