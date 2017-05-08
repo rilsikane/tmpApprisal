@@ -31,27 +31,28 @@
             </div>
         </div>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive questionnaire">
         <table class="table table-bordered table-hover" style="max-width:100%;">
             <thead>
                 <tr class="bg-azure" style="height:50px;">
-                    <th class="col-md-2"><span class="text-white">{{'QNR_TOPIC'|translate}}</span></th>
+                    <th class="col-md-3"><span class="text-white">{{'QNR_TOPIC'|translate}}</span></th>
                     <th class="col-md-1 text-center" ng-repeat="header in questionnaire.QNR_HEADER"><span class="text-white">{{header.DSC1}}</span></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="item in questionnaire.QNR_ITEM" ng-if="item.FLAG != 'H'">
-                    <td>
+                    <td >
                         <div ng-switch="item.INPUT">
-                            <div ng-switch-when="RADIO">
+                            <!-- style="height:30px !important;" -->
+                            <div  ng-switch-when="RADIO" >
                                 <span>{{item.DSC1}}</span>
-                                <div class="radio clip-radio radio-primary" ng-repeat="choice in item.CHILD">
+                                <div style="padding-left:1.5%;" class="radio clip-radio radio-primary" ng-repeat="choice in item.CHILD">
                                     <input type="radio" id="qnr_radio_{{choice.QNR_ID}}" ng-value="{{choice.QNR_ID}}" name="qnr_radio_{{item.QNR_ID}}" ng-model="item.CHOICE_QNR_ID" />
                                     <label for="qnr_radio_{{choice.QNR_ID}}">{{choice.DSC1}}</label>
                                 </div>
                             </div>
-
-                            <div ng-switch-when="CHECK" class="horizontal">
+                            <!-- height:30px !important; -->
+                            <div style="padding-left:2.5%;" ng-switch-when="CHECK" class="horizontal">
                                 <table ng-if="item.CHILD.length > 0">
                                     <tr ng-repeat="choice in item.CHILD" >
                                         <td>
@@ -82,15 +83,16 @@
                                 </div>
                             </div>
 
-                            <div ng-switch-when="TEXT" class="form-group">
+                            <div style="height:100% !important;" ng-switch-when="TEXT" class="form-group">
                                 <label for="qnr_{{item.QNR_ID}}">
                                     {{item.DSC1}}
                                 </label>
                                 <br />
-                                <input id="qnr_{{item.QNR_ID}}" type="text" class="form-control" ng-model="item.NOTE" />
+                                <textarea rows="3" id="qnr_{{item.QNR_ID}}" style="max-width:100%;" class="form-control" maxlength="4000" ng-model="item.NOTE"></textarea>
                             </div>
 
-                            <h4 ng-switch-default>{{item.DSC1}}</h4>
+                            <h4 ng-switch-default ng-if="item.LEV =='1'">{{item.DSC1}}</h4>
+                            <h5 style="padding-left:2.5%" ng-switch-default ng-if="item.LEV =='2'">{{item.DSC1}}</h5>
                         </div>
                     </td>
                     <td ng-if="item.TYPE!='Q' && questionnaire.QNR_HEADER.length > 0" colspan="{{questionnaire.QNR_HEADER.length}}"></td>
