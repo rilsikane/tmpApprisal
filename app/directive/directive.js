@@ -216,9 +216,19 @@
                 $element.bind('blur', listener)
 
                 $element.bind('focus', function () {
-                    var value = $element.val().replace(/,/g, '');
+                    var value = $element.val();
+                    if(value){
+                        var tmpVal = parseInt(value)
+                        if(tmpVal==0){
+                            $element.val("");
+                        }else{
+                           $element.val(tmpVal); 
+                        }
+                    }else{
+                        $element.val(0);
+                    }
 
-                    $element.val(value);
+                    
                 });
 
                 $element.bind('keyup', function (event) {
