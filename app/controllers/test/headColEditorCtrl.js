@@ -22,10 +22,20 @@
     $scope.selectLocDistrict = [];
     $scope.selectLocSubDistrict = [];
 
+    //$scope.selectProvinceDOL = [];
+    //$scope.selectDistrictDOL = [];
+    //$scope.selectSubDistrictDOL = [];
+
     $scope.radioMachineOperation = [{ VALUE: 'S', NAME: 'Stand alone' }, { VALUE: 'L', NAME: 'Line ผลิต' }, { VALUE: 'X', NAME: 'ไม่ใช่เครื่องจักร' }];
     $scope.radioRegisYN = [{ VALUE: 'N', NAME: 'จดทะเบียน' }, { VALUE: 'Y', NAME: 'ไม่จดทะเบียน' }];
 
     $scope.selectProjectUnitType = [];
+    $scope.selectUseCityPlan = [];
+
+    $scope.onLocSubDistrictChange = function (item) {
+        $scope.formData.LOC_CODE = item.CODE;
+        $scope.formData.LOC_ZIPCODE = item.ZIPCODE;
+    }
 
     $scope.getCountry = function () {
         var deffered = $q.defer();
@@ -49,9 +59,9 @@
         return deffered.promise;
     }
 
-    $scope.getProvince = function () {
+    $scope.getProvinceDOL = function () {
         var deffered = $q.defer();
-        radasoft.getProvince({}).then(function (response) {
+        radasoft.getProvinceDOL({}).then(function (response) {
             $scope.selectProvince = response.data;
             if ($scope.IS_PROJECT) {
                 $scope.getProjectUnitType().then(function () {
@@ -60,6 +70,14 @@
             } else {
                 deffered.resolve();
             }
+        });
+        return deffered.promise;
+    }
+    $scope.getProvince = function () {
+        var deffered = $q.defer();
+        radasoft.getProvince({}).then(function (response) {
+            $scope.selectLocProvince = response.data;
+            deffered.resolve();
         });
         return deffered.promise;
     }
@@ -72,32 +90,32 @@
         $scope.formData.DEED_DISTRICT = undefined;
 
         if ($scope.formData.HEAD_COL_RUNNING_ID == 0) {
-            $scope.formData.LOC_CITY = undefined;
-            $scope.formData.LOC_DISTRICT = undefined;
+            //$scope.formData.LOC_CITY = undefined;
+            //$scope.formData.LOC_DISTRICT = undefined;
         }
 
-        radasoft.getDistrict({ PROVINCE_ID: item.PROV_ID }).then(function (response) {
+        radasoft.getDistrictDOL({ PROVINCE_ID: item.PROV_ID }).then(function (response) {
             $scope.selectDistrict = response.data;
 
             if ($scope.formData.HEAD_COL_RUNNING_ID == 0) {
-                $scope.getLocDistrict(item, model);
+                //$scope.getLocDistrict(item, model);
             }
         });
     }
     $scope.onDeedCityChange = function ($item, $model) {
         if ($scope.formData.HEAD_COL_RUNNING_ID == 0) {
-            $scope.formData.LOC_CITY = $item;
-            $scope.formData.LOC_DISTRICT = undefined;
+            //$scope.formData.LOC_CITY = $item;
+            //$scope.formData.LOC_DISTRICT = undefined;
         }
 
         $scope.selectSubDistrict = [];
         $scope.formData.DEED_DISTRICT = undefined;
 
-        radasoft.getSubDistrict({ PROVINCE_ID: $item.PROVINCE_ID, DISTRICT_ID: $item.CITY_ID }).then(function (response) {
+        radasoft.getSubDistrictDOL({ PROVINCE_ID: $item.PROVINCE_ID, DISTRICT_ID: $item.CITY_ID }).then(function (response) {
             $scope.selectSubDistrict = response.data;
 
             if ($scope.formData.HEAD_COL_RUNNING_ID == 0) {
-                $scope.getLocSubDistrict($item, $model);
+                //$scope.getLocSubDistrict($item, $model);
             }
         });
     }
@@ -131,12 +149,10 @@
 
         var HEAD_COL_RUNNING_ID = ($scope.formData.LOCATION_LAT == '' || $scope.formData.LOCATION_LAT == null) && ($scope.formData.LOCATION_LONG == '' || $scope.formData.LOCATION_LONG == null) ? '' : $scope.formData.HEAD_COL_RUNNING_ID;
 
-        var DEED_PROVINCE = $scope.formData.DEED_PROVINCE || {};
-        var DEED_CITY = $scope.formData.DEED_CITY || {};
-        var DEED_DISTRICT = $scope.formData.DEED_DISTRICT || {};
-        var DEED_NO = $scope.formData.DEED_NO;
-
-
+        var DEED_PROVINCE = $scope.formData.LOC_PROVINCE || {};
+        var DEED_CITY = $scope.formData.LOC_CITY || {};
+        var DEED_DISTRICT = $scope.formData.LOC_DISTRICT || {};
+        var DEED_NO = '';
 
         radasoft.openMapDefineHeadColLocation({
             page: 'DefineHeadColLocation',
@@ -155,7 +171,7 @@
 
     $scope.onDeedDistrictChange = function ($item, $model) {
         if ($scope.formData.HEAD_COL_RUNNING_ID == 0) {
-            $scope.formData.LOC_DISTRICT = $item;
+            //$scope.formData.LOC_DISTRICT = $item;
         }
     }
 
@@ -224,27 +240,33 @@
 
     $scope.init = function () {
         $scope.getCountry().then(function () {
-            $scope.getProvince().then(function () {
-                if (params.formData.HEAD_COL_RUNNING_ID == 0) {
-                    $scope.formData = params.formData;
-                } else {
-                    $scope.getHeadColById(params.formData.DOC_ID, params.formData.HEAD_COL_RUNNING_ID).then(function () {
-                        radasoft.getDistrict({ PROVINCE_ID: $scope.formData.LOC_PROVINCE.PROV_ID }).then(function (response) {
-                            $scope.selectLocDistrict = response.data;
-                            radasoft.getSubDistrict({ PROVINCE_ID: $scope.formData.LOC_PROVINCE.PROV_ID, DISTRICT_ID: $scope.formData.LOC_CITY.CITY_ID }).then(function (response) {
-                                $scope.selectLocSubDistrict = response.data;
+            $scope.getProvinceDOL().then(function () {
+                $scope.getProvince().then(function () {
+                    if (params.formData.HEAD_COL_RUNNING_ID == 0) {
+                        $scope.formData = params.formData;
+                    } else {
+                        $scope.getHeadColById(params.formData.DOC_ID, params.formData.HEAD_COL_RUNNING_ID).then(function () {
+                            radasoft.getDistrict({ PROVINCE_ID: $scope.formData.LOC_PROVINCE.PROV_ID }).then(function (response) {
+                                $scope.selectLocDistrict = response.data;
+                                radasoft.getSubDistrict({ PROVINCE_ID: $scope.formData.LOC_PROVINCE.PROV_ID, DISTRICT_ID: $scope.formData.LOC_CITY.CITY_ID }).then(function (response) {
+                                    $scope.selectLocSubDistrict = response.data;
 
-                                radasoft.getDistrict({ PROVINCE_ID: $scope.formData.DEED_PROVINCE.PROV_ID }).then(function (response) {
-                                    $scope.selectDistrict = response.data;
+                                    radasoft.getDistrictDOL({ PROVINCE_ID: $scope.formData.DEED_PROVINCE.PROV_ID }).then(function (response) {
+                                        $scope.selectDistrict = response.data;
 
-                                    radasoft.getSubDistrict({ PROVINCE_ID: $scope.formData.DEED_PROVINCE.PROV_ID, DISTRICT_ID: $scope.formData.DEED_CITY.CITY_ID }).then(function (response) {
-                                        $scope.selectSubDistrict = response.data;
+                                        radasoft.getSubDistrictDOL({ PROVINCE_ID: $scope.formData.DEED_PROVINCE.PROV_ID, DISTRICT_ID: $scope.formData.DEED_CITY.CITY_ID }).then(function (response) {
+                                            $scope.selectSubDistrict = response.data;
+
+                                            radasoft.getLandColor({}).then(function (response) {
+                                                $scope.selectUseCityPlan = response.data;
+                                            });
+                                        });
                                     });
                                 });
                             });
                         });
-                    });
-                }
+                    }
+                });
             });
         });
     }

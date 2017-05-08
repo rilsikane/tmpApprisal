@@ -12,7 +12,7 @@
                     ชื่อ/นามสกุล ผู้ติดต่อประสานงาน<span class="symbol required"></span>
                 </label>
                 <div class="col-sm-6 no-padding">
-                    <input required type="text" placeholder="" class="form-control" id="LENDER_NAME" name="LENDER_NAME" ng-model="formData.LENDER_NAME">
+                    <input required type="text" maxlength="200" class="form-control" id="LENDER_NAME" name="LENDER_NAME" ng-model="formData.LENDER_NAME">
                     <span class="error text-small block" ng-if="form.LENDER_NAME.$dirty && form.LENDER_NAME.$invalid">{{requireNotificationPrefix}} ชื่อ/นามสกุล ผู้กู้</span>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                     เบอร์โทรติดต่อ<span class="symbol required"></span>
                 </label>
                 <div class="col-sm-6 no-padding">
-                    <input required type="text" placeholder="" class="form-control" id="LENDER_PHONE" name="LENDER_PHONE" ng-model="formData.LENDER_PHONE">
+                    <input required type="text" maxlength="50" class="form-control" id="LENDER_PHONE" name="LENDER_PHONE" ng-model="formData.LENDER_PHONE">
                     <span class="error text-small block" ng-if="form.LENDER_PHONE.$dirty && form.LENDER_PHONE.$invalid">{{requireNotificationPrefix}} เบอร์โทรติดต่อ</span>
                 </div>
             </div>

@@ -11,13 +11,14 @@
             <tr ng-repeat="col in collid">
                 <td>{{col.HEAD_COL_DETAIL}}</td>
                 <td>{{col.DEED_NO}}</td>
-                <td><input type="text" class="form-control" ng-model="col.HEAD_COL_CODE" maxlength="20"/></td>
+                <td><input type="text" class="form-control" ng-model="col.HEAD_COL_CODE" maxlength="20" /></td>
             </tr>
         </tbody>
     </table>
 
     <div class="pull-right">
-        <button class="btn btn-primary btn-o" ng-disabled="btnDisabled" ng-click="save(form)">{{'BUTTON.SAVE'|translate}}</button>
+        <button class="btn btn-primary btn-o" ng-disabled="btnDisabled" ng-click="save(form)">
+        <i class="glyphicon glyphicon-floppy-save"></i> {{'BUTTON.SAVE'|translate}}</button>
     </div>
 
 </div>

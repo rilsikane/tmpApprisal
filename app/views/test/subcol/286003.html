@@ -5,11 +5,10 @@
     <div class="panel-body">
         <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.COL_NO.$dirty && form.COL_NO.$invalid, 'has-success':form.COL_NO.$dirty && form.COL_NO.$valid}">
             <label class="col-sm-4 control-label" for="COL_NO">
-                <i class="fa fa-bolt"></i> {{'COL_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
+                <i class="fa fa-bolt"></i> {{'COL_NO'|translate}} <span class="symbol required"></span>
             </label>
             <div class="col-sm-8">
-                <input ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" type="text" maxlength="500" placeholder="" class="form-control" id="COL_NO" name="COL_NO" ng-model="formData.COL_NO">
-                <span class="error text-small block" ng-if="form.COL_NO.$dirty && form.COL_NO.$invalid">{{requireNotificationPrefix}} {{'COL_NO'|translate}}</span>
+                <input required type="text" maxlength="500" placeholder="" class="form-control" id="COL_NO" name="COL_NO" ng-model="formData.COL_NO">
             </div>
         </div>
         <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.RAWANG.$dirty && form.RAWANG.$invalid, 'has-success':form.RAWANG.$dirty && form.RAWANG.$valid}">
@@ -93,40 +92,36 @@
                 <span class="error text-small block" ng-if="form.PAGE_NO.$dirty && form.PAGE_NO.$invalid">{{requireNotificationPrefix}} {{'PAGE_NO'|translate}}</span>
             </div>
         </div>
-        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.RAI.$dirty && form.RAI.$invalid}">
+        <div class="form-group" ng-class="{'has-error':form.RAI.$dirty && form.RAI.$invalid && form.RAI.$viewValue!='','has-success':form.RAI.$valid}">
             <label class="col-sm-4 control-label" for="RAI">
-                {{'RAI'|translate}}<span class="symbol" ng-hide="!displayAllFiled"></span>
+                {{'RAI'|translate}}<span class="required symbol"></span>
             </label>
             <div class="col-sm-8">
-                <input type="text" step="1" min="0" ng-change="calLandArea()" ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" class="form-control" id="RAI" name="RAI" ng-model="formData.RAI" maxlength="22" count>
-                <!--<span class="error text-small block" ng-if="form.RAI.$dirty && form.RAI.$invalid">{{requireNotificationPrefix}} {{'RAI'|translate}}</span>-->
+                <input count required type="text" step="1" min="0" ng-change="calLandArea()" class="form-control" id="RAI" name="RAI" ng-model="formData.RAI" maxlength="22">
             </div>
         </div>
-        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.NGAN.$dirty && form.NGAN.$invalid}">
+        <div class="form-group" ng-class="{'has-error':form.NGAN.$dirty && (form.NGAN.$invalid || form.NGAN.$viewValue == ''),'has-success':form.NGAN.$valid && form.NGAN.$viewValue != ''}">
             <label class="col-sm-4 control-label" for="NGAN">
-                {{'NGAN'|translate}}<span class="symbol" ng-hide="!displayAllFiled"></span>
+                {{'NGAN'|translate}} <span class="required symbol"></span>
             </label>
             <div class="col-sm-8">
-                <input type="text" step="1" min="0" ng-max="3" ng-change="calLandArea()" ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" class="form-control" id="NGAN" name="NGAN" ng-model="formData.NGAN" count>
-                <!--<span class="error text-small block" ng-if="form.NGAN.$dirty && form.NGAN.$invalid">{{requireNotificationPrefix}} {{'NGAN'|translate}}</span>-->
+                <input count required type="text" step="1" min="0" ng-max="3" ng-change="calLandArea()" class="form-control" id="NGAN" name="NGAN" ng-model="formData.NGAN">
             </div>
         </div>
-        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.WA.$dirty && form.WA.$invalid}">
+        <div class="form-group" ng-class="{'has-error':form.WA.$dirty && (form.WA.$invalid || form.WA.$viewValue == ''),'has-success':form.WA.$valid && form.WA.$viewValue != ''}">
             <label class="col-sm-4 control-label" for="WA">
-                {{'WA'|translate}}<span class="symbol" ng-hide="!displayAllFiled"></span>
+                {{'WA'|translate}} <span class="required symbol"></span>
             </label>
             <div class="col-sm-8">
-                <input type="text" step="1" min="0" ng-max="99.99" ng-change="calLandArea()" ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" class="form-control" id="WA" name="WA" ng-model="formData.WA" format>
-                <!--<span class="error text-small block" ng-if="form.WA.$dirty && form.WA.$invalid">{{requireNotificationPrefix}} {{'WA'|translate}}</span>-->
+                <input count required type="text" step="1" min="0" ng-max="99.99" ng-change="calLandArea()" class="form-control" id="WA" name="WA" ng-model="formData.WA">
             </div>
         </div>
-        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group">
+        <div class="form-group">
             <label class="col-sm-4 control-label" for="AREA_WA">
                 {{'AREA_WA'|translate}}
             </label>
             <div class="col-sm-8">
-                <input landarea type="text" step="1" class="form-control" id="AREA_WA" name="AREA_WA" ng-model="formData.AREA_WA">
-                <!--<span class="error text-small block" ng-if="form.AREA_WA.$dirty && form.AREA_WA.$invalid">{{requireNotificationPrefix}} {{'AREA_WA'|translate}}</span>-->
+                <input count readonly type="text" step="1" class="form-control" id="AREA_WA" name="AREA_WA" ng-model="formData.AREA_WA">
             </div>
         </div>
         <div class="form-group">
@@ -1171,6 +1166,7 @@
         </fieldset>
     </div>
 </div>
+
 <div class="panel panel-white" ng-if="isAppriaiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">การใช้ประโยชน์</h5>
@@ -1245,6 +1241,40 @@
         </div>
     </div>
 </div>
+
+<div class="panel panel-white" ng-if="isAppriaiser">
+    <div class="panel-heading bg-light-azure no-radius">
+        <h5 class="panel-title">ไม่ได้ใช้ประโยชน์</h5>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-8">
+                <div class="checkbox clip-check check-primary">
+                    <input type="checkbox" id="WEED_Y" ng-model="formData.WEED_Y" ng-true-value="'Y'" ng-false-value="'N'">
+                    <label for="WEED_Y">
+                        {{'WEED_Y'|translate}}
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-2">
+                <div class="checkbox clip-check check-primary">
+                    <input type="checkbox" id="WEED_OTHER" ng-model="formData.WEED_OTHER" ng-true-value="'Y'" ng-false-value="'N'">
+                    <label for="WEED_OTHER">
+                        {{'OTHER'|translate}}
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="WEED_OTHER_REMARK" name="WEED_OTHER_REMARK" ng-model="formData.WEED_OTHER_REMARK">
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="panel panel-white" ng-if="isAppriaiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ภาระผูกพัน</h5>

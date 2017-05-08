@@ -13,9 +13,22 @@
             </tr>
         </tbody>
     </table>
-    <div class="pull-right">
-        <button class="btn btn-primary btn-o" ng-click="print()">
-            <i class="glyphicon glyphicon-print"></i> {{'BUTTON.PRINT'|translate}}
-        </button>
-    </div>  
+
+    <div class="col-md-12">
+        <div class="pull-right">
+            <button class="btn btn-primary btn-o" ng-click="print()">
+                <i class="fa fa-file-pdf-o"></i> {{'จัดทำแบบฟอร์มเอกสารสรุปผล'|translate}}
+            </button>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="col-md-12 margin-top-20 margin-bottom-20">
+        <div class="pull-right" ng-if="$parent.formData.APPRAISAL_COMMITTEE_SIGN_FORM.ATTACHDOC_RUNNING_ID>0">
+            <a target="_blank" href="home/download/{{$parent.formData.APPRAISAL_COMMITTEE_SIGN_FORM.ATTACHDOC_RUNNING_ID}}">
+                <h3>{{'ดาวน์โหลดไฟล์'|translate}}</h3>                
+            </a>
+            <span style="position:absolute;right:14px;">จัดทำแบบฟอร์มเอกสารสรุปผล ล่าสุดเมื่อ {{$parent.formData.APPRAISAL_COMMITTEE_SIGN_FORM.E_DATE|date:'dd/MM/yyyy HH:mm'}}</span>
+        </div>
+    </div>
 </div>

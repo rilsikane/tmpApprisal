@@ -580,10 +580,6 @@ app.controller('subform1200Controller', ['$scope', 'radasoft', function ($scope,
 app.controller('subform1300Controller', ['$scope', 'radasoft', '$sce', '$translate', function ($scope, radasoft, $sce, $translate) {
     $scope.content = {};
 
-    //$scope.print = function () {
-    //    radasoft.downloadFile($scope.$parent.formData.APPRAISAL_COMMITTEE_SIGN_FORM);
-    //}
-
     $scope.getHeadColAppraisalList = function () {
         radasoft.getHeadColAppraisalList({ JOB_RUNNING_ID: $scope.$parent.formData.JOB_RUNNING_ID }).then(function (response) {
             var allOk = true;
@@ -608,7 +604,7 @@ app.controller('subform1300Controller', ['$scope', 'radasoft', '$sce', '$transla
                     regen: true
                 }).then(function (response) {
                     $scope.$parent.formData.APPRAISAL_COMMITTEE_SIGN_FORM = response.data;
-                    radasoft.downloadFile($scope.$parent.formData.APPRAISAL_COMMITTEE_SIGN_FORM);
+                    //radasoft.downloadFile($scope.$parent.formData.APPRAISAL_COMMITTEE_SIGN_FORM);
                     radasoft.success();
                 });
             }
@@ -622,6 +618,16 @@ app.controller('subform1300Controller', ['$scope', 'radasoft', '$sce', '$transla
     $scope.init();
 }]);
 app.controller('subform1400Controller', ['$scope', 'radasoft', '$sce', '$translate', function ($scope, radasoft, $sce, $translate) {
+    $scope.btnDisabled = true;
+    $scope.inputDisabled = true;
+    $scope.inputReadOnly = true;
+
+    if ($scope.tab.create || $scope.tab.update) {
+        $scope.btnDisabled = false;
+        $scope.inputDisabled = false;
+    }
+
+    $scope.radioYN = [{ VALUE: 'Y', NAME: $translate.instant('YES') }, { VALUE: 'N', NAME: $translate.instant('NO') }];
     $scope.options = {
         language: 'en',
         allowedContent: true,
@@ -631,7 +637,10 @@ app.controller('subform1400Controller', ['$scope', 'radasoft', '$sce', '$transla
         // ...
     };
     $scope.upload = function () {
-        radasoft.upload({}).result.then(function (data) {
+        radasoft.upload({
+            config: 'upload/document',
+            id1: $scope.$parent.formData.JOB_RUNNING_ID
+        }).result.then(function (data) {
             radasoft.debug(data);
             $scope.$parent.formData.APPRAISAL_COMMITTEE_SIGNED_FORM = data[0];
         });
@@ -649,24 +658,53 @@ app.controller('subform1400Controller', ['$scope', 'radasoft', '$sce', '$transla
             }
         });
     }
-    $scope.save = function () {
-        radasoft.debug($scope.$parent.formData);
-        radasoft.confirmAndSave($translate.instant('CONFIRM.SAVE'), '', function (isconfirmed) {
-            if (isconfirmed) {
-                radasoft.approverSave($scope.$parent.formData).then(function (response) {
-                    radasoft.success();
-                });
+    $scope.save = function (form) {
+        if (form.$invalid) {
+            var field = null, firstError = null;
+            for (field in form) {
+                if (field[0] != '$') {
+                    if (firstError === null && !form[field].$valid) {
+                        firstError = form[field].$name;
+                    }
+
+                    if (form[field].$pristine) {
+                        form[field].$dirty = true;
+                    }
+                }
             }
-        });
+        } else {
+            radasoft.confirmAndSave($translate.instant('CONFIRM.SAVE'), '', function (isconfirmed) {
+                if (isconfirmed) {
+                    radasoft.approverSave($scope.$parent.formData).then(function (response) {
+                        radasoft.success();
+                    });
+                }
+            });
+        }
     }
     $scope.savesend = function () {
-        radasoft.confirmAndSave($translate.instant('CONFIRM.SAVESEND'), '', function (isconfirmed) {
-            if (isconfirmed) {
-                radasoft.approverSaveSend($scope.$parent.formData).then(function (response) {
-                    radasoft.success();
-                });
+        if (form.$invalid) {
+            var field = null, firstError = null;
+            for (field in form) {
+                if (field[0] != '$') {
+                    if (firstError === null && !form[field].$valid) {
+                        firstError = form[field].$name;
+                    }
+
+                    if (form[field].$pristine) {
+                        form[field].$dirty = true;
+                    }
+                }
             }
-        });
+        } else {
+            radasoft.confirmAndSave($translate.instant('CONFIRM.SAVESEND'), '', function (isconfirmed) {
+                if (isconfirmed) {
+                    radasoft.approverSaveSend($scope.$parent.formData).then(function (response) {
+                        radasoft.success();
+                    });
+                }
+            });
+        }
     }
 
     $scope.init = function () {

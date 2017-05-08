@@ -511,8 +511,10 @@ app.controller('marketPriceDetailController', ['$scope', '$rootScope', '$state',
     }
 
     $scope.upload = function () {
-        radasoft.upload({}).result.then(function (data) {
-            //console.log(data);
+        radasoft.upload({
+            config: '/upload/photomarket',
+            id1: $scope.formData.JMP_RUNNING_ID
+        }).result.then(function (data) {
             if (data[0]) {
                 $scope.formData.PICTURE = data[0];
                 $scope.formData.PICTURE_DATE_TEXT = $scope.formData.PICTURE.PHOTO_DATE_TAKEN;
@@ -680,7 +682,9 @@ app.controller('priceCompareController', ['$scope', '$state', '$stateParams', 'r
             resolve: {
                 params: function () {
                     return {
-                        limit: 0
+                        limit: 0,
+                        config: 'upload/photomarket',
+                        id1: ''
                     };
                 }
             }

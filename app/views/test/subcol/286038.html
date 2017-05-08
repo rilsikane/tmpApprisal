@@ -10,7 +10,6 @@
                 </label>
                 <div ng-class="formControlCss">
                     <input required type="text" maxlength="30" placeholder="" class="form-control" id="REGIS_NO" name="REGIS_NO" ng-model="formData.REGIS_NO">
-                    <span class="error text-small block" ng-if="form.REGIS_NO.$dirty && form.REGIS_NO.$invalid">{{requireNotificationPrefix}} {{'REGIS_NO'|translate}}</span>
                 </div>
             </div>
             <div class="form-group">
@@ -73,7 +72,6 @@
                             <div ng-bind-html="item.PROV_NAME | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
-                    <span class="error text-small block" ng-if="form.REGIS_PROVINCE.$dirty && form.REGIS_PROVINCE.$viewValue==undefined">{{requireNotificationPrefix}} {{'REGIS_PROVINCE'|translate}}</span>
                 </div>
             </div>
             <div class="form-group">
@@ -91,12 +89,12 @@
                     </ui-select>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error':form.YEAR.$invalid}">
                 <label ng-class="labelControlCss" for="YEAR">
-                    {{'MADE_YEAR'|translate}}
+                    {{'MADE_YEAR'|translate}} <span class="symbol"></span>
                 </label>
                 <div ng-class="formControlCss">
-                    <input numberonly type="text" maxlength="4" class="form-control" id="YEAR" name="YEAR" ng-model="formData.YEAR">
+                    <input numberonly type="text" ng-minlength="4" ng-maxlength="4" class="form-control" id="YEAR" name="YEAR" ng-model="formData.YEAR">
                 </div>
             </div>
             <div class="form-group">
@@ -104,14 +102,15 @@
                     {{'BRAND_NAME'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <ui-select theme="selectize" ng-model="formData.BRAND_NAME" id="BRAND_NAME" name="BRAND_NAME">
+                    <input type="text" maxlength="50" class="form-control" id="BRAND_NAME" name="BRAND_NAME" ng-model="formData.BRAND_NAME">
+                    <!--<ui-select theme="selectize" ng-model="formData.BRAND_NAME" id="BRAND_NAME" name="BRAND_NAME">
                         <ui-select-match placeholder="">
                             {{$select.selected.NAME}}
                         </ui-select-match>
                         <ui-select-choices repeat="item in selectBrand | filter: $select.search">
                             <div ng-bind-html="item.NAME | highlight: $select.search"></div>
                         </ui-select-choices>
-                    </ui-select>
+                    </ui-select>-->
                 </div>
             </div>
             <div class="form-group">
@@ -119,14 +118,15 @@
                     {{'BRAND_MODEL'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <ui-select theme="selectize" ng-model="formData.MODEL" id="MODEL" name="MODEL">
+                    <input type="text" maxlength="30" class="form-control" id="BRAND_MODEL" name="BRAND_MODEL" ng-model="formData.BRAND_MODEL">
+                    <!--<ui-select theme="selectize" ng-model="formData.MODEL" id="MODEL" name="MODEL">
                         <ui-select-match placeholder="">
                             {{$select.selected.NAME}}
                         </ui-select-match>
                         <ui-select-choices repeat="item in selectModel | filter: $select.search">
                             <div ng-bind-html="item.NAME | highlight: $select.search"></div>
                         </ui-select-choices>
-                    </ui-select>
+                    </ui-select>-->
                 </div>
             </div>
             <div class="form-group">
@@ -170,7 +170,6 @@
                         <input required type="radio" name="MARKET_NEED" ng-value="item.VALUE" ng-model="formData.MARKET_NEED" id="MARKET_NEED{{item.VALUE}}" />
                         <label for="MARKET_NEED{{item.VALUE}}">{{ item.NAME }}</label>
                     </div>
-                    <span class="error text-small block" ng-if="form.MARKET_NEED.$dirty && form.MARKET_NEED.$viewValue==undefined">{{requireNotificationPrefix}} {{'MARKET_NEED'|translate}}</span>
                 </div>
             </div>
         </fieldset>
@@ -184,7 +183,6 @@
                         </label>
                         <div ng-class="formControlCss">
                             <input required type="text" count maxlength="22" ng-max="999" class="form-control" id="AGE_STD_YEAR" name="AGE_STD_YEAR" ng-model="formData.AGE_STD_YEAR">
-                            <span class="error text-small block" ng-if="form.AGE_STD_YEAR.$dirty && form.AGE_STD_YEAR.$invalid">{{requireNotificationPrefix}} {{'AGE_STD'|translate}}</span>
                         </div>
                     </div>
                     <div class="form-group" ng-class="{'has-error':form.AGE_STD_MONTH.$dirty && form.AGE_STD_MONTH.$invalid, 'has-success':form.AGE_STD_MONTH.$valid}">
@@ -193,7 +191,6 @@
                         </label>
                         <div ng-class="formControlCss">
                             <input type="text" count maxlength="22" min="0" ng-max="12" required class="form-control" id="AGE_STD_MONTH" name="AGE_STD_MONTH" ng-model="formData.AGE_STD_MONTH">
-                            <span class="error text-small block" ng-if="form.AGE_STD_YEAR.$dirty && form.AGE_STD_YEAR.$invalid">{{requireNotificationPrefix}} {{'AGE_STD'|translate}}</span>
                         </div>
                     </div>
 
@@ -208,7 +205,6 @@
                         </label>
                         <div ng-class="formControlCss">
                             <input type="text" count maxlength="22" ng-max="999" required class="form-control" id="AGE_YEAR" name="AGE_YEAR" ng-model="formData.AGE_YEAR">
-                            <span class="error text-small block" ng-if="form.AGE_YEAR.$dirty && form.AGE_YEAR.$invalid">{{requireNotificationPrefix}} {{'AGE_USAGE_REM'|translate}}</span>
                         </div>
                     </div>
                     <div class="form-group" ng-class="{'has-error':form.AGE_MONTH.$dirty && form.AGE_MONTH.$invalid, 'has-success':form.AGE_MONTH.$valid}">
@@ -217,7 +213,6 @@
                         </label>
                         <div ng-class="formControlCss">
                             <input type="text" count maxlength="22" min="0" ng-max="12" required class="form-control" id="AGE_MONTH" name="AGE_MONTH" ng-model="formData.AGE_MONTH">
-                            <span class="error text-small block" ng-if="form.AGE_YEAR.$dirty && form.AGE_YEAR.$invalid">{{requireNotificationPrefix}} {{'AGE_USAGE_REM'|translate}}</span>
                         </div>
                     </div>
 

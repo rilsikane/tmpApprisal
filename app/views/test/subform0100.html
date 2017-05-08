@@ -2,7 +2,6 @@
     <div class="panel panel-white no-radius">
         <div class="panel-heading border-light bg-azure no-radius">
             <h4 class="panel-title">รายละเอียด</h4>
-            <!--<ct-paneltool class="panel-tools" tool-refresh="load1"></ct-paneltool>-->
         </div>
         <div class="panel-body">
             <form name="form" role="form" class="form-horizontal" novalidate ng-submit="submit(form)" ng-disabled="inputDisabled">
@@ -59,16 +58,14 @@
                     </label>
                     <div class="col-sm-4 no-padding">
                         <input required ng-disabled="inputDisabled" ng-model="$parent.formData.DATE_REQ" class="form-control no-radius" id="DATE_REQ" name="DATE_REQ" datepicker-popup="dd/MM/yyyy" is-open="dpOpened" ng-click="dpOpened=true" />
-                        <span class="error text-small block" ng-if="form.DATE_REQ.$dirty && form.DATE_REQ.$invalid">{{requireNotificationPrefix}} วันที่ใบคำขอประเมิน</span>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{'has-error':form.CA_NO.$dirty && form.CA_NO.$invalid, 'has-success':form.CA_NO.$valid}">
+                <div class="form-group">
                     <label class="col-sm-3 control-label" for="CA_NO">
-                        {{'CA_NO'|translate}}<span class="symbol required"></span>
+                        {{'CA_NO'|translate}}
                     </label>
                     <div class="col-sm-4 no-padding">
-                        <input required type="text" ng-disabled="inputDisabled" class="form-control" id="CA_NO" name="CA_NO" ng-model="$parent.formData.CA_NO">
-                        <span class="error text-small block" ng-if="form.CA_NO.$dirty && form.CA_NO.$invalid">{{requireNotificationPrefix}} CA NO.</span>
+                        <input type="text" ng-disabled="inputDisabled" class="form-control" id="CA_NO" name="CA_NO" ng-model="$parent.formData.CA_NO">
                     </div>
                 </div>
                 <div class="form-group" ng-class="{'has-error':form.REQ_TYPE.$dirty && form.REQ_TYPE.$viewValue==undefined, 'has-success':form.REQ_TYPE.$viewValue!=undefined && form.REQ_TYPE.$viewValue.VALUE != undefined}">
@@ -84,15 +81,14 @@
                                 <div ng-bind-html="item.NAME | highlight: $select.search"></div>
                             </ui-select-choices>
                         </ui-select>
-                        <span class="error text-small block" ng-if="form.REQ_TYPE.$dirty && form.REQ_TYPE.$viewValue==undefined">{{requireNotificationPrefix}} ประเภทการประเมิน</span>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{'has-error':form.OBJECTIVE.$dirty && form.OBJECTIVE.$viewValue==undefined, 'has-success':form.OBJECTIVE.$viewValue != undefined && form.OBJECTIVE.$viewValue.VALUE != undefined}">
+                <div class="form-group">
                     <label class="col-sm-3 control-label" for="OBJECTIVE">
-                        {{'OBJECTIVE'|translate}}<span class="symbol required"></span>
+                        {{'OBJECTIVE'|translate}}
                     </label>
                     <div class="col-sm-4 no-padding">
-                        <ui-select ng-required="true" ng-disabled="inputDisabled" theme="selectize" ng-model="$parent.formData.OBJECTIVE" name="OBJECTIVE" id="OBJECTIVE">
+                        <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="$parent.formData.OBJECTIVE" name="OBJECTIVE" id="OBJECTIVE">
                             <ui-select-match>
                                 {{$select.selected.NAME}}
                             </ui-select-match>
@@ -100,15 +96,14 @@
                                 <div ng-bind-html="item.NAME | highlight: $select.search"></div>
                             </ui-select-choices>
                         </ui-select>
-                        <span class="error text-small block" ng-if="form.OBJECTIVE.$dirty && form.OBJECTIVE.$invalid">{{requireNotificationPrefix}} วัตถุประสงค์</span>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{'has-error':form.DEBT_TYPE.$dirty && form.DEBT_TYPE.$invalid, 'has-success':form.DEBT_TYPE.$viewValue != undefined && form.DEBT_TYPE.$viewValue.VALUE != undefined}">
+                <div class="form-group" ng-class="{'has-error':form.DEBT_TYPE.$dirty && form.DEBT_TYPE.$viewValue==undefined, 'has-success':form.DEBT_TYPE.$viewValue!=undefined && form.DEBT_TYPE.$viewValue.VALUE != undefined}">
                     <label class="col-sm-3 control-label" for="DEBT_TYPE">
-                        {{'DEBT_TYPE'|translate}}<span class="symbol required" ng-if="!$parent.formData.NPA_TYPE"></span>
+                        {{'DEBT_TYPE'|translate}} <span class="required symbol"></span>
                     </label>
                     <div class="col-sm-4 no-padding">
-                        <ui-select ng-disabled="inputDisabled" ng-required="!$parent.formData.NPA_TYPE" theme="selectize" ng-model="$parent.formData.DEBT_TYPE" name="DEBT_TYPE" id="DEBT_TYPE">
+                        <ui-select ng-required="true" ng-disabled="inputDisabled" theme="selectize" ng-model="$parent.formData.DEBT_TYPE" name="DEBT_TYPE" id="DEBT_TYPE">
                             <ui-select-match>
                                 {{$select.selected.NAME}}
                             </ui-select-match>
@@ -116,15 +111,14 @@
                                 <div ng-bind-html="item.NAME | highlight: $select.search"></div>
                             </ui-select-choices>
                         </ui-select>
-                        <span class="error text-small block" ng-if="form.DEBT_TYPE.$dirty && form.DEBT_TYPE.$invalid">{{requireNotificationPrefix}} ประเภทสินเชื่อที่ขอกู้</span>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{'has-error':form.CUST_TYPE.$dirty && form.CUST_TYPE.$invalid, 'has-success':form.CUST_TYPE.$viewValue != undefined && form.CUST_TYPE.$viewValue.VALUE != undefined}">
+                <div class="form-group">
                     <label class="col-sm-3 control-label" for="CUST_TYPE">
-                        {{'CUSTOMER_TYPE'|translate}}<span class="symbol required" ng-if="!$parent.formData.NPA_TYPE"></span>
+                        {{'CUSTOMER_TYPE'|translate}}
                     </label>
                     <div class="col-sm-4 no-padding">
-                        <ui-select ng-disabled="inputDisabled" ng-required="$parent.formData.NPA_TYPE==false" theme="selectize" ng-model="$parent.formData.CUST_TYPE" name="CUST_TYPE" id="CUST_TYPE">
+                        <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="$parent.formData.CUST_TYPE" name="CUST_TYPE" id="CUST_TYPE">
                             <ui-select-match>
                                 {{$select.selected.NAME}}
                             </ui-select-match>
@@ -132,7 +126,6 @@
                                 <div ng-bind-html="item.NAME | highlight: $select.search"></div>
                             </ui-select-choices>
                         </ui-select>
-                        <span class="error text-small block" ng-if="form.CUST_TYPE.$dirty && form.CUST_TYPE.$invalid">{{requireNotificationPrefix}} ประเภทลูกค้า</span>
                     </div>
                 </div>
                 <div class="form-group" ng-class="{'has-error':form.OU.$dirty && form.OU.$invalid, 'has-success':form.OU.$viewValue != undefined && form.OU.$viewValue.OU_ID != undefined}">
@@ -148,34 +141,30 @@
                                 <div ng-bind-html="item.OU_NAME | highlight: $select.search"></div>
                             </ui-select-choices>
                         </ui-select>
-                        <span class="error text-small block" ng-if="form.OU.$dirty && form.OU.$invalid">{{requireNotificationPrefix}} {{'REQUEST_OU'|translate}}</span>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{'has-error':form.EMPLOYEE.$dirty && form.EMPLOYEE.$invalid, 'has-success':form.EMPLOYEE.$valid}">
+                <div class="form-group">
                     <label class="col-sm-3 control-label" for="EMPLOYEE">
-                        {{'BANK_EMPLOYEE'|translate}}<span class="symbol required"></span>
+                        {{'BANK_EMPLOYEE'|translate}}
                     </label>
                     <div class="col-sm-4 no-padding">
-                        <input required ng-model="$parent.formData.EMPLOYEE" type="text" ng-disabled="inputDisabled" class="form-control" id="EMPLOYEE" name="EMPLOYEE" />
-                        <span class="error text-small block" ng-if="form.EMPLOYEE.$dirty && form.EMPLOYEE.$invalid">{{requireNotificationPrefix}} เจ้าหน้าที่ธนาคาร</span>
+                        <input ng-model="$parent.formData.EMPLOYEE" type="text" ng-disabled="inputDisabled" class="form-control" id="EMPLOYEE" name="EMPLOYEE" />
                     </div>
                 </div>
                 <div class="form-group" ng-class="{'has-error':form.CREDIT_REQUEST.$dirty && form.CREDIT_REQUEST.$invalid, 'has-success':form.CREDIT_REQUEST.$valid}">
                     <label class="col-sm-3 control-label" for="CREDIT_REQUEST">
-                        {{'CREDIT_REQUEST'|translate}}<span class="symbol required" ng-if="!$parent.formData.NPA_TYPE"></span>
+                        {{'CREDIT_REQUEST'|translate}}<span class="symbol required"></span>
                     </label>
                     <div class="col-sm-4 no-padding">
-                        <input format ng-disabled="inputDisabled" ng-required="!$parent.formData.NPA_TYPE" ng-model="$parent.formData.CREDIT_REQUEST" type="text" ng-change="calDebt()" class="form-control" id="CREDIT_REQUEST" name="CREDIT_REQUEST" />
-                        <span class="error text-small block" ng-if="form.CREDIT_REQUEST.$dirty && form.CREDIT_REQUEST.$invalid">{{requireNotificationPrefix}} {{'CREDIT_REQUEST'|translate}}</span>
+                        <input format ng-disabled="inputDisabled" ng-required="true" ng-model="$parent.formData.CREDIT_REQUEST" type="text" ng-change="calDebt()" class="form-control" id="CREDIT_REQUEST" name="CREDIT_REQUEST" />
                     </div>
                 </div>
                 <div class="form-group"  ng-class="{'has-error':form.CREDIT_BALANCE.$dirty && form.CREDIT_BALANCE.$invalid, 'has-success':form.CREDIT_BALANCE.$valid}">
                     <label class="col-sm-3 control-label" for="CREDIT_BALANCE">
-                        {{'CREDIT_BALANCE'|translate}}<span class="symbol required" ng-if="!$parent.formData.NPA_TYPE"></span>
+                        {{'CREDIT_BALANCE'|translate}}<span class="symbol required"></span>
                     </label>
                     <div class="col-sm-4 no-padding">
-                        <input format ng-disabled="inputDisabled" ng-required="!$parent.formData.NPA_TYPE" ng-model="$parent.formData.CREDIT_BALANCE" type="text" ng-change="calDebt()" class="form-control" id="CREDIT_BALANCE" name="CREDIT_BALANCE" />
-                        <span class="error text-small block" ng-if="form.CREDIT_BALANCE.$dirty && form.CREDIT_BALANCE.$invalid">{{requireNotificationPrefix}} ภาระหนี้คงเหลือ</span>
+                        <input format ng-disabled="inputDisabled" ng-required="true" ng-model="$parent.formData.CREDIT_BALANCE" type="text" ng-change="calDebt()" class="form-control" id="CREDIT_BALANCE" name="CREDIT_BALANCE" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -184,7 +173,6 @@
                     </label>
                     <div class="col-sm-4 no-padding">
                         <input format ng-model="$parent.formData.CREDIT_LIMIT" disabled type="text" class="form-control" id="CREDIT_LIMIT" name="CREDIT_LIMIT" />
-                        <span class="error text-small block" ng-if="form.CREDIT_LIMIT.$dirty && form.CREDIT_LIMIT.$invalid">{{requireNotificationPrefix}} {{'CREDIT_LIMIT'|translate}}</span>
                     </div>
                 </div>
             </form>
@@ -199,7 +187,9 @@
             <ul class="panel-heading-tabs border-light" ng-if="!inputDisabled">
                 <li>
                     <div class="pull-right">
-                        <a class="" ng-click="addLender()"><span class="text-white"><i class="glyphicon glyphicon-plus-sign"></i></span></a>
+                        <button type="button" class="btn btn-o btn-squared border-white" ng-click="addLender()">
+                            <i class="ti-plus"></i> {{'BUTTON.ADD'|translate}}
+                        </button>
                     </div>
                 </li>
             </ul>
@@ -237,7 +227,9 @@
             <ul class="panel-heading-tabs border-light" ng-if="!inputDisabled">
                 <li>
                     <div class="pull-right">
-                        <a ng-click="addContact()"><span class="text-white"><i class="glyphicon glyphicon-plus-sign"></i></span></a>
+                        <button type="button" class="btn btn-o btn-squared border-white" ng-click="addContact()">
+                            <i class="ti-plus"></i> {{'BUTTON.ADD'|translate}}
+                        </button>
                     </div>
                 </li>
             </ul>

@@ -100,7 +100,7 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
 
     $scope.radioYN = [{ VALUE: 'Y', NAME: $translate.instant('YES') }, { VALUE: 'N', NAME: $translate.instant('NO') }];
     $scope.radioYesNo = [{ VALUE: 'Y', NAME: $translate.instant('GUTTER1') }, { VALUE: 'N', NAME: $translate.instant('GUTTER2') }];
-    $scope.radioRentType = [{ VALUE: 'L', NAME: $translate.instant('LAND') }, { VALUE: 'B', NAME: $translate.instant('BUILDING') }];
+    $scope.radioRentType = [{ VALUE: 'L', NAME: 'เช่าที่ดิน' }, { VALUE: 'B', NAME: 'เช่าอาคาร' }];
     $scope.radioDecorated = [
         { VALUE: 1, NAME: $translate.instant('ตกแต่งพร้อมอยู่') }
         , { VALUE: 2, NAME: $translate.instant('ตกแต่งบางส่วน') }
@@ -109,7 +109,7 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
         { VALUE: 1, NAME: $translate.instant('บริษัทที่อยู่ในตลาดหลักทรัพย์') }
         , { VALUE: 2, NAME: $translate.instant('บริษัทอยู่นอกตลาด') }
         , { VALUE: 3, NAME: $translate.instant('ผู้รับเหมาก่อสร้าง') }];
-    $scope.radioContructComplete = [{ VALUE: '1', NAME: 'เสร็จแล้ว' }, { VALUE: '0', NAME: 'ยังไม่เสร็จ' }];
+    $scope.radioContructComplete = [{ VALUE: '0', NAME: 'ยังไม่เสร็จ' }, { VALUE: '1', NAME: 'เสร็จแล้ว' }, { VALUE: '2', NAME: 'แล้วเสร็จ (%)' }];
     $scope.radioInsureYN = [{ VALUE: 'Y', NAME: 'ทำประกัน' }, { VALUE: 'N', NAME: 'ไม่ทำประกัน' }];
     $scope.radioBound = [{ VALUE: '1', NAME: 'ตรวจสอบแปลงคง' }, { VALUE: '2', NAME: 'ตรวจสอบจากระวาง' }];
     $scope.radioBoundFound = [{ VALUE: '1', NAME: 'ถูกต้อง' }, { VALUE: '2', NAME: 'คลาดเคลื่อน' }, { VALUE: '3', NAME: 'ไม่พบบ' }, { VALUE: '4', NAME: 'อ่านไม่ออก' }];
@@ -122,14 +122,187 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
     $scope.selectSubDistrict = [];
     //$scope.selectLevelLandFill = [];
     $scope.radioHousingType = [{ VALUE: '1', NAME: 'อยู่เอง' }, { VALUE: '2', NAME: 'ให้เช่า' }];
-    $scope.selectBrand = params.brand;
+    //$scope.selectBrand = params.brand;
     $scope.selectCustRelaction = [];
     $scope.selectAcquiredVia = [];
     $scope.selectInsuredCode = [];
     $scope.selectPropShape = [];
+    $scope.SURVEY_CHKBUILD = [];
+    $scope.ONST_COMPLETE = [];
+    $scope.EVALUATE_PLAN = [];
+
+    $scope.selectProvinceDOL = [];
+    $scope.selectDistrictDOL = [];
+    $scope.selectSubDistrictDOL = [];
 
     $scope.onSubTypeChange = function ($item, $model) {
 
+    }
+
+    $scope.initCondoMasterData = function () {
+        radasoft.getProvinceDOL({}).then(function (response) {
+            $scope.selectProvinceDOL = response.data;
+            radasoft.getDistrictDOL({
+                PROVINCE_ID: $scope.formData.DEED_PROVINCE ? $scope.formData.DEED_PROVINCE.PROV_ID : ''
+            }).then(function (response) {
+                $scope.selectDistrictDOL = response.data;
+                radasoft.getSubDistrictDOL({
+                    PROVINCE_ID: $scope.formData.DEED_PROVINCE ? $scope.formData.DEED_PROVINCE.PROV_ID : '',
+                    DISTRICT_ID: $scope.formData.DEED_CITY ? $scope.formData.DEED_CITY.CITY_ID : ''
+                }).then(function (response) {
+                    $scope.selectSubDistrictDOL = response.data;
+
+                    radasoft.getProvince({}).then(function (response) {
+                        $scope.selectProvince = response.data;
+                        radasoft.getDistrict({
+                            PROVINCE_ID: $scope.formData.CONDO_PROVINCE ? $scope.formData.CONDO_PROVINCE.PROV_ID : ''
+                        }).then(function (response) {
+                            $scope.selectDistrict = response.data;
+                            radasoft.getSubDistrict({
+                                PROVINCE_ID: $scope.formData.CONDO_PROVINCE ? $scope.formData.CONDO_PROVINCE.PROV_ID : '',
+                                DISTRICT_ID: $scope.formData.CONDO_CITY ? $scope.formData.CONDO_CITY.CITY_ID : ''
+                            }).then(function (response) {
+                                $scope.selectSubDistrict = response.data;
+                            });
+                        });
+                    });
+
+                });
+            });
+        });
+    }
+
+    $scope.initRentMasterData = function () {
+        $scope.getDeedOffice().then(function () {
+            radasoft.getSurveyChkBuild().then(function (response) {
+                $scope.SURVEY_CHKBUILD = response.data;
+                radasoft.getOnstComplete().then(function (response) {
+                    $scope.ONST_COMPLETE = response.data;
+                    radasoft.getEvaluatePlan().then(function (response) {
+                        $scope.EVALUATE_PLAN = response.data;
+                    });
+                });
+            });
+        });
+    }
+
+    $scope.initLandMasterData = function () {
+        radasoft.getPropShape({}).then(function (response) {
+            $scope.selectPropShape = response.data;
+            radasoft.getProvince({}).then(function (response) {
+                $scope.selectProvince = response.data;
+                radasoft.getProvinceDOL({}).then(function (response) {
+                    $scope.selectProvinceDOL = response.data;
+                    radasoft.getDistrictDOL({
+                        PROVINCE_ID: $scope.formData.DEED_PROVINCE ? $scope.formData.DEED_PROVINCE.PROV_ID : ''
+                    }).then(function (response) {
+                        $scope.selectDistrictDOL = response.data;
+                        radasoft.getSubDistrictDOL({
+                            PROVINCE_ID: $scope.formData.DEED_PROVINCE ? $scope.formData.DEED_PROVINCE.PROV_ID : '',
+                            DISTRICT_ID: $scope.formData.DEED_CITY ? $scope.formData.DEED_CITY.CITY_ID : ''
+                        }).then(function (response) {
+                            $scope.selectSubDistrictDOL = response.data;
+                        });
+                    });
+                });
+            });
+        });
+    }
+
+    $scope.initBuildMasterData = function () {
+        radasoft.getProvinceDOL({}).then(function (response) {
+            $scope.selectProvinceDOL = response.data;
+            radasoft.getDistrictDOL({
+                PROVINCE_ID: $scope.formData.DEED_PROVINCE ? $scope.formData.DEED_PROVINCE.PROV_ID : ''
+            }).then(function (response) {
+                $scope.selectDistrictDOL = response.data;
+                radasoft.getSubDistrictDOL({
+                    PROVINCE_ID: $scope.formData.DEED_PROVINCE ? $scope.formData.DEED_PROVINCE.PROV_ID : '',
+                    DISTRICT_ID: $scope.formData.DEED_CITY ? $scope.formData.DEED_CITY.CITY_ID : ''
+                }).then(function (response) {
+                    $scope.selectSubDistrictDOL = response.data;
+                });
+            });
+        });
+    }
+
+    $scope.initLandBuildMasterData = function () {
+
+    }
+
+    $scope.initCarMasterData = function () {
+        $scope.getInsuredCode().then(function () {
+            radasoft.getProvince({}).then(function (response) {
+                $scope.selectProvince = response.data;
+            });
+        });
+    }
+
+    $scope.initShipMasterData = function () {
+        $scope.getInsuredCode().then(function () {
+            radasoft.getProvince({}).then(function (response) {
+                $scope.selectProvince = response.data;
+            });
+        });
+    }
+
+    $scope.delRentPermit = function (item) {
+        item.DELETE = true;
+        $scope.updatePERMIT_LICENSE_CNT();
+    }
+    $scope.addRentPermit = function () {
+        $scope.rentPermitEditor({ RPERMIT_COL_RUNNING_ID: -Math.round(Math.random() * 100000) }).result.then(function (data) {
+            $scope.formData.RENT_PERMIT.push(data)
+        }).finally(function () {
+            $scope.updatePERMIT_LICENSE_CNT();
+        });
+    }
+    $scope.modRentPermit = function (item) {
+        $scope.rentPermitEditor(item).result.then(function (data) {
+            angular.copy(data, item);
+        }).finally(function () {
+            $scope.updatePERMIT_LICENSE_CNT();
+        });
+    }
+    $scope.updatePERMIT_LICENSE_CNT = function () {
+        var counter = 1;
+        angular.forEach($scope.formData.RENT_PERMIT, function (item) {
+            if (!item.DELETE) {
+                item.PERMIT_LICENSE_CNT = counter;
+                counter++;
+            }
+        });
+    }
+    $scope.rentPermitEditor = function (item) {
+        return radasoft.openDialog({
+            controller: 'rentPermitCtrl',
+            resolve: {
+                params: function () {
+                    return {
+                        formData: item
+                    };
+                }
+            }
+        });
+    }
+
+    $scope.addLandMark = function () {
+        $scope.landMarkEditor({ LANDMARK_COL_RUNNING_ID: -Math.round(Math.random() * 100000) }).result.then(function (data) { $scope.formData.LANDMARK.push(data) });
+    }
+    $scope.modLandMark = function (item) {
+        $scope.landMarkEditor(item).result.then(function (data) { angular.copy(data, item); });
+    }
+    $scope.landMarkEditor = function (item) {
+        return radasoft.openDialog({
+            controller: 'landMarkCtrl',
+            resolve: {
+                params: function () {
+                    return {
+                        formData: item
+                    };
+                }
+            }
+        });
     }
 
     $scope.addFloor = function () {
@@ -141,11 +314,11 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
         });
     }
 
-    $scope.getPropShape = function () {
-        radasoft.getPropShape({}).then(function (response) {
-            $scope.selectPropShape = response.data;
-        });
-    }
+    //$scope.getPropShape = function () {
+    //    radasoft.getPropShape({}).then(function (response) {
+    //        $scope.selectPropShape = response.data;
+    //    });
+    //}
 
     $scope.calLandArea = function () {
         var rai = $scope.formData.RAI * 400;
@@ -183,14 +356,18 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
         radasoft.getCountry({}).then(function (response) {
             $scope.selectCountry = response.data;
 
-            $scope.getProvince();
+            //$scope.getProvince();
         });
     }
 
     $scope.onProvinceChange = function (item, model) {
-        $scope.clearDistrict();
-
+        //$scope.clearDistrict();
         $scope.getDistrict(item, model);
+    }
+
+    $scope.onProvinceDOLChange = function (item, model) {
+        //$scope.clearDistrict();
+        $scope.getDistrictDOL(item, model);
     }
 
     $scope.getProvince = function () {
@@ -227,16 +404,41 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
         });
     }
 
-    $scope.clearDistrict = function () {
-        $scope.formData.DEED_CITY = null;
+    $scope.getProvinceDOL = function () {
+        radasoft.getProvinceDOL({}).then(function (response) {
+            $scope.selectProvinceDOL = response.data;
+        });
+    }
+    $scope.getDistrictDOL = function (item, model) {
+        //$scope.formData.LOC_PROVINCE = item;
+        $scope.selectDistrictDOL = [];
+        $scope.selectSubDistrictDOL = [];
+        $scope.formData.DEED_CITY = {};
+        $scope.formData.DEED_DISTRICT = {};
+        radasoft.getDistrictDOL({ PROVINCE_ID: item.PROV_ID }).then(function (response) {
+            $scope.selectDistrictDOL = response.data;
+        });
+    }
+    $scope.getSubDistrictDOL = function ($item, $model) {
+        //$scope.formData.LOC_CITY = $item;
+        $scope.selectSubDistrictDOL = [];
+        $scope.formData.DEED_DISTRICT = {};
 
-        $scope.clearSubDistrict();
+        radasoft.getSubDistrictDOL({ PROVINCE_ID: $item.PROVINCE_ID, DISTRICT_ID: $item.CITY_ID }).then(function (response) {
+            $scope.selectSubDistrictDOL = response.data;
+        });
+    }
+
+    $scope.clearDistrict = function () {
+        //$scope.formData.DEED_CITY = null;
+
+        //$scope.clearSubDistrict();
     }
     $scope.clearSubDistrict = function () {
-        $scope.formData.DEED_DISTRICT = null;
+        //$scope.formData.DEED_DISTRICT = null;
     }
 
-    $scope.onSubDistrictChange = function ($item, $model) {
+    $scope.onSubDistrictDOLChange = function ($item, $model) {
         //$scope.formData.LOC_DISTRICT = $item;
     }
 
@@ -405,24 +607,30 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
     }
 
     $scope.initSubColData = function () {
-        switch (parseInt($scope.headCol.HEAD_COL_TYPE_ID)) {
+        //switch (parseInt($scope.headCol.HEAD_COL_TYPE_ID)) {
+        switch (parseInt($scope.botColForm.COL_FORM_ID)) {
             case 286003:
-                $scope.getPropShape();
+                $scope.initLandMasterData();
                 break;//ที่ดิน
             case 286004:
+                $scope.initBuildMasterData();
                 break;//อาคารสิ่งปลูกสร้าง
             case 286005:
-                $scope.getDeedOffice();
+                $scope.initRentMasterData();
                 break;//สิทธิการเช่า
+            case 286006:
+                $scope.initLandBuildMasterData();
+                break;//ที่ดินพร้อมอาคารสิ่งปลูกสร้าง
             case 286066:
+                $scope.initCondoMasterData();
                 break;//คอนโดมิเนียม/อาคารชุด/ห้องชุด
             case 286011:
                 break;//เครื่องจักร
             case 286038:
-                $scope.getInsuredCode();
+                $scope.initCarMasterData();
                 break;//รถยนต์
             case 286039:
-                $scope.getInsuredCode();
+                $scope.initShipMasterData();
                 break;//เรือ
             case 999999:
                 break;//อื่นๆ 
@@ -494,4 +702,74 @@ app.controller('subform0203Controller', ['$scope', '$state', 'toaster', '$modal'
     $scope.save = function () {
         $modalInstance.close($scope.formData);
     }
+}]);
+
+app.controller('landMarkCtrl', ['$scope', '$translate', '$modalInstance', 'radasoft', 'params', function ($scope, $translate, $modalInstance, radasoft, params) {
+    $scope.includeUrl = 'app/views/test/subcol/000003.html';
+    $scope.showBtnSave = true;
+    $scope.title = $translate.instant('LANDMARK');
+
+    $scope.formData = angular.copy(params.formData);
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+
+    $scope.save = function (form) {
+        if (form.$invalid) {
+            var field = null, firstError = null;
+            for (field in form) {
+                if (field[0] != '$') {
+                    if (firstError === null && !form[field].$valid) {
+                        firstError = form[field].$name;
+                    }
+
+                    if (form[field].$pristine) {
+                        form[field].$dirty = true;
+                    }
+                }
+            }
+        } else {
+            $modalInstance.close($scope.formData);
+        }
+    };
+}]);
+
+app.controller('rentPermitCtrl', ['$scope', '$translate', '$modalInstance', 'radasoft', 'params', function ($scope, $translate, $modalInstance, radasoft, params) {
+    $scope.includeUrl = 'app/views/test/subcol/000005.html';
+    $scope.showBtnOK = true;
+    $scope.title = $translate.instant('RENTPERMIT');
+    $scope.dpOpenState = {};
+
+    $scope.formData = angular.copy(params.formData);
+
+    $scope.openDatePicker = function ($event, elementOpened) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        $scope.dpOpenState[elementOpened] = !$scope.dpOpenState[elementOpened];
+    }
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+
+    $scope.save = function (form) {
+        if (form.$invalid) {
+            var field = null, firstError = null;
+            for (field in form) {
+                if (field[0] != '$') {
+                    if (firstError === null && !form[field].$valid) {
+                        firstError = form[field].$name;
+                    }
+
+                    if (form[field].$pristine) {
+                        form[field].$dirty = true;
+                    }
+                }
+            }
+        } else {
+            $modalInstance.close($scope.formData);
+        }
+    };
 }]);
