@@ -12622,3 +12622,6 @@ td.small-width {
 .questionnaire .table > tbody > tr:last-child > td{
     border-bottom: 1px solid #e2e2e4 !important;
 }
+.qnRadio{
+    padding: 0 !important;
+}

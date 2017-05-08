@@ -96,7 +96,7 @@
                         </div>
                     </td>
                     <td ng-if="item.TYPE!='Q' && questionnaire.QNR_HEADER.length > 0" colspan="{{questionnaire.QNR_HEADER.length}}"></td>
-                    <td ng-if="item.TYPE=='Q' && questionnaire.QNR_HEADER.length > 0" ng-repeat="choice in item.CHILD" class="text-center">
+                    <td ng-if="item.TYPE=='Q' && questionnaire.QNR_HEADER.length > 0" ng-repeat="choice in item.CHILD" class="text-center qnRadio">
                         <div ng-switch="choice.INPUT">
                             <div class="radio clip-radio radio-primary" ng-switch-when="RADIO">
                                 <input type="radio" id="qnr_rate_{{item.QNR_ID}}_{{choice.QNR_ID}}" name="qnr_rate_{{item.QNR_ID}}" ng-value="choice.QNR_ID" ng-model="item.CHOICE_QNR_ID" />
