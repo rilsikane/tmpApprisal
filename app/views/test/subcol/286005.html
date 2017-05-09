@@ -35,7 +35,7 @@
                     พื้นที่รวม
                 </label>
                 <div class="col-sm-8">
-                    <input numberonly type="text" class="form-control" ng-model="formData.APPR_CUR_OTHER_AREA" id="APPR_CUR_OTHER_AREA" name="APPR_CUR_OTHER_AREA" maxlength="25" />
+                    <input count type="text" class="form-control" ng-model="formData.APPR_CUR_OTHER_AREA" id="APPR_CUR_OTHER_AREA" name="APPR_CUR_OTHER_AREA" maxlength="25" />
                 </div>
             </div>
         </fieldset>
@@ -214,7 +214,7 @@
                     {{'RENTAL_PRICE'|translate}}
                 </label>
                 <div class="col-sm-9">
-                    <input fcount type="text" maxlength="22" class="form-control" id="RENTAL_PRICE" name="RENTAL_PRICE" ng-model="formData.RENTAL_PRICE">
+                    <input format type="text" maxlength="22" class="form-control" id="RENTAL_PRICE" name="RENTAL_PRICE" ng-model="formData.RENTAL_PRICE">
                 </div>
             </div>
             <div class="form-group" ng-class="{'has-error':form.RENT_TYPE.$dirty && form.RENT_TYPE.$viewValue==undefined, 'has-success':form.RENT_TYPE.$viewValue!=undefined}">
