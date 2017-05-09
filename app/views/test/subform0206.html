@@ -3,6 +3,9 @@
     <tab heading="{{'WQS'|translate}}">-->
 <div class="row">
     <div class="col-md-12">
+        <alert ng-if="form.$invalid" type="danger" class="no-radius">
+            <span>{{'INVALID_INPUT_DATA'|translate}}</span>
+        </alert>
         <table class="table table-hover table-bordered">
             <thead>
                 <tr class="bg-light-azure">
@@ -19,35 +22,44 @@
             <tbody>
                 <tr ng-repeat="wqs in WQS.WQS_FACTOR">
                     <td class="no-padding">
-                        <input ng-if="wqs.FACTOR_OTHER=='Y'" type="text" class="form-control" ng-model="wqs.FACTOR_NAME" placeholder="{{'OTHER'|translate}}" min= ="0" count ng-max="10" />
+                        <input ng-if="wqs.FACTOR_OTHER=='Y'" type="text" class="form-control" ng-model="wqs.FACTOR_NAME" placeholder="{{'OTHER'|translate}}" />
                         <span ng-if="wqs.FACTOR_OTHER!='Y'" class="margin-left-5">{{wqs.FACTOR_NAME}}</span>
                     </td>
                     <td class="no-padding">
-                        <input ng-readonly="wqs.WQS_FACTOR_ID==-1" ng-model="wqs.FACTOR_WEIGHT" type="number" class="form-control input-sm center no-padding" ng-style="inputStyle" ng-change="cal()" min="0" count ng-max="10" />
+                        <input ng-readonly="wqs.WQS_FACTOR_ID==-1" ng-model="wqs.FACTOR_WEIGHT" type="text" class="form-control input-sm center no-padding" ng-style="inputStyle" ng-change="cal()" numeric="*" />
                     </td>
-                    <td class="no-padding">
-                        <input ng-readonly="wqs.WQS_FACTOR_ID==-1" ng-model="wqs.MKT1_SCORE" type="number" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" min="0" count ng-max="10" />
+                    <td class="no-padding" ng-switch="wqs.WQS_FACTOR_ID">
+                        <input ng-switch-when="-1" ng-model="wqs.MKT1_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" readonly />
+                        <input ng-switch-default   ng-model="wqs.MKT1_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="1-10" />
                     </td>
-                    <td class="no-padding">
-                        <input ng-readonly="wqs.WQS_FACTOR_ID==-1" ng-model="wqs.MKT2_SCORE" type="number" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" min="0" count ng-max="10" />
+                    <td class="no-padding" ng-switch="wqs.WQS_FACTOR_ID">
+                        <input ng-switch-when="-1" ng-model="wqs.MKT2_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" readonly />
+                        <input ng-switch-default ng-model="wqs.MKT2_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="1-10" />
                     </td>
-                    <td class="no-padding">
-                        <input ng-readonly="wqs.WQS_FACTOR_ID==-1" ng-model="wqs.MKT3_SCORE" type="number" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" min="0" count ng-max="10" />
+                    <td class="no-padding" ng-switch="wqs.WQS_FACTOR_ID">
+                        <input ng-switch-when="-1" ng-model="wqs.MKT3_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" readonly />
+                        <input ng-switch-default ng-model="wqs.MKT3_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="1-10" />
                     </td>
-                    <td class="no-padding">
-                        <input ng-readonly="wqs.WQS_FACTOR_ID==-1" ng-model="wqs.MKT4_SCORE" type="number" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" min="0" count ng-max="10" />
+                    <td class="no-padding" ng-switch="wqs.WQS_FACTOR_ID">
+                        <input ng-switch-when="-1" ng-model="wqs.MKT4_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" readonly />
+                        <input ng-switch-default ng-model="wqs.MKT4_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="1-10" />
                     </td>
-                    <td ng-if="MARKET_COMPAIR==5" class="no-padding">
-                        <input ng-readonly="wqs.WQS_FACTOR_ID==-1" ng-model="wqs.MKT5_SCORE" type="number" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" min="0" count ng-max="10" />
+                    <td ng-if="MARKET_COMPAIR==5" class="no-padding" ng-switch="wqs.WQS_FACTOR_ID">
+                        <input ng-switch-when="-1" ng-model="wqs.MKT5_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" readonly />
+                        <input ng-switch-default ng-model="wqs.MKT5_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="1-10" />
                     </td>
-                    <td class="no-padding">
-                        <input ng-readonly="wqs.WQS_FACTOR_ID==-1" ng-model="wqs.COL_SCORE" type="number" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" count ng-max="10" />
+                    <td class="no-padding" ng-switch="wqs.WQS_FACTOR_ID">
+                        <input ng-switch-when="-1" ng-model="wqs.COL_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" readonly />
+                        <input ng-switch-default ng-model="wqs.COL_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="1-10" />
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
+</div>
+<div>
+    <h3>RSQ : {{WQS.RSQ|number:0}}</h3>
 </div>
 <div class="row">
     <div class="col-md-12">
@@ -57,38 +69,41 @@
                     <td class="no-padding"><span class="margin-left-5">{{wqs.FACTOR_NAME}}</span></td>
                     <td class="no-padding"></td>
                     <td ng-style="tdValue" class="no-padding">
-                        <input ng-if="wqs.WQS_FACTOR_ID == -1 || wqs.WQS_FACTOR_ID == -3" ng-readonly="wqs.WQS_FACTOR_ID < -1 && wqs.WQS_FACTOR_ID!=-3" ng-model="wqs.MKT1_VALUE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" count maxlength="24" />
-                        <input ng-if="wqs.WQS_FACTOR_ID == -2" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT1_VALUE|number:2}}" ng-style="inputStyle" format maxlength="24" />
-                        <input ng-if="wqs.WQS_FACTOR_ID <= -4" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT1_VALUE|number:2}}" ng-style="inputStyle" format maxlength="24" />
+                        <input ng-if="wqs.WQS_FACTOR_ID == -1 || wqs.WQS_FACTOR_ID == -3" ng-readonly="wqs.WQS_FACTOR_ID < -1 && wqs.WQS_FACTOR_ID!=-3" ng-model="wqs.MKT1_VALUE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric maxlength="24" />
+                        <input ng-if="wqs.WQS_FACTOR_ID == -2" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT1_VALUE|number:2}}" ng-style="inputStyle" numeric maxlength="24" />
+                        <input ng-if="wqs.WQS_FACTOR_ID <= -4 && wqs.WQS_FACTOR_ID > -14" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT1_VALUE|number:2}}" ng-style="inputStyle" numeric maxlength="24" />
                     </td>
                     <td ng-style="tdValue" class="no-padding">
-                        <input ng-if="wqs.WQS_FACTOR_ID == -1 || wqs.WQS_FACTOR_ID == -3" ng-readonly="wqs.WQS_FACTOR_ID < -1 && wqs.WQS_FACTOR_ID!=-3" ng-model="wqs.MKT2_VALUE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" count maxlength="24" />
-                        <input ng-if="wqs.WQS_FACTOR_ID == -2" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT2_VALUE|number:2}}" ng-style="inputStyle" format maxlength="24" />
-                        <input ng-if="wqs.WQS_FACTOR_ID <= -4" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT2_VALUE|number:2}}" ng-style="inputStyle" format maxlength="24" />
+                        <input ng-if="wqs.WQS_FACTOR_ID == -1 || wqs.WQS_FACTOR_ID == -3" ng-readonly="wqs.WQS_FACTOR_ID < -1 && wqs.WQS_FACTOR_ID!=-3" ng-model="wqs.MKT2_VALUE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric maxlength="24" />
+                        <input ng-if="wqs.WQS_FACTOR_ID == -2" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT2_VALUE|number:2}}" ng-style="inputStyle" numeric maxlength="24" />
+                        <input ng-if="wqs.WQS_FACTOR_ID <= -4 && wqs.WQS_FACTOR_ID > -14" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT2_VALUE|number:2}}" ng-style="inputStyle" numeric maxlength="24" />
                     </td>
                     <td ng-style="tdValue" class="no-padding">
-                        <input ng-if="wqs.WQS_FACTOR_ID == -1 || wqs.WQS_FACTOR_ID == -3" ng-readonly="wqs.WQS_FACTOR_ID < -1 && wqs.WQS_FACTOR_ID!=-3" ng-model="wqs.MKT3_VALUE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" count maxlength="24" />
-                        <input ng-if="wqs.WQS_FACTOR_ID == -2" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT3_VALUE|number:2}}" ng-style="inputStyle" format maxlength="24" />
-                        <input ng-if="wqs.WQS_FACTOR_ID <= -4" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT3_VALUE|number:2}}" ng-style="inputStyle" format maxlength="24" />
+                        <input ng-if="wqs.WQS_FACTOR_ID == -1 || wqs.WQS_FACTOR_ID == -3" ng-readonly="wqs.WQS_FACTOR_ID < -1 && wqs.WQS_FACTOR_ID!=-3" ng-model="wqs.MKT3_VALUE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric maxlength="24" />
+                        <input ng-if="wqs.WQS_FACTOR_ID == -2" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT3_VALUE|number:2}}" ng-style="inputStyle" numeric maxlength="24" />
+                        <input ng-if="wqs.WQS_FACTOR_ID <= -4 && wqs.WQS_FACTOR_ID > -14" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT3_VALUE|number:2}}" ng-style="inputStyle" numeric maxlength="24" />
                     </td>
                     <td ng-style="tdValue" class="no-padding">
-                        <input ng-if="wqs.WQS_FACTOR_ID == -1 || wqs.WQS_FACTOR_ID == -3" ng-readonly="wqs.WQS_FACTOR_ID < -1 && wqs.WQS_FACTOR_ID!=-3" ng-model="wqs.MKT4_VALUE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" count maxlength="24" />
-                        <input ng-if="wqs.WQS_FACTOR_ID == -2" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT4_VALUE|number:2}}" ng-style="inputStyle" format maxlength="24" />
-                        <input ng-if="wqs.WQS_FACTOR_ID <= -4" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT4_VALUE|number:2}}" ng-style="inputStyle" format maxlength="24" />
+                        <input ng-if="wqs.WQS_FACTOR_ID == -1 || wqs.WQS_FACTOR_ID == -3" ng-readonly="wqs.WQS_FACTOR_ID < -1 && wqs.WQS_FACTOR_ID!=-3" ng-model="wqs.MKT4_VALUE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric maxlength="24" />
+                        <input ng-if="wqs.WQS_FACTOR_ID == -2" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT4_VALUE|number:2}}" ng-style="inputStyle" numeric maxlength="24" />
+                        <input ng-if="wqs.WQS_FACTOR_ID <= -4 && wqs.WQS_FACTOR_ID > -14" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT4_VALUE|number:2}}" ng-style="inputStyle" numeric maxlength="24" />
                     </td>
                     <td ng-if="MARKET_COMPAIR==5" ng-style="tdValue" class="no-padding">
-                        <input ng-if="wqs.WQS_FACTOR_ID == -1 || wqs.WQS_FACTOR_ID == -3" ng-readonly="wqs.WQS_FACTOR_ID < -1 && wqs.WQS_FACTOR_ID!=-3" ng-model="wqs.MKT5_VALUE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" count maxlength="24" />
-                        <input ng-if="wqs.WQS_FACTOR_ID == -2" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT5_VALUE|number:2}}" ng-style="inputStyle" format maxlength="24" />
-                        <input ng-if="wqs.WQS_FACTOR_ID <= -4" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT5_VALUE|number:2}}" ng-style="inputStyle" format maxlength="24" />
+                        <input ng-if="wqs.WQS_FACTOR_ID == -1 || wqs.WQS_FACTOR_ID == -3" ng-readonly="wqs.WQS_FACTOR_ID < -1 && wqs.WQS_FACTOR_ID!=-3" ng-model="wqs.MKT5_VALUE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric maxlength="24" />
+                        <input ng-if="wqs.WQS_FACTOR_ID == -2" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT5_VALUE|number:2}}" ng-style="inputStyle" numeric maxlength="24" />
+                        <input ng-if="wqs.WQS_FACTOR_ID <= -4 && wqs.WQS_FACTOR_ID > -14" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT5_VALUE|number:2}}" ng-style="inputStyle" numeric maxlength="24" />
                     </td>
                     <td ng-style="tdValue" class="no-padding">
-                        <input ng-hide="wqs.WQS_FACTOR_ID == -5 || wqs.WQS_FACTOR_ID == -6" ng-if="wqs.WQS_FACTOR_ID <= -4" type="text" class="form-control input-sm center" readonly value="{{wqs.COL_VALUE|number:2}}" ng-style="inputStyle" format maxlength="24" />
+                        <input ng-hide="wqs.WQS_FACTOR_ID == -5 || wqs.WQS_FACTOR_ID == -6" ng-if="wqs.WQS_FACTOR_ID <= -4" type="text" class="form-control input-sm center" readonly value="{{wqs.COL_VALUE|number:2}}" ng-style="inputStyle" numeric maxlength="24" />
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
+</div>
+<div>
+    <h4>การเปรียบเทียบ</h4>
 </div>
 <div class="row">
     <div class="col-md-12">

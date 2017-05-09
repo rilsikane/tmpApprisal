@@ -31,7 +31,7 @@
                 return this.http('GET', url, {}, httpConfig || {});
             }
             this.httpLogout = function () {
-                var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/api/Account/Logout';
+                var url = 'api/Account/Logout';
                 return this.http('POST', url, {}, {});
             }
             this.http = function (method, url, params, httpConfig) {
@@ -80,7 +80,7 @@
 
                 var deferred = $q.defer();
 
-                var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/Token';
+                var url = 'Token';
 
                 var config = {
                     headers: {
@@ -525,7 +525,7 @@
                 }
 
                 params.subColl.COL_TYPE = params.headCol.COL_TYPE;
-                params.subColl.HEAD_COL_TYPE = params.botColForm.COL_FORM_ID;
+                params.subColl.HEAD_COL_TYPE = params.subColl.SUB_TYPE.MAIN_CODE;
                 params.subColl.SUB_COL_TYPE = params.subColl.SUB_TYPE.CODE;
                 params.subColl.HEAD_COL_RUNNING_ID = params.headCol.HEAD_COL_RUNNING_ID;
 
@@ -581,6 +581,7 @@
                                 response.data.AGE_YEAR = undefined;
                                 response.data.AGE_MONTH = undefined;
                                 response.data.APPR_CUR_NET_TOTAL = undefined;
+                                response.data.REGIS_PROVINCE = undefined;
                                 break;//รถยนต์
                             case 286039:
                                 response.data.AGE_STD_MONTH = undefined;
@@ -774,7 +775,7 @@
 
                 params = params || {};
 
-                params.templateUrl = params.templateUrl || '/app/views/common/dialogWrapper.html';
+                params.templateUrl = params.templateUrl || 'app/views/common/dialogWrapper.html';
                 params.windowClass = params.windowClass || '';
 
                 return $modal.open({
@@ -919,7 +920,7 @@
                 this.openMap({
                     page: params.page,
                     HEAD_COL_RUNNING_ID: params.HEAD_COL_RUNNING_ID || '',
-                    DEED_NO: params.DEED_NO || '',
+                    //DEED_NO: params.DEED_NO || '',
                     DEED_DISTRICT: params.DEED_DISTRICT.CODE || '',
                     DEED_CITY: params.DEED_CITY.CITY_ID || '',
                     DEED_PROVINCE: params.DEED_PROVINCE.PROV_ID || ''
@@ -963,7 +964,7 @@
                     str.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p] == undefined ? '' : params[p]));
                 }
 
-                //var url = 'api/Values/' + action + (params ? '?' + str.join("&") : '');
+                //var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/api/Values/' + action + (params ? '?' + str.join("&") : '');
                 //var url0 = 'https://10.254.30.85/GSBAppraisal/MainPage.aspx?page=DefineHeadColLocation&HEAD_COL_RUNNING_ID=823371&HEAD_COL_CODE=';
                 //var url = '/GSBAppraisal/MainPage.aspx?page=DefineHeadColLocation&HEAD_COL_RUNNING_ID=&Deed_Province=&Deed_City=&Deed_District=&Deed_No=';
                 //var url2 = 'htmlpage1.html';
@@ -1048,7 +1049,10 @@
             }
             this.downloadFile = function (attachDoc) {
                 var url = 'home/download/' + attachDoc.ATTACHDOC_RUNNING_ID;
+                //window.location = url;
                 window.open(url);
+
+                //$('<a target="_blank" href="' + url + '"></a>').click();
             }
             this.tempDownload = function (tempFileName) {
                 var url = 'home/tempDownload/' + tempFileName;
@@ -1201,5 +1205,26 @@
             }
             this.deleteHeadColWqs = function (params) {
                 return this.httpGet('deleteHeadColWqs', params);
+            }
+            this.getSurveyChkBuild = function () {
+                return this.httpGet('getSurveyChkBuild', {});
+            }
+            this.getOnstComplete = function () {
+                return this.httpGet('getOnstComplete', {});
+            }
+            this.getEvaluatePlan = function () {
+                return this.httpGet('getEvaluatePlan', {});
+            }
+            this.getProvinceDOL = function (params) {
+                return this.httpGet('getProvinceDOL', params);
+            }
+            this.getDistrictDOL = function (params) {
+                return this.httpGet('getDistrictDOL', params);
+            }
+            this.getSubDistrictDOL = function (params) {
+                return this.httpGet('getSubDistrictDOL', params);
+            }
+            this.setDATE_APPRAI_EVALUATE = function (params) {
+                return this.httpPost('setDATE_APPRAI_EVALUATE', params);
             }
         }]);

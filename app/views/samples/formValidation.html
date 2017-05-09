@@ -1,0 +1,29 @@
+﻿<div class="container-fluid container-fullw" ng-controller="sampleValidationCtrl">
+    <div class="panel panel-white no-radius">
+        <div class="panel-heading border-light bg-azure no-radius">
+            <h4 class="panel-title">XXXXXX</h4>
+        </div>
+        <div class="panel-body">
+            <form name="form" role="form" class="form-horizontal" novalidate >
+                {{form.NUMERIC.$invalid}}
+                <div class="form-group" ng-class="{'has-error':form.NUMERIC.$invalid}">
+                    <label class="col-sm-3 control-label" for="FIELD_YEAR">
+                        NUMERIC <span class="symbol"></span>
+                    </label>
+                    <div class="col-sm-4 no-padding">
+                        <input type="text" name="NUMERIC" id="NUMERIC" class="form-control" ng-model="formData.NUMERIC" numeric="0-10" />
+                    </div>
+                </div>
+                {{form.FIELD_YEAR.$invalid}}
+                <div class="form-group" ng-class="{'has-error':form.FIELD_YEAR.$invalid}">
+                    <label class="col-sm-3 control-label" for="FIELD_YEAR">
+                        YEAR <span class="symbol"></span>
+                    </label>
+                    <div class="col-sm-4 no-padding">
+                        <input type="text" name="FIELD_YEAR" id="FIELD_YEAR" class="form-control" ng-model="formData.FIELD_YEAR" numeric ng-maxlength="4" ng-minlength="4" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

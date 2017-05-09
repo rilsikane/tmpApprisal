@@ -13,6 +13,7 @@
     $scope.selectProject = [];
     $scope.H = $stateParams.H;
     $scope.tmpTitle = '';
+    $scope.actHist = {};
 
     $scope.onTabChange = function (item) {
         switch (item.id) {
@@ -60,6 +61,37 @@
                 break;
         }
     }
+
+    $scope.$on('onContactResultSuccess', function (event, params) {
+        $scope.formData.DATE_APPRAI_EVALUATE = params.CONTACT_DATE;
+        if (params.CONTACT_RESULT.VALUE == '1') {
+            var submitAction = undefined;
+
+            angular.forEach($scope.w4buttons, function (item) {
+                if (item.ACT_TYPE == 'submit' && $scope.actHist.TO_STATE == 35) {
+                    submitAction = item;
+                }
+            });
+
+            if (submitAction != undefined) {
+                var w4ActionParams = {
+                    DOC_ID: $scope.DOC_ID,
+                    ACT_ID: submitAction.ACT_ID,
+                    ACT_TYPE: submitAction.ACT_TYPE,
+                    REASON_ID: 0,
+                    REASON_TEXT: '',
+                    NOTE: ''
+                };
+
+                radasoft.w4action(w4ActionParams).then(function (response) {
+                    $scope.updatew4($scope.ACT_HIST_ID);
+                    radasoft.success();
+                });
+            } else {
+                radasoft.success();
+            }
+        }
+    });
 
     $scope.formData = {};
 
@@ -170,6 +202,8 @@
         $scope.ACT_HIST_ID = $stateParams.ACT_HIST_ID;
 
         radasoft.getDocActHist({ ACT_HIST_ID: $scope.ACT_HIST_ID, H: $scope.H }).then(function (response) {
+            $scope.actHist = response.data;
+
             $scope.DOC_ID = response.data.DOC_ID || 0;
 
             $scope.tmpTitle = ($scope.H == '0') ? response.data.TO_STATE_NAME : response.data.STATE_NAME;
@@ -178,8 +212,8 @@
                 $scope.formData = response.data;
 
                 if ($scope.formData.REQUEST_RUNNING_ID == 0) {
-                    $scope.formData.CREDIT_BALANCE = undefined;
-                    $scope.formData.CREDIT_LIMIT = undefined;
+                    $scope.formData.CREDIT_BALANCE = 0;
+                    $scope.formData.CREDIT_LIMIT = 0;
                 }
 
                 if ($scope.ACT_HIST_ID == 0) {
@@ -339,13 +373,18 @@ app.controller('subform0550Controller', ['$scope', 'radasoft', '$translate', '$q
             resolve: {
                 params: function () {
                     return {
-                        formData: data
+                        formData: data,
+                        STATE_ID: $scope.$parent.actHist.TO_STATE
                     };
                 }
             }
         }).result.then(function (data) {
-            radasoft.success();
-            $scope.init();
+            if (data.CONTACT_RESULT.VALUE == '1') {
+                $scope.$emit('onContactResultSuccess', data)
+            } else {
+                radasoft.success();
+                $scope.init();
+            }
         });
     }
 
@@ -388,6 +427,16 @@ app.controller('subform0550Controller', ['$scope', 'radasoft', '$translate', '$q
         });
     }
 
+    $scope.submit = function (form) {
+        radasoft.confirmAndSave($translate.instant('CONFIRM.SAVE'), '', function (isconfirmed) {
+            if (isconfirmed) {
+                radasoft.setDATE_APPRAI_EVALUATE($scope.$parent.formData).then(function () {
+                    radasoft.success();
+                });
+            }
+        });
+    }
+
     $scope.init = function () {
         $scope.getCustContact($scope.$parent.formData.JOB_RUNNING_ID, 0);
     }
@@ -400,6 +449,7 @@ app.controller('subform0551Controller', ['$scope', 'radasoft', '$modalInstance',
     $scope.showBtnSave = true;
     $scope.dpOpenState = {};
     $scope.formData = undefined;
+    $scope.STATE_ID = params.STATE_ID;
 
     $scope.selectContactResult = [];
 
@@ -447,7 +497,7 @@ app.controller('subform0551Controller', ['$scope', 'radasoft', '$modalInstance',
         } else {
             radasoft.confirmAndSave($translate.instant('CONFIRM.SAVE'), '', function (isconfirmed) {
                 if (isconfirmed) {
-
+                    $scope.formData.STATE_ID = $scope.STATE_ID;
                     radasoft.setCustContact($scope.formData).then(function (response) {
                         $modalInstance.close(response.data);
                     });

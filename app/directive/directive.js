@@ -195,7 +195,8 @@
                     if (value && !isNaN(value)) {
                         $element.val($filter('number')(value, 0));
                     } else {
-                        $element.val(0);
+                        $element.val('');
+                        $element.val(undefined);
                     }
 
                 }
@@ -215,19 +216,9 @@
                 $element.bind('blur', listener)
 
                 $element.bind('focus', function () {
-                    var value = $element.val();
-                    if(value){
-                        var tmpVal = parseInt(value)
-                        if(tmpVal==0){
-                            $element.val("");
-                        }else{
-                           $element.val(tmpVal); 
-                        }
-                    }else{
-                        $element.val(0);
-                    }
+                    var value = $element.val().replace(/,/g, '');
 
-                    
+                    $element.val(value);
                 });
 
                 $element.bind('keyup', function (event) {
@@ -351,12 +342,18 @@
                     $element.val(value);
                 });
 
-                $element.bind('keydown', function (event) {
-                    var charCode = event.keyCode;
-                    if (event.keyCode == 0 || charCode > 31 && (charCode < 48 || (charCode > 57 && charCode != 190 && charCode != 110))) {
-                        if (!(charCode > 34 && charCode < 41)) {
-                            event.preventDefault();
+                $element.bind('keyup', function (event) {
+                    var max = $attrs.ngMax;
+                    var regNum = /[^^\d*\.?\d*$]/;
+                    var value = $element.val().replace(regNum, '');
+                    if (max) {
+                        if (parseFloat(value) > parseFloat(max)) {
+                            $element.val(0);
+                        } else {
+                            $element.val(value);
                         }
+                    } else {
+                        $element.val(value);
                     }
                 });
 
@@ -436,12 +433,19 @@
                     $element.val(value);
                 });
 
-                $element.bind('keydown', function (event) {
-                    var charCode = event.keyCode;
-                    if (event.keyCode == 0 || charCode > 31 && (charCode < 48 || (charCode > 57 && charCode != 190 && charCode != 110))) {
-                        if (!(charCode > 34 && charCode < 41)) {
-                            event.preventDefault();
+                $element.bind('keyup', function (event) {
+
+                    var max = $attrs.ngMax;
+                    var regNum = /[^^\d+$]/;
+                    var value = $element.val().replace(regNum, '');
+                    if (max) {
+                        if (parseInt(value) > parseInt(max)) {
+                            $element.val(0);
+                        } else {
+                            $element.val(value);
                         }
+                    } else {
+                        $element.val(value);
                     }
                 });
             }
@@ -473,7 +477,7 @@
 
                 $element.bind('keyup', function (event) {
                     var max = $attrs.ngMax;
-                    var regNum = /[^^\d*\.?\d*$]/;
+                    var regNum = /[^^\d+$]/;
                     var value = $element.val().replace(regNum, '');
                     if (max) {
                         if (parseFloat(value) > parseFloat(max)) {
@@ -496,26 +500,80 @@
                 if (!ngModelCtrl) {
                     return;
                 }
-                var listener = function () {
-                    var value = $element.val();
-                    if (value && !isNaN(value)) {
-                        $element.val(value);
-                    } else {
-                        $element.val('');
-                        $element.val(undefined);
+
+                $element.bind('blur', function () {
+                    var value = $element.val().replace(/,/g, '');
+                    if (!isNaN(value)) {
+                        var decimal = $attrs.decimal || 0;
+                        $element.val($filter('number')(value, decimal));
                     }
-                }
-
-                $element.bind('change', listener)
-                $element.bind('blur', listener)
-                $element.bind('focus', function () {
-                    var value = $element.val();//.replace(/,/g, '');
-
-                    $element.val(value);
                 });
 
-                $element.bind('keydown', function (event) {
-                   
+                $element.bind('focus', function () {
+                    var value = $element.val().replace(/,/g, '');
+                    $element.val(value);
+                    $element.select();
+                });
+
+                ngModelCtrl.$formatters.push(function (value) {
+                    var decimal = $attrs.decimal || 0;
+                    return $filter('number')(value, decimal);
+                });
+
+                ngModelCtrl.$parsers.push(function (viewValue) {
+                    var decimal = $attrs.decimal || 0;
+                    return parseInt(viewValue.replace(/,/g, ''));
+                })
+
+                ngModelCtrl.$validators.isNumeric = function (modelValue, viewValue) {
+                    var value = viewValue.replace(/,/g, '');//viewValue;//modelValue || viewValue;
+
+                    var minMax = $attrs.numeric.split('-');
+                    var min = parseInt(minMax[0]);
+                    var max = parseInt(minMax[1]);
+
+                    var isValid = !isNaN(value) || /^(0|[1-9][0-9]*)$/.test(value);
+
+                    if (!isNaN(min) && !isNaN(max) && isValid) {
+                        isValid = parseInt(value) >= min && parseInt(value) <= max;
+                    }
+
+                    if (!isValid) {
+                        if (!$element.hasClass('input-validate-error'))
+                            $element.addClass('input-validate-error');
+                    } else {
+                        if ($element.hasClass('input-validate-error'))
+                            $element.removeClass('input-validate-error');
+                    }
+
+                    return isValid;
+                };
+            }
+        };
+    }]).directive('validNumber', [function () {
+        return {
+            require: '?ngModel',
+            link: function (scope, element, attrs, ngModelCtrl) {
+                if (!ngModelCtrl) {
+                    return;
+                }
+
+                ngModelCtrl.$parsers.push(function (val) {
+                    if (angular.isUndefined(val)) {
+                        var val = '';
+                    }
+                    var clean = val.replace(/[^0-9]+/g, '');
+                    if (val !== clean) {
+                        ngModelCtrl.$setViewValue(clean);
+                        ngModelCtrl.$render();
+                    }
+                    return clean;
+                });
+
+                element.bind('keypress', function (event) {
+                    if (event.keyCode === 32) {
+                        event.preventDefault();
+                    }
                 });
             }
         };

@@ -74,9 +74,9 @@
                                     radasoft.getMaterialFloor({}).then(function (response) {
                                         $scope.materialFloor = response.data;
 
-                                        radasoft.getBrand({}).then(function (response) {
-                                            $scope.brand = response.data;
-                                        });
+                                        //radasoft.getBrand({}).then(function (response) {
+                                        //    $scope.brand = response.data;
+                                        //});
                                     });
                                 });
                             });
@@ -117,7 +117,7 @@
         };
 
         $modal.open({
-            templateUrl: '/app/views/project/popup.html',
+            templateUrl: 'app/views/project/popup.html',
             controller: 'projectController',
             backdrop: 'static',
             keyboard: false,
@@ -170,10 +170,10 @@
 
     $scope.openSubCol = function (colleteral, botColForm, IS_PROJECT, data) {
         //$log.debug(data);
-        var includeTemplateUrl1 = '/app/views/test/subcol/' + botColForm.COL_FORM_ID + '.html';
-        var includeTemplateUrl2 = '/app/views/test/subcol/000000.html';
+        var includeTemplateUrl1 = 'app/views/test/subcol/' + botColForm.COL_FORM_ID + '.html';
+        var includeTemplateUrl2 = 'app/views/test/subcol/000000.html';
         $modal.open({
-            templateUrl: '/app/views/test/subform0202.html',
+            templateUrl: 'app/views/test/subform0202.html',
             controller: 'subform0202Controller',
             backdrop: 'static',
             keyboard: false,
@@ -192,7 +192,7 @@
                         roadType: $scope.roadType,
                         landScape: $scope.landScape,
                         materialFloor: $scope.materialFloor,
-                        brand: $scope.brand,
+                        //brand: $scope.brand,
                         formData: data,
                         requestData: $scope.$parent.formData,
                         IS_PROJECT: IS_PROJECT
@@ -228,7 +228,7 @@
 
     $scope.openHeadColEditor = function (IS_PROJECT, data) {
         $modal.open({
-            templateUrl: '/app/views/test/subform0201.html',
+            templateUrl: 'app/views/test/subform0201.html',
             controller: 'headColEditorCtrl',
             backdrop: 'static',
             keyboard: false,
@@ -269,7 +269,7 @@
 
     $scope.modalHeadColAction = function (args) {
         radasoft.openDialog({
-            templateUrl: '/app/views/test/headColActionDialogTemplate.html',
+            templateUrl: 'app/views/test/headColActionDialogTemplate.html',
             controller: args.controller,
             windowClass: args.windowClass || '',// 'app-modal-window-80',
             resolve: {
@@ -293,7 +293,7 @@
             colleteral: colleteral,
             colAct: colAct,
             controller: 'subform0204Controller',
-            includeUrl: '/app/views/test/subform0203.html',
+            includeUrl: 'app/views/test/subform0203.html',
             showButtonSave: true
         });
     }
@@ -303,7 +303,7 @@
             colleteral: colleteral,
             colAct: colAct,
             controller: 'subform0205Controller',
-            includeUrl: '/app/views/test/subform0205.html',
+            includeUrl: 'app/views/test/subform0205.html',
             showButtonSave: true
         });
     }
@@ -321,9 +321,9 @@
             }
         }).result.then(function (NV) {
             radasoft.openDialog({
-                templateUrl: '/app/views/test/headColActionDialogTemplate.html',
+                templateUrl: 'app/views/test/headColActionDialogTemplate.html',
                 controller: 'subform0206Controller',
-                //includeUrl: '/app/views/test/subform0206.html',
+                //includeUrl: 'app/views/test/subform0206.html',
                 //showButtonSave: true,
                 windowClass: 'app-modal-window-80',
                 resolve: {
@@ -367,19 +367,31 @@
             colleteral: colleteral,
             colAct: colAct,
             controller: 'subform0208Controller',
-            includeUrl: '/app/views/test/subform0208.html',
+            includeUrl: 'app/views/test/subform0208.html',
             showButtonSave: true
         });
     }
 
     $scope.editMarket = function (colleteral, colAct) {
-        $scope.modalHeadColAction({
-            colleteral: colleteral,
-            colAct: colAct,
-            controller: 'subform0209Controller',
-            includeUrl: '/app/views/test/subform0209.html',
-            showButtonSave: false,
-            windowClass: 'app-modal-window-80'
+        radasoft.openDialog({
+            controller: 'wqsFactorListCtrl',
+            resolve: {
+                params: function () {
+                    return {
+                        HEAD_COL_TYPE_ID: colleteral.CODE,
+                        HEAD_COL_RUNNING_ID: colleteral.HEAD_COL_RUNNING_ID
+                    };
+                }
+            }
+        }).result.then(function (NV) {
+            $scope.modalHeadColAction({
+                colleteral: colleteral,
+                colAct: colAct,
+                controller: 'subform0209Controller',
+                includeUrl: 'app/views/test/subform0209.html',
+                showButtonSave: false,
+                windowClass: 'app-modal-window-80'
+            });
         });
     }
 
@@ -388,7 +400,7 @@
             colleteral: colleteral,
             colAct: colAct,
             controller: 'subform0210Controller',
-            includeUrl: '/app/views/test/subform0210.html',
+            includeUrl: 'app/views/test/subform0210.html',
             showButtonSave: false
         });
     }
@@ -398,20 +410,20 @@
             colleteral: colleteral,
             colAct: colAct,
             controller: 'subform0211Controller',
-            includeUrl: '/app/views/test/subform0211.html',
+            includeUrl: 'app/views/test/subform0211.html',
             showButtonSave: false
         });
     }
 
     $scope.openProjectCollteral = function () {
         radasoft.openDialog({
-            templateUrl: '/app/views/project/completedProjectModal.html',
+            templateUrl: 'app/views/project/completedProjectModal.html',
             controller: 'completedProjectController',
             windowClass: 'app-modal-window-80',
             resolve: {
                 params: function () {
                     return {
-                        includeUrl: '/app/views/project/completedProject.html',
+                        includeUrl: 'app/views/project/completedProject.html',
                         formData: {
                             JOB_RUNNING_ID: $scope.$parent.formData.JOB_RUNNING_ID
                         }
@@ -426,13 +438,13 @@
 
     $scope.costSubCol = function (colleteral, subcol) {
         radasoft.openDialog({
-            //templateUrl: '/app/views/project/completedProjectModal.html',
+            //templateUrl: 'app/views/project/completedProjectModal.html',
             controller: 'costBuildingController',
             windowClass: 'app-modal-window-80',
             resolve: {
                 params: function () {
                     return {
-                        includeUrl: '/app/views/test/subcol/costSubCol.html',
+                        includeUrl: 'app/views/test/subcol/costSubCol.html',
                         headCol: colleteral,
                         subCol: subcol
                     };

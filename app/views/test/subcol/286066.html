@@ -68,6 +68,14 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-sm-4 control-label" for="COL_NO">
+                {{'COL_NO'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input type="text" maxlength="500" placeholder="" class="form-control" id="COL_NO" name="COL_NO" ng-model="formData.COL_NO">
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-4 control-label" for="AREA_METER">
                 {{'AREA_METER'|translate}}
             </label>
@@ -1138,7 +1146,7 @@
                 {{'CONSTRUCT_YEAR'|translate}} <span class="symbol"></span>
             </label>
             <div class="col-sm-8">
-                <input year type="text" maxlength="4" ng-max="9999" class="form-control" id="CONSTRUCT_YEAR" name="CONSTRUCT_YEAR" ng-model="formData.CONSTRUCT_YEAR">
+                <input numberonly type="text" minlength="4" maxlength="4" class="form-control" id="CONSTRUCT_YEAR" name="CONSTRUCT_YEAR" ng-model="formData.CONSTRUCT_YEAR">
             </div>
         </div>
         <div class="form-group">

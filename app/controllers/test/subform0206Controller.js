@@ -8,6 +8,9 @@
     $scope.HEAD_COL_RUNNING_ID = params.HEAD_COL_RUNNING_ID;
     $scope.HEAD_COL_TYPE_ID = params.HEAD_COL_TYPE_ID;
     $scope.MARKET_COMPAIR = params.MARKET_COMPAIR;
+    $scope.RSQ = 0;
+
+    $scope.RSQ_WARNING = 90;
 
     $scope.colAct = {
         COL_ACT_NAME: $translate.instant('WQS')
@@ -47,6 +50,32 @@
                 });
             });
         });
+    }
+
+    $scope.linearRegression = function (y, x) {
+
+        var lr = {};
+        var n = y.length;
+        var sum_x = 0;
+        var sum_y = 0;
+        var sum_xy = 0;
+        var sum_xx = 0;
+        var sum_yy = 0;
+
+        for (var i = 0; i < y.length; i++) {
+
+            sum_x += x[i];
+            sum_y += y[i];
+            sum_xy += (x[i] * y[i]);
+            sum_xx += (x[i] * x[i]);
+            sum_yy += (y[i] * y[i]);
+        }
+
+        lr['slope'] = (n * sum_xy - sum_x * sum_y) / (n * sum_xx - sum_x * sum_x);
+        lr['intercept'] = (sum_y - lr.slope * sum_x) / n;
+        lr['r2'] = Math.pow((n * sum_xy - sum_x * sum_y) / Math.sqrt((n * sum_xx - sum_x * sum_x) * (n * sum_yy - sum_y * sum_y)), 2);
+
+        return lr;
     }
 
     $scope.cal = function () {
@@ -89,6 +118,7 @@
         var similar = $filter('filter')($scope.WQS.WQS_SUMMARY, -9, true, 'WQS_FACTOR_ID')[0];
         var comparability = $filter('filter')($scope.WQS.WQS_SUMMARY, -10, true, 'WQS_FACTOR_ID')[0];
         var comparabilityValue = $filter('filter')($scope.WQS.WQS_SUMMARY, -11, true, 'WQS_FACTOR_ID')[0];
+        var summary = $filter('filter')($scope.WQS.WQS_SUMMARY, -14, true, 'WQS_FACTOR_ID')[0];
 
         adjustPrice.MKT1_VALUE = (1 - (netPrice.MKT1_VALUE / offerPrice.MKT1_VALUE)) * 100;
         adjustPrice.MKT2_VALUE = (1 - (netPrice.MKT2_VALUE / offerPrice.MKT2_VALUE)) * 100;
@@ -103,11 +133,11 @@
         wqs.MKT5_VALUE = $scope.MARKET_COMPAIR == 4 ? 0 : sum.MKT5_SCORE;
         wqs.COL_VALUE = sum.COL_SCORE;
 
-        adjustRatio.MKT1_VALUE = wqs.MKT1_VALUE / wqs.COL_VALUE;
-        adjustRatio.MKT2_VALUE = wqs.MKT2_VALUE / wqs.COL_VALUE;
-        adjustRatio.MKT3_VALUE = wqs.MKT3_VALUE / wqs.COL_VALUE;
-        adjustRatio.MKT4_VALUE = wqs.MKT4_VALUE / wqs.COL_VALUE;
-        adjustRatio.MKT5_VALUE = $scope.MARKET_COMPAIR == 4 ? 0 : wqs.MKT5_VALUE / wqs.COL_VALUE;
+        adjustRatio.MKT1_VALUE = wqs.COL_VALUE / wqs.MKT1_VALUE;
+        adjustRatio.MKT2_VALUE = wqs.COL_VALUE / wqs.MKT2_VALUE;
+        adjustRatio.MKT3_VALUE = wqs.COL_VALUE / wqs.MKT3_VALUE;
+        adjustRatio.MKT4_VALUE = wqs.COL_VALUE / wqs.MKT4_VALUE;
+        adjustRatio.MKT5_VALUE = $scope.MARKET_COMPAIR == 4 ? 0 : wqs.COL_VALUE / wqs.MKT5_VALUE;
 
         indicatedValue.MKT1_VALUE = netPrice.MKT1_VALUE * adjustRatio.MKT1_VALUE;
         indicatedValue.MKT2_VALUE = netPrice.MKT2_VALUE * adjustRatio.MKT2_VALUE;
@@ -149,10 +179,23 @@
         comparabilityValue.MKT4_VALUE = (comparability.MKT4_VALUE * indicatedValue.MKT4_VALUE);
         comparabilityValue.MKT5_VALUE = $scope.MARKET_COMPAIR == 4 ? 0 : (comparability.MKT5_VALUE * indicatedValue.MKT5_VALUE);
         comparabilityValue.COL_VALUE = (comparabilityValue.MKT1_VALUE + comparabilityValue.MKT2_VALUE + comparabilityValue.MKT3_VALUE + comparabilityValue.MKT4_VALUE + comparabilityValue.MKT5_VALUE);
+
+        summary.COL_VALUE = Math.round(comparabilityValue.COL_VALUE);
+
+        var x = [sumScore1, sumScore2, sumScore3, sumScore4];
+        var y = [netPrice.MKT1_VALUE, netPrice.MKT2_VALUE, netPrice.MKT3_VALUE, netPrice.MKT4_VALUE];
+
+        if ($scope.MARKET_COMPAIR == 5) {
+            x.push(sumScore5);
+            y.push(netPrice.MKT5_VALUE);
+        }
+
+        $scope.WQS.RSQ = parseInt($scope.linearRegression(x, y).intercept) || 0;
     }
 
     $scope.setWqs = function () {
-        radasoft.confirmAndSave($translate.instant('CONFIRM.SAVE'), '', function (isconfirmed) {
+        var warningMsg = $scope.WQS.RSQ < $scope.RSQ_WARNING ? 'RSQ น้อยกว่า ' + $scope.RSQ_WARNING : '';
+        radasoft.confirmAndSave($translate.instant('CONFIRM.SAVE'), warningMsg, function (isconfirmed) {
             if (isconfirmed) {
                 radasoft.setWqs($scope.WQS).then(function (response) {
                     $scope.WQS = response.data;
@@ -173,8 +216,25 @@
         });
     }
 
-    $scope.submit = function () {
-        $scope.setWqs();
+    $scope.submit = function (form) {
+        if (form.$invalid) {
+            var field = null, firstError = null;
+            form.$dirty = true;
+            for (field in form) {
+                if (field[0] != '$') {
+                    if (firstError === null && !form[field].$valid) {
+                        firstError = form[field].$name;
+                    }
+
+                    if (form[field].$pristine) {
+                        form[field].$dirty = true;
+                    }
+                }
+            }
+        }
+        else {
+            $scope.setWqs();
+        }
     }
 
     $scope.delete = function () {
@@ -199,8 +259,8 @@
 }]);
 
 app.controller('wqsFactorListCtrl', ['$scope', '$modalInstance', 'radasoft', 'params', '$translate', function ($scope, $modalInstance, radasoft, params, $translate) {
-    $scope.includeUrl = '/app/views/test/wqsFactorList.html';
-    $scope.title = $translate.instant('WQS_FACTOR');
+    $scope.includeUrl = 'app/views/test/wqsFactorList.html';
+    $scope.title = $translate.instant('SELECT_WQS_FACTOR');
     //$scope.showBtnOK = true;
 
     $scope.factorList = [];
