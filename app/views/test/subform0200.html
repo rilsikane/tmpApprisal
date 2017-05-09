@@ -94,7 +94,7 @@
                                 <td>{{subcol.SUB_TYPE.SUB_TYPE}}</td>
                                 <td>{{subcol.COL_NO}}</td>
                                 <td>{{subcol.RAWANG}}</td>
-                                <td>{{subcol.AREA_WA}}</td>
+                                <td>{{subcol.AREA_WA | number:2}}</td>
                                 <td class="text-right">{{subcol.QUANTITY}}</td>
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
                                 <td class="center" ng-if="!inputDisabled">
@@ -132,7 +132,7 @@
                                 <td ng-hide="$parent.formData.JOB_TYPE">{{subcol.SUB_TYPE.SUB_TYPE}}</td>
                                 <td ng-hide="$parent.formData.JOB_TYPE">{{subcol.DEED_DISTRICT.DISTRICT}}</td>
                                 <td ng-hide="$parent.formData.JOB_TYPE">{{subcol.DEED_PROVINCE.PROV_NAME}}</td>
-                                <td ng-hide="$parent.formData.JOB_TYPE">{{subcol.AREA_METER}}</td>
+                                <td ng-hide="$parent.formData.JOB_TYPE">{{subcol.AREA_METER | number:2}}</td>
 
                                 <td ng-show="$parent.formData.JOB_TYPE">{{subcol.PROJECT_PRICE.PHASE_NAME}}</td>
                                 <td ng-show="$parent.formData.JOB_TYPE">{{subcol.PROJECT_PRICE.ZONE_NAME}}</td>
@@ -298,7 +298,7 @@
                                 <td>{{subcol.SUB_TYPE.SUB_TYPE}}</td>
                                 <td>{{subcol.ROOM_NO}}</td>
                                 <td>{{subcol.BUILDING_NAME}}</td>
-                                <td>{{subcol.AREA_METER}}</td>
+                                <td>{{subcol.AREA_METER | number:2}}</td>
                                 <td class="text-right">{{subcol.QUANTITY}}</td>
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
                                 <td class="center" ng-if="!inputDisabled">
@@ -330,8 +330,8 @@
                             <tr ng-repeat="subcol in colleteral.SUB_COL_OTHERS">
                                 <td>{{subcol.SUB_TYPE.SUB_TYPE}}</td>
                                 <td>{{subcol.OTHERS_COL}}</td>
-                                <td>{{subcol.APPR_CUR_NET_TOTAL}}</td>
-                                <td>{{subcol.OTHERS_PRICE_PAWN}}</td>
+                                <td>{{subcol.APPR_CUR_NET_TOTAL | number:2}}</td>
+                                <td>{{subcol.OTHERS_PRICE_PAWN | number:2}}</td>
                                 <td class="text-right">{{subcol.QUANTITY}}</td>
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
                                 <td class="center" ng-if="!inputDisabled">
