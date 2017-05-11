@@ -408,6 +408,7 @@
   "REGIS_YN": "เครื่องจักรจดทะเบียนหรือไม่",
   "MACHINE_OPERATION": "การทำงานของเครื่องจักร",
   "MACHINE_NO": "หมายเลขเครื่องจักร",
+  "LICENSE_NO": "เลขที่ทะเบียนยานพาหนะ",
   "STRU_PILLAR_CONG": "ค.ส.ล.",
   "STRU_PILLAR_WOOD": "ไม้",
   "STRU_PILLAR_IRON": "เหล็ก",

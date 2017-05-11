@@ -20,8 +20,11 @@
                     <label class="col-sm-4 control-label" for="DEED_NO" ng-show="formData.HEAD_COL_TYPE_ID=='286003' || formData.HEAD_COL_TYPE_ID=='286004' || formData.HEAD_COL_TYPE_ID=='300001' || formData.HEAD_COL_TYPE_ID=='286005' || formData.HEAD_COL_TYPE_ID=='286006' || formData.HEAD_COL_TYPE_ID=='286007' || formData.HEAD_COL_TYPE_ID=='286008' || formData.HEAD_COL_TYPE_ID=='999999' || formData.HEAD_COL_TYPE_ID=='286066' ">
                         {{'COL_NO'|translate}}
                     </label>
-                    <label class="col-sm-4 control-label" for="DEED_NO" ng-show="formData.HEAD_COL_TYPE_ID=='286011' || formData.HEAD_COL_TYPE_ID=='286038' || formData.HEAD_COL_TYPE_ID=='286039' || formData.HEAD_COL_TYPE_ID=='300000'">
+                    <label class="col-sm-4 control-label" for="DEED_NO" ng-show="formData.HEAD_COL_TYPE_ID=='286011' || formData.HEAD_COL_TYPE_ID=='286039' || formData.HEAD_COL_TYPE_ID=='300000'">
                         {{'MACHINE_NO'|translate}}
+                    </label>
+                    <label class="col-sm-4 control-label" for="DEED_NO" ng-show="formData.HEAD_COL_TYPE_ID=='286038'">
+                        {{'LICENSE_NO'|translate}}
                     </label>
                     <div class="col-sm-8">
                         <input type="text" maxlength="1000" class="form-control" id="DEED_NO" name="DEED_NO" ng-model="formData.DEED_NO" ng-if="formData.HEAD_COL_TYPE_ID!='286011'">
