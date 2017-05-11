@@ -259,7 +259,7 @@
         </div>
     </div>
     <div class="pull-right">
-        <button class="btn btn-primary btn-o" ng-click="submit(form,'expand-left')" ng-disabled="($parent.formData.CUSTOMERS.length==0 && !$parent.formData.NPA_TYPE) || inputDisabled">
+        <button class="btn btn-primary btn-o" ng-click="submit(form,'expand-left')" ng-disabled="(($parent.formData.CUSTOMERS.length==0 && !$parent.formData.NPA_TYPE) || inputDisabled) && (!formData.NPA_TYPE && formData.CREDIT_BALANCE < 1)">
             <i class="glyphicon glyphicon-floppy-save"></i>{{'BUTTON.SAVE'|translate}}
         </button>
     </div>
