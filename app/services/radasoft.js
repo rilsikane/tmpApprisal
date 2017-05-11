@@ -80,7 +80,7 @@
 
                 var deferred = $q.defer();
 
-                var url = 'https://gsbappraisal.cdg.co.th/Token';
+                var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/Token';
 
                 var config = {
                     headers: {
