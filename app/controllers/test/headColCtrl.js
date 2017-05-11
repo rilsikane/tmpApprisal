@@ -310,36 +310,22 @@
 
     $scope.editWQS = function (colleteral, colAct) {
         radasoft.openDialog({
-            controller: 'wqsFactorListCtrl',
+            templateUrl: '/app/views/test/headColActionDialogTemplate.html',
+            controller: 'subform0206Controller',
+            windowClass: 'app-modal-window-80',
             resolve: {
                 params: function () {
                     return {
-                        HEAD_COL_TYPE_ID: colleteral.CODE,
-                        HEAD_COL_RUNNING_ID: colleteral.HEAD_COL_RUNNING_ID
+                        JOB_RUNNING_ID: colleteral.JOB_RUNNING_ID,
+                        HEAD_COL_RUNNING_ID: colleteral.HEAD_COL_RUNNING_ID,
+                        HEAD_COL_TYPE_ID: '',
+                        MARKET_COMPAIR: colleteral.MARKET_COMPAIR
                     };
                 }
             }
-        }).result.then(function (NV) {
-            radasoft.openDialog({
-                templateUrl: '/app/views/test/headColActionDialogTemplate.html',
-                controller: 'subform0206Controller',
-                //includeUrl: '/app/views/test/subform0206.html',
-                //showButtonSave: true,
-                windowClass: 'app-modal-window-80',
-                resolve: {
-                    params: function () {
-                        return {
-                            JOB_RUNNING_ID: colleteral.JOB_RUNNING_ID,
-                            HEAD_COL_RUNNING_ID: colleteral.HEAD_COL_RUNNING_ID,
-                            HEAD_COL_TYPE_ID: NV.VALUE,
-                            MARKET_COMPAIR: colleteral.MARKET_COMPAIR
-                        };
-                    }
-                }
-            }).result.then(function () {
-                radasoft.success();
-                $scope.getHeadColl();
-            });
+        }).result.then(function () {
+            radasoft.success();
+            $scope.getHeadColl();
         });
     }
 
@@ -384,13 +370,23 @@
                 }
             }
         }).result.then(function (NV) {
-            $scope.modalHeadColAction({
-                colleteral: colleteral,
-                colAct: colAct,
+            radasoft.openDialog({
+                templateUrl: '/app/views/test/headColActionDialogTemplate.html',
                 controller: 'subform0209Controller',
-                includeUrl: '/app/views/test/subform0209.html',
-                showButtonSave: false,
-                windowClass: 'app-modal-window-80'
+                windowClass: 'app-modal-window-80',
+                resolve: {
+                    params: function () {
+                        return {
+                            JOB_RUNNING_ID: colleteral.JOB_RUNNING_ID,
+                            HEAD_COL_RUNNING_ID: colleteral.HEAD_COL_RUNNING_ID,
+                            HEAD_COL_TYPE_ID: NV.VALUE,
+                            MARKET_COMPAIR: colleteral.MARKET_COMPAIR
+                        };
+                    }
+                }
+            }).result.then(function () {
+                radasoft.success();
+                $scope.getHeadColl();
             });
         });
     }

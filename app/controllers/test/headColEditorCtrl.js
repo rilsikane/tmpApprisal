@@ -244,6 +244,11 @@
                 $scope.getProvince().then(function () {
                     if (params.formData.HEAD_COL_RUNNING_ID == 0) {
                         $scope.formData = params.formData;
+
+                        radasoft.getLandColor({}).then(function (response) {
+                            $scope.selectUseCityPlan = response.data;
+                        });
+
                     } else {
                         $scope.getHeadColById(params.formData.DOC_ID, params.formData.HEAD_COL_RUNNING_ID).then(function () {
                             radasoft.getDistrict({ PROVINCE_ID: $scope.formData.LOC_PROVINCE.PROV_ID }).then(function (response) {

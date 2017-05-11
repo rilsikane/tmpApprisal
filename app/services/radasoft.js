@@ -31,7 +31,7 @@
                 return this.http('GET', url, {}, httpConfig || {});
             }
             this.httpLogout = function () {
-                var url = 'api/Account/Logout';
+                var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/api/Account/Logout';
                 return this.http('POST', url, {}, {});
             }
             this.http = function (method, url, params, httpConfig) {
@@ -80,7 +80,7 @@
 
                 var deferred = $q.defer();
 
-                var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/Token';
+                var url = 'https://gsbappraisal.cdg.co.th/Token';
 
                 var config = {
                     headers: {
@@ -775,7 +775,7 @@
 
                 params = params || {};
 
-                params.templateUrl = params.templateUrl || 'app/views/common/dialogWrapper.html';
+                params.templateUrl = params.templateUrl || '/app/views/common/dialogWrapper.html';
                 params.windowClass = params.windowClass || '';
 
                 return $modal.open({
@@ -824,8 +824,8 @@
                 return this.httpPost('createColleteralFromProject', params);
             }
 
-            this.getMarketPrice = function (params) {
-                return this.httpPost('getMarketPrice', params);
+            this.getPriceMarketStocklist = function (params) {
+                return this.httpPost('getPriceMarketStocklist', params);
             }
             this.setMarketPrice = function (params) {
                 return this.httpPost('setMarketPrice', params);
@@ -892,7 +892,7 @@
                 return $modal.open({
                     backdrop: 'static',
                     keyboard: false,
-                    templateUrl: 'app/views/tools/uploader.html',
+                    templateUrl: '/app/views/tools/uploader.html',
                     controller: 'uploaderController',
                     size: 'lg',
                     resolve: {
@@ -964,7 +964,7 @@
                     str.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p] == undefined ? '' : params[p]));
                 }
 
-                //var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/api/Values/' + action + (params ? '?' + str.join("&") : '');
+                //var url = 'api/Values/' + action + (params ? '?' + str.join("&") : '');
                 //var url0 = 'https://10.254.30.85/GSBAppraisal/MainPage.aspx?page=DefineHeadColLocation&HEAD_COL_RUNNING_ID=823371&HEAD_COL_CODE=';
                 //var url = '/GSBAppraisal/MainPage.aspx?page=DefineHeadColLocation&HEAD_COL_RUNNING_ID=&Deed_Province=&Deed_City=&Deed_District=&Deed_No=';
                 //var url2 = 'htmlpage1.html';
@@ -1226,5 +1226,17 @@
             }
             this.setDATE_APPRAI_EVALUATE = function (params) {
                 return this.httpPost('setDATE_APPRAI_EVALUATE', params);
+            }
+            this.getPriceMarketDetail = function (params) {
+                return this.httpGet('getPriceMarketDetail', params);
+            }
+            this.setPriceMarketStockToJobMarketPrice = function (params) {
+                return this.httpPost('setPriceMarketStockToJobMarketPrice', params);
+            }
+            this.getJobMarketPriceDetail = function (params) {
+                return this.httpGet('getJobMarketPriceDetail', params);
+            }
+            this.getHeadColTypeForMarketPrice = function (params) {
+                return this.httpGet('getHeadColTypeForMarketPrice', params);
             }
         }]);

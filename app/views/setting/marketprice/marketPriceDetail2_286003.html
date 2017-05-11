@@ -1,0 +1,788 @@
+﻿<!-- ที่ดินเปล่า -->
+<!-- รายละเอียดหลักประกัน -->
+<fieldset>
+    <legend>รายละเอียดหลักประกัน</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="HEAD_COL_TYPE_ID">
+            {{'PICTURE'|translate}} <a ng-click="uploadPicture()"><i class="fa fa-picture-o"></i></a>
+        </label>
+        <div class="col-sm-8">
+            <div class="row padding-15">
+                <img ng-if="formData.PICTURE.ATTACHDOC_RUNNING_ID>0" ng-src="nn1/b/{{formData.PICTURE.ATTACHDOC_RUNNING_ID}}/0/{{random}}" width="200" height="300" />
+
+                <img ng-if="formData.JMP_RUNNING_ID > 0 && formData.PICTURE.ATTACHDOC_RUNNING_ID==0" ng-src="nn1/a/{{formData.JMP_RUNNING_ID}}/PICTURE/{{random}}" width="200" height="300" />
+
+                <img ng-if="formData.MARKETSTOCK_RUNNING_ID > 0 && formData.PICTURE.ATTACHDOC_RUNNING_ID==0" ng-src="nn1/c/{{formData.MARKETSTOCK_RUNNING_ID}}/PICTURE/{{random}}" width="200" height="300" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="PICTURE_SIGN_DATE">วันที่ถ่ายภาพ</label>
+        <div class="col-sm-3">
+            <input type="text" id="PICTURE_DATE" class="form-control" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.PICTURE_DATE" ng-click="openDatePicker($event,'PICTURE_DATE')" ng-model="formData.PICTURE_DATE" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="HEAD_COL_TYPE_ID">
+            ประเภทหลักทรัพย์ย่อย
+        </label>
+        <div class="col-sm-8">
+            <ui-select theme="selectize" ng-model="formData.HEAD_COL_SUB_TYPE_ID" id="HEAD_COL_SUB_TYPE" name="HEAD_COL_SUB_TYPE">
+                <ui-select-match placeholder="">
+                    {{$select.selected.NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in headColSubType | filter: $select.search">
+                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="DOC_CERT_TYPE">
+            ปรเภทเอกสารสิทธิ์
+        </label>
+        <div class="col-sm-8">
+            <ui-select theme="selectize" ng-model="formData.DOC_CERT_TYPE" id="DOC_CERT_TYPE" name="DOC_CERT_TYPE">
+                <ui-select-match placeholder="">
+                    {{$select.selected.NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in colCertType | filter: $select.search">
+                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+
+</fieldset>
+
+<!-- เนื้อที่ดิน -->
+<fieldset>
+    <legend>เนื้อที่ดิน</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="AREA_LAND">
+            {{'AREA_LAND'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <input type="text" format maxlength="24" class="form-control" id="AREA_LAND" name="AREA_LAND" ng-model="formData.AREA_LAND">
+        </div>
+    </div>
+    <!-- ที่ดินเปล่า (ขาย) -->
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="AREA_LAND_RAI">
+            ไร่
+        </label>
+        <div class="col-sm-8">
+            <input type="text" format maxlength="24" class="form-control" id="AREA_LAND_RAI" name="AREA_LAND_RAI" ng-model="formData.AREA_LAND_RAI">
+        </div>
+    </div>
+    <!-- ที่ดินเปล่า (ขาย) -->
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="AREA_LAND_NGAN">
+            งาน
+        </label>
+        <div class="col-sm-8">
+            <input type="text" format maxlength="24" class="form-control" id="AREA_LAND_NGAN" name="AREA_LAND_NGAN" ng-model="formData.AREA_LAND_NGAN">
+        </div>
+    </div>
+    <!-- ที่ดินเปล่า (ขาย) -->
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="AREA_LAND_WA">
+            วา
+        </label>
+        <div class="col-sm-8">
+            <input type="text" format maxlength="24" class="form-control" id="AREA_LAND_WA" name="AREA_LAND_WA" ng-model="formData.AREA_LAND_WA">
+        </div>
+    </div>
+</fieldset>
+
+<!-- โครงการ -->
+<fieldset>
+    <legend>โครงการ</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="PROPERTY_NAME">
+            {{'PROPERTY_NAME'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <input type="text" placeholder="" class="form-control" id="PROPERTY_NAME" name="PROPERTY_NAME" ng-model="formData.PROPERTY_NAME">
+        </div>
+    </div>
+</fieldset>
+
+<!-- ทำเลที่ตั้ง -->
+<fieldset>
+    <legend>ทำเลที่ตั้ง</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="ADD_NO">
+            {{'ADD_NO'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="ADD_NO" name="ADD_NO" ng-model="formData.ADD_NO">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="ADD_MOOBAAN">
+            {{'ADD_MOOBAAN'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="ADD_MOOBAAN" name="ADD_MOOBAAN" ng-model="formData.ADD_MOOBAAN">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="ADD_ROAD">
+            {{'ADD_ROAD'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="ADD_ROAD" name="ADD_ROAD" ng-model="formData.ADD_ROAD">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="ADD_SOI">
+            {{'ADD_SOI'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="ADD_SOI" name="ADD_SOI" ng-model="formData.ADD_SOI">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="ADD_COUNTRY">
+            {{'COUNTRY'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <ui-select theme="selectize" ng-model="formData.ADD_COUNTRY" id="ADD_COUNTRY" name="ADD_COUNTRY">
+                <ui-select-match placeholder="">
+                    {{$select.selected.NAME_THAI}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in country | filter: $select.search">
+                    <div ng-bind-html="item.NAME_THAI | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="ADD_PROVINCE">
+            {{'PROVINCE'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <ui-select theme="selectize" ng-model="formData.ADD_PROVINCE" id="ADD_PROVINCE" name="ADD_PROVINCE" on-select="onProvinceChange($item)">
+                <ui-select-match>
+                    {{$select.selected.PROV_NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in province | filter: $select.search">
+                    <div ng-bind-html="item.PROV_NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="ADD_CITY">
+            {{'DISTRICT'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <ui-select theme="selectize" ng-model="formData.ADD_CITY" id="ADD_CITY" name="ADD_CITY" on-select="onDistrictChange($item)">
+                <ui-select-match>
+                    {{$select.selected.CITY}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in district | filter: $select.search">
+                    <div ng-bind-html="item.CITY | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="ADD_DISTRICT">
+            {{'SUBDISTRICT'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <ui-select theme="selectize" ng-model="formData.ADD_DISTRICT" id="ADD_DISTRICT" name="ADD_DISTRICT">
+                <ui-select-match>
+                    {{$select.selected.DISTRICT}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in subDistrict | filter: $select.search">
+                    <div ng-bind-html="item.DISTRICT | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="ADD_ZIPCODE">
+            รหัสไปรษณีย์
+        </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="ADD_ZIPCODE" name="ADD_ZIPCODE" ng-model="formData.ADD_ZIPCODE">
+        </div>
+    </div>
+</fieldset>
+
+<!-- ระยะทางเข้าซอย -->
+<fieldset>
+    <legend>ระยะทางเข้าซอย</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="MAINROAD_DISTANCE">
+            ระยะทางเข้าซอย (เมตร)
+        </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="MAINROAD_DISTANCE" name="MAINROAD_DISTANCE" ng-model="formData.MAINROAD_DISTANCE">
+        </div>
+    </div>
+</fieldset>
+
+<!-- การคมนาคม/สภาพทาง -->
+<fieldset>
+    <legend>การคมนาคม/สภาพทาง</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="ROAD_TYPE">
+            {{'ROAD_TYPE'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <ui-select theme="selectize" ng-model="formData.ROAD_TYPE" id="ROAD_TYPE" name="ROAD_TYPE">
+                <ui-select-match>
+                    {{$select.selected.NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in roadType | filter: $select.search">
+                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="ROAD_SIZE">
+            {{'ROAD_SIZE'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <input type="text" maxlength="10" placeholder="" class="form-control" id="ROAD_SIZE" name="ROAD_SIZE" ng-model="formData.ROAD_SIZE">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="RIGHT_OF_WAY">
+            เขตทาง (เมตร)
+        </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="RIGHT_OF_WAY" name="RIGHT_OF_WAY" ng-model="formData.RIGHT_OF_WAY">
+        </div>
+    </div>
+</fieldset>
+
+<!-- การใช้ประโยชน์ของที่ดิน -->
+<fieldset>
+    <legend>การใช้ประโยชน์ของที่ดิน</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="PROPERTY_USAGE">
+            {{'PROPERTY_USAGE'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <ui-select theme="selectize" ng-model="formData.PROPERTY_USAGE" id="PROPERTY_USAGE" name="PROPERTY_USAGE">
+                <ui-select-match placeholder="">
+                    {{$select.selected.NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in colUsage | filter: $select.search">
+                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+</fieldset>
+
+<!-- สาธารณูปโภค -->
+<fieldset>
+    <legend>สาธารณูปโภค</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">
+        </label>
+        <div class="col-sm-3">
+            <div class="checkbox clip-check check-primary">
+                <input type="checkbox" id="PROPERTY_INFRA_ELEC" ng-model="formData.PROPERTY_INFRA_ELEC" ng-true-value="'Y'" ng-false-value="'N'">
+                <label for="PROPERTY_INFRA_ELEC">
+                    {{'ELECTRICITY'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">
+        </label>
+        <div class="col-sm-3">
+            <div class="checkbox clip-check check-primary">
+                <input type="checkbox" id="PROPERTY_INFRA_WATER" ng-model="formData.PROPERTY_INFRA_WATER" ng-true-value="'Y'" ng-false-value="'N'">
+                <label for="PROPERTY_INFRA_WATER">
+                    {{'WATER_SUPPLY'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">
+        </label>
+        <div class="col-sm-3">
+            <div class="checkbox clip-check check-primary">
+                <input type="checkbox" id="PROPERTY_INFRA_PIPE" ng-model="formData.PROPERTY_INFRA_PIPE" ng-true-value="'Y'" ng-false-value="'N'">
+                <label for="PROPERTY_INFRA_PIPE">
+                    ท่อระบายน้ำ
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">
+        </label>
+        <div class="col-sm-3">
+            <div class="checkbox clip-check check-primary">
+                <input type="checkbox" id="PROPERTY_INFRA_PHONE" ng-model="formData.PROPERTY_INFRA_PHONE" ng-true-value="'Y'" ng-false-value="'N'">
+                <label for="PROPERTY_INFRA_PHONE">
+                    โทรศัพท์
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">
+        </label>
+        <div class="col-sm-3">
+            <div class="checkbox clip-check check-primary">
+                <input type="checkbox" id="PROPERTY_INFRA_ELEC_ROAD" ng-model="formData.PROPERTY_INFRA_ELEC_ROAD" ng-true-value="'Y'" ng-false-value="'N'">
+                <label for="PROPERTY_INFRA_ELEC_ROAD">
+                    ไฟถนน
+                </label>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+<!-- สภาพแวดล้อม -->
+<fieldset>
+    <legend>สภาพแวดล้อม</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="PROPERTY_ENVIRONMENT">
+            {{'PROPERTY_ENVIRONMENT'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <ui-select theme="selectize" ng-model="formData.PROPERTY_ENVIRONMENT" id="PROPERTY_ENVIRONMENT" name="PROPERTY_ENVIRONMENT">
+                <ui-select-match placeholder="">
+                    {{$select.selected.NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in propEnvironment | filter: $select.search">
+                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+</fieldset>
+
+<!-- ลักษณะรูปแปลงที่ดิน -->
+<fieldset>
+    <legend>ลักษณะรูปแปลงที่ดิน</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="PROPERTY_SHAPE">
+            ลักษณะรูปแปลงของที่ดิน
+        </label>
+        <div class="col-sm-8">
+            <ui-select theme="selectize" ng-model="formData.PROPERTY_SHAPE" id="PROPERTY_SHAPE" name="PROPERTY_SHAPE">
+                <ui-select-match placeholder="">
+                    {{$select.selected.NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in landShape | filter: $select.search">
+                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="PROPERTY_SHAPE_OTHER">
+            อื่นๆ
+        </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="PROPERTY_SHAPE_OTHER" name="PROPERTY_SHAPE_OTHER" ng-model="formData.PROPERTY_SHAPE_OTHER">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="PROPERTY_WIDTH">
+            {{'PROPERTY_WIDTH'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="PROPERTY_WIDTH" name="PROPERTY_WIDTH" ng-model="formData.PROPERTY_WIDTH">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="PROPERTY_LANDSCAPE">
+            {{'PROPERTY_LANDSCAPE'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <ui-select theme="selectize" ng-model="formData.PROPERTY_LANDSCAPE" id="PROPERTY_LANDSCAPE" name="PROPERTY_LANDSCAPE">
+                <ui-select-match placeholder="">
+                    {{$select.selected.NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in landScape | filter: $select.search">
+                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="PROPERTY_COVER_LEVEL">
+            สูงกว่าถนน (เมตร)
+        </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="PROPERTY_COVER_LEVEL" name="PROPERTY_COVER_LEVEL" ng-model="formData.PROPERTY_COVER_LEVEL">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="PROPERTY_LANDSCAPE_OTHER">
+            ลักษณะทางกายภาพ และสภาพที่ดิน อื่นๆ
+        </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="PROPERTY_LANDSCAPE_OTHER" name="PROPERTY_LANDSCAPE_OTHER" ng-model="formData.PROPERTY_LANDSCAPE_OTHER">
+        </div>
+    </div>
+    <!-- ที่ดินเปล่า (ขาย) -->
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="PROPERTY_POSITION">
+            ที่ตั้งแปลงที่ดิน
+        </label>
+        <div class="col-sm-8">
+            <div class="radio clip-radio radio-primary">
+                <input type="radio" name="PROPERTY_POSITION" ng-value="1" ng-model="formData.PROPERTY_POSITION" id="PROPERTY_POSITION1" />
+                <label for="PROPERTY_POSITION1">แปลงกลาง</label>
+            </div>
+            <div class="radio clip-radio radio-primary">
+                <input type="radio" name="PROPERTY_POSITION" ng-value="2" ng-model="formData.PROPERTY_POSITION" id="PROPERTY_POSITION2" />
+                <label for="PROPERTY_POSITION2">แปลงมุม</label>
+            </div>
+        </div>
+    </div>
+    <!-- ที่ดินเปล่า (ขาย) -->
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="ROAD_SIDE">
+            จำนวนด้านติดตถนน
+        </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="ROAD_SIDE" name="ROAD_SIDE" ng-model="formData.ROAD_SIDE">
+        </div>
+    </div>
+</fieldset>
+
+<!-- สิ่งอำนวยความสะดวก -->
+<fieldset>
+    <legend>สิ่งอำนวยความสะดวก</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-3">
+            <div class="checkbox clip-check check-primary">
+                <input type="checkbox" id="PROPERTY_FACILITY_1" ng-model="formData.PROPERTY_FACILITY_1" ng-true-value="'Y'" ng-false-value="'N'">
+                <label for="PROPERTY_FACILITY_1">
+                    {{'CLUB'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-3">
+            <div class="checkbox clip-check check-primary">
+                <input type="checkbox" id="PROPERTY_FACILITY_2" ng-model="formData.PROPERTY_FACILITY_2" ng-true-value="'Y'" ng-false-value="'N'">
+                <label for="PROPERTY_FACILITY_2">
+                    {{'PLAYGROUND'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-3">
+            <div class="checkbox clip-check check-primary">
+                <input type="checkbox" id="PROPERTY_FACILITY_3" ng-model="formData.PROPERTY_FACILITY_3" ng-true-value="'Y'" ng-false-value="'N'">
+                <label for="PROPERTY_FACILITY_3">
+                    {{'GARDEN'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-3">
+            <div class="checkbox clip-check check-primary">
+                <input type="checkbox" id="PROPERTY_FACILITY_4" ng-model="formData.PROPERTY_FACILITY_4" ng-true-value="'Y'" ng-false-value="'N'">
+                <label for="PROPERTY_FACILITY_4">
+                    {{'SWIMMING_POOL'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-3">
+            <div class="checkbox clip-check check-primary">
+                <input type="checkbox" id="PROPERTY_FACILITY_5" ng-model="formData.PROPERTY_FACILITY_5" ng-true-value="'Y'" ng-false-value="'N'">
+                <label for="PROPERTY_FACILITY_5">
+                    {{'SECURITY_GUARD'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-3">
+            <div class="checkbox clip-check check-primary">
+                <input type="checkbox" id="PROPERTY_FACILITY_6" ng-model="formData.PROPERTY_FACILITY_6" ng-true-value="'Y'" ng-false-value="'N'">
+                <label for="PROPERTY_FACILITY_6">
+                    {{'FITNESS'|translate}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-8">
+            <div class="col-sm-3 no-padding">
+                <div class="checkbox clip-check check-primary">
+                    <input type="checkbox" id="PROPERTY_FACILITY_7" ng-model="formData.PROPERTY_FACILITY_7" ng-true-value="'Y'" ng-false-value="'N'">
+                    <label for="PROPERTY_FACILITY_7">
+                        {{'OTHER'|translate}}
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" placeholder="" class="form-control" id="PROPERTY_FACILITY_OTHER" name="PROPERTY_FACILITY_OTHER" ng-model="formData.PROPERTY_FACILITY_OTHER">
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+<!-- ศักยภาพ -->
+<fieldset>
+    <legend>ศักยภาพ</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">
+            {{'POTENTIAL'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <div class="col-md-3 no-padding" ng-repeat="item in potential">
+                <div class="radio clip-radio radio-primary">
+                    <input type="radio" name="PROPERTY_POTEN" ng-value="item.VALUE" ng-model="formData.PROPERTY_POTEN" id="PROPERTY_POTEN{{$index}}" />
+                    <label for="PROPERTY_POTEN{{$index}}">{{item.NAME}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+<!-- ข้อบังคับทางกฏหมาย -->
+<fieldset>
+    <legend>ข้อบังคับทางกฏหมาย</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="AREA_COLOR">
+            {{'AREA_COLOR'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <ui-select theme="selectize" ng-model="formData.AREA_COLOR" id="AREA_COLOR" name="AREA_COLOR">
+                <ui-select-match>
+                    {{$select.selected.NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in landColor | filter: $select.search">
+                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="AREA_PROVINCE">
+            อยู่นอก พรบ.ผังเมืองจังหวัด
+        </label>
+        <div class="col-sm-8">
+            <ui-select theme="selectize" ng-model="formData.AREA_PROVINCE" id="AREA_PROVINCE" name="AREA_PROVINCE">
+                <ui-select-match>
+                    {{$select.selected.PROV_NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in province | filter: $select.search">
+                    <div ng-bind-html="item.PROV_NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+</fieldset>
+
+<!-- สภาพคล่อง -->
+<fieldset>
+    <legend>สภาพคล่อง</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="PROPERTY_SELL">
+            {{'PROPERTY_SELL'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <div class="col-md-3 no-padding" ng-repeat="item in marketSell">
+                <div class="radio clip-radio radio-primary">
+                    <input type="radio" name="PROPERTY_SELL" ng-value="item.VALUE" ng-model="formData.PROPERTY_SELL" id="PROPERTY_SELL{{$index}}" />
+                    <label for="PROPERTY_SELL{{$index}}">{{item.NAME}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+<!-- ราคา -->
+<fieldset>
+    <legend>ราคา</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="PRICE_SELL">
+            {{'PRICE_SELL'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <input type="text" format maxlength="24" class="form-control" ng-model="formData.PRICE_SELL" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="PRICE_RENT">
+            ราคาให้เช่า
+        </label>
+        <div class="col-sm-8">
+            <input type="text" format maxlength="24" class="form-control" ng-model="formData.PRICE_RENT" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="PRICE_SELL_OTHER">
+            อื่น ๆ
+        </label>
+        <div class="col-sm-8">
+            <input type="text" format maxlength="24" class="form-control" ng-model="formData.PRICE_SELL_OTHER" />
+        </div>
+    </div>
+</fieldset>
+
+<!-- สถานะ -->
+<fieldset>
+    <legend>สถานะ</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="INFO_STATUS">
+            {{'INFO_STATUS'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <ui-select theme="selectize" ng-model="formData.INFO_STATUS" id="INFO_STATUS" name="INFO_STATUS">
+                <ui-select-match placeholder="">
+                    {{$select.selected.NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in marketStatus | filter: $select.search">
+                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+</fieldset>
+
+<!-- เงื่อนไขการขาย -->
+<fieldset>
+    <legend>เงื่อนไขการขาย</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="SALE_CONDITION">
+            เงื่อนไขการขาย
+        </label>
+        <div class="col-sm-8">
+            <div class="radio clip-radio radio-primary">
+                <input type="radio" name="SALE_CONDITION" ng-value="0" ng-model="formData.SALE_CONDITION" id="SALE_CONDITION_1" />
+                <label for="SALE_CONDITION_1">ต่อรองได้</label>
+            </div>
+            <div class="radio clip-radio radio-primary">
+                <input type="radio" name="SALE_CONDITION" ng-value="1" ng-model="formData.SALE_CONDITION" id="SALE_CONDITION_2" />
+                <label for="SALE_CONDITION_2">ต่อรองไม่ได้</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="INFO_MONTHYEAR">
+            วันที่ทราบข้อมูลครั้งก่อน
+        </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.INFO_MONTHYEAR" ng-click="openDatePicker($event,'INFO_MONTHYEAR')" ng-model="formData.INFO_MONTHYEAR" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="E_BY">
+            ผู้ปรับปรุงข้อมูล
+        </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" ng-model="formData.E_BY" readonly />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="INFO_MONTHYEAR_LAST">
+            วันที่ทราบข้อมูลครั้งนี้
+        </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.INFO_MONTHYEAR_LAST" ng-click="openDatePicker($event,'INFO_MONTHYEAR_LAST')" ng-model="formData.INFO_MONTHYEAR_LAST" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="INFO_FROM_CHOOSE">
+            แหล่งที่มาข้อมูล
+        </label>
+        <div class="col-sm-8">
+            <ui-select theme="selectize" ng-model="formData.INFO_FROM_CHOOSE" id="INFO_FROM_CHOOSE" name="INFO_FROM_CHOOSE">
+                <ui-select-match placeholder="">
+                    {{$select.selected.NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in marketInfo | filter: $select.search">
+                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <!--<div class="form-group">
+        <label class="col-sm-3 control-label" for="INFO_MONTHYEAR_LAST">
+            เจ้าของทรัพย์สิน,ตัวแทนขาย,สำนักงานขาย
+        </label>
+        <div class="col-sm-8">
+
+        </div>
+    </div>-->
+    <!--<div class="form-group">
+        <label class="col-sm-3 control-label" for="INFO_MONTHYEAR_LAST">
+            รายชื่อที่มาของข้อมูล
+        </label>
+        <div class="col-sm-8">
+
+        </div>
+    </div>-->
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="REFERENCE_TEL">
+            เบอร์โทรของผู้ให้ข้อมูล
+        </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" ng-model="formData.REFERENCE_TEL" />
+        </div>
+    </div>
+</fieldset>
+
+<!-- ภาพถ่ายแสดงข้อมูลอื่น -->
+<fieldset>
+    <legend>ภาพถ่ายแสดงข้อมูลอื่น</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="HEAD_COL_TYPE_ID">
+            ภาพถ่ายแสดงข้อมูลอื่น <a ng-click="uploadPictureSign()"><i class="fa fa-picture-o"></i></a>
+        </label>
+        <div class="col-sm-8">
+            <div class="row padding-15">                
+                <img ng-if="formData.PICTURE_SIGN.ATTACHDOC_RUNNING_ID>0" ng-src="nn1/b/{{formData.PICTURE_SIGN.ATTACHDOC_RUNNING_ID}}/0/{{random}}" width="200" height="300" />
+
+                <img ng-if="formData.JMP_RUNNING_ID > 0 && formData.PICTURE_SIGN.ATTACHDOC_RUNNING_ID==0" ng-src="nn1/a/{{formData.JMP_RUNNING_ID}}/PICTURE_SIGN/{{random}}" width="200" height="300" />
+
+                <img ng-if="formData.MARKETSTOCK_RUNNING_ID > 0 && formData.PICTURE_SIGN.ATTACHDOC_RUNNING_ID==0" ng-src="nn1/c/{{formData.MARKETSTOCK_RUNNING_ID}}/PICTURE_SIGN/{{random}}" width="200" height="300" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="PICTURE_SIGN_DATE">วันที่ถ่ายภาพ</label>
+        <div class="col-sm-3">
+            <input type="text" id="PICTURE_SIGN_DATE" class="form-control" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.PICTURE_SIGN_DATE" ng-click="openDatePicker($event,'PICTURE_SIGN_DATE')" ng-model="formData.PICTURE_SIGN_DATE" />
+        </div>
+    </div>
+</fieldset>
+
+<!-- หมายเหตุ -->
+<fieldset>
+    <legend>หมายเหตุ</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="REMARK">
+            {{'REMARK'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <textarea style="max-width:100%;" class="form-control" ng-model="formData.REMARK"></textarea>
+        </div>
+    </div>
+</fieldset>

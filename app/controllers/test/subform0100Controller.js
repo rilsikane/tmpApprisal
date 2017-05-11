@@ -168,7 +168,7 @@
         var title = item.LENDER_TYPE == 'L' ? $translate.instant('LENDER_NAME') : $translate.instant('LENDER_CONTACT');
 
         radasoft.openDialog({
-            //templateUrl: 'app/views/test/headColActionDialogTemplate.html',
+            //templateUrl: '/app/views/test/headColActionDialogTemplate.html',
             controller: 'subform0101Controller',
             resolve: {
                 params: function () {
@@ -188,7 +188,7 @@
     //$scope.addCustomer = function (item) {
     //    var title = item.LENDER_TYPE == 'L' ? $translate.instant('FORM.LENDER_NAME') : $translate.instant('FORM.LENDER_CONTACT');
     //    $modal.open({
-    //        templateUrl: 'app/views/test/subform0101.html',
+    //        templateUrl: '/app/views/test/subform0101.html',
     //        controller: 'subform0101Controller',
     //        backdrop: 'static',
     //        keyboard: false,

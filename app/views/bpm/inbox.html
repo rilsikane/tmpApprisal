@@ -4,14 +4,6 @@
             <div class="panel panel-white no-radius">
                 <div class="panel-heading no-radius bg-deep-pink">
                     <h4 class="panel-title"><span>{{ app.inboxTitle }}</span></h4>
-
-                    <!--<ul class="panel-heading-tabs no-border border-light" ng-if="role.ROLE_RUNNING_ID==11">
-                        <li>
-                            <button type="button" class="btn btn-o border-white" ng-click="new({VALUE:'1'})">
-                                <i class="glyphicon glyphicon-plus-sign"></i> {{'BUTTON.NEW'|translate}}
-                            </button>
-                        </li>
-                    </ul>-->
                     <ul class="panel-heading-tabs border-light" ng-if="role.ROLE_RUNNING_ID==11">
                         <li ng-if="requestType.length > 0">
                             <div class="pull-right">
@@ -30,7 +22,6 @@
                             </div>
                         </li>
                     </ul>
-
                 </div>
                 <div class="panel-body border-light">
                     <div class="row">
@@ -48,7 +39,7 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="item in data">
-                                    <td>{{item.ACT_TIME_TEXT}}</td>
+                                    <td>{{item.ACT_TIME_TEXT}} ({{item.TFL}})</td>
                                     <td ng-if="item.CHANGE_MODE==1"><a ui-sref="app.testform({ACT_HIST_ID:item.ACT_HIST_ID,H:0})">{{item.REQUEST_NO}}</a></td>
                                     <td ng-if="!(item.CHANGE_MODE==1)">{{item.REQUEST_NO}}</td>
                                     <td>{{item.CA_NO}}</td>

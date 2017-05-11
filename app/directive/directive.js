@@ -526,7 +526,7 @@
                 })
 
                 ngModelCtrl.$validators.isNumeric = function (modelValue, viewValue) {
-                    var value = viewValue.replace(/,/g, '');//viewValue;//modelValue || viewValue;
+                    var value = viewValue == undefined ? '' : viewValue.replace(/,/g, '');//viewValue;//modelValue || viewValue;
 
                     var minMax = $attrs.numeric.split('-');
                     var min = parseInt(minMax[0]);

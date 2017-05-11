@@ -4,14 +4,14 @@
             <h4 class="panel-title">{{title}}</h4>
             <ul class="panel-heading-tabs border-light">
 
-                <li ng-if="changableState.length > 0">
+                <!--<li ng-if="changableState.length > 0">
                     <div class="pull-right">
                         <div class="btn-group" dropdown is-open="status.isopen">
                             <button type="button" class="btn btn-o btn-squared border-white dropdown-toggle" dropdown-toggle ng-disabled="disabled">
                                 {{'BUTTON.CHANGE_STATUS'|translate}}<span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu no-radius" role="menu">
-                                <li ng-repeat="state in changableState">
+                                <li ng-repeat="state in changableState" ng-if="state.STATE_NAME != ''">
                                     <a href="#" ng-click="changeState(state)">
                                         {{state.STATE_NAME}}
                                     </a>
@@ -19,9 +19,9 @@
                             </ul>
                         </div>
                     </div>
-                </li>
+                </li>-->
                 <li>
-                    <button ng-repeat="button in w4buttons" type="button" class="btn btn-o btn-squared margin-left-5 border-white" ng-click="action(button)">
+                    <button ng-repeat="button in w4buttons" type="button" class="btn btn-o btn-squared margin-left-5 border-white" ng-click="action(button)" ng-if="(button.TO_STATE != 37)">
                         {{button.ACT_TEXT}}
                     </button>
                     <!--<button type="button" class="btn btn-o btn-squared border-white" ng-click="back()">

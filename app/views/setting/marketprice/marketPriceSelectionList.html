@@ -1,40 +1,90 @@
-﻿<div class="container-fluid container-fullw" ng-controller="marketPriceController">
-    <div class="row">
+﻿<div class="container-fluid container-fullw">
+    <!--<div class="row">
         <div class="col-sm-12">
             <div class="panel panel-white no-radius">
                 <div class="panel-heading no-radius bg-deep-pink border-light">
                     <h4 class="panel-title">{{'MARKETPRICE'|translate}}</h4>
                 </div>
                 <div class="panel-body border-light">
-                    <div class="col-md-12">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th class="col-sm-2">{{'HEAD_COL_TYPE'|translate}}</th>
-                                    <th class="col-sm-2">{{'DOC_CERT_TYPE'|translate}}</th>
-                                    <th class="col-sm-2">{{'PROVINCE'|translate}}</th>
-                                    <th class="col-sm-2">{{'DISTRICT'|translate}}</th>
-                                    <th class="col-sm-2">{{'SUBDISTRICT'|translate}}</th>
-                                    <th class="col-sm-2">{{'PRICE_SELL'|translate}}</th>
-                                    <th class="col-sm-1"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="item in marketprices">
-                                    <td>{{item.HEAD_COL_TYPE_ID.NAME}}</td>
-                                    <td>{{item.DOC_CERT_TYPE.NAME}}</td>
-                                    <td>{{item.ADD_PROVINCE.PROV_NAME}}</td>
-                                    <td>{{item.ADD_CITY.CITY}}</td>
-                                    <td>{{item.ADD_DISTRICT.DISTRICT}}</td>
-                                    <td>{{item.PRICE_SELL|number:2}}</td>
-                                    <td><button class="btn btn-sm btn-squared btn-primary btn-o" ng-click="selectMarketPrice(item)">{{'SELECT'|translate}}</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <pager total-items="marketPriceTotalItems" ng-model="marketPriceCurrentPage" ng-change="getMarketPrice()"></pager>
-                    </div>
+
                 </div>
             </div>
         </div>
+    </div>-->
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="HEAD_COL_TYPE_ID">
+                {{'HEAD_COL_TYPE'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <ui-select theme="selectize" ng-model="myFilter.HEAD_COL_TYPE" id="HEAD_COL_TYPE_ID" name="HEAD_COL_TYPE_ID" on-select="onHeadColTypeChange($item)">
+                    <ui-select-match>
+                        {{$select.selected.CODE_MINOR_NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in headColType | filter: $select.search">
+                        <div ng-bind-html="item.CODE_MINOR_NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="HEAD_COL_SUB_TYPE">
+                {{'HEAD_COL_SUB_TYPE'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <ui-select theme="selectize" ng-model="myFilter.SUB_COL_TYPE" id="HEAD_COL_SUB_TYPE" name="HEAD_COL_SUB_TYPE">
+                    <ui-select-match>
+                        {{$select.selected.NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in headColSubType | filter: $select.search">
+                        <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="AGE">
+                อายุข้อมูล
+            </label>
+            <div class="col-sm-3">
+                <input type="number" min="0" ng-model="myFilter.AGE" id="AGE" name="AGE" />
+            </div>
+            <div class="col-sm-3">
+                <button type="button" class="btn btn-o btn-primary" ng-click="onSearchClick()">
+                    ค้นหา
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="col-sm-2">{{'HEAD_COL_TYPE'|translate}}</th>
+                    <th class="col-sm-2">{{'DOC_CERT_TYPE'|translate}}</th>
+                    <th class="col-sm-2">{{'PROVINCE'|translate}}</th>
+                    <th class="col-sm-2">{{'DISTRICT'|translate}}</th>
+                    <th class="col-sm-2">{{'SUBDISTRICT'|translate}}</th>
+                    <th class="col-sm-2">{{'PRICE_SELL'|translate}}</th>
+                    <th class="col-sm-1"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in marketprices">
+                    <td>{{item.HEAD_COL_TYPE_ID.NAME}}</td>
+                    <td>{{item.DOC_CERT_TYPE.NAME}}</td>
+                    <td>{{item.ADD_PROVINCE.PROV_NAME}}</td>
+                    <td>{{item.ADD_CITY.CITY}}</td>
+                    <td>{{item.ADD_DISTRICT.DISTRICT}}</td>
+                    <td>{{item.PRICE_SELL|number:2}}</td>
+                    <td><button class="btn btn-sm btn-squared btn-primary btn-o" ng-click="selectMarketPrice(item)">{{'SELECT'|translate}}</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <pager total-items="marketPriceTotalItems" ng-model="marketPriceCurrentPage" ng-change="getMarketPrice()"></pager>
     </div>
 </div>

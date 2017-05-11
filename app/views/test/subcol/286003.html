@@ -233,7 +233,7 @@
                 {{'PROVINCE'|translate}}
             </label>
             <div class="col-sm-8">
-                <ui-select theme="selectize" ng-model="formData.DEED_PROVINCE" id="DEED_PROVINCE" name="DEED_PROVINCE" on-select="onProvinceChange($item,$model)">
+                <ui-select theme="selectize" ng-model="formData.DEED_PROVINCE" id="DEED_PROVINCE" name="DEED_PROVINCE" on-select="onProvinceDOLChange($item, $model)">
                     <ui-select-match placeholder="">
                         {{$select.selected.PROV_NAME}}
                     </ui-select-match>
@@ -248,7 +248,7 @@
                 {{'DISTRICT'|translate}}
             </label>
             <div class="col-sm-8">
-                <ui-select theme="selectize" ng-model="formData.DEED_CITY" id="DEED_CITY" name="DEED_CITY" on-select="getSubDistrict($item,$model)">
+                <ui-select theme="selectize" ng-model="formData.DEED_CITY" id="DEED_CITY" name="DEED_CITY" on-select="getSubDistrictDOL($item, $model)">
                     <ui-select-match placeholder="">
                         {{$select.selected.CITY}}
                     </ui-select-match>

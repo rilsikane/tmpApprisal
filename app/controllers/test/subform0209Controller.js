@@ -2,11 +2,11 @@
     $scope.title = $stateParams.STATE_NAME;
     $scope.ldloading = {};
     $scope.btnDisabled = false;
-    $scope.headCol = params.headCol;
-    $scope.colAct = params.colAct;
-
+    //$scope.headCol = params.headCol;
+    //$scope.colAct = params.colAct;
+    $scope.params = params;
     $scope.showBtnDelete = false;
-    $scope.includeUrl = params.includeUrl || '';
+    $scope.includeUrl = '/app/views/test/subform0209.html';
     $scope.showButtonSave = params.showButtonSave || false;
 
     $scope.jobMarketPrice = [];
@@ -19,114 +19,118 @@
 
     $scope.dataSetCol = "col-md-2";
 
-    $scope.upload = function ($index, attach) {
-        $modal.open({
-            backdrop: 'static',
-            keyboard: false,
-            templateUrl: 'app/views/tools/uploader.html',
-            controller: 'uploaderController',
-            size: 'lg',
-            resolve: {
-                params: function () {
-                    return {
-                        limit: 0
-                    };
-                }
-            }
-        }).result.then(function (data) {
-            angular.forEach(data, function (item) {
-                attach.ATTACH_DOC.push({
-                    DOC_PATH: item.file,
-                    DOC_NAME: item.name,
-                    JOB_RUNNING_ID: $scope.headCol.JOB_RUNNING_ID
-                });
-            });
-        });
-    }
+    $scope.colAct = {
+        COL_ACT_NAME: $translate.instant('MARKETPRICE')
+    };
 
-    $scope.getJobMarketPrice = function () {
-        radasoft.getJobMarketPrice({ HEAD_COL_RUNNING_ID: $scope.headCol.HEAD_COL_RUNNING_ID }).then(function (response) {
-            $scope.jobMarketPrice = response.data;
+    //$scope.upload = function ($index, attach) {
+    //    $modal.open({
+    //        backdrop: 'static',
+    //        keyboard: false,
+    //        templateUrl: '/app/views/tools/uploader.html',
+    //        controller: 'uploaderController',
+    //        size: 'lg',
+    //        resolve: {
+    //            params: function () {
+    //                return {
+    //                    limit: 0
+    //                };
+    //            }
+    //        }
+    //    }).result.then(function (data) {
+    //        angular.forEach(data, function (item) {
+    //            attach.ATTACH_DOC.push({
+    //                DOC_PATH: item.file,
+    //                DOC_NAME: item.name,
+    //                JOB_RUNNING_ID: $scope.headCol.JOB_RUNNING_ID
+    //            });
+    //        });
+    //    });
+    //}
 
-            angular.forEach($scope.jobMarketPrice, function (item) {
-                item.DISPLAY = true;
-            });
+    //$scope.getJobMarketPrice = function () {
+    //    radasoft.getJobMarketPrice({ HEAD_COL_RUNNING_ID: params.HEAD_COL_RUNNING_ID }).then(function (response) {
+    //        $scope.jobMarketPrice = response.data;
 
-            $scope.displayChange();
-        });
-    }
+    //        angular.forEach($scope.jobMarketPrice, function (item) {
+    //            item.DISPLAY = true;
+    //        });
 
-    $scope.displayChange = function () {
-        var count = 0;
-        angular.forEach($scope.jobMarketPrice, function (item) {
-            if (item.DISPLAY) {
-                count++;
-            }
-        });
+    //        $scope.displayChange();
+    //    });
+    //}
 
-        $scope.dataSetCol = "col-md-" + Math.ceil(10 / count);
-    }
+    //$scope.displayChange = function () {
+    //    var count = 0;
+    //    angular.forEach($scope.jobMarketPrice, function (item) {
+    //        if (item.DISPLAY) {
+    //            count++;
+    //        }
+    //    });
 
-    $scope.selectMarketPrice = function ($index, $item) {
-        radasoft.openDialog({
-            controller: 'marketPriceSelectionController',
+    //    $scope.dataSetCol = "col-md-" + Math.ceil(10 / count);
+    //}
 
-            resolve: {
-                params: function () {
-                    return {
-                        includeUrl: 'app/views/setting/marketprice/marketPriceSelectionList.html',
-                        headCol: $scope.headCol,
-                        data: $item
-                    };
-                }
-            }
-        }).result.then(function (data) {
-            $scope.getJobMarketPrice();
-        });
-    }
+    //$scope.selectMarketPrice = function ($index, $item) {
+    //    radasoft.openDialog({
+    //        controller: 'marketPriceSelectionController',
 
-    $scope.deleteJobMarketPrice = function ($index, market) {
-        radasoft.confirmAndSave($translate.instant('CONFIRM.DELETE'), '', function (isconfirmed) {
-            if (isconfirmed) {
-                radasoft.deleteJobMarketPrice(market).then(function () {
-                    radasoft.success();
-                    $scope.getJobMarketPrice();
-                });
-            }
-        });
-    }
+    //        resolve: {
+    //            params: function () {
+    //                return {
+    //                    includeUrl: '/app/views/setting/marketprice/marketPriceSelectionList.html',
+    //                    //headCol: $scope.headCol,
+    //                    data: $item
+    //                };
+    //            }
+    //        }
+    //    }).result.then(function (data) {
+    //        $scope.getJobMarketPrice();
+    //    });
+    //}
 
-    $scope.editJobMarketPrice = function ($index, data) {
-        data.MARKETSTOCK_RUNNING_ID = 0;
-        $scope.openMarketPriceDialog(data);
-    }
+    //$scope.deleteJobMarketPrice = function ($index, market) {
+    //    radasoft.confirmAndSave($translate.instant('CONFIRM.DELETE'), '', function (isconfirmed) {
+    //        if (isconfirmed) {
+    //            radasoft.deleteJobMarketPrice(market).then(function () {
+    //                radasoft.success();
+    //                $scope.getJobMarketPrice();
+    //            });
+    //        }
+    //    });
+    //}
 
-    $scope.openMarketPriceDialog = function (data) {
-        radasoft.openDialog({
-            controller: 'marketPriceDetailController',
-            resolve: {
-                params: function () {
-                    return {
-                        includeUrl: 'app/views/setting/marketprice/marketPriceDetail.html',
-                        formData: data,
-                        dataMode: 1// 0 : AAG_M_PRICEMARKETSTOCK,1 : AAG_JOBMARKETPRICE
-                    };
-                }
-            }
-        }).result.then(function (reload) {
-            $scope.getJobMarketPrice();
-        });
-    }
+    //$scope.editJobMarketPrice = function ($index, data) {
+    //    data.MARKETSTOCK_RUNNING_ID = 0;
+    //    $scope.openMarketPriceDialog(data);
+    //}
 
-    $scope.submit = function () {
-    }
+    //$scope.openMarketPriceDialog = function (data) {
+    //    radasoft.openDialog({
+    //        controller: 'marketPriceDetailController',
+    //        resolve: {
+    //            params: function () {
+    //                return {
+    //                    includeUrl: '/app/views/setting/marketprice/marketPriceDetail.html',
+    //                    formData: data,
+    //                    dataMode: 1// 0 : AAG_M_PRICEMARKETSTOCK,1 : AAG_JOBMARKETPRICE
+    //                };
+    //            }
+    //        }
+    //    }).result.then(function (reload) {
+    //        $scope.getJobMarketPrice();
+    //    });
+    //}
+
+    //$scope.submit = function () {
+    //}
 
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
 
     $scope.init = function () {
-        $scope.getJobMarketPrice();
+        //$scope.getJobMarketPrice();
     }
 
     $scope.init();
