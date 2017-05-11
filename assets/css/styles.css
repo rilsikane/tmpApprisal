@@ -12625,3 +12625,16 @@ td.small-width {
 .qnRadio{
     padding: 0 !important;
 }
+.valid-error:before{
+    content: "\f00d";
+    display: inline;
+    font-family: FontAwesome;
+    color: #C82E29;
+}
+.valid-success:before{
+    content: "\f00c";
+    display: inline;
+    font-family: FontAwesome;
+    color: #468847;
+}
+

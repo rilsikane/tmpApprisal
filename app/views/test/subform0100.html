@@ -73,7 +73,7 @@
                         {{'REQ_TYPE'|translate}}<span class="symbol required"></span>
                     </label>
                     <div class="col-sm-4 no-padding">
-                        <ui-select ng-required="true" ng-disabled="true" theme="selectize" ng-model="$parent.formData.REQ_TYPE" name="REQ_TYPE" id="REQ_TYPE">
+                        <ui-select ng-required="true" ng-disabled="true"  theme="selectize" ng-model="$parent.formData.REQ_TYPE" name="REQ_TYPE" id="REQ_TYPE">
                             <ui-select-match>
                                 {{$select.selected.NAME}}
                             </ui-select-match>
@@ -100,10 +100,10 @@
                 </div>
                 <div class="form-group" ng-class="{'has-error':form.DEBT_TYPE.$dirty && form.DEBT_TYPE.$viewValue==undefined, 'has-success':form.DEBT_TYPE.$viewValue!=undefined && form.DEBT_TYPE.$viewValue.VALUE != undefined}">
                     <label class="col-sm-3 control-label" for="DEBT_TYPE">
-                        {{'DEBT_TYPE'|translate}} <span class="required symbol"></span>
+                        {{'DEBT_TYPE'|translate}} <span class="required symbol" ng-show="!$parent.formData.NPA_TYPE"></span>
                     </label>
                     <div class="col-sm-4 no-padding">
-                        <ui-select ng-required="true" ng-disabled="inputDisabled" theme="selectize" ng-model="$parent.formData.DEBT_TYPE" name="DEBT_TYPE" id="DEBT_TYPE">
+                        <ui-select ng-required="!$parent.formData.NPA_TYPE" ng-disabled="$parent.formData.NPA_TYPE" theme="selectize" ng-model="$parent.formData.DEBT_TYPE" name="DEBT_TYPE" id="DEBT_TYPE">
                             <ui-select-match>
                                 {{$select.selected.NAME}}
                             </ui-select-match>
@@ -153,7 +153,7 @@
                 </div>
                 <div class="form-group" ng-class="{'has-error':form.CREDIT_REQUEST.$dirty && form.CREDIT_REQUEST.$invalid, 'has-success':form.CREDIT_REQUEST.$valid}">
                     <label class="col-sm-3 control-label" for="CREDIT_REQUEST">
-                        {{'CREDIT_REQUEST'|translate}}<span class="symbol required"></span>
+                        {{'CREDIT_REQUEST'|translate}} <span ng-class="{'valid-error': (!formData.NPA_TYPE && formData.CREDIT_REQUEST < 1)||form.CREDIT_REQUEST.$invalid,'valid-success': !(!formData.NPA_TYPE && formData.CREDIT_REQUEST < 1) && form.CREDIT_REQUEST.$valid}"></span>
                     </label>
                     <div class="col-sm-4 no-padding">
                         <input format ng-disabled="inputDisabled" ng-required="true" ng-model="$parent.formData.CREDIT_REQUEST" type="text" ng-change="calDebt()" class="form-control" id="CREDIT_REQUEST" name="CREDIT_REQUEST" />
@@ -161,7 +161,7 @@
                 </div>
                 <div class="form-group"  ng-class="{'has-error':form.CREDIT_BALANCE.$dirty && form.CREDIT_BALANCE.$invalid, 'has-success':form.CREDIT_BALANCE.$valid}">
                     <label class="col-sm-3 control-label" for="CREDIT_BALANCE">
-                        {{'CREDIT_BALANCE'|translate}}<span class="symbol required"></span>
+                        {{'CREDIT_BALANCE'|translate}}<span class="symbol required" ></span>
                     </label>
                     <div class="col-sm-4 no-padding">
                         <input format ng-disabled="inputDisabled" ng-required="true" ng-model="$parent.formData.CREDIT_BALANCE" type="text" ng-change="calDebt()" class="form-control" id="CREDIT_BALANCE" name="CREDIT_BALANCE" />
@@ -259,7 +259,7 @@
         </div>
     </div>
     <div class="pull-right">
-        <button class="btn btn-primary btn-o" ng-click="submit(form,'expand-left')" ng-disabled="(($parent.formData.CUSTOMERS.length==0 && !$parent.formData.NPA_TYPE) || inputDisabled) && (!formData.NPA_TYPE && formData.CREDIT_BALANCE < 1)">
+        <button class="btn btn-primary btn-o" ng-click="submit(form,'expand-left')" ng-disabled="(($parent.formData.CUSTOMERS.length==0 && $parent.formData.$invalid) || inputDisabled) || (!formData.NPA_TYPE && formData.CREDIT_REQUEST < 1)">
             <i class="glyphicon glyphicon-floppy-save"></i>{{'BUTTON.SAVE'|translate}}
         </button>
     </div>

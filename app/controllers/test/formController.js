@@ -445,7 +445,7 @@ app.controller('subform0550Controller', ['$scope', 'radasoft', '$translate', '$q
 }]);
 app.controller('subform0551Controller', ['$scope', 'radasoft', '$modalInstance', 'params', '$translate', '$q', function ($scope, radasoft, $modalInstance, params, $translate, $q) {
     $scope.title = $translate.instant('APPOINTMENT_CALENDAR');
-    $scope.includeUrl = 'app/views/test/subform0551.html';
+    $scope.includeUrl = '/app/views/test/subform0551.html';
     $scope.showBtnSave = true;
     $scope.dpOpenState = {};
     $scope.formData = undefined;
@@ -516,7 +516,7 @@ app.controller('subform0551Controller', ['$scope', 'radasoft', '$modalInstance',
         });
     }
     $scope.onContactChage = function(){
-        if("1"==$scope.formData.CONTACT_RESULT.VALUE){
+        if("1"!=$scope.formData.CONTACT_RESULT.VALUE){
             $scope.formData.DATE_CUST_APPOINTMENT = undefined;
             $scope.formData.APPOINTMENT_HOUR = undefined;
             $scope.formData.APPOINTMENT_MINUTE = undefined;
