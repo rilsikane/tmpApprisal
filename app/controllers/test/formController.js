@@ -171,7 +171,7 @@
 
     $scope.action = function (action) {
         $modal.open({
-            templateUrl: 'app/views/test/w4actionDialog.html',
+            templateUrl: '/app/views/test/w4actionDialog.html',
             controller: 'w4actionDialogController',
             backdrop: 'static',
             keyboard: false,
@@ -413,7 +413,7 @@ app.controller('subform0550Controller', ['$scope', 'radasoft', '$translate', '$q
     $scope.calendar = function () {
         radasoft.openDialog({
             controller: 'subform0552Controller',
-            templateUrl: 'app/views/test/subform0552.html',
+            templateUrl: '/app/views/test/subform0552.html',
             resolve: {
                 params: function () {
                     return {
@@ -445,7 +445,7 @@ app.controller('subform0550Controller', ['$scope', 'radasoft', '$translate', '$q
 }]);
 app.controller('subform0551Controller', ['$scope', 'radasoft', '$modalInstance', 'params', '$translate', '$q', function ($scope, radasoft, $modalInstance, params, $translate, $q) {
     $scope.title = $translate.instant('APPOINTMENT_CALENDAR');
-    $scope.includeUrl = 'app/views/test/subform0551.html';
+    $scope.includeUrl = '/app/views/test/subform0551.html';
     $scope.showBtnSave = true;
     $scope.dpOpenState = {};
     $scope.formData = undefined;
@@ -515,6 +515,13 @@ app.controller('subform0551Controller', ['$scope', 'radasoft', '$modalInstance',
             $scope.getCustContact(params.formData.JOB_RUNNING_ID, params.formData.CUSCONTACT_RUNNING_ID);
         });
     }
+    $scope.onContactChage = function(){
+        if("1"==$scope.formData.CONTACT_RESULT.VALUE){
+            $scope.formData.DATE_CUST_APPOINTMENT = undefined;
+            $scope.formData.APPOINTMENT_HOUR = undefined;
+            $scope.formData.APPOINTMENT_MINUTE = undefined;
+        }
+    }
 
     $scope.init();
 }]);
@@ -526,7 +533,7 @@ app.controller('subform0552Controller', ['$scope', 'radasoft', '$filter', '$tran
     var m = date.getMonth();
     var y = date.getFullYear();
 
-    //$scope.includeUrl = 'app/views/test/subform0552.html';
+    //$scope.includeUrl = '/app/views/test/subform0552.html';
     $scope.JOB_RUNNING_ID = params.JOB_RUNNING_ID || $stateParams.JOB_RUNNING_ID;
     $scope.events = [];
 
