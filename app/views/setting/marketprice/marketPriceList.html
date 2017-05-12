@@ -17,12 +17,12 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th class="col-sm-3">{{'HEAD_COL_TYPE'|translate}}</th>
+                            <th class="col-sm-2">{{'HEAD_COL_TYPE'|translate}}</th>
                             <th class="col-sm-2">{{'HEAD_COL_SUB_TYPE'|translate}}</th>
                             <!--<th class="col-sm-3">{{'DOC_CERT_TYPE'|translate}}</th>-->
-                            <th class="col-sm-2">{{'PROVINCE'|translate}}</th>
-                            <th class="col-sm-1">{{'DISTRICT'|translate}}</th>
-                            <th class="col-sm-1">{{'SUBDISTRICT'|translate}}</th>
+                            <th class="col-sm-1">{{'PROVINCE'|translate}}</th>
+                            <th class="col-sm-2">{{'DISTRICT'|translate}}</th>
+                            <th class="col-sm-2">{{'SUBDISTRICT'|translate}}</th>
                             <th class="col-sm-1">{{'PRICE_SELL'|translate}}</th>
                             <th class="col-sm-1"></th>
                         </tr>
@@ -35,7 +35,7 @@
                             <td>{{item.ADD_PROVINCE_NAME}}</td>
                             <td>{{item.ADD_CITY_NAME}}</td>
                             <td>{{item.ADD_DISTRICT_NAME}}</td>
-                            <td>{{item.PRICE_SELL|number:2}}</td>
+                            <td align="right">{{item.PRICE_SELL|number:2}}</td>
                             <td><a ng-click="editMarketPrice(item)"><i class="ti-pencil"></i></a></td>
                         </tr>
                     </tbody>
