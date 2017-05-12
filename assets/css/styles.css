@@ -12606,25 +12606,44 @@ td.small-width {
     bottom: 15px;
     left: 25px;
 }
-.questionnaire .clip-check{
+
+.questionnaire .clip-check {
     margin-top: 0px;
 }
-.questionnaire .table > thead > tr > th, .questionnaire .table > tbody > tr > th,.questionnaire .table > tfoot > tr > th,.questionnaire .table > thead > tr > td,.questionnaire .table > tbody > tr > td,.questionnaire .table > tfoot > tr > td {
-    border: none ;
+
+.questionnaire .table > thead > tr > th, .questionnaire .table > tbody > tr > th, .questionnaire .table > tfoot > tr > th, .questionnaire .table > thead > tr > td, .questionnaire .table > tbody > tr > td, .questionnaire .table > tfoot > tr > td {
+    border: none;
 }
-.questionnaire .clip-radio{
+
+.questionnaire .clip-radio {
     padding-left: 13%;
 }
-.forLv1 > td{
+
+.forLv1 > td {
     /*border-bottom: 1px solid #e2e2e4 !important;*/
     border-top: 1px solid #e2e2e4 !important;
 }
-.questionnaire .table > tbody > tr:last-child > td{
+
+.questionnaire .table > tbody > tr:last-child > td {
     border-bottom: 1px solid #e2e2e4 !important;
 }
-.qnRadio{
+
+.qnRadio {
     padding: 0 !important;
 }
+
+
+.input-validate-error {
+    color: red !important;
+}
+
+
+fieldset {
+    -moz-border-radius: 0 !important;
+    -webkit-border-radius: 0;
+    border-radius: 0 !important;
+}
+
 .valid-error:before{
     content: "\f00d";
     display: inline;
@@ -12637,4 +12656,3 @@ td.small-width {
     font-family: FontAwesome;
     color: #468847;
 }
-

@@ -13,18 +13,18 @@
         $modalInstance.dismiss();
     }
 
-    $scope.getWqsFactorList = function () {
-        radasoft.getWqsFactorList({ HEAD_COL_RUNNING_ID: params.HEAD_COL_RUNNING_ID }).then(function (response) {
-            $scope.factorList = response.data;
+    $scope.getMarketTemplateType = function () {
+        radasoft.getMarketTemplateType({ HEAD_COL_RUNNING_ID: params.HEAD_COL_RUNNING_ID }).then(function (response) {
+            $scope.templateType = response.data;
 
-            if ($scope.factorList.length == 1) {
-                $modalInstance.close($scope.factorList[0]);
+            if ($scope.templateType.length == 1) {
+                $modalInstance.close($scope.templateType[0]);
             }
         });
     }
 
     $scope.init = function () {
-        $scope.getWqsFactorList();
+        $scope.getMarketTemplateType();
     }
 
     $scope.init();

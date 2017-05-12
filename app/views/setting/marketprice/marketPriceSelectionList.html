@@ -19,10 +19,10 @@
             <div class="col-sm-8">
                 <ui-select theme="selectize" ng-model="myFilter.HEAD_COL_TYPE" id="HEAD_COL_TYPE_ID" name="HEAD_COL_TYPE_ID" on-select="onHeadColTypeChange($item)">
                     <ui-select-match>
-                        {{$select.selected.CODE_MINOR_NAME}}
+                        {{$select.selected.NAME}}
                     </ui-select-match>
                     <ui-select-choices repeat="item in headColType | filter: $select.search">
-                        <div ng-bind-html="item.CODE_MINOR_NAME | highlight: $select.search"></div>
+                        <div ng-bind-html="item.NAME | highlight: $select.search"></div>
                     </ui-select-choices>
                 </ui-select>
             </div>

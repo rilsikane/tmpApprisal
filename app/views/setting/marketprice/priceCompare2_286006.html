@@ -25,13 +25,12 @@
                 <td class="text-right">{{'PICTURE'|translate}}</td>
                 <td ng-if="jobMarketPrice.length==0"></td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
-                    <img ng-if="market.PICTURE.base64string!=''" ng-src="data:image/png;base64,{{market.PICTURE.base64string}}" width="100%" height="150px" />
-                    <br /><span>{{market.PICTURE_DATE_TEXT}}</span>
+                    <img ng-if="market.JMP_RUNNING_ID>0" ng-src="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE/{{random}}" width="100%" height="150px" />
                 </td>
             </tr>
             <tr>
                 <td class="text-right">{{'TEMPLATE_TYPE'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.TEMPLATE_TYPE.NAME}}</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.TEMPLATE_TYPE.CODE_MINOR_NAME}}</td>
             </tr>
             <tr>
                 <td class="text-right">{{'HEAD_COL_TYPE'|translate}}</td>

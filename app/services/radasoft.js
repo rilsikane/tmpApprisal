@@ -881,9 +881,6 @@
             this.getMarketType = function (params) {
                 return this.httpGet('getMarketType', params);
             }
-            this.getMarketTemplateType = function (params) {
-                return this.httpGet('getMarketTemplateType', params);
-            }
             this.setMarketCompairNumber = function (params) {
                 return this.httpPost('setMarketCompairNumber', params);
             }
@@ -1236,7 +1233,7 @@
             this.getJobMarketPriceDetail = function (params) {
                 return this.httpGet('getJobMarketPriceDetail', params);
             }
-            this.getHeadColTypeForMarketPrice = function (params) {
-                return this.httpGet('getHeadColTypeForMarketPrice', params);
+            this.getMarketTemplateType = function (params) {
+                return this.httpGet('getMarketTemplateType', params);
             }
         }]);

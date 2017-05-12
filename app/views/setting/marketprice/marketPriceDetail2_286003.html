@@ -22,6 +22,21 @@
             <input type="text" id="PICTURE_DATE" class="form-control" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.PICTURE_DATE" ng-click="openDatePicker($event,'PICTURE_DATE')" ng-model="formData.PICTURE_DATE" />
         </div>
     </div>
+    <div class="form-group" ng-class="{'has-error':form.HEAD_COL_TYPE_ID.$dirty && form.HEAD_COL_TYPE_ID.$invalid,'has-success':form.HEAD_COL_TYPE_ID.$valid}">
+        <label class="col-sm-3 control-label" for="HEAD_COL_TYPE_ID">
+            {{'HEAD_COL_TYPE_ID'|translate}} <span class="required symbol"></span>
+        </label>
+        <div class="col-sm-8">
+            <ui-select theme="selectize" ng-required="true" ng-model="formData.HEAD_COL_TYPE_ID" id="HEAD_COL_TYPE_ID" name="HEAD_COL_TYPE_ID" on-select="getHeadColSubType($item)">
+                <ui-select-match>
+                    {{$select.selected.NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in headColType | filter: $select.search">
+                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
     <div class="form-group">
         <label class="col-sm-3 control-label" for="HEAD_COL_TYPE_ID">
             ประเภทหลักทรัพย์ย่อย
@@ -757,7 +772,7 @@
             ภาพถ่ายแสดงข้อมูลอื่น <a ng-click="uploadPictureSign()"><i class="fa fa-picture-o"></i></a>
         </label>
         <div class="col-sm-8">
-            <div class="row padding-15">                
+            <div class="row padding-15">
                 <img ng-if="formData.PICTURE_SIGN.ATTACHDOC_RUNNING_ID>0" ng-src="nn1/b/{{formData.PICTURE_SIGN.ATTACHDOC_RUNNING_ID}}/0/{{random}}" width="200" height="300" />
 
                 <img ng-if="formData.JMP_RUNNING_ID > 0 && formData.PICTURE_SIGN.ATTACHDOC_RUNNING_ID==0" ng-src="nn1/a/{{formData.JMP_RUNNING_ID}}/PICTURE_SIGN/{{random}}" width="200" height="300" />
