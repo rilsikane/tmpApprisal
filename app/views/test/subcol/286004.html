@@ -418,7 +418,7 @@
                 พื้นที่ใช้สอยรวม (ตร.ม.) <span class="symbol"></span>
             </label>
             <div class="col-sm-8">
-                <input type="number" min="0" class="form-control" id="USAGE_AREA" name="USAGE_AREA" ng-model="formData.USAGE_AREA">
+                <input type="text" min="0" class="form-control" id="USAGE_AREA" name="USAGE_AREA" ng-model="formData.USAGE_AREA" format>
             </div>
         </div>
         <div class="form-group">
@@ -466,7 +466,7 @@
                 คิดเป็นพื้นที่ก่อสร้างโดยประมาณ (ตร.ม.) <span class="symbol"></span>
             </label>
             <div class="col-sm-8">
-                <input count type="text" min="0" class="form-control" id="AREA_METER" name="AREA_METER" ng-model="formData.AREA_METER">
+                <input type="text" min="0" class="form-control" id="AREA_METER" name="AREA_METER" ng-model="formData.AREA_METER" format>
             </div>
         </div>
     </div>
@@ -744,9 +744,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_PILLAR_WOOD" ng-model="formData.STRU_PILLAR_WOOD" checked="">
@@ -755,9 +752,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_PILLAR_IRON" ng-model="formData.STRU_PILLAR_IRON" checked="">
@@ -794,9 +788,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_BEAM_WOOD" ng-model="formData.STRU_BEAM_WOOD" checked="">
@@ -805,9 +796,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_BEAM_IRON" ng-model="formData.STRU_BEAM_IRON" checked="">
@@ -844,10 +832,7 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-2">
+                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_FLOOR_WOOD" ng-model="formData.STRU_FLOOR_WOOD" checked="">
                         <label for="STRU_FLOOR_WOOD">
@@ -855,9 +840,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_FLOOR_CONG" ng-model="formData.STRU_FLOOR_CONG" checked="">
@@ -894,9 +876,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_STAIR_WOOD" ng-model="formData.STRU_STAIR_WOOD" checked="">
@@ -905,9 +884,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_STAIR_IRON" ng-model="formData.STRU_STAIR_IRON" checked="">
@@ -917,6 +893,7 @@
                     </div>
                 </div>
             </div>
+           
             <div class="form-group">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-2">
@@ -944,9 +921,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_WALL_CONG" ng-model="formData.STRU_WALL_CONG" checked="">
@@ -955,9 +929,14 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
+                 <div class="col-sm-2">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="STRU_WALL_WOOD" ng-model="formData.STRU_WALL_WOOD" checked="">
+                        <label for="STRU_WALL_WOOD">
+                            {{'STRU_PILLAR_WOOD'|translate}}
+                        </label>
+                    </div>
+                </div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_WALL_WOOD" ng-model="formData.STRU_WALL_WOOD" checked="">
@@ -966,9 +945,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_WALL_CONG2" ng-model="formData.STRU_WALL_CONG2" checked="">
@@ -1005,9 +981,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_CEIL_YIBSOM" ng-model="formData.STRU_CEIL_YIBSOM" checked="">
@@ -1016,9 +989,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_CEIL_TBAR" ng-model="formData.STRU_CEIL_TBAR" checked="">
@@ -1055,9 +1025,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_FMROOF_WOOD" ng-model="formData.STRU_FMROOF_WOOD" checked="">
@@ -1066,9 +1033,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_FMROOF_IRON" ng-model="formData.STRU_FMROOF_IRON" checked="">
@@ -1078,6 +1042,7 @@
                     </div>
                 </div>
             </div>
+           
             <div class="form-group">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-2">
@@ -1105,9 +1070,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_ROOF_CPACK" ng-model="formData.STRU_ROOF_CPACK" checked="">
@@ -1116,9 +1078,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_ROOF_CONG" ng-model="formData.STRU_ROOF_CONG" checked="">
@@ -1127,9 +1086,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_ROOF_ZINC" ng-model="formData.STRU_ROOF_ZINC" checked="">
@@ -1158,7 +1114,7 @@
             <legend>รั้วบริเวณ</legend>
             <div class="form-group">
                 <div class="col-sm-1"></div>
-                <div class="col-sm-8">
+                <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_FENCE_BRICK" ng-model="formData.STRU_FENCE_BRICK" checked="">
                         <label for="STRU_FENCE_BRICK">
@@ -1166,10 +1122,7 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-8">
+                <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_FENCE_WOOD" ng-model="formData.STRU_FENCE_WOOD" checked="">
                         <label for="STRU_FENCE_WOOD">
@@ -1177,10 +1130,7 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-8">
+                <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_FENCE_WIRE" ng-model="formData.STRU_FENCE_WIRE" checked="">
                         <label for="STRU_FENCE_WIRE">
@@ -1188,10 +1138,7 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-9">
+                <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_FENCE_NO" ng-model="formData.STRU_FENCE_NO" checked="">
                         <label for="STRU_FENCE_NO">
@@ -1200,6 +1147,7 @@
                     </div>
                 </div>
             </div>
+           
             <div class="form-group">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-2">
@@ -1227,9 +1175,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_BLD_WOOD" ng-model="formData.STRU_BLD_WOOD" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1238,9 +1183,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_BLD_IRON" ng-model="formData.STRU_BLD_IRON" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1249,9 +1191,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_BLD_HWOOD" ng-model="formData.STRU_BLD_HWOOD" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1261,6 +1200,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="form-group">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-2">
@@ -1288,9 +1228,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_EXTWALL_BRICK1" ng-model="formData.STRU_EXTWALL_BRICK1" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1299,9 +1236,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_EXTWALL_BRICK2" ng-model="formData.STRU_EXTWALL_BRICK2" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1338,9 +1272,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_INTWALL_PAPER" ng-model="formData.STRU_INTWALL_PAPER" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1349,9 +1280,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_INTWALL_WOOD" ng-model="formData.STRU_INTWALL_WOOD" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1388,9 +1316,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_DOOR_MULMIRROR" ng-model="formData.STRU_DOOR_MULMIRROR" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1399,9 +1324,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_DOOR_PLYWOOD" ng-model="formData.STRU_DOOR_PLYWOOD" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1411,6 +1333,7 @@
                     </div>
                 </div>
             </div>
+           
             <div class="form-group">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-2">
@@ -1438,9 +1361,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_WD_MIRROR" ng-model="formData.STRU_WD_MIRROR" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1449,9 +1369,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_WD_LOUVER" ng-model="formData.STRU_WD_LOUVER" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1488,9 +1405,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_JAMB_ALLUMINIUM" ng-model="formData.STRU_JAMB_ALLUMINIUM" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1499,10 +1413,7 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-2">
+                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_JAMB_IRON" ng-model="formData.STRU_JAMB_IRON" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="STRU_JAMB_IRON">
@@ -1538,9 +1449,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_BATH_WALL" ng-model="formData.STRU_BATH_WALL" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1569,7 +1477,7 @@
             <legend>สุขภัณฑ์</legend>
             <div class="form-group">
                 <div class="col-sm-1"></div>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_BWARE_TOILET" ng-model="formData.STRU_BWARE_TOILET" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="STRU_BWARE_TOILET">
@@ -1577,10 +1485,7 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_BWARE_SQUAT" ng-model="formData.STRU_BWARE_SQUAT" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="STRU_BWARE_SQUAT">
@@ -1588,10 +1493,7 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-2">
+                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_BWARE_PLANE" ng-model="formData.STRU_BWARE_PLANE" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="STRU_BWARE_PLANE">
@@ -1599,9 +1501,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_BWARE_SHOWER" ng-model="formData.STRU_BWARE_SHOWER" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1611,6 +1510,7 @@
                     </div>
                 </div>
             </div>
+           
             <div class="form-group">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-2">
@@ -1621,9 +1521,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_BWARE_SINK" ng-model="formData.STRU_BWARE_SINK" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1632,9 +1529,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_BWARE_MIRROR" ng-model="formData.STRU_BWARE_MIRROR" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1643,9 +1537,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="STRU_BWARE_BIDET" ng-model="formData.STRU_BWARE_BIDET" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1682,10 +1573,7 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-2">
+                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="SYS_INT_WATER" ng-model="formData.SYS_INT_WATER" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="SYS_INT_WATER">
@@ -1693,9 +1581,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="SYS_INT_PHONE" ng-model="formData.SYS_INT_PHONE" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1704,9 +1589,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="SYS_INT_NETWORK" ng-model="formData.SYS_INT_NETWORK" ng-true-value="'Y'" ng-false-value="'N'">
@@ -2027,7 +1909,7 @@
                 {{'REMARK'|translate}}
             </label>
             <div class="col-sm-8">
-                <textarea style="max-width:100%;" class="form-control" id="REMARK" name="REMARK" ng-model="formData.REMARK"></textarea>
+                <textarea rows="3" style="max-width:100%;" class="form-control" id="REMARK" name="REMARK" ng-model="formData.REMARK"></textarea>
             </div>
         </div>
     </div>

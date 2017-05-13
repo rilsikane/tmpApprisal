@@ -113,7 +113,7 @@
                 {{'WA'|translate}} <span class="required symbol"></span>
             </label>
             <div class="col-sm-8">
-                <input format required type="text" step="1" min="0" ng-max="99.99" ng-change="calLandArea()" class="form-control" id="WA" name="WA" ng-model="formData.WA">
+                <input format required type="text" step="1" min="0" ng-max="99.99" ng-change="calLandArea()" class="form-control" id="WA" name="WA" ng-model="formData.WA" decimal="1">
             </div>
         </div>
         <div class="form-group">
@@ -121,7 +121,7 @@
                 {{'AREA_WA'|translate}}
             </label>
             <div class="col-sm-8">
-                <input format readonly type="text" step="1" class="form-control" id="AREA_WA" name="AREA_WA" ng-model="formData.AREA_WA">
+                <input format readonly type="text" step="1" class="form-control" id="AREA_WA" name="AREA_WA" ng-model="formData.AREA_WA" decimal="1">
             </div>
         </div>
         <div class="form-group">
@@ -757,7 +757,7 @@
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="ROAD1">
                 </label>
-                <div class="col-sm-8">
+                <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary checkbox-inline">
                         <input type="checkbox" id="ROAD1" ng-model="formData.ROAD1" checked="">
                         <label for="ROAD1">
@@ -765,11 +765,7 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label" for="ROAD2">
-                </label>
-                <div class="col-sm-8">
+                <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary checkbox-inline">
                         <input type="checkbox" id="ROAD2" ng-model="formData.ROAD2" checked="">
                         <label for="ROAD2">
@@ -777,11 +773,7 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label" for="ROAD3">
-                </label>
-                <div class="col-sm-8">
+                <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary checkbox-inline">
                         <input type="checkbox" id="ROAD3" ng-model="formData.ROAD3" checked="">
                         <label for="ROAD3">
@@ -789,11 +781,12 @@
                         </label>
                     </div>
                 </div>
+                
             </div>
-            <div class="form-group form-inline">
-                <label class="col-sm-4 control-label" for="ROAD4">
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="ROAD4">
                 </label>
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                     <div class="checkbox clip-check check-primary checkbox-inline">
                         <input type="checkbox" id="ROAD4" ng-model="formData.ROAD4" checked="">
                         <label for="ROAD4">
@@ -808,7 +801,7 @@
                     {{'REMARK'|translate}}
                 </label>
                 <div>
-                    <textarea style="max-width:100%;" class="form-control" ng-maxlength="500" ng-model="formData.ROAD_REMARK"></textarea>
+                    <textarea rows="3" style="max-width:100%;" class="form-control" ng-maxlength="500" ng-model="formData.ROAD_REMARK"></textarea>
                 </div>
             </div>
         </fieldset>

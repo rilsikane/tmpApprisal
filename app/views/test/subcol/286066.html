@@ -627,7 +627,7 @@
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="ROAD1">
                 </label>
-                <div class="col-sm-8">
+                <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="ROAD1" ng-model="formData.ROAD1" checked="">
                         <label for="ROAD1">
@@ -635,11 +635,7 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label" for="ROAD2">
-                </label>
-                <div class="col-sm-8">
+                <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="ROAD2" ng-model="formData.ROAD2" checked="">
                         <label for="ROAD2">
@@ -647,11 +643,7 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label" for="ROAD3">
-                </label>
-                <div class="col-sm-8">
+                <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" id="ROAD3" ng-model="formData.ROAD3" checked="">
                         <label for="ROAD3">
@@ -660,6 +652,7 @@
                     </div>
                 </div>
             </div>
+           
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="ROAD4">
                 </label>
@@ -672,7 +665,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <input type="text" placeholder="" class="form-control" id="ROAD_OTH_DESC" name="ROAD_OTH_DESC" ng-model="formData.ROAD_OTH_DESC">
+                    <input type="text" placeholder="" class="form-control" id="ROAD_OTH_DESC" name="ROAD_OTH_DESC" ng-model="formData.ROAD_OTH_DESC" ng-readonly="!formData.ROAD4">
                 </div>
             </div>
             <div class="form-group">
@@ -680,7 +673,7 @@
                     {{'REMARK'|translate}}
                 </label>
                 <div>
-                    <textarea style="max-width:100%;" class="form-control" ng-maxlength="500" ng-model="formData.ROAD_REMARK"></textarea>
+                    <textarea rows="3" style="max-width:100%;" class="form-control" ng-maxlength="500" ng-model="formData.ROAD_REMARK"></textarea>
                 </div>
             </div>
         </fieldset>
@@ -757,7 +750,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="radio clip-radio radio-primary">
-                            <input type="radio" id="GUTTER1" name="GUTTER" ng-model="formData.GUTTER" ng-value="'Y'">
+                            <input type="radio" id="GUTTER1" name="GUTTER" ng-model="formData.GUTTER" ng-value="'Y'" />
                             <label for="GUTTER1">
                                 {{'GUTTER1'|translate}}
                             </label>
@@ -769,7 +762,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="radio clip-radio radio-primary">
-                            <input type="radio" id="GUTTER2" name="GUTTER" ng-model="formData.GUTTER" ng-value="'N'">
+                            <input type="radio" id="GUTTER2" name="GUTTER" ng-model="formData.GUTTER" ng-value="'N'" />
                             <label for="GUTTER2">
                                 {{'GUTTER2'|translate}}
                             </label>
@@ -786,7 +779,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="radio clip-radio radio-primary">
-                            <input type="radio" id="TELE_Y" name="TELE" ng-model="formData.TELE" ng-value="'Y'">
+                            <input type="radio" id="TELE_Y" name="TELE" ng-model="formData.TELE" ng-value="'Y'" />
                             <label for="TELE_Y">
                                 {{'GUTTER1'|translate}}
                             </label>
@@ -798,7 +791,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="radio clip-radio radio-primary">
-                            <input type="radio" id="TELE_N" name="TELE" ng-model="formData.TELE" ng-value="'N'">
+                            <input type="radio" id="TELE_N" name="TELE" ng-model="formData.TELE" ng-value="'N'" />
                             <label for="TELE_N">
                                 {{'GUTTER2'|translate}}
                             </label>
@@ -815,7 +808,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="radio clip-radio radio-primary">
-                            <input type="radio" id="ELEC_Y" name="ELEC" ng-model="formData.ELEC" ng-value="'Y'">
+                            <input type="radio" id="ELEC_Y" name="ELEC" ng-model="formData.ELEC" ng-value="'Y'" />
                             <label for="ELEC_Y">
                                 {{'GUTTER1'|translate}}
                             </label>
@@ -827,7 +820,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="radio clip-radio radio-primary">
-                            <input type="radio" id="ELEC_N" name="ELEC" ng-model="formData.ELEC" ng-value="'N'">
+                            <input type="radio" id="ELEC_N" name="ELEC" ng-model="formData.ELEC" ng-value="'N'" />
                             <label for="ELEC_N">
                                 {{'GUTTER2'|translate}}
                             </label>
@@ -844,7 +837,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="radio clip-radio radio-primary">
-                            <input type="radio" id="SIDEWALK_Y" name="SIDEWALK" ng-model="formData.SIDEWALK" ng-value="'Y'">
+                            <input type="radio" id="SIDEWALK_Y" name="SIDEWALK" ng-model="formData.SIDEWALK" ng-value="'Y'" />
                             <label for="SIDEWALK_Y">
                                 {{'GUTTER1'|translate}}
                             </label>
@@ -856,7 +849,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="radio clip-radio radio-primary">
-                            <input type="radio" id="SIDEWALK_N" name="SIDEWALK" ng-model="formData.SIDEWALK" ng-value="'N'">
+                            <input type="radio" id="SIDEWALK_N" name="SIDEWALK" ng-model="formData.SIDEWALK" ng-value="'N'" />
                             <label for="SIDEWALK_N">
                                 {{'GUTTER2'|translate}}
                             </label>
@@ -871,7 +864,7 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="USE1" ng-model="formData.USE1" checked="">
+                        <input type="checkbox" id="USE1" ng-model="formData.USE1" checked="" />
                         <label for="USE1">
                             {{'USE1'|translate}}
                         </label>
@@ -882,7 +875,7 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="USE2" ng-model="formData.USE2" checked="">
+                        <input type="checkbox" id="USE2" ng-model="formData.USE2" checked="" />
                         <label for="USE2">
                             {{'USE2'|translate}}
                         </label>
@@ -893,7 +886,7 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="USE3" ng-model="formData.USE3" checked="">
+                        <input type="checkbox" id="USE3" ng-model="formData.USE3" checked="" />
                         <label for="USE3">
                             {{'USE3'|translate}}
                         </label>
@@ -904,7 +897,7 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="USE4" ng-model="formData.USE4" checked="">
+                        <input type="checkbox" id="USE4" ng-model="formData.USE4" checked="" />
                         <label for="USE4">
                             {{'USE4'|translate}}
                         </label>
@@ -915,7 +908,7 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="USE5" ng-model="formData.USE5">
+                        <input type="checkbox" id="USE5" ng-model="formData.USE5" />
                         <label for="USE5">
                             {{'USE5'|translate}}
                         </label>
@@ -932,7 +925,7 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="WEED_Y" ng-model="formData.WEED_Y" ng-true-value="'Y'" ng-false-value="'N'">
+                        <input type="checkbox" id="WEED_Y" ng-model="formData.WEED_Y" ng-true-value="'Y'" ng-false-value="'N'" />
                         <label for="WEED_Y">
                             {{'WEED_Y'|translate}}
                         </label>
@@ -943,14 +936,14 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="WEED_OTHER" ng-model="formData.WEED_OTHER" ng-true-value="'Y'" ng-false-value="'N'">
+                        <input type="checkbox" id="WEED_OTHER" ng-model="formData.WEED_OTHER" ng-true-value="'Y'" ng-false-value="'N'" />
                         <label for="WEED_OTHER">
                             {{'OTHER'|translate}}
                         </label>
                     </div>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="WEED_OTHER_REMARK" name="WEED_OTHER_REMARK" ng-model="formData.WEED_OTHER_REMARK">
+                    <input type="text" class="form-control" id="WEED_OTHER_REMARK" name="WEED_OTHER_REMARK" ng-model="formData.WEED_OTHER_REMARK" />
                 </div>
             </div>
         </fieldset>
@@ -974,7 +967,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="RESPOND1" ng-model="formData.RESPOND1" checked="">
+                        <input type="checkbox" id="RESPOND1" ng-model="formData.RESPOND1" checked="" />
                         <label for="RESPOND1">
                             {{'RESPOND1'|translate}}
                         </label>
@@ -986,7 +979,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="RESPOND2" ng-model="formData.RESPOND2" checked="">
+                        <input type="checkbox" id="RESPOND2" ng-model="formData.RESPOND2" checked="" / />
                         <label for="RESPOND2">
                             {{'RESPOND2'|translate}}
                         </label>
@@ -1012,7 +1005,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="RESPOND4" ng-model="formData.RESPOND4" checked="">
+                        <input type="checkbox" id="RESPOND4" ng-model="formData.RESPOND4" checked="" />
                         <label for="RESPOND4">
                             {{'RESPOND4'|translate}}
                         </label>
@@ -1024,7 +1017,7 @@
                     {{'RESPOND_OTHER'|translate}}
                 </label>
                 <div class="col-sm-10">
-                    <input type="text" placeholder="" class="form-control" id="RESPOND_OTHER" name="RESPOND_OTHER" ng-model="formData.RESPOND_OTHER">
+                    <input type="text" placeholder="" class="form-control" id="RESPOND_OTHER" name="RESPOND_OTHER" ng-model="formData.RESPOND_OTHER" />
                 </div>
             </div>
         </div>
@@ -1041,7 +1034,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="CAPACITY1" ng-model="formData.CAPACITY1" checked="">
+                        <input type="checkbox" id="CAPACITY1" ng-model="formData.CAPACITY1" checked="" />
                         <label for="CAPACITY1">
                             {{'CAPACITY1'|translate}}
                         </label>
@@ -1053,7 +1046,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="CAPACITY2" ng-model="formData.CAPACITY2" checked="">
+                        <input type="checkbox" id="CAPACITY2" ng-model="formData.CAPACITY2" checked="" />
                         <label for="CAPACITY2">
                             {{'CAPACITY2'|translate}}
                         </label>
@@ -1065,7 +1058,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="CAPACITY3" ng-model="formData.CAPACITY3" checked="">
+                        <input type="checkbox" id="CAPACITY3" ng-model="formData.CAPACITY3" checked="" />
                         <label for="CAPACITY3">
                             {{'CAPACITY3'|translate}}
                         </label>
@@ -1079,7 +1072,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="CAPACITY4" ng-model="formData.CAPACITY4" checked="">
+                        <input type="checkbox" id="CAPACITY4" ng-model="formData.CAPACITY4" checked="" />
                         <label for="CAPACITY4">
                             {{'CAPACITY4'|translate}}
                         </label>
@@ -1087,7 +1080,7 @@
                 </div>
             </div>
             <div class="form-group col-sm-9">
-                <input type="text" placeholder="" class="form-control" id="CAPACITY_OTHER" name="CAPACITY_OTHER" ng-model="formData.CAPACITY_OTHER">
+                <input type="text" placeholder="" class="form-control" id="CAPACITY_OTHER" name="CAPACITY_OTHER" ng-model="formData.CAPACITY_OTHER" />
             </div>
         </div>
     </div>
@@ -1143,10 +1136,10 @@
         </div>
         <div class="form-group" ng-class="{'has-error':form.CONSTRUCT_YEAR.$invalid}">
             <label class="col-sm-4 control-label" for="CONSTRUCT_YEAR">
-                {{'CONSTRUCT_YEAR'|translate}} <span class="symbol"></span>
+                {{'CONSTRUCT_YEAR'|translate}} 
             </label>
             <div class="col-sm-8">
-                <input numberonly type="text" minlength="4" maxlength="4" class="form-control" id="CONSTRUCT_YEAR" name="CONSTRUCT_YEAR" ng-model="formData.CONSTRUCT_YEAR">
+                <input year type="text" minlength="4" maxlength="4" class="form-control" id="CONSTRUCT_YEAR" name="CONSTRUCT_YEAR" ng-model="formData.CONSTRUCT_YEAR">
             </div>
         </div>
         <div class="form-group">
@@ -1154,7 +1147,7 @@
                 {{'CONSTRUCT_AGE'|translate}}
             </label>
             <div class="col-sm-8">
-                <input format type="text" maxlength="10" class="form-control" id="CONSTRUCT_AGE" name="CONSTRUCT_AGE" ng-model="formData.CONSTRUCT_AGE">
+                <input year type="text" maxlength="10" class="form-control" id="CONSTRUCT_AGE" name="CONSTRUCT_AGE" ng-model="formData.CONSTRUCT_AGE">
             </div>
         </div>
     </div>

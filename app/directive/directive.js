@@ -3,7 +3,7 @@
         return {
             require: '?ngModel',
             link: function ($scope, $element, $attrs, ngModelCtrl) {
-
+                var decimal = $attrs.decimal || 2;
 
                 // console.log(limit);
                 // console.log(">>float_length<<", floatLength, defaultDecimal);
@@ -16,7 +16,7 @@
                 var listener = function () {
                     var value = $element.val().replace(/,/g, '');
                     if (value && !isNaN(value)) {
-                        $element.val($filter('number')(value, 2));
+                        $element.val($filter('number')(value, decimal));
                     } else {
                         $element.val('');
                         $element.val(undefined);
@@ -32,7 +32,7 @@
 
                 // This runs when the model gets updated on the scope directly and keeps our view in sync
                 ngModelCtrl.$render = function () {
-                    $element.val($filter('number')(ngModelCtrl.$viewValue, 2));
+                    $element.val($filter('number')(ngModelCtrl.$viewValue, decimal));
                 };
 
                 $element.bind('change', listener)
