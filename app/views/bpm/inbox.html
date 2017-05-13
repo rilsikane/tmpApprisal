@@ -39,7 +39,7 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="item in data">
-                                    <td>{{item.ACT_TIME_TEXT}})</td>
+                                    <td>{{item.ACT_TIME_TEXT}}({{item.TFL}})</td>
                                     <td ng-if="item.CHANGE_MODE==1"><a ui-sref="app.testform({ACT_HIST_ID:item.ACT_HIST_ID,H:0})">{{item.REQUEST_NO}}</a></td>
                                     <td ng-if="!(item.CHANGE_MODE==1)">{{item.REQUEST_NO}}</td>
                                     <td>{{item.CA_NO}}</td>
