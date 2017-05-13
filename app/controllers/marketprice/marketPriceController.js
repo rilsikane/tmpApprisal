@@ -58,7 +58,7 @@
         }).result.then(function (NV) {
             $scope.openMarketPriceDialog({
                 MARKETSTOCK_RUNNING_ID: 0,
-                HEAD_COL_TYPE_ID: NV
+                TEMPLATE_TYPE: NV
             });
         });
     }
@@ -107,7 +107,7 @@ app.controller('marketPriceDetailController', ['$scope', '$rootScope', '$state',
 
     $scope.potential = [{ VALUE: 'G', NAME: $translate.instant('HEIGHT') }, { VALUE: 'M', NAME: $translate.instant('MEDIUM') }, { VALUE: 'L', NAME: $translate.instant('LOW') }];
 
-    $scope.formUrl = '/app/views/setting/marketprice/marketPriceDetail2_' + params.formData.HEAD_COL_TYPE_ID.VALUE.replace('N', '') + '.html';
+    $scope.formUrl = '/app/views/setting/marketprice/marketPriceDetail2_' + params.formData.TEMPLATE_TYPE.CONDITION1 + '.html';
 
     $scope.dpOpenState = {};
 
@@ -152,7 +152,6 @@ app.controller('marketPriceDetailController', ['$scope', '$rootScope', '$state',
     }
 
     $scope.save = function (form) {
-        radasoft.debug(form);
         if (form.$invalid) {
             var field = null, firstError = null;
             for (field in form) {
@@ -509,18 +508,18 @@ app.controller('marketPriceDetailController', ['$scope', '$rootScope', '$state',
 
         return deferred.promise;
     }
-    $scope.getMarketTemplateType = function () {
-        var deferred = $q.defer();
+    //$scope.getMarketTemplateType = function () {
+    //    var deferred = $q.defer();
 
-        radasoft.getMarketTemplateType({}).then(function (response) {
-            $rootScope.marketTemplateType = response.data;
-            $scope.marketTemplateType = $rootScope.marketTemplateType;
-        }).finally(function () {
-            deferred.resolve();
-        });
+    //    radasoft.getMarketTemplateType({}).then(function (response) {
+    //        $rootScope.marketTemplateType = response.data;
+    //        $scope.marketTemplateType = $rootScope.marketTemplateType;
+    //    }).finally(function () {
+    //        deferred.resolve();
+    //    });
 
-        return deferred.promise;
-    }
+    //    return deferred.promise;
+    //}
     $scope.getHeadColSubType = function (headColType) {
         var deferred = $q.defer();
         $scope.formData.HEAD_COL_SUB_TYPE = null;
@@ -595,7 +594,7 @@ app.controller('marketPriceDetailController', ['$scope', '$rootScope', '$state',
                 }
 
                 if ($scope.formData.JMP_RUNNING_ID == 0) {
-                    $scope.formData.TEMPLATE_TYPE = undefined;
+                    //$scope.formData.TEMPLATE_TYPE = undefined;
                 }
                 $scope.random = Math.random().toString().replace('.', '');
                 deferred.resolve(response.data);
@@ -609,7 +608,7 @@ app.controller('marketPriceDetailController', ['$scope', '$rootScope', '$state',
                 }
 
                 if ($scope.formData.JMP_RUNNING_ID == 0) {
-                    $scope.formData.TEMPLATE_TYPE = undefined;
+                    //$scope.formData.TEMPLATE_TYPE = undefined;
                 }
                 $scope.random = Math.random().toString().replace('.', '');
                 deferred.resolve(response.data);
@@ -637,14 +636,12 @@ app.controller('marketPriceDetailController', ['$scope', '$rootScope', '$state',
                                                     $scope.getMarketStatus().then(function () {
                                                         $scope.getMarketInfo().then(function () {
                                                             $scope.getMarketType().then(function () {
-                                                                $scope.getMarketTemplateType().then(function () {
-                                                                    $scope.getProvince().then(function () {
-                                                                        $scope.getDistrict($scope.formData.ADD_PROVINCE || {}).then(function () {
-                                                                            $scope.getSubDistrict($scope.formData.ADD_PROVINCE, $scope.formData.ADD_CITY).then(function () {
-                                                                                $scope.getHeadColSubType($scope.formData.HEAD_COL_TYPE_ID).then(function () {
-                                                                                    $scope.getRoadType().then(function () {
-                                                                                        $scope.getCountry();
-                                                                                    });
+                                                                $scope.getProvince().then(function () {
+                                                                    $scope.getDistrict($scope.formData.ADD_PROVINCE || {}).then(function () {
+                                                                        $scope.getSubDistrict($scope.formData.ADD_PROVINCE, $scope.formData.ADD_CITY).then(function () {
+                                                                            $scope.getHeadColSubType($scope.formData.HEAD_COL_TYPE_ID).then(function () {
+                                                                                $scope.getRoadType().then(function () {
+                                                                                    $scope.getCountry();
                                                                                 });
                                                                             });
                                                                         });
@@ -682,6 +679,7 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
     $scope.marketPriceCurrentPage = 1;
 
     $scope.myFilter = {
+        TEMPLATE_TYPE: params.data.TEMPLATE_TYPE.CONDITION2,
         HEAD_COL_TYPE: {},
         SUB_COL_TYPE: {},
         AGE: 0
@@ -695,13 +693,14 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
     }
 
     $scope.onHeadColTypeChange = function (item) {
+        $scope.myFilter.SUB_COL_TYPE = {};
         $scope.getHeadColSubType(item);
     }
-    $scope.getHeadColTypeForMarketPrice = function () {
+    $scope.getHeadColType = function () {
         var deferred = $q.defer();
 
         if ($rootScope.headColType == undefined) {
-            radasoft.getHeadColTypeForMarketPrice({}).then(function (response) {
+            radasoft.getHeadColType({}).then(function (response) {
                 $rootScope.headColType = response.data;
 
                 $scope.headColType = $rootScope.headColType;
@@ -717,7 +716,7 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
 
     $scope.getHeadColSubType = function (headColType) {
         var deferred = $q.defer();
-        radasoft.getHeadColSubType({ MAIN_CODE: headColType.CONDITION1 }).then(function (response) {
+        radasoft.getHeadColSubType({ MAIN_CODE: headColType.VALUE }).then(function (response) {
             $scope.headColSubType = response.data;
         }).finally(function () {
             deferred.resolve();
@@ -731,7 +730,8 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
             limit: $rootScope.app.itemsPerPage,
             page: $scope.marketPriceCurrentPage,
             filters: [
-                { NAME: 'HEAD_COL_TYPE', VALUE: $scope.myFilter.HEAD_COL_TYPE.CONDITION1 || '' },
+                { NAME: 'TEMPLATE_TYPE', VALUE: $scope.myFilter.TEMPLATE_TYPE },
+                { NAME: 'HEAD_COL_TYPE', VALUE: $scope.myFilter.HEAD_COL_TYPE.VALUE || '' },
                 { NAME: 'SUB_COL_TYPE', VALUE: $scope.myFilter.SUB_COL_TYPE.VALUE || '' },
                 { NAME: 'AGE', VALUE: $scope.myFilter.AGE || 0 }
             ]
@@ -802,7 +802,7 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
     };
 
     $scope.init = function () {
-        $scope.getHeadColTypeForMarketPrice().then(function () {
+        $scope.getHeadColType().then(function () {
             //$scope.getMarketPrice();
         });
     }
@@ -818,7 +818,7 @@ app.controller('priceCompareController', ['$scope', '$state', '$stateParams', 'r
     //$scope.headCol = params.headCol;
     //$scope.colAct = params.colAct;
 
-    $scope.compareUrl = '/app/views/setting/marketprice/priceCompare2_' + $scope.params.HEAD_COL_TYPE_ID.replace('N', '') + '.html';
+    $scope.compareUrl = '/app/views/setting/marketprice/priceCompare2_' + $scope.params.TEMPLATE_TYPE.CONDITION1 + '.html';
 
     $scope.jobMarketPrice = [];
 
@@ -859,7 +859,10 @@ app.controller('priceCompareController', ['$scope', '$state', '$stateParams', 'r
     }
 
     $scope.getJobMarketPrice = function () {
-        radasoft.getJobMarketPrice({ HEAD_COL_RUNNING_ID: $scope.params.HEAD_COL_RUNNING_ID, HEAD_COL_TYPE_ID: $scope.params.HEAD_COL_TYPE_ID }).then(function (response) {
+        radasoft.getJobMarketPrice({
+            HEAD_COL_RUNNING_ID: $scope.params.HEAD_COL_RUNNING_ID,
+            TEMPLATE_TYPE: $scope.params.TEMPLATE_TYPE.CONDITION2
+        }).then(function (response) {
             $scope.random = Math.random().toString().replace('.', '');
 
             $scope.jobMarketPrice = response.data;
