@@ -177,7 +177,7 @@
   "CREDIT_REQUEST": "วงเงินกู้",
   "BANK_EMPLOYEE": "เจ้าหน้าที่ธนาคาร",
   "REQUEST_OU": "หน่วยงานต้นเรื่อง",
-  "OTHERS_PRICE_PAWN": "มูลค่าที่นำมาจำนำ",
+  "OTHERS_PRICE_PAWN": "มูลค่าที่นำมาจำนำ/จำนอง",
   "OTHERS_COL": "รายละเอียดหลักทรัพย์",
   "DATE_REQ": "วันที่ใบคำขอประเมิน",
   "SELECT_ROLE": "เลือก Role",

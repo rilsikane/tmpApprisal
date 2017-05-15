@@ -625,3 +625,19 @@
         return value;
     };
 })
+.filter('sla', function () {
+    return function (sla) {
+        if (sla===undefined) { return ; }
+        var value ='';
+        if(sla > 0){
+            value = 'greenBG'
+        }else if(sla==0){
+            value = 'yellowBG'
+        }else{
+             value = 'redBG'
+        }
+       
+
+        return value;
+    };
+})
