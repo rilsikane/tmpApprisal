@@ -84,9 +84,9 @@
                                 <th ng-class="css_th_2">{{'COL_NO'|translate}}</th>
                                 <th ng-class="css_th_3">{{'RAWANG'|translate}}</th>
                                 <th ng-class="css_th_4">{{'SUB_COLL_AREA'|translate}}</th>
-                                <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th>
-                                <th ng-class="css_th_6">{{'SUB_COLL_OWNER'|translate}}</th>
-                                <th ng-class="css_th_7" ng-if="!inputDisabled"></th>
+                                <!-- <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th> -->
+                                <th ng-class="css_th_5">{{'SUB_COLL_OWNER'|translate}}</th>
+                                <th ng-class="css_th_6" ng-if="!inputDisabled"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -95,7 +95,7 @@
                                 <td>{{subcol.COL_NO}}</td>
                                 <td>{{subcol.RAWANG}}</td>
                                 <td>{{subcol.AREA_WA | number:1}}</td>
-                                <td class="text-right">{{subcol.QUANTITY}}</td>
+                                <!-- <td class="text-right">{{subcol.QUANTITY}}</td> -->
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
                                 <td class="center" ng-if="!inputDisabled">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
@@ -122,9 +122,9 @@
                                 <th ng-class="css_th_3" ng-show="$parent.formData.JOB_TYPE">{{'CODE_REF'|translate}}</th>
                                 <th ng-class="css_th_4" ng-show="$parent.formData.JOB_TYPE">{{'AREA_WA'|translate}}</th>
 
-                                <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th>
-                                <th ng-class="css_th_6">{{'SUB_COLL_OWNER'|translate}}</th>
-                                <th ng-class="css_th_7" ng-if="!inputDisabled"></th>
+                                <!-- <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th> -->
+                                <th ng-class="css_th_5">{{'SUB_COLL_OWNER'|translate}}</th>
+                                <th ng-class="css_th_6" ng-if="!inputDisabled"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -139,7 +139,7 @@
                                 <td ng-show="$parent.formData.JOB_TYPE">{{subcol.CODE_REF}}</td>
                                 <td ng-show="$parent.formData.JOB_TYPE">{{subcol.PROJECT_PRICE.UNIT_TYPE.AREA_WA}}</td>
 
-                                <td class="text-right">{{subcol.QUANTITY}}</td>
+                                <!-- <td class="text-right">{{subcol.QUANTITY}}</td> -->
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
                                 <td class="center" ng-if="!inputDisabled">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
@@ -161,9 +161,9 @@
                                 <th ng-class="css_th_2">{{'BRAND_NAME'|translate}}</th>
                                 <th ng-class="css_th_3">{{'REGIS_PROVINCE'|translate}}</th>
                                 <th ng-class="css_th_4">{{'LICENSE_NO'|translate}}</th>
-                                <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th>
-                                <th ng-class="css_th_6">{{'SUB_COLL_OWNER'|translate}}</th>
-                                <th ng-class="css_th_7" ng-if="!inputDisabled"></th>
+                                <!-- <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th> -->
+                                <th ng-class="css_th_5">{{'SUB_COLL_OWNER'|translate}}</th>
+                                <th ng-class="css_th_6" ng-if="!inputDisabled"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -172,7 +172,7 @@
                                 <td>{{subcol.BRAND_NAME}}</td>
                                 <td>{{subcol.REGIS_PROVINCE.PROV_NAME}}</td>
                                 <td>{{subcol.REGIS_NO}}</td>
-                                <td class="text-right">{{subcol.QUANTITY}}</td>
+                                <!-- <td class="text-right">{{subcol.QUANTITY}}</td> -->
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
                                 <td class="center" ng-if="!inputDisabled">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
@@ -192,9 +192,9 @@
                                 <th ng-class="css_th_2">{{'SHIP_NAME'|translate}}</th>
                                 <th ng-class="css_th_3">{{'REGIS_PROVINCE'|translate}}</th>
                                 <th ng-class="css_th_4">{{'MACHINE_NO'|translate}}</th>
-                                <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th>
-                                <th ng-class="css_th_6">{{'SUB_COLL_OWNER'|translate}}</th>
-                                <th ng-class="css_th_7" ng-if="!inputDisabled"></th>
+                                <!-- <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th> -->
+                                <th ng-class="css_th_5">{{'SUB_COLL_OWNER'|translate}}</th>
+                                <th ng-class="css_th_6" ng-if="!inputDisabled"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -203,7 +203,7 @@
                                 <td>{{subcol.NAME}}</td>
                                 <td>{{subcol.REGIS_PROVINCE.PROV_NAME}}</td>
                                 <td>{{subcol.REGIS_NO}}</td>
-                                <td class="text-right">{{subcol.QUANTITY}}</td>
+                                <!-- <td class="text-right">{{subcol.QUANTITY}}</td> -->
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
                                 <td class="center" ng-if="!inputDisabled">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
@@ -223,9 +223,9 @@
                                 <th ng-class="css_th_2">{{'TRANSFER_NO'|translate}}</th>
                                 <th ng-class="css_th_3">{{'RENTAL_NO'|translate}}</th>
                                 <th ng-class="css_th_4">{{'RENT_TYPE'|translate}}</th>
-                                <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th>
-                                <th ng-class="css_th_6">{{'SUB_COLL_OWNER'|translate}}</th>
-                                <th ng-class="css_th_7" ng-if="!inputDisabled"></th>
+                                <!-- <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th> -->
+                                <th ng-class="css_th_5">{{'SUB_COLL_OWNER'|translate}}</th>
+                                <th ng-class="css_th_6" ng-if="!inputDisabled"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -235,7 +235,7 @@
                                 <td>{{subcol.RENTAL_NO}}</td>
                                 <td ng-if="subcol.RENT_TYPE=='L'">{{'LAND'|translate}}</td>
                                 <td ng-if="subcol.RENT_TYPE=='B'">{{'BUILDING'|translate}}</td>
-                                <td class="text-right">{{subcol.QUANTITY}}</td>
+                                <!-- <td class="text-right">{{subcol.QUANTITY}}</td> -->
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
                                 <td class="center" ng-if="!inputDisabled">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
@@ -256,9 +256,9 @@
                                 <th ng-class="css_th_2">{{'MACHINE_NAME'|translate}}</th>
                                 <th ng-class="css_th_3">{{'MACHINE_LOCATION'|translate}}</th>
                                 <th ng-class="css_th_4">{{'MACHINE_NO'|translate}}</th>
-                                <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th>
-                                <th ng-class="css_th_6">{{'SUB_COLL_OWNER'|translate}}</th>
-                                <th ng-class="css_th_7" ng-if="!inputDisabled"></th>
+                                <!-- <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th> -->
+                                <th ng-class="css_th_5">{{'SUB_COLL_OWNER'|translate}}</th>
+                                <th ng-class="css_th_6" ng-if="!inputDisabled"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -267,7 +267,7 @@
                                 <td>{{subcol.MACHINE_NAME}}</td>
                                 <td>{{subcol.MACHINE_LOCATION}}</td>
                                 <td>{{subcol.REGIS_NO}}</td>
-                                <td class="text-right">{{subcol.QUANTITY}}</td>
+                                <!-- <td class="text-right">{{subcol.QUANTITY}}</td> -->
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
                                 <td class="center" ng-if="!inputDisabled">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
@@ -288,9 +288,9 @@
                                 <th ng-class="css_th_2">{{'ROOM_NO'|translate}}</th>
                                 <th ng-class="css_th_3">{{'BUILDING_NAME'|translate}}</th>
                                 <th ng-class="css_th_4">{{'AREA_METER'|translate}}</th>
-                                <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th>
-                                <th ng-class="css_th_6">{{'SUB_COLL_OWNER'|translate}}</th>
-                                <th ng-class="css_th_7" ng-if="!inputDisabled"></th>
+                                <!-- <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th> -->
+                                <th ng-class="css_th_5">{{'SUB_COLL_OWNER'|translate}}</th>
+                                <th ng-class="css_th_6" ng-if="!inputDisabled"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -299,7 +299,7 @@
                                 <td>{{subcol.ROOM_NO}}</td>
                                 <td>{{subcol.BUILDING_NAME}}</td>
                                 <td>{{subcol.AREA_METER | number:2}}</td>
-                                <td class="text-right">{{subcol.QUANTITY}}</td>
+                                <!-- <td class="text-right">{{subcol.QUANTITY}}</td> -->
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
                                 <td class="center" ng-if="!inputDisabled">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
@@ -321,9 +321,9 @@
                                 <th ng-class="css_th_2">{{'OTHERS_COL'|translate}}</th>
                                 <th ng-class="css_th_3">{{'APPR_CUR_NET_TOTAL'|translate}}</th>
                                 <th ng-class="css_th_4">{{'OTHERS_PRICE_PAWN'|translate}}</th>
-                                <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th>
-                                <th ng-class="css_th_6">{{'SUB_COLL_OWNER'|translate}}</th>
-                                <th ng-class="css_th_7" ng-if="!inputDisabled"></th>
+                                <!-- <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th> -->
+                                <th ng-class="css_th_5">{{'SUB_COLL_OWNER'|translate}}</th>
+                                <th ng-class="css_th_6" ng-if="!inputDisabled"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -332,7 +332,7 @@
                                 <td>{{subcol.OTHERS_COL}}</td>
                                 <td>{{subcol.APPR_CUR_NET_TOTAL | number:2}}</td>
                                 <td>{{subcol.OTHERS_PRICE_PAWN | number:2}}</td>
-                                <td class="text-right">{{subcol.QUANTITY}}</td>
+                                <!-- <td class="text-right">{{subcol.QUANTITY}}</td> -->
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
                                 <td class="center" ng-if="!inputDisabled">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
