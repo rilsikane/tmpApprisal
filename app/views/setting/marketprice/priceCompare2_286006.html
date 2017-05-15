@@ -1,273 +1,287 @@
-﻿
-<div class="table-responsive">
+﻿<div class="table-responsive">
     <table class="table table-bordered table-hover">
         <thead>
             <tr class="bg-light-azure">
                 <th class="col-md-1 text-right"><span class="text-white">{{'DETAIL'|translate}}</span></th>
                 <th ng-if="jobMarketPrice.length==0"></th>
                 <th class="col-md-1" ng-show="market.DISPLAY" ng-class="dataSetCol" ng-repeat="market in jobMarketPrice">
-                        <span ng-if="market.MARKETPRICE_SET==0" class="text-white">{{'DATA_SET_0'|translate}}</span>
-                        <span ng-if="market.MARKETPRICE_SET==1" class="text-white">{{'DATA_SET_1'|translate}}</span>
-                        <span ng-if="market.MARKETPRICE_SET==2" class="text-white">{{'DATA_SET_2'|translate}}</span>
-                        <span ng-if="market.MARKETPRICE_SET==3" class="text-white">{{'DATA_SET_3'|translate}}</span>
-                        <span ng-if="market.MARKETPRICE_SET==4" class="text-white">{{'DATA_SET_4'|translate}}</span>
-                        <span ng-if="market.MARKETPRICE_SET==5" class="text-white">{{'DATA_SET_5'|translate}}</span>
-                        <span class="pull-right">
-                            <a ng-if="market.MARKETPRICE_SET>0 && dataMode==1" ng-click="selectMarketPrice($index,market)" tooltip="{{'SELECT_MARKET_PRICE'|translate}}"><span class="text-white"><i class="fa fa-search"></i></span></a>
-                            <a ng-if="dataMode==1" ng-click="deleteJobMarketPrice($index,market)" tooltip="{{'DELETE_MARKET_PRICE'|translate}}"><span class="text-white"><i class="fa fa-remove"></i></span></a>
-                            <a ng-if="dataMode==1" ng-click="editJobMarketPrice($index,market)" tooltip="{{'EDIT'|translate}}"><span class="text-white"><i class="fa fa-pencil"></i></span></a>
-                        </span>
+                    <span ng-if="market.MARKETPRICE_SET==0" class="text-white">{{'DATA_SET_0'|translate}}</span>
+                    <span ng-if="market.MARKETPRICE_SET==1" class="text-white">{{'DATA_SET_1'|translate}}</span>
+                    <span ng-if="market.MARKETPRICE_SET==2" class="text-white">{{'DATA_SET_2'|translate}}</span>
+                    <span ng-if="market.MARKETPRICE_SET==3" class="text-white">{{'DATA_SET_3'|translate}}</span>
+                    <span ng-if="market.MARKETPRICE_SET==4" class="text-white">{{'DATA_SET_4'|translate}}</span>
+                    <span ng-if="market.MARKETPRICE_SET==5" class="text-white">{{'DATA_SET_5'|translate}}</span>
+                    <span class="pull-right">
+                        <a ng-if="market.MARKETPRICE_SET>0 && dataMode==1" ng-click="selectMarketPrice($index,market)" tooltip="{{'SELECT_MARKET_PRICE'|translate}}"><span class="text-white"><i class="fa fa-search"></i></span></a>
+                        <a ng-if="dataMode==1" ng-click="deleteJobMarketPrice($index,market)" tooltip="{{'DELETE_MARKET_PRICE'|translate}}"><span class="text-white"><i class="fa fa-remove"></i></span></a>
+                        <a ng-if="dataMode==1" ng-click="editJobMarketPrice($index,market)" tooltip="{{'EDIT'|translate}}"><span class="text-white"><i class="fa fa-pencil"></i></span></a>
+                    </span>
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="text-right">{{'PICTURE'|translate}}</td>
+                <td class="text-right">ประเภทหลักประกัน</td>
                 <td ng-if="jobMarketPrice.length==0"></td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
-                    <img ng-if="market.JMP_RUNNING_ID>0" ng-src="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE/{{random}}" width="100%" height="150px" />
-                </td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'TEMPLATE_TYPE'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.TEMPLATE_TYPE.CODE_MINOR_NAME}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'HEAD_COL_TYPE'|translate}}</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.HEAD_COL_TYPE_ID.NAME}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'HEAD_COL_SUB_TYPE'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.HEAD_COL_SUB_TYPE_ID.NAME}}</td>
+                <td class="text-right">ภาพถ่ายแสดงข้อมูลราคาตลาด</td>
+                <td ng-if="jobMarketPrice.length==0"></td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
+                    <a ng-if="market.JMP_RUNNING_ID>0" href="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE/{{random}}" target="_blank" tooltip="{{'VIEW_LARGE_IMAGE'|translate}}"><img ng-src="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE/{{random}}" width="150" height="150" /></a>
+                </td>
             </tr>
             <tr>
-                <td class="text-right">{{'DOC_CERT_TYPE'|translate}}</td>
+                <td class="text-right">ประเภทเอกสารสิทธิ์</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.DOC_CERT_TYPE.NAME}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'AREA_LAND'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.AREA_LAND}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'PROPERTY_NAME'|translate}}</td>
+                <td class="text-right">ชื่อโครงการ</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_NAME}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'PROPERTY_FLOOR'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_FLOOR}}</td>
+                <td class="text-right">เนื้อที่ดินประมาณ</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.AREA_LAND}},{{market.AREA_LAND_RAI}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'ADD_NO'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.ADD_NO}}</td>
+                <td class="text-right">ทำเล/ที่ตั้ง</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.ADD_NO}},{{market.ADD_MOOBAAN}},{{market.ADD_SOI}},{{market.ADD_ROAD}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'ADD_MOO'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.ADD_MOO}}</td>
+                <td class="text-right">ระยะทางเข้าซอย (ม.)</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.MAINROAD_DISTANCE}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'ADD_ROAD'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.ADD_ROAD}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'ADD_SOI'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.ADD_SOI}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'COUNTRY'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.ADD_COUNTRY.NAME_THAI}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'PROVINCE'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.ADD_PROVINCE.PROV_NAME}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'DISTRICT'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.ADD_CITY.CITY}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'SUBDISTRICT'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.ADD_DISTRICT.DISTRICT}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'LATITUDE'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.LATITUDE}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'LONGITUDE'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.LONGITUDE}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'AREA_USE'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.AREA_USE}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'PROPERTY_FLOOR_MAX'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_FLOOR_MAX}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'PROPERTY_SIZE'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_SIZE}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'PROPERTY_AGE'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_AGE}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'PROPERTY_ROAD'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_ROAD}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'ROAD_TYPE'|translate}}</td>
+                <td class="text-right">การคมนาคม/สภาพ</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.ROAD_TYPE.NAME}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'ROAD_SIZE'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.ROAD_SIZE}}</td>
+                <td class="text-right">ขนาดเส้นทางคมนาคม (ม.), เขตทาง (ม.)</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.ROAD_SIZE}},{{market.RIGHT_OF_WAY}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'PROPERTY_USAGE'|translate}}</td>
+                <td class="text-right">การใช้ประโยชน์ของที่ดิน</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_USAGE.NAME}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'PUBLIC_UTILITY'|translate}}</td>
+                <td class="text-right">ลักษณะการใช้ประโยชน์ปัจจุบัน</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" ng-model="formData.PROPERTY_USAGE_PRESENT1" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label>
+                            อยู่อาศัย
+                        </label>
+                    </div>
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" ng-model="formData.PROPERTY_USAGE_PRESENT2" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label>
+                            ปล่อยเช่า
+                        </label>
+                    </div>
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" ng-model="formData.PROPERTY_USAGE_PRESENT3" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label>
+                            ปล่อยว่างไม่ได้ใช้ประโยชน์
+                        </label>
+                    </div>
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" ng-model="formData.PROPERTY_USAGE_PRESENT4" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label>
+                            ทิ้งร้างขาดการดูแลรักษา
+                        </label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">สาธารณูปโภคผ่าน</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" ng-model="market.PROPERTY_INFRA_ELEC">
                         <label>
-                            {{'ELECTRICITY'|translate}}
+                            ไฟฟ้า
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" ng-model="market.PROPERTY_INFRA_WATER">
                         <label>
-                            {{'WATER_SUPPLY'|translate}}
+                            ประปา
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" ng-model="market.PROPERTY_INFRA_PHONE">
                         <label>
-                            {{'DRAIN'|translate}}
+                            โทรศัพท์
+                        </label>
+                    </div>
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" ng-model="market.PROPERTY_INFRA_PIPE">
+                        <label>
+                            ท่อระบายน้ำ
                         </label>
                     </div>
                 </td>
             </tr>
             <tr>
-                <td class="text-right">{{'PROPERTY_ENVIRONMENT'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_ENVIRONMENT.NAME}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'PROPERTY_SHAPE'|translate}}</td>
+                <td class="text-right">ลักษณะรูปแปลงที่ดิน</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_SHAPE.NAME}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'PROPERTY_WIDTH'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_WIDTH}}</td>
+                <td class="text-right">ขนาดหน้ากว้าง / ลึกของที่ดินประมาณ (ม.)</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_WIDTH}},{{market.PROPERTY_COVER_LEVEL}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'PROPERTY_LANDSCAPE'|translate}}</td>
+                <td class="text-right">ลักษณะทางกายภาพ และสภาพที่ดิน</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_LANDSCAPE.NAME}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'FACILITIES'|translate}}</td>
+                <td class="text-right">ขนาดอาคารประมาณ</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_SIZE}}</td>
+            </tr>
+            <tr>
+                <td class="text-right">พื้นที่ใช้สอยประมาณ (ตร.ม.)</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_AREA_USE}}</td>
+            </tr>
+            <tr>
+                <td class="text-right">อายุอาคาร</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_AGE}}</td>
+            </tr>
+            <tr>
+                <td class="text-right">การจัดพื้นที่ใช้สอย</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" ng-model="formData.PROPERTY_LAYOUT1" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label>
+                            ห้องโถง
+                        </label>
+                    </div>
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" ng-model="formData.PROPERTY_LAYOUT2" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label>
+                            ห้องนอน
+                        </label>
+                    </div>
+                    <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" ng-model="formData.PROPERTY_LAYOUT3" ng-true-value="'Y'" ng-false-value="'N'">
+                        <label>
+                            ห้องน้ำ
+                        </label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">สิ่งอำนวยความสะดวก</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" ng-readonly="true" ng-model="market.PROPERTY_FACILITY_1">
                         <label>
-                            {{'CLUB'|translate}}
+                            สโมสร
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" ng-readonly="true" ng-model="market.PROPERTY_FACILITY_2">
                         <label>
-                            {{'PLAYGROUND'|translate}}
+                            สนามกีฬา
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" ng-readonly="true" ng-model="market.PROPERTY_FACILITY_3">
                         <label>
-                            {{'GARDEN'|translate}}
+                            สวนหย่อม
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" ng-model="market.PROPERTY_FACILITY_4">
                         <label>
-                            {{'SWIMMING_POOL'|translate}}
+                            สระว่ายน้ำ
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" ng-model="market.PROPERTY_FACILITY_5">
                         <label>
-                            {{'SECURITY_GUARD'|translate}}
+                            รปภ.
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
                         <input type="checkbox" ng-model="market.PROPERTY_FACILITY_6">
                         <label>
-                            {{'FITNESS'|translate}}
+                            ฟิตเนส
                         </label>
                     </div>
                     <div>
                         <div class="checkbox clip-check check-primary">
                             <input type="checkbox" ng-model="market.PROPERTY_FACILITY_7">
                             <label>
-                                {{'OTHER'|translate}}
+                                อื่นๆ
                             </label>
                         </div>
                         <span>{{market.PROPERTY_FACILITY_OTHER}}</span>
                     </div>
                 </td>
-            </tr>
+            </tr>            
             <tr>
-                <td class="text-right">{{'POTENTIAL'|translate}}</td>
+                <td class="text-right">ศักยภาพ</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
-                    <span ng-if="market.PROPERTY_POTEN=='G'">{{'HEIGHT'|translate}}</span>
-                    <span ng-if="market.PROPERTY_POTEN=='M'">{{'MEDIUM'|translate}}</span>
-                    <span ng-if="market.PROPERTY_POTEN=='L'">{{'LOW'|translate}}</span>
+                    <span ng-if="market.PROPERTY_POTEN=='G'">ศักยภาพดี</span>
+                    <span ng-if="market.PROPERTY_POTEN=='M'">ศักยภาพปานกลาง</span>
+                    <span ng-if="market.PROPERTY_POTEN=='L'">ศักยภาพต่ำ</span>
                 </td>
             </tr>
-            <!--<tr>
-                <td class="text-right">{{'POTENTIAL'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_POTEN_NAME}}</td>
-            </tr>-->
             <tr>
-                <td class="text-right">{{'INTERIOR_LEVEL'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.INTERIOR_LEVEL_NAME}}</td>
+                <td class="text-right">ข้อบังคับทางกฏหมาย</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.AREA_PROVINCE.PROV_NAME}},{{market.AREA_COLOR.NAME}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'MAINTAIN_LEVEL'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.MAINTAIN_LEVEL_NAME}}</td>
+                <td class="text-right">สภาพคล่อง</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_SELL.NAME}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'PROPERTY_SELL'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_SELL_NAME}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'AREA_COLOR'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.AREA_COLOR.NAME}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'PRICE_SELL'|translate}}</td>
+                <td class="text-right">ราคาเสนอขาย (บาท/ตร.ว.)</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PRICE_SELL|number:2}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'INFO_STATUS'|translate}}</td>
+                <td class="text-right">ราคาเช่า</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PRICE_RENT}}</td>
+            </tr>
+            <tr>
+                <td class="text-right">เงื่อนไขการขาย</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
+                    <div class="radio clip-radio radio-primary">
+                        <input type="radio" ng-value="0" ng-model="formData.SALE_CONDITION" />
+                        <label>ต่อรองได้</label>
+                    </div>
+                    <div class="radio clip-radio radio-primary">
+                        <input type="radio" ng-value="1" ng-model="formData.SALE_CONDITION" />
+                        <label>ต่อรองไม่ได้</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">สถานะ</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.INFO_STATUS.NAME}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'INFO_MONTHYEAR'|translate}}</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.INFO_MONTHYEAR}}</td>
-            </tr>
-            <tr>
-                <td class="text-right">{{'INFO_MONTHYEAR_LAST'|translate}}</td>
+                <td class="text-right">วันที่ทราบข้อมูลครั้งก่อน</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.INFO_MONTHYEAR_LAST}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'INFO_FROM_CHOOSE'|translate}}</td>
+                <td class="text-right">แหล่งที่มาของข้อมูล</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.INFO_FROM_CHOOSE.NAME}}</td>
             </tr>
             <tr>
-                <td class="text-right">{{'REMARK'|translate}}</td>
+                <td class="text-right">หมายเลขโทรศัพท์ติดต่อ</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.REFERENCE_TEL}}</td>
+            </tr>
+            <tr>
+                <td class="text-right">หมายเหตุ</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.REMARK}}</td>
+            </tr>
+            <tr>
+                <td class="text-right">ภาพถ่ายแสดงข้อมูลอื่นๆ</td>
+                <td ng-if="jobMarketPrice.length==0"></td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
+                    <a ng-if="market.JMP_RUNNING_ID>0" href="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE_SIGN/{{random}}" target="_blank" tooltip="{{'VIEW_LARGE_IMAGE'|translate}}"><img ng-src="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE_SIGN/{{random}}" width="150" height="150" /></a>
+                </td>
             </tr>
         </tbody>
     </table>

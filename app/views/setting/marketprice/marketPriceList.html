@@ -13,13 +13,119 @@
             </ul>
         </div>
         <div class="panel-body border-light">
+            <div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label class="control-label" for="HEAD_COL_TYPE_ID">
+                            {{'HEAD_COL_TYPE'|translate}}
+                        </label>
+                        <div>
+                            <ui-select theme="selectize" ng-model="myFilter.HEAD_COL_TYPE" id="HEAD_COL_TYPE_ID" name="HEAD_COL_TYPE_ID" on-select="onHeadColTypeChange($item)">
+                                <ui-select-match>
+                                    {{$select.selected.NAME}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in headColType | filter: $select.search">
+                                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="control-label" for="HEAD_COL_SUB_TYPE">
+                            {{'HEAD_COL_SUB_TYPE'|translate}}
+                        </label>
+                        <div>
+                            <ui-select theme="selectize" ng-model="myFilter.SUB_COL_TYPE" id="HEAD_COL_SUB_TYPE" name="HEAD_COL_SUB_TYPE">
+                                <ui-select-match>
+                                    {{$select.selected.NAME}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in headColSubType | filter: $select.search">
+                                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="control-label" for="FROM_AGE">
+                            อายุข้อมูล
+                        </label>
+                        <div>
+                            <input type="number" class="form-control" min="0" ng-model="myFilter.FROM_AGE" id="FROM_AGE" name="FROM_AGE" />
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="control-label" for="THRU_AGE">
+                            ถึง
+                        </label>
+                        <div>
+                            <input type="number" class="form-control" min="0" ng-model="myFilter.THRU_AGE" id="THRU_AGE" name="THRU_AGE" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label class="control-label" for="PROVINCE">
+                            จังหวัด
+                        </label>
+                        <div>
+                            <ui-select theme="selectize" ng-model="myFilter.PROVINCE" id="PROVINCE" name="PROVINCE" on-select="getDistrict($item)">
+                                <ui-select-match>
+                                    {{$select.selected.PROV_NAME}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in selectProvince | filter: $select.search">
+                                    <div ng-bind-html="item.PROV_NAME | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="control-label" for="DISTRICT">
+                            อำเภอ
+                        </label>
+                        <div>
+                            <ui-select theme="selectize" ng-model="myFilter.DISTRICT" id="DISTRICT" name="DISTRICT" on-select="getSubDistrict($item)">
+                                <ui-select-match>
+                                    {{$select.selected.CITY}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in selectDistrict | filter: $select.search">
+                                    <div ng-bind-html="item.CITY | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="control-label" for="SUBDISTRUCT">
+                            ตำบล
+                        </label>
+                        <div>
+                            <ui-select theme="selectize" ng-model="myFilter.SUBDISTRICT">
+                                <ui-select-match>
+                                    {{$select.selected.DISTRICT}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in selectSubDistrict | filter: $select.search">
+                                    <div ng-bind-html="item.DISTRICT | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <div style="position:absolute;bottom:-55px;">
+                            <button type="button" class="btn btn-o btn-primary" ng-click="onSearchClick()">
+                                ค้นหา
+                            </button>
+                            <button type="button" class="btn btn-o btn-primary" ng-click="onResetSearch()">
+                                ล้างเงื่อนไขการค้นหา
+                            </button>      
+                        </div>                                                    
+                    </div>
+                </div>
+            </div>
             <div class="col-md-12">
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th class="col-sm-2">{{'HEAD_COL_TYPE'|translate}}</th>
                             <th class="col-sm-2">{{'HEAD_COL_SUB_TYPE'|translate}}</th>
-                            <!--<th class="col-sm-3">{{'DOC_CERT_TYPE'|translate}}</th>-->
                             <th class="col-sm-1">{{'PROVINCE'|translate}}</th>
                             <th class="col-sm-2">{{'DISTRICT'|translate}}</th>
                             <th class="col-sm-2">{{'SUBDISTRICT'|translate}}</th>
@@ -31,7 +137,6 @@
                         <tr ng-repeat="item in marketprices">
                             <td>{{item.HEAD_COL_TYPE_ID_NAME}}</td>
                             <td>{{item.HEAD_COL_SUB_TYPE_ID_NAME}}</td>
-                            <!--<td>{{item.DOC_CERT_TYPE_NAME}}</td>-->
                             <td>{{item.ADD_PROVINCE_NAME}}</td>
                             <td>{{item.ADD_CITY_NAME}}</td>
                             <td>{{item.ADD_DISTRICT_NAME}}</td>
@@ -40,9 +145,8 @@
                         </tr>
                     </tbody>
                 </table>
-                <pager total-items="marketPriceTotalItems" ng-model="marketPriceCurrentPage" ng-change="getMarketPrice()"></pager>
+                <pagination boundary-links="true" items-per-page="app.itemsPerPage" ng-change="pageChanged()" max-size="5" total-items="marketPriceTotalItems" ng-model="marketPriceCurrentPage" class="pagination-sm  no-padding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
             </div>
         </div>
     </div>
-
 </div>

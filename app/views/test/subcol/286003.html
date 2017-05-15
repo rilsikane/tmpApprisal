@@ -29,7 +29,7 @@
                 <span class="error text-small block" ng-if="form.LAND_NO.$dirty && form.LAND_NO.$invalid">{{requireNotificationPrefix}} {{'LAND_NO'|translate}}</span>
             </div>
         </div>
-        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='02'))" class="form-group" ng-class="{'has-error':form.AIRIAL_PHOTO_NO.$dirty && form.AIRIAL_PHOTO_NO.$invalid, 'has-success':form.AIRIAL_PHOTO_NO.$dirty && form.AIRIAL_PHOTO_NO.$valid}">
+        <div ng-if="isAppraiser" ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='02'))" class="form-group" ng-class="{'has-error':form.AIRIAL_PHOTO_NO.$dirty && form.AIRIAL_PHOTO_NO.$invalid, 'has-success':form.AIRIAL_PHOTO_NO.$dirty && form.AIRIAL_PHOTO_NO.$valid}">
             <label class="col-sm-4 control-label" for="AIRIAL_PHOTO_NO">
                 {{'AIRIAL_PHOTO_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
             </label>
@@ -38,7 +38,7 @@
                 <span class="error text-small block" ng-if="form.AIRIAL_PHOTO_NO.$dirty && form.AIRIAL_PHOTO_NO.$invalid">{{requireNotificationPrefix}} {{'AIRIAL_PHOTO_NO'|translate}}</span>
             </div>
         </div>
-        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='02'))" class="form-group" ng-class="{'has-error':form.AIRIAL_SHEET_NO.$dirty && form.AIRIAL_SHEET_NO.$invalid, 'has-success':form.AIRIAL_SHEET_NO.$dirty && form.AIRIAL_SHEET_NO.$valid}">
+        <div ng-if="isAppraiser" ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='02'))" class="form-group" ng-class="{'has-error':form.AIRIAL_SHEET_NO.$dirty && form.AIRIAL_SHEET_NO.$invalid, 'has-success':form.AIRIAL_SHEET_NO.$dirty && form.AIRIAL_SHEET_NO.$valid}">
             <label class="col-sm-4 control-label" for="AIRIAL_SHEET_NO">
                 {{'AIRIAL_SHEET_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
             </label>
@@ -47,7 +47,7 @@
                 <span class="error text-small block" ng-if="form.AIRIAL_SHEET_NO.$dirty && form.AIRIAL_SHEET_NO.$invalid">{{requireNotificationPrefix}} {{'AIRIAL_SHEET_NO'|translate}}</span>
             </div>
         </div>
-        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='02'))" class="form-group" ng-class="{'has-error':form.AIRIAL_CODE_NO.$dirty && form.AIRIAL_CODE_NO.$invalid, 'has-success':form.AIRIAL_CODE_NO.$dirty && form.AIRIAL_CODE_NO.$valid}">
+        <div ng-if="isAppraiser" ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='02'))" class="form-group" ng-class="{'has-error':form.AIRIAL_CODE_NO.$dirty && form.AIRIAL_CODE_NO.$invalid, 'has-success':form.AIRIAL_CODE_NO.$dirty && form.AIRIAL_CODE_NO.$valid}">
             <label class="col-sm-4 control-label" for="AIRIAL_CODE_NO">
                 {{'AIRIAL_CODE_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
             </label>
@@ -56,7 +56,7 @@
                 <span class="error text-small block" ng-if="form.AIRIAL_CODE_NO.$dirty && form.AIRIAL_CODE_NO.$invalid">{{requireNotificationPrefix}} {{'AIRIAL_CODE_NO'|translate}}</span>
             </div>
         </div>
-        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='03'))" class="form-group" ng-class="{'has-error':form.SCHOLAR_NO.$dirty && form.SCHOLAR_NO.$invalid, 'has-success':form.SCHOLAR_NO.$dirty && form.SCHOLAR_NO.$valid}">
+        <div ng-if="isAppraiser" ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='03'))" class="form-group" ng-class="{'has-error':form.SCHOLAR_NO.$dirty && form.SCHOLAR_NO.$invalid, 'has-success':form.SCHOLAR_NO.$dirty && form.SCHOLAR_NO.$valid}">
             <label class="col-sm-4 control-label" for="SCHOLAR_NO">
                 {{'SCHOLAR_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
             </label>
@@ -74,7 +74,7 @@
                 <span class="error text-small block" ng-if="form.SURVEY_NO.$dirty && form.SURVEY_NO.$invalid">{{requireNotificationPrefix}} {{'SURVEY_NO'|translate}}</span>
             </div>
         </div>
-        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.BOOK_NO.$dirty && form.BOOK_NO.$invalid, 'has-success':form.BOOK_NO.$dirty && form.BOOK_NO.$valid}">
+        <div ng-if="isAppraiser" ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.BOOK_NO.$dirty && form.BOOK_NO.$invalid, 'has-success':form.BOOK_NO.$dirty && form.BOOK_NO.$valid}">
             <label class="col-sm-4 control-label" for="BOOK_NO">
                 {{'BOOK_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
             </label>
@@ -83,7 +83,7 @@
                 <span class="error text-small block" ng-if="form.BOOK_NO.$dirty && form.BOOK_NO.$invalid">{{requireNotificationPrefix}} {{'BOOK_NO'|translate}}</span>
             </div>
         </div>
-        <div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.PAGE_NO.$dirty && form.PAGE_NO.$invalid, 'has-success':form.PAGE_NO.$dirty && form.PAGE_NO.$valid}">
+        <div ng-if="isAppraiser" ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.PAGE_NO.$dirty && form.PAGE_NO.$invalid, 'has-success':form.PAGE_NO.$dirty && form.PAGE_NO.$valid}">
             <label class="col-sm-4 control-label" for="PAGE_NO">
                 {{'PAGE_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
             </label>
@@ -124,7 +124,7 @@
                 <input format readonly type="text" step="1" class="form-control" id="AREA_WA" name="AREA_WA" ng-model="formData.AREA_WA" decimal="1">
             </div>
         </div>
-        <div class="form-group">
+        <div ng-if="isAppraiser" class="form-group">
             <label class="col-sm-4 control-label" for="SURVEY_APPR_DATE">
                 {{'SURVEY_APPR_DATE'|translate}}
             </label>
@@ -132,7 +132,7 @@
                 <input datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.SURVEY_APPR_DATE" ng-click="openDatePicker($event,'SURVEY_APPR_DATE')" type="text" class="form-control" ng-model="formData.SURVEY_APPR_DATE" />
             </div>
         </div>
-        <div class="form-group">
+        <div ng-if="isAppraiser" class="form-group">
             <label class="col-sm-4 control-label" for="PROPERTY_SHAPE">
                 {{'PROPERTY_SHAPE'|translate}}
             </label>
@@ -155,7 +155,7 @@
                 <input type="text" maxlength="1000" class="form-control" ng-model="formData.PROPERTY_OTHER_REMARK" />
             </div>
         </div>
-        <div class="form-group">
+        <div ng-if="isAppraiser" class="form-group">
             <label class="col-sm-4 control-label">
                 {{'WIDTH_SHAPE'|translate}}
             </label>
@@ -163,7 +163,7 @@
                 <input type="text" format maxlength="24" min="0" class="form-control" ng-model="formData.WIDTH_SHAPE" />
             </div>
         </div>
-        <div class="form-group">
+        <div ng-if="isAppraiser" class="form-group">
             <label class="col-sm-4 control-label">
                 {{'DEEP_SHAPE'|translate}}
             </label>
@@ -171,7 +171,7 @@
                 <input type="text" format maxlength="24" min="0" class="form-control" ng-model="formData.DEEP_SHAPE" />
             </div>
         </div>
-        <div class="form-group">
+        <div ng-if="isAppraiser" class="form-group">
             <label class="col-sm-4 control-label">
                 {{'LAND_ENVIRONMENT'|translate}}
             </label>
@@ -186,7 +186,7 @@
                 </div>
             </div>
         </div>
-        <fieldset class="no-radius">
+        <fieldset ng-if="isAppraiser" class="no-radius">
             <legend>ราคา</legend>
             <div class="form-group">
                 <label class="col-sm-4 control-label">
@@ -283,7 +283,7 @@
         </div>
     </div>
 </div>
-<div class="panel panel-white" ng-if="isAppriaiser">
+<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ระยะกว้างยาว โดยประมาณ และเขตติดต่อ</h5>
     </div>
@@ -399,7 +399,7 @@
         </fieldset>
     </div>
 </div>
-<div class="panel panel-white" ng-if="isAppriaiser">
+<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">สภาพที่ดิน</h5>
     </div>
@@ -522,7 +522,7 @@
         </div>
     </div>
 </div>
-<div class="panel panel-white" ng-if="isAppriaiser">
+<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ทำเล</h5>
     </div>
@@ -622,7 +622,7 @@
         </div>
     </div>
 </div>
-<div class="panel panel-white" ng-if="isAppriaiser">
+<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ความสะดวกในการอยู่อาศัยและใช้ประโยชน์</h5>
     </div>
@@ -988,7 +988,7 @@
         </fieldset>
     </div>
 </div>
-<div class="panel panel-white" ng-if="isAppriaiser">
+<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ข้อกฏหมายที่กระทบ</h5>
     </div>
@@ -1160,7 +1160,7 @@
     </div>
 </div>
 
-<div class="panel panel-white" ng-if="isAppriaiser">
+<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">การใช้ประโยชน์</h5>
     </div>
@@ -1235,7 +1235,7 @@
     </div>
 </div>
 
-<div class="panel panel-white" ng-if="isAppriaiser">
+<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ไม่ได้ใช้ประโยชน์</h5>
     </div>
@@ -1268,7 +1268,7 @@
     </div>
 </div>
 
-<div class="panel panel-white" ng-if="isAppriaiser">
+<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ภาระผูกพัน</h5>
     </div>
@@ -1335,7 +1335,7 @@
         </div>
     </div>
 </div>
-<div class="panel panel-white" ng-if="isAppriaiser">
+<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ศักยภาพ</h5>
     </div>
@@ -1397,7 +1397,7 @@
         </div>
     </div>
 </div>
-<div class="panel panel-white" ng-if="isAppriaiser">
+<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ภาระและสิทธิอื่นๆ</h5>
     </div>

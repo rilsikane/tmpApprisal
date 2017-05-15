@@ -3,7 +3,7 @@
         <h5 class="panel-title">สิทธิการเช่า</h5>
     </div>
     <div class="panel-body">
-        <div class="form-group">
+        <div ng-if="isAppraiser" class="form-group">
             <label class="col-sm-4 control-label" for="SURVEY_APPR_DATE">
                 {{'SURVEY_APPR_DATE'|translate}}
             </label>
@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <fieldset class="no-radius">
+        <fieldset ng-if="isAppraiser" class="no-radius">
             <legend>ราคา</legend>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="APPR_CUR_OTHER_PRICE">
@@ -41,7 +41,7 @@
         </fieldset>
 
 
-        <fieldset class="no-radius">
+        <fieldset ng-if="isAppraiser" class="no-radius">
             <legend>รายละเอียดสิทธิการเช่า</legend>
             <div class="form-group" ng-class="{'has-error':form.TRANSFER_NO.$dirty && form.TRANSFER_NO.$invalid, 'has-success':form.TRANSFER_NO.$valid}">
                 <label class="col-sm-3 control-label" for="TRANSFER_NO">
@@ -217,19 +217,18 @@
                     <input format type="text" maxlength="22" class="form-control" id="RENTAL_PRICE" name="RENTAL_PRICE" ng-model="formData.RENTAL_PRICE">
                 </div>
             </div>
-            <div class="form-group" ng-class="{'has-error':form.RENT_TYPE.$dirty && form.RENT_TYPE.$viewValue==undefined, 'has-success':form.RENT_TYPE.$viewValue!=undefined}">
-                <label class="col-sm-3 control-label">
-                    รูปแบบการเช่า <span class="symbol required"></span>
-                </label>
-                <div class="col-sm-9">
-                    <div class="radio clip-radio radio-primary" ng-repeat="item in radioRentType">
-                        <input required type="radio" name="RENT_TYPE" ng-value="item.VALUE" ng-model="formData.RENT_TYPE" id="RENT_TYPE{{item.VALUE}}" />
-                        <label for="RENT_TYPE{{item.VALUE}}">{{ item.NAME }}</label>
-                    </div>
+        </fieldset>
+        <div class="form-group" ng-class="{'has-error':form.RENT_TYPE.$dirty && form.RENT_TYPE.$viewValue==undefined, 'has-success':form.RENT_TYPE.$viewValue!=undefined}">
+            <label class="col-sm-3 control-label">
+                รูปแบบการเช่า <span class="symbol required"></span>
+            </label>
+            <div class="col-sm-9">
+                <div class="radio clip-radio radio-primary" ng-repeat="item in radioRentType">
+                    <input required type="radio" name="RENT_TYPE" ng-value="item.VALUE" ng-model="formData.RENT_TYPE" id="RENT_TYPE{{item.VALUE}}" />
+                    <label for="RENT_TYPE{{item.VALUE}}">{{ item.NAME }}</label>
                 </div>
             </div>
-        </fieldset>
-
+        </div>
     </div>
 </div>
 
@@ -240,7 +239,7 @@
     <div class="panel-body">
         <div class="form-group" ng-class="{'has-error':form.DEED_NO.$dirty && form.DEED_NO.$invalid && formData.RENT_TYPE=='L', 'has-success':form.DEED_NO.$valid && formData.RENT_TYPE=='L'}">
             <label class="col-sm-3 control-label" for="DEED_NO">
-                ตั้งอยู่บนโฉนดเลขที่ <span class="symbol required" ng-if="formData.RENT_TYPE=='L'"></span>
+                เลขที่เอกสารสิทธื <span class="symbol required" ng-if="formData.RENT_TYPE=='L'"></span>
             </label>
             <div class="col-sm-9">
                 <input ng-required="formData.RENT_TYPE=='L'" type="text" placeholder="" class="form-control" id="DEED_NO" name="DEED_NO" ng-model="formData.DEED_NO">
@@ -312,7 +311,7 @@
 
 <div ng-include="'app/views/test/subcol/000004.html'"></div>
 
-<div class="panel panel-white" ng-if="isAppriaiser">
+<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ข้อมูลสำหรับ BOT Report</h5>
     </div>

@@ -3,7 +3,7 @@
         <h5 class="panel-title">เช่าอาคาร สำนักงาน</h5>
     </div>
     <div class="panel-body">
-        <fieldset class="no-radius">
+        <fieldset ng-if="isAppraiser" class="no-radius">
             <legend>ใบอนุญาตปลูกสร้างอาคาร</legend>
             <table class="table table-bordered table-hover" id="sample-table-4">
                 <thead>
@@ -73,7 +73,7 @@
                 </div>
             </div>
         </fieldset>
-        <fieldset class="no-radius">
+        <fieldset ng-if="isAppraiser" class="no-radius">
             <legend>ข้อมูลแบบแปลนอาคารที่ใช้</legend>
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="EVALUATE_PLAN">

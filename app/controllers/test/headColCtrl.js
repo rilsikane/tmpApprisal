@@ -149,18 +149,18 @@
         });
     }
 
-    $scope.editSubCol = function (headCol, subCol) {
-        var botColForm = $filter('filter')(headCol.BOT_COL_FORM, subCol.HEAD_COL_TYPE, null, 'COL_FORM_ID')[0];
+    $scope.editSubCol = function (headCol, subCol, urlSuffix) {
+        var botColForm = $filter('filter')(headCol.BOT_COL_FORM, urlSuffix, null, 'COL_FORM_ID')[0];
 
         var IS_PROJECT = $scope.$parent.formData.JOB_TYPE;
 
-        $scope.openSubCol(headCol, botColForm, IS_PROJECT, subCol);
+        $scope.openSubCol(headCol, botColForm, IS_PROJECT, subCol, urlSuffix);
     }
 
-    $scope.deleteSubCol = function (headCol, subCol) {
+    $scope.deleteSubCol = function (headCol, subCol, urlSuffix) {
         radasoft.confirmAndSave($translate.instant('CONFIRM.DELETE'), '', function (isconfirmed) {
             if (isconfirmed) {
-                radasoft.deleteSubCol({ headCol: headCol, subCol: subCol }).then(function (response) {
+                radasoft.deleteSubCol({ headCol: headCol, subCol: subCol, urlSuffix: urlSuffix }).then(function (response) {
                     $scope.getHeadColl();
                     radasoft.success();
                 });
@@ -168,9 +168,9 @@
         });
     }
 
-    $scope.openSubCol = function (colleteral, botColForm, IS_PROJECT, data) {
+    $scope.openSubCol = function (colleteral, botColForm, IS_PROJECT, data, urlSuffix) {
         //$log.debug(data);
-        var includeTemplateUrl1 = '/app/views/test/subcol/' + botColForm.COL_FORM_ID + '.html';
+        var includeTemplateUrl1 = '/app/views/test/subcol/' + urlSuffix + '.html';
         var includeTemplateUrl2 = '/app/views/test/subcol/000000.html';
         $modal.open({
             templateUrl: '/app/views/test/subform0202.html',
@@ -264,7 +264,7 @@
 
     $scope.addSubCol = function (colleteral, botColForm) {
         var IS_PROJECT = $scope.$parent.formData.JOB_TYPE;
-        $scope.openSubCol(colleteral, botColForm, IS_PROJECT, {});
+        $scope.openSubCol(colleteral, botColForm, IS_PROJECT, {}, botColForm.COL_FORM_ID);
     }
 
     $scope.modalHeadColAction = function (args) {
@@ -379,7 +379,7 @@
                         return {
                             JOB_RUNNING_ID: colleteral.JOB_RUNNING_ID,
                             HEAD_COL_RUNNING_ID: colleteral.HEAD_COL_RUNNING_ID,
-                            HEAD_COL_TYPE_ID: NV.VALUE,
+                            TEMPLATE_TYPE: NV,
                             MARKET_COMPAIR: colleteral.MARKET_COMPAIR
                         };
                     }
@@ -479,18 +479,14 @@
         }
     }
 
-    $scope.splitSubCol = function (headCol, subCol) {
-        //radasoft.debug(headCol);
-        //radasoft.debug(subCol);
+    $scope.splitSubCol = function (headCol, subCol, urlSuffix) {
         radasoft.confirmAndSave($translate.instant('CONFIRM.SPLITSUBCOL'), '', function (isconfirmed) {
             if (isconfirmed) {
-                radasoft.splitSubCol(headCol, subCol).then(function (response) {
+                radasoft.splitSubCol(headCol, subCol, urlSuffix).then(function (response) {
                     radasoft.success();
                     $scope.getHeadColl();
                 });
             }
         });
     }
-
-    //$scope.init();
 }]);

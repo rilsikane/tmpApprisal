@@ -1,22 +1,112 @@
-﻿app.controller('marketPriceController', ['$scope', '$rootScope', '$state', '$stateParams', 'radasoft', '$modal', '$translate', function ($scope, $rootScope, $state, $stateParams, radasoft, $modal, $translate) {
+﻿app.controller('marketPriceController', ['$scope', '$rootScope', '$state', '$stateParams', 'radasoft', '$modal', '$translate', '$q', function ($scope, $rootScope, $state, $stateParams, radasoft, $modal, $translate, $q) {
     $scope.marketprices = [];
     $scope.marketPriceTotalItems = 0;
     $scope.marketPriceCurrentPage = 1;
 
-    //$scope.BOT_COL_TYPE = [
-    //    { NAME: 'ที่ดิน', VALUE: '286003' },
-    //    { NAME: 'ที่ดินพร้อมสิ่งปลูกสร้าง', VALUE: '286006' },
-    //    { NAME: 'คอนโดมิเนียม/อาคารชุด/ห้องชุด', VALUE: '286066' }
-    //];
+    $scope.myFilter = {
+        TEMPLATE_TYPE: {},
+        HEAD_COL_TYPE: {},
+        SUB_COL_TYPE: {},
+        FROM_AGE: 0,
+        THRU_AGE: 0,
+        PROVINCE: {},
+        DISTRICT: {},
+        SUBDISTRICT: {}
+    };
+
+    $scope.onResetSearch = function () {
+        $scope.myFilter = {
+            TEMPLATE_TYPE: {},
+            HEAD_COL_TYPE: {},
+            SUB_COL_TYPE: {},
+            FROM_AGE: 0,
+            THRU_AGE: 0,
+            PROVINCE: {},
+            DISTRICT: {},
+            SUBDISTRICT: {}
+        };
+    }
+
+    $scope.getProvince = function () {
+        var deffered = $q.defer();
+        radasoft.getProvince({}).then(function (response) {
+            $scope.selectProvince = response.data;
+            deffered.resolve();
+        });
+        return deffered.promise;
+    }
+    $scope.getDistrict = function (item) {
+        var deffered = $q.defer();
+        radasoft.getDistrict({ PROVINCE_ID: item.PROV_ID }).then(function (response) {
+            $scope.selectDistrict = response.data;
+            deffered.resolve();
+        });
+        return deffered.promise;
+    }
+    $scope.getSubDistrict = function (item) {
+        var deffered = $q.defer();
+        radasoft.getSubDistrict({ PROVINCE_ID: item.PROVINCE_ID, DISTRICT_ID: item.CITY_ID }).then(function (response) {
+            $scope.selectSubDistrict = response.data;
+        });
+        return deffered.promise;
+    }
+
+    $scope.onSearchClick = function () {
+        $scope.getPriceMarketStocklist();
+    }
+
+    $scope.onHeadColTypeChange = function (item) {
+        $scope.myFilter.SUB_COL_TYPE = {};
+        $scope.getHeadColSubType(item);
+    }
+    $scope.getHeadColType = function () {
+        var deferred = $q.defer();
+        if ($rootScope.headColType == undefined) {
+            radasoft.getHeadColType({}).then(function (response) {
+                $rootScope.headColType = response.data;
+
+                $scope.headColType = $rootScope.headColType;
+            }).finally(function () {
+                deferred.resolve();
+            });
+        } else {
+            deferred.resolve();
+        }
+        return deferred.promise;
+    }
+
+    $scope.getHeadColSubType = function (headColType) {
+        var deferred = $q.defer();
+        radasoft.getHeadColSubType({ MAIN_CODE: headColType.VALUE }).then(function (response) {
+            $scope.headColSubType = response.data;
+        }).finally(function () {
+            deferred.resolve();
+        });
+
+        return deferred.promise;
+    }
 
     $scope.getPriceMarketStocklist = function () {
         radasoft.getPriceMarketStocklist({
             limit: $rootScope.app.itemsPerPage,
             page: $scope.marketPriceCurrentPage,
-            filters: []
+            filters: [
+                { NAME: 'TEMPLATE_TYPE', VALUE: $scope.myFilter.TEMPLATE_TYPE.VALUE || '' },
+                { NAME: 'HEAD_COL_TYPE', VALUE: $scope.myFilter.HEAD_COL_TYPE.VALUE || '' },
+                { NAME: 'SUB_COL_TYPE', VALUE: $scope.myFilter.SUB_COL_TYPE.VALUE || '' },
+                { NAME: 'FROM_AGE', VALUE: $scope.myFilter.FROM_AGE || 0 },
+                { NAME: 'THRU_AGE', VALUE: $scope.myFilter.THRU_AGE || 0 },
+                { NAME: 'PROVINCE', VALUE: $scope.myFilter.PROVINCE.PROV_ID || '' },
+                { NAME: 'DISTRICT', VALUE: $scope.myFilter.DISTRICT.CITY_ID || '' },
+                { NAME: 'SUBDISTRICT', VALUE: $scope.myFilter.SUBDISTRICT.CODE || '' }
+            ]
         }).then(function (response) {
             $scope.marketprices = response.data.data;
             $scope.marketPriceTotalItems = response.data.totals;
+
+            if (response.data.data.length == 0) {
+                radasoft.alert($translate.instant('NO_DATA_FOUND'));
+            }
         });
     }
 
@@ -63,8 +153,16 @@
         });
     }
 
-    $scope.init = function () {
+    $scope.pageChanged = function () {
         $scope.getPriceMarketStocklist();
+    }
+
+    $scope.init = function () {
+        $scope.getHeadColType().then(function (response) {
+            $scope.getProvince().then(function (response) {
+                $scope.getPriceMarketStocklist();
+            });
+        });
     }
 
     $scope.init();
@@ -678,18 +776,59 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
     $scope.marketPriceTotalItems = 0;
     $scope.marketPriceCurrentPage = 1;
 
+    $scope.headColType = [];
+    $scope.headColSubType = [];
+
     $scope.myFilter = {
         TEMPLATE_TYPE: params.data.TEMPLATE_TYPE.CONDITION2,
         HEAD_COL_TYPE: {},
         SUB_COL_TYPE: {},
-        AGE: 0
+        FROM_AGE: 0,
+        THRU_AGE: 0,
+        PROVINCE: {},
+        DISTRICT: {},
+        SUBDISTRICT: {}
     };
 
-    $scope.headColType = [];
-    $scope.headColSubType = [];
+    $scope.onResetSearch = function () {
+        $scope.myFilter = {
+            TEMPLATE_TYPE: params.data.TEMPLATE_TYPE.CONDITION2,
+            HEAD_COL_TYPE: {},
+            SUB_COL_TYPE: {},
+            FROM_AGE: 0,
+            THRU_AGE: 0,
+            PROVINCE: {},
+            DISTRICT: {},
+            SUBDISTRICT: {}
+        };
+    }
 
     $scope.onSearchClick = function () {
         $scope.getMarketPrice();
+    }
+
+    $scope.getProvince = function () {
+        var deffered = $q.defer();
+        radasoft.getProvince({}).then(function (response) {
+            $scope.selectProvince = response.data;
+            deffered.resolve();
+        });
+        return deffered.promise;
+    }
+    $scope.getDistrict = function (item) {
+        var deffered = $q.defer();
+        radasoft.getDistrict({ PROVINCE_ID: item.PROV_ID }).then(function (response) {
+            $scope.selectDistrict = response.data;
+            deffered.resolve();
+        });
+        return deffered.promise;
+    }
+    $scope.getSubDistrict = function (item) {
+        var deffered = $q.defer();
+        radasoft.getSubDistrict({ PROVINCE_ID: item.PROVINCE_ID, DISTRICT_ID: item.CITY_ID }).then(function (response) {
+            $scope.selectSubDistrict = response.data;
+        });
+        return deffered.promise;
     }
 
     $scope.onHeadColTypeChange = function (item) {
@@ -730,10 +869,14 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
             limit: $rootScope.app.itemsPerPage,
             page: $scope.marketPriceCurrentPage,
             filters: [
-                { NAME: 'TEMPLATE_TYPE', VALUE: $scope.myFilter.TEMPLATE_TYPE },
+                { NAME: 'TEMPLATE_TYPE', VALUE: params.data.TEMPLATE_TYPE.CONDITION2 },
                 { NAME: 'HEAD_COL_TYPE', VALUE: $scope.myFilter.HEAD_COL_TYPE.VALUE || '' },
                 { NAME: 'SUB_COL_TYPE', VALUE: $scope.myFilter.SUB_COL_TYPE.VALUE || '' },
-                { NAME: 'AGE', VALUE: $scope.myFilter.AGE || 0 }
+                { NAME: 'FROM_AGE', VALUE: $scope.myFilter.FROM_AGE || 0 },
+                { NAME: 'THRU_AGE', VALUE: $scope.myFilter.THRU_AGE || 0 },
+                { NAME: 'PROVINCE', VALUE: $scope.myFilter.PROVINCE.PROV_ID || '' },
+                { NAME: 'DISTRICT', VALUE: $scope.myFilter.DISTRICT.CITY_ID || '' },
+                { NAME: 'SUBDISTRICT', VALUE: $scope.myFilter.SUBDISTRICT.CODE || '' }
             ]
         }).then(function (response) {
             $scope.marketprices = response.data.data;
@@ -801,9 +944,14 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
         $modalInstance.dismiss('cancel');
     };
 
+
+    $scope.pageChanged = function () {
+        $scope.getMarketPrice();
+    }
+
     $scope.init = function () {
         $scope.getHeadColType().then(function () {
-            //$scope.getMarketPrice();
+            $scope.getProvince();
         });
     }
 
@@ -908,6 +1056,7 @@ app.controller('priceCompareController', ['$scope', '$state', '$stateParams', 'r
     $scope.selectMarketPrice = function ($index, $item) {
         radasoft.openDialog({
             controller: 'marketPriceSelectionController',
+            windowClass: 'app-modal-window-80',
             resolve: {
                 params: function () {
                     return {

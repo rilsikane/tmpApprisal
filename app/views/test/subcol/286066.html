@@ -3,7 +3,7 @@
         <h5 class="panel-title">ข้อมูลห้องชุด</h5>
     </div>
     <div class="panel-body">
-        <div class="form-group">
+        <div ng-if="isAppraiser" class="form-group">
             <label class="col-sm-4 control-label" for="SURVEY_APPR_DATE">
                 {{'SURVEY_APPR_DATE'|translate}}
             </label>
@@ -43,7 +43,7 @@
                 <input type="text" maxlength="80" placeholder="" class="form-control" id="BUILDING_NAME" name="BUILDING_NAME" ng-model="formData.BUILDING_NAME">
             </div>
         </div>
-        <div class="form-group">
+        <div ng-if="isAppraiser" class="form-group">
             <label class="col-sm-4 control-label" for="CONDO_NO">
                 {{'CONDO_NO'|translate}}
             </label>
@@ -51,7 +51,7 @@
                 <input type="text" maxlength="20" placeholder="" class="form-control" id="CONDO_NO" name="CONDO_NO" ng-model="formData.CONDO_NO">
             </div>
         </div>
-        <div class="form-group">
+        <div ng-if="isAppraiser" class="form-group">
             <label class="col-sm-4 control-label" for="NO_OF_FLOOR">
                 {{'NO_OF_FLOOR'|translate}}
             </label>
@@ -83,7 +83,7 @@
                 <input usespace type="text" maxlength="24" class="form-control" id="AREA_METER" name="AREA_METER" ng-model="formData.AREA_METER">
             </div>
         </div>
-        <div class="form-group">
+        <div ng-if="isAppraiser" class="form-group">
             <label class="col-sm-4 control-label" for="BALCONY_METER">
                 {{'BALCONY_METER'|translate}}
             </label>
@@ -144,7 +144,7 @@
                 <input type="text" maxlength="100" placeholder="" class="form-control" id="DEED_DISTRICT_OLD" name="DEED_DISTRICT_OLD" ng-model="formData.DEED_DISTRICT_OLD">
             </div>
         </div>
-        <fieldset class="no-radius">
+        <fieldset ng-if="isAppraiser" class="no-radius">
             <legend>ราคา</legend>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="APPR_CUR_OTHER_PRICE">ราคาต่อตารางเมตร (บาท)</label>
@@ -179,7 +179,7 @@
         </fieldset>
     </div>
 </div>
-<div class="panel panel-white">
+<div ng-if="isAppraiser" class="panel panel-white">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ที่ตั้ง</h5>
     </div>
@@ -271,7 +271,7 @@
         </div>
     </div>
 </div>
-<!--<div class="panel panel-white" ng-if="isAppriaiser">
+<!--<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">รายละเอียดโครงการ</h5>
     </div>
@@ -294,7 +294,7 @@
         </div>
     </div>
 </div>-->
-<div class="panel panel-white" ng-if="isAppriaiser">
+<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">สภาพที่ดิน</h5>
     </div>
@@ -395,7 +395,7 @@
 
     </div>
 </div>
-<div class="panel panel-white" ng-if="isAppriaiser">
+<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ทำเล</h5>
     </div>
@@ -495,7 +495,7 @@
         </div>
     </div>
 </div>
-<div class="panel panel-white" ng-if="isAppriaiser">
+<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ความสะดวกในการอยู่อาศัยและใช้ประโยชน์</h5>
     </div>
@@ -949,14 +949,14 @@
         </fieldset>
     </div>
 </div>
-<!--<div class="panel panel-white" ng-if="isAppriaiser">
+<!--<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title"></h5>
     </div>
     <div class="panel-body">
     </div>
 </div>-->
-<div class="panel panel-white" ng-if="isAppriaiser">
+<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ภาระผูกพัน</h5>
     </div>
@@ -1023,7 +1023,7 @@
         </div>
     </div>
 </div>
-<div class="panel panel-white" ng-if="isAppriaiser">
+<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ศักยภาพ</h5>
     </div>
@@ -1085,7 +1085,7 @@
         </div>
     </div>
 </div>
-<div class="panel panel-white" ng-if="isAppriaiser">
+<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ข้อมูลสำหรับ BOT Report</h5>
     </div>

@@ -15,7 +15,7 @@
                 <th class="col-md-2"><span class="text-white">{{'CONTACT_RESULT'|translate}}</span></th>
                 <!--<th class="col-md-2 center"><span class="text-white">{{'CONFIRM_FLAG'|translate}}</span></th>-->
                 <th class="col-md-2"><span class="text-white">{{'DATE_CUST_APPOINTMENT'|translate}}</span></th>
-                <!--<th class="col-sm-1" ng-if="!inputDisabled"></th>-->
+                <th class="col-sm-1" ng-if="!inputDisabled"></th>
             </tr>
         </thead>
         <tbody>
@@ -25,12 +25,12 @@
                 <td>{{item.CONTACT_RESULT.NAME}}</td>
                 <!--<td class="center"><i ng-if="item.CONFIRM_FLAG=='Y'" class="glyphicon glyphicon-ok"></i></td>-->
                 <td>{{item.DATE_CUST_APPOINTMENT_TEXT}}</td>
-                <!--<td class="center" ng-if="!inputDisabled">
+                <td class="center" ng-if="!inputDisabled">
                     <div class="visible-md visible-lg hidden-sm hidden-xs">
                         <a href="#" ng-click="edit(item)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i class="fa fa-pencil"></i></a>
-                        <a href="#" ng-click="delete(item)" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i class="fa fa-times fa fa-white"></i></a>
+                        <!--<a href="#" ng-click="delete(item)" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i class="fa fa-times fa fa-white"></i></a>-->
                     </div>
-                </td>-->
+                </td>
             </tr>
         </tbody>
     </table>
@@ -42,15 +42,15 @@
                         {{'DATE_APPRAI_EVALUATE'|translate}}
                     </label>
                     <div class="col-md-2 no-padding">
-                        <input ng-disabled="inputDisabled" ng-model="$parent.formData.DATE_APPRAI_EVALUATE" class="form-control" id="DATE_APPRAI_EVALUATE" name="DATE_APPRAI_EVALUATE" datepicker-popup="dd/MM/yyyy" is-open="dpOpened" ng-click="dpOpened=true" />
+                        <input readonly ng-model="$parent.formData.DATE_APPRAI_EVALUATE" class="form-control" id="DATE_APPRAI_EVALUATE" name="DATE_APPRAI_EVALUATE" datepicker-popup="dd/MM/yyyy"/>
                     </div>
                 </div>
             </form>
-            <div class="pull-right">
+            <!--<div class="pull-right">
                 <button class="btn btn-primary btn-o" ng-click="submit(form)" ng-disabled="inputDisabled">
                     <i class="glyphicon glyphicon-floppy-save"></i>{{'BUTTON.SAVE'|translate}}
                 </button>
-            </div>
+            </div>-->
         </div>
     <div class="height-20"></div>
     </div>

@@ -3,7 +3,7 @@
         <h5 class="panel-title">ข้อมูลหลักทรัพย์ประเภทอื่น</h5>
     </div>
     <div class="panel-body">
-        <div class="form-group">
+        <div ng-if="isAppraiser" class="form-group">
             <label class="col-sm-4 control-label" for="SURVEY_APPR_DATE">
                 {{'SURVEY_APPR_DATE'|translate}}
             </label>
@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <div class="form-group" ng-class="{'has-error':form.APPR_CUR_NET_TOTAL.$dirty && form.APPR_CUR_NET_TOTAL.$invalid, 'has-success': form.APPR_CUR_NET_TOTAL.$valid}">
+        <div ng-if="isAppraiser" class="form-group" ng-class="{'has-error':form.APPR_CUR_NET_TOTAL.$dirty && form.APPR_CUR_NET_TOTAL.$invalid, 'has-success': form.APPR_CUR_NET_TOTAL.$valid}">
             <label class="col-sm-4 control-label" for="APPR_CUR_NET_TOTAL">
                 {{'ราคาหลักทรัพย์'|translate}}
             </label>
@@ -28,7 +28,7 @@
                 <input type="text" maxlength="300" required class="form-control" id="OTHERS_COL" name="OTHERS_COL" ng-model="formData.OTHERS_COL">
             </div>
         </div>
-        <div class="form-group" ng-class="{'has-error':form.OTHERS_PRICE_PAWN.$dirty && form.OTHERS_PRICE_PAWN.$invalid, 'has-success':form.OTHERS_PRICE_PAWN.$valid}">
+        <div ng-if="isAppraiser" class="form-group" ng-class="{'has-error':form.OTHERS_PRICE_PAWN.$dirty && form.OTHERS_PRICE_PAWN.$invalid, 'has-success':form.OTHERS_PRICE_PAWN.$valid}">
             <label class="col-sm-4 control-label" for="OTHERS_PRICE_PAWN">
                 {{'OTHERS_PRICE_PAWN'|translate}}
             </label>
@@ -36,7 +36,7 @@
                 <input count type="text" maxlength="22" class="form-control" id="OTHERS_PRICE_PAWN" name="OTHERS_PRICE_PAWN" ng-model="formData.OTHERS_PRICE_PAWN">
             </div>
         </div>
-        <div class="form-group" ng-class="{'has-error':form.OTHERS_AMOUNT.$dirty && form.OTHERS_AMOUNT.$invalid, 'has-success': form.OTHERS_AMOUNT.$valid}">
+        <div ng-if="isAppraiser" class="form-group" ng-class="{'has-error':form.OTHERS_AMOUNT.$dirty && form.OTHERS_AMOUNT.$invalid, 'has-success': form.OTHERS_AMOUNT.$valid}">
             <label class="col-sm-4 control-label" for="OTHERS_AMOUNT">
                 {{'จำนวนรายการ'|translate}}<span class="symbol required"></span>
             </label>

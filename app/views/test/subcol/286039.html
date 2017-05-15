@@ -12,7 +12,7 @@
                     <input required type="text" placeholder="" class="form-control" id="REGIS_NO" name="REGIS_NO" ng-model="formData.REGIS_NO" maxlength="30">
                 </div>
             </div>
-            <div class="form-group">
+            <div ng-if="isAppraiser" class="form-group">
                 <label class="col-sm-4 control-label" for="SURVEY_APPR_DATE">
                     {{'SURVEY_APPR_DATE'|translate}}
                 </label>
@@ -20,7 +20,7 @@
                     <input datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.SURVEY_APPR_DATE" ng-click="openDatePicker($event,'SURVEY_APPR_DATE')" type="text" class="form-control" ng-model="formData.SURVEY_APPR_DATE" />
                 </div>
             </div>
-            <div class="form-group">
+            <div ng-if="isAppraiser" class="form-group">
                 <label class="col-sm-4 control-label" for="APPR_CUR_NET_TOTAL">
                     ราคาประเมินหลักทรัพย์
                 </label>
@@ -145,7 +145,7 @@
                 </div>
             </div>
         </fieldset>
-        <div class="form-group">
+        <div ng-if="isAppraiser" class="form-group">
             <div class="col-sm-4">
                 <fieldset class="no-radius">
                     <legend>{{'AGE_STD'|translate}}</legend>
@@ -212,7 +212,7 @@
         </div>
     </div>
 </div>
-<div class="panel panel-white">
+<div ng-if="isAppraiser" class="panel panel-white">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ข้อมูลประกัน</h5>
     </div>
@@ -228,6 +228,21 @@
                         <label for="IS_INSURANCE{{item.VALUE}}">{{ item.NAME }}</label>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="INSURED_CODE">
+                {{'INSURED_CODE'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <ui-select theme="selectize" ng-model="formData.INSURED_CODE" id="INSURED_CODE" name="INSURED_CODE">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectInsuredCode | filter: $select.search">
+                        <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
             </div>
         </div>
         <div class="form-group">
@@ -260,21 +275,6 @@
             </label>
             <div ng-class="formControlCss">
                 <input type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.INSURED_EXP_DATE" ng-click="openDatePicker($event,'INSURED_EXP_DATE')" class="form-control" id="INSURED_EXP_DATE" name="INSURED_EXP_DATE" ng-model="formData.INSURED_EXP_DATE">
-            </div>
-        </div>
-        <div class="form-group">
-            <label ng-class="labelControlCss" for="INSURED_CODE">
-                {{'INSURED_CODE'|translate}}
-            </label>
-            <div ng-class="formControlCss">
-                <ui-select theme="selectize" ng-model="formData.INSURED_CODE" id="INSURED_CODE" name="INSURED_CODE">
-                    <ui-select-match placeholder="">
-                        {{$select.selected.NAME}}
-                    </ui-select-match>
-                    <ui-select-choices repeat="item in selectInsuredCode | filter: $select.search">
-                        <div ng-bind-html="item.NAME | highlight: $select.search"></div>
-                    </ui-select-choices>
-                </ui-select>
             </div>
         </div>
     </div>
