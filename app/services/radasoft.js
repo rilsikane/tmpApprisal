@@ -19,7 +19,7 @@
                 $log.debug(msg);
             }
             this.httpPost = function (action, params, httpConfig) {
-                var url = 'api/Values/' + action;
+                var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/api/Values/' + action;
                 return this.http('POST', url, params, httpConfig || {});
             }
             this.httpGet = function (action, params, httpConfig) {
@@ -27,11 +27,11 @@
                 for (var p in params) {
                     str.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p]));
                 }
-                var url = 'api/Values/' + action + (params ? '?' + str.join("&") : '');
+                var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/api/Values/' + action + (params ? '?' + str.join("&") : '');
                 return this.http('GET', url, {}, httpConfig || {});
             }
             this.httpLogout = function () {
-                var url = 'api/Account/Logout';
+                var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/api/Account/Logout';
                 return this.http('POST', url, {}, {});
             }
             this.http = function (method, url, params, httpConfig) {
@@ -80,7 +80,7 @@
 
                 var deferred = $q.defer();
 
-                var url = 'Token';
+                var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/Token';
 
                 var config = {
                     headers: {
@@ -134,7 +134,7 @@
                     $rootScope.user = response.data;
                     $rootScope.role = role;
                     $rootScope.roles = roles;
-                    $rootScope.isAppraiser = $rootScope.role.ROLE_RUNNING_ID == 13;
+                    $rootScope.isAppriaiser = $rootScope.role.ROLE_RUNNING_ID == 13;
 
                     me.getAppConfig().then(function (response) {
                         $rootScope.appConfig = response.data;
@@ -608,7 +608,7 @@
 
                 var id = params.subCol.HEAD_COL_TYPE;
 
-                var url = 'deleteSubCol_' + params.urlSuffix;
+                var url = 'deleteSubCol_' + id;
 
                 switch (id) {
                     case "286066"://คอนโดมิเนียม/อาคารชุด/ห้องชุด
@@ -775,7 +775,7 @@
 
                 params = params || {};
 
-                params.templateUrl = params.templateUrl || 'app/views/common/dialogWrapper.html';
+                params.templateUrl = params.templateUrl || '/app/views/common/dialogWrapper.html';
                 params.windowClass = params.windowClass || '';
 
                 return $modal.open({
@@ -889,7 +889,7 @@
                 return $modal.open({
                     backdrop: 'static',
                     keyboard: false,
-                    templateUrl: 'app/views/tools/uploader.html',
+                    templateUrl: '/app/views/tools/uploader.html',
                     controller: 'uploaderController',
                     size: 'lg',
                     resolve: {
@@ -1061,9 +1061,11 @@
             this.approverSaveSend = function (params) {
                 return this.httpPost('approverSaveSend', params);
             }
-            this.splitSubCol = function (headCol, subCol, urlSuffix) {
-                var url = 'splitSubCol_' + urlSuffix;
-
+            this.splitSubCol = function (headCol, subCol) {
+                this.debug(headCol);
+                this.debug(subCol);
+                var url = 'splitSubCol_' + subCol.HEAD_COL_TYPE;
+                this.debug(url);
                 return this.httpPost(url, subCol);
             }
 
