@@ -80,7 +80,8 @@
                     <table class="table table-bordered table-hover" id="sample-table-4">
                         <thead>
                             <tr class="bg-light-grey">
-                                <th ng-class="css_th_1">{{'SUB_COLL_NAME'|translate}}</th>
+                                <th ng-class="css_th_1">{{'SEQ'|translate}}</th>
+                                <th ng-class="css_th_1">{{'SUB_COL_TYPE'|translate}}</th>
                                 <th ng-class="css_th_2">{{'COL_NO'|translate}}</th>
                                 <th ng-class="css_th_3">{{'RAWANG'|translate}}</th>
                                 <th ng-class="css_th_4">{{'SUB_COLL_AREA'|translate}}</th>
@@ -91,6 +92,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="subcol in colleteral.SUB_COL_LAND">
+                                <td>{{$index + 1}}</td>
                                 <td>{{subcol.SUB_TYPE.SUB_TYPE}}</td>
                                 <td>{{subcol.COL_NO}}</td>
                                 <td>{{subcol.RAWANG}}</td>
@@ -112,7 +114,8 @@
                     <table class="table table-bordered table-hover" id="sample-table-4">
                         <thead>
                             <tr class="bg-light-grey">
-                                <th ng-class="css_th_1" ng-hide="$parent.formData.JOB_TYPE">{{'SUB_COLL_NAME'|translate}}</th>
+                                <th ng-class="css_th_1" ng-hide="$parent.formData.JOB_TYPE">{{'SEQ'|translate}}</th>
+                                <th ng-class="css_th_1" ng-hide="$parent.formData.JOB_TYPE">{{'SUB_COL_TYPE'|translate}}</th>
                                 <th ng-class="css_th_2" ng-hide="$parent.formData.JOB_TYPE">{{'SUBDISTRICT'|translate}}</th>
                                 <th ng-class="css_th_3" ng-hide="$parent.formData.JOB_TYPE">{{'PROVINCE'|translate}}</th>
                                 <th ng-class="css_th_4" ng-hide="$parent.formData.JOB_TYPE">{{'AREA_METER'|translate}}</th>
@@ -129,6 +132,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="subcol in colleteral.SUB_COL_BUILDING">
+                                <td>{{$index + 1}}</td>
                                 <td ng-hide="$parent.formData.JOB_TYPE">{{subcol.SUB_TYPE.SUB_TYPE}}</td>
                                 <td ng-hide="$parent.formData.JOB_TYPE">{{subcol.DEED_DISTRICT.DISTRICT}}</td>
                                 <td ng-hide="$parent.formData.JOB_TYPE">{{subcol.DEED_PROVINCE.PROV_NAME}}</td>
@@ -157,7 +161,8 @@
                     <table class="table table-bordered table-hover" id="sample-table-4">
                         <thead>
                             <tr class="bg-light-grey">
-                                <th ng-class="css_th_1">{{'SUB_COLL_NAME'|translate}}</th>
+                                <th ng-class="css_th_1">{{'SEQ'|translate}}</th>
+                                <th ng-class="css_th_1">{{'SUB_COL_TYPE'|translate}}</th>
                                 <th ng-class="css_th_2">{{'BRAND_NAME'|translate}}</th>
                                 <th ng-class="css_th_3">{{'REGIS_PROVINCE'|translate}}</th>
                                 <th ng-class="css_th_4">{{'LICENSE_NO'|translate}}</th>
@@ -168,6 +173,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="subcol in colleteral.SUB_COL_CAR">
+                                <td>{{$index + 1}}</td>
                                 <td>{{subcol.SUB_TYPE.SUB_TYPE}}</td>
                                 <td>{{subcol.BRAND_NAME}}</td>
                                 <td>{{subcol.REGIS_PROVINCE.PROV_NAME}}</td>
@@ -188,7 +194,8 @@
                     <table class="table table-bordered table-hover" id="sample-table-4">
                         <thead>
                             <tr class="bg-light-grey">
-                                <th ng-class="css_th_1">{{'SUB_COLL_NAME'|translate}}</th>
+                                <th ng-class="css_th_1">{{'SEQ'|translate}}</th>
+                                <th ng-class="css_th_1">{{'SUB_COL_TYPE'|translate}}</th>
                                 <th ng-class="css_th_2">{{'SHIP_NAME'|translate}}</th>
                                 <th ng-class="css_th_3">{{'REGIS_PROVINCE'|translate}}</th>
                                 <th ng-class="css_th_4">{{'MACHINE_NO'|translate}}</th>
@@ -199,6 +206,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="subcol in colleteral.SUB_COL_SHIP">
+                                <td>{{$index + 1}}</td>
                                 <td>{{subcol.SUB_TYPE.SUB_TYPE}}</td>
                                 <td>{{subcol.NAME}}</td>
                                 <td>{{subcol.REGIS_PROVINCE.PROV_NAME}}</td>
@@ -219,7 +227,8 @@
                     <table class="table table-bordered table-hover" id="sample-table-4">
                         <thead>
                             <tr class="bg-light-grey">
-                                <th ng-class="css_th_1">{{'SUB_COLL_NAME'|translate}}</th>
+                                <th ng-class="css_th_1">{{'SEQ'|translate}}</th>
+                                <th ng-class="css_th_1">{{'SUB_COL_TYPE'|translate}}</th>
                                 <th ng-class="css_th_2">{{'TRANSFER_NO'|translate}}</th>
                                 <th ng-class="css_th_3">{{'RENTAL_NO'|translate}}</th>
                                 <th ng-class="css_th_4">{{'RENT_TYPE'|translate}}</th>
@@ -230,6 +239,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="subcol in colleteral.SUB_COL_RENT">
+                                <td>{{$index + 1}}</td>
                                 <td>{{subcol.SUB_TYPE.SUB_TYPE}}</td>
                                 <td>{{subcol.TRANSFER_NO}}</td>
                                 <td>{{subcol.RENTAL_NO}}</td>
@@ -252,7 +262,8 @@
                     <table class="table table-bordered table-hover" id="sample-table-4">
                         <thead>
                             <tr class="bg-light-grey">
-                                <th ng-class="css_th_1">{{'SUB_COLL_NAME'|translate}}</th>
+                                <th ng-class="css_th_1">{{'SEQ'|translate}}</th>
+                                <th ng-class="css_th_1">{{'SUB_COL_TYPE'|translate}}</th>
                                 <th ng-class="css_th_2">{{'MACHINE_NAME'|translate}}</th>
                                 <th ng-class="css_th_3">{{'MACHINE_LOCATION'|translate}}</th>
                                 <th ng-class="css_th_4">{{'MACHINE_NO'|translate}}</th>
@@ -263,6 +274,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="subcol in colleteral.SUB_COL_MACHINE">
+                                <td>{{$index + 1}}</td>
                                 <td>{{subcol.SUB_TYPE.SUB_TYPE}}</td>
                                 <td>{{subcol.MACHINE_NAME}}</td>
                                 <td>{{subcol.MACHINE_LOCATION}}</td>
@@ -284,7 +296,8 @@
                     <table class="table table-bordered table-hover" id="sample-table-4">
                         <thead>
                             <tr class="bg-light-grey">
-                                <th ng-class="css_th_1">{{'SUB_COLL_NAME'|translate}}</th>
+                                <th ng-class="css_th_1">{{'SEQ'|translate}}</th>
+                                <th ng-class="css_th_1">{{'SUB_COL_TYPE'|translate}}</th>
                                 <th ng-class="css_th_2">{{'ROOM_NO'|translate}}</th>
                                 <th ng-class="css_th_3">{{'BUILDING_NAME'|translate}}</th>
                                 <th ng-class="css_th_4">{{'AREA_METER'|translate}}</th>
@@ -295,6 +308,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="subcol in colleteral.SUB_COL_CONDO">
+                                <td>{{$index + 1}}</td>
                                 <td>{{subcol.SUB_TYPE.SUB_TYPE}}</td>
                                 <td>{{subcol.ROOM_NO}}</td>
                                 <td>{{subcol.BUILDING_NAME}}</td>
@@ -317,7 +331,8 @@
                     <table class="table table-bordered table-hover" id="sample-table-4">
                         <thead>
                             <tr class="bg-light-grey">
-                                <th ng-class="css_th_1">{{'SUB_COLL_NAME'|translate}}</th>
+                                <th ng-class="css_th_1">{{'SEQ'|translate}}</th>
+                                <th ng-class="css_th_1">{{'SUB_COL_TYPE'|translate}}</th>
                                 <th ng-class="css_th_2">{{'OTHERS_COL'|translate}}</th>
                                 <th ng-class="css_th_3">{{'APPR_CUR_NET_TOTAL'|translate}}</th>
                                 <th ng-class="css_th_4">{{'OTHERS_PRICE_PAWN'|translate}}</th>
@@ -328,6 +343,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="subcol in colleteral.SUB_COL_OTHERS">
+                                <td>{{$index + 1}}</td>
                                 <td>{{subcol.SUB_TYPE.SUB_TYPE}}</td>
                                 <td>{{subcol.OTHERS_COL}}</td>
                                 <td>{{subcol.APPR_CUR_NET_TOTAL | number:2}}</td>

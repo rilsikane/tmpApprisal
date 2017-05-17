@@ -308,7 +308,7 @@
   "BTYP_THOUSE": "ทาวน์เฮ้าส์",
   "BTYP_HOUSESINGLE": "บ้านเดี่ยว",
   "BTYP_HOUSEDOUBLE": "บ้านแฝด",
-  "BTYP_ROW": "ตึกแถว",
+  "BTYP_ROW": "อาคารพาณิชย์",
   "BTYP_OFFICE": "อาคารสำนักงาน",
   "BTYP_FACTORY": "โรงงาน",
   "BTYP_BLD": "ตึก",
@@ -558,6 +558,7 @@
   "SUB_COLL_NAME": "ประเภท",
   "SUB_COLL_OWNER": "ผู้ถือกรรมสิทธิ์",
   "SUB_COLL_AREA": "เนื้อที่",
+  "SUB_COL_TYPE": "หลักประกันย่อย",
 
   "YES": "ใช่",
   "NO": "ไม่ใช่",
@@ -581,6 +582,7 @@
   "TOTAL_COLLETERAL": "จำนวนหลักประกัน",
 
   "COPYRIGHT": "All rights reserved",
+  "SEQ": "ลำดับ",
   "TITLE": {
     "DOCS": "Documents",
     "NEWDOC": "บันทึกใบคำขอใหม่"
