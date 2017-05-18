@@ -15,7 +15,7 @@
     $scope.iconEdit = 'fa fa-pencil';
     $scope.iconDelete = 'fa fa-times';
 
-    $scope.css_th_1 = 'col-sm-2';
+    $scope.css_th_1 = 'col-sm-1';
     $scope.css_th_2 = 'col-sm-2';
     $scope.css_th_3 = 'col-sm-2';
     $scope.css_th_4 = 'col-sm-2';
@@ -117,7 +117,7 @@
     //    };
 
     //    $modal.open({
-    //        templateUrl: '/appviews/project/_popupDevPro.html',
+    //        templateUrl: '/app/views/project/_popupDevPro.html',
     //        controller: 'projectDialogCtrl',
     //        backdrop: 'static',
     //        keyboard: false,
@@ -143,7 +143,7 @@
         };
 
         $modal.open({
-            templateUrl: '/appviews/project/_popupDevPro.html',
+            templateUrl: '/app/views/project/_popupDevPro.html',
             controller: 'devProDialogCtrl',
             backdrop: 'static',
             keyboard: false,
@@ -171,7 +171,7 @@
         };
 
         $modal.open({
-            templateUrl: '/appviews/project/_popupPhaseZone.html',
+            templateUrl: '/app/views/project/_popupPhaseZone.html',
             controller: 'phaseZoneDialogCtrl',
             backdrop: 'static',
             keyboard: false,
@@ -223,10 +223,10 @@
 
     $scope.openSubCol = function (colleteral, botColForm, IS_PROJECT, data, urlSuffix) {
         //$log.debug(data);
-        var includeTemplateUrl1 = '/appviews/test/subcol/' + urlSuffix + '.html';
-        var includeTemplateUrl2 = '/appviews/test/subcol/000000.html';
+        var includeTemplateUrl1 = '/app/views/test/subcol/' + urlSuffix + '.html';
+        var includeTemplateUrl2 = '/app/views/test/subcol/000000.html';
         $modal.open({
-            templateUrl: '/appviews/test/subform0202.html',
+            templateUrl: '/app/views/test/subform0202.html',
             controller: 'subform0202Controller',
             backdrop: 'static',
             keyboard: false,
@@ -281,7 +281,7 @@
 
     $scope.openHeadColEditor = function (IS_PROJECT, data) {
         $modal.open({
-            templateUrl: '/appviews/test/subform0201.html',
+            templateUrl: '/app/views/test/subform0201.html',
             controller: 'headColEditorCtrl',
             backdrop: 'static',
             keyboard: false,
@@ -322,7 +322,7 @@
 
     $scope.modalHeadColAction = function (args) {
         radasoft.openDialog({
-            templateUrl: '/appviews/test/headColActionDialogTemplate.html',
+            templateUrl: '/app/views/test/headColActionDialogTemplate.html',
             controller: args.controller,
             windowClass: args.windowClass || '',// 'app-modal-window-80',
             resolve: {
@@ -346,7 +346,7 @@
             colleteral: colleteral,
             colAct: colAct,
             controller: 'subform0204Controller',
-            includeUrl: '/appviews/test/subform0203.html',
+            includeUrl: '/app/views/test/subform0203.html',
             showButtonSave: true
         });
     }
@@ -356,14 +356,14 @@
             colleteral: colleteral,
             colAct: colAct,
             controller: 'subform0205Controller',
-            includeUrl: '/appviews/test/subform0205.html',
+            includeUrl: '/app/views/test/subform0205.html',
             showButtonSave: true
         });
     }
 
     $scope.editWQS = function (colleteral, colAct) {
         radasoft.openDialog({
-            templateUrl: '/appviews/test/headColActionDialogTemplate.html',
+            templateUrl: '/app/views/test/headColActionDialogTemplate.html',
             controller: 'subform0206Controller',
             windowClass: 'app-modal-window-80',
             resolve: {
@@ -406,7 +406,7 @@
             colleteral: colleteral,
             colAct: colAct,
             controller: 'subform0208Controller',
-            includeUrl: '/appviews/test/subform0208.html',
+            includeUrl: '/app/views/test/subform0208.html',
             showButtonSave: true
         });
     }
@@ -424,7 +424,7 @@
             }
         }).result.then(function (NV) {
             radasoft.openDialog({
-                templateUrl: '/appviews/test/headColActionDialogTemplate.html',
+                templateUrl: '/app/views/test/headColActionDialogTemplate.html',
                 controller: 'subform0209Controller',
                 windowClass: 'app-modal-window-80',
                 resolve: {
@@ -450,7 +450,7 @@
             colleteral: colleteral,
             colAct: colAct,
             controller: 'subform0210Controller',
-            includeUrl: '/appviews/test/subform0210.html',
+            includeUrl: '/app/views/test/subform0210.html',
             showButtonSave: false
         });
     }
@@ -460,20 +460,20 @@
             colleteral: colleteral,
             colAct: colAct,
             controller: 'subform0211Controller',
-            includeUrl: '/appviews/test/subform0211.html',
+            includeUrl: '/app/views/test/subform0211.html',
             showButtonSave: false
         });
     }
 
     $scope.openProjectCollteral = function () {
         radasoft.openDialog({
-            templateUrl: '/appviews/project/completedProjectModal.html',
+            templateUrl: '/app/views/project/completedProjectModal.html',
             controller: 'completedProjectController',
             windowClass: 'app-modal-window-80',
             resolve: {
                 params: function () {
                     return {
-                        includeUrl: '/appviews/project/completedProject.html',
+                        includeUrl: '/app/views/project/completedProject.html',
                         formData: {
                             JOB_RUNNING_ID: $scope.$parent.formData.JOB_RUNNING_ID
                         }
@@ -488,13 +488,13 @@
 
     $scope.costSubCol = function (colleteral, subcol) {
         radasoft.openDialog({
-            //templateUrl: '/appviews/project/completedProjectModal.html',
+            //templateUrl: '/app/views/project/completedProjectModal.html',
             controller: 'costBuildingController',
             windowClass: 'app-modal-window-80',
             resolve: {
                 params: function () {
                     return {
-                        includeUrl: '/appviews/test/subcol/costSubCol.html',
+                        includeUrl: '/app/views/test/subcol/costSubCol.html',
                         headCol: colleteral,
                         subCol: subcol
                     };

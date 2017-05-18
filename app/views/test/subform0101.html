@@ -27,12 +27,12 @@
             </div>
             <div ng-hide="formData.LENDER_TYPE=='C'" class="form-group" ng-class="{'has-error':form.REGISTER_ID.$dirty && form.REGISTER_ID.$invalid, 'has-success':form.REGISTER_ID.$valid}">
                 <label class="col-sm-4 control-label" for="REGISTER_ID">
-                    บัตรประชาชน/ทะเบียนการค้า<span class="symbol required"></span>
+                    บัตรประชาชน/ทะเบียนนิติบุคคล<span class="symbol required"></span>
                 </label>
                 <div class="col-sm-6 no-padding">
                     <!--<input ng-required="formData.LENDER_TYPE=='L'" type="text" placeholder="" class="form-control" id="REGISTER_ID" name="REGISTER_ID" ng-model="formData.REGISTER_ID" ui-mask="9-9999-99999-99-9" ui-mask-placeholder-char="_" ui-options="{eventsToHandle: ['input', 'keyup', 'focus']}" />-->
                     <input ng-required="formData.LENDER_TYPE=='L'" type="text" class="form-control" id="REGISTER_ID" name="REGISTER_ID" ng-model="formData.REGISTER_ID" ui-mask="9-9999-99999-99-9" ui-mask-placeholder-char="_" ui-options="{eventsToHandle: ['input', 'keyup', 'focus']}" />
-                    <span class="error text-small block" ng-if="form.REGISTER_ID.$dirty && form.REGISTER_ID.$invalid">{{requireNotificationPrefix}} บัตรประชาชน/ทะเบียนการค้า</span>
+                    <span class="error text-small block" ng-if="form.REGISTER_ID.$dirty && form.REGISTER_ID.$invalid">{{requireNotificationPrefix}} บัตรประชาชน/ทะเบียนนิติบุคคล</span>
                 </div>
             </div>
         <!--</form>

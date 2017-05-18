@@ -130,7 +130,7 @@
     }
     $scope.openUnitType = function (data) {
         $modal.open({
-            templateUrl: 'app/views/setting/unit.html',
+            templateUrl: '/app/views/setting/unit.html',
             controller: 'unitTypeController',
             backdrop: 'static',
             keyboard: false,

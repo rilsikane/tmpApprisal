@@ -59,7 +59,7 @@
                         $state.go('login.signin');
                     } else {
                         if (typeof (response.data) == 'object') {
-                            SweetAlert.swal(response.data.ExceptionMessage);
+                            SweetAlert.swal('TEST');
                         } else {
                             SweetAlert.swal(response.status + ' : ' + response.statusText, url);
                         }
@@ -775,7 +775,7 @@
 
                 params = params || {};
 
-                params.templateUrl = params.templateUrl || 'app/views/common/dialogWrapper.html';
+                params.templateUrl = params.templateUrl || '/app/views/common/dialogWrapper.html';
                 params.windowClass = params.windowClass || '';
 
                 return $modal.open({
