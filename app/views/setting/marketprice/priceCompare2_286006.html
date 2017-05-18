@@ -12,9 +12,10 @@
                     <span ng-if="market.MARKETPRICE_SET==4" class="text-white">{{'DATA_SET_4'|translate}}</span>
                     <span ng-if="market.MARKETPRICE_SET==5" class="text-white">{{'DATA_SET_5'|translate}}</span>
                     <span class="pull-right">
+                        <a ng-if="market.MARKETPRICE_SET==0" ng-click="subColToJobMarketPrice()" tooltip="{{'SUBCOLTOJOBMARKETPRICE'|translate}}"><span class="text-white"><i class="glyphicon glyphicon-refresh"></i></span></a>
                         <a ng-if="market.MARKETPRICE_SET>0 && dataMode==1" ng-click="selectMarketPrice($index,market)" tooltip="{{'SELECT_MARKET_PRICE'|translate}}"><span class="text-white"><i class="fa fa-search"></i></span></a>
                         <a ng-if="dataMode==1" ng-click="deleteJobMarketPrice($index,market)" tooltip="{{'DELETE_MARKET_PRICE'|translate}}"><span class="text-white"><i class="fa fa-remove"></i></span></a>
-                        <a ng-if="dataMode==1" ng-click="editJobMarketPrice($index,market)" tooltip="{{'EDIT'|translate}}"><span class="text-white"><i class="fa fa-pencil"></i></span></a>
+                        <a ng-if="market.MARKETPRICE_SET==0" ng-click="editJobMarketPrice($index,market)" tooltip="{{'EDIT'|translate}}"><span class="text-white"><i class="fa fa-pencil"></i></span></a>
                     </span>
                 </th>
             </tr>
@@ -29,12 +30,12 @@
                 <td class="text-right">ภาพถ่ายแสดงข้อมูลราคาตลาด</td>
                 <td ng-if="jobMarketPrice.length==0"></td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
-                    <a ng-if="market.JMP_RUNNING_ID>0" href="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE/{{random}}" target="_blank" tooltip="{{'VIEW_LARGE_IMAGE'|translate}}"><img ng-src="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE/{{random}}" width="150" height="150" /></a>
+                    <a ng-if="market.JMP_RUNNING_ID>0" href="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE/{{random}}" target="_blank" tooltip="{{'VIEW_LARGE_IMAGE'|translate}}"><img ng-src="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE/{{random}}" width="100" height="100" /></a>
                 </td>
             </tr>
             <tr>
                 <td class="text-right">ประเภทเอกสารสิทธิ์</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.DOC_CERT_TYPE.NAME}}</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.HEAD_COL_SUB_TYPE_ID.NAME}}</td>
             </tr>
             <tr>
                 <td class="text-right">ชื่อโครงการ</td>
@@ -173,44 +174,44 @@
                 <td class="text-right">สิ่งอำนวยความสะดวก</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" ng-readonly="true" ng-model="market.PROPERTY_FACILITY_1">
+                        <input type="checkbox" ng-readonly="true" ng-model="market.PROPERTY_FACILITY_1" ng-true-value="'Y'" ng-false-value="'N'">
                         <label>
                             สโมสร
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" ng-readonly="true" ng-model="market.PROPERTY_FACILITY_2">
+                        <input type="checkbox" ng-readonly="true" ng-model="market.PROPERTY_FACILITY_2" ng-true-value="'Y'" ng-false-value="'N'">
                         <label>
                             สนามกีฬา
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" ng-readonly="true" ng-model="market.PROPERTY_FACILITY_3">
+                        <input type="checkbox" ng-readonly="true" ng-model="market.PROPERTY_FACILITY_3" ng-true-value="'Y'" ng-false-value="'N'">
                         <label>
                             สวนหย่อม
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" ng-model="market.PROPERTY_FACILITY_4">
+                        <input type="checkbox" ng-readonly="true" ng-model="market.PROPERTY_FACILITY_4" ng-true-value="'Y'" ng-false-value="'N'">
                         <label>
                             สระว่ายน้ำ
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" ng-model="market.PROPERTY_FACILITY_5">
+                        <input type="checkbox" ng-readonly="true" ng-model="market.PROPERTY_FACILITY_5" ng-true-value="'Y'" ng-false-value="'N'">
                         <label>
                             รปภ.
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" ng-model="market.PROPERTY_FACILITY_6">
+                        <input type="checkbox" ng-readonly="true" ng-model="market.PROPERTY_FACILITY_6" ng-true-value="'Y'" ng-false-value="'N'">
                         <label>
                             ฟิตเนส
                         </label>
                     </div>
                     <div>
                         <div class="checkbox clip-check check-primary">
-                            <input type="checkbox" ng-model="market.PROPERTY_FACILITY_7">
+                            <input type="checkbox" ng-readonly="true" ng-model="market.PROPERTY_FACILITY_7" ng-true-value="'Y'" ng-false-value="'N'">
                             <label>
                                 อื่นๆ
                             </label>
@@ -280,7 +281,7 @@
                 <td class="text-right">ภาพถ่ายแสดงข้อมูลอื่นๆ</td>
                 <td ng-if="jobMarketPrice.length==0"></td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
-                    <a ng-if="market.JMP_RUNNING_ID>0" href="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE_SIGN/{{random}}" target="_blank" tooltip="{{'VIEW_LARGE_IMAGE'|translate}}"><img ng-src="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE_SIGN/{{random}}" width="150" height="150" /></a>
+                    <a ng-if="market.JMP_RUNNING_ID>0" href="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE_SIGN/{{random}}" target="_blank" tooltip="{{'VIEW_LARGE_IMAGE'|translate}}"><img ng-src="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE_SIGN/{{random}}" width="100" height="100" /></a>
                 </td>
             </tr>
         </tbody>

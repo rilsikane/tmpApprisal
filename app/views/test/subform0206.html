@@ -26,31 +26,31 @@
                         <span ng-if="wqs.FACTOR_OTHER!='Y'" class="margin-left-5">{{wqs.FACTOR_NAME}}</span>
                     </td>
                     <td class="no-padding">
-                        <input ng-readonly="wqs.WQS_FACTOR_ID==-1" ng-model="wqs.FACTOR_WEIGHT" type="text" class="form-control input-sm center no-padding" ng-style="inputStyle" ng-change="cal()" numeric="*" />
+                        <input ng-readonly="wqs.WQS_FACTOR_ID==-1" ng-model="wqs.FACTOR_WEIGHT" type="text" class="form-control input-sm center no-padding" ng-style="inputStyle" ng-change="cal(); updateValidate(wqs)" numeric="*" />
                     </td>
                     <td class="no-padding" ng-switch="wqs.WQS_FACTOR_ID">
                         <input ng-switch-when="-1" ng-model="wqs.MKT1_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" readonly />
-                        <input ng-switch-default   ng-model="wqs.MKT1_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="1-10" />
+                        <input ng-switch-default   ng-model="wqs.MKT1_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="{{wqs.FACTOR_WEIGHT==0 ? '0-10':'1-10'}}" />
                     </td>
                     <td class="no-padding" ng-switch="wqs.WQS_FACTOR_ID">
                         <input ng-switch-when="-1" ng-model="wqs.MKT2_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" readonly />
-                        <input ng-switch-default ng-model="wqs.MKT2_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="1-10" />
+                        <input ng-switch-default ng-model="wqs.MKT2_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="{{wqs.FACTOR_WEIGHT==0 ? '0-10':'1-10'}}" />
                     </td>
                     <td class="no-padding" ng-switch="wqs.WQS_FACTOR_ID">
                         <input ng-switch-when="-1" ng-model="wqs.MKT3_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" readonly />
-                        <input ng-switch-default ng-model="wqs.MKT3_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="1-10" />
+                        <input ng-switch-default ng-model="wqs.MKT3_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="{{wqs.FACTOR_WEIGHT==0 ? '0-10':'1-10'}}" />
                     </td>
                     <td class="no-padding" ng-switch="wqs.WQS_FACTOR_ID">
                         <input ng-switch-when="-1" ng-model="wqs.MKT4_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" readonly />
-                        <input ng-switch-default ng-model="wqs.MKT4_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="1-10" />
+                        <input ng-switch-default ng-model="wqs.MKT4_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="{{wqs.FACTOR_WEIGHT==0 ? '0-10':'1-10'}}" />
                     </td>
                     <td ng-if="MARKET_COMPAIR==5" class="no-padding" ng-switch="wqs.WQS_FACTOR_ID">
                         <input ng-switch-when="-1" ng-model="wqs.MKT5_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" readonly />
-                        <input ng-switch-default ng-model="wqs.MKT5_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="1-10" />
+                        <input ng-switch-default ng-model="wqs.MKT5_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="{{wqs.FACTOR_WEIGHT==0 ? '0-10':'1-10'}}" />
                     </td>
                     <td class="no-padding" ng-switch="wqs.WQS_FACTOR_ID">
                         <input ng-switch-when="-1" ng-model="wqs.COL_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" readonly />
-                        <input ng-switch-default ng-model="wqs.COL_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="1-10" />
+                        <input ng-switch-default ng-model="wqs.COL_SCORE" type="text" class="form-control input-sm center" ng-style="inputStyle" ng-change="cal()" numeric="{{wqs.FACTOR_WEIGHT==0 ? '0-10':'1-10'}}" />
                     </td>
                 </tr>
             </tbody>

@@ -1,10 +1,10 @@
-﻿<div class="container-fluid container-fullw">
+﻿<div class="container-fluid container-fullw" ng-controller="projectController">
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-white no-radius">
-                <div class="panel-heading no-radius bg-light-azure border-light">
+                <!--<div class="panel-heading no-radius bg-light-azure border-light">
                     <h4 class="panel-title">{{selectedDev.DEV_NAME}} <span ng-hide="selectedPro==undefined">/</span> {{selectedPro.PROJECT_NAME}}</h4>
-                </div>
+                </div>-->
                 <div class="panel-body border-light">
                     <div class="col-md-6" ng-show="showProject">
                         <h5>{{'DEVELOPER'|translate}}</h5>
@@ -26,10 +26,10 @@
                         </div>
                         <ul class="list-group">
                             <li ng-repeat="dev in developers" class="list-group-item no-radius" ng-class="{'bg-light-primary':dev.DEV_RUNNING_ID==selectedDev.DEV_RUNNING_ID}">
-                                <a ng-click="searchProject(dev)"><span ng-class="{'text-white':dev.DEV_RUNNING_ID==selectedDev.DEV_RUNNING_ID}">{{dev.DEV_NAME}}</span></a><span style="cursor:pointer;" class="pull-right" ng-click="editDev(dev)"><i class="fa fa-pencil"></i></span>
+                                <a ng-click="searchProject(dev)"><span ng-class="{'text-white':dev.DEV_RUNNING_ID==$parent.selectedDev.DEV_RUNNING_ID}">{{dev.DEV_NAME}}</span></a><span style="cursor:pointer;" class="pull-right" ng-click="editDev(dev)"><i class="fa fa-pencil"></i></span>
                             </li>
                         </ul>
-
+                        <pagination boundary-links="true" items-per-page="app.itemsPerPage" ng-change="getDevelopers()" max-size="5" total-items="paging1Total" ng-model="paging1CurrentPage" class="pagination-sm  no-padding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
                     </div>
                     <div class="col-md-6" ng-show="showProject">
                         <h5>{{'PROJECT'|translate}}</h5>
@@ -50,15 +50,9 @@
                             </div>
                         </div>
                         <ul class="list-group">
-                            <li ng-repeat="pro in projects" class="list-group-item no-radius " ng-class="{'bg-light-primary':pro.PROJECT_RUNNING_ID==selectedPro.PROJECT_RUNNING_ID}">
+                            <li ng-repeat="pro in projects" class="list-group-item no-radius " ng-class="{'bg-light-primary':pro.PROJECT_RUNNING_ID==$parent.selectedPro.PROJECT_RUNNING_ID}">
                                 <div ng-switch="pro.JOB_RUNNING_ID">
-                                    <a ng-click="getProjectDetail(pro)"><span ng-class="{'text-white':pro.PROJECT_RUNNING_ID==selectedPro.PROJECT_RUNNING_ID}">{{pro.PROJECT_NAME}}</span></a><span style="cursor:pointer;" class="pull-right" ng-click="editProject(pro)"><i class="fa fa-pencil"></i></span>
-                                    <!--<div ng-switch-when="0">
-                                        <a ng-click="getProjectDetail(pro)"><span ng-class="{'text-white':pro.PROJECT_RUNNING_ID==selectedPro.PROJECT_RUNNING_ID}">{{pro.PROJECT_NAME}}</span></a><span style="cursor:pointer;" class="pull-right" ng-click="editProject(pro)"><i class="fa fa-pencil"></i></span>
-                                    </div>
-                                    <div ng-switch-default>
-                                        <span ng-class="{'text-white':pro.PROJECT_RUNNING_ID==selectedPro.PROJECT_RUNNING_ID}">{{pro.PROJECT_NAME}}</span> <i class="pull-right text-grey">{{'REQUEST_NO'|translate}} : {{pro.REQUEST_NO}}</i>
-                                    </div>-->
+                                    <a ng-click="getProjectDetail(pro)"><span ng-class="{'text-white':pro.PROJECT_RUNNING_ID==$parent.selectedPro.PROJECT_RUNNING_ID}">{{pro.PROJECT_NAME}}</span></a><span style="cursor:pointer;" class="pull-right" ng-click="editProject(pro)"><i class="fa fa-pencil"></i></span>                                    
                                 </div>
 
                             </li>

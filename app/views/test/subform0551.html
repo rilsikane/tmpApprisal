@@ -19,7 +19,7 @@
         {{'CONTACT_RESULT'|translate}}<span class="symbol required"></span>
     </label>
     <div class="col-sm-8 no-padding">
-        <ui-select ng-required="true" theme="selectize" ng-model="formData.CONTACT_RESULT" name="CONTACT_RESULT" id="CONTACT_RESULT" ng-change="onContactChage()">
+        <ui-select ng-required="true" ng-disabled="inputDisabled" theme="selectize" ng-model="formData.CONTACT_RESULT" name="CONTACT_RESULT" id="CONTACT_RESULT" ng-change="onContactChage()">
             <ui-select-match placeholder="">
                 {{$select.selected.NAME}}
             </ui-select-match>
@@ -37,57 +37,20 @@
         <textarea ng-model="formData.REMARK" style="max-width:100%;" class="form-control no-radius" id="REMARK" name="REMARK"></textarea>
     </div>
 </div>
-<!--<div class="form-group">
-    <label class="col-sm-3 control-label" for="CONFIRM_FLAG">
-    </label>
-    <div class="col-sm-8 no-padding">
-        <div class="checkbox clip-check check-primary">
-            <input type="checkbox" id="CONFIRM_FLAG" ng-true-value="'Y'" ng-false-value="'N'" ng-model="formData.CONFIRM_FLAG" />
-            <label for="CONFIRM_FLAG">
-                {{'CONFIRM_FLAG'|translate}}
-            </label>
-        </div>
-    </div>
-</div>-->
-<div class="form-group" ng-class="{'has-error':form.DATE_CUST_APPOINTMENT.$dirty && form.DATE_CUST_APPOINTMENT.$invalid, 'has-success':form.DATE_CUST_APPOINTMENT.$valid && formData.CONFIRM_FLAG=='Y'}">
+<div class="form-group" ng-if="'1'==formData.CONTACT_RESULT.VALUE" ng-class="{'has-error':form.DATE_CUST_APPOINTMENT.$dirty && form.DATE_CUST_APPOINTMENT.$invalid, 'has-success':form.DATE_CUST_APPOINTMENT.$valid && formData.CONFIRM_FLAG=='Y'}">
     <label class="col-sm-3 control-label" for="DATE_CUST_APPOINTMENT">
-        {{'DATE_CUST_APPOINTMENT'|translate}}<span class="symbol required" ng-if="formData.CONFIRM_FLAG=='Y' || '1'==formData.CONTACT_RESULT.VALUE"></span>
+        {{'DATE_CUST_APPOINTMENT'|translate}}<span class="symbol required"></span>
     </label>
     <div class="col-sm-2 no-padding">
-        <input ng-required="'1'==formData.CONTACT_RESULT.VALUE" ng-model="formData.DATE_CUST_APPOINTMENT" class="form-control no-radius" id="DATE_CUST_APPOINTMENT" name="DATE_CUST_APPOINTMENT" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.DATE_CUST_APPOINTMENT" ng-click="openDatePicker($event,'DATE_CUST_APPOINTMENT')" ng-disabled="'1'!=formData.CONTACT_RESULT.VALUE"/>        
+        <input ng-disabled="inputDisabled"  ng-required="'1'==formData.CONTACT_RESULT.VALUE" ng-model="formData.DATE_CUST_APPOINTMENT" class="form-control no-radius" id="DATE_CUST_APPOINTMENT" name="DATE_CUST_APPOINTMENT" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.DATE_CUST_APPOINTMENT" ng-click="openDatePicker($event,'DATE_CUST_APPOINTMENT')" />
     </div>
     <label class="col-sm-1 control-label" for="TIME">
-        {{'TIME'|translate}}<span class="symbol required" ng-if="formData.CONFIRM_FLAG=='Y' || '1'==formData.CONTACT_RESULT.VALUE"></span>
+        {{'TIME'|translate}}<span class="symbol required" ng-if="'1'==formData.CONTACT_RESULT.VALUE"></span>
     </label>
     <div class="col-md-1 no-padding">
-        <input ng-required="'1'==formData.CONTACT_RESULT.VALUE" ng-model="formData.APPOINTMENT_HOUR" id="TIME" class="form-control" maxlength="2" type="number" max="23" min="0" ng-disabled="'1'!=formData.CONTACT_RESULT.VALUE"/>
+        <input ng-disabled="inputDisabled" ng-required="'1'==formData.CONTACT_RESULT.VALUE" ng-model="formData.APPOINTMENT_HOUR" id="TIME" class="form-control" maxlength="2" type="number" max="23" min="0" />
     </div>
     <div class="col-md-1 no-padding">
-        <input ng-required="'1'==formData.CONTACT_RESULT.VALUE" ng-model="formData.APPOINTMENT_MINUTE" class="form-control" maxlength="2" type="number" max="59" min="0" ng-disabled="'1'!=formData.CONTACT_RESULT.VALUE"/>
+        <input ng-disabled="inputDisabled" ng-required="'1'==formData.CONTACT_RESULT.VALUE" ng-model="formData.APPOINTMENT_MINUTE" class="form-control" maxlength="2" type="number" max="59" min="0" />
     </div>
 </div>
-<!--<div class="form-group">
-
-    <div class="col-sm-8 no-padding">
-       
-        <timepicker ng-required="formData.CONFIRM_FLAG=='Y'" ng-model="formData.DATE_CUST_APPOINTMENT"></timepicker>
-    </div>
-</div>-->
-
-<!--<div class="form-group" ng-class="{'has-error':form.EVALUATE_DATE.$dirty && form.EVALUATE_DATE.$invalid, 'has-success':form.EVALUATE_DATE.$valid}">
-    <label class="col-sm-3 control-label" for="EVALUATE_DATE">
-        {{'EVALUATE_DATE'|translate}}<span class="symbol required"></span>
-    </label>
-    <div class="col-sm-8 no-padding">
-        <input required ng-model="formData.EVALUATE_DATE_TIME" class="form-control no-radius" id="EVALUATE_DATE" name="EVALUATE_DATE" datepicker-popup="dd/MM/yyyy" is-open="dpOpened" ng-click="dpOpened=true" />
-        <span class="error text-small block" ng-if="form.EVALUATE_DATE.$dirty && form.EVALUATE_DATE.$invalid">{{requireNotificationPrefix}} {{'EVALUATE_DATE'|translate}}</span>
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-sm-3 control-label" for="EVALUATE_TIME">
-        {{'EVALUATE_TIME'|translate}}<span class="symbol required"></span>
-    </label>
-    <div class="col-sm-8 no-padding">
-        <timepicker ng-model="formData.EVALUATE_DATE_TIME" show-meridian="true" ng-show="!event.allDay"></timepicker>
-    </div>
-</div>-->

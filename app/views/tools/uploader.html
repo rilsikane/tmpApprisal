@@ -2,7 +2,6 @@
     <h3 class="modal-title">
         {{'UPLOADER'|translate}}
     </h3>
-
 </div>
 <div class="modal-body bg-light-grey">
     <div class="panel panel-white">
@@ -11,7 +10,7 @@
             <ul class="panel-heading-tabs border-light">
                 <li>
                     <div class="pull-right">
-                        <span ng-disabled="uploader.queue.length>=limit && limit>0" class="btn btn-o btn-file btn-squared border-white">{{'BUTTON.SELECT_FILES'|translate}}<input type="file" nv-file-select="" uploader="uploader" multiple /></span>
+                        <span ng-disabled="uploader.queue.length>=limit && limit>0" class="btn btn-o btn-file btn-squared border-white">{{'BUTTON.SELECT_FILES'|translate}}<input ng-disabled="uploader.queue.length>=limit && limit>0" type="file" nv-file-select="" uploader="uploader" multiple /></span>
                     </div>
                 </li>
             </ul>
@@ -23,6 +22,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <th ng-if="imageFilter"></th>
                                     <th width="50%">{{'FILE_NAME'|translate}}</th>
                                     <th ng-show="uploader.isHTML5">{{'FILE_SIZE'|translate}}</th>
                                     <th ng-show="uploader.isHTML5">{{'UPLOAD_PROGRESS'|translate}}</th>
@@ -32,6 +32,7 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="item in uploader.queue">
+                                    <td ng-if="imageFilter"><div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div></td>
                                     <td><strong>{{ item.file.name }}</strong></td>
                                     <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
                                     <td ng-show="uploader.isHTML5">

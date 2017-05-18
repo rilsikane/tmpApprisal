@@ -7,6 +7,7 @@ app.controller('uploaderController', ['$scope', '$state', '$stateParams', 'radas
     $scope.config = params.config || '';
     $scope.id1 = params.id1 || '';
     $scope.queue = 0;
+    $scope.imageFilter = params.imageFilter || false;
 
     var uploader = $scope.uploader = new FileUploader({
         url: 'Home/Upload'
@@ -21,6 +22,15 @@ app.controller('uploaderController', ['$scope', '$state', '$stateParams', 'radas
         }
     });
 
+    if ($scope.imageFilter) {
+        uploader.filters.push({
+            name: 'imageFilter',
+            fn: function (item/*{File|FileLikeObject}*/, options) {
+                var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+                return '|jpg|png|jpeg|'.indexOf(type) !== -1;
+            }
+        });
+    }
     // CALLBACKS
 
     //uploader.onWhenAddingFileFailed = function (item/*{File|FileLikeObject}*/, filter, options) {

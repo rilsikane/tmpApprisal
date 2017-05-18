@@ -141,7 +141,7 @@
                             <td>{{item.ADD_CITY_NAME}}</td>
                             <td>{{item.ADD_DISTRICT_NAME}}</td>
                             <td align="right">{{item.PRICE_SELL|number:2}}</td>
-                            <td><a ng-click="editMarketPrice(item)"><i class="ti-pencil"></i></a></td>
+                            <td><a ng-click="editMarketPrice(item)" ng-if="item.CAN_EDIT=='1'"><i class="ti-pencil"></i></a></td>
                         </tr>
                     </tbody>
                 </table>

@@ -34,12 +34,14 @@
                                     <th class="col-md-1">{{'REQ_TYPE'|translate}}</th>
                                     <th class="col-md-2">{{'REQUEST_OU'|translate}}</th>
                                     <th class="col-md-1">{{'STATE_NAME'|translate}}</th>
-                                    <th class="col-md-1">{{'USER_FULLNAME'|translate}}</th>
+                                    <th class="col-md-1">{{role.ROLE_NAME}}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="item in data" >
-                                    <td ng-class="item.TFL |sla">{{item.ACT_TIME_TEXT}}</td>
+                                    <!--<td ng-class="item.TFL |sla">{{item.ACT_TIME_TEXT}}</td>-->
+                                    <td><i class="fa fa-circle" ng-class="item.TFL | sla2"></i> {{item.ACT_TIME_TEXT}}</td>
+                                    
                                     <td ng-if="item.CHANGE_MODE==1"><a ui-sref="app.testform({ACT_HIST_ID:item.ACT_HIST_ID,H:0})">{{item.REQUEST_NO}}</a></td>
                                     <td ng-if="!(item.CHANGE_MODE==1)">{{item.REQUEST_NO}}</td>
                                     <td>{{item.CA_NO}}</td>

@@ -100,14 +100,68 @@
     }
 
     $scope.openProject = function () {
-        $scope.openProjectPhaseZone($translate.instant('PROJECT'), true, false);
+        $scope.openDevProDialog($translate.instant('PROJECT'), true, false);
     }
 
     $scope.openPhaseZone = function () {
-        $scope.openProjectPhaseZone($translate.instant('PHASE_ZONE'), false, true);
+        $scope.openPhaseZoneDialog($translate.instant('PHASE_ZONE'), false, true);
     }
 
-    $scope.openProjectPhaseZone = function (title, showProject, showPhaseZone) {
+    //$scope.openProjectPhaseZone = function (title, showProject, showPhaseZone) {
+    //    var params = {
+    //        title: title,
+    //        showProject: showProject,
+    //        showPhaseZone: showPhaseZone,
+    //        developer: $scope.$parent.formData.DEVELOPER != undefined && $scope.$parent.formData.DEVELOPER.DEV_RUNNING_ID > 0 ? $scope.$parent.formData.DEVELOPER : undefined,
+    //        project: $scope.$parent.formData.PROJECT != undefined && $scope.$parent.formData.PROJECT.PROJECT_RUNNING_ID > 0 ? $scope.$parent.formData.PROJECT : undefined
+    //    };
+
+    //    $modal.open({
+    //        templateUrl: '/appviews/project/_popupDevPro.html',
+    //        controller: 'projectDialogCtrl',
+    //        backdrop: 'static',
+    //        keyboard: false,
+    //        //windowClass: 'app-modal-window-80',
+    //        size: 'lg',
+    //        resolve: {
+    //            params: function () {
+    //                return params;
+    //            }
+    //        }
+    //    }).result.then(function (data) {
+    //        $scope.saveProjectData(data.developer, data.project);
+    //    });
+    //}
+
+    $scope.openDevProDialog = function (title, showProject, showPhaseZone) {
+        var params = {
+            title: title,
+            showProject: showProject,
+            showPhaseZone: showPhaseZone,
+            developer: $scope.$parent.formData.DEVELOPER != undefined && $scope.$parent.formData.DEVELOPER.DEV_RUNNING_ID > 0 ? angular.copy($scope.$parent.formData.DEVELOPER) : undefined,
+            project: $scope.$parent.formData.PROJECT != undefined && $scope.$parent.formData.PROJECT.PROJECT_RUNNING_ID > 0 ? angular.copy($scope.$parent.formData.PROJECT) : undefined
+        };
+
+        $modal.open({
+            templateUrl: '/appviews/project/_popupDevPro.html',
+            controller: 'devProDialogCtrl',
+            backdrop: 'static',
+            keyboard: false,
+            size: 'lg',
+            resolve: {
+                params: function () {
+                    return params;
+                }
+            }
+        }).result.then(function (data) {
+            if (data.developer.DEV_RUNNING_ID != $scope.$parent.formData.DEVELOPER.DEV_RUNNING_ID
+                && data.project.PROJECT_RUNNING_ID != $scope.$parent.formData.PROJECT.PROJECT_RUNNING_ID) {
+                $scope.saveProjectData(data.developer, data.project);
+            }
+        });
+    }
+
+    $scope.openPhaseZoneDialog = function (title, showProject, showPhaseZone) {
         var params = {
             title: title,
             showProject: showProject,
@@ -117,11 +171,10 @@
         };
 
         $modal.open({
-            templateUrl: '/app/views/project/popup.html',
-            controller: 'projectController',
+            templateUrl: '/appviews/project/_popupPhaseZone.html',
+            controller: 'phaseZoneDialogCtrl',
             backdrop: 'static',
             keyboard: false,
-            //windowClass: 'app-modal-window-80',
             size: 'lg',
             resolve: {
                 params: function () {
@@ -170,10 +223,10 @@
 
     $scope.openSubCol = function (colleteral, botColForm, IS_PROJECT, data, urlSuffix) {
         //$log.debug(data);
-        var includeTemplateUrl1 = '/app/views/test/subcol/' + urlSuffix + '.html';
-        var includeTemplateUrl2 = '/app/views/test/subcol/000000.html';
+        var includeTemplateUrl1 = '/appviews/test/subcol/' + urlSuffix + '.html';
+        var includeTemplateUrl2 = '/appviews/test/subcol/000000.html';
         $modal.open({
-            templateUrl: '/app/views/test/subform0202.html',
+            templateUrl: '/appviews/test/subform0202.html',
             controller: 'subform0202Controller',
             backdrop: 'static',
             keyboard: false,
@@ -228,7 +281,7 @@
 
     $scope.openHeadColEditor = function (IS_PROJECT, data) {
         $modal.open({
-            templateUrl: '/app/views/test/subform0201.html',
+            templateUrl: '/appviews/test/subform0201.html',
             controller: 'headColEditorCtrl',
             backdrop: 'static',
             keyboard: false,
@@ -269,7 +322,7 @@
 
     $scope.modalHeadColAction = function (args) {
         radasoft.openDialog({
-            templateUrl: '/app/views/test/headColActionDialogTemplate.html',
+            templateUrl: '/appviews/test/headColActionDialogTemplate.html',
             controller: args.controller,
             windowClass: args.windowClass || '',// 'app-modal-window-80',
             resolve: {
@@ -293,7 +346,7 @@
             colleteral: colleteral,
             colAct: colAct,
             controller: 'subform0204Controller',
-            includeUrl: '/app/views/test/subform0203.html',
+            includeUrl: '/appviews/test/subform0203.html',
             showButtonSave: true
         });
     }
@@ -303,14 +356,14 @@
             colleteral: colleteral,
             colAct: colAct,
             controller: 'subform0205Controller',
-            includeUrl: '/app/views/test/subform0205.html',
+            includeUrl: '/appviews/test/subform0205.html',
             showButtonSave: true
         });
     }
 
     $scope.editWQS = function (colleteral, colAct) {
         radasoft.openDialog({
-            templateUrl: '/app/views/test/headColActionDialogTemplate.html',
+            templateUrl: '/appviews/test/headColActionDialogTemplate.html',
             controller: 'subform0206Controller',
             windowClass: 'app-modal-window-80',
             resolve: {
@@ -353,7 +406,7 @@
             colleteral: colleteral,
             colAct: colAct,
             controller: 'subform0208Controller',
-            includeUrl: '/app/views/test/subform0208.html',
+            includeUrl: '/appviews/test/subform0208.html',
             showButtonSave: true
         });
     }
@@ -371,7 +424,7 @@
             }
         }).result.then(function (NV) {
             radasoft.openDialog({
-                templateUrl: '/app/views/test/headColActionDialogTemplate.html',
+                templateUrl: '/appviews/test/headColActionDialogTemplate.html',
                 controller: 'subform0209Controller',
                 windowClass: 'app-modal-window-80',
                 resolve: {
@@ -380,7 +433,8 @@
                             JOB_RUNNING_ID: colleteral.JOB_RUNNING_ID,
                             HEAD_COL_RUNNING_ID: colleteral.HEAD_COL_RUNNING_ID,
                             TEMPLATE_TYPE: NV,
-                            MARKET_COMPAIR: colleteral.MARKET_COMPAIR
+                            MARKET_COMPAIR: colleteral.MARKET_COMPAIR,
+                            headCol: colleteral
                         };
                     }
                 }
@@ -396,7 +450,7 @@
             colleteral: colleteral,
             colAct: colAct,
             controller: 'subform0210Controller',
-            includeUrl: '/app/views/test/subform0210.html',
+            includeUrl: '/appviews/test/subform0210.html',
             showButtonSave: false
         });
     }
@@ -406,20 +460,20 @@
             colleteral: colleteral,
             colAct: colAct,
             controller: 'subform0211Controller',
-            includeUrl: '/app/views/test/subform0211.html',
+            includeUrl: '/appviews/test/subform0211.html',
             showButtonSave: false
         });
     }
 
     $scope.openProjectCollteral = function () {
         radasoft.openDialog({
-            templateUrl: '/app/views/project/completedProjectModal.html',
+            templateUrl: '/appviews/project/completedProjectModal.html',
             controller: 'completedProjectController',
             windowClass: 'app-modal-window-80',
             resolve: {
                 params: function () {
                     return {
-                        includeUrl: '/app/views/project/completedProject.html',
+                        includeUrl: '/appviews/project/completedProject.html',
                         formData: {
                             JOB_RUNNING_ID: $scope.$parent.formData.JOB_RUNNING_ID
                         }
@@ -434,13 +488,13 @@
 
     $scope.costSubCol = function (colleteral, subcol) {
         radasoft.openDialog({
-            //templateUrl: '/app/views/project/completedProjectModal.html',
+            //templateUrl: '/appviews/project/completedProjectModal.html',
             controller: 'costBuildingController',
             windowClass: 'app-modal-window-80',
             resolve: {
                 params: function () {
                     return {
-                        includeUrl: '/app/views/test/subcol/costSubCol.html',
+                        includeUrl: '/appviews/test/subcol/costSubCol.html',
                         headCol: colleteral,
                         subCol: subcol
                     };

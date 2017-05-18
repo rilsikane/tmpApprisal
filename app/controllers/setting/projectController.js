@@ -1,7 +1,10 @@
-﻿app.controller('projectController', ['$scope', '$state', '$stateParams', 'radasoft', '$modal', '$translate', '$modalInstance', 'params', function ($scope, $state, $stateParams, radasoft, $modal, $translate, $modalInstance, params) {
-    $scope.showProject = params.showProject;
-    $scope.showPhaseZone = params.showPhaseZone;
+﻿app.controller('devProDialogCtrl', ['$scope', '$state', '$stateParams', 'radasoft', '$modal', '$translate', '$modalInstance', 'params', '$rootScope', function ($scope, $state, $stateParams, radasoft, $modal, $translate, $modalInstance, params, $rootScope) {
     $scope.title = params.title;
+    $scope.params = params;
+
+    $scope.showProject = $scope.params.showProject;
+    $scope.showPhaseZone = $scope.params.showPhaseZone;
+
     $scope.developers = [];
     $scope.projects = [];
     $scope.projectUnit = [];
@@ -9,11 +12,30 @@
     $scope.projectZone = [];
     $scope.projectPrice = [];
 
-    $scope.selectedDev = undefined;
-    $scope.selectedPro = undefined;
+    $scope.selectedDev = angular.copy(params.developer);
+    $scope.selectedPro = angular.copy(params.project);
 
-    //$scope.devSearchKeyword = '';
-    //$scope.proSearchKeyword = '';
+    $scope.selectDevPro = function () {
+        if ($scope.selectedDev && $scope.selectedPro) {
+            $modalInstance.close({
+                developer: $scope.selectedDev,
+                project: $scope.selectedPro
+            });
+        } else {
+            radasoft.alert('กรุณาเลือกเจ้าของโครงการ และโครงการ');
+        }
+    }
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+}]);
+
+app.controller('devProCtrl', ['$scope', '$state', '$stateParams', 'radasoft', '$modal', '$translate', '$rootScope', function ($scope, $state, $stateParams, radasoft, $modal, $translate, $rootScope) {
+    $scope.paging1Total = 0;
+    $scope.paging2Total = 0;
+    $scope.paging1CurrentPage = 1;
+    $scope.paging2CurrentPage = 1;
 
     $scope.formData = {
         devSearchKeyword: '',
@@ -22,90 +44,67 @@
 
     $scope.panelStyle = { height: 500 };
 
-    $scope.getDeveloper = function () {
-        radasoft.debug($scope.devSearchKeyword);
-        radasoft.getDeveloper({ FILTER: $scope.formData.devSearchKeyword }).then(function (response) {
-            $scope.developers = response.data;
+    $scope.getDevelopers = function () {
 
-            $scope.getProject();
-        });
-    }
+        $scope.projects = [];
+        $scope.formData.proSearchKeyword = '';
 
-    $scope.getProject = function () {
-        if ($scope.selectedDev && $scope.selectedDev.DEV_RUNNING_ID != undefined) {
-            radasoft.getProject({
-                DEV_RUNNING_ID: $scope.selectedDev.DEV_RUNNING_ID,
-                FILTER: $scope.formData.proSearchKeyword
-            }).then(function (response) {
-                $scope.projects = response.data;
-
-                $scope.getProjectPhase();
-            });
-        }
-    }
-
-    $scope.getProjectUnit = function () {
-        radasoft.getProjectUnit({ PROJECT_RUNNING_ID: $scope.selectedPro.PROJECT_RUNNING_ID }).then(function (response) {
-            $scope.projectUnit = response.data;
-        });
-    }
-
-    $scope.getProjectPhase = function () {
-        if ($scope.selectedPro && $scope.selectedPro.PROJECT_RUNNING_ID != undefined) {
-            radasoft.getProjectPhase({
-                PROJECT_RUNNING_ID: $scope.selectedPro.PROJECT_RUNNING_ID
-            }).then(function (response) {
-                $scope.projectPhase = response.data;
-            });
-        }
-    }
-
-    $scope.getProjectZone = function () {
-        if ($scope.selectedPhase.PROJECT_PHASE_RUNNING_ID != undefined) {
-            radasoft.getZoneByPhase({
-                PROJECT_PHASE_RUNNING_ID: $scope.selectedPhase.PROJECT_PHASE_RUNNING_ID
-            }).then(function (response) {
-                $scope.projectZone = response.data;
-            });
-        }
-    }
-    $scope.getProjectPrice = function () {
-        radasoft.getProjectPrice({
-            PROJECT_RUNNING_ID: $scope.selectedPro.PROJECT_RUNNING_ID
+        radasoft.getDevelopers({
+            limit: $rootScope.app.itemsPerPage,
+            page: $scope.paging1CurrentPage,
+            filters: [
+                { NAME: 'FILTER', VALUE: $scope.formData.devSearchKeyword }
+            ]
         }).then(function (response) {
-            $scope.projectPrice = response.data;
+            $scope.developers = response.data.data;
+            $scope.paging1Total = response.data.total;
+
+            if ($scope.$parent.selectedDev) {
+                $scope.getProjects();
+            }
         });
     }
+
+    $scope.getProjects = function () {
+        if ($scope.$parent.selectedDev && $scope.$parent.selectedDev.DEV_RUNNING_ID != undefined) {
+            radasoft.getProjects({
+                limit: $rootScope.app.itemsPerPage,
+                page: $scope.paging2CurrentPage,
+                filters: [
+                    { NAME: 'DEV_RUNNING_ID', VALUE: $scope.$parent.selectedDev.DEV_RUNNING_ID },
+                    { NAME: 'FILTER', VALUE: $scope.formData.proSearchKeyword }
+                ]
+            }).then(function (response) {
+                $scope.projects = response.data.data;
+                $scope.paging2Total = response.data.total;
+            });
+        }
+    }
+
     $scope.searchDevEnter = function ($event) {
         if ($event.keyCode == 13) {
-            $scope.getDeveloper();
+            $scope.getDevelopers();
         }
     }
     $scope.searchProjectEnter = function ($event) {
         if ($event.keyCode == 13) {
-            $scope.getProject();
+            $scope.getProjects();
         }
     }
     $scope.searchProject = function (developer) {
-        $scope.selectedDev = developer;
-        $scope.projectUnit = [];
-        $scope.projectPhase = [];
-        $scope.projectZone = [];
-        $scope.projectPrice = [];
-        $scope.selectedPro = undefined;
-        $scope.getProject();
+        $scope.$parent.selectedDev = developer;
+        $scope.$parent.projectUnit = [];
+        $scope.$parent.projectPhase = [];
+        $scope.$parent.projectZone = [];
+        $scope.$parent.projectPrice = [];
+        $scope.$parent.selectedPro = undefined;
+        $scope.getProjects();
     }
-    $scope.searchProjectUnit = function (project) {
-        $scope.selectedPro = project;
-        //$scope.getProjectUnit();
+
+    $scope.onProjectSelected = function (project) {
+        $scope.$parent.selectedPro = project;
     }
-    $scope.getProjectDetail = function (project) {
-        $scope.selectedPro = project;
-        //$scope.getProjectUnit();
-        //$scope.getProjectPhase();
-        //$scope.getProjectZone();
-        //$scope.getProjectPrice();
-    }
+
     $scope.openDev = function (data) {
         $modal.open({
             templateUrl: 'app/views/setting/dev.html',
@@ -129,6 +128,7 @@
             radasoft.success();
         });
     }
+
     $scope.openPro = function (data) {
         $modal.open({
             templateUrl: 'app/views/setting/pro.html',
@@ -148,30 +148,134 @@
             if (action == 'delete') {
                 $scope.selectedPro = undefined;
             }
-            $scope.getProject();
+            $scope.getProjects();
             radasoft.success();
         });
     }
-    $scope.openUnitType = function (data) {
-        $modal.open({
-            templateUrl: 'app/views/setting/unit.html',
-            controller: 'unitTypeController',
-            backdrop: 'static',
-            keyboard: false,
-            //windowClass: 'app-modal-window-80',
-            size: 'lg',
-            resolve: {
-                params: function () {
-                    return {
-                        formData: data
-                    };
+
+    $scope.addDev = function () {
+        $scope.openDev({
+            DEV_RUNNING_ID: 0,
+            DEV_CODE: undefined,
+            DEV_NAME: undefined
+        });
+    }
+
+    $scope.editDev = function (dev) {
+        $scope.openDev(angular.copy(dev));
+    }
+
+    $scope.addPro = function () {
+        $scope.openPro({
+            PROJECT_RUNNING_ID: 0,
+            PROJECT_CODE: '',
+            PROJECT_NAME: '',
+            DEV_RUNNING_ID: $scope.$parent.selectedDev.DEV_RUNNING_ID,
+            ADD_COUNTRY: {
+                CODE: 'TH',
+                NAME_THAI: 'ไทย'
+            }
+        });
+    }
+
+    $scope.editProject = function (project) {
+        $scope.openPro(project);
+    }
+
+    $scope.submit = function (form, style) {
+        if (form.$invalid) {
+            var field = null, firstError = null;
+            for (field in form) {
+                if (field[0] != '$') {
+                    if (firstError === null && !form[field].$valid) {
+                        firstError = form[field].$name;
+                    }
+
+                    if (form[field].$pristine) {
+                        form[field].$dirty = true;
+                    }
                 }
             }
-        }).result.then(function (data) {
-            $scope.getProjectUnit();
-            radasoft.success();
+        } else {
+            $scope.saveProjectData();
+        }
+    };
+
+    $scope.init = function () {
+        $scope.getDevelopers();
+    }
+
+    $scope.init();
+}]);
+
+app.controller('phaseZoneDialogCtrl', ['$scope', '$state', '$stateParams', 'radasoft', '$modal', '$translate', '$modalInstance', 'params', '$rootScope', function ($scope, $state, $stateParams, radasoft, $modal, $translate, $modalInstance, params, $rootScope) {
+    $scope.title = params.title;
+    $scope.params = params;
+
+    $scope.showProject = $scope.params.showProject;
+    $scope.showPhaseZone = $scope.params.showPhaseZone;
+
+    $scope.developers = [];
+    $scope.projects = [];
+    $scope.projectUnit = [];
+    $scope.projectPhase = [];
+    $scope.projectZone = [];
+    $scope.projectPrice = [];
+
+    $scope.selectedDev = undefined;
+    $scope.selectedPro = undefined;
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+
+    $scope.getProjectPhase = function () {
+        if ($scope.selectedPro && $scope.selectedPro.PROJECT_RUNNING_ID != undefined) {
+            radasoft.getProjectPhase({
+                PROJECT_RUNNING_ID: $scope.selectedPro.PROJECT_RUNNING_ID
+            }).then(function (response) {
+                $scope.projectPhase = response.data;
+            });
+        }
+    }
+
+    $scope.getProjectZone = function () {
+        if ($scope.selectedPhase.PROJECT_PHASE_RUNNING_ID != undefined) {
+            radasoft.getZoneByPhase({
+                PROJECT_PHASE_RUNNING_ID: $scope.selectedPhase.PROJECT_PHASE_RUNNING_ID
+            }).then(function (response) {
+                $scope.projectZone = response.data;
+            });
+        }
+    }
+
+    $scope.addZone = function () {
+        if ($scope.selectedPhase == undefined) {
+            radasoft.alert($translate.instant('PLEASE_SELECT') + ' ' + $translate.instant('PHASE'));
+        } else {
+            $scope.openZone({
+                PROJECT_ZONE_RUNNING_ID: 0,
+                PROJECT_PHASE_RUNNING_ID: $scope.selectedPhase.PROJECT_PHASE_RUNNING_ID
+            });
+        }
+    }
+    $scope.editZone = function (zone) {
+        $scope.openZone(angular.copy(zone));
+    }
+    $scope.addPhase = function () {
+        $scope.openPhase({
+            PROJECT_PHASE_RUNNING_ID: 0,
+            PROJECT_RUNNING_ID: $scope.selectedPro.PROJECT_RUNNING_ID
         });
     }
+    $scope.editPhase = function (phase) {
+        $scope.openPhase(angular.copy(phase));
+    }
+    $scope.selectPhase = function (phase) {
+        $scope.selectedPhase = phase;
+        $scope.getProjectZone();
+    }
+
     $scope.openPhase = function (data) {
         $modal.open({
             templateUrl: 'app/views/setting/phase.html',
@@ -192,6 +296,7 @@
             radasoft.success();
         });
     }
+
     $scope.openZone = function (data) {
         $modal.open({
             templateUrl: 'app/views/setting/zone.html',
@@ -213,144 +318,308 @@
             radasoft.success();
         });
     }
-    $scope.openPrice = function (data) {
-        $modal.open({
-            templateUrl: 'app/views/setting/price.html',
-            controller: 'priceController',
-            backdrop: 'static',
-            keyboard: false,
-            //windowClass: 'app-modal-window-80',
-            size: 'lg',
-            resolve: {
-                params: function () {
-                    return {
-                        formData: data,
-                        projectZone: $scope.projectZone,
-                        projectUnit: $scope.projectUnit
-                    };
-                }
-            }
-        }).result.then(function (data) {
-            $scope.getProjectPrice();
-            radasoft.success();
-        });
-    }
-    $scope.addDev = function () {
-        $scope.openDev({
-            DEV_RUNNING_ID: 0,
-            DEV_CODE: undefined,
-            DEV_NAME: undefined
-        });
-    }
-    $scope.editDev = function (dev) {
-        $scope.openDev(dev);
-    }
-    $scope.addPro = function () {
-        $scope.openPro({
-            PROJECT_RUNNING_ID: 0,
-            PROJECT_CODE: '',
-            PROJECT_NAME: '',
-            DEV_RUNNING_ID: $scope.selectedDev.DEV_RUNNING_ID,
-            ADD_COUNTRY: {
-                CODE: 'TH',
-                NAME_THAI: 'ไทย'
-            }
-        });
-    }
-    $scope.editProject = function (project) {
-        $scope.openPro(project);
-    }
-
-    $scope.addUnitType = function () {
-        $scope.openUnitType({
-            PROJECT_UT_RUNNING_ID: 0,
-            PROJECT_RUNNING_ID: $scope.selectedPro.PROJECT_RUNNING_ID
-        });
-    }
-    $scope.editProjectUnit = function (unit) {
-        $scope.openUnitType(unit);
-    }
-    $scope.addZone = function () {
-        if ($scope.selectedPhase == undefined) {
-            radasoft.alert($translate.instant('PLEASE_SELECT') + ' ' + $translate.instant('PHASE'));
-        } else {
-            $scope.openZone({
-                PROJECT_ZONE_RUNNING_ID: 0,
-                PROJECT_PHASE_RUNNING_ID: $scope.selectedPhase.PROJECT_PHASE_RUNNING_ID
-            });
-        }
-    }
-    $scope.editZone = function (zone) {
-        $scope.openZone(zone);
-    }
-    $scope.addPhase = function () {
-        $scope.openPhase({
-            PROJECT_PHASE_RUNNING_ID: 0,
-            PROJECT_RUNNING_ID: $scope.selectedPro.PROJECT_RUNNING_ID
-        });
-    }
-    $scope.editPhase = function (phase) {
-        $scope.openPhase(phase);
-    }
-    $scope.selectPhase = function (phase) {
-        $scope.selectedPhase = phase;
-        //console.log(phase);
-        $scope.getProjectZone();
-    }
-    $scope.addPrice = function () {
-        $scope.openPrice({
-            PROJECT_PRICE_RUNNING_ID: 0,
-            FLOOR: 0
-        });
-    }
-    $scope.editPrice = function (price) {
-        $scope.openPrice(price);
-    }
-
-    $scope.submit = function (form, style) {
-        if (form.$invalid) {
-            var field = null, firstError = null;
-            for (field in form) {
-                if (field[0] != '$') {
-                    if (firstError === null && !form[field].$valid) {
-                        firstError = form[field].$name;
-                    }
-
-                    if (form[field].$pristine) {
-                        form[field].$dirty = true;
-                    }
-                }
-            }
-
-            //toaster.pop('warning', $translate.instant('NOTIFY.DATA_INVALID'));
-        } else {
-            $scope.saveProjectData();
-        }
-    };
-
-    $scope.selectDevPro = function () {
-        $modalInstance.close({
-            developer: $scope.selectedDev,
-            project: $scope.selectedPro
-        });
-    }
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
 
     $scope.init = function () {
+        if ($scope.params.developer && $scope.params.project) {
+            $scope.selectedDev = $scope.params.developer;
+            $scope.selectedPro = $scope.params.project;
 
-        if (params.developer && params.project) {
-            $scope.selectedDev = params.developer;
-            $scope.selectedPro = params.project;
+            $scope.getProjectPhase();
         }
-
-        $scope.getDeveloper();
     }
 
     $scope.init();
 }]);
+
+//app.controller('projectController', ['$scope', '$state', '$stateParams', 'radasoft', '$modal', '$translate', '$rootScope', function ($scope, $state, $stateParams, radasoft, $modal, $translate, $rootScope) {
+//    $scope.showProject = $scope.params.showProject;
+//    $scope.showPhaseZone = $scope.params.showPhaseZone;
+
+//    $scope.paging1CurrentPage = 1;
+
+//    //$scope.devSearchKeyword = '';
+//    //$scope.proSearchKeyword = '';
+
+//    $scope.formData = {
+//        devSearchKeyword: '',
+//        proSearchKeyword: ''
+//    };
+
+//    $scope.panelStyle = { height: 500 };
+
+//    $scope.getDeveloper = function () {
+//        radasoft.debug($scope.devSearchKeyword);
+//        radasoft.getDeveloper({ FILTER: $scope.formData.devSearchKeyword }).then(function (response) {
+//            $scope.developers = response.data;
+
+//            $scope.getProject();
+//        });
+//    }
+
+//    $scope.getDevelopers = function () {
+//        radasoft.getDevelopers({
+//            limit: $rootScope.app.itemsPerPage,
+//            page: $scope.paging1CurrentPage,
+//            filters: [
+//                { NAME: 'FILTER', VALUE: $scope.formData.devSearchKeyword }
+//            ]
+//        }).then(function (response) {
+//            $scope.developers = response.data.data;
+//            $scope.paging1Total = response.data.total;
+//        });
+//    }
+
+//    $scope.getProject = function () {
+//        if ($scope.$parent.selectedDev && $scope.$parent.selectedDev.DEV_RUNNING_ID != undefined) {
+//            radasoft.getProject({
+//                DEV_RUNNING_ID: $scope.$parent.selectedDev.DEV_RUNNING_ID,
+//                FILTER: $scope.formData.proSearchKeyword
+//            }).then(function (response) {
+//                $scope.projects = response.data;
+
+//                $scope.getProjectPhase();
+//            });
+//        }
+//    }
+
+//    $scope.getProjectUnit = function () {
+//        radasoft.getProjectUnit({ PROJECT_RUNNING_ID: $scope.selectedPro.PROJECT_RUNNING_ID }).then(function (response) {
+//            $scope.projectUnit = response.data;
+//        });
+//    }
+
+//    $scope.getProjectPhase = function () {
+//        if ($scope.$parent.selectedPro && $scope.selectedPro.PROJECT_RUNNING_ID != undefined) {
+//            radasoft.getProjectPhase({
+//                PROJECT_RUNNING_ID: $scope.$parent.selectedPro.PROJECT_RUNNING_ID
+//            }).then(function (response) {
+//                $scope.projectPhase = response.data;
+//            });
+//        }
+//    }
+
+//    $scope.getProjectZone = function () {
+//        if ($scope.selectedPhase.PROJECT_PHASE_RUNNING_ID != undefined) {
+//            radasoft.getZoneByPhase({
+//                PROJECT_PHASE_RUNNING_ID: $scope.selectedPhase.PROJECT_PHASE_RUNNING_ID
+//            }).then(function (response) {
+//                $scope.projectZone = response.data;
+//            });
+//        }
+//    }
+//    $scope.getProjectPrice = function () {
+//        radasoft.getProjectPrice({
+//            PROJECT_RUNNING_ID: $scope.selectedPro.PROJECT_RUNNING_ID
+//        }).then(function (response) {
+//            $scope.projectPrice = response.data;
+//        });
+//    }
+//    $scope.searchDevEnter = function ($event) {
+//        if ($event.keyCode == 13) {
+//            $scope.getDevelopers();
+//        }
+//    }
+//    $scope.searchProjectEnter = function ($event) {
+//        if ($event.keyCode == 13) {
+//            $scope.getProject();
+//        }
+//    }
+//    $scope.searchProject = function (developer) {
+//        $scope.$parent.selectedDev = developer;
+//        $scope.$parent.projectUnit = [];
+//        $scope.$parent.projectPhase = [];
+//        $scope.$parent.projectZone = [];
+//        $scope.$parent.projectPrice = [];
+//        $scope.$parent.selectedPro = undefined;
+//        $scope.getProject();
+//    }
+//    $scope.searchProjectUnit = function (project) {
+//        $scope.$parent.selectedPro = project;
+//        //$scope.getProjectUnit();
+//    }
+//    $scope.getProjectDetail = function (project) {
+//        $scope.$parent.selectedPro = project;
+//        //$scope.getProjectUnit();
+//        //$scope.getProjectPhase();
+//        //$scope.getProjectZone();
+//        //$scope.getProjectPrice();
+//    }
+//    $scope.openDev = function (data) {
+//        $modal.open({
+//            templateUrl: 'app/views/setting/dev.html',
+//            controller: 'devController',
+//            backdrop: 'static',
+//            keyboard: false,
+//            //windowClass: 'app-modal-window-80',
+//            size: 'lg',
+//            resolve: {
+//                params: function () {
+//                    return {
+//                        formData: data
+//                    };
+//                }
+//            }
+//        }).result.then(function (action) {
+//            if (action == 'delete') {
+//                $scope.selectedDev = undefined;
+//            }
+//            $scope.init();
+//            radasoft.success();
+//        });
+//    }
+//    $scope.openPro = function (data) {
+//        $modal.open({
+//            templateUrl: 'app/views/setting/pro.html',
+//            controller: 'proController',
+//            backdrop: 'static',
+//            keyboard: false,
+//            //windowClass: 'app-modal-window-80',
+//            size: 'lg',
+//            resolve: {
+//                params: function () {
+//                    return {
+//                        formData: data
+//                    };
+//                }
+//            }
+//        }).result.then(function (action) {
+//            if (action == 'delete') {
+//                $scope.selectedPro = undefined;
+//            }
+//            $scope.getProject();
+//            radasoft.success();
+//        });
+//    }
+//    $scope.openUnitType = function (data) {
+//        $modal.open({
+//            templateUrl: 'app/views/setting/unit.html',
+//            controller: 'unitTypeController',
+//            backdrop: 'static',
+//            keyboard: false,
+//            //windowClass: 'app-modal-window-80',
+//            size: 'lg',
+//            resolve: {
+//                params: function () {
+//                    return {
+//                        formData: data
+//                    };
+//                }
+//            }
+//        }).result.then(function (data) {
+//            $scope.getProjectUnit();
+//            radasoft.success();
+//        });
+//    }
+
+//    $scope.openPrice = function (data) {
+//        $modal.open({
+//            templateUrl: 'app/views/setting/price.html',
+//            controller: 'priceController',
+//            backdrop: 'static',
+//            keyboard: false,
+//            //windowClass: 'app-modal-window-80',
+//            size: 'lg',
+//            resolve: {
+//                params: function () {
+//                    return {
+//                        formData: data,
+//                        projectZone: $scope.projectZone,
+//                        projectUnit: $scope.projectUnit
+//                    };
+//                }
+//            }
+//        }).result.then(function (data) {
+//            $scope.getProjectPrice();
+//            radasoft.success();
+//        });
+//    }
+//    $scope.addDev = function () {
+//        $scope.openDev({
+//            DEV_RUNNING_ID: 0,
+//            DEV_CODE: undefined,
+//            DEV_NAME: undefined
+//        });
+//    }
+//    $scope.editDev = function (dev) {
+//        $scope.openDev(dev);
+//    }
+//    $scope.addPro = function () {
+//        $scope.openPro({
+//            PROJECT_RUNNING_ID: 0,
+//            PROJECT_CODE: '',
+//            PROJECT_NAME: '',
+//            DEV_RUNNING_ID: $scope.selectedDev.DEV_RUNNING_ID,
+//            ADD_COUNTRY: {
+//                CODE: 'TH',
+//                NAME_THAI: 'ไทย'
+//            }
+//        });
+//    }
+//    $scope.editProject = function (project) {
+//        $scope.openPro(project);
+//    }
+
+//    $scope.addUnitType = function () {
+//        $scope.openUnitType({
+//            PROJECT_UT_RUNNING_ID: 0,
+//            PROJECT_RUNNING_ID: $scope.selectedPro.PROJECT_RUNNING_ID
+//        });
+//    }
+//    $scope.editProjectUnit = function (unit) {
+//        $scope.openUnitType(unit);
+//    }
+
+//    $scope.addPrice = function () {
+//        $scope.openPrice({
+//            PROJECT_PRICE_RUNNING_ID: 0,
+//            FLOOR: 0
+//        });
+//    }
+//    $scope.editPrice = function (price) {
+//        $scope.openPrice(price);
+//    }
+
+//    $scope.submit = function (form, style) {
+//        if (form.$invalid) {
+//            var field = null, firstError = null;
+//            for (field in form) {
+//                if (field[0] != '$') {
+//                    if (firstError === null && !form[field].$valid) {
+//                        firstError = form[field].$name;
+//                    }
+
+//                    if (form[field].$pristine) {
+//                        form[field].$dirty = true;
+//                    }
+//                }
+//            }
+
+//            //toaster.pop('warning', $translate.instant('NOTIFY.DATA_INVALID'));
+//        } else {
+//            $scope.saveProjectData();
+//        }
+//    };
+
+//    $scope.selectDevPro = function () {
+//        //$modalInstance.close({
+//        //    developer: $scope.selectedDev,
+//        //    project: $scope.selectedPro
+//        //});
+//        //$scope.$emit('onSelectedProject', { developer: $scope.selectedDev, project: $scope.selectedPro });
+//    }
+
+//    $scope.init = function () {
+
+//        if ($scope.params.developer && $scope.params.project) {
+//            $scope.selectedDev = $scope.params.developer;
+//            $scope.selectedPro = $scope.params.project;
+//        }
+
+//        $scope.getDevelopers();
+//    }
+
+//    $scope.init();
+//}]);
 
 app.controller('devController', ['$scope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', '$modalInstance', 'radasoft', 'params', function ($scope, $state, toaster, $modal, $translate, SweetAlert, $modalInstance, radasoft, params) {
     $scope.ldloading1 = {};
@@ -410,17 +679,17 @@ app.controller('devController', ['$scope', '$state', 'toaster', '$modal', '$tran
     $scope.init();
 }]);
 
-app.controller('proController', ['$scope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', '$modalInstance', 'radasoft', 'params', '$filter', function ($scope, $state, toaster, $modal, $translate, SweetAlert, $modalInstance, radasoft, params, $filter) {
+app.controller('proController', ['$scope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', '$modalInstance', 'radasoft', 'params', '$filter', '$q', function ($scope, $state, toaster, $modal, $translate, SweetAlert, $modalInstance, radasoft, params, $filter, $q) {
     $scope.ldloading1 = {};
     $scope.ldloading2 = {};
 
     $scope.btnDisabled = false;
     $scope.btnSubmitDisabled = false;
 
-    $scope.formData = params.formData;
+    $scope.formData = undefined;
 
     $scope.title1 = $translate.instant('PROJECT');
-    $scope.title2 = $scope.formData.PROJECT_NAME;
+    $scope.title2 = '';
 
     $scope.selectCountry = [];
     $scope.selectProvince = [];
@@ -546,8 +815,26 @@ app.controller('proController', ['$scope', '$state', 'toaster', '$modal', '$tran
         });
     }
 
+    $scope.getProjectDetail = function () {
+        var deffered = $q.defer();
+        radasoft.getProjectDetail({ PROJECT_RUNNING_ID: params.formData.PROJECT_RUNNING_ID }).then(function (response) {
+            $scope.formData = response.data;
+
+            if (response.data == null) {
+                $scope.formData = params.formData;
+            } else {
+                $scope.title2 = $scope.formData.PROJECT_NAME;
+            }
+
+            deffered.resolve();
+        });
+        return deffered.promise;
+    }
+
     $scope.init = function () {
-        $scope.getCountry();
+        $scope.getProjectDetail().then(function () {
+            $scope.getCountry();
+        });
     }
 
     $scope.init();

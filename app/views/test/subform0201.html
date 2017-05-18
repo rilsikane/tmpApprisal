@@ -11,12 +11,12 @@
                 <div ng-include="'app/views/project/unit.html'"></div>
             </div>
         </div>
-        <div class="panel panel-white">
+        <div class="panel panel-white" ng-if="formData.HEAD_COL_TYPE_ID=='286011'">
             <div class="panel-heading bg-light-azure no-radius">
                 <h5 class="panel-title">รายละเอียดหลักทรัพย์</h5>
             </div>
             <div class="panel-body">
-                <div class="form-group">
+                <div ng-if="false" class="form-group">
                     <label class="col-sm-4 control-label" for="DEED_NO" ng-show="formData.HEAD_COL_TYPE_ID=='286003' || formData.HEAD_COL_TYPE_ID=='300001' || formData.HEAD_COL_TYPE_ID=='286005' || formData.HEAD_COL_TYPE_ID=='286006' || formData.HEAD_COL_TYPE_ID=='286007' || formData.HEAD_COL_TYPE_ID=='286008' || formData.HEAD_COL_TYPE_ID=='999999' || formData.HEAD_COL_TYPE_ID=='286066' ">
                         {{'COL_NO'|translate}}
                     </label>

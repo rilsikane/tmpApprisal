@@ -63,7 +63,7 @@
     }
 
     $scope.$on('onContactResultSuccess', function (event, params) {
-        $scope.formData.DATE_APPRAI_EVALUATE = params.CONTACT_DATE;
+        $scope.formData.DATE_APPRAI_EVALUATE = params.DATE_CUST_APPOINTMENT;
         if (params.CONTACT_RESULT.VALUE == '1') {
             var submitAction = undefined;
 
@@ -380,6 +380,7 @@ app.controller('subform0550Controller', ['$scope', 'radasoft', '$translate', '$q
             }
         }).result.then(function (data) {
             if (data.CONTACT_RESULT.VALUE == '1') {
+                $scope.init();
                 $scope.$emit('onContactResultSuccess', data)
             } else {
                 radasoft.success();
@@ -445,12 +446,12 @@ app.controller('subform0550Controller', ['$scope', 'radasoft', '$translate', '$q
 }]);
 app.controller('subform0551Controller', ['$scope', 'radasoft', '$modalInstance', 'params', '$translate', '$q', function ($scope, radasoft, $modalInstance, params, $translate, $q) {
     $scope.title = $translate.instant('APPOINTMENT_CALENDAR');
-    $scope.includeUrl = '/app/views/test/subform0551.html';
+    $scope.includeUrl = 'app/views/test/subform0551.html';
     $scope.showBtnSave = true;
     $scope.dpOpenState = {};
     $scope.formData = undefined;
     $scope.STATE_ID = params.STATE_ID;
-
+    $scope.inputDisabled = false;
     $scope.selectContactResult = [];
 
     $scope.getContactResult = function () {
@@ -471,6 +472,10 @@ app.controller('subform0551Controller', ['$scope', 'radasoft', '$modalInstance',
             if (CUSCONTACT_RUNNING_ID == -1) {
                 $scope.formData.CONTACT_RESULT = undefined;
                 $scope.formData.DATE_CUST_APPOINTMENT = undefined;
+            } else {
+                if ($scope.formData.CONTACT_RESULT.VALUE == '1') {
+                    $scope.inputDisabled = true;
+                }
             }
         });
     }
@@ -515,8 +520,8 @@ app.controller('subform0551Controller', ['$scope', 'radasoft', '$modalInstance',
             $scope.getCustContact(params.formData.JOB_RUNNING_ID, params.formData.CUSCONTACT_RUNNING_ID);
         });
     }
-    $scope.onContactChage = function(){
-        if("1"!=$scope.formData.CONTACT_RESULT.VALUE){
+    $scope.onContactChage = function () {
+        if ("1" != $scope.formData.CONTACT_RESULT.VALUE) {
             $scope.formData.DATE_CUST_APPOINTMENT = undefined;
             $scope.formData.APPOINTMENT_HOUR = undefined;
             $scope.formData.APPOINTMENT_MINUTE = undefined;
@@ -547,9 +552,6 @@ app.controller('subform0552Controller', ['$scope', 'radasoft', '$filter', '$tran
     $scope.calendarDay = new Date();
 
     $scope.openEventEditor = function (data) {
-        //radasoft.debug(action);
-        radasoft.debug(data);
-
         radasoft.openDialog({
             controller: 'subform0551Controller',
             resolve: {
@@ -617,6 +619,13 @@ app.controller('subform0552Controller', ['$scope', 'radasoft', '$filter', '$tran
 
 app.controller('subform1200Controller', ['$scope', 'radasoft', function ($scope, radasoft) {
     $scope.requestAttach = [];
+    $scope.btnDisabled = true;
+    $scope.inputDisabled = true;
+
+    if ($scope.tab.create || $scope.tab.update) {
+        $scope.btnDisabled = false;
+        $scope.inputDisabled = false;
+    }
 
     $scope.getRequestAttach = function () {
         radasoft.getRequestAttachForApprover({ DOC_ID: $scope.DOC_ID }).then(function (response) {
@@ -636,17 +645,28 @@ app.controller('subform1200Controller', ['$scope', 'radasoft', function ($scope,
 }]);
 app.controller('subform1300Controller', ['$scope', 'radasoft', '$sce', '$translate', function ($scope, radasoft, $sce, $translate) {
     $scope.content = {};
+    $scope.btnDisabled = true;
+    $scope.inputDisabled = true;
+    $scope.inputReadOnly = true;
+
+    if ($scope.tab.create || $scope.tab.update) {
+        $scope.btnDisabled = false;
+        $scope.inputDisabled = false;
+    }
 
     $scope.getHeadColAppraisalList = function () {
         radasoft.getHeadColAppraisalList({ JOB_RUNNING_ID: $scope.$parent.formData.JOB_RUNNING_ID }).then(function (response) {
             var allOk = true;
+
             angular.forEach(response.data, function (item) {
                 if (item.APPRAISAL_REPORT_OK == false) {
                     allOk = false;
                 }
             });
 
-            $scope.btnDisabled = !allOk;
+            if ($scope.btnDisabled == false) {
+                $scope.btnDisabled = !allOk;
+            }            
 
             $scope.headColAppraisalList = response.data;
         });
@@ -795,6 +815,14 @@ app.controller('subform1500Controller', ['$scope', 'radasoft', '$translate', fun
 }]);
 
 app.controller('subform1600Controller', ['$scope', 'radasoft', function ($scope, radasoft) {
+    $scope.btnDisabled = true;
+    $scope.inputDisabled = true;
+
+    if ($scope.tab.create || $scope.tab.update) {
+        $scope.btnDisabled = false;
+        $scope.inputDisabled = false;
+    }
+
     $scope.submit = function () {
         $scope.$broadcast('setQuestionnaire');
     }

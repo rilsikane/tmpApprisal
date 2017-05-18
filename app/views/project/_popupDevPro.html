@@ -1,0 +1,70 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{title}}</h3><button ng-click="cancel()" class="btn btn-o btn-squared modalClose">{{'CLOSE'|translate}}</button>
+</div>
+<div class="modal-body bg-light-grey" ng-controller="devProCtrl">
+    <div class="panel panel-white no-radius">
+        <div class="panel-body border-light">
+            <div class="col-md-6" ng-show="showProject">
+                <h5>{{'DEVELOPER'|translate}}</h5>
+                <div class="search-form">
+                    <div name="form1" class="navbar-form" role="search">
+                        <a class="s-remove" href="#" ng-toggle-class="search-open" target=".navbar-form">
+                            <i class="ti-close"></i>
+                        </a>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="devSearchKeyword" placeholder="{{'SEARCH'|translate}}" ng-keypress="searchDevEnter($event)" ng-model="formData.devSearchKeyword" />
+                            <button class="btn search-button" type="button" style="right:20px;" tooltip="{{'BUTTON.SEARCH'|translate}}" ng-click="getDeveloper()">
+                                <i class="ti-search"></i>
+                            </button>
+                            <button ng-disabled="btnDevDisabled" class="btn search-button" type="button" style="right:-5px;" tooltip="{{'BUTTON.ADD'|translate}}" ng-click="addDev()">
+                                <i class="ti-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-group">
+                    <li ng-repeat="dev in developers" class="list-group-item no-radius" ng-class="{'bg-light-primary':dev.DEV_RUNNING_ID==selectedDev.DEV_RUNNING_ID}">
+                        <a ng-click="searchProject(dev)"><span ng-class="{'text-white':dev.DEV_RUNNING_ID==$parent.selectedDev.DEV_RUNNING_ID}">{{dev.DEV_NAME}}</span></a><span ng-if="dev.CAN_EDIT=='1'" style="cursor:pointer;" class="pull-right" ng-click="editDev(dev)"><i class="fa fa-pencil"></i></span>
+                    </li>
+                </ul>
+                <pagination boundary-links="true" items-per-page="app.itemsPerPage" ng-change="getDevelopers()" max-size="5" total-items="paging1Total" ng-model="paging1CurrentPage" class="pagination-sm  no-padding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+            </div>
+            <div class="col-md-6" ng-show="showProject">
+                <h5>{{'PROJECT'|translate}}</h5>
+                <div class="search-form">
+                    <div name="form2" class="navbar-form" role="search">
+                        <a class="s-remove" href="#" ng-toggle-class="search-open" target=".navbar-form">
+                            <i class="ti-close"></i>
+                        </a>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="proSearchKeyword" placeholder="{{'SEARCH'|translate}}" ng-keypress="searchProjectEnter($event)" ng-model="formData.proSearchKeyword" />
+                            <button class="btn search-button" type="button" style="right:20px;" tooltip="{{'BUTTON.SEARCH'|translate}}" ng-click="getProject()">
+                                <i class="ti-search"></i>
+                            </button>
+                            <button ng-disabled="btnProDisabled" class="btn search-button" type="button" style="right:-5px;" tooltip="{{'BUTTON.ADD'|translate}}" ng-click="addPro()">
+                                <i class="ti-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-group">
+                    <li ng-repeat="pro in projects" class="list-group-item no-radius " ng-class="{'bg-light-primary':pro.PROJECT_RUNNING_ID==$parent.selectedPro.PROJECT_RUNNING_ID}">
+                        <div ng-switch="pro.JOB_RUNNING_ID">
+                            <a ng-click="onProjectSelected(pro)"><span ng-class="{'text-white':pro.PROJECT_RUNNING_ID==$parent.selectedPro.PROJECT_RUNNING_ID}">{{pro.PROJECT_NAME}}</span></a><span ng-if="pro.CAN_EDIT=='1'" style="cursor:pointer;" class="pull-right" ng-click="editProject(pro)"><i class="fa fa-pencil"></i></span>
+                        </div>
+
+                    </li>
+                </ul>
+                <pagination boundary-links="true" items-per-page="app.itemsPerPage" ng-change="getProjects()" max-size="5" total-items="paging2Total" ng-model="paging2CurrentPage" class="pagination-sm  no-padding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button ng-if="showProject" class="btn btn-primary btn-o" ng-disabled="btnDisabled" ng-click="selectDevPro(form,'expand-left')">
+        <i class="glyphicon glyphicon-ok"></i> {{'BUTTON.OK'|translate}}
+    </button>
+    <button class="btn btn-primary  btn-o" ng-disabled="btnDisabled" ng-click="cancel()">
+        <i class="glyphicon glyphicon-chevron-left"></i> {{'BUTTON.BACK'|translate}}
+    </button>
+</div>

@@ -31,12 +31,21 @@
             </div>
         </div>
     </div>
-    <div  class="table-responsive">
+    <div class="table-responsive">
         <table class="table table-bordered table-hover" style="max-width:100%;">
             <thead>
                 <tr class="bg-azure" style="height:50px;">
-                    <th class="col-md-3"><span class="text-white">{{'QNR_TOPIC'|translate}}</span></th>
-                    <th class="col-md-1 text-center" ng-repeat="header in questionnaire.QNR_HEADER"><span class="text-white">{{header.DSC1}}</span></th>
+                    <th class="col-md-3">
+                        <span class="text-white">{{'QNR_TOPIC'|translate}}</span>
+                        <div class="pull-right">
+                            <span class="text-white">{{'SCORE'|translate}} : </span><span class="text-white">{{questionnaire.SCORE}},</span>
+                            <span class="text-white">{{'GRADE'|translate}} : </span><span class="text-white">{{questionnaire.GRADE}}</span>
+                        </div>
+                        
+                    </th>
+                    <th class="col-md-1 text-center" ng-repeat="header in questionnaire.QNR_HEADER">
+                        <span class="text-white">{{header.DSC1}}</span>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -47,7 +56,7 @@
                             <div ng-switch-when="RADIO">
                                 <span>{{item.DSC1}}</span>
                                 <div style="padding-left:1.5%;" class="radio clip-radio radio-primary" ng-repeat="choice in item.CHILD">
-                                    <input type="radio" id="qnr_radio_{{choice.QNR_ID}}" ng-value="{{choice.QNR_ID}}" name="qnr_radio_{{item.QNR_ID}}" ng-model="item.CHOICE_QNR_ID" />
+                                    <input ng-disabled="inputDisabled" type="radio" id="qnr_radio_{{choice.QNR_ID}}" ng-value="{{choice.QNR_ID}}" name="qnr_radio_{{item.QNR_ID}}" ng-model="item.CHOICE_QNR_ID" ng-change="calScore(item)" />
                                     <label for="qnr_radio_{{choice.QNR_ID}}">{{choice.DSC1}}</label>
                                 </div>
                             </div>
@@ -57,7 +66,7 @@
                                     <tr ng-repeat="choice in item.CHILD">
                                         <td>
                                             <div class="checkbox clip-check check-primary checkbox-inline">
-                                                <input id="qnr_{{choice.QNR_ID}}" type="checkbox" ng-true-value="{{choice.QNR_ID}}" ng-false-value="0" ng-model="choice.CHOICE_QNR_ID" />
+                                                <input ng-disabled="inputDisabled" id="qnr_{{choice.QNR_ID}}" type="checkbox" ng-true-value="{{choice.QNR_ID}}" ng-false-value="0" ng-model="choice.CHOICE_QNR_ID" />
                                                 <label for="qnr_{{choice.QNR_ID}}"></label>
                                             </div>
                                         </td>
@@ -69,7 +78,7 @@
                                         <tr>
                                             <td>
                                                 <div class="checkbox clip-check check-primary">
-                                                    <input id="qnr_{{item.QNR_ID}}" type="checkbox" ng-true-value="{{item.QNR_ID}}" ng-false-value="0" ng-model="item.CHOICE_QNR_ID" />
+                                                    <input ng-disabled="inputDisabled" id="qnr_{{item.QNR_ID}}" type="checkbox" ng-true-value="{{item.QNR_ID}}" ng-false-value="0" ng-model="item.CHOICE_QNR_ID" />
                                                     <label for="qnr_{{item.QNR_ID}}"></label>
                                                 </div>
                                             </td>
@@ -88,7 +97,7 @@
                                     {{item.DSC1}}
                                 </label>
                                 <br />
-                                <textarea rows="3" id="qnr_{{item.QNR_ID}}" style="max-width:100%;" class="form-control" maxlength="4000" ng-model="item.NOTE"></textarea>
+                                <textarea ng-disabled="inputDisabled" rows="3" id="qnr_{{item.QNR_ID}}" style="max-width:100%;" class="form-control" maxlength="4000" ng-model="item.NOTE"></textarea>
                             </div>
 
                             <h4 ng-switch-default ng-if="item.LEV =='1'">{{item.DSC1}}</h4>
@@ -99,11 +108,11 @@
                     <td ng-if="item.TYPE=='Q' && questionnaire.QNR_HEADER.length > 0" ng-repeat="choice in item.CHILD" class="text-center qnRadio">
                         <div ng-switch="choice.INPUT">
                             <div class="radio clip-radio radio-primary" ng-switch-when="RADIO">
-                                <input type="radio" id="qnr_rate_{{item.QNR_ID}}_{{choice.QNR_ID}}" name="qnr_rate_{{item.QNR_ID}}" ng-value="choice.QNR_ID" ng-model="item.CHOICE_QNR_ID" />
+                                <input ng-disabled="inputDisabled" type="radio" id="qnr_rate_{{item.QNR_ID}}_{{choice.QNR_ID}}" name="qnr_rate_{{item.QNR_ID}}" ng-value="choice.QNR_ID" ng-model="item.CHOICE_QNR_ID" />
                                 <label for="qnr_rate_{{item.QNR_ID}}_{{choice.QNR_ID}}"></label>
                             </div>
                             <div class="checkbox clip-check check-primary" ng-switch-when="CHECK">
-                                <input id="qnr_rate_{{item.QNR_ID}}_{{choice.QNR_ID}}" type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="choice.CHOICE_QNR_ID" />
+                                <input ng-disabled="inputDisabled" id="qnr_rate_{{item.QNR_ID}}_{{choice.QNR_ID}}" type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="choice.CHOICE_QNR_ID" />
                                 <label for="qnr_rate_{{item.QNR_ID}}_{{choice.QNR_ID}}"></label>
                             </div>
                             <div ng-switch-when="TEXT">

@@ -95,8 +95,6 @@
                     }
                 }
             }
-
-            //toaster.pop('warning', $translate.instant('NOTIFY.DATA_INVALID'));
         } else {
             $scope.save(style);
         }

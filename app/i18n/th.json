@@ -1,4 +1,8 @@
 ﻿{
+  "SCORE": "คะแนน",
+  "GRADE": "เกรด",
+  "SUBCOLTOJOBMARKETPRICE": "ดึงข้อมูลหลักประกันเพื่อเปรียบเทียบข้อมูลตลาด",
+  "VIEW_LARGE_IMAGE": "คลิกเพื่อดูภาพขนาดใหญ่",
   "NO_DATA_FOUND": "ไม่พบข้อมูล",
   "DATE_APPRAI_EVALUATE": "วันที่เริ่มสำรวจและประเมิน",
   "INVALID_INPUT_DATA": "ป้อนข้อมูลไม่ถูกต้อง / ระบุข้อมูลไม่ครบ",
@@ -188,7 +192,8 @@
   "SUMMARY": "รวม",
   "AFTERDEPLICIATIONPRICE": "มูลค่าทรัพย์สินหลังหักค่าเสื่อม (บาท)",
   "DEPLICIATIONPRICEUNIT": "ราคาต่อหน่วยหลังหักค่าเสื่อม (บาท)",
-  "DEPLICIATIONPERCENT": "ค่าเสื่อม (%)",
+  "DEPLICIATIONPERYEAR": "ค่าเสื่อมปีละ (%)",
+  "DEPLICIATIONPERCENT": "ค่าเสื่อมสะสม (%)",
   "AGE": "อายุ (ปี)",
   "TOTALPRICE": "รวม (บาท)",
   "UNITPRICE": "หน่วยละ",
@@ -497,7 +502,7 @@
 
   "DEED_NO": "โฉนดเลขที่",
   "CONSTRUCT_PERMIT": "ใบอนุญาตปลูกสร้างเลขที่",
-  "PROJECT_NAME": "ชื่ออาคารชุด",
+  "PROJECT_NAME": "ชื่ออาคาร",
   "FLOOR_NO": "ชั้นที่",
 
   "LAND": "ที่ดิน",
@@ -530,7 +535,7 @@
   "MADE_YEAR": "ปีที่ผลิต",
   "BRAND_NAME": "ยี่ห้อ",
   "BRAND_MODEL": "รุ่น",
-  "HORSE_POWER": "แรงม้า",
+  "HORSE_POWER": "ขนาดเครื่องยนต์",
   "CHASSIS_NO": "หมายเลขตัวถัง",
   "ENGINE_NO": "หมายเลขเครื่อง",
   "COLOR": "สี",

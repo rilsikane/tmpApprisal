@@ -37,6 +37,12 @@
     }
     $scope.getDistrict = function (item) {
         var deffered = $q.defer();
+
+        $scope.myFilter.DISTRICT = {};
+        $scope.selectDistrict = [];
+        $scope.myFilter.SUBDISTRICT = {};
+        $scope.selectSubDistrict = [];
+
         radasoft.getDistrict({ PROVINCE_ID: item.PROV_ID }).then(function (response) {
             $scope.selectDistrict = response.data;
             deffered.resolve();
@@ -45,6 +51,10 @@
     }
     $scope.getSubDistrict = function (item) {
         var deffered = $q.defer();
+
+        $scope.myFilter.SUBDISTRICT = {};
+        $scope.selectSubDistrict = [];
+
         radasoft.getSubDistrict({ PROVINCE_ID: item.PROVINCE_ID, DISTRICT_ID: item.CITY_ID }).then(function (response) {
             $scope.selectSubDistrict = response.data;
         });
@@ -160,13 +170,103 @@
     $scope.init = function () {
         $scope.getHeadColType().then(function (response) {
             $scope.getProvince().then(function (response) {
-                $scope.getPriceMarketStocklist();
+                //$scope.getPriceMarketStocklist();
             });
         });
     }
+    $scope.init();
+}]);
+
+app.controller('jobMarketPriceDetailCtrl', ['$scope', '$rootScope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', '$modalInstance', 'radasoft', 'params', '$q', function ($scope, $rootScope, $state, toaster, $modal, $translate, SweetAlert, $modalInstance, radasoft, params, $q) {
+    $scope.random = Math.random().toString().replace('.', '');
+    $scope.btnDisabled = false;
+    $scope.btnSubmitDisabled = false;
+    $scope.dataMode = params.dataMode;
+
+    $scope.includeUrl = params.includeUrl;
+    $scope.title = $translate.instant('MARKETPRICE');
+    $scope.showBtnSave = true;
+    $scope.showBtnDelete = params.showBtnDelete || false;
+
+    $scope.formData = params.formData;
+
+    $scope.upload = function () {
+        return radasoft.upload({
+            config: 'upload/photomarket',
+            id1: $scope.formData.JMP_RUNNING_ID,
+            imageFilter: true,
+            limit: 1
+        });
+    }
+
+    $scope.uploadPicture = function () {
+        $scope.upload().result.then(function (data) {
+            if (data[0]) {
+                $scope.random = Math.random().toString().replace('.', '');
+                $scope.formData.PICTURE = data[0];
+            }
+        });
+    }
+
+    $scope.uploadPictureSign = function () {
+        $scope.upload().result.then(function (data) {
+            if (data[0]) {
+                $scope.random = Math.random().toString().replace('.', '');
+                $scope.formData.PICTURE_SIGN = data[0];
+            }
+        });
+    }
+
+    $scope.getPriceMarketDetail = function () {
+        radasoft.getJobMarketPriceDetail({ JMP_RUNNING_ID: params.formData.JMP_RUNNING_ID }).then(function (response) {
+            if (response.data == null) {
+                $scope.formData = params.formData;
+            } else {
+                $scope.formData = response.data;
+            }
+
+            if ($scope.formData.JMP_RUNNING_ID == 0) {
+                //$scope.formData.TEMPLATE_TYPE = undefined;
+            }
+            $scope.random = Math.random().toString().replace('.', '');
+        });
+    }
+
+    $scope.save = function (form) {
+        if (form.$invalid) {
+            var field = null, firstError = null;
+            for (field in form) {
+                if (field[0] != '$') {
+                    if (firstError === null && !form[field].$valid) {
+                        firstError = form[field].$name;
+                    }
+
+                    if (form[field].$pristine) {
+                        form[field].$dirty = true;
+                    }
+                }
+            }
+        } else {
+            radasoft.confirmAndSave($translate.instant('CONFIRM.SAVE'), '', function (isconfirmed) {
+                if (isconfirmed) {
+                    radasoft.setJobMarketPrice($scope.formData).then(function (response) {
+                        radasoft.success();
+                        $modalInstance.close(false);
+                    });
+                }
+            });
+        }
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+
+    $scope.init = function () {
+        $scope.getPriceMarketDetail();
+    }
 
     $scope.init();
-
 }]);
 
 app.controller('marketPriceDetailController', ['$scope', '$rootScope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', '$modalInstance', 'radasoft', 'params', '$q', function ($scope, $rootScope, $state, toaster, $modal, $translate, SweetAlert, $modalInstance, radasoft, params, $q) {
@@ -176,7 +276,7 @@ app.controller('marketPriceDetailController', ['$scope', '$rootScope', '$state',
     $scope.dataMode = params.dataMode;
 
     $scope.includeUrl = params.includeUrl;
-    $scope.title = $translate.instant('MARKETPRICE');
+    $scope.title = $translate.instant('MARKETPRICE') + '(' + params.formData.TEMPLATE_TYPE.CODE_MINOR_NAME + ')';
     $scope.showBtnSave = true;
     $scope.showBtnDelete = params.showBtnDelete || false;
 
@@ -658,7 +758,9 @@ app.controller('marketPriceDetailController', ['$scope', '$rootScope', '$state',
     $scope.upload = function () {
         return radasoft.upload({
             config: 'upload/photomarket',
-            id1: $scope.formData.JMP_RUNNING_ID
+            id1: $scope.formData.JMP_RUNNING_ID,
+            imageFilter: true,
+            limit: 1
         });
     }
 
@@ -764,23 +866,35 @@ app.controller('marketPriceDetailController', ['$scope', '$rootScope', '$state',
     $scope.init();
 }]);
 
-app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', '$modalInstance', 'radasoft', 'params', '$q', function ($scope, $rootScope, $state, toaster, $modal, $translate, SweetAlert, $modalInstance, radasoft, params, $q) {
+app.controller('marketPriceSelectionDialogController', ['$scope', '$rootScope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', '$modalInstance', 'radasoft', 'params', '$q', function ($scope, $rootScope, $state, toaster, $modal, $translate, SweetAlert, $modalInstance, radasoft, params, $q) {
+    $scope.includeUrl = params.includeUrl;
+    $scope.title = $translate.instant('MARKETPRICE');
+    $scope.params = params;
+
+    $scope.$on('closeDialog', function (args) {
+        $modalInstance.close(args);
+    });
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+}]);
+
+app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', 'radasoft', '$q', function ($scope, $rootScope, $state, toaster, $modal, $translate, SweetAlert, radasoft, $q) {
 
     $scope.btnDisabled = false;
     $scope.btnSubmitDisabled = false;
 
-    $scope.includeUrl = params.includeUrl;
-    $scope.title = $translate.instant('MARKETPRICE');
+    $scope.totalRecords = 0;
+    $scope.currentPageNumber = 1;
 
     $scope.marketprices = [];
-    $scope.marketPriceTotalItems = 0;
-    $scope.marketPriceCurrentPage = 1;
 
     $scope.headColType = [];
     $scope.headColSubType = [];
 
     $scope.myFilter = {
-        TEMPLATE_TYPE: params.data.TEMPLATE_TYPE.CONDITION2,
+        TEMPLATE_TYPE: $scope.$parent.params.data.TEMPLATE_TYPE.CONDITION2,
         HEAD_COL_TYPE: {},
         SUB_COL_TYPE: {},
         FROM_AGE: 0,
@@ -792,7 +906,7 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
 
     $scope.onResetSearch = function () {
         $scope.myFilter = {
-            TEMPLATE_TYPE: params.data.TEMPLATE_TYPE.CONDITION2,
+            TEMPLATE_TYPE: $scope.$parent.params.data.TEMPLATE_TYPE.CONDITION2,
             HEAD_COL_TYPE: {},
             SUB_COL_TYPE: {},
             FROM_AGE: 0,
@@ -804,7 +918,7 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
     }
 
     $scope.onSearchClick = function () {
-        $scope.getMarketPrice();
+        $scope.getMarketPriceSelection();
     }
 
     $scope.getProvince = function () {
@@ -817,14 +931,25 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
     }
     $scope.getDistrict = function (item) {
         var deffered = $q.defer();
+
+        $scope.myFilter.DISTRICT = {};
+        $scope.selectDistrict = [];
+        $scope.myFilter.SUBDISTRICT = {};
+        $scope.selectSubDistrict = [];
+
         radasoft.getDistrict({ PROVINCE_ID: item.PROV_ID }).then(function (response) {
             $scope.selectDistrict = response.data;
+
             deffered.resolve();
         });
         return deffered.promise;
     }
     $scope.getSubDistrict = function (item) {
         var deffered = $q.defer();
+
+        $scope.myFilter.SUBDISTRICT = {};
+        $scope.selectSubDistrict = [];
+
         radasoft.getSubDistrict({ PROVINCE_ID: item.PROVINCE_ID, DISTRICT_ID: item.CITY_ID }).then(function (response) {
             $scope.selectSubDistrict = response.data;
         });
@@ -838,17 +963,11 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
     $scope.getHeadColType = function () {
         var deferred = $q.defer();
 
-        if ($rootScope.headColType == undefined) {
-            radasoft.getHeadColType({}).then(function (response) {
-                $rootScope.headColType = response.data;
-
-                $scope.headColType = $rootScope.headColType;
-            }).finally(function () {
-                deferred.resolve();
-            });
-        } else {
+        radasoft.getHeadColType({}).then(function (response) {
+            $scope.headColType = response.data;
+        }).finally(function () {
             deferred.resolve();
-        }
+        });
 
         return deferred.promise;
     }
@@ -864,12 +983,12 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
         return deferred.promise;
     }
 
-    $scope.getMarketPrice = function () {
+    $scope.getMarketPriceSelection = function () {
         radasoft.getPriceMarketStocklist({
             limit: $rootScope.app.itemsPerPage,
-            page: $scope.marketPriceCurrentPage,
+            page: $scope.currentPageNumber,
             filters: [
-                { NAME: 'TEMPLATE_TYPE', VALUE: params.data.TEMPLATE_TYPE.CONDITION2 },
+                { NAME: 'TEMPLATE_TYPE', VALUE: $scope.$parent.params.data.TEMPLATE_TYPE.CONDITION2 },
                 { NAME: 'HEAD_COL_TYPE', VALUE: $scope.myFilter.HEAD_COL_TYPE.VALUE || '' },
                 { NAME: 'SUB_COL_TYPE', VALUE: $scope.myFilter.SUB_COL_TYPE.VALUE || '' },
                 { NAME: 'FROM_AGE', VALUE: $scope.myFilter.FROM_AGE || 0 },
@@ -880,7 +999,7 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
             ]
         }).then(function (response) {
             $scope.marketprices = response.data.data;
-            $scope.marketPriceTotalItems = response.data.totals;
+            $scope.totalRecords = response.data.totals;
 
             if (response.data.data.length == 0) {
                 radasoft.alert($translate.instant('NO_DATA_FOUND'));
@@ -888,19 +1007,23 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
         });
     }
 
+    $scope.close = function (item) {
+        $scope.$emit('closeDialog', item);
+    }
+
     $scope.selectMarketPrice = function (item) {
         radasoft.confirmAndSave($translate.instant('CONFIRM.SET_JOB_MARKETPRICE'), $translate.instant('CONFIRM.SET_JOB_MARKETPRICE_WRN'), function (isconfirmed) {
             if (isconfirmed) {
 
-                params.data.MARKETSTOCK_RUNNING_ID = item.MARKETSTOCK_RUNNING_ID;
+                $scope.$parent.params.data.MARKETSTOCK_RUNNING_ID = item.MARKETSTOCK_RUNNING_ID;
 
-                radasoft.setPriceMarketStockToJobMarketPrice(params.data).then(function (response) {
+                radasoft.setPriceMarketStockToJobMarketPrice($scope.$parent.params.data).then(function (response) {
                     radasoft.success();
-                    $modalInstance.close(response.data);
+                    //$modalInstance.close(response.data);
+                    $scope.close(response.data);
                 });
             }
         });
-
     }
 
     $scope.save = function (form) {
@@ -922,7 +1045,8 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
                 if (isconfirmed) {
                     radasoft.setMarketPrice($scope.formData).then(function (response) {
                         radasoft.success();
-                        $modalInstance.close(false);
+                        //$modalInstance.close(false);
+                        $scope.close(false);
                     });
                 }
             });
@@ -938,15 +1062,6 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
                 });
             }
         });
-    }
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-
-
-    $scope.pageChanged = function () {
-        $scope.getMarketPrice();
     }
 
     $scope.init = function () {
@@ -968,6 +1083,8 @@ app.controller('priceCompareController', ['$scope', '$state', '$stateParams', 'r
 
     $scope.compareUrl = '/app/views/setting/marketprice/priceCompare2_' + $scope.params.TEMPLATE_TYPE.CONDITION1 + '.html';
 
+    $scope.title2 = $scope.params.TEMPLATE_TYPE.CODE_MINOR_NAME;
+
     $scope.jobMarketPrice = [];
 
     $scope.showDataSet1 = true;
@@ -977,6 +1094,20 @@ app.controller('priceCompareController', ['$scope', '$state', '$stateParams', 'r
     $scope.showDataSet5 = true;
 
     $scope.dataSetCol = "col-md-2";
+
+    $scope.subColToJobMarketPrice = function () {
+        radasoft.confirmAndSave('กรุณายืนยันการ '+$translate.instant('SUBCOLTOJOBMARKETPRICE'), '', function (isconfirmed) {
+            if (isconfirmed) {
+                radasoft.subColToJobMarketPrice({
+                    HEAD_COL_RUNNING_ID: $scope.params.HEAD_COL_RUNNING_ID,
+                    TEMPLATE_TYPE: $scope.params.TEMPLATE_TYPE.CONDITION2
+                }).then(function () {
+                    radasoft.success();
+                    $scope.getJobMarketPrice();
+                });
+            }
+        });
+    }
 
     $scope.upload = function ($index, attach) {
         $modal.open({
@@ -1036,7 +1167,7 @@ app.controller('priceCompareController', ['$scope', '$state', '$stateParams', 'r
 
         if ($scope.dataMode == 1) {
             radasoft.setMarketCompairNumber($scope.params).then(function () {
-
+                $scope.params.headCol.MARKET_COMPAIR = $scope.params.MARKET_COMPAIR;
             });
         }
     }
@@ -1055,7 +1186,8 @@ app.controller('priceCompareController', ['$scope', '$state', '$stateParams', 'r
 
     $scope.selectMarketPrice = function ($index, $item) {
         radasoft.openDialog({
-            controller: 'marketPriceSelectionController',
+            controller: 'marketPriceSelectionDialogController',
+            //templateUrl: '/app/views/setting/marketprice/marketPriceSelectionList.html',
             windowClass: 'app-modal-window-80',
             resolve: {
                 params: function () {
@@ -1084,7 +1216,24 @@ app.controller('priceCompareController', ['$scope', '$state', '$stateParams', 'r
 
     $scope.editJobMarketPrice = function ($index, data) {
         data.MARKETSTOCK_RUNNING_ID = 0;
-        $scope.openMarketPriceDialog(data);
+        $scope.openJobMarketPriceDialog(data);
+    }
+
+    $scope.openJobMarketPriceDialog = function (data) {
+        radasoft.openDialog({
+            controller: 'jobMarketPriceDetailCtrl',
+            resolve: {
+                params: function () {
+                    return {
+                        includeUrl: '/app/views/setting/marketprice/jobMarketPriceDetail.html',
+                        formData: data,
+                        dataMode: 1// 0 : AAG_M_PRICEMARKETSTOCK,1 : AAG_JOBMARKETPRICE
+                    };
+                }
+            }
+        }).result.then(function (reload) {
+            $scope.getJobMarketPrice();
+        });
     }
 
     $scope.openMarketPriceDialog = function (data) {

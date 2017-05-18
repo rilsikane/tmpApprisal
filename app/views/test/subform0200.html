@@ -41,7 +41,6 @@
         <div class="panel panel-white no-radius">
             <div class="panel-heading border-light bg-azure no-radius">
                 <h4 class="panel-title">{{colleteral.HEAD_COL_DETAIL}} <i ng-show="$parent.formData.JOB_TYPE" class="ti-angle-right"></i> <span ng-show="$parent.formData.JOB_TYPE">{{colleteral.PROJECT_UNIT_TYPE.UNIT_NAME}}</span> <i ng-show="$parent.formData.JOB_TYPE">{{colleteral.PROJECT_UNIT_TYPE.UNIT_DETAIL}}</i></h4>
-
                 <ul class="panel-heading-tabs border-light">
                     <li>
                         <div class="pull-right">
@@ -119,12 +118,10 @@
                                 <th ng-class="css_th_2" ng-hide="$parent.formData.JOB_TYPE">{{'SUBDISTRICT'|translate}}</th>
                                 <th ng-class="css_th_3" ng-hide="$parent.formData.JOB_TYPE">{{'PROVINCE'|translate}}</th>
                                 <th ng-class="css_th_4" ng-hide="$parent.formData.JOB_TYPE">{{'AREA_METER'|translate}}</th>
-
                                 <th ng-class="css_th_1" ng-show="$parent.formData.JOB_TYPE">{{'PHASE'|translate}}</th>
                                 <th ng-class="css_th_2" ng-show="$parent.formData.JOB_TYPE">{{'ZONE'|translate}}</th>
                                 <th ng-class="css_th_3" ng-show="$parent.formData.JOB_TYPE">{{'CODE_REF'|translate}}</th>
                                 <th ng-class="css_th_4" ng-show="$parent.formData.JOB_TYPE">{{'AREA_WA'|translate}}</th>
-
                                 <!-- <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th> -->
                                 <th ng-class="css_th_5">{{'SUB_COLL_OWNER'|translate}}</th>
                                 <th ng-class="css_th_6" ng-if="!inputDisabled"></th>
@@ -137,12 +134,10 @@
                                 <td ng-hide="$parent.formData.JOB_TYPE">{{subcol.DEED_DISTRICT.DISTRICT}}</td>
                                 <td ng-hide="$parent.formData.JOB_TYPE">{{subcol.DEED_PROVINCE.PROV_NAME}}</td>
                                 <td ng-hide="$parent.formData.JOB_TYPE">{{subcol.AREA_METER | number:2}}</td>
-
                                 <td ng-show="$parent.formData.JOB_TYPE">{{subcol.PROJECT_PRICE.PHASE_NAME}}</td>
                                 <td ng-show="$parent.formData.JOB_TYPE">{{subcol.PROJECT_PRICE.ZONE_NAME}}</td>
                                 <td ng-show="$parent.formData.JOB_TYPE">{{subcol.CODE_REF}}</td>
                                 <td ng-show="$parent.formData.JOB_TYPE">{{subcol.PROJECT_PRICE.UNIT_TYPE.AREA_WA}}</td>
-
                                 <!-- <td class="text-right">{{subcol.QUANTITY}}</td> -->
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
                                 <td class="center" ng-if="!inputDisabled">
@@ -326,7 +321,6 @@
                         </tbody>
                     </table>
                 </div>
-
                 <div ng-if="colleteral.SUB_COL_OTHERS.length > 0">
                     <table class="table table-bordered table-hover" id="sample-table-4">
                         <thead>

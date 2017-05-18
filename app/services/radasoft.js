@@ -59,7 +59,7 @@
                         $state.go('login.signin');
                     } else {
                         if (typeof (response.data) == 'object') {
-                            SweetAlert.swal(response.data.Message, response.data.ExceptionMessage);
+                            SweetAlert.swal(response.data.ExceptionMessage);
                         } else {
                             SweetAlert.swal(response.status + ' : ' + response.statusText, url);
                         }
@@ -559,10 +559,10 @@
                         response.data.IS_PROJECT = params.formData.IS_PROJECT || false;
                         switch (params.COL_FORM_ID) {
                             case 286003:
-                                response.data.PROJECT_PRICE.ZONE = undefined;
+                                //response.data.PROJECT_PRICE.ZONE = undefined;
                                 break;//ที่ดิน
                             case 286004:
-                                response.data.PROJECT_PRICE.ZONE = undefined;
+                                //response.data.PROJECT_PRICE.ZONE = undefined;
                                 break;//อาคารสิ่งปลูกสร้าง
                             case 286005:
                                 break;//สิทธิการเช่า
@@ -775,7 +775,7 @@
 
                 params = params || {};
 
-                params.templateUrl = params.templateUrl || '/app/views/common/dialogWrapper.html';
+                params.templateUrl = params.templateUrl || 'app/views/common/dialogWrapper.html';
                 params.windowClass = params.windowClass || '';
 
                 return $modal.open({
@@ -971,7 +971,7 @@
 
                 window.openMapCallback = callback;
 
-                window.open(url, 'abc', 'location=1,status=1,scrollbars=1, width=600,height=600', true);
+                window.open(url, 'abc', 'location=1,status=1,scrollbars=1, width=1024,height=768', true);
 
                 //return deferred.promise;
             }
@@ -1002,7 +1002,7 @@
                     deferred.resolve(response);
                 }, function (response) {
                     if (typeof (response.data) == 'object') {
-                        SweetAlert.swal(response.data.Message, response.data.ExceptionMessage);
+                        SweetAlert.swal(response.data.ExceptionMessage);
                     } else {
                         SweetAlert.swal(response.status + ' : ' + response.statusText, url);
                     }
@@ -1233,5 +1233,32 @@
             }
             this.getMarketTemplateType = function (params) {
                 return this.httpGet('getMarketTemplateType', params);
+            }
+            this.getDevelopers = function (params) {
+                return this.httpPost('getDevelopers', params);
+            }
+            this.getProjects = function (params) {
+                return this.httpPost('getProjects', params);
+            }
+            this.getProjectDetail = function (params) {
+                return this.httpGet('getProjectDetail', params);
+            }
+            this.subColToJobMarketPrice = function (params) {
+                return this.httpGet('subColToJobMarketPrice', params);
+            }
+            this.ENQUIRY_GET_PARAM_OU = function (params) {
+                return this.httpGet('ENQUIRY_GET_PARAM_OU', params);
+            }
+            this.ENQUIRY_GET_DATA_REQUEST = function (params) {
+                return this.httpPost('ENQUIRY_GET_DATA_REQUEST', params);
+            }
+            this.getBpmStep = function (params) {
+                return this.httpGet('getBpmStep', params);
+            }
+            this.getBpmState = function (params) {
+                return this.httpGet('getBpmState', params);
+            }
+            this.getDepreciation = function (params) {
+                return this.httpGet('getDepreciation', params);
             }
         }]);

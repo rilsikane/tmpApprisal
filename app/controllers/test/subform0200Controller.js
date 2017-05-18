@@ -8,6 +8,8 @@ app.controller('costBuildingController', ['$scope', '$state', 'toaster', '$modal
     $scope.headCol = params.headCol;
     $scope.subCol = params.subCol;
 
+    $scope.depreciation = [];
+
     $scope.getCost = function () {
         radasoft.getCost({
             HEAD_COL_RUNNING_ID: $scope.headCol.HEAD_COL_RUNNING_ID,
@@ -32,6 +34,10 @@ app.controller('costBuildingController', ['$scope', '$state', 'toaster', '$modal
 
     $scope.calSubColCost = function (cost) {
         if (cost != undefined) {
+            if (cost.DEPLICIATIONPERYEAR > 0) {
+                cost.DEPLICIATIONPERCENT = cost.DEPLICIATIONPERYEAR * cost.AGE;
+            }
+
             cost.TOTALPRICE = cost.UNITPRICE * cost.AREA;
             cost.DEPLICIATIONPRICE = ((cost.TOTALPRICE * cost.DEPLICIATIONPERCENT) / 100) * cost.AGE;
 
@@ -54,8 +60,23 @@ app.controller('costBuildingController', ['$scope', '$state', 'toaster', '$modal
         });
     }
 
-    $scope.save = function () {
-        $scope.setCost();
+    $scope.save = function (form) {
+        if (form.$invalid) {
+            var field = null, firstError = null;
+            for (field in form) {
+                if (field[0] != '$') {
+                    if (firstError === null && !form[field].$valid) {
+                        firstError = form[field].$name;
+                    }
+
+                    if (form[field].$pristine) {
+                        form[field].$dirty = true;
+                    }
+                }
+            }
+        } else {
+            $scope.setCost();
+        }
     }
 
     $scope.cancel = function () {
@@ -63,7 +84,10 @@ app.controller('costBuildingController', ['$scope', '$state', 'toaster', '$modal
     };
 
     $scope.init = function () {
-        $scope.getCost();
+        radasoft.getDepreciation({}).then(function (response) {
+            $scope.depreciation = response.data;
+            $scope.getCost();
+        });
     }
 
     $scope.init();
@@ -163,6 +187,12 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
                                 DISTRICT_ID: $scope.formData.CONDO_CITY ? $scope.formData.CONDO_CITY.CITY_ID : ''
                             }).then(function (response) {
                                 $scope.selectSubDistrict = response.data;
+
+                                if ($scope.IS_PROJECT) {
+                                    radasoft.getZoneByProject({ PROJECT_RUNNING_ID: $scope.requestData.PROJECT.PROJECT_RUNNING_ID }).then(function (response) {
+                                        $scope.selectProjectZone = response.data;
+                                    });
+                                }
                             });
                         });
                     });
@@ -202,6 +232,12 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
                             DISTRICT_ID: $scope.formData.DEED_CITY ? $scope.formData.DEED_CITY.CITY_ID : ''
                         }).then(function (response) {
                             $scope.selectSubDistrictDOL = response.data;
+
+                            if ($scope.IS_PROJECT) {
+                                radasoft.getZoneByProject({ PROJECT_RUNNING_ID: $scope.requestData.PROJECT.PROJECT_RUNNING_ID }).then(function (response) {
+                                    $scope.selectProjectZone = response.data;
+                                });
+                            }
                         });
                     });
                 });
@@ -221,6 +257,12 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
                     DISTRICT_ID: $scope.formData.DEED_CITY ? $scope.formData.DEED_CITY.CITY_ID : ''
                 }).then(function (response) {
                     $scope.selectSubDistrictDOL = response.data;
+
+                    if ($scope.IS_PROJECT) {
+                        radasoft.getZoneByProject({ PROJECT_RUNNING_ID: $scope.requestData.PROJECT.PROJECT_RUNNING_ID }).then(function (response) {
+                            $scope.selectProjectZone = response.data;
+                        });
+                    }
                 });
             });
         });
@@ -244,6 +286,14 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
                 $scope.selectProvince = response.data;
             });
         });
+    }
+
+    $scope.initOtherMasterData = function () {
+        if ($scope.IS_PROJECT) {
+            radasoft.getZoneByProject({ PROJECT_RUNNING_ID: $scope.requestData.PROJECT.PROJECT_RUNNING_ID }).then(function (response) {
+                $scope.selectProjectZone = response.data;
+            });
+        }
     }
 
     $scope.delRentPermit = function (item) {
@@ -633,6 +683,7 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
                 $scope.initShipMasterData();
                 break;//เรือ
             case 999999:
+                $scope.initOtherMasterData();
                 break;//อื่นๆ 
         }
     }

@@ -1,4 +1,4 @@
-﻿<div class="container-fluid container-fullw">
+﻿<div class="container-fluid container-fullw" ng-controller="marketPriceSelectionController">
     <div class="panel panel-white no-radius">
         <div class="panel-body border-light">
             <div class="padding-5">
@@ -124,17 +124,17 @@
                     <tbody>
                         <tr ng-repeat="item in marketprices">
                             <td>{{item.HEAD_COL_TYPE_ID.NAME}}</td>
-                            <td>{{item.DOC_CERT_TYPE.NAME}}</td>
-                            <td>{{item.ADD_PROVINCE.PROV_NAME}}</td>
-                            <td>{{item.ADD_CITY.CITY}}</td>
-                            <td>{{item.ADD_DISTRICT.DISTRICT}}</td>
+                            <td>{{item.HEAD_COL_SUB_TYPE_ID_NAME}}</td>
+                            <td>{{item.ADD_PROVINCE_NAME}}</td>
+                            <td>{{item.ADD_CITY_NAME}}</td>
+                            <td>{{item.ADD_DISTRICT_NAME}}</td>
                             <td>{{item.PRICE_SELL|number:2}}</td>
                             <td><button class="btn btn-sm btn-squared btn-primary btn-o" ng-click="selectMarketPrice(item)">{{'SELECT'|translate}}</button></td>
                         </tr>
                     </tbody>
                 </table>
-                <pagination boundary-links="true" items-per-page="app.itemsPerPage" ng-change="pageChanged()" max-size="5" total-items="marketPriceTotalItems" ng-model="marketPriceCurrentPage" class="pagination-sm  no-padding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
-            </div>
+                <pagination boundary-links="true" items-per-page="app.itemsPerPage" ng-change="getMarketPriceSelection()" max-size="5" total-items="totalRecords" ng-model="currentPageNumber" class="pagination-sm  no-padding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+            </div>            
         </div>
     </div>
 </div>
