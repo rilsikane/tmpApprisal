@@ -63,7 +63,7 @@
 }]);
 
 app.controller('parameterEditor', ['$scope', 'radasoft', '$state', '$stateParams', '$modalInstance', 'params', '$translate', '$q', function ($scope, radasoft, $state, $stateParams, $modalInstance, params, $translate, $q) {
-    $scope.includeUrl = 'app/views/setting/parameters/parameterEditor.html';
+    $scope.includeUrl = '/app/views/setting/parameters/parameterEditor.html';
     $scope.title = params.title;
     $scope.formData = {};//params.formData;
     $scope.showBtnSave = true;
@@ -203,7 +203,7 @@ app.controller('lookMstCtrl', ['$scope', 'radasoft', '$state', '$stateParams', '
 }]);
 
 app.controller('lookMstEditorCtrl', ['$scope', 'radasoft', '$state', '$stateParams', '$modalInstance', 'params', '$translate', '$q', function ($scope, radasoft, $state, $stateParams, $modalInstance, params, $translate, $q) {
-    $scope.includeUrl = 'app/views/setting/lookmst/parameterEditor.html';
+    $scope.includeUrl = '/app/views/setting/lookmst/parameterEditor.html';
     $scope.title = params.title;
     $scope.formData = {};// params.formData;
     $scope.showBtnSave = true;
@@ -347,7 +347,7 @@ app.controller('debtTypeCtrl', ['$scope', 'radasoft', '$state', '$stateParams', 
 }]);
 
 app.controller('debtTypeEditorCtrl', ['$scope', 'radasoft', '$state', '$stateParams', '$modalInstance', 'params', '$translate', '$q', function ($scope, radasoft, $state, $stateParams, $modalInstance, params, $translate, $q) {
-    $scope.includeUrl = 'app/views/setting/debttype/parameterEditor.html';
+    $scope.includeUrl = '/app/views/setting/debttype/parameterEditor.html';
     $scope.title = params.title;
     $scope.formData = {};// params.formData;
     $scope.showBtnSave = true;

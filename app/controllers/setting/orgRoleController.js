@@ -60,7 +60,7 @@
 
 
 app.controller('orgRoleEditor', ['$scope', 'radasoft', '$state', '$stateParams', '$modalInstance', 'params', '$translate', function ($scope, radasoft, $state, $stateParams, $modalInstance, params, $translate) {
-    $scope.includeUrl = 'app/views/setting/orgRoleEditor.html';
+    $scope.includeUrl = '/app/views/setting/orgRoleEditor.html';
     $scope.title = $translate.instant('ORG_ROLE');
     $scope.formData = undefined;
     $scope.showBtnSave = true;

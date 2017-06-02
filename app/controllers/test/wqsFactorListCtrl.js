@@ -1,5 +1,5 @@
 ﻿app.controller('wqsFactorListCtrl', ['$scope', '$modalInstance', 'radasoft', 'params', '$translate', function ($scope, $modalInstance, radasoft, params, $translate) {
-    $scope.includeUrl = 'app/views/test/wqsFactorList.html';
+    $scope.includeUrl = '/app/views/test/wqsFactorList.html';
     $scope.title = 'กรุณาเลือกรูปแบบข้อมูล';
     //$scope.showBtnOK = true;
 

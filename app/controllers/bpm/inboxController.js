@@ -58,7 +58,7 @@
 }]);
 
 app.controller('findReviewJobCtrl', ['$scope', '$modalInstance', 'radasoft', '$translate', function ($scope, $modalInstance, radasoft, $translate) {
-    $scope.includeUrl = 'app/views/test/findReviewJob.html';
+    $scope.includeUrl = '/app/views/test/findReviewJob.html';
     $scope.title = $translate.instant('REVIEW_JOB');
     $scope.formData = { REQUEST_NO: undefined };
     $scope.foundFormData = undefined;

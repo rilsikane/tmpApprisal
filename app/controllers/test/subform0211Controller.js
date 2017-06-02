@@ -13,7 +13,7 @@
         $modal.open({
             backdrop: 'static',
             keyboard: false,
-            templateUrl: 'app/views/tools/uploader.html',
+            templateUrl: '/app/views/tools/uploader.html',
             controller: 'uploaderController',
             size: 'lg',
             resolve: {

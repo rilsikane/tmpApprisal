@@ -6,7 +6,7 @@ app.controller('subform0210Controller', ['$scope', '$state', '$stateParams', 'ra
 
     $scope.headCol = params.headCol;
     $scope.colAct = params.colAct;
-    $scope.includeUrl = 'app/views/test/subform0210.html';
+    $scope.includeUrl = '/app/views/test/subform0210.html';
     $scope.showButtonSave = true;
     $scope.tab = params.tab;
 

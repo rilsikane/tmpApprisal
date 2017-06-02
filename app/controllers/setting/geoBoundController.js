@@ -91,7 +91,7 @@
             resolve: {
                 params: function () {
                     return {
-                        includeUrl: 'app/views/setting/geoBound/province.html',
+                        includeUrl: '/app/views/setting/geoBound/province.html',
                         formData: data
                     };
                 }
@@ -107,7 +107,7 @@
             resolve: {
                 params: function () {
                     return {
-                        includeUrl: 'app/views/setting/geoBound/district.html',
+                        includeUrl: '/app/views/setting/geoBound/district.html',
                         formData: data
                     };
                 }
@@ -123,7 +123,7 @@
             resolve: {
                 params: function () {
                     return {
-                        includeUrl: 'app/views/setting/geoBound/subDistrict.html',
+                        includeUrl: '/app/views/setting/geoBound/subDistrict.html',
                         formData: data
                     };
                 }

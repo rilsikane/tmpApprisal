@@ -40,7 +40,7 @@
         </div>
         <tabset class="tabbable">
             <tab ng-repeat="tab in tabs" active="tab.active" select="onTabChange(tab)" title="[{{tab.code}}][{{(tab.create?'C':'')}}{{(tab.read?'R':'')}}{{(tab.update?'U':'')}}{{(tab.delete?'D':'')}}]" heading="{{tab.title}}">
-                <div class="container-fluid container-fullw" ng-include="'app/views/test/subform'+tab.code+'.html'" ng-init="tab=tab"></div>
+                <div class="container-fluid container-fullw" ng-include="'/app/views/test/subform'+tab.code+'.html'" ng-init="tab=tab"></div>
             </tab>
         </tabset>
     </div>

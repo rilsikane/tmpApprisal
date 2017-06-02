@@ -8,7 +8,7 @@
     $scope.labelControlCss = 'col-sm-4 control-label';
     $scope.formControlCss = 'col-sm-8';
 
-    $scope.includeTemplateUrl = 'app/views/test/boundary.html';
+    $scope.includeTemplateUrl = '/app/views/test/boundary.html';
 
     $scope.formData = {};
     $scope.IS_PROJECT = params.IS_PROJECT;

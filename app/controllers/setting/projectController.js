@@ -107,7 +107,7 @@ app.controller('devProCtrl', ['$scope', '$state', '$stateParams', 'radasoft', '$
 
     $scope.openDev = function (data) {
         $modal.open({
-            templateUrl: 'app/views/setting/dev.html',
+            templateUrl: '/app/views/setting/dev.html',
             controller: 'devController',
             backdrop: 'static',
             keyboard: false,
@@ -131,7 +131,7 @@ app.controller('devProCtrl', ['$scope', '$state', '$stateParams', 'radasoft', '$
 
     $scope.openPro = function (data) {
         $modal.open({
-            templateUrl: 'app/views/setting/pro.html',
+            templateUrl: '/app/views/setting/pro.html',
             controller: 'proController',
             backdrop: 'static',
             keyboard: false,
@@ -278,7 +278,7 @@ app.controller('phaseZoneDialogCtrl', ['$scope', '$state', '$stateParams', 'rada
 
     $scope.openPhase = function (data) {
         $modal.open({
-            templateUrl: 'app/views/setting/phase.html',
+            templateUrl: '/app/views/setting/phase.html',
             controller: 'phaseController',
             backdrop: 'static',
             keyboard: false,
@@ -299,7 +299,7 @@ app.controller('phaseZoneDialogCtrl', ['$scope', '$state', '$stateParams', 'rada
 
     $scope.openZone = function (data) {
         $modal.open({
-            templateUrl: 'app/views/setting/zone.html',
+            templateUrl: '/app/views/setting/zone.html',
             controller: 'zoneController',
             backdrop: 'static',
             keyboard: false,

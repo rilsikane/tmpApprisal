@@ -1,7 +1,7 @@
 ﻿app.controller('completedProjectDialogCtrl', ['$scope', '$state', '$stateParams', 'radasoft', '$modal', '$translate', 'params', '$modalInstance', '$rootScope', function ($scope, $state, $stateParams, radasoft, $modal, $translate, params, $modalInstance, $rootScope) {
 
     $scope.formData = params.formData;
-    $scope.includeUrl = 'app/views/project/completedproject2.html';
+    $scope.includeUrl = '/app/views/project/completedproject2.html';
 
 
     $scope.cancel = function () {

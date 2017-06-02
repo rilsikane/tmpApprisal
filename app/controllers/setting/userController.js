@@ -58,7 +58,7 @@
 }]);
 
 app.controller('masterUserEditor', ['$scope', 'radasoft', '$state', '$stateParams', '$modalInstance', 'params', '$translate', '$q', function ($scope, radasoft, $state, $stateParams, $modalInstance, params, $translate, $q) {
-    $scope.includeUrl = 'app/views/setting/userEditor.html';
+    $scope.includeUrl = '/app/views/setting/userEditor.html';
     $scope.title = $translate.instant('USER');
     $scope.formData = {};//params.formData;
     $scope.showBtnSave = true;
@@ -172,7 +172,7 @@ app.controller('masterUserEditor', ['$scope', 'radasoft', '$state', '$stateParam
 }]);
 
 app.controller('changePasswordController', ['$scope', 'radasoft', '$state', '$stateParams', '$modalInstance', 'params', '$translate', '$q', function ($scope, radasoft, $state, $stateParams, $modalInstance, params, $translate, $q) {
-    $scope.includeUrl = 'app/views/setting/userChangePwd.html';
+    $scope.includeUrl = '/app/views/setting/userChangePwd.html';
     $scope.title = $translate.instant('CHANGE_PASSWORD');
     $scope.formData = params.formData;
     $scope.showBtnSave = true;

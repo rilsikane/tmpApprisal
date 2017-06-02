@@ -5,7 +5,7 @@ var app = angular.module('appraisalCalendar', ['ngRoute', 'ngAnimate', 'ngCookie
 //var app = angular.module('appraisalCalendar', ['Application']);
 app.config(['$translateProvider', '$httpProvider', '$routeProvider', function ($translateProvider, $httpProvider, $routeProvider) {
     $routeProvider.when('/a/:OU_ID/:AP_CODE', {
-        templateUrl: 'app/views/test/subform0552.html',
+        templateUrl: '/app/views/test/subform0552.html',
         controller: 'cc'
     });
 }]);
@@ -17,7 +17,7 @@ app.controller('calendarCtrl', ['$scope', '$route', function ($scope, $route) {
 app.controller('cc', ['$scope', '$routeParams', function ($scope, $routeParams) {
     //console.log($routeParams);
 
-    //$scope.includeUrl = 'app/views/test/subform0552.html';
+    //$scope.includeUrl = '/app/views/test/subform0552.html';
     //$scope.JOB_RUNNING_ID = params.JOB_RUNNING_ID || $stateParams.JOB_RUNNING_ID;
 
     $scope.events = [];

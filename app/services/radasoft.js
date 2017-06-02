@@ -781,7 +781,7 @@
 
                 params = params || {};
 
-                params.templateUrl = params.templateUrl || 'app/views/common/dialogWrapper.html';
+                params.templateUrl = params.templateUrl || '/app/views/common/dialogWrapper.html';
                 params.windowClass = params.windowClass || '';
 
                 return $modal.open({
@@ -901,7 +901,7 @@
                 return $modal.open({
                     backdrop: 'static',
                     keyboard: false,
-                    templateUrl: 'app/views/tools/uploader.html',
+                    templateUrl: '/app/views/tools/uploader.html',
                     controller: 'uploaderController',
                     size: 'lg',
                     resolve: {

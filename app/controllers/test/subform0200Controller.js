@@ -558,7 +558,7 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
             keyboard: false,
             //backdropClass: 'bg-blue',
             //openedClass: 'aaaaa',
-            templateUrl: 'app/views/test/subcol/000001.html',
+            templateUrl: '/app/views/test/subcol/000001.html',
             controller: 'subform0203Controller',
             //windowClass: 'app-modal-window-80',
             size: 'md',
@@ -775,7 +775,7 @@ app.controller('subform0203Controller', ['$scope', '$state', 'toaster', '$modal'
 }]);
 
 app.controller('landMarkCtrl', ['$scope', '$translate', '$modalInstance', 'radasoft', 'params', function ($scope, $translate, $modalInstance, radasoft, params) {
-    $scope.includeUrl = 'app/views/test/subcol/000003.html';
+    $scope.includeUrl = '/app/views/test/subcol/000003.html';
     $scope.showBtnSave = true;
     $scope.title = $translate.instant('LANDMARK');
 
@@ -806,7 +806,7 @@ app.controller('landMarkCtrl', ['$scope', '$translate', '$modalInstance', 'radas
 }]);
 
 app.controller('rentPermitCtrl', ['$scope', '$translate', '$modalInstance', 'radasoft', 'params', function ($scope, $translate, $modalInstance, radasoft, params) {
-    $scope.includeUrl = 'app/views/test/subcol/000005.html';
+    $scope.includeUrl = '/app/views/test/subcol/000005.html';
     $scope.showBtnOK = true;
     $scope.title = $translate.instant('RENTPERMIT');
     $scope.dpOpenState = {};
