@@ -652,7 +652,7 @@
                     </div>
                 </div>
             </div>
-           
+
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="ROAD4">
                 </label>
@@ -678,9 +678,12 @@
             </div>
         </fieldset>
         <fieldset class="no-radius">
-            <legend>ไฟฟ้า,ประปา</legend>
+            <legend>สาธารณูปโภค</legend>
             <div class="form-group form-inline">
-                <div class="form-group">
+                <label class="col-sm-2 control-label">
+                    ไฟฟ้า,ประปา
+                </label>
+                <div class="form-group col-sm-2">
                     <label class="col-sm-4 control-label" for="UTILITY6">
                     </label>
                     <div class="col-sm-8">
@@ -692,7 +695,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-2">
                     <label class="col-sm-4 control-label" for="UTILITY1">
                     </label>
                     <div class="col-sm-8">
@@ -704,7 +707,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-2">
                     <label class="col-sm-4 control-label" for="UTILITY2">
                     </label>
                     <div class="col-sm-8">
@@ -716,7 +719,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-3">
                     <label class="col-sm-4 control-label" for="UTILITY3">
                     </label>
                     <div class="col-sm-8">
@@ -728,7 +731,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-2">
                     <label class="col-sm-4 control-label" for="UTILITY4">
                     </label>
                     <div class="col-sm-8">
@@ -741,10 +744,17 @@
                     </div>
                 </div>
             </div>
-        </fieldset>
-        <fieldset class="no-radius">
-            <legend>ท่อระบายน้ำ</legend>
+
+
+
+        <!-- </fieldset> -->
+        <!-- <fieldset class="no-radius"> -->
+            <!-- <legend>ท่อระบายน้ำ</legend> -->
+
             <div class="form-group form-inline">
+                <label class="col-sm-2 control-label">
+                    ท่อระบายน้ำ
+                </label>
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="GUTTER1">
                     </label>
@@ -770,10 +780,13 @@
                     </div>
                 </div>
             </div>
-        </fieldset>
-        <fieldset class="no-radius">
-            <legend>โทรศัพท์</legend>
+        <!-- </fieldset> -->
+        <!-- <fieldset class="no-radius"> -->
+            <!-- <legend>โทรศัพท์</legend> -->
             <div class="form-group form-inline">
+                <label class="col-sm-2 control-label">
+                    โทรศัพท์
+                </label>
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="TELE_Y">
                     </label>
@@ -799,10 +812,13 @@
                     </div>
                 </div>
             </div>
-        </fieldset>
-        <fieldset class="no-radius">
-            <legend>ไฟส่องทาง</legend>
+        <!-- </fieldset> -->
+        <!-- <fieldset class="no-radius"> -->
+            <!-- <legend>ไฟส่องทาง</legend> -->
             <div class="form-group form-inline">
+                <label class="col-sm-2 control-label">
+                    ไฟส่องทาง
+                </label>
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="ELEC_Y">
                     </label>
@@ -828,10 +844,13 @@
                     </div>
                 </div>
             </div>
-        </fieldset>
-        <fieldset class="no-radius">
-            <legend>ทางเท้า</legend>
+        <!-- </fieldset> -->
+        <!-- <fieldset class="no-radius"> -->
+            <!-- <legend>ทางเท้า</legend> -->
             <div class="form-group form-inline">
+                <label class="col-sm-2 control-label">
+                    ทางเท้า
+                </label>
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="SIDEWALK_Y">
                     </label>
@@ -1136,7 +1155,7 @@
         </div>
         <div class="form-group" ng-class="{'has-error':form.CONSTRUCT_YEAR.$invalid}">
             <label class="col-sm-4 control-label" for="CONSTRUCT_YEAR">
-                {{'CONSTRUCT_YEAR'|translate}} 
+                {{'CONSTRUCT_YEAR'|translate}}
             </label>
             <div class="col-sm-8">
                 <input year type="text" minlength="4" maxlength="4" class="form-control" id="CONSTRUCT_YEAR" name="CONSTRUCT_YEAR" ng-model="formData.CONSTRUCT_YEAR">
