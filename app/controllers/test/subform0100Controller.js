@@ -251,7 +251,9 @@
     //}
 
     $scope.init();
-
+    $scope.isNaN = function(num){
+        return isNaN(num);
+    }
     //$scope.loadFormData();
 }]);
 
@@ -296,4 +298,5 @@ app.controller('subform0101Controller', ['$scope', '$state', 'radasoft', '$modal
     }
 
     $scope.init();
+
 }]);
