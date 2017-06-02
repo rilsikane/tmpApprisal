@@ -70,6 +70,14 @@
                     <input format ng-disabled="inputDisabled" type="text" class="form-control" ng-model="formData.APPR_CUR_FIRE_INSURE" id="APPR_CUR_FIRE_INSURE" name="APPR_CUR_FIRE_INSURE" />
                 </div>
             </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="APPR_CUR_FIRE_INSURE">
+                   {{'REMARK'|translate}}
+                </label>
+                <div class="col-sm-6 no-padding">
+                    <textarea ng-disabled="inputDisabled" rows="5" class="form-control" id="HEAD_COL_REMARK" name="HEAD_COL_REMARK" ng-model="formData.APPR_CUR_REMARK"></textarea>
+                </div>
+            </div>
         </fieldset>
     </div>
 </div>

@@ -11,6 +11,7 @@
         NPA: '',
         STEP: {},
         STATE: {},
+        REQUEST_NO:'',
         totalRecords: 0,
         currentPage: 1
     };
@@ -33,7 +34,8 @@
                 { NAME: 'THRU_DATE', VALUE: $filter('date')($scope.myFilter.THRU_DATE, 'dd/MM/yyyy') || '' },
                 { NAME: 'NPA', VALUE: $scope.myFilter.NPA || 'N' },
                 { NAME: 'STEP', VALUE: $scope.myFilter.STEP.STEP_ID || 0 },
-                { NAME: 'STATE', VALUE: $scope.myFilter.STATE.STATE_ID || 0 }
+                { NAME: 'STATE', VALUE: $scope.myFilter.STATE.STATE_ID || 0 },
+                { NAME: 'REQUEST_NO', VALUE: $scope.myFilter.REQUEST_NO || '' }
             ]
         }).then(function (response) {
             $scope.data = response.data.data;
@@ -59,7 +61,8 @@
             FROM_DATE: '',
             THRU_DATE: '',
             STEP: {},
-            STATE: {}
+            STATE: {},
+            REQUEST_NO:''
         };
     }
     $scope.pageChanged = function () {

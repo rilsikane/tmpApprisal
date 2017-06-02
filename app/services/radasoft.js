@@ -270,6 +270,7 @@
                 }, callback);
             }
 
+
             this.getLoggedUserRole = function () {
                 var deferred = $q.defer();
                 var role = angular.fromJson(sessionStorage.getItem('role'));
@@ -1323,5 +1324,8 @@
             }
             this.getBOT_COL_ACT_VALID = function (params) {
                 return this.httpGet('getBOT_COL_ACT_VALID', params);
+            }
+            this.copyHeadCol = function(params) {
+                return this.httpPost('copyHeadCol', params);
             }
         }]);

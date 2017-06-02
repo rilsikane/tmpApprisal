@@ -1,5 +1,5 @@
 ﻿{
-  "INPUT_VALIDATION_FAILED": "กรุณาบันทึกข้อมูลให้ครบถ้วน",
+  "INPUT_VALIDATION_FAILED": "กรุณาบันทึกข้อมูลให้ครบถ้วน", 
   "VERSION": "version",
   "REFRESH_JOBMARKETPRICE": "อัพเดทข้อมูลตลาด",
   "INVALID_DATE_REQ": "วันที่ใบคำขอประเมิน ต้องมีค่าน้อยกว่าหรือเท่ากับวันที่ปัจจุบัน",
@@ -633,7 +633,8 @@
     "REFRESH": "Refresh",
     "PRINT": "พิมพ์",
     "SAVESEND": "บันทึกและส่งข้อมูล",
-    "ADD_PHOTO_PAGE": "เพิ่มหน้า"
+    "ADD_PHOTO_PAGE": "เพิ่มหน้า",
+    "COPY": "คัดลอก"
   },
   "CONFIRM": {
     "SAVE": "CONFIRM SAVE",
