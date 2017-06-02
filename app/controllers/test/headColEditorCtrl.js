@@ -1,9 +1,10 @@
 ﻿app.controller('headColEditorCtrl', ['$scope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', '$modalInstance', 'radasoft', 'params', '$q', function ($scope, $state, toaster, $modal, $translate, SweetAlert, $modalInstance, radasoft, params, $q) {
     $scope.keyId = params.formData.HEAD_COL_RUNNING_ID;
     $scope.ldloading = {};
-    $scope.btnDisabled = false;
-    $scope.btnSubmitDisabled = false;
-
+    //$scope.btnDisabled = true;
+    $scope.btnSubmitDisabled = true;
+    $scope.inputDisabled = true;
+    $scope.tab = params.tab;
     $scope.labelControlCss = 'col-sm-4 control-label';
     $scope.formControlCss = 'col-sm-8';
 
@@ -22,15 +23,17 @@
     $scope.selectLocDistrict = [];
     $scope.selectLocSubDistrict = [];
 
-    //$scope.selectProvinceDOL = [];
-    //$scope.selectDistrictDOL = [];
-    //$scope.selectSubDistrictDOL = [];
-
     $scope.radioMachineOperation = [{ VALUE: 'S', NAME: 'Stand alone' }, { VALUE: 'L', NAME: 'Line ผลิต' }, { VALUE: 'X', NAME: 'ไม่ใช่เครื่องจักร' }];
     $scope.radioRegisYN = [{ VALUE: 'N', NAME: 'จดทะเบียน' }, { VALUE: 'Y', NAME: 'ไม่จดทะเบียน' }];
 
     $scope.selectProjectUnitType = [];
     $scope.selectUseCityPlan = [];
+
+    if ($scope.tab.update || $scope.tab.create) {
+        //$scope.btnDisabled = false;
+        $scope.btnSubmitDisabled = false;
+        $scope.inputDisabled = false;
+    }
 
     $scope.onLocSubDistrictChange = function (item) {
         $scope.formData.LOC_CODE = item.CODE;
@@ -51,10 +54,11 @@
     $scope.getProjectUnitType = function () {
         var deffered = $q.defer();
         if ($scope.IS_PROJECT) {
-            radasoft.getUnitType({}).then(function (response) {
-                $scope.selectProjectUnitType = response.data;
-                deffered.resolve();
-            });
+            deffered.resolve();
+            //radasoft.getUnitType({}).then(function (response) {
+            //    $scope.selectProjectUnitType = response.data;
+            //    deffered.resolve();
+            //});
         }
         return deffered.promise;
     }
@@ -223,6 +227,7 @@
                     }
                 }
             }
+            radasoft.alert($translate.instant('INPUT_VALIDATION_FAILED'));
         } else {
             $scope.save($scope.formData, style);
         }
@@ -256,10 +261,15 @@
                                 radasoft.getSubDistrict({ PROVINCE_ID: $scope.formData.LOC_PROVINCE.PROV_ID, DISTRICT_ID: $scope.formData.LOC_CITY.CITY_ID }).then(function (response) {
                                     $scope.selectLocSubDistrict = response.data;
 
-                                    radasoft.getDistrictDOL({ PROVINCE_ID: $scope.formData.DEED_PROVINCE.PROV_ID }).then(function (response) {
+                                    radasoft.getDistrictDOL({
+                                        PROVINCE_ID: $scope.formData.DEED_PROVINCE == null ? '' : $scope.formData.DEED_PROVINCE.PROV_ID
+                                    }).then(function (response) {
                                         $scope.selectDistrict = response.data;
 
-                                        radasoft.getSubDistrictDOL({ PROVINCE_ID: $scope.formData.DEED_PROVINCE.PROV_ID, DISTRICT_ID: $scope.formData.DEED_CITY.CITY_ID }).then(function (response) {
+                                        radasoft.getSubDistrictDOL({
+                                            PROVINCE_ID: $scope.formData.DEED_PROVINCE == null ? '' : $scope.formData.DEED_PROVINCE.PROV_ID,
+                                            DISTRICT_ID: $scope.formData.DEED_CITY == null ? '' : $scope.formData.DEED_CITY.CITY_ID
+                                        }).then(function (response) {
                                             $scope.selectSubDistrict = response.data;
 
                                             radasoft.getLandColor({}).then(function (response) {

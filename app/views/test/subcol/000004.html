@@ -25,8 +25,8 @@
                         <td>{{item.PERMIT_LICENSE_CNT}}</td>
                         <td>{{item.PERMIT_LICENSE}}</td>
                         <td>{{item.PERMIT_YEAR}}</td>
-                        <td>{{item.PERMIT_START | date:'dd/MM/yyyy'}}</td>
-                        <td>{{item.PERMIT_END | date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.PERMIT_START | thaiDate:'dd/MM/yyyy'}}</td>
+                        <td>{{item.PERMIT_END | thaiDate:'dd/MM/yyyy'}}</td>
                         <td class="center">
                             <div class="visible-md visible-lg hidden-sm hidden-xs">
                                 <a href="#" ng-click="modRentPermit(item)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i class="fa fa-pencil"></i></a>

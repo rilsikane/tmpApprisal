@@ -1,47 +1,14 @@
-﻿app.controller('completedProjectController', ['$scope', '$state', '$stateParams', 'radasoft', '$modal', '$translate', 'params', '$modalInstance', function ($scope, $state, $stateParams, radasoft, $modal, $translate, params, $modalInstance) {
-    $scope.projects = [];
-    $scope.selectedProject = {};
-    $scope.projectSearchKeyword = '';
-    $scope.unitSearchKeyword = '';
+﻿app.controller('completedProjectDialogCtrl', ['$scope', '$state', '$stateParams', 'radasoft', '$modal', '$translate', 'params', '$modalInstance', '$rootScope', function ($scope, $state, $stateParams, radasoft, $modal, $translate, params, $modalInstance, $rootScope) {
 
-    $scope.includeUrl = params.includeUrl;
     $scope.formData = params.formData;
+    $scope.includeUrl = 'app/views/project/completedproject2.html';
 
-    $scope.getCompletedProject = function () {
-        radasoft.getCompletedProject({ FILTER: $scope.projectSearchKeyword }).then(function (response) {
-            $scope.projects = response.data;
-        });
-    }
-
-    $scope.getCompletedProjectUnit = function () {
-        radasoft.getCompletedProjectUnit({
-            PROJECT_RUNNING_ID: $scope.selectedProject.PROJECT_RUNNING_ID,
-            FILTER: $scope.unitSearchKeyword
-        }).then(function (response) {
-            $scope.units = response.data;
-        });
-    }
-
-    $scope.searchProject = function ($event) {
-        if ($event != undefined && $event.keyCode == 13) {
-            $scope.getCompletedProject();
-        } else if ($event == undefined) {
-            $scope.getCompletedProject();
-        }
-    }
-
-    $scope.selectProject = function (project) {
-        $scope.selectedProject = project;
-
-        $scope.getCompletedProjectUnit();
-    }
 
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
 
     $scope.selectProjectUnit = function (item) {
-        //console.log(item);
         radasoft.confirmAndSave($translate.instant('CONFIRM.SAVE'), '', function (isconfirmed) {
             if (isconfirmed) {
 
@@ -53,6 +20,61 @@
             }
         });
     }
+}]);
+
+
+app.controller('completedProjectCtrl', ['$scope', '$state', '$stateParams', 'radasoft', '$modal', '$translate', '$rootScope', function ($scope, $state, $stateParams, radasoft, $modal, $translate, $rootScope) {
+    $scope.projects = [];
+    $scope.selectedProject = {};
+    $scope.projectSearchKeyword = '';
+    $scope.unitSearchKeyword = '';
+    $scope.paging1CurrentPage = 1;
+    $scope.paging2CurrentPage = 1;
+
+    $scope.searchProjectEnter = function ($event) {
+        if ($event.keyCode == 13) {
+            $scope.getCompletedProject();
+        }
+    }
+
+    $scope.searchUnitTypeEnter = function ($event) {
+        if ($event.keyCode == 13) {
+            $scope.getCompletedProjectUnit();
+        }
+    }
+
+    $scope.getCompletedProject = function () {
+        radasoft.getCompletedProject({
+            limit: $rootScope.app.itemsPerPage,
+            page: $scope.paging1CurrentPage,
+            filters: [
+                { NAME: 'FILTER', VALUE: $scope.projectSearchKeyword }
+            ]
+        }).then(function (response) {
+            $scope.projects = response.data.data;
+            $scope.paging1Total = response.data.total;
+        });
+    }
+
+    $scope.getCompletedProjectUnit = function () {
+        radasoft.getCompletedProjectUnit({
+            limit: $rootScope.app.itemsPerPage,
+            page: $scope.paging2CurrentPage,
+            filters: [
+                { NAME: 'PROJECT_RUNNING_ID', VALUE: $scope.selectedProject.PROJECT_RUNNING_ID || 0 },
+                { NAME: 'FILTER', VALUE: $scope.unitSearchKeyword }
+            ]
+        }).then(function (response) {
+            $scope.units = response.data.data;
+            $scope.paging2Total = response.data.total;
+        });
+    }
+
+    $scope.selectProject = function (project) {
+        $scope.selectedProject = project;
+
+        $scope.getCompletedProjectUnit();
+    }
 
     $scope.init = function () {
         $scope.getCompletedProject();
@@ -61,61 +83,3 @@
     $scope.init();
 
 }]);
-
-//app.controller('provinceController', ['$scope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', '$modalInstance', 'radasoft', 'params', function ($scope, $state, toaster, $modal, $translate, SweetAlert, $modalInstance, radasoft, params) {
-//    $scope.ldloading1 = {};
-//    $scope.ldloading2 = {};
-
-//    $scope.btnDisabled = false;
-//    $scope.btnSubmitDisabled = false;
-
-//    $scope.formData = params.formData;
-
-//    $scope.title1 = $translate.instant('DEVELOPER');
-//    $scope.title2 = $scope.formData.DEV_NAME;
-
-//    $scope.save = function (form) {
-//        if (form.$invalid) {
-//            var field = null, firstError = null;
-//            for (field in form) {
-//                if (field[0] != '$') {
-//                    if (firstError === null && !form[field].$valid) {
-//                        firstError = form[field].$name;
-//                    }
-
-//                    if (form[field].$pristine) {
-//                        form[field].$dirty = true;
-//                    }
-//                }
-//            }
-//        } else {
-//            radasoft.confirmAndSave($translate.instant('CONFIRM.SAVE'), '', function (isconfirmed) {
-//                if (isconfirmed) {
-//                    radasoft.setDeveloper($scope.formData).then(function (response) {
-//                        $modalInstance.close(response.data);
-//                    });
-//                }
-//            });
-//        }
-//    };
-
-//    $scope.delete = function (style) {
-//        radasoft.confirmAndSave($translate.instant('CONFIRM.DELETE'), '', function (isconfirmed) {
-//            if (isconfirmed) {
-//                radasoft.deleteDeveloper($scope.formData).then(function (response) {
-//                    $modalInstance.close(response.data);
-//                });
-//            }
-//        });
-//    }
-
-//    $scope.cancel = function () {
-//        $modalInstance.dismiss('cancel');
-//    };
-
-//    $scope.init = function () {
-
-//    }
-
-//    $scope.init();
-//}]);

@@ -90,7 +90,7 @@
     }
     $scope.openDev = function (data) {
         $modal.open({
-            templateUrl: 'app/views/setting/dev.html',
+            templateUrl: '/app/views/setting/dev.html',
             controller: 'devController',
             backdrop: 'static',
             keyboard: false,
@@ -110,7 +110,7 @@
     }
     $scope.openPro = function (data) {
         $modal.open({
-            templateUrl: 'app/views/setting/pro.html',
+            templateUrl: '/app/views/setting/pro.html',
             controller: 'proController',
             backdrop: 'static',
             keyboard: false,
@@ -150,7 +150,7 @@
     }
     $scope.openPhase = function (data) {
         $modal.open({
-            templateUrl: 'app/views/setting/phase.html',
+            templateUrl: '/app/views/setting/phase.html',
             controller: 'phaseController',
             backdrop: 'static',
             keyboard: false,
@@ -170,7 +170,7 @@
     }
     $scope.openZone = function (data) {
         $modal.open({
-            templateUrl: 'app/views/setting/zone.html',
+            templateUrl: '/app/views/setting/zone.html',
             controller: 'zoneController',
             backdrop: 'static',
             keyboard: false,
@@ -191,7 +191,7 @@
     }
     $scope.openPrice = function (data) {
         $modal.open({
-            templateUrl: 'app/views/setting/price.html',
+            templateUrl: '/app/views/setting/price.html',
             controller: 'priceController',
             backdrop: 'static',
             keyboard: false,

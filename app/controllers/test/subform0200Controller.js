@@ -1,14 +1,20 @@
-﻿
-app.controller('costBuildingController', ['$scope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', '$modalInstance', 'radasoft', 'params', function ($scope, $state, toaster, $modal, $translate, SweetAlert, $modalInstance, radasoft, params) {
+﻿app.controller('costBuildingController', ['$scope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', '$modalInstance', 'radasoft', 'params', function ($scope, $state, toaster, $modal, $translate, SweetAlert, $modalInstance, radasoft, params) {
     $scope.includeUrl = params.includeUrl;
     $scope.title = $translate.instant('COST');
-    $scope.showBtnSave = true;
+    $scope.showBtnSave = false;
     $scope.showBtnDelete = false;
-
+    $scope.tab = params.tab;
     $scope.headCol = params.headCol;
     $scope.subCol = params.subCol;
 
+    $scope.inputDisabled = true;
+
     $scope.depreciation = [];
+
+    if ($scope.tab.update) {
+        $scope.showBtnSave = true;
+        $scope.inputDisabled = false;
+    }
 
     $scope.getCost = function () {
         radasoft.getCost({
@@ -94,11 +100,13 @@ app.controller('costBuildingController', ['$scope', '$state', 'toaster', '$modal
 }]);
 
 app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', '$modalInstance', 'radasoft', 'params', '$filter', '$q', '$rootScope', function ($scope, $state, toaster, $modal, $translate, SweetAlert, $modalInstance, radasoft, params, $filter, $q, $rootScope) {
+    $scope.tab = params.tab;
     $scope.dpOpenState = {};
     $scope.displayAllFiled = true;
     $scope.ldloading = {};
     $scope.btnDisabled = false;
-    $scope.btnSubmitDisabled = false;
+    $scope.btnSubmitDisabled = true;
+    $scope.inputDisabled = true;
     $scope.labelControlCss = 'col-sm-4 control-label';
     $scope.formControlCss = 'col-sm-8';
 
@@ -136,8 +144,8 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
     $scope.radioContructComplete = [{ VALUE: '0', NAME: 'ยังไม่เสร็จ' }, { VALUE: '1', NAME: 'เสร็จแล้ว' }, { VALUE: '2', NAME: 'แล้วเสร็จ (%)' }];
     $scope.radioInsureYN = [{ VALUE: 'Y', NAME: 'ทำประกัน' }, { VALUE: 'N', NAME: 'ไม่ทำประกัน' }];
     $scope.radioBound = [{ VALUE: '1', NAME: 'ตรวจสอบแปลงคง' }, { VALUE: '2', NAME: 'ตรวจสอบจากระวาง' }];
-    $scope.radioBoundFound = [{ VALUE: '1', NAME: 'ถูกต้อง' }, { VALUE: '2', NAME: 'คลาดเคลื่อน' }, { VALUE: '3', NAME: 'ไม่พบบ' }, { VALUE: '4', NAME: 'อ่านไม่ออก' }];
-    $scope.radioRegisYN = [{ VALUE: 'N', NAME: 'จดทะเบียน' }, { VALUE: 'Y', NAME: 'ไม่จดทะเบียน' }];
+    $scope.radioBoundFound = [{ VALUE: '1', NAME: 'ถูกต้อง' }, { VALUE: '2', NAME: 'คลาดเคลื่อน' }, { VALUE: '3', NAME: 'ไม่พบ' }, { VALUE: '4', NAME: 'อ่านไม่ออก' }];
+    $scope.radioRegisYN = [{ VALUE: 'Y', NAME: 'จดทะเบียน' }, { VALUE: 'N', NAME: 'ไม่จดทะเบียน' }];
 
     $scope.selectOutCityPlanProvince = [];
     $scope.selectCountry = [];
@@ -159,8 +167,20 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
     $scope.selectDistrictDOL = [];
     $scope.selectSubDistrictDOL = [];
 
-    $scope.onSubTypeChange = function ($item, $model) {
+    if ($scope.tab.update || $scope.tab.create) {
+        $scope.btnSubmitDisabled = false;
+        $scope.inputDisabled = false;
+    }
 
+    $scope.onSubTypeChange = function ($item, $model) {
+        //console.log($item);
+        if ($item.MAIN_CODE == '286005') {
+            if ($item.CODE == '14') {
+                $scope.formData.RENT_TYPE = 'B';
+            } else if ($item.CODE == '15') {
+                $scope.formData.RENT_TYPE = 'L';
+            }
+        }
     }
 
     $scope.initCondoMasterData = function () {
@@ -246,17 +266,17 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
     }
 
     $scope.initBuildMasterData = function () {
-        radasoft.getProvinceDOL({}).then(function (response) {
-            $scope.selectProvinceDOL = response.data;
-            radasoft.getDistrictDOL({
+        radasoft.getProvince({}).then(function (response) {
+            $scope.selectProvince = response.data;
+            radasoft.getDistrict({
                 PROVINCE_ID: $scope.formData.DEED_PROVINCE ? $scope.formData.DEED_PROVINCE.PROV_ID : ''
             }).then(function (response) {
-                $scope.selectDistrictDOL = response.data;
-                radasoft.getSubDistrictDOL({
+                $scope.selectDistrict = response.data;
+                radasoft.getSubDistrict({
                     PROVINCE_ID: $scope.formData.DEED_PROVINCE ? $scope.formData.DEED_PROVINCE.PROV_ID : '',
                     DISTRICT_ID: $scope.formData.DEED_CITY ? $scope.formData.DEED_CITY.CITY_ID : ''
                 }).then(function (response) {
-                    $scope.selectSubDistrictDOL = response.data;
+                    $scope.selectSubDistrict = response.data;
 
                     if ($scope.IS_PROJECT) {
                         radasoft.getZoneByProject({ PROJECT_RUNNING_ID: $scope.requestData.PROJECT.PROJECT_RUNNING_ID }).then(function (response) {
@@ -364,11 +384,9 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
         });
     }
 
-    //$scope.getPropShape = function () {
-    //    radasoft.getPropShape({}).then(function (response) {
-    //        $scope.selectPropShape = response.data;
-    //    });
-    //}
+    $scope.calLandPrice = function () {
+        $scope.formData.APPR_CUR_LAND_AMOUNT = $scope.formData.AREA_WA * $scope.formData.APPR_CUR_LAND_PRICE;
+    }
 
     $scope.calLandArea = function () {
         var rai = $scope.formData.RAI * 400;
@@ -510,6 +528,7 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
                     }
                 }
             }
+            radasoft.alert($translate.instant('INVALID_INPUT_DATA'));
         } else {
             $scope.save($scope.formData, style);
         }

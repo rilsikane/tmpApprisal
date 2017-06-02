@@ -23,5 +23,6 @@
     </div>
 </div>
 <div class="thumbnail">
-    <img ng-src="data:image/png;base64,{{formData.BASE64}}" />    
+    <img ng-if="formData.ATTACHDOC_RUNNING_ID > 0" ng-src="nn1/b/{{formData.ATTACHDOC_RUNNING_ID}}/0/{{random}}" />
+    <img ng-if="formData.ATTACHDOC_RUNNING_ID == 0" ng-src="nn1/d/{{formData.FILE}}/{{PHOTO_RUNNING_ID}}/{{random}}" />
 </div>

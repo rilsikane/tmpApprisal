@@ -5,7 +5,7 @@
         </div>
         <div class="pull-left" ng-if="$parent.formData.JOB_TYPE==false"><h4 class="panel-title margin-top-10">{{'TOTAL_COLLETERAL'|translate}} : {{colleterals.length}}</h4></div>
         <div class="btn-group pull-right" dropdown>
-            <button type="button" class="btn btn-primary" ng-click="openProject()" ng-disabled="inputDisabled" ng-if="$parent.formData.JOB_TYPE">
+            <button ng-disabled="colleterals.length > 0" type="button" class="btn btn-primary" ng-click="openProject()" ng-disabled="inputDisabled" ng-if="$parent.formData.JOB_TYPE">
                 {{'PROJECT'|translate}}
             </button>
             <button type="button" class="btn btn-primary" ng-click="openPhaseZone()" ng-if="$parent.formData.JOB_TYPE" ng-disabled="inputDisabled||($parent.formData.PROJECT==undefined||$parent.formData.PROJECT.PROJECT_RUNNING_ID==0)">
@@ -26,17 +26,6 @@
             </ul>
         </div>
     </div>
-    <!--<div class="container-fluid container-fullw">
-        <div class="row">
-            <div class="col-md-12">
-                <div tc-chartjs-legend chart-legend="lineChart6"></div>
-            </div>
-            <div class="col-md-12">
-                <canvas class="tc-chart" tc-chartjs-radar chart-options="options" chart-data="data" chart-legend="lineChart6"></canvas>
-            </div>
-        </div>
-    </div>-->
-    {{$rootScope}}
     <div class="row padding-10" ng-repeat="colleteral in colleterals">
         <div class="panel panel-white no-radius">
             <div class="panel-heading border-light bg-azure no-radius">
@@ -45,7 +34,7 @@
                     <li>
                         <div class="pull-right">
                             <div class="btn-group padding-left-5" dropdown ng-if="isAppraiser">
-                                <button type="button" ng-disabled="inputDisabled" class="btn btn-o border-white dropdown-toggle btn-squared" dropdown-toggle>
+                                <button type="button" ng-disabled="!tab.read" class="btn btn-o border-white dropdown-toggle btn-squared" dropdown-toggle>
                                     {{'BOT_COL_ACT'|translate}} <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
@@ -57,7 +46,7 @@
                                 </ul>
                             </div>
                             <div class="btn-group padding-left-5" dropdown>
-                                <button type="button" ng-disabled="inputDisabled" class="btn btn-o border-white dropdown-toggle btn-squared" dropdown-toggle>
+                                <button type="button" ng-disabled="!tab.create" class="btn btn-o border-white dropdown-toggle btn-squared" dropdown-toggle>
                                     {{'BUTTON.ADD_SUB_COL'|translate}} <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
@@ -68,8 +57,8 @@
                                     </li>
                                 </ul>
                             </div>
-                            <button class="btn btn-o border-white btn-squared" ng-disabled="inputDisabled" ng-click="editHeadCol(colleteral)">{{'BUTTON.EDIT'|translate}}</button>
-                            <button class="btn btn-o border-white btn-squared" ng-disabled="inputDisabled" ng-click="deleteHeadCol(colleteral)">{{'BUTTON.DELETE'|translate}}</button>
+                            <button class="btn btn-o border-white btn-squared" ng-disabled="!tab.read" ng-click="editHeadCol(colleteral)">{{'BUTTON.EDIT'|translate}}</button>
+                            <button class="btn btn-o border-white btn-squared" ng-disabled="!tab.delete" ng-click="deleteHeadCol(colleteral)">{{'BUTTON.DELETE'|translate}}</button>
                         </div>
                     </li>
                 </ul>
@@ -84,9 +73,8 @@
                                 <th ng-class="css_th_2">{{'COL_NO'|translate}}</th>
                                 <th ng-class="css_th_3">{{'RAWANG'|translate}}</th>
                                 <th ng-class="css_th_4">{{'SUB_COLL_AREA'|translate}}</th>
-                                <!-- <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th> -->
                                 <th ng-class="css_th_4">{{'SUB_COLL_OWNER'|translate}}</th>
-                                <th ng-class="css_th_6" ng-if="!inputDisabled"></th>
+                                <th ng-class="css_th_6" ng-if="tab.read"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -96,13 +84,12 @@
                                 <td>{{subcol.COL_NO}}</td>
                                 <td>{{subcol.RAWANG}}</td>
                                 <td>{{subcol.AREA_WA | number:1}}</td>
-                                <!-- <td class="text-right">{{subcol.QUANTITY}}</td> -->
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
-                                <td class="center" ng-if="!inputDisabled">
+                                <td class="center" ng-if="tab.read">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                        <a href="#" ng-click="editSubCol(colleteral,subcol,'286003')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i ng-class="iconEdit"></i></a>
-                                        <a href="#" ng-click="deleteSubCol(colleteral,subcol,'286003')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i ng-class="iconDelete"></i></a>
-                                        <a ng-if="subcol.COL_NO.indexOf(',')>0" href="#" ng-click="splitSubCol(colleteral,subcol,'286003')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'SPLIT'|translate}}"><i ng-class="iconSplit"></i></a>
+                                        <a ng-if="tab.read" href="#" ng-click="editSubCol(colleteral,subcol,'286003')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i ng-class="iconEdit"></i></a>
+                                        <a ng-if="tab.delete" href="#" ng-click="deleteSubCol(colleteral,subcol,'286003')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i ng-class="iconDelete"></i></a>
+                                        <a ng-if="tab.update && subcol.COL_NO.indexOf(',')>0" href="#" ng-click="splitSubCol(colleteral,subcol,'286003')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'SPLIT'|translate}}"><i ng-class="iconSplit"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -113,18 +100,19 @@
                     <table class="table table-bordered table-hover" id="sample-table-4">
                         <thead>
                             <tr class="bg-light-grey">
-                                <th ng-class="css_th_1" ng-hide="$parent.formData.JOB_TYPE">{{'SEQ'|translate}}</th>
-                                <th ng-class="css_th_2" ng-hide="$parent.formData.JOB_TYPE">{{'SUB_COL_TYPE'|translate}}</th>
-                                <th ng-class="css_th_2" ng-hide="$parent.formData.JOB_TYPE">{{'SUBDISTRICT'|translate}}</th>
-                                <th ng-class="css_th_3" ng-hide="$parent.formData.JOB_TYPE">{{'PROVINCE'|translate}}</th>
-                                <th ng-class="css_th_4" ng-hide="$parent.formData.JOB_TYPE">{{'AREA_METER'|translate}}</th>
-                                <th ng-class="css_th_1" ng-show="$parent.formData.JOB_TYPE">{{'PHASE'|translate}}</th>
-                                <th ng-class="css_th_2" ng-show="$parent.formData.JOB_TYPE">{{'ZONE'|translate}}</th>
-                                <th ng-class="css_th_3" ng-show="$parent.formData.JOB_TYPE">{{'CODE_REF'|translate}}</th>
-                                <th ng-class="css_th_4" ng-show="$parent.formData.JOB_TYPE">{{'AREA_WA'|translate}}</th>
-                                <!-- <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th> -->
-                                <th ng-class="css_th_4">{{'SUB_COLL_OWNER'|translate}}</th>
-                                <th ng-class="css_th_6" ng-if="!inputDisabled"></th>
+                                <th class="col-sm-1">{{'SEQ'|translate}}</th>
+
+                                <th class="col-sm-2" ng-hide="$parent.formData.JOB_TYPE">{{'SUB_COL_TYPE'|translate}}</th>
+                                <th class="col-sm-2" ng-hide="$parent.formData.JOB_TYPE">{{'SUBDISTRICT'|translate}}</th>
+                                <th class="col-sm-2" ng-hide="$parent.formData.JOB_TYPE">{{'PROVINCE'|translate}}</th>
+                                <th class="col-sm-2" ng-hide="$parent.formData.JOB_TYPE">{{'AREA_METER'|translate}}</th>
+
+                                <th class="col-sm-2" ng-show="$parent.formData.JOB_TYPE">{{'PHASE'|translate}}</th>
+                                <th class="col-sm-2" ng-show="$parent.formData.JOB_TYPE">{{'ZONE'|translate}}</th>
+                                <!--<th class="col-sm-2" ng-show="$parent.formData.JOB_TYPE">{{'AREA_WA'|translate}}</th>-->
+
+                                <th class="col-sm-2" >{{'SUB_COLL_OWNER'|translate}}</th>
+                                <th class="col-sm-1" ng-if="tab.read"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -134,18 +122,16 @@
                                 <td ng-hide="$parent.formData.JOB_TYPE">{{subcol.DEED_DISTRICT.DISTRICT}}</td>
                                 <td ng-hide="$parent.formData.JOB_TYPE">{{subcol.DEED_PROVINCE.PROV_NAME}}</td>
                                 <td ng-hide="$parent.formData.JOB_TYPE">{{subcol.AREA_METER | number:2}}</td>
-                                <td ng-show="$parent.formData.JOB_TYPE">{{subcol.PROJECT_PRICE.PHASE_NAME}}</td>
-                                <td ng-show="$parent.formData.JOB_TYPE">{{subcol.PROJECT_PRICE.ZONE_NAME}}</td>
-                                <td ng-show="$parent.formData.JOB_TYPE">{{subcol.CODE_REF}}</td>
-                                <td ng-show="$parent.formData.JOB_TYPE">{{subcol.PROJECT_PRICE.UNIT_TYPE.AREA_WA}}</td>
-                                <!-- <td class="text-right">{{subcol.QUANTITY}}</td> -->
+                                <td ng-show="$parent.formData.JOB_TYPE">{{subcol.PROJECT_PHASE_RUNNING_ID.PHASE_NAME}}</td>
+                                <td ng-show="$parent.formData.JOB_TYPE">{{subcol.PROJECT_ZONE_RUNNING_ID.ZONE_NAME}}</td>
+                                <!--<td ng-show="$parent.formData.JOB_TYPE">{{subcol.PROJECT_PRICE.UNIT_TYPE.AREA_WA}}</td>-->
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
-                                <td class="center" ng-if="!inputDisabled">
+                                <td class="center" ng-if="tab.read">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                        <a href="#" ng-click="editSubCol(colleteral,subcol,'286004')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i ng-class="iconEdit"></i></a>
-                                        <a href="#" ng-click="deleteSubCol(colleteral,subcol,'286004')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i ng-class="iconDelete"></i></a>
-                                        <a ng-if="subcol.DEED_ADD_NO.indexOf(',')>0" href="#" ng-click="splitSubCol(colleteral,subcol,'286004')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'SPLIT'|translate}}"><i ng-class="iconSplit"></i></a>
-                                        <a ng-if="isAppraiser" href="#" ng-click="costSubCol(colleteral,subcol)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'COST'|translate}}"><i class="fa fa-dollar"></i></a>
+                                        <a ng-if="tab.read" href="#" ng-click="editSubCol(colleteral,subcol,'286004')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i ng-class="iconEdit"></i></a>
+                                        <a ng-if="tab.delete" href="#" ng-click="deleteSubCol(colleteral,subcol,'286004')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i ng-class="iconDelete"></i></a>
+                                        <a ng-if="tab.update && subcol.DEED_ADD_NO.indexOf(',') > 0" href="#" ng-click="splitSubCol(colleteral,subcol,'286004')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'SPLIT'|translate}}"><i ng-class="iconSplit"></i></a>
+                                        <a ng-if="isAppraiser && tab.read" href="#" ng-click="costSubCol(colleteral,subcol)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'COST'|translate}}"><i class="fa fa-dollar"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -161,9 +147,8 @@
                                 <th ng-class="css_th_2">{{'BRAND_NAME'|translate}}</th>
                                 <th ng-class="css_th_3">{{'REGIS_PROVINCE'|translate}}</th>
                                 <th ng-class="css_th_4">{{'LICENSE_NO'|translate}}</th>
-                                <!-- <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th> -->
                                 <th ng-class="css_th_4">{{'SUB_COLL_OWNER'|translate}}</th>
-                                <th ng-class="css_th_6" ng-if="!inputDisabled"></th>
+                                <th ng-class="css_th_6" ng-if="tab.read"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -173,12 +158,11 @@
                                 <td>{{subcol.BRAND_NAME}}</td>
                                 <td>{{subcol.REGIS_PROVINCE.PROV_NAME}}</td>
                                 <td>{{subcol.REGIS_NO}}</td>
-                                <!-- <td class="text-right">{{subcol.QUANTITY}}</td> -->
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
-                                <td class="center" ng-if="!inputDisabled">
+                                <td class="center" ng-if="tab.read">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                        <a href="#" ng-click="editSubCol(colleteral,subcol,'286038')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i ng-class="iconEdit"></i></a>
-                                        <a href="#" ng-click="deleteSubCol(colleteral,subcol,'286038')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i ng-class="iconDelete"></i></a>
+                                        <a ng-if="tab.read" href="#" ng-click="editSubCol(colleteral,subcol,'286038')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i ng-class="iconEdit"></i></a>
+                                        <a ng-if="tab.delete" href="#" ng-click="deleteSubCol(colleteral,subcol,'286038')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i ng-class="iconDelete"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -194,9 +178,8 @@
                                 <th ng-class="css_th_2">{{'SHIP_NAME'|translate}}</th>
                                 <th ng-class="css_th_3">{{'REGIS_PROVINCE'|translate}}</th>
                                 <th ng-class="css_th_4">{{'MACHINE_NO'|translate}}</th>
-                                <!-- <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th> -->
                                 <th ng-class="css_th_4">{{'SUB_COLL_OWNER'|translate}}</th>
-                                <th ng-class="css_th_6" ng-if="!inputDisabled"></th>
+                                <th ng-class="css_th_6" ng-if="tab.read"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -206,12 +189,11 @@
                                 <td>{{subcol.NAME}}</td>
                                 <td>{{subcol.REGIS_PROVINCE.PROV_NAME}}</td>
                                 <td>{{subcol.REGIS_NO}}</td>
-                                <!-- <td class="text-right">{{subcol.QUANTITY}}</td> -->
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
-                                <td class="center" ng-if="!inputDisabled">
+                                <td class="center" ng-if="tab.read">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                        <a href="#" ng-click="editSubCol(colleteral,subcol,'286039')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i ng-class="iconEdit"></i></a>
-                                        <a href="#" ng-click="deleteSubCol(colleteral,subcol,'286039')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i ng-class="iconDelete"></i></a>
+                                        <a ng-if="tab.read" href="#" ng-click="editSubCol(colleteral,subcol,'286039')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i ng-class="iconEdit"></i></a>
+                                        <a ng-if="tab.delete" href="#" ng-click="deleteSubCol(colleteral,subcol,'286039')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i ng-class="iconDelete"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -227,9 +209,8 @@
                                 <th ng-class="css_th_2">{{'TRANSFER_NO'|translate}}</th>
                                 <th ng-class="css_th_3">{{'RENTAL_NO'|translate}}</th>
                                 <th ng-class="css_th_4">{{'RENT_TYPE'|translate}}</th>
-                                <!-- <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th> -->
                                 <th ng-class="css_th_4">{{'SUB_COLL_OWNER'|translate}}</th>
-                                <th ng-class="css_th_6" ng-if="!inputDisabled"></th>
+                                <th ng-class="css_th_6" ng-if="tab.read"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -240,13 +221,11 @@
                                 <td>{{subcol.RENTAL_NO}}</td>
                                 <td ng-if="subcol.RENT_TYPE=='L'">{{'LAND'|translate}}</td>
                                 <td ng-if="subcol.RENT_TYPE=='B'">{{'BUILDING'|translate}}</td>
-                                <!-- <td class="text-right">{{subcol.QUANTITY}}</td> -->
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
-                                <td class="center" ng-if="!inputDisabled">
+                                <td class="center" ng-if="tab.read">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                        <!--<a ng-if="subcol.QUANTITY>1" href="#" ng-click="splitSubCol(colleteral,subcol)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'SPLIT'|translate}}"><i ng-class="iconSplit"></i></a>-->
-                                        <a href="#" ng-click="editSubCol(colleteral,subcol,'286005')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i ng-class="iconEdit"></i></a>
-                                        <a href="#" ng-click="deleteSubCol(colleteral,subcol,'286005')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i ng-class="iconDelete"></i></a>
+                                        <a ng-if="tab.read" href="#" ng-click="editSubCol(colleteral,subcol,'286005')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i ng-class="iconEdit"></i></a>
+                                        <a ng-if="tab.delete" href="#" ng-click="deleteSubCol(colleteral,subcol,'286005')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i ng-class="iconDelete"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -262,9 +241,8 @@
                                 <th ng-class="css_th_2">{{'MACHINE_NAME'|translate}}</th>
                                 <th ng-class="css_th_3">{{'MACHINE_LOCATION'|translate}}</th>
                                 <th ng-class="css_th_4">{{'MACHINE_NO'|translate}}</th>
-                                <!-- <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th> -->
                                 <th ng-class="css_th_4">{{'SUB_COLL_OWNER'|translate}}</th>
-                                <th ng-class="css_th_6" ng-if="!inputDisabled"></th>
+                                <th ng-class="css_th_6" ng-if="tab.read"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -274,13 +252,12 @@
                                 <td>{{subcol.MACHINE_NAME}}</td>
                                 <td>{{subcol.MACHINE_LOCATION}}</td>
                                 <td>{{subcol.REGIS_NO}}</td>
-                                <!-- <td class="text-right">{{subcol.QUANTITY}}</td> -->
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
-                                <td class="center" ng-if="!inputDisabled">
+                                <td class="center" ng-if="tab.read">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                        <a href="#" ng-click="editSubCol(colleteral,subcol,'286011')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i ng-class="iconEdit"></i></a>
-                                        <a href="#" ng-click="deleteSubCol(colleteral,subcol,'286011')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i ng-class="iconDelete"></i></a>
-                                        <a ng-if="subcol.REGIS_NO.indexOf(',')>0" href="#" ng-click="splitSubCol(colleteral,subcol,'286011')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'SPLIT'|translate}}"><i ng-class="iconSplit"></i></a>
+                                        <a ng-if="tab.read" href="#" ng-click="editSubCol(colleteral,subcol,'286011')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i ng-class="iconEdit"></i></a>
+                                        <a ng-if="tab.delete" href="#" ng-click="deleteSubCol(colleteral,subcol,'286011')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i ng-class="iconDelete"></i></a>
+                                        <a ng-if="tab.update && subcol.REGIS_NO.indexOf(',')>0" href="#" ng-click="splitSubCol(colleteral,subcol,'286011')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'SPLIT'|translate}}"><i ng-class="iconSplit"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -296,9 +273,8 @@
                                 <th ng-class="css_th_2">{{'ROOM_NO'|translate}}</th>
                                 <th ng-class="css_th_3">{{'BUILDING_NAME'|translate}}</th>
                                 <th ng-class="css_th_4">{{'AREA_METER'|translate}}</th>
-                                <!-- <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th> -->
                                 <th ng-class="css_th_4">{{'SUB_COLL_OWNER'|translate}}</th>
-                                <th ng-class="css_th_6" ng-if="!inputDisabled"></th>
+                                <th ng-class="css_th_6" ng-if="tab.read"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -308,13 +284,12 @@
                                 <td>{{subcol.ROOM_NO}}</td>
                                 <td>{{subcol.BUILDING_NAME}}</td>
                                 <td>{{subcol.AREA_METER | number:2}}</td>
-                                <!-- <td class="text-right">{{subcol.QUANTITY}}</td> -->
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
-                                <td class="center" ng-if="!inputDisabled">
+                                <td class="center" ng-if="tab.read">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                        <a href="#" ng-click="editSubCol(colleteral,subcol,'286066')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i ng-class="iconEdit"></i></a>
-                                        <a href="#" ng-click="deleteSubCol(colleteral,subcol,'286066')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i ng-class="iconDelete"></i></a>
-                                        <a ng-if="subcol.ROOM_NO.indexOf(',')>0" href="#" ng-click="splitSubCol(colleteral,subcol,'286066')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'SPLIT'|translate}}"><i ng-class="iconSplit"></i></a>
+                                        <a ng-if="tab.read" href="#" ng-click="editSubCol(colleteral,subcol,'286066')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i ng-class="iconEdit"></i></a>
+                                        <a ng-if="tab.delete" href="#" ng-click="deleteSubCol(colleteral,subcol,'286066')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i ng-class="iconDelete"></i></a>
+                                        <a ng-if="tab.update && subcol.ROOM_NO.indexOf(',') > 0" href="#" ng-click="splitSubCol(colleteral,subcol,'286066')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'SPLIT'|translate}}"><i ng-class="iconSplit"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -330,9 +305,8 @@
                                 <th ng-class="css_th_2">{{'OTHERS_COL'|translate}}</th>
                                 <th ng-class="css_th_3">{{'APPR_CUR_NET_TOTAL'|translate}}</th>
                                 <th ng-class="css_th_4">{{'OTHERS_PRICE_PAWN'|translate}}</th>
-                                <!-- <th ng-class="css_th_5" class="text-right">{{'QUANTITY'|translate}}</th> -->
                                 <th ng-class="css_th_4">{{'SUB_COLL_OWNER'|translate}}</th>
-                                <th ng-class="css_th_6" ng-if="!inputDisabled"></th>
+                                <th ng-class="css_th_6" ng-if="tab.read"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -342,12 +316,11 @@
                                 <td>{{subcol.OTHERS_COL}}</td>
                                 <td>{{subcol.APPR_CUR_NET_TOTAL | number:2}}</td>
                                 <td>{{subcol.OTHERS_PRICE_PAWN | number:2}}</td>
-                                <!-- <td class="text-right">{{subcol.QUANTITY}}</td> -->
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>
-                                <td class="center" ng-if="!inputDisabled">
+                                <td class="center" ng-if="tab.read">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                        <a href="#" ng-click="editSubCol(colleteral,subcol,'999999')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i ng-class="iconEdit"></i></a>
-                                        <a href="#" ng-click="deleteSubCol(colleteral,subcol,'999999')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i ng-class="iconDelete"></i></a>
+                                        <a ng-if="tab.read" href="#" ng-click="editSubCol(colleteral,subcol,'999999')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i ng-class="iconEdit"></i></a>
+                                        <a ng-if="tab.delete" href="#" ng-click="deleteSubCol(colleteral,subcol,'999999')" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i ng-class="iconDelete"></i></a>
                                     </div>
                                 </td>
                             </tr>

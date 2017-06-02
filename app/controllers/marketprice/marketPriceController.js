@@ -29,7 +29,7 @@
 
     $scope.getProvince = function () {
         var deffered = $q.defer();
-        radasoft.getProvince({}).then(function (response) {
+        radasoft.getProvinceForFilter({}).then(function (response) {
             $scope.selectProvince = response.data;
             deffered.resolve();
         });
@@ -43,7 +43,7 @@
         $scope.myFilter.SUBDISTRICT = {};
         $scope.selectSubDistrict = [];
 
-        radasoft.getDistrict({ PROVINCE_ID: item.PROV_ID }).then(function (response) {
+        radasoft.getDistrictForFilter({ PROVINCE_ID: item.PROV_ID }).then(function (response) {
             $scope.selectDistrict = response.data;
             deffered.resolve();
         });
@@ -55,7 +55,7 @@
         $scope.myFilter.SUBDISTRICT = {};
         $scope.selectSubDistrict = [];
 
-        radasoft.getSubDistrict({ PROVINCE_ID: item.PROVINCE_ID, DISTRICT_ID: item.CITY_ID }).then(function (response) {
+        radasoft.getSubDistrictForFilter({ PROVINCE_ID: item.PROVINCE_ID, DISTRICT_ID: item.CITY_ID }).then(function (response) {
             $scope.selectSubDistrict = response.data;
         });
         return deffered.promise;
@@ -72,7 +72,7 @@
     $scope.getHeadColType = function () {
         var deferred = $q.defer();
         if ($rootScope.headColType == undefined) {
-            radasoft.getHeadColType({}).then(function (response) {
+            radasoft.getHeadColTypeForFilter({}).then(function (response) {
                 $rootScope.headColType = response.data;
 
                 $scope.headColType = $rootScope.headColType;
@@ -87,7 +87,7 @@
 
     $scope.getHeadColSubType = function (headColType) {
         var deferred = $q.defer();
-        radasoft.getHeadColSubType({ MAIN_CODE: headColType.VALUE }).then(function (response) {
+        radasoft.getHeadColSubTypeForFilter({ MAIN_CODE: headColType.VALUE }).then(function (response) {
             $scope.headColSubType = response.data;
         }).finally(function () {
             deferred.resolve();
@@ -923,7 +923,7 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
 
     $scope.getProvince = function () {
         var deffered = $q.defer();
-        radasoft.getProvince({}).then(function (response) {
+        radasoft.getProvinceForFilter({}).then(function (response) {
             $scope.selectProvince = response.data;
             deffered.resolve();
         });
@@ -937,7 +937,7 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
         $scope.myFilter.SUBDISTRICT = {};
         $scope.selectSubDistrict = [];
 
-        radasoft.getDistrict({ PROVINCE_ID: item.PROV_ID }).then(function (response) {
+        radasoft.getDistrictForFilter({ PROVINCE_ID: item.PROV_ID }).then(function (response) {
             $scope.selectDistrict = response.data;
 
             deffered.resolve();
@@ -950,7 +950,7 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
         $scope.myFilter.SUBDISTRICT = {};
         $scope.selectSubDistrict = [];
 
-        radasoft.getSubDistrict({ PROVINCE_ID: item.PROVINCE_ID, DISTRICT_ID: item.CITY_ID }).then(function (response) {
+        radasoft.getSubDistrictForFilter({ PROVINCE_ID: item.PROVINCE_ID, DISTRICT_ID: item.CITY_ID }).then(function (response) {
             $scope.selectSubDistrict = response.data;
         });
         return deffered.promise;
@@ -963,7 +963,7 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
     $scope.getHeadColType = function () {
         var deferred = $q.defer();
 
-        radasoft.getHeadColType({}).then(function (response) {
+        radasoft.getHeadColTypeForFilter({}).then(function (response) {
             $scope.headColType = response.data;
         }).finally(function () {
             deferred.resolve();
@@ -974,7 +974,7 @@ app.controller('marketPriceSelectionController', ['$scope', '$rootScope', '$stat
 
     $scope.getHeadColSubType = function (headColType) {
         var deferred = $q.defer();
-        radasoft.getHeadColSubType({ MAIN_CODE: headColType.VALUE }).then(function (response) {
+        radasoft.getHeadColSubTypeForFilter({ MAIN_CODE: headColType.VALUE }).then(function (response) {
             $scope.headColSubType = response.data;
         }).finally(function () {
             deferred.resolve();
@@ -1078,8 +1078,7 @@ app.controller('priceCompareController', ['$scope', '$state', '$stateParams', 'r
     $scope.random = Math.random().toString().replace('.', '');
     $scope.ldloading = {};
     $scope.btnDisabled = false;
-    //$scope.headCol = params.headCol;
-    //$scope.colAct = params.colAct;
+    $scope.tab = $scope.params.tab;
 
     $scope.compareUrl = '/app/views/setting/marketprice/priceCompare2_' + $scope.params.TEMPLATE_TYPE.CONDITION1 + '.html';
 
@@ -1096,11 +1095,24 @@ app.controller('priceCompareController', ['$scope', '$state', '$stateParams', 'r
     $scope.dataSetCol = "col-md-2";
 
     $scope.subColToJobMarketPrice = function () {
-        radasoft.confirmAndSave('กรุณายืนยันการ '+$translate.instant('SUBCOLTOJOBMARKETPRICE'), '', function (isconfirmed) {
+        radasoft.confirmAndSave('กรุณายืนยันการ ' + $translate.instant('SUBCOLTOJOBMARKETPRICE'), '', function (isconfirmed) {
             if (isconfirmed) {
                 radasoft.subColToJobMarketPrice({
                     HEAD_COL_RUNNING_ID: $scope.params.HEAD_COL_RUNNING_ID,
                     TEMPLATE_TYPE: $scope.params.TEMPLATE_TYPE.CONDITION2
+                }).then(function () {
+                    radasoft.success();
+                    $scope.getJobMarketPrice();
+                });
+            }
+        });
+    }
+
+    $scope.refreshJobMarketPrice = function (JMP_RUNNING_ID) {
+        radasoft.confirmAndSave('กรุณายืนยันการ ' + $translate.instant('REFRESH_JOBMARKETPRICE'), '', function (isconfirmed) {
+            if (isconfirmed) {
+                radasoft.refreshJobMarketPrice({
+                    JMP_RUNNING_ID: JMP_RUNNING_ID
                 }).then(function () {
                     radasoft.success();
                     $scope.getJobMarketPrice();

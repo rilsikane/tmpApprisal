@@ -112,7 +112,7 @@
                     {{'MADE_YEAR'|translate}} <span class="symbol"></span>
                 </label>
                 <div ng-class="formControlCss">
-                    <input required year type="text" maxlength="4" ng-max="9999" class="form-control" id="YEAR" name="YEAR" ng-model="formData.YEAR" />
+                    <input required year type="text" ng-maxlength="4" ng-minlength="4" class="form-control" id="YEAR" name="YEAR" ng-model="formData.YEAR" />
                 </div>
             </div>
             <div class="form-group">

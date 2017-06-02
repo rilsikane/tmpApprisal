@@ -6,15 +6,15 @@
             <div class="form-group" ng-repeat="item in formData.APPRAISAL_METHOD">
                 <div class="col-sm-8 no-padding">
                     <div class="radio clip-radio radio-primary">
-                        <input type="radio" name="ASSPA_METH_ID" id="ASSPA_METH_ID_{{item.VALUE}}" ng-value="{{item.VALUE}}" ng-model="formData.ASSPA_METH_ID" ng-change="methodChange(item)" />
+                        <input ng-disabled="inputDisabled" type="radio" name="ASSPA_METH_ID" id="ASSPA_METH_ID_{{item.VALUE}}" ng-value="{{item.VALUE}}" ng-model="formData.ASSPA_METH_ID" ng-change="methodChange(item)" />
                         <label for="ASSPA_METH_ID_{{item.VALUE}}">{{ item.NAME }}</label>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div ng-switch="item.VALUE">
-                        <input format ng-switch-when="3" type="text" class="form-control text-right" ng-model="item.AMOUNT" ng-disabled="formData.ASSPA_METH_ID != '3'" ng-change="methodAmountChange($event,item)" />
-                        <input format ng-switch-when="2" type="text" class="form-control text-right" ng-model="item.AMOUNT" readonly />
-                        <input format ng-switch-when="1" type="text" class="form-control text-right" ng-model="item.AMOUNT" readonly />
+                        <input ng-if="formData.ASSPA_METH_ID==3" format ng-switch-when="3" type="text" class="form-control text-right" ng-model="item.AMOUNT" ng-disabled="formData.ASSPA_METH_ID != '3'" ng-change="methodAmountChange($event,item)" />
+                        <input ng-if="formData.ASSPA_METH_ID==2" format ng-switch-when="2" type="text" class="form-control text-right" ng-model="item.AMOUNT" readonly />
+                        <input ng-if="formData.ASSPA_METH_ID==1" format ng-switch-when="1" type="text" class="form-control text-right" ng-model="item.AMOUNT" readonly />
                     </div>                    
                 </div>
             </div>
@@ -54,14 +54,14 @@
                     <input format ng-disabled="inputDisabled" type="text" class="form-control" ng-model="formData.APPR_CUR_NET_TOTAL" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" />
                 </div>
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label class="col-sm-4 control-label" for="APPR_GOV_AMOUNT">
                     {{'APPR_GOV_AMOUNT'|translate}}
                 </label>
                 <div class="col-sm-6 no-padding">
                     <input format ng-disabled="inputDisabled" type="text" class="form-control" ng-model="formData.APPR_GOV_AMOUNT" id="APPR_GOV_AMOUNT" name="APPR_GOV_AMOUNT" />
                 </div>
-            </div>
+            </div>-->
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="APPR_CUR_FIRE_INSURE">
                     {{'APPR_CUR_FIRE_INSURE'|translate}}

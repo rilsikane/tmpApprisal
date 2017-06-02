@@ -12,11 +12,18 @@
                     <span ng-if="market.MARKETPRICE_SET==4" class="text-white">{{'DATA_SET_4'|translate}}</span>
                     <span ng-if="market.MARKETPRICE_SET==5" class="text-white">{{'DATA_SET_5'|translate}}</span>
                     <span class="pull-right">
+                        <a ng-if="market.MARKETPRICE_SET == 0 && tab.update" ng-click="subColToJobMarketPrice()" tooltip="{{'SUBCOLTOJOBMARKETPRICE'|translate}}"><span class="text-white"><i class="fa fa-refresh"></i></span></a>
+                        <a ng-if="market.MARKETPRICE_SET > 0 && dataMode==1 && tab.update && market.JMP_RUNNING_ID > 0" ng-click="refreshJobMarketPrice(market.JMP_RUNNING_ID)" tooltip="{{'REFRESH'|translate}}"><span class="text-white"><i class="fa fa-refresh"></i></span></a>
+                        <a ng-if="market.MARKETPRICE_SET > 0 && dataMode==1 && tab.update" ng-click="selectMarketPrice($index,market)" tooltip="{{'SELECT_MARKET_PRICE'|translate}}"><span class="text-white"><i class="fa fa-search"></i></span></a>
+                        <a ng-if="dataMode==1  && tab.delete && market.JMP_RUNNING_ID > 0" ng-click="deleteJobMarketPrice($index,market)" tooltip="{{'DELETE_MARKET_PRICE'|translate}}"><span class="text-white"><i class="fa fa-remove"></i></span></a>
+                        <a ng-if="market.MARKETPRICE_SET==0  && tab.update" ng-click="editJobMarketPrice($index,market)" tooltip="{{'EDIT'|translate}}"><span class="text-white"><i class="fa fa-pencil"></i></span></a>
+                    </span>
+                    <!--<span class="pull-right">
                         <a ng-if="market.MARKETPRICE_SET==0" ng-click="subColToJobMarketPrice()" tooltip="{{'SUBCOLTOJOBMARKETPRICE'|translate}}"><span class="text-white"><i class="glyphicon glyphicon-refresh"></i></span></a>
                         <a ng-if="market.MARKETPRICE_SET>0 && dataMode==1" ng-click="selectMarketPrice($index,market)" tooltip="{{'SELECT_MARKET_PRICE'|translate}}"><span class="text-white"><i class="fa fa-search"></i></span></a>
                         <a ng-if="dataMode==1" ng-click="deleteJobMarketPrice($index,market)" tooltip="{{'DELETE_MARKET_PRICE'|translate}}"><span class="text-white"><i class="fa fa-remove"></i></span></a>
                         <a ng-if="market.MARKETPRICE_SET==0" ng-click="editJobMarketPrice($index,market)" tooltip="{{'EDIT'|translate}}"><span class="text-white"><i class="fa fa-pencil"></i></span></a>
-                    </span>
+                    </span>-->
                 </th>
             </tr>
         </thead>
@@ -69,25 +76,25 @@
                 <td class="text-right">ลักษณะการใช้ประโยชน์ปัจจุบัน</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" ng-model="formData.PROPERTY_USAGE_PRESENT1" ng-true-value="'Y'" ng-false-value="'N'">
+                        <input type="checkbox" ng-model="market.PROPERTY_USAGE_PRESENT1" ng-true-value="'Y'" ng-false-value="'N'">
                         <label>
                             อยู่อาศัย
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" ng-model="formData.PROPERTY_USAGE_PRESENT2" ng-true-value="'Y'" ng-false-value="'N'">
+                        <input type="checkbox" ng-model="market.PROPERTY_USAGE_PRESENT2" ng-true-value="'Y'" ng-false-value="'N'">
                         <label>
                             ปล่อยเช่า
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" ng-model="formData.PROPERTY_USAGE_PRESENT3" ng-true-value="'Y'" ng-false-value="'N'">
+                        <input type="checkbox" ng-model="market.PROPERTY_USAGE_PRESENT3" ng-true-value="'Y'" ng-false-value="'N'">
                         <label>
                             ปล่อยว่างไม่ได้ใช้ประโยชน์
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" ng-model="formData.PROPERTY_USAGE_PRESENT4" ng-true-value="'Y'" ng-false-value="'N'">
+                        <input type="checkbox" ng-model="market.PROPERTY_USAGE_PRESENT4" ng-true-value="'Y'" ng-false-value="'N'">
                         <label>
                             ทิ้งร้างขาดการดูแลรักษา
                         </label>
@@ -98,25 +105,25 @@
                 <td class="text-right">สาธารณูปโภคผ่าน</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" ng-model="market.PROPERTY_INFRA_ELEC">
+                        <input type="checkbox" ng-model="market.PROPERTY_INFRA_ELEC" ng-true-value="'Y'" ng-false-value="'N'">
                         <label>
                             ไฟฟ้า
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" ng-model="market.PROPERTY_INFRA_WATER">
+                        <input type="checkbox" ng-model="market.PROPERTY_INFRA_WATER" ng-true-value="'Y'" ng-false-value="'N'">
                         <label>
                             ประปา
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" ng-model="market.PROPERTY_INFRA_PHONE">
+                        <input type="checkbox" ng-model="market.PROPERTY_INFRA_PHONE" ng-true-value="'Y'" ng-false-value="'N'">
                         <label>
                             โทรศัพท์
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" ng-model="market.PROPERTY_INFRA_PIPE">
+                        <input type="checkbox" ng-model="market.PROPERTY_INFRA_PIPE" ng-true-value="'Y'" ng-false-value="'N'">
                         <label>
                             ท่อระบายน้ำ
                         </label>
@@ -151,19 +158,19 @@
                 <td class="text-right">การจัดพื้นที่ใช้สอย</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" ng-model="formData.PROPERTY_LAYOUT1" ng-true-value="'Y'" ng-false-value="'N'">
+                        <input type="checkbox" ng-model="market.PROPERTY_LAYOUT1" ng-true-value="'Y'" ng-false-value="'N'">
                         <label>
                             ห้องโถง
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" ng-model="formData.PROPERTY_LAYOUT2" ng-true-value="'Y'" ng-false-value="'N'">
+                        <input type="checkbox" ng-model="market.PROPERTY_LAYOUT2" ng-true-value="'Y'" ng-false-value="'N'">
                         <label>
                             ห้องนอน
                         </label>
                     </div>
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" ng-model="formData.PROPERTY_LAYOUT3" ng-true-value="'Y'" ng-false-value="'N'">
+                        <input type="checkbox" ng-model="market.PROPERTY_LAYOUT3" ng-true-value="'Y'" ng-false-value="'N'">
                         <label>
                             ห้องน้ำ
                         </label>
@@ -234,7 +241,7 @@
             </tr>
             <tr>
                 <td class="text-right">สภาพคล่อง</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_SELL.NAME}}</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_SELL1.NAME}}</td>
             </tr>
             <tr>
                 <td class="text-right">ราคาเสนอขาย (บาท/ตร.ว.)</td>
@@ -242,17 +249,17 @@
             </tr>
             <tr>
                 <td class="text-right">ราคาเช่า</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PRICE_RENT}}</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PRICE_RENT|number:2}}</td>
             </tr>
             <tr>
                 <td class="text-right">เงื่อนไขการขาย</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
                     <div class="radio clip-radio radio-primary">
-                        <input type="radio" ng-value="0" ng-model="formData.SALE_CONDITION" />
+                        <input type="radio" ng-value="0" ng-model="market.SALE_CONDITION" />
                         <label>ต่อรองได้</label>
                     </div>
                     <div class="radio clip-radio radio-primary">
-                        <input type="radio" ng-value="1" ng-model="formData.SALE_CONDITION" />
+                        <input type="radio" ng-value="1" ng-model="market.SALE_CONDITION" />
                         <label>ต่อรองไม่ได้</label>
                     </div>
                 </td>
@@ -277,13 +284,13 @@
                 <td class="text-right">หมายเหตุ</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.REMARK}}</td>
             </tr>
-            <tr>
+            <!--<tr>
                 <td class="text-right">ภาพถ่ายแสดงข้อมูลอื่นๆ</td>
                 <td ng-if="jobMarketPrice.length==0"></td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
                     <a ng-if="market.JMP_RUNNING_ID>0" href="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE_SIGN/{{random}}" target="_blank" tooltip="{{'VIEW_LARGE_IMAGE'|translate}}"><img ng-src="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE_SIGN/{{random}}" width="100" height="100" /></a>
                 </td>
-            </tr>
+            </tr>-->
         </tbody>
     </table>
 </div>

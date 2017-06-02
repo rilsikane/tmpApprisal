@@ -11,7 +11,8 @@
     $scope.approvers = [];
     $scope.selectDeveloper = [];
     $scope.selectProject = [];
-    $scope.H = $stateParams.H;
+    $scope.H = $stateParams.H; // 0 Inbox,1 History
+    $scope.S = $stateParams.S; // I Inbox,H History,A Admin
     $scope.tmpTitle = '';
     $scope.actHist = {};
 
@@ -107,8 +108,13 @@
 
     $scope.getDocStateV2 = function (ACT_HIST_ID) {
         var deferred = $q.defer();
-        radasoft.getDocStateV2({ ACT_HIST_ID: ACT_HIST_ID, ROLE_ID: 0, H: $scope.H }).then(function (response) {
-            if (response.data.STATE_ACTIONS.length == 0 && $scope.H == 0 && ACT_HIST_ID > 0) {
+        radasoft.getDocStateV2({
+            ACT_HIST_ID: ACT_HIST_ID,
+            ROLE_ID: 0,
+            H: $scope.H,
+            S: $scope.S
+        }).then(function (response) {
+            if (response.data.STATE_ACTIONS.length == 0 && $scope.H == 0 && $scope.S == 'I' && ACT_HIST_ID > 0) {
                 $state.go('app.inbox');
             } else {
                 $scope.w4buttons = response.data.STATE_ACTIONS;
@@ -206,7 +212,7 @@
 
             $scope.DOC_ID = response.data.DOC_ID || 0;
 
-            $scope.tmpTitle = ($scope.H == '0') ? response.data.TO_STATE_NAME : response.data.STATE_NAME;
+            $scope.tmpTitle = ($scope.H == '0') ? response.data.TO_STATE_NAME : response.data.ACT_TEXT;
 
             radasoft.getFormData({ DOC_ID: $scope.DOC_ID }).then(function (response) {
                 $scope.formData = response.data;
@@ -453,6 +459,7 @@ app.controller('subform0551Controller', ['$scope', 'radasoft', '$modalInstance',
     $scope.STATE_ID = params.STATE_ID;
     $scope.inputDisabled = false;
     $scope.selectContactResult = [];
+    $scope.disabledContactResult = false;
 
     $scope.getContactResult = function () {
         var deferred = $q.defer();
@@ -473,9 +480,7 @@ app.controller('subform0551Controller', ['$scope', 'radasoft', '$modalInstance',
                 $scope.formData.CONTACT_RESULT = undefined;
                 $scope.formData.DATE_CUST_APPOINTMENT = undefined;
             } else {
-                if ($scope.formData.CONTACT_RESULT.VALUE == '1') {
-                    $scope.inputDisabled = true;
-                }
+                $scope.disabledContactResult = true;
             }
         });
     }
@@ -666,7 +671,7 @@ app.controller('subform1300Controller', ['$scope', 'radasoft', '$sce', '$transla
 
             if ($scope.btnDisabled == false) {
                 $scope.btnDisabled = !allOk;
-            }            
+            }
 
             $scope.headColAppraisalList = response.data;
         });

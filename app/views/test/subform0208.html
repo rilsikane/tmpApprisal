@@ -1,19 +1,4 @@
 ﻿<!-- GRADING -->
-<div ng-include="'/app/views/qnr/questionnaire.html'" ng-init="QNR_ID=headCol.GRADE_QNR_ID;RESULT_ID=headCol.GRADE_RESULT_ID;">
+<div ng-include="'/app/views/qnr/questionnaire.html'" ng-init="QNR_ID=headCol.GRADE_QNR_ID;RESULT_ID=headCol.GRADE_RESULT_ID;inputDisabled=!tab.update;displayScore=true;">
 
 </div>
-<!--<fieldset ng-repeat="qnr0 in qnrList.CHILD" ng-if="qnr0.TYPE=='Q'" ng-hide="qnr0.FLAG=='H'" class="no-radius">
-    <legend ng-if="qnr0.TYPE=='Q'">{{qnr0.ITEM}} {{qnr0.DSC1}}</legend>
-    <div ng-if="qnr0.TYPE=='Q' && ans0.TYPE==null" ng-repeat="ans0 in qnr0.CHILD" class="radio clip-radio radio-primary" ng-hide="ans0.FLAG=='H'">
-        <input type="radio" name="Q_{{ans0.QNR_ID}}" ng-value="{{ans0.QNR_ID}}" ng-model="qnr0.ANSWER.CHOICE_QNR_ID" id="Q_{{ans0.QNR_ID}}" ng-disabled="ans0.FLAG=='D'" />
-        <label for="Q_{{ans0.QNR_ID}}">{{ans0.ITEM}} {{ans0.DSC1}}</label>
-    </div>
-
-    <fieldset ng-repeat="qnr1 in qnr0.CHILD" ng-if="qnr1.TYPE=='Q'" ng-hide="qnr1.FLAG=='H'" class="no-radius">
-        <legend ng-if="qnr1.TYPE=='Q'">{{qnr1.ITEM}} {{qnr1.DSC1}}</legend>
-        <div ng-if="qnr1.TYPE=='Q' && ans1.TYPE==null" ng-repeat="ans1 in qnr1.CHILD" class="radio clip-radio radio-primary" ng-hide="ans1.FLAG=='H'">
-            <input type="radio" name="Q_{{ans1.QNR_ID}}" ng-value="{{ans1.QNR_ID}}" ng-model="qnr1.ANSWER.CHOICE_QNR_ID" id="Q_{{ans1.QNR_ID}}" ng-disabled="ans1.FLAG=='D'" />
-            <label for="Q_{{ans1.QNR_ID}}">{{ans1.ITEM}} {{ans1.DSC1}}</label>
-        </div>
-    </fieldset>
-</fieldset>-->

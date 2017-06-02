@@ -2,6 +2,7 @@
     $scope.title = $stateParams.STATE_NAME;
     $scope.ldloading = {};
     $scope.btnDisabled = false;
+    $scope.btnSubmitDisabled = true;
     $scope.headCol = params.headCol;
     $scope.colAct = params.colAct;
     $scope.templates = [];
@@ -9,6 +10,12 @@
     $scope.showButtonSave = params.showButtonSave || false;
     $scope.photoPages = [];
     $scope.photoTakenPoints = [];
+    $scope.random = Math.random().toString().replace('.', '');
+    $scope.tab = params.tab;
+
+    if ($scope.tab.update) {
+        $scope.btnSubmitDisabled = false;
+    }
 
     $scope.getHeadColPhoto = function () {
         radasoft.getHeadColPhoto({ HEAD_COL_RUNNING_ID: $scope.headCol.HEAD_COL_RUNNING_ID }).then(function (response) {
@@ -43,13 +50,14 @@
         });
     }
 
-    $scope.editPhoto = function ($index, photo) {
+    $scope.editPhoto = function ($index, photo, PHOTO_RUNNING_ID) {
         radasoft.openDialog({
             controller: 'headColPhotoEditorController',
             resolve: {
                 params: function () {
                     return {
                         formData: photo,
+                        PHOTO_RUNNING_ID: PHOTO_RUNNING_ID,
                         photoTakenPoints: $scope.photoTakenPoints
                     };
                 }
@@ -74,7 +82,7 @@
         return $modal.open({
             backdrop: 'static',
             keyboard: false,
-            templateUrl: 'app/views/tools/uploader.html',
+            templateUrl: '/app/views/tools/uploader.html',
             controller: 'uploaderController',
             size: 'lg',
             resolve: {
@@ -82,7 +90,8 @@
                     return {
                         limit: limit,
                         config: 'upload/photo',
-                        id1: $scope.headCol.JOB_RUNNING_ID
+                        id1: $scope.headCol.JOB_RUNNING_ID,
+                        imageFilter: true
                     };
                 }
             }
@@ -92,6 +101,7 @@
     $scope.addPhoto = function ($index, page) {
         var limit = page.PHOTO_LIMIT - page.PHOTO.length;
         $scope.openUploadDialog($index, limit).result.then(function (data) {
+            $scope.random = Math.random().toString().replace('.', '');
             angular.forEach(data, function (item) {
                 page.PHOTO.push({
                     BASE64: item.base64string,
@@ -108,6 +118,7 @@
             if (data.length > 0) {
                 photo.BASE64 = data[0].base64string;
                 photo.ATTACHDOC_RUNNING_ID = data[0].ATTACHDOC_RUNNING_ID;
+                $scope.random = Math.random().toString().replace('.', '');
             }
         });
     }
@@ -370,10 +381,11 @@
 app.controller('headColPhotoEditorController', ['$scope', '$modalInstance', '$translate', 'params', function ($scope, $modalInstance, $translate, params) {
     $scope.title = $translate.instant('HEAD_COL_PHOTO');
     $scope.showBtnOK = true;
-    $scope.includeUrl = 'app/views/test/headColPhotoEditor.html';
+    $scope.includeUrl = '/app/views/test/headColPhotoEditor.html';
     $scope.photoTakenPoints = params.photoTakenPoints;
-
+    $scope.random = Math.random().toString().replace('.', '');
     $scope.formData = angular.copy(params.formData);
+    $scope.PHOTO_RUNNING_ID = params.PHOTO_RUNNING_ID;
 
     $scope.save = function (form) {
         if (form.$invalid) {

@@ -37,7 +37,7 @@
                 <tr class="bg-azure" style="height:50px;">
                     <th class="col-md-3">
                         <span class="text-white">{{'QNR_TOPIC'|translate}}</span>
-                        <div class="pull-right">
+                        <div class="pull-right" ng-if="displayScore==true">
                             <span class="text-white">{{'SCORE'|translate}} : </span><span class="text-white">{{questionnaire.SCORE}},</span>
                             <span class="text-white">{{'GRADE'|translate}} : </span><span class="text-white">{{questionnaire.GRADE}}</span>
                         </div>

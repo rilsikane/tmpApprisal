@@ -1,6 +1,6 @@
 ﻿var app = angular.module('AppraisalWebApp', ['Application']);
 
-app.run(['$rootScope', '$state', '$stateParams', '$http', 'radasoft', 'datepickerPopupConfig', '$templateCache', function ($rootScope, $state, $stateParams, $http, radasoft, datepickerPopupConfig, $templateCache) {
+app.run(['$rootScope', '$state', '$stateParams', '$http', 'radasoft', 'datepickerPopupConfig', '$templateCache', '$filter', function ($rootScope, $state, $stateParams, $http, radasoft, datepickerPopupConfig, $templateCache, $filter) {
     //$templateCache.removeAll();
     // Attach Fastclick for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers
     FastClick.attach(document.body);
@@ -36,15 +36,30 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', 'radasoft', 'datepicke
             isSidebarClosed: false, // true if you want to initialize the template with closed sidebar
             isFooterFixed: false, // true if you want to initialize the template with fixed footer
             theme: 'theme-1', // indicate the theme chosen for your project
-            logo: '/app/assets/images/gsblogo.png', // relative path of the project logo
+            logo: '/assets/images/login_logo_gsb.png', // relative path of the project logo
         }
     };
 
-    radasoft.initApp();
+    radasoft.initApp().then(function () {
+
+    }, function () {
+        $state.go('login.signin');
+    });
 }]);
 // translate config
-app.config(['$translateProvider', '$httpProvider', function ($translateProvider, $httpProvider) {
+app.config(['$translateProvider', '$httpProvider', '$templateRequestProvider', function ($translateProvider, $httpProvider, $templateRequestProvider) {
+    $httpProvider.interceptors.push(function ($q, SweetAlert) {
+        return {
+            'responseError': function (rejection) {
 
+                if (rejection.status == 0) {
+                    SweetAlert.swal('การเชื่อมต่อเครือข่ายไม่สำเร็จ กรุณาลองใหม่อีกครั้ง');
+                }
+
+                return $q.reject(rejection);
+            }
+        };
+    });
     // prefix and suffix information  is required to specify a pattern
     // You can simply use the static-files loader with this pattern:
     $translateProvider.useStaticFilesLoader({
@@ -52,12 +67,8 @@ app.config(['$translateProvider', '$httpProvider', function ($translateProvider,
         suffix: '.json'
     });
 
-    // Since you've now registered more then one translation table, angular-translate has to know which one to use.
-    // This is where preferredLanguage(langKey) comes in.
     $translateProvider.preferredLanguage('th');
 
-    // Store the language in the local storage
-    //$translateProvider.useLocalStorage();
 }]);
 // Angular-Loading-Bar
 // configuration
@@ -66,6 +77,10 @@ function (cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeBar = true;
     cfpLoadingBarProvider.includeSpinner = false;
 }]);
+
+//app.config(['calendarConfig', function (calendarConfig) {
+//    console.log(calendarConfig);
+//}]);
 
 app.controller('paramgatewayController', ['$scope', '$stateParams', 'radasoft', function ($scope, $stateParams, radasoft) {
     radasoft.debug($stateParams);
@@ -122,7 +137,7 @@ app.controller('selectRoleController', ['$scope', 'params', '$modalInstance', fu
     }
 }]);
 
-app.controller('loginController', ['$rootScope', '$scope', '$state', 'radasoft', '$aside', 'SweetAlert', '$modal', function ($rootScope, $scope, $state, radasoft, $aside, SweetAlert, $modal) {
+app.controller('loginController', ['$rootScope', '$scope', '$state', 'radasoft', '$aside', 'SweetAlert', '$modal', '$filter', function ($rootScope, $scope, $state, radasoft, $aside, SweetAlert, $modal, $filter) {
     $scope.formData = {};
     $scope.ldloading = {};
     $scope.btnDisabled = false;
@@ -161,7 +176,13 @@ app.controller('loginController', ['$rootScope', '$scope', '$state', 'radasoft',
                     sessionStorage.setItem('role', angular.toJson(response.data[0]));
 
                     radasoft.initApp().then(function (response) {
-                        $state.go('app.inbox');
+                        var defaultMenuItem = $filter('filter')($rootScope.app.menuItems, function (value, index, array) { return value.MENU_LEVEL == 2 })[0];
+
+                        if (defaultMenuItem != undefined) {
+                            $state.go(defaultMenuItem.URL);
+                        }
+                    }, function () {
+                        $state.go('login.signin');
                     });
                 }
                 else if (response.data.length > 1) {
@@ -169,11 +190,16 @@ app.controller('loginController', ['$rootScope', '$scope', '$state', 'radasoft',
                         sessionStorage.setItem('role', angular.toJson(data));
 
                         radasoft.initApp().then(function (response) {
-                            $state.go('app.inbox');
+                            var defaultMenuItem = $filter('filter')($rootScope.app.menuItems, function (value, index, array) { return value.MENU_LEVEL == 2 })[0];
+
+                            if (defaultMenuItem != undefined) {
+                                $state.go(defaultMenuItem.URL);
+                            }
+                        }, function () {
+                            $state.go('login.signin');
                         });
                     });
                 } else {
-                    //$state.go('app.inbox');
                     radasoft.alert('ROLE NOT SPECIFIC');
                 }
             });

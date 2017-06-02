@@ -1,11 +1,18 @@
-﻿app.controller('userController', ['$scope', 'radasoft', '$state', '$stateParams', function ($scope, radasoft, $state, $stateParams) {
+﻿app.controller('userController', ['$scope', 'radasoft', '$state', '$stateParams', '$rootScope', function ($scope, radasoft, $state, $stateParams, $rootScope) {
     $scope.users = [];
-
+    $scope.paging1CurrentPage = 1;
     $scope.searchKeyword = '';
 
     $scope.getMasterUser = function (FILTER) {
-        radasoft.getMasterUser({ USER_RUNNING_ID: 0, FILTER: FILTER }).then(function (response) {
-            $scope.users = response.data;
+        radasoft.getMasterUser({
+            limit: $rootScope.app.itemsPerPage,
+            page: $scope.paging1CurrentPage,
+            filters: [
+                { NAME: 'FILTER', VALUE: $scope.searchKeyword }
+            ]
+        }).then(function (response) {
+            $scope.users = response.data.data;
+            $scope.paging1Total = response.data.total;
         });
     }
 
@@ -53,7 +60,7 @@
 app.controller('masterUserEditor', ['$scope', 'radasoft', '$state', '$stateParams', '$modalInstance', 'params', '$translate', '$q', function ($scope, radasoft, $state, $stateParams, $modalInstance, params, $translate, $q) {
     $scope.includeUrl = 'app/views/setting/userEditor.html';
     $scope.title = $translate.instant('USER');
-    $scope.formData = params.formData;
+    $scope.formData = {};//params.formData;
     $scope.showBtnSave = true;
     $scope.selectPrefix = [];
     $scope.selectOU = [];
@@ -87,10 +94,11 @@ app.controller('masterUserEditor', ['$scope', 'radasoft', '$state', '$stateParam
     $scope.getMasterUser = function (USER_RUNNING_ID) {
         var deferred = $q.defer();
 
-        radasoft.getMasterUser({ USER_RUNNING_ID: USER_RUNNING_ID, FILTER: '' }).then(function (response) {
-            if (response.data.length > 0) {
-                $scope.formData = response.data[0];
+        radasoft.getMasterUserDetail({ USER_RUNNING_ID: USER_RUNNING_ID }).then(function (response) {
+            if (response.data != null) {
+                $scope.formData = response.data;
             } else {
+                $scope.formData = params.formData;
                 $scope.formData.RECORD_STATUS = 'A';
             }
 

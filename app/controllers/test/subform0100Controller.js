@@ -1,4 +1,4 @@
-﻿app.controller('subform0100Controller', ['$scope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', 'radasoft', '$q', function ($scope, $state, toaster, $modal, $translate, SweetAlert, radasoft, $q) {
+﻿app.controller('subform0100Controller', ['$scope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', 'radasoft', '$q', '$filter', function ($scope, $state, toaster, $modal, $translate, SweetAlert, radasoft, $q, $filter) {
     $scope.ldloading = {};
     $scope.requireNotificationPrefix = $translate.instant('FORM.REQUIRE_PREFIX');
     $scope.requestType = [];
@@ -19,6 +19,16 @@
     $scope.BUTTON = {
         SAVE: $translate.instant('BUTTON.SAVE')
     };
+
+    $scope.dateReqChange = function () {
+        var date2 = $filter('date')(new Date(), 'yyyyMMdd');
+        var date1 = $filter('date')($scope.$parent.formData.DATE_REQ, 'yyyyMMdd');
+
+        if (date1 > date2) {
+            $scope.$parent.formData.DATE_REQ = undefined;
+            radasoft.alert($translate.instant('INVALID_DATE_REQ'));
+        }
+    }
 
     $scope.onNPAChange = function () {
         $scope.$parent.formData.DEBT_TYPE = undefined;

@@ -12,11 +12,12 @@
                     <span ng-if="market.MARKETPRICE_SET==3" class="text-white">{{'DATA_SET_3'|translate}}</span>
                     <span ng-if="market.MARKETPRICE_SET==4" class="text-white">{{'DATA_SET_4'|translate}}</span>
                     <span ng-if="market.MARKETPRICE_SET==5" class="text-white">{{'DATA_SET_5'|translate}}</span>
-                    <span class="pull-right">
-                        <a ng-if="market.MARKETPRICE_SET==0" ng-click="subColToJobMarketPrice()" tooltip="{{'SUBCOLTOJOBMARKETPRICE'|translate}}"><span class="text-white"><i class="glyphicon glyphicon-refresh"></i></span></a>
-                        <a ng-if="market.MARKETPRICE_SET>0 && dataMode==1" ng-click="selectMarketPrice($index,market)" tooltip="{{'SELECT_MARKET_PRICE'|translate}}"><span class="text-white"><i class="fa fa-search"></i></span></a>
-                        <a ng-if="dataMode==1" ng-click="deleteJobMarketPrice($index,market)" tooltip="{{'DELETE_MARKET_PRICE'|translate}}"><span class="text-white"><i class="fa fa-remove"></i></span></a>
-                        <a ng-if="market.MARKETPRICE_SET==0" ng-click="editJobMarketPrice($index,market)" tooltip="{{'EDIT'|translate}}"><span class="text-white"><i class="fa fa-pencil"></i></span></a>
+                    <span class="pull-right">                        
+                        <a ng-if="market.MARKETPRICE_SET > 0 && dataMode==1 && tab.update && market.JMP_RUNNING_ID > 0" ng-click="refreshJobMarketPrice(market.JMP_RUNNING_ID)" tooltip="{{'REFRESH'|translate}}"><span class="text-white"><i class="fa fa-refresh"></i></span></a>
+                        <a ng-if="market.MARKETPRICE_SET > 0 && dataMode==1 && tab.update" ng-click="selectMarketPrice($index,market)" tooltip="{{'SELECT_MARKET_PRICE'|translate}}"><span class="text-white"><i class="fa fa-search"></i></span></a>
+                        <a ng-if="dataMode==1 && tab.delete && market.JMP_RUNNING_ID > 0" ng-click="deleteJobMarketPrice($index,market)" tooltip="{{'DELETE_MARKET_PRICE'|translate}}"><span class="text-white"><i class="fa fa-remove"></i></span></a>
+                        <a ng-if="market.MARKETPRICE_SET==0 && tab.update" ng-click="subColToJobMarketPrice()" tooltip="{{'SUBCOLTOJOBMARKETPRICE'|translate}}"><span class="text-white"><i class="fa fa-refresh"></i></span></a>
+                        <a ng-if="market.MARKETPRICE_SET==0 && tab.update" ng-click="editJobMarketPrice($index,market)" tooltip="{{'EDIT'|translate}}"><span class="text-white"><i class="fa fa-pencil"></i></span></a>
                     </span>
                 </th>
             </tr>
@@ -163,7 +164,7 @@
             </tr>
             <tr>
                 <td class="text-right">สภาพคล่อง</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_SELL.NAME}}</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PROPERTY_SELL1.NAME}}</td>
             </tr>
             <tr>
                 <td class="text-right">ระดับดินต่ำกว่า/สูงกว่าถนนประมาณ (ม.)</td>
@@ -179,7 +180,7 @@
             </tr>
             <tr>
                 <td class="text-right">ราคาเช่า</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PRICE_RENT}}</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.PRICE_RENT|number:2}}</td>
             </tr>
             <tr>
                 <td class="text-right">สถานะ</td>
@@ -197,13 +198,13 @@
                 <td class="text-right">หมายเหตุ</td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.REMARK}}</td>
             </tr>
-            <tr>
+            <!--<tr>
                 <td class="text-right">ภาพถ่ายแสดงข้อมูลอื่นๆ</td>
                 <td ng-if="jobMarketPrice.length==0"></td>
                 <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">
                     <a ng-if="market.JMP_RUNNING_ID>0" href="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE_SIGN/{{random}}" target="_blank" tooltip="{{'VIEW_LARGE_IMAGE'|translate}}"><img ng-src="nn1/a/{{market.JMP_RUNNING_ID}}/PICTURE_SIGN/{{random}}" width="100" height="100" /></a>
                 </td>
-            </tr>
+            </tr>-->
         </tbody>
     </table>
 </div>

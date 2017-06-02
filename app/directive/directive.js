@@ -5,13 +5,9 @@
             link: function ($scope, $element, $attrs, ngModelCtrl) {
                 var decimal = $attrs.decimal || 2;
 
-                // console.log(limit);
-                // console.log(">>float_length<<", floatLength, defaultDecimal);
-
                 if (!ngModelCtrl) {
                     return;
                 }
-
 
                 var listener = function () {
                     var value = $element.val().replace(/,/g, '');
@@ -21,7 +17,6 @@
                         $element.val('');
                         $element.val(undefined);
                     }
-
                 }
 
                 // This runs when we update the text field
@@ -40,22 +35,28 @@
 
                 $element.bind('focus', function () {
                     var value = $element.val().replace(/,/g, '');
-
                     $element.val(value);
+                    $element.select();
                 });
 
                 $element.bind('keyup', function (event) {
                     var max = $attrs.ngMax;
                     var regNum = /[^^\d*\.?\d*$]/;
-                    var value = $element.val().replace(regNum, '');
-                    if (max) {
-                        if (parseFloat(value) > parseFloat(max)) {
-                            $element.val(0);
-                        } else {
-                            $element.val(value);
-                        }
-                    } else {
+
+                    var isValid = !isNaN($element.val()) || /^(0|[1-9][0-9]*)$/.test($element.val());
+
+                    if (!isValid) {
+                        var value = $element.val().replace(regNum, '');
+
                         $element.val(value);
+                    }
+                    else {
+                        var value = $element.val().replace(regNum, '');
+                        if (max) {
+                            if (parseFloat(value) > parseFloat(max)) {
+                                $element.val(0);
+                            }
+                        }
                     }
                 });
 
@@ -548,6 +549,20 @@
 
                     return isValid;
                 };
+
+                $element.bind('keyup', function (event) {
+                    var max = $attrs.ngMax;
+
+                    var regNum = /[^^\d*\.?\d*$]/;
+
+                    var isValid = !isNaN($element.val()) || /^(0|[1-9][0-9]*)$/.test($element.val());
+
+                    if (!isValid) {
+                        var value = $element.val().replace(regNum, '');
+
+                        $element.val(value);
+                    }
+                });
             }
         };
     }]).directive('validNumber', [function () {

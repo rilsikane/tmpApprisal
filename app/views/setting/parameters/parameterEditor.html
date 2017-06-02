@@ -1,17 +1,17 @@
-﻿<div class="form-group">
-    <label class="col-sm-3 control-label" for="OU_ID">
-        {{'CODE_MINOR'|translate}}
+﻿<div class="form-group" ng-class="{'has-error':form.CODE_MINOR.$dirty && form.CODE_MINOR.$invalid,'has-success':form.CODE_MINOR.$valid}">
+    <label class="col-sm-3 control-label" for="CODE_MINOR">
+        {{'CODE_MINOR'|translate}}<span class="required symbol"></span>
     </label>
     <div class="col-sm-8 no-padding">
-        <input ng-readonly="formData.P_RUNNING_ID > 0" type="text" required class="form-control" id="CODE_MINOR" name="CODE_MINOR" ng-model="formData.CODE_MINOR">
+        <input ng-readonly="formData.P_RUNNING_ID > 0" type="text" required maxlength="20" class="form-control" id="CODE_MINOR" name="CODE_MINOR" ng-model="formData.CODE_MINOR">
     </div>
 </div>
-<div class="form-group">
+<div class="form-group" ng-class="{'has-error':form.CODE_MINOR_NAME.$dirty && form.CODE_MINOR_NAME.$invalid,'has-success':form.CODE_MINOR_NAME.$valid}">
     <label class="col-sm-3 control-label" for="CODE_MINOR_NAME">
-        {{'CODE_MINOR_NAME'|translate}}
+        {{'CODE_MINOR_NAME'|translate}} <span class="required symbol"></span>
     </label>
     <div class="col-sm-8 no-padding">
-        <input type="text" required class="form-control" id="CODE_MINOR_NAME" name="CODE_MINOR_NAME" ng-model="formData.CODE_MINOR_NAME">
+        <input type="text" required class="form-control" maxlength="1000" id="CODE_MINOR_NAME" name="CODE_MINOR_NAME" ng-model="formData.CODE_MINOR_NAME">
     </div>
 </div>
 <div class="form-group">

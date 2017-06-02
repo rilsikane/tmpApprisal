@@ -5,7 +5,8 @@
     $scope.headCol = params.headCol;
     $scope.colAct = params.colAct;
     $scope.includeUrl = params.includeUrl || '';
-    $scope.showButtonSave = params.showButtonSave || false;
+    $scope.showButtonSave = false;//params.showButtonSave || false;
+    $scope.tab = params.tab;
 
     $scope.upload = function ($index, attach) {
         $modal.open({
@@ -19,7 +20,8 @@
                     return {
                         limit: 0,
                         config: 'upload/document',
-                        id1: $scope.headCol.JOB_RUNNING_ID
+                        id1: $scope.headCol.JOB_RUNNING_ID,
+                        pdfImageFilter: true
                     };
                 }
             }
@@ -30,6 +32,10 @@
                     DOC_NAME: item.DOC_NAME,
                     JOB_RUNNING_ID: $scope.headCol.JOB_RUNNING_ID
                 });
+            });
+
+            radasoft.setColAttach($scope.headCol.ATTACH_DOC).then(function (response) {
+                radasoft.success();
             });
         });
     }

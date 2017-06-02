@@ -48,7 +48,7 @@
                     <label class="col-sm-3 control-label" for="REQUEST_NO">
                         {{'REQUEST_NO'|translate}}
                     </label>
-                    <div class="col-sm-4 no-padding">
+                    <div class="col-sm-8 no-padding">
                         <input type="text" readonly class="form-control" id="REQUEST_NO" name="REQUEST_NO" ng-model="$parent.formData.REQUEST_NO">
                     </div>
                 </div>                
@@ -56,15 +56,15 @@
                     <label class="col-sm-3 control-label" for="DATE_REQ">
                         {{'DATE_REQ'|translate}}<span class="symbol required"></span>
                     </label>
-                    <div class="col-sm-4 no-padding">
-                        <input required ng-disabled="inputDisabled" ng-model="$parent.formData.DATE_REQ" class="form-control no-radius" id="DATE_REQ" name="DATE_REQ" datepicker-popup="dd/MM/yyyy" is-open="dpOpened" ng-click="dpOpened=true" />
+                    <div class="col-sm-8 no-padding">
+                        <input required ng-disabled="inputDisabled" ng-model="$parent.formData.DATE_REQ" class="form-control no-radius" id="DATE_REQ" name="DATE_REQ" datepicker-popup="dd/MM/yyyy" is-open="dpOpened" ng-click="dpOpened=true" ng-change="dateReqChange()" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="CA_NO">
                         {{'CA_NO'|translate}}
                     </label>
-                    <div class="col-sm-4 no-padding">
+                    <div class="col-sm-8 no-padding">
                         <input type="text" ng-disabled="inputDisabled" class="form-control" id="CA_NO" name="CA_NO" ng-model="$parent.formData.CA_NO">
                     </div>
                 </div>
@@ -72,8 +72,8 @@
                     <label class="col-sm-3 control-label" for="REQ_TYPE">
                         {{'REQ_TYPE'|translate}}<span class="symbol required"></span>
                     </label>
-                    <div class="col-sm-4 no-padding">
-                        <ui-select ng-required="true" ng-disabled="true"  theme="selectize" ng-model="$parent.formData.REQ_TYPE" name="REQ_TYPE" id="REQ_TYPE">
+                    <div class="col-sm-8 no-padding">
+                        <ui-select ng-required="true" ng-disabled="inputDisabled" theme="selectize" ng-model="$parent.formData.REQ_TYPE" name="REQ_TYPE" id="REQ_TYPE">
                             <ui-select-match>
                                 {{$select.selected.NAME}}
                             </ui-select-match>
@@ -87,7 +87,7 @@
                     <label class="col-sm-3 control-label" for="OBJECTIVE">
                         {{'OBJECTIVE'|translate}}
                     </label>
-                    <div class="col-sm-4 no-padding">
+                    <div class="col-sm-8 no-padding">
                         <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="$parent.formData.OBJECTIVE" name="OBJECTIVE" id="OBJECTIVE">
                             <ui-select-match>
                                 {{$select.selected.NAME}}
@@ -102,7 +102,7 @@
                     <label class="col-sm-3 control-label" for="DEBT_TYPE">
                         {{'DEBT_TYPE'|translate}} <span class="required symbol" ng-show="!$parent.formData.NPA_TYPE"></span>
                     </label>
-                    <div class="col-sm-4 no-padding">
+                    <div class="col-sm-8 no-padding">
                         <ui-select ng-required="!$parent.formData.NPA_TYPE" ng-disabled="$parent.formData.NPA_TYPE || inputDisabled" theme="selectize" ng-model="$parent.formData.DEBT_TYPE" name="DEBT_TYPE" id="DEBT_TYPE">
                             <ui-select-match>
                                 {{$select.selected.NAME}}
@@ -117,7 +117,7 @@
                     <label class="col-sm-3 control-label" for="CUST_TYPE">
                         {{'CUSTOMER_TYPE'|translate}}
                     </label>
-                    <div class="col-sm-4 no-padding">
+                    <div class="col-sm-8 no-padding">
                         <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="$parent.formData.CUST_TYPE" name="CUST_TYPE" id="CUST_TYPE">
                             <ui-select-match>
                                 {{$select.selected.NAME}}
@@ -132,7 +132,7 @@
                     <label class="col-sm-3 control-label" for="OU">
                         {{'REQUEST_OU'|translate}}<span class="symbol required"></span>
                     </label>
-                    <div class="col-sm-4 no-padding">
+                    <div class="col-sm-8 no-padding">
                         <ui-select ng-required="true" ng-disabled="true" theme="selectize" ng-model="$parent.formData.REQUEST_OU" name="OU" id="OU">
                             <ui-select-match>
                                 {{$select.selected.OU_NAME}}
@@ -147,7 +147,7 @@
                     <label class="col-sm-3 control-label" for="EMPLOYEE">
                         {{'BANK_EMPLOYEE'|translate}}
                     </label>
-                    <div class="col-sm-4 no-padding">
+                    <div class="col-sm-8 no-padding">
                         <input ng-model="$parent.formData.EMPLOYEE" type="text" ng-disabled="inputDisabled" class="form-control" id="EMPLOYEE" name="EMPLOYEE" />
                     </div>
                 </div>
@@ -155,7 +155,7 @@
                     <label class="col-sm-3 control-label" for="CREDIT_REQUEST">
                         {{'CREDIT_REQUEST'|translate}} <span ng-class="{'valid-error': (!formData.NPA_TYPE && formData.CREDIT_REQUEST < 1)||form.CREDIT_REQUEST.$invalid,'valid-success': !(!formData.NPA_TYPE && formData.CREDIT_REQUEST < 1) && form.CREDIT_REQUEST.$valid}"></span>
                     </label>
-                    <div class="col-sm-4 no-padding">
+                    <div class="col-sm-8 no-padding">
                         <input format ng-disabled="inputDisabled" ng-required="true" ng-model="$parent.formData.CREDIT_REQUEST" type="text" ng-change="calDebt()" class="form-control" id="CREDIT_REQUEST" name="CREDIT_REQUEST" />
                     </div>
                 </div>
@@ -163,7 +163,7 @@
                     <label class="col-sm-3 control-label" for="CREDIT_BALANCE">
                         {{'CREDIT_BALANCE'|translate}}<span class="symbol required" ></span>
                     </label>
-                    <div class="col-sm-4 no-padding">
+                    <div class="col-sm-8 no-padding">
                         <input format ng-disabled="inputDisabled" ng-required="true" ng-model="$parent.formData.CREDIT_BALANCE" type="text" ng-change="calDebt()" class="form-control" id="CREDIT_BALANCE" name="CREDIT_BALANCE" />
                     </div>
                 </div>
@@ -171,7 +171,7 @@
                     <label class="col-sm-3 control-label" for="CREDIT_LIMIT">
                         {{'CREDIT_LIMIT'|translate}}
                     </label>
-                    <div class="col-sm-4 no-padding">
+                    <div class="col-sm-8 no-padding">
                         <input format ng-model="$parent.formData.CREDIT_LIMIT" disabled type="text" class="form-control" id="CREDIT_LIMIT" name="CREDIT_LIMIT" />
                     </div>
                 </div>

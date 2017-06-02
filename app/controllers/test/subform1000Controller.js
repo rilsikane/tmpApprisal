@@ -15,7 +15,9 @@
                 }
             });
 
-            $scope.btnDisabled = !allOk;
+            if ($scope.tab.update) {
+                $scope.btnDisabled = !allOk;
+            }
 
             $scope.headColAppraisalList = response.data;
         });

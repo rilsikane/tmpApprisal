@@ -1,25 +1,17 @@
 ﻿<div class="form-group" ng-class="{'has-error':form.UNIT_NAME.$dirty && form.UNIT_NAME.$invalid, 'has-success':form.UNIT_NAME.$valid}">
     <label class="col-sm-4 control-label" for="UNIT_NAME">
         {{'UNIT_NAME'|translate}}<span class="symbol required"></span>
-</label>
-    <div class="col-sm-8">
-        <input type="text" required class="form-control" id="UNIT_NAME" name="UNIT_NAME" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_NAME">
-    </div>
-</div>
-<!--<div class="form-group">
-    <label class="col-sm-4 control-label" for="UNIT_TYPE_HEAD">
-        {{'UNIT_TYPE_HEAD'|translate}}
     </label>
     <div class="col-sm-8">
-        <input type="text" placeholder="" class="form-control" id="UNIT_TYPE_HEAD" name="UNIT_TYPE_HEAD" ng-model="formData.UNIT_TYPE_HEAD">
+        <input type="text" ng-disabled="inputDisabled" required class="form-control" id="UNIT_NAME" name="UNIT_NAME" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_NAME">
     </div>
-</div>-->
-<div class="form-group" ng-class="{'has-error':form.UNIT_TYPE.$dirty && form.UNIT_TYPE.$viewValue==undefined, 'has-success':form.UNIT_TYPE.$viewValue!=undefined && form.UNIT_TYPE.$viewValue.VALUE!=undefined}">
+</div>
+<!--<div class="form-group" ng-class="{'has-error':form.UNIT_TYPE.$dirty && form.UNIT_TYPE.$viewValue==undefined, 'has-success':form.UNIT_TYPE.$viewValue!=undefined && form.UNIT_TYPE.$viewValue.VALUE!=undefined}">
     <label class="col-sm-4 control-label" for="UNIT_TYPE">
         {{'UNIT_TYPE'|translate}}<span class="symbol required"></span>
     </label>
     <div class="col-sm-8">
-        <ui-select ng-required="true" theme="selectize" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_TYPE" id="UNIT_TYPE" name="UNIT_TYPE">
+        <ui-select ng-disabled="inputDisabled" ng-required="true" theme="selectize" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_TYPE" id="UNIT_TYPE" name="UNIT_TYPE">
             <ui-select-match placeholder="">
                 {{$select.selected.NAME}}
             </ui-select-match>
@@ -28,13 +20,13 @@
             </ui-select-choices>
         </ui-select>
     </div>
-</div>
+</div>-->
 <div class="form-group">
     <label class="col-sm-4 control-label" for="UNIT_DETAIL">
         {{'DETAIL'|translate}}
     </label>
     <div class="col-sm-8">
-        <input type="text" placeholder="" class="form-control" id="UNIT_DETAIL" name="UNIT_DETAIL" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_DETAIL">
+        <input type="text"  ng-disabled="inputDisabled" class="form-control" id="UNIT_DETAIL" name="UNIT_DETAIL" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_DETAIL">
     </div>
 </div>
 <div class="form-group">
@@ -42,7 +34,7 @@
         {{'AREA_WA'|translate}}
     </label>
     <div class="col-sm-8">
-        <input type="text" placeholder="" class="form-control" id="AREA_WA" name="AREA_WA" ng-model="formData.PROJECT_UNIT_TYPE.AREA_WA" format decimal="1">
+        <input type="text" format ng-disabled="inputDisabled" class="form-control" id="AREA_WA" name="AREA_WA" ng-model="formData.PROJECT_UNIT_TYPE.AREA_WA" decimal="1">
     </div>
 </div>
 <div class="form-group">
@@ -50,7 +42,7 @@
         {{'AREA_METER'|translate}}
     </label>
     <div class="col-sm-8">
-        <input type="text" placeholder="" class="form-control" id="AREA_METER" name="AREA_METER" ng-model="formData.PROJECT_UNIT_TYPE.AREA_METER" format>
+        <input type="text" format ng-disabled="inputDisabled" class="form-control" id="AREA_METER" name="AREA_METER" ng-model="formData.PROJECT_UNIT_TYPE.AREA_METER">
     </div>
 </div>
 <div class="form-group">
@@ -58,54 +50,6 @@
         {{'UNIT_PROJ_PRICE'|translate}}
     </label>
     <div class="col-sm-8">
-        <input type="text" placeholder="" class="form-control" id="UNIT_PROJ_PRICE" name="UNIT_PROJ_PRICE" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_PROJ_PRICE" format>
+        <input type="text" format  ng-disabled="inputDisabled" class="form-control" id="UNIT_PROJ_PRICE" name="UNIT_PROJ_PRICE" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_PROJ_PRICE">
     </div>
 </div>
-<!--<div class="form-group">
-    <label class="col-sm-4 control-label" for="UNIT_PRICE_MIN">
-        {{'UNIT_PRICE_MIN'|translate}}
-    </label>
-    <div class="col-sm-8">
-        <input type="text" placeholder="" class="form-control" id="UNIT_PRICE_MIN" name="UNIT_PRICE_MIN" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_PRICE_MIN">
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-sm-4 control-label" for="UNIT_PRICE_MAX">
-        {{'UNIT_PRICE_MAX'|translate}}
-    </label>
-    <div class="col-sm-8">
-        <input type="text" placeholder="" class="form-control" id="UNIT_PRICE_MAX" name="UNIT_PRICE_MAX" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_PRICE_MAX">
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-sm-4 control-label" for="UNIT_APPR_PERCENT">
-        {{'UNIT_APPR_PERCENT'|translate}}
-    </label>
-    <div class="col-sm-8">
-        <input type="text" placeholder="" class="form-control" id="UNIT_APPR_PERCENT" name="UNIT_APPR_PERCENT" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_APPR_PERCENT">
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-sm-4 control-label" for="UNIT_APPR_PRICE">
-        {{'UNIT_APPR_PRICE'|translate}}
-    </label>
-    <div class="col-sm-8">
-        <input type="text" placeholder="" class="form-control" id="UNIT_APPR_PRICE" name="UNIT_APPR_PRICE" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_APPR_PRICE">
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-sm-4 control-label" for="UNIT_APPR_PRICE_MIN">
-        {{'UNIT_APPR_PRICE_MIN'|translate}}
-    </label>
-    <div class="col-sm-8">
-        <input type="text" placeholder="" class="form-control" id="UNIT_APPR_PRICE_MIN" name="UNIT_APPR_PRICE_MIN" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_APPR_PRICE_MIN">
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-sm-4 control-label" for="UNIT_APPR_PRICE_MAX">
-        {{'UNIT_APPR_PRICE_MAX'|translate}}
-    </label>
-    <div class="col-sm-8">
-        <input type="text" placeholder="" class="form-control" id="UNIT_APPR_PRICE_MAX" name="UNIT_APPR_PRICE_MAX" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_APPR_PRICE_MAX">
-    </div>
-</div>-->

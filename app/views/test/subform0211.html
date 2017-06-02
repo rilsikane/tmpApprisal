@@ -1,8 +1,26 @@
-﻿
-<div class="panel panel-white height-350">
-    <div class="pull-right">
-        <button class="btn btn-o btn-primary" ng-click="genHeadCollReport()"><i class="glyphicon glyphicon-stats"></i> {{'GEN_REPORT'|translate}}</button>
+﻿<div class="panel panel-white panel-body">
+    <div>
+        <table class="table table-bordered table-hover" style="max-width:100%;">
+            <thead>
+                <tr class="bg-azure">
+                    <th class="col-md-12"><span class="text-white">การจัดทำข้อมูล</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in BOT_COL_ACT_VALID">
+                    <td>
+                        {{item.COL_ACT_NAME}}
+                        <i ng-if="item.VALID==true" class="fa fa-check pull-right text-green"></i>
+                        <i ng-if="item.VALID==false" class="fa fa-remove pull-right text-red"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+    <div class="pull-right">
+        <button ng-disabled="!tab.update" class="btn btn-o btn-primary" ng-click="genHeadCollReport()"><i class="glyphicon glyphicon-stats"></i> {{'GEN_REPORT'|translate}}</button>
+    </div>
+
     <div ng-if="headCol.APPRAISAL_REPORT.ATTACHDOC_RUNNING_ID > 0">
         <ul>
             <li><i class="icon32 pdf"></i> <a target="_blank" href="Home/Download/{{headCol.APPRAISAL_REPORT.ATTACHDOC_RUNNING_ID}}">{{headCol.APPRAISAL_REPORT.DOC_NAME}}</a></li>

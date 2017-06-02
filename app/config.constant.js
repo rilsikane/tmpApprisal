@@ -94,7 +94,12 @@ app.constant('JS_REQUIRES', {
         'qnrController': '/app/controllers/qnr/qnrController.js',
         'diagCrystalReport': '/app/controllers/diagnostic/crystalReport.js',
         'orgRoleController': '/app/controllers/setting/orgRoleController.js',
-        'parameterController': '/app/controllers/setting/parameterController.js'
+        'parameterController': '/app/controllers/setting/parameterController.js',
+        'sampleValidationCtrl': '/app/controllers/samples/sampleValidationCtrl.js',
+        'wqsFactorListCtrl': '/app/controllers/test/wqsFactorListCtrl.js',
+        'enquiry': '/app/controllers/enquiry/enquiryCtrl.js',
+        'enquiryReport': '/app/controllers/enquiry/enquiryReportCtrl.js',
+        'logoutCtrl': '/app/controllers/tools/logoutCtrl.js'
     },
     //*** angularJS Modules
     modules: [{

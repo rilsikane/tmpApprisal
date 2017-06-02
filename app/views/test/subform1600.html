@@ -1,10 +1,10 @@
 ﻿<div ng-controller="subform1600Controller">
-    <div class="col-md-12" ng-include="'/app/views/qnr/questionnaire.html'" ng-init="QNR_ID=$parent.formData.SURVEY_QNR_ID;RESULT_ID=$parent.formData.SURVEY_RESULT_ID;">
+    <div class="col-md-12" ng-include="'/app/views/qnr/questionnaire.html'" ng-init="QNR_ID=$parent.formData.SURVEY_QNR_ID;RESULT_ID=$parent.formData.SURVEY_RESULT_ID;inputDisabled=inputDisabled;">
 
     </div>
 
     <div class="pull-right">
-        <button class="btn btn-primary btn-o" ng-click="submit()">
+        <button ng-disabled="btnDisabled" class="btn btn-primary btn-o" ng-click="submit()">
             <i class="glyphicon glyphicon-floppy-save"></i> {{'BUTTON.SAVE'|translate}}
         </button>
     </div>

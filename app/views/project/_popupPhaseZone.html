@@ -15,7 +15,7 @@
                 </div>
                 <ul class="list-group">
                     <li ng-repeat="phase in projectPhase" class="list-group-item no-radius" ng-class="{'bg-light-primary':phase.PROJECT_PHASE_RUNNING_ID==selectedPhase.PROJECT_PHASE_RUNNING_ID}">
-                        <a ng-click="selectPhase(phase)"><span ng-class="{'text-white':phase.PROJECT_PHASE_RUNNING_ID==selectedPhase.PROJECT_PHASE_RUNNING_ID}">{{phase.PHASE_NAME}}</span></a><a class="pull-right" ng-click="editPhase(phase)"><i class="fa fa-pencil"></i></a>
+                        <a ng-click="selectPhase(phase)"><span ng-class="{'text-white':phase.PROJECT_PHASE_RUNNING_ID==selectedPhase.PROJECT_PHASE_RUNNING_ID}">{{phase.PHASE_NAME}}</span></a><a ng-if="phase.CAN_EDIT=='1'" class="pull-right" ng-click="editPhase(phase)"><i class="fa fa-pencil"></i></a>
                     </li>
                 </ul>
             </div>
@@ -31,7 +31,7 @@
                 </div>
                 <ul class="list-group">
                     <li ng-repeat="zone in projectZone" class="list-group-item no-radius">
-                        <a><span>{{zone.ZONE_NAME}}</span></a><a class="pull-right" ng-click="editZone(zone)"><i class="fa fa-pencil"></i></a>
+                        <a><span>{{zone.ZONE_NAME}}</span></a><a ng-if="zone.CAN_EDIT=='1'" class="pull-right" ng-click="editZone(zone)"><i class="fa fa-pencil"></i></a>
                     </li>
                 </ul>
             </div>

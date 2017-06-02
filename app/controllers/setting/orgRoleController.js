@@ -1,12 +1,20 @@
-﻿app.controller('orgRoleController', ['$scope', 'radasoft', '$state', '$stateParams', function ($scope, radasoft, $state, $stateParams) {
+﻿app.controller('orgRoleController', ['$scope', 'radasoft', '$state', '$stateParams', '$rootScope', function ($scope, radasoft, $state, $stateParams, $rootScope) {
     $scope.ou = [];
     $scope.selectedOU = {};
+    $scope.paging1CurrentPage = 1;
 
     $scope.searchKeyword = '';
 
     $scope.getAllOU = function (FILTER) {
-        radasoft.getAllOU({ FILTER: FILTER }).then(function (response) {
-            $scope.ou = response.data;
+        radasoft.getAllOU2({
+            limit: $rootScope.app.itemsPerPage,
+            page: $scope.paging1CurrentPage,
+            filters: [
+                { NAME: 'FILTER', VALUE: $scope.searchKeyword }
+            ]
+        }).then(function (response) {
+            $scope.ou = response.data.data;
+            $scope.paging1Total = response.data.total;
         });
     }
 
@@ -36,7 +44,7 @@
     }
 
     $scope.add = function () {
-
+        $scope.openOrgRole({ OU_ID: 0, OU_TYPE: 'E' });
     }
 
     $scope.edit = function (item) {
@@ -54,7 +62,7 @@
 app.controller('orgRoleEditor', ['$scope', 'radasoft', '$state', '$stateParams', '$modalInstance', 'params', '$translate', function ($scope, radasoft, $state, $stateParams, $modalInstance, params, $translate) {
     $scope.includeUrl = 'app/views/setting/orgRoleEditor.html';
     $scope.title = $translate.instant('ORG_ROLE');
-    $scope.formData = params.formData;
+    $scope.formData = undefined;
     $scope.showBtnSave = true;
     $scope.orgRoles = [];
 
@@ -63,13 +71,14 @@ app.controller('orgRoleEditor', ['$scope', 'radasoft', '$state', '$stateParams',
     };
 
     $scope.getMasterOrgRoles = function () {
-        radasoft.getMasterOrgRoles({ OU_ID: $scope.formData.OU_ID }).then(function (response) {
-            $scope.orgRoles = response.data;
+        radasoft.getMasterOrgRoles({ OU_ID: params.formData.OU_ID }).then(function (response) {
+            $scope.formData = response.data;
         });
     }
+
     $scope.setMasterOrgRoles = function () {
-        radasoft.setMasterOrgRoles($scope.orgRoles).then(function (response) {
-            $scope.orgRoles = response.data;
+        radasoft.setMasterOrgRoles($scope.formData).then(function (response) {
+            $scope.formData = response.data;
 
             radasoft.success();
         });

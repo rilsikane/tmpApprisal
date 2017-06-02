@@ -1,9 +1,10 @@
 ﻿app.controller('subform0206Controller', ['$scope', '$state', '$stateParams', 'radasoft', '$modal', '$translate', 'FileUploader', 'params', '$modalInstance', '$filter', function ($scope, $state, $stateParams, radasoft, $modal, $translate, FileUploader, params, $modalInstance, $filter) {
-
+    $scope.tab = params.tab;
     $scope.ldloading = {};
     $scope.btnDisabled = false;
-    //$scope.headCol = params.headCol;
-    //$scope.colAct = params.colAct;
+    $scope.showButtonSave = false;
+    $scope.showButtonDelete = false;
+    $scope.inputDisabled = true;
     $scope.JOB_RUNNING_ID = params.JOB_RUNNING_ID;
     $scope.HEAD_COL_RUNNING_ID = params.HEAD_COL_RUNNING_ID;
     $scope.HEAD_COL_TYPE_ID = params.HEAD_COL_TYPE_ID;
@@ -16,11 +17,15 @@
         COL_ACT_NAME: $translate.instant('WQS')
     };
 
-    //$scope.includeUrl = params.includeUrl || '';
+    if ($scope.tab.update) {
+        $scope.showButtonSave = true;
+        $scope.inputDisabled = false;
+    }
+    if ($scope.tab.delete) {
+        $scope.showButtonDelete = true;
+    }
+
     $scope.includeUrl = '/app/views/test/subform0206.html';
-    //$scope.showButtonSave = params.showButtonSave || false;
-    $scope.showButtonSave = true;
-    $scope.showButtonDelete = true;
 
     $scope.tdValue = { width: '120px' };
     $scope.inputStyle = { fontSize: '12px' };
@@ -76,6 +81,106 @@
         lr['r2'] = Math.pow((n * sum_xy - sum_x * sum_y) / Math.sqrt((n * sum_xx - sum_x * sum_x) * (n * sum_yy - sum_y * sum_y)), 2);
 
         return lr;
+    }
+
+    $scope.rsqCal = function (args) {
+
+        var isFive = args.isFive;
+        var _info1Total = args._info1Total;
+        var _info2Total = args._info2Total;
+        var _info3Total = args._info3Total;
+        var _info4Total = args._info4Total;
+        var _info5Total = args._info5Total;
+        var _netPrice1 = args._netPrice1;
+        var _netPrice2 = args._netPrice2;
+        var _netPrice3 = args._netPrice3;
+        var _netPrice4 = args._netPrice4;
+        var _netPrice5 = args._netPrice5;
+
+        var yBar;
+        var xBar;
+        //3
+        var xyAv1;
+        var xyAv2;
+        var xyAv3;
+        var xyAv4;
+        var xyAv5;
+        var xySum;
+        //4
+        var xPower1;
+        var xPower2;
+        var xPower3;
+        var xPower4;
+        var xPower5;
+        var xPowerTotal;
+        var yPower1;
+        var yPower2;
+        var yPower3;
+        var yPower4;
+        var yPower5;
+        var yPowerTotal;
+        //6
+        var xySquareRoot;
+
+        if (!isFive) { // <<< Market 4 or 5
+            yBar = (_netPrice1 + _netPrice2 + _netPrice3 + _netPrice4) / 4;
+            xBar = (_info1Total + _info2Total + _info3Total + _info4Total) / 4;
+            xyAv1 = (_info1Total - xBar) * (_netPrice1 - yBar);
+            xyAv2 = (_info2Total - xBar) * (_netPrice2 - yBar);
+            xyAv3 = (_info3Total - xBar) * (_netPrice3 - yBar);
+            xyAv4 = (_info4Total - xBar) * (_netPrice4 - yBar);
+            xySum = xyAv1 + xyAv2 + xyAv3 + xyAv4;
+            //4
+            xPower1 = Math.pow((_info1Total - xBar), 2);
+            xPower2 = Math.pow((_info2Total - xBar), 2);
+            xPower3 = Math.pow((_info3Total - xBar), 2);
+            xPower4 = Math.pow((_info4Total - xBar), 2);
+            xPowerTotal = xPower1 + xPower2 + xPower3 + xPower4;
+
+            yPower1 = Math.pow((_netPrice1 - yBar), 2);
+            yPower2 = Math.pow((_netPrice2 - yBar), 2);
+            yPower3 = Math.pow((_netPrice3 - yBar), 2);
+            yPower4 = Math.pow((_netPrice4 - yBar), 2);
+            yPowerTotal = yPower1 + yPower2 + yPower3 + yPower4;
+            //6
+            xySquareRoot = Math.sqrt(xPowerTotal * yPowerTotal);
+        } else {
+            yBar = (_netPrice1 + _netPrice2 + _netPrice3 + _netPrice4 + _netPrice5) / 5;
+            xBar = (_info1Total + _info2Total + _info3Total + _info4Total + _info5Total) / 5;
+            xyAv1 = (_info1Total - xBar) * (_netPrice1 - yBar);
+            xyAv2 = (_info2Total - xBar) * (_netPrice2 - yBar);
+            xyAv3 = (_info3Total - xBar) * (_netPrice3 - yBar);
+            xyAv4 = (_info4Total - xBar) * (_netPrice4 - yBar);
+            xyAv5 = (_info5Total - xBar) * (_netPrice5 - yBar);
+            xySum = xyAv1 + xyAv2 + xyAv3 + xyAv4 + xyAv5;
+            //4
+            xPower1 = Math.pow((_info1Total - xBar), 2);
+            xPower2 = Math.pow((_info2Total - xBar), 2);
+            xPower3 = Math.pow((_info3Total - xBar), 2);
+            xPower4 = Math.pow((_info4Total - xBar), 2);
+            xPower5 = Math.pow((_info5Total - xBar), 2);
+            xPowerTotal = xPower1 + xPower2 + xPower3 + xPower4 + xPower5;
+
+            yPower1 = Math.pow((_netPrice1 - yBar), 2);
+            yPower2 = Math.pow((_netPrice2 - yBar), 2);
+            yPower3 = Math.pow((_netPrice3 - yBar), 2);
+            yPower4 = Math.pow((_netPrice4 - yBar), 2);
+            yPower5 = Math.pow((_netPrice5 - yBar), 2);
+            yPowerTotal = yPower1 + yPower2 + yPower3 + yPower4 + yPower5;
+            //6
+            xySquareRoot = Math.sqrt(xPowerTotal * yPowerTotal);
+        }
+
+        //7 rqs value
+        var rValue = xySum / xySquareRoot;
+        var RSQ = Math.pow(rValue, 2);
+        var _rsq = (RSQ * 100);
+
+        //if (Double.isNaN(_rsq) || Double.isInfinite(_rsq))
+        //    _rsq = 0;
+        //_wqsSum.setRSQ(String.format(Locale.getDefault(), "%.0f", _rsq));
+
+        return _rsq;
     }
 
     $scope.cal = function () {
@@ -190,7 +295,28 @@
             y.push(netPrice.MKT5_VALUE);
         }
 
-        $scope.WQS.RSQ = parseInt($scope.linearRegression(x, y).intercept) || 0;
+        $scope.WQS.RSQ = $scope.rsqCal({
+            isFive: $scope.MARKET_COMPAIR == 5,
+            _info1Total: sumScore1,
+            _info2Total: sumScore2,
+            _info3Total: sumScore3,
+            _info4Total: sumScore4,
+            _info5Total: sumScore5,
+            _netPrice1: netPrice.MKT1_VALUE,
+            _netPrice2: netPrice.MKT2_VALUE,
+            _netPrice3: netPrice.MKT3_VALUE,
+            _netPrice4: netPrice.MKT4_VALUE,
+            _netPrice5: netPrice.MKT5_VALUE,
+        });
+    }
+    $scope.updateValidate = function (wqs) {
+        wqs.MKT1_SCORE = null;
+        wqs.MKT2_SCORE = null;
+        wqs.MKT3_SCORE = null;
+        wqs.MKT4_SCORE = null;
+        wqs.MKT5_SCORE = null;
+        wqs.COL_SCORE = null;
+
     }
 
     $scope.setWqs = function () {
@@ -211,8 +337,12 @@
             HEAD_COL_TYPE_ID: $scope.HEAD_COL_TYPE_ID
         }).then(function (response) {
             $scope.WQS = response.data;
-
-            $scope.colAct.COL_ACT_NAME = $translate.instant('WQS') + ' (' + $scope.WQS.WQS_TYPE_NAME + ')';
+            if ($scope.WQS.WQS_TYPE == null || $scope.WQS.WQS_TYPE == '' || $scope.WQS.WQS_TYPE == undefined) {
+                radasoft.alert('ยังไม่ได้จัดทำข้อมูลตลาด กรุณาจัดทำข้อมูลตลาดก่อน');
+                $modalInstance.dismiss();
+            } else {
+                $scope.colAct.COL_ACT_NAME = $translate.instant('WQS') + ' (' + $scope.WQS.WQS_TYPE_NAME + ')';
+            }
         });
     }
 
@@ -231,6 +361,7 @@
                     }
                 }
             }
+            radasoft.alert($translate.instant('INPUT_VALIDATION_FAILED'));
         }
         else {
             $scope.setWqs();

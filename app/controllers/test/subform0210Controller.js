@@ -1,10 +1,19 @@
 ﻿// ราคาประเมิน
 app.controller('subform0210Controller', ['$scope', '$state', '$stateParams', 'radasoft', '$modal', '$translate', 'FileUploader', 'params', '$modalInstance', '$q', function ($scope, $state, $stateParams, radasoft, $modal, $translate, FileUploader, params, $modalInstance, $q) {
     $scope.btnDisabled = false;
+    $scope.btnSubmitDisabled = true;
+    $scope.inputDisabled = true;
+
     $scope.headCol = params.headCol;
     $scope.colAct = params.colAct;
     $scope.includeUrl = 'app/views/test/subform0210.html';
     $scope.showButtonSave = true;
+    $scope.tab = params.tab;
+
+    if ($scope.tab.update) {
+        $scope.btnSubmitDisabled = false;
+        $scope.inputDisabled = false;
+    }
 
     $scope.methodChange = function (item) {
         $scope.formData.ASSPA_METH = item.NAME;

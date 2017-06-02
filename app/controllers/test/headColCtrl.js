@@ -107,32 +107,6 @@
         $scope.openPhaseZoneDialog($translate.instant('PHASE_ZONE'), false, true);
     }
 
-    //$scope.openProjectPhaseZone = function (title, showProject, showPhaseZone) {
-    //    var params = {
-    //        title: title,
-    //        showProject: showProject,
-    //        showPhaseZone: showPhaseZone,
-    //        developer: $scope.$parent.formData.DEVELOPER != undefined && $scope.$parent.formData.DEVELOPER.DEV_RUNNING_ID > 0 ? $scope.$parent.formData.DEVELOPER : undefined,
-    //        project: $scope.$parent.formData.PROJECT != undefined && $scope.$parent.formData.PROJECT.PROJECT_RUNNING_ID > 0 ? $scope.$parent.formData.PROJECT : undefined
-    //    };
-
-    //    $modal.open({
-    //        templateUrl: '/app/views/project/_popupDevPro.html',
-    //        controller: 'projectDialogCtrl',
-    //        backdrop: 'static',
-    //        keyboard: false,
-    //        //windowClass: 'app-modal-window-80',
-    //        size: 'lg',
-    //        resolve: {
-    //            params: function () {
-    //                return params;
-    //            }
-    //        }
-    //    }).result.then(function (data) {
-    //        $scope.saveProjectData(data.developer, data.project);
-    //    });
-    //}
-
     $scope.openDevProDialog = function (title, showProject, showPhaseZone) {
         var params = {
             title: title,
@@ -155,7 +129,7 @@
             }
         }).result.then(function (data) {
             if (data.developer.DEV_RUNNING_ID != $scope.$parent.formData.DEVELOPER.DEV_RUNNING_ID
-                && data.project.PROJECT_RUNNING_ID != $scope.$parent.formData.PROJECT.PROJECT_RUNNING_ID) {
+                || data.project.PROJECT_RUNNING_ID != $scope.$parent.formData.PROJECT.PROJECT_RUNNING_ID) {
                 $scope.saveProjectData(data.developer, data.project);
             }
         });
@@ -191,6 +165,7 @@
             if (isconfirmed) {
                 radasoft.setFormDataProject({
                     REQUEST_RUNNING_ID: $scope.$parent.formData.REQUEST_RUNNING_ID,
+                    JOB_RUNNING_ID: $scope.$parent.formData.JOB_RUNNING_ID,
                     DEVELOPER: dev,
                     PROJECT: proj
                 }).then(function (response) {
@@ -222,7 +197,6 @@
     }
 
     $scope.openSubCol = function (colleteral, botColForm, IS_PROJECT, data, urlSuffix) {
-        //$log.debug(data);
         var includeTemplateUrl1 = '/app/views/test/subcol/' + urlSuffix + '.html';
         var includeTemplateUrl2 = '/app/views/test/subcol/000000.html';
         $modal.open({
@@ -248,7 +222,8 @@
                         //brand: $scope.brand,
                         formData: data,
                         requestData: $scope.$parent.formData,
-                        IS_PROJECT: IS_PROJECT
+                        IS_PROJECT: IS_PROJECT,
+                        tab: $scope.tab
                     };
                 }
             }
@@ -268,6 +243,8 @@
             HEAD_COL_TYPE_ID: HEAD_COL_TYPE_ID,
             HEAD_COL_DETAIL: HEAD_COL_DETAIL,
             HEAD_COL_SUB_TYPE_ID: '00',
+            LOCATION_LONG: null,
+            LOCATION_LAT: null,
             DEED_COUNTRY: {
                 CODE: 'TH',
                 NAME_THAI: 'ไทย'
@@ -290,7 +267,8 @@
                 params: function () {
                     return {
                         formData: data,
-                        IS_PROJECT: IS_PROJECT
+                        IS_PROJECT: IS_PROJECT,
+                        tab: $scope.tab
                     };
                 }
             }
@@ -298,22 +276,6 @@
             $scope.getHeadColl();
         });
     }
-
-    //$scope.addHeadCol = function (colType, subType) {
-    //    $scope.openHeadColEditor(colType, {
-    //        HEAD_COL_RUNNING_ID: 0,
-    //        DOC_ID: $scope.tab.DOC_ID,
-    //        HEAD_COL_TYPE_ID: colType.CODE,
-    //        HEAD_COL_DETAIL: colType.COL_TYPE,
-    //        HEAD_COL_SUB_TYPE_ID: '00',
-    //        COL_TYPE: colType,
-    //        GRADE_QNR_ID: colType.GRADE_QNR_ID,
-    //        DEED_COUNTRY: {
-    //            CODE: 'TH',
-    //            NAME_THAI: 'ไทย'
-    //        }
-    //    });
-    //}
 
     $scope.addSubCol = function (colleteral, botColForm) {
         var IS_PROJECT = $scope.$parent.formData.JOB_TYPE;
@@ -331,7 +293,8 @@
                         includeUrl: args.includeUrl,
                         showButtonSave: args.showButtonSave || false,
                         headCol: args.colleteral,
-                        colAct: args.colAct
+                        colAct: args.colAct,
+                        tab: $scope.tab
                     };
                 }
             }
@@ -372,7 +335,8 @@
                         JOB_RUNNING_ID: colleteral.JOB_RUNNING_ID,
                         HEAD_COL_RUNNING_ID: colleteral.HEAD_COL_RUNNING_ID,
                         HEAD_COL_TYPE_ID: '',
-                        MARKET_COMPAIR: colleteral.MARKET_COMPAIR
+                        MARKET_COMPAIR: colleteral.MARKET_COMPAIR,
+                        tab: $scope.tab
                     };
                 }
             }
@@ -383,22 +347,24 @@
     }
 
     $scope.editMAP = function (colleteral, colAct) {
-        var HEAD_COL_RUNNING_ID = '';
-        if (colleteral.LOCATION_LAT != null
-            && colleteral.LOCATION_LAT != undefined
-            && colleteral.LOCATION_LAT != ''
-            && colleteral.LOCATION_LONG != null
-            && colleteral.LOCATION_LONG != undefined
-            && colleteral.LOCATION_LONG != '') {
-            HEAD_COL_RUNNING_ID = colleteral.HEAD_COL_RUNNING_ID;
+        if ($scope.tab.update) {
+            var HEAD_COL_RUNNING_ID = '';
+            if (colleteral.LOCATION_LAT != null
+                && colleteral.LOCATION_LAT != undefined
+                && colleteral.LOCATION_LAT != ''
+                && colleteral.LOCATION_LONG != null
+                && colleteral.LOCATION_LONG != undefined
+                && colleteral.LOCATION_LONG != '') {
+                HEAD_COL_RUNNING_ID = colleteral.HEAD_COL_RUNNING_ID;
+            }
+            radasoft.openMapEdit({
+                page: 'MapEdit',
+                HEAD_COL_RUNNING_ID: HEAD_COL_RUNNING_ID,
+                HEAD_COL_CODE: colleteral.HEAD_COL_CODE
+            }, function (args) {
+                $scope.mapReturnArgs = args;
+            });
         }
-        radasoft.openMapEdit({
-            page: 'MapEdit',
-            HEAD_COL_RUNNING_ID: HEAD_COL_RUNNING_ID,
-            HEAD_COL_CODE: colleteral.HEAD_COL_CODE
-        }, function (args) {
-            $scope.mapReturnArgs = args;
-        });
     }
 
     $scope.editGrade = function (colleteral, colAct) {
@@ -434,7 +400,8 @@
                             HEAD_COL_RUNNING_ID: colleteral.HEAD_COL_RUNNING_ID,
                             TEMPLATE_TYPE: NV,
                             MARKET_COMPAIR: colleteral.MARKET_COMPAIR,
-                            headCol: colleteral
+                            headCol: colleteral,
+                            tab: $scope.tab
                         };
                     }
                 }
@@ -468,12 +435,11 @@
     $scope.openProjectCollteral = function () {
         radasoft.openDialog({
             templateUrl: '/app/views/project/completedProjectModal.html',
-            controller: 'completedProjectController',
+            controller: 'completedProjectDialogCtrl',
             windowClass: 'app-modal-window-80',
             resolve: {
                 params: function () {
                     return {
-                        includeUrl: '/app/views/project/completedProject.html',
                         formData: {
                             JOB_RUNNING_ID: $scope.$parent.formData.JOB_RUNNING_ID
                         }
@@ -496,7 +462,8 @@
                     return {
                         includeUrl: '/app/views/test/subcol/costSubCol.html',
                         headCol: colleteral,
-                        subCol: subcol
+                        subCol: subcol,
+                        tab: $scope.tab
                     };
                 }
             }

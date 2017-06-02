@@ -1,6 +1,6 @@
 ﻿<div class="panel-body">
     <div class="row">
-        <button class="btn btn-o btn-primary pull-right" ladda="ldloading.expand_left" ng-disabled="btnSubmitDisabled" data-style="expand-left" ng-click="addNewPage('expand-left')">
+        <button class="btn btn-o btn-primary pull-right" ladda="ldloading.expand_left" ng-disabled="!tab.create" data-style="expand-left" ng-click="addNewPage('expand-left')">
             {{'BUTTON.ADD_PHOTO_PAGE'|translate}}
         </button>
     </div>
@@ -8,7 +8,7 @@
 <div class="panel panel-white" ng-repeat="page in photoPages">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">{{'PAGE_NO'|translate}} : {{page.PAGE_LIST}}</h5>
-        <ul class="panel-heading-tabs border-light">
+        <ul ng-if="tab.update" class="panel-heading-tabs border-light">
             <li>
                 <div>
                     <a ng-repeat="t in templates" class="btn btn-squared colPhotoLayout {{t.css}}" ng-class="{'colPhotoLayoutActive':page.TEMPLATE_TYPE==t.layout}" href="#" ng-click="layout(t,page)"></a>
@@ -16,8 +16,8 @@
             </li>
             <li>
                 <div class="pull-right">
-                    <button class="btn btn-o border-white btn-squared" ng-disabled="page.PHOTO.length >= page.PHOTO_LIMIT" ng-click="addPhoto($index,page)">{{'BUTTON.UPLOAD'|translate}}</button>
-                    <button class="btn btn-o border-white btn-squared" ng-disabled="inputDisabled" ng-click="deleteColPhotoPage($index,page)">{{'BUTTON.DELETE'|translate}}</button>
+                    <button class="btn btn-o border-white btn-squared" ng-disabled="page.PHOTO.length >= page.PHOTO_LIMIT || !tab.create" ng-click="addPhoto($index,page)">{{'BUTTON.UPLOAD'|translate}}</button>
+                    <button class="btn btn-o border-white btn-squared" ng-disabled="!tab.delete" ng-click="deleteColPhotoPage($index,page)">{{'BUTTON.DELETE'|translate}}</button>
                 </div>
             </li>
         </ul>
@@ -25,15 +25,13 @@
     <div class="panel-body">
         <div class="col-md-12">
             <div ng-repeat="photo in page.PHOTO" ng-class="photo.CSS_COL_STYLE" ng-if="$index <= page.PHOTO_LIMIT-1">
-                <div class="thumbnail" ng-if="photo.BASE64!='' && photo.BASE64 != undefined && photo.BASE64 != null">
-                    <img ng-src="data:image/png;base64,{{photo.BASE64}}" ng-style="photo.CSS_IMG_STYLE" />
-                    <!--<div class="caption center">
-                        <button class="btn btn-o border-white btn-squared border-deep-pink" ng-click="deletePhoto($index,page.PHOTO)">{{'BUTTON.DELETE'|translate}}</button>
-                    </div>-->
+                <div class="thumbnail">
+                    <img ng-if="photo.ATTACHDOC_RUNNING_ID > 0" ng-src="nn1/b/{{photo.ATTACHDOC_RUNNING_ID}}/0/{{random}}" ng-style="photo.CSS_IMG_STYLE" />
+                    <img ng-if="photo.ATTACHDOC_RUNNING_ID == 0" ng-src="nn1/d/{{photo.FILE}}/{{page.PHOTO_RUNNING_ID}}/{{random}}" ng-style="photo.CSS_IMG_STYLE" />
                     <div class="photoTool border-around">
-                        <a ng-click="deletePhoto($index,page.PHOTO)" tooltip="{{'DELETE'|translate}}"><i class="glyphicon glyphicon-remove"></i></a>
-                        <a ng-click="editPhoto($index,photo)" tooltip="{{'EDIT_INFO'|translate}}"><i class="glyphicon glyphicon-pencil"></i></a>
-                        <a ng-click="changePhoto($index,photo)" tooltip="{{'CHANGE_PHOTO'|translate}}"><i class="glyphicon glyphicon-picture"></i></a>
+                        <a ng-if="tab.delete" ng-click="deletePhoto($index,page.PHOTO)" tooltip="{{'DELETE'|translate}}"><i class="glyphicon glyphicon-remove"></i></a>
+                        <a ng-if="tab.update" ng-click="editPhoto($index,photo,page.PHOTO_RUNNING_ID)" tooltip="{{'EDIT_INFO'|translate}}"><i class="glyphicon glyphicon-pencil"></i></a>
+                        <a ng-if="tab.update" ng-click="changePhoto($index,photo,page.PHOTO_RUNNING_ID)" tooltip="{{'CHANGE_PHOTO'|translate}}"><i class="glyphicon glyphicon-picture"></i></a>
                     </div>
                     <div class="photoInfo background-light">
                         <p>{{'PHOTO_TAKEN_POINT'|translate}} : {{photo.NAME.NAME}}</p>

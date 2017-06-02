@@ -1,0 +1,135 @@
+﻿<div class="container-fluid container-fullw no-border" ng-controller="enquiryReportCtrl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white no-radius">
+                <div class="panel-heading no-radius bg-deep-pink">
+                    <h4 class="panel-title"><span>{{CODE|translate}}</span></h4>
+                </div>
+                <div class="panel-body border-light">
+                    <fieldset class="form-horizontal">
+                        <legend>เงื่อนไข</legend>
+                        <!--<div class="form-group">
+                            <label class="control-label col-md-2">STEP</label>
+                            <div class="col-md-6">
+                                <ui-select theme="selectize" ng-model="myFilter.STEP" on-select="onStepChange()">
+                                    <ui-select-match>
+                                        {{$select.selected.STEP_NAME}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in bpmstep | filter: $select.search">
+                                        <div ng-bind-html="item.STEP_NAME | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">STATE</label>
+                            <div class="col-md-6">
+                                <ui-select theme="selectize" ng-model="myFilter.STATE">
+                                    <ui-select-match>
+                                        {{$select.selected.STATE_NAME}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in bpmstate | filter:stateFilter">
+                                        <div ng-bind-html="item.STATE_NAME | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>-->
+                        <div class="form-group">
+                            <label class="control-label col-md-2">หน่วยงานต้นเรื่อง</label>
+                            <div class="col-md-6">
+                                <ui-select theme="selectize" ng-model="myFilter.OU">
+                                    <ui-select-match>
+                                        {{$select.selected.OU_NAME}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in ou | filter: $select.search">
+                                        <div ng-bind-html="item.OU_NAME | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="CODE=='ENQUIRY_REPORT1'">
+                            <label class="control-label col-md-2">จ่ายงานจากวันที่</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" ng-model="myFilter.FROM_DATE" datepicker-popup="dd/MM/yyyy" is-open="dpOpened1" ng-click="dpOpened1=true" />
+                            </div>
+                            <label class="control-label col-md-2">ถึงวันที่</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" ng-model="myFilter.THRU_DATE" datepicker-popup="dd/MM/yyyy" is-open="dpOpened2" ng-click="dpOpened2=true" />
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="CODE=='ENQUIRY_REPORT2'">
+                            <label class="control-label col-md-2">ประเมินเมื่อวันที่</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" ng-model="myFilter.FROM_DATE" datepicker-popup="dd/MM/yyyy" is-open="dpOpened1" ng-click="dpOpened1=true" />
+                            </div>
+                            <label class="control-label col-md-2">ถึงวันที่</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" ng-model="myFilter.THRU_DATE" datepicker-popup="dd/MM/yyyy" is-open="dpOpened2" ng-click="dpOpened2=true" />
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="CODE=='ENQUIRY_REPORT3'">
+                            <label class="control-label col-md-2">วันที่ส่งกรรมการตั้งแต่</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" ng-model="myFilter.FROM_DATE" datepicker-popup="dd/MM/yyyy" is-open="dpOpened1" ng-click="dpOpened1=true" />
+                            </div>
+                            <label class="control-label col-md-2">ถึงวันที่</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" ng-model="myFilter.THRU_DATE" datepicker-popup="dd/MM/yyyy" is-open="dpOpened2" ng-click="dpOpened2=true" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2" for="DEBT_TYPE">
+                                {{'DEBT_TYPE'|translate}}
+                            </label>
+                            <div class="col-md-6">
+                                <ui-select theme="selectize" ng-model="myFilter.DEBT_TYPE" name="DEBT_TYPE" id="DEBT_TYPE">
+                                    <ui-select-match>
+                                        {{$select.selected.NAME}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in debtType | filter: $select.search">
+                                        <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">
+                            <label class="control-label col-md-2" for="OBJECTIVE">
+                                {{'OBJECTIVE'|translate}}
+                            </label>
+                            <div class="col-md-6">
+                                <ui-select theme="selectize" ng-model="myFilter.OBJECTIVE" name="OBJECTIVE" id="OBJECTIVE">
+                                    <ui-select-match>
+                                        {{$select.selected.NAME}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in objective | filter: $select.search">
+                                        <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2" for="NPA_TYPE">
+                            </label>
+                            <div class="col-md-6">
+                                <div class="checkbox clip-check check-primary">
+                                    <input type="checkbox" id="NPA_TYPE" ng-model="myFilter.NPA" ng-true-value="'Y'" ng-false-value="'N'" />
+                                    <label for="NPA_TYPE">
+                                        {{'NPA_TYPE'|translate}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-primary btn-o" ng-click="onSearchClick()">
+                                ออกรายงาน
+                            </button>
+                            <button type="button" class="btn btn-o btn-primary" ng-click="onResetSearch()">
+                                ล้างเงื่อนไข
+                            </button>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

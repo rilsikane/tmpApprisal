@@ -23,7 +23,7 @@
                                 <tr ng-repeat="item in data">
                                     <td>{{item.ACT_TIME_TEXT}}({{item.TFL}})</td>
                                     <td>{{item.ACT_TEXT}}</td>
-                                    <td><a ui-sref="app.testform({ACT_HIST_ID:item.ACT_HIST_ID,H:1})">{{item.REQUEST_NO}}</a></td>
+                                    <td><a ui-sref="app.testform({ACT_HIST_ID:item.ACT_HIST_ID,H:1,S:'H'})">{{item.REQUEST_NO}}</a></td>
                                     <td>{{item.DATE_REQ_TEXT}}</td>
                                     <td>{{item.CA_NO}}</td>
                                     <td>{{item.REQ_TYPE}}</td>

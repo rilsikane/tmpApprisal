@@ -24,7 +24,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
     // APPLICATION ROUTES
     // -----------------------------------
     // For any unmatched url, redirect to /app/dashboard
-    $urlRouterProvider.otherwise("/login");
+    //$urlRouterProvider.otherwise("/app/inbox");
     //$urlRouterProvider.otherwise("/login");
     // Set up the states
     $stateProvider.state('app', {
@@ -58,14 +58,46 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             'ckeditor-plugin',
             'ckeditor',
             'uploaderController',
-            'qnrController'),
+            'qnrController',
+            'wqsFactorListCtrl'),
         abstract: true
     }).state('app.acquire', { url: '/acquire', templateUrl: '/app/views/setting/parameters/acquire.html', resolve: loadSequence('parameterController') })
-    .state('app.req_type', { url: '/req_type', templateUrl: '/app/views/setting/parameters/req_type.html', resolve: loadSequence('parameterController') })
+        .state('app.apprbuild', { url: '/apprbuild', templateUrl: '/app/views/setting/parameters/appr_build_eva_list.html', resolve: loadSequence('parameterController') })
+        .state('app.brandname', { url: '/brandname', templateUrl: '/app/views/setting/parameters/brand_name.html', resolve: loadSequence('parameterController') })
+        .state('app.contactresult', { url: '/contactresult', templateUrl: '/app/views/setting/parameters/contact_result.html', resolve: loadSequence('parameterController') })
+        .state('app.insuredcode', { url: '/insuredcode', templateUrl: '/app/views/setting/parameters/insured_code.html', resolve: loadSequence('parameterController') })
+        .state('app.marketinfo', { url: '/marketinfo', templateUrl: '/app/views/setting/parameters/market_info.html', resolve: loadSequence('parameterController') })
+        .state('app.photoarea', { url: '/photoarea', templateUrl: '/app/views/setting/parameters/photo_area.html', resolve: loadSequence('parameterController') })
+        .state('app.photopoint', { url: '/photopoint', templateUrl: '/app/views/setting/parameters/photo_point.html', resolve: loadSequence('parameterController') })
+        .state('app.apprpurpose', { url: '/apprpurpose', templateUrl: '/app/views/setting/lookmst/appr_purpose.html', resolve: loadSequence('parameterController') })
+        .state('app.req_type', { url: '/req_type', templateUrl: '/app/views/setting/parameters/req_type.html', resolve: loadSequence('parameterController') })
+        .state('app.debttype', { url: '/debttype', templateUrl: '/app/views/setting/debttype/parameter.html', resolve: loadSequence('parameterController') })
+        .state('app.riskcde', { url: '/riskcde', templateUrl: '/app/views/setting/lookmst/riskcde.html', resolve: loadSequence('parameterController') })
+        .state('app.userLogout', { url: '/u', templateUrl: '/app/views/tools/logout.html', resolve: loadSequence('logoutCtrl') })
         .state('app.contact_result', { url: '/contact_result', templateUrl: '/app/views/setting/parameters/contact_result.html', resolve: loadSequence('parameterController') })
         .state('app.calendar', {
             url: '/calendar',
             templateUrl: '/app/views/test/subform0600.html'
+        }).state('app.samplevalidation', {
+            url: '/samplevalidation',
+            templateUrl: '/app/views/samples/formValidation.html',
+            resolve: loadSequence('sampleValidationCtrl')
+        }).state('app.enquiryRequest', {
+            url: '/enqr',
+            templateUrl: '/app/views/enquiry/request.html',
+            resolve: loadSequence('enquiry')
+        }).state('app.enquiryReport1', {
+            url: '/enqr1',
+            templateUrl: '/app/views/enquiry/report1.html',
+            resolve: loadSequence('enquiryReport')
+        }).state('app.enquiryReport2', {
+            url: '/enqr2',
+            templateUrl: '/app/views/enquiry/report2.html',
+            resolve: loadSequence('enquiryReport')
+        }).state('app.enquiryReport3', {
+            url: '/enqr3',
+            templateUrl: '/app/views/enquiry/report3.html',
+            resolve: loadSequence('enquiryReport')
         }).state('app.diag', {
             url: '/diag',
             templateUrl: '/app/views/diagnostic/crystalReport.html',
@@ -117,7 +149,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             templateUrl: '/app/views/bpm/inboxhist.html',
             resolve: loadSequence('inboxHistController')
         }).state('app.testform', {
-            url: '/testform/:ACT_HIST_ID/:H',
+            url: '/a/:ACT_HIST_ID/:H/:S',
             templateUrl: '/app/views/test/form.html',
             resolve: loadSequence(
                 'chartjs',
@@ -154,7 +186,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             resolve: loadSequence('formtemplateController'),
         }).state('app.testChart', {
             url: "/testChart",
-            templateUrl: "/views/test/chart.html",
+            templateUrl: "/app/views/test/chart.html",
             resolve: loadSequence('chartjs', 'tc.chartjs'),
             title: "Test Charts",
             ncyBreadcrumb: {
@@ -189,7 +221,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 'subform0207Controller')
         }).state('login.signin', {
             url: '/signin',
-            templateUrl: "../assets/views/login_login.html"
+            templateUrl: "/assets/views/login_login.html"
         }).state('calendar', {
             url: '/calendar/:JOB_RUNNING_ID',
             templateUrl: '/app/views/test/subform0600.html',

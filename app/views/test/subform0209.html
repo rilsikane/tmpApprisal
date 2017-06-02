@@ -1,17 +1,7 @@
-﻿<!--<div class="modal-header">
-    <h3 class="modal-title">
-        {{colAct.COL_ACT_NAME}}
-    </h3><button ng-click="cancel()" class="btn btn-o btn-squared modalClose">{{'CLOSE'|translate}}</button>
-</div>
-<div class="modal-body bg-light-grey">-->
-    <div class="container-fluid container-fullw">
-        <div class="panel panel-white no-radius">
-            <div class="panel-body border-light">
-                <div class="form-horizontal" ng-include="'app/views/setting/marketprice/priceCompare2.html'" ng-controller="priceCompareController" ng-init="params=params;dataMode=1"></div>
-            </div>
+﻿<div class="container-fluid container-fullw">
+    <div class="panel panel-white no-radius">
+        <div class="panel-body border-light">
+            <div class="form-horizontal" ng-include="'/app/views/setting/marketprice/priceCompare2.html'" ng-controller="priceCompareController" ng-init="params=params;dataMode=1"></div>
         </div>
     </div>
-<!--</div>
-<div class="modal-footer">
-    <button class="btn btn-primary  btn-squared" ng-disabled="btnDisabled" ng-click="cancel()">{{'BUTTON.BACK'|translate}}</button>
-</div>-->
+</div>

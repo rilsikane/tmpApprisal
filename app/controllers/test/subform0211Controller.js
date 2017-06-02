@@ -7,6 +7,8 @@
     $scope.includeUrl = params.includeUrl || '';
     $scope.showButtonSave = params.showButtonSave || false;
 
+    $scope.tab = params.tab;
+
     $scope.upload = function ($index, attach) {
         $modal.open({
             backdrop: 'static',
@@ -33,14 +35,33 @@
     }
 
     $scope.genHeadCollReport = function (style) {
-        radasoft.confirmAndSave($translate.instant('CONFIRM.GEN_REPORT'), '', function (isconfirmed) {
-            if (isconfirmed) {
-                radasoft.genHeadCollReport($scope.headCol.APPRAISAL_REPORT).then(function (response) {
-                    radasoft.success();
-                    $scope.headCol.APPRAISAL_REPORT = response.data;
-                });
+        var valid = true;
+        angular.forEach($scope.BOT_COL_ACT_VALID, function (item) {
+            if (item.VALID == false) {
+                valid = false;
             }
         });
+
+        if (valid) {
+            radasoft.confirmAndSave($translate.instant('CONFIRM.GEN_REPORT'), '', function (isconfirmed) {
+                if (isconfirmed) {
+                    radasoft.genHeadCollReport($scope.headCol.APPRAISAL_REPORT).then(function (response) {
+                        radasoft.success();
+                        $scope.headCol.APPRAISAL_REPORT = response.data;
+                    });
+                }
+            });
+        }
+        else {
+            radasoft.confirmAndSave($translate.instant('CONFIRM.HEAD_COL_ACT_INVALID'), '', function (isconfirmed) {
+                if (isconfirmed) {
+                    radasoft.genHeadCollReport($scope.headCol.APPRAISAL_REPORT).then(function (response) {
+                        radasoft.success();
+                        $scope.headCol.APPRAISAL_REPORT = response.data;
+                    });
+                }
+            });
+        }
     }
 
     $scope.submit = function (style) {
@@ -52,6 +73,12 @@
     };
 
     $scope.init = function () {
+        radasoft.getBOT_COL_ACT_VALID({
+            COL_TYPE_CODE: $scope.colAct.COL_TYPE_CODE,
+            HEAD_COL_RUNNING_ID: $scope.headCol.HEAD_COL_RUNNING_ID
+        }).then(function (response) {
+            $scope.BOT_COL_ACT_VALID = response.data;
+        });
     }
 
     $scope.init();

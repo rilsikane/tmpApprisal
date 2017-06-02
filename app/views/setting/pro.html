@@ -8,18 +8,6 @@
                 <h5 class="panel-title">รายละเอียดโครงการ</h5>
             </div>
             <div class="panel-body">
-                <!--<div class="form-group">
-                    <label class="col-sm-4 control-label" for="RECORD_STATUS">
-                    </label>
-                    <div class="col-sm-8">
-                        <div class="checkbox clip-check check-primary checkbox-inline">
-                            <input type="checkbox" id="RECORD_STATUS" ng-model="formData.RECORD_STATUS" checked="">
-                            <label for="RECORD_STATUS">
-                                {{'RECORD_STATUS'|translate}}
-                            </label>
-                        </div>
-                    </div>
-                </div>-->
                 <div class="form-group" ng-class="{'has-error':form.PROJECT_CODE.$dirty && form.PROJECT_CODE.$invalid, 'has-success':form.PROJECT_CODE.$valid}">
                     <label class="col-sm-4 control-label" for="PROJECT_CODE">
                         {{'PROJECT_CODE'|translate}}<span class="symbol required"></span>
@@ -126,7 +114,7 @@
                         {{'SUBDISTRICT'|translate}}
                     </label>
                     <div class="col-sm-8">
-                        <ui-select theme="selectize" ng-model="formData.ADD_DISTRICT" id="ADD_DISTRICT" name="ADD_DISTRICT">
+                        <ui-select theme="selectize" ng-model="formData.ADD_DISTRICT" id="ADD_DISTRICT" name="ADD_DISTRICT" on-select="onAddDistrictChange($item)">
                             <ui-select-match placeholder="">
                                 {{$select.selected.DISTRICT}}
                             </ui-select-match>

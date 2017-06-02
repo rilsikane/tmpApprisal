@@ -37,6 +37,10 @@
                     DOC_NAME: item.DOC_NAME
                 });
             });
+
+            radasoft.setRequestAttach($scope.requestAttach).then(function (response) {
+                radasoft.success();
+            });
         });
     }
 

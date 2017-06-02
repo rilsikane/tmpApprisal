@@ -9,8 +9,9 @@
         'SweetAlert',
         '$rootScope',
         '$timeout',
+        '$filter',
         '$httpParamSerializerJQLike',
-        function ($q, $http, $modal, $translate, $log, $state, SweetAlert, $rootScope, $timeout) {
+        function ($q, $http, $modal, $translate, $log, $state, SweetAlert, $rootScope, $timeout, $filter) {
             var tokenKey = 'accessToken';
             this.info = function (msg) {
                 $log.info(msg);
@@ -19,7 +20,7 @@
                 $log.debug(msg);
             }
             this.httpPost = function (action, params, httpConfig) {
-                var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/api/Values/' + action;
+                 var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/api/Values/' + action;
                 return this.http('POST', url, params, httpConfig || {});
             }
             this.httpGet = function (action, params, httpConfig) {
@@ -27,7 +28,7 @@
                 for (var p in params) {
                     str.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p]));
                 }
-                var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/api/Values/' + action + (params ? '?' + str.join("&") : '');
+                 var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/api/Values/' + action + (params ? '?' + str.join("&") : '');
                 return this.http('GET', url, {}, httpConfig || {});
             }
             this.httpLogout = function () {
@@ -55,11 +56,13 @@
                     deferred.resolve(response);
                 }, function (response) {
                     if (response.status == 401) {
-                        //SweetAlert.swal('Unauthorized.');
                         $state.go('login.signin');
+                    } else if (response.status == 0) {
+                        SweetAlert.swal('การเชื่อมต่อเครือข่ายไม่สำเร็จ กรุณาลองใหม่อีกครั้ง');
+                        deferred.reject(response);
                     } else {
-                        if (typeof (response.data) == 'object') {
-                            SweetAlert.swal('TEST');
+                        if (typeof (response.data) == 'object' && response.data != null) {
+                            SweetAlert.swal(response.data.ExceptionMessage);
                         } else {
                             SweetAlert.swal(response.status + ' : ' + response.statusText, url);
                         }
@@ -130,55 +133,54 @@
                 var role = angular.fromJson(sessionStorage.getItem('role') || '{"ROLE_RUNNING_ID":0}');
                 var roles = angular.fromJson(sessionStorage.getItem('roles') || '[]');
 
-                me.getLogonUser({}).then(function (response) {
-                    $rootScope.user = response.data;
-                    $rootScope.role = role;
-                    $rootScope.roles = roles;
-                    $rootScope.isAppraiser = $rootScope.role.ROLE_RUNNING_ID == 13;
+                me.getAppConfig().then(function (response) {
 
-                    me.getAppConfig().then(function (response) {
-                        $rootScope.appConfig = response.data;
+                    $rootScope.appConfig = response.data;
+                    me.getLogonUser({}).then(function (response) {
+                        if (response.data == null) {
+                            deferred.reject(response);
+                        } else {
+                            $rootScope.user = response.data;
+                            $rootScope.role = role;
+                            $rootScope.roles = roles;
+                            $rootScope.isAppraiser = $rootScope.role.ROLE_RUNNING_ID == 13;
 
-                        me.refreshCountNumber().then(function (response) {
+                            me.refreshCountNumber().then(function (response) {
 
-                            me.getRoleMenus({ ID: role.ROLE_RUNNING_ID }).then(function (response) {
-                                $rootScope.app.menuItems = response.data;
+                                me.getRoleMenus({ ID: role.ROLE_RUNNING_ID }).then(function (response) {
+                                    $rootScope.app.menuItems = response.data;
 
-                                angular.forEach($rootScope.app.menuItems, function (item) {
-                                    if (item.MENU_LEVEL == 2) {
-                                        switch (item.URL) {
-                                            case 'app.inbox':
-                                                $rootScope.app.inboxTitle = item.MENU_NAME;
-                                                break;
-                                            case 'app.inboxhist':
-                                                $rootScope.app.inboxHistTitle = item.MENU_NAME;
-                                                break;
-                                            default:
-                                                break;
+                                    angular.forEach($rootScope.app.menuItems, function (item) {
+                                        if (item.MENU_LEVEL == 2) {
+                                            switch (item.URL) {
+                                                case 'app.inbox':
+                                                    $rootScope.app.inboxTitle = item.MENU_NAME;
+                                                    break;
+                                                case 'app.inboxhist':
+                                                    $rootScope.app.inboxHistTitle = item.MENU_NAME;
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
                                         }
-                                    }
+                                    });
+
+                                    deferred.resolve(response);
+                                }, function () {
+                                    deferred.reject(response);
                                 });
 
-                                deferred.resolve(response);
-                            }, function () {
+
+                            }, function (response) {
                                 deferred.reject(response);
                             });
-
-
-                        }, function (response) {
-                            deferred.reject(response);
-                        });
+                        }
                     }, function (response) {
                         deferred.reject(response);
                     });
                 }, function (response) {
                     deferred.reject(response);
                 });
-
-                //if (typeof (role) != 'undefined' && role != null) {
-                //} else {
-                //    deferred.resolve({});
-                //}
 
                 return deferred.promise;
             }
@@ -210,8 +212,7 @@
                     title: title,
                     text: text,
                     type: "warning",
-                    //showCancelButton: true,
-                    //confirmButtonColor: "#DD6B55",
+                    html: true,
                     confirmButtonText: "OK"
                 });
             }
@@ -228,7 +229,6 @@
                 });
             }
             this.error = function (title, text, ex) {
-                //console.log(title, text, ex);
                 if (ex) {
                     title = ex.ExceptionType;
                     text = ex.Message;
@@ -250,7 +250,8 @@
                     cancelButtonText: $translate.instant('BUTTON.NO'),
                     closeOnConfirm: true,
                     closeOnCancel: true,
-                    showLoaderOnConfirm: false
+                    showLoaderOnConfirm: false,
+                    html: true
                 }, callback);
             }
             this.confirmAndSave = function (title, text, callback) {
@@ -258,6 +259,7 @@
                     title: title,
                     text: text,
                     type: "info",
+                    html: true,
                     showCancelButton: true,
                     confirmButtonColor: '#007AFF',
                     confirmButtonText: $translate.instant('BUTTON.YES'),
@@ -351,10 +353,6 @@
                 return this.httpPost('getDocState', params);
             }
 
-            //this.getDocStateV2 = function (params) {
-            //    return this.httpGet('getDocStateV2', params);
-            //}
-
             this.getStateAction = function (params) {
                 return this.httpGet('getStateAction', params);
             }
@@ -419,13 +417,21 @@
             this.getProvince = function (params) {
                 return this.httpGet('getProvince', params);
             }
+            this.getProvinceForFilter = function (params) {
+                return this.httpGet('getProvinceForFilter', params);
+            }
             this.getDistrict = function (params) {
                 return this.httpGet('getDistrict', params);
+            }
+            this.getDistrictForFilter = function (params) {
+                return this.httpGet('getDistrictForFilter', params);
             }
             this.getSubDistrict = function (params) {
                 return this.httpGet('getSubDistrict', params);
             }
-
+            this.getSubDistrictForFilter = function (params) {
+                return this.httpGet('getSubDistrictForFilter', params);
+            }
             this.w4action = function (params) {
                 return this.httpPost('w4action', params);
             }
@@ -447,6 +453,9 @@
             }
             this.getObjective = function (params) {
                 return this.httpPost('getObjective', params);
+            }
+            this.getObjectiveFilter = function (params) {
+                return this.httpPost('getObjectiveFilter', params);
             }
             this.getDebtType = function (params) {
                 return this.httpPost('getDebtType', params);
@@ -487,7 +496,6 @@
             this.setSubCol = function (params) {
                 var id = params.botColForm.COL_FORM_ID;
                 var url = '';
-                $log.info(params);
                 switch (id) {
                     case 286003://ที่ดินเปล่า
                         url = 'setSubCol_286003';
@@ -574,6 +582,7 @@
                                 response.data.AGE_YEAR = undefined;
                                 response.data.AGE_MONTH = undefined;
                                 response.data.APPR_CUR_NET_TOTAL = undefined;
+                                response.data.REGIS_YN = 'Y';
                                 break;//เครื่องจักร
                             case 286038:
                                 response.data.AGE_STD_MONTH = undefined;
@@ -604,7 +613,6 @@
                 return deferred.promise;
             }
             this.deleteSubCol = function (params) {
-                //$log.info(params);
 
                 var id = params.subCol.HEAD_COL_TYPE;
 
@@ -762,20 +770,18 @@
             this.setFormDataProject = function (params) {
                 return this.httpPost('setFormDataProject', params);
             }
-            //
             this.getCompletedProject = function (params) {
-                return this.httpGet('getCompletedProject', params);
+                return this.httpPost('getCompletedProject', params);
             }
-            //getCompletedProjectUnit
             this.getCompletedProjectUnit = function (params) {
-                return this.httpGet('getCompletedProjectUnit', params);
+                return this.httpPost('getCompletedProjectUnit', params);
             }
 
             this.openDialog = function (params) {
 
                 params = params || {};
 
-                params.templateUrl = params.templateUrl || '/app/views/common/dialogWrapper.html';
+                params.templateUrl = params.templateUrl || 'app/views/common/dialogWrapper.html';
                 params.windowClass = params.windowClass || '';
 
                 return $modal.open({
@@ -866,8 +872,14 @@
             this.getHeadColType = function (params) {
                 return this.httpGet('getHeadColType', params);
             }
+            this.getHeadColTypeForFilter = function (params) {
+                return this.httpGet('getHeadColTypeForFilter', params);
+            }
             this.getHeadColSubType = function (params) {
                 return this.httpGet('getHeadColSubType', params);
+            }
+            this.getHeadColSubTypeForFilter = function (params) {
+                return this.httpGet('getHeadColSubTypeForFilter', params);
             }
             this.setJobMarketPrice = function (params) {
                 return this.httpPost('setJobMarketPrice', params);
@@ -1127,7 +1139,7 @@
                 return this.httpPost('setMasterOrgRoles', params);
             }
             this.getMasterUser = function (params) {
-                return this.httpGet('getMasterUser', params);
+                return this.httpPost('getMasterUser2', params);
             }
             this.setMasterUser = function (params) {
                 return this.httpPost('setMasterUser', params);
@@ -1260,5 +1272,56 @@
             }
             this.getDepreciation = function (params) {
                 return this.httpGet('getDepreciation', params);
+            }
+            this.ENQUIRY_REPORT = function (params) {
+                return this.httpPost('ENQUIRY_REPORT', params);
+            }
+            this.getLookMstDetail = function (params) {
+                return this.httpGet('getLookMstDetail', params);
+            }
+            this.setLookMst = function (params) {
+                return this.httpPost('setLookMst', params);
+            }
+            this.delLookMst = function (params) {
+                return this.httpPost('delLookMst', params);
+            }
+            this.getLookMst = function (params) {
+                return this.httpPost('getLookMst', params);
+            }
+            this.getParameter2 = function (params) {
+                return this.httpPost('getParameter2', params);
+            }
+            this.userLogout = function (params) {
+                return this.httpPost('userLogout', params);
+            }
+            this.getParameterDetail = function (params) {
+                return this.httpGet('getParameterDetail', params);
+            }
+            this.getMasterDebtTypeById = function (params) {
+                return this.httpGet('getMasterDebtTypeById', params);
+            }
+            this.setMasterDebtType = function (params) {
+                return this.httpPost('setMasterDebtType', params);
+            }
+            this.delMasterDebtType = function (params) {
+                return this.httpPost('delMasterDebtType', params);
+            }
+            this.getMasterDebtType = function (params) {
+                return this.httpPost('getMasterDebtType', params);
+            }
+            this.getMasterUserDetail = function (params) {
+                return this.httpGet('getMasterUserDetail', params);
+            }
+            this.getAllOU2 = function (params) {
+                return this.httpPost('getAllOU2', params);
+            }
+            this.getMyDocs2 = function (params) {
+                return this.httpPost('getMyDocs2', params);
+            }
+            this.refreshJobMarketPrice = function (params) {
+                return this.httpGet('refreshJobMarketPrice', params);
+            }
+            this.getBOT_COL_ACT_VALID = function (params) {
+                return this.httpGet('getBOT_COL_ACT_VALID', params);
             }
         }]);

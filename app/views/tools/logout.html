@@ -1,0 +1,33 @@
+﻿<div class="container-fluid container-fullw" ng-controller="logoutCtrl">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-white no-radius">
+                <div class="panel-heading no-radius bg-deep-pink border-light">
+                    <h4 class="panel-title">USER LOGOUT</h4>
+                </div>
+
+                <div class="panel-body border-light">
+                    <form name="form" role="form" class="form-horizontal" novalidate>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="USER_NAME">
+                                User Name
+                            </label>
+                            <div class="col-sm-4 no-padding">
+                                <input type="text" class="form-control" id="USER_NAME" name="USER_NAME" ng-model="formData.USER_NAME">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                            </label>
+                            <div class="col-sm-4 no-padding">
+                                <button class="btn btn-o btn-primary" ng-click="logout()">
+                                    {{'RELEASE_SESSION'|translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

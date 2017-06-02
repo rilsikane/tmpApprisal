@@ -1,0 +1,56 @@
+﻿<div class="panel panel-white no-radius" ng-controller="completedProjectCtrl">
+    <div class="panel-body border-light">
+        <div class="col-md-6">
+            <h4 class="panel-title">{{'PROJECT'|translate}}</h4>
+            <div class="search-form">
+                <div name="form1" class="navbar-form" role="search">
+                    <a class="s-remove" href="#" ng-toggle-class="search-open" target=".navbar-form">
+                        <i class="ti-close"></i>
+                    </a>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="projectSearchKeyword" placeholder="{{'SEARCH'|translate}}" ng-keypress="searchProjectEnter($event)" ng-model="projectSearchKeyword" />
+                        <button class="btn search-button" type="button" tooltip="{{'BUTTON.SEARCH'|translate}}" ng-click="getCompletedProject()">
+                            <i class="ti-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <ul class="list-group">
+                <li ng-repeat="item in projects" class="list-group-item no-radius" ng-class="{'bg-light-primary':item.PROJECT_RUNNING_ID==selectedProject.PROJECT_RUNNING_ID}">
+                    <a ng-click="selectProject(item)" style="height:30px;display:block;">
+                        <h5 ng-class="{'text-white':item.PROJECT_RUNNING_ID==selectedProject.PROJECT_RUNNING_ID}"><span>{{item.PROJECT_NAME}}</span></h5>
+                        <h5><span style="font-size:smaller;left:20px;bottom:6px;position:absolute;"><i>{{'BY'|translate}} : {{item.DEVELOPER.DEV_NAME}}</i></span></h5>
+                    </a>
+                </li>
+            </ul>
+            <pagination boundary-links="true" items-per-page="app.itemsPerPage" ng-change="getCompletedProject()" max-size="5" total-items="paging1Total" ng-model="paging1CurrentPage" class="pagination-sm  no-padding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+        </div>
+        <div class="col-md-6">
+            <h4 class="panel-title">{{'UNIT_TYPE'|translate}}</h4>
+            <div class="search-form">
+                <div name="form1" class="navbar-form" role="search">
+                    <a class="s-remove" href="#" ng-toggle-class="search-open" target=".navbar-form">
+                        <i class="ti-close"></i>
+                    </a>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="devSearchKeyword" placeholder="{{'SEARCH'|translate}}" ng-keypress="searchUnitTypeEnter($event)" ng-model="unitSearchKeyword" />
+                        <button class="btn search-button" type="button" tooltip="{{'BUTTON.SEARCH'|translate}}" ng-click="getCompletedProjectUnit()">
+                            <i class="ti-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <ul class="list-group">
+                <li ng-repeat="item in units" class="list-group-item no-radius">
+                    <a style="height:50px;display:block;">
+                        <h5><span>{{item.UNIT_NAME}}</span></h5>
+                        <h5><span style="font-size:smaller;left:20px;bottom:24px;position:absolute;"><i>{{'HOUSE_NO'|translate}} : </i></span></h5>
+                        <h5><span style="font-size:smaller;left:20px;bottom:6px;position:absolute;"><i>{{'ZONE'|translate}} : </i></span></h5>
+                    </a>
+                    <button class="btn btn-o btn-squared border-deep-pink" style="position:absolute;right:5px;top:15px;" ng-click="selectProjectUnit(item)">{{'SELECT'|translate}}</button>
+                </li>
+            </ul>
+            <pagination boundary-links="true" items-per-page="app.itemsPerPage" ng-change="getCompletedProjectUnit()" max-size="5" total-items="paging2Total" ng-model="paging2CurrentPage" class="pagination-sm  no-padding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+        </div>
+    </div>
+</div>

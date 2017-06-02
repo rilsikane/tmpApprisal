@@ -1,47 +1,130 @@
 ﻿<div class="container-fluid container-fullw no-border" ng-controller="mydocsController">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-md-12">
             <div class="panel panel-white no-radius">
                 <div class="panel-heading no-radius bg-deep-pink">
-                    <h4 class="panel-title"><span>{{ title }}</span></h4>
-                    <ul class="panel-heading-tabs border-light">
-                        <li>
-                            <button type="button" class="btn btn-o btn-squared border-white" ng-click="new()">
-                                <i class="ti-plus"></i> {{'BUTTON.NEW'|translate}}
-                            </button>
-                        </li>
-                    </ul>
+                    <h4 class="panel-title"><span>{{title}}</span></h4>
                 </div>
                 <div class="panel-body border-light">
-                    <div class="row">
+                    <fieldset>
+                        <legend>เงื่อนไขการค้นหา</legend>
+                        <div class="row">
+                            <div class="form-group col-md-2">
+                                <label class="control-label">STEP</label>
+                                <ui-select theme="selectize" ng-model="myFilter.STEP" on-select="onStepChange()">
+                                    <ui-select-match>
+                                        {{$select.selected.STEP_NAME}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in bpmstep | filter: $select.search">
+                                        <div ng-bind-html="item.STEP_NAME | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="control-label">หน่วยงาน</label>
+                                <ui-select theme="selectize" ng-model="myFilter.OU">
+                                    <ui-select-match>
+                                        {{$select.selected.OU_NAME}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in ou | filter: $select.search">
+                                        <div ng-bind-html="item.OU_NAME | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label class="control-label">จากวันที่</label>
+                                <input type="text" class="form-control" ng-model="myFilter.FROM_DATE" datepicker-popup="dd/MM/yyyy" is-open="dpOpened1" ng-click="dpOpened1=true" />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label class="control-label">ถึงวันที่</label>
+                                <input type="text" class="form-control" ng-model="myFilter.THRU_DATE" datepicker-popup="dd/MM/yyyy" is-open="dpOpened2" ng-click="dpOpened2=true" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-2">
+                                <label class="control-label">STATE</label>
+                                <ui-select theme="selectize" ng-model="myFilter.STATE">
+                                    <ui-select-match>
+                                        {{$select.selected.STATE_NAME}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in bpmstate | filter:stateFilter">
+                                        <div ng-bind-html="item.STATE_NAME | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="control-label" for="DEBT_TYPE">
+                                    {{'DEBT_TYPE'|translate}}
+                                </label>
+                                <ui-select theme="selectize" ng-model="myFilter.DEBT_TYPE" name="DEBT_TYPE" id="DEBT_TYPE">
+                                    <ui-select-match>
+                                        {{$select.selected.NAME}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in debtType | filter: $select.search">
+                                        <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="col-sm-3 control-label" for="OBJECTIVE">
+                                    {{'OBJECTIVE'|translate}}
+                                </label>
+                                <ui-select theme="selectize" ng-model="myFilter.OBJECTIVE" name="OBJECTIVE" id="OBJECTIVE">
+                                    <ui-select-match>
+                                        {{$select.selected.NAME}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in objective | filter: $select.search">
+                                        <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label class="control-label" for="NPA_TYPE">
+                                </label>
+                                <div class="checkbox clip-check check-primary">
+                                    <input type="checkbox" id="NPA_TYPE" ng-model="myFilter.NPA" ng-true-value="'Y'" ng-false-value="'N'" />
+                                    <label for="NPA_TYPE">
+                                        {{'NPA_TYPE'|translate}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-primary btn-o" ng-click="onSearchClick()">ค้นหา</button>
+                                <button type="button" class="btn btn-o btn-primary" ng-click="onResetSearch()">
+                                    ล้างเงื่อนไขการค้นหา
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+                    <fieldset>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>REQUEST NO.</th>
-                                    <!--<th>STATE ID</th>-->
-                                    <th>STATE NAME</th>
-                                    <th>STEP NAME</th>
-                                    <!--<th>OU ID</th>-->
-                                    <th>OU NAME</th>
-                                    <th>DATE TIME</th>
+                                    <th class="col-md-1">{{'ACT_TIME_TEXT'|translate}}</th>
+                                    <th class="col-md-1">{{'REQUEST_NO'|translate}}</th>
+                                    <th class="col-md-1">{{'CA_NO'|translate}}</th>
+                                    <th class="col-md-1">{{'REQ_TYPE'|translate}}</th>
+                                    <th class="col-md-2">{{'REQUEST_OU'|translate}}</th>
+                                    <th class="col-md-1">{{'STATE_NAME'|translate}}</th>
+                                    <th class="col-md-1">{{role.ROLE_NAME}}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="item in data">
-                                    <td><a ui-sref="app.testform({ACT_HIST_ID:item.ACT_HIST_ID})">{{item.REQUEST_NO}}</a></td>
-                                    <!--<td>{{item.STATE_ID}}</td>-->
+                                    <td>{{item.ACT_TIME_TEXT}}</td>
+                                    <td><a ui-sref="app.testform({ACT_HIST_ID:item.ACT_HIST_ID,H:1})">{{item.REQUEST_NO}}</a></td>
+                                    <td>{{item.CA_NO}}</td>
+                                    <td>{{item.REQ_TYPE}}</td>
+                                    <td>{{item.REQUEST_OU}}</td>
                                     <td>{{item.STATE_NAME}}</td>
-                                    <td>{{item.STEP_NAME}}</td>
-                                    <!--<td>{{item.OU_ID}}</td>-->
-                                    <td>{{item.OU_NAME}}</td>
-                                    <td>{{item.C_DATE_TEXT}}</td>
+                                    <td>{{item.USER_FULLNAME}}</td>
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                    <div class="row">
-                        <pagination boundary-links="true" items-per-page="app.itemsPerPage" ng-change="pageChanged()" max-size="5" total-items="totalItems" ng-model="currentPage" class="pagination-sm no-radius" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
-                    </div>
+                        <pagination boundary-links="true" items-per-page="app.itemsPerPage" ng-change="pageChanged()" max-size="5" total-items="myFilter.totalRecords" ng-model="myFilter.currentPage" class="pagination-sm  no-padding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+                    </fieldset>
                 </div>
             </div>
         </div>

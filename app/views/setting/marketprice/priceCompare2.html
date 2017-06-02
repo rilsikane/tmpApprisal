@@ -6,13 +6,13 @@
         <div class="col-sm-10 no-padding">
             <div class="col-sm-3">
                 <div class="radio clip-radio radio-primary">
-                    <input type="radio" name="MARKET_COMPAIR" ng-value="4" ng-model="params.MARKET_COMPAIR" id="MARKET_COMPAIR1" ng-disabled="dataMode==0" ng-change="changeMarketCompair()" />
+                    <input type="radio" name="MARKET_COMPAIR" ng-value="4" ng-model="params.MARKET_COMPAIR" id="MARKET_COMPAIR1" ng-disabled="dataMode==0 || !tab.update" ng-change="changeMarketCompair()" />
                     <label for="MARKET_COMPAIR1">4 {{'MARKETPRICE'|translate}}</label>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="radio clip-radio radio-primary">
-                    <input type="radio" name="MARKET_COMPAIR" ng-value="5" ng-model="params.MARKET_COMPAIR" id="MARKET_COMPAIR2" ng-disabled="dataMode==0" ng-change="changeMarketCompair()" />
+                    <input type="radio" name="MARKET_COMPAIR" ng-value="5" ng-model="params.MARKET_COMPAIR" id="MARKET_COMPAIR2" ng-disabled="dataMode==0 || !tab.update" ng-change="changeMarketCompair()" />
                     <label for="MARKET_COMPAIR2">5 {{'MARKETPRICE'|translate}}</label>
                 </div>
             </div>

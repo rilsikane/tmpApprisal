@@ -19,7 +19,7 @@
         {{'CONTACT_RESULT'|translate}}<span class="symbol required"></span>
     </label>
     <div class="col-sm-8 no-padding">
-        <ui-select ng-required="true" ng-disabled="inputDisabled" theme="selectize" ng-model="formData.CONTACT_RESULT" name="CONTACT_RESULT" id="CONTACT_RESULT" ng-change="onContactChage()">
+        <ui-select ng-required="true" ng-disabled="disabledContactResult" theme="selectize" ng-model="formData.CONTACT_RESULT" name="CONTACT_RESULT" id="CONTACT_RESULT" ng-change="onContactChage()">
             <ui-select-match placeholder="">
                 {{$select.selected.NAME}}
             </ui-select-match>
@@ -42,15 +42,15 @@
         {{'DATE_CUST_APPOINTMENT'|translate}}<span class="symbol required"></span>
     </label>
     <div class="col-sm-2 no-padding">
-        <input ng-disabled="inputDisabled"  ng-required="'1'==formData.CONTACT_RESULT.VALUE" ng-model="formData.DATE_CUST_APPOINTMENT" class="form-control no-radius" id="DATE_CUST_APPOINTMENT" name="DATE_CUST_APPOINTMENT" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.DATE_CUST_APPOINTMENT" ng-click="openDatePicker($event,'DATE_CUST_APPOINTMENT')" />
+        <input ng-disabled="disabledContactResult"  ng-required="'1'==formData.CONTACT_RESULT.VALUE" ng-model="formData.DATE_CUST_APPOINTMENT" class="form-control no-radius" id="DATE_CUST_APPOINTMENT" name="DATE_CUST_APPOINTMENT" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.DATE_CUST_APPOINTMENT" ng-click="openDatePicker($event,'DATE_CUST_APPOINTMENT')" />
     </div>
     <label class="col-sm-1 control-label" for="TIME">
         {{'TIME'|translate}}<span class="symbol required" ng-if="'1'==formData.CONTACT_RESULT.VALUE"></span>
     </label>
     <div class="col-md-1 no-padding">
-        <input ng-disabled="inputDisabled" ng-required="'1'==formData.CONTACT_RESULT.VALUE" ng-model="formData.APPOINTMENT_HOUR" id="TIME" class="form-control" maxlength="2" type="number" max="23" min="0" />
+        <input ng-disabled="disabledContactResult" ng-required="'1'==formData.CONTACT_RESULT.VALUE" ng-model="formData.APPOINTMENT_HOUR" id="TIME" class="form-control" type="text" format decimal="0" ng-max="23" ng-min="0" />
     </div>
     <div class="col-md-1 no-padding">
-        <input ng-disabled="inputDisabled" ng-required="'1'==formData.CONTACT_RESULT.VALUE" ng-model="formData.APPOINTMENT_MINUTE" class="form-control" maxlength="2" type="number" max="59" min="0" />
+        <input ng-disabled="disabledContactResult" ng-required="'1'==formData.CONTACT_RESULT.VALUE" ng-model="formData.APPOINTMENT_MINUTE" class="form-control" type="text" format decimal="0" ng-max="59" ng-min="0" />
     </div>
 </div>

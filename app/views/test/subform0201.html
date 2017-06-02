@@ -30,8 +30,8 @@
                         {{'BUILD_NO'|translate}}
                     </label>
                     <div class="col-sm-8">
-                        <input type="text" maxlength="1000" class="form-control" id="DEED_NO" name="DEED_NO" ng-model="formData.DEED_NO" ng-if="formData.HEAD_COL_TYPE_ID!='286011'">
-                        <input type="text" maxlength="1000" class="form-control" id="DEED_NO" name="DEED_NO" ng-model="formData.DEED_NO" model-view-value="true" ui-mask="99-999-999-9999" ui-mask-placeholder-char="_" ng-if="formData.HEAD_COL_TYPE_ID=='286011'">
+                        <input ng-disabled="inputDisabled" type="text" maxlength="1000" class="form-control" id="DEED_NO" name="DEED_NO" ng-model="formData.DEED_NO" ng-if="formData.HEAD_COL_TYPE_ID!='286011'">
+                        <input ng-disabled="inputDisabled" type="text" maxlength="1000" class="form-control" id="DEED_NO" name="DEED_NO" ng-model="formData.DEED_NO" model-view-value="true" ui-mask="99-999-999-9999" ui-mask-placeholder-char="_" ng-if="formData.HEAD_COL_TYPE_ID=='286011'">
                     </div>
                 </div>
                 <div class="form-group" ng-show="formData.HEAD_COL_TYPE_ID=='286011'">
@@ -41,7 +41,7 @@
                     <div class="col-sm-8">
                         <div class="form-group col-sm-4" ng-repeat="item in radioRegisYN">
                             <div class="radio clip-radio radio-primary">
-                                <input type="radio" name="REGIS_YN" ng-value="item.VALUE" ng-model="formData.REGIS_YN" id="REGIS_YN{{item.VALUE}}" />
+                                <input ng-disabled="inputDisabled" type="radio" name="REGIS_YN" ng-value="item.VALUE" ng-model="formData.REGIS_YN" id="REGIS_YN{{item.VALUE}}" />
                                 <label for="REGIS_YN{{item.VALUE}}">{{ item.NAME }}</label>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                     <div class="col-sm-8">
                         <div class="form-group col-sm-4" ng-repeat="item in radioMachineOperation">
                             <div class="radio clip-radio radio-primary">
-                                <input type="radio" name="MACHINE_OPERATION" ng-value="item.VALUE" ng-model="formData.MACHINE_OPERATION" id="MACHINE_OPERATION{{item.VALUE}}" />
+                                <input ng-disabled="inputDisabled" type="radio" name="MACHINE_OPERATION" ng-value="item.VALUE" ng-model="formData.MACHINE_OPERATION" id="MACHINE_OPERATION{{item.VALUE}}" />
                                 <label for="MACHINE_OPERATION{{item.VALUE}}">{{ item.NAME }}</label>
                             </div>
                         </div>
@@ -62,9 +62,9 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-white">
+        <div ng-if="false" class="panel panel-white">
             <div class="panel-heading bg-light-azure no-radius">
-                <h5 class="panel-title">ที่ตั้งตามเอกสารสิทธิ</h5>
+                <h5 class="panel-title">{{'DOL_ADDRESS'|translate}}</h5>
             </div>
             <div class="panel-body">
                 <div class="form-group" ng-class="{'has-error':form.DEED_COUNTRY.$dirty && form.DEED_COUNTRY.$viewValue==undefined, 'has-success':form.DEED_COUNTRY.$viewValue!=undefined && form.DEED_COUNTRY.$viewValue.CODE!=undefined}">
@@ -139,7 +139,7 @@
         </div>
         <div class="panel panel-white">
             <div class="panel-heading bg-light-azure no-radius">
-                <h5 class="panel-title">ที่ตั้งตามเขตการปกครอง</h5>
+                <h5 class="panel-title">{{'DOPA_ADDRESS'|translate}}</h5>
             </div>
             <div class="panel-body">
                 <div class="form-group">
@@ -147,15 +147,15 @@
                         {{'LOC_CODE'|translate}}
                     </label>
                     <div ng-class="formControlCss">
-                        <input type="text" maxlength="20" placeholder="" class="form-control" id="LOC_CODE" name="LOC_CODE" ng-model="formData.LOC_CODE">
+                        <input type="text" maxlength="20"  ng-disabled="inputDisabled" class="form-control" id="LOC_CODE" name="LOC_CODE" ng-model="formData.LOC_CODE">
                     </div>
                 </div>
                 <div class="form-group">
                     <label ng-class="labelControlCss" for="LOC_PROVINCE">
-                        {{'PROVINCE'|translate}}
+                        {{'PROVINCE'|translate}} <span class="symbol required"></span>
                     </label>
                     <div ng-class="formControlCss">
-                        <ui-select theme="selectize" ng-model="formData.LOC_PROVINCE" id="LOC_PROVINCE" name="LOC_PROVINCE" on-select="getLocDistrict($item,$model)">
+                        <ui-select required ng-disabled="inputDisabled" theme="selectize" ng-model="formData.LOC_PROVINCE" id="LOC_PROVINCE" name="LOC_PROVINCE" on-select="getLocDistrict($item,$model)">
                             <ui-select-match>
                                 {{$select.selected.PROV_NAME}}
                             </ui-select-match>
@@ -167,10 +167,10 @@
                 </div>
                 <div class="form-group">
                     <label ng-class="labelControlCss" for="LOC_CITY">
-                        {{'DISTRICT'|translate}}
+                        {{'DISTRICT'|translate}} <span class="symbol required"></span>
                     </label>
                     <div ng-class="formControlCss">
-                        <ui-select theme="selectize" ng-model="formData.LOC_CITY" id="LOC_CITY" name="LOC_CITY" on-select="getLocSubDistrict($item,$model)">
+                        <ui-select required ng-disabled="inputDisabled" theme="selectize" ng-model="formData.LOC_CITY" id="LOC_CITY" name="LOC_CITY" on-select="getLocSubDistrict($item,$model)">
                             <ui-select-match>
                                 {{$select.selected.CITY}}
                             </ui-select-match>
@@ -182,10 +182,10 @@
                 </div>
                 <div class="form-group">
                     <label ng-class="labelControlCss" for="LOC_DISTRICT">
-                        {{'SUBDISTRICT'|translate}}
+                        {{'SUBDISTRICT'|translate}} <span class="symbol required"></span>
                     </label>
                     <div ng-class="formControlCss">
-                        <ui-select theme="selectize" ng-model="formData.LOC_DISTRICT" id="LOC_DISTRICT" name="LOC_DISTRICT" on-select="onLocSubDistrictChange($item)">
+                        <ui-select required ng-disabled="inputDisabled" theme="selectize" ng-model="formData.LOC_DISTRICT" id="LOC_DISTRICT" name="LOC_DISTRICT" on-select="onLocSubDistrictChange($item)">
                             <ui-select-match>
                                 {{$select.selected.DISTRICT}}
                             </ui-select-match>
@@ -200,7 +200,7 @@
                         {{'ZIPCODE'|translate}}
                     </label>
                     <div ng-class="formControlCss">
-                        <input zipcode type="text" maxlength="5" class="form-control" id="LOC_ZIPCODE" name="LOC_ZIPCODE" ng-model="formData.LOC_ZIPCODE">
+                        <input ng-disabled="inputDisabled" zipcode type="text" maxlength="5" class="form-control" id="LOC_ZIPCODE" name="LOC_ZIPCODE" ng-model="formData.LOC_ZIPCODE">
                     </div>
                 </div>
                 <div class="form-group">
@@ -208,7 +208,7 @@
                         {{'DEED_ADD_NO'|translate}}
                     </label>
                     <div ng-class="formControlCss">
-                        <input type="text" maxlength="10" placeholder="" class="form-control" id="LOC_ADD_NO" name="LOC_ADD_NO" ng-model="formData.LOC_ADD_NO">
+                        <input ng-disabled="inputDisabled" type="text" maxlength="10" class="form-control" id="LOC_ADD_NO" name="LOC_ADD_NO" ng-model="formData.LOC_ADD_NO">
                     </div>
                 </div>
                 <div class="form-group">
@@ -216,7 +216,7 @@
                         {{'DEED_ADD_MOO'|translate}}
                     </label>
                     <div ng-class="formControlCss">
-                        <input type="text" maxlength="5" placeholder="" class="form-control" id="LOC_ADD_MOO" name="LOC_ADD_MOO" ng-model="formData.LOC_ADD_MOO">
+                        <input type="text" maxlength="5" ng-disabled="inputDisabled" class="form-control" id="LOC_ADD_MOO" name="LOC_ADD_MOO" ng-model="formData.LOC_ADD_MOO">
                     </div>
                 </div>
                 <div class="form-group">
@@ -224,7 +224,7 @@
                         {{'DEED_ADD_BANN'|translate}}
                     </label>
                     <div ng-class="formControlCss">
-                        <input type="text" maxlength="100" placeholder="" class="form-control" id="LOC_ADD_BANN" name="LOC_ADD_BANN" ng-model="formData.LOC_ADD_BANN">
+                        <input type="text" maxlength="100" ng-disabled="inputDisabled" class="form-control" id="LOC_ADD_BANN" name="LOC_ADD_BANN" ng-model="formData.LOC_ADD_BANN">
                     </div>
                 </div>
                 <div class="form-group">
@@ -232,7 +232,7 @@
                         {{'SOI'|translate}}
                     </label>
                     <div ng-class="formControlCss">
-                        <input type="text" maxlength="50" placeholder="" class="form-control" id="LOC_ADD_SOI" name="LOC_ADD_SOI" ng-model="formData.LOC_ADD_SOI">
+                        <input type="text" maxlength="50" ng-disabled="inputDisabled" class="form-control" id="LOC_ADD_SOI" name="LOC_ADD_SOI" ng-model="formData.LOC_ADD_SOI">
                     </div>
                 </div>
                 <div class="form-group">
@@ -240,7 +240,7 @@
                         {{'ROAD'|translate}}
                     </label>
                     <div ng-class="formControlCss">
-                        <input type="text" maxlength="50" placeholder="" class="form-control" id="LOC_ADD_ROAD" name="LOC_ADD_ROAD" ng-model="formData.LOC_ADD_ROAD">
+                        <input type="text" maxlength="50" ng-disabled="inputDisabled" class="form-control" id="LOC_ADD_ROAD" name="LOC_ADD_ROAD" ng-model="formData.LOC_ADD_ROAD">
                     </div>
                 </div>
                 <div class="form-group">
@@ -271,7 +271,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="checkbox clip-check check-primary checkbox-inline">
-                            <input type="checkbox" id="REDEEM_FLAG" ng-model="formData.REDEEM_FLAG" ng-true-value="'Y'" ng-false-value="'N'">
+                            <input ng-disabled="inputDisabled" type="checkbox" id="REDEEM_FLAG" ng-model="formData.REDEEM_FLAG" ng-true-value="'Y'" ng-false-value="'N'">
                             <label for="REDEEM_FLAG">
                                 {{'REDEEM_FLAG'|translate}}
                             </label>
@@ -283,7 +283,7 @@
                         {{'HEAD_GROUP'|translate}}
                     </label>
                     <div class="col-sm-8">
-                        <input type="text" maxlength="3" class="form-control" ng-model="formData.HEAD_GROUP" id="HEAD_GROUP" name="HEAD_GROUP" />
+                        <input ng-disabled="inputDisabled" type="text" maxlength="3" class="form-control" ng-model="formData.HEAD_GROUP" id="HEAD_GROUP" name="HEAD_GROUP" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -291,7 +291,7 @@
                         {{'รวมพื้นที่ตารางวาทั้งหมด'|translate}}
                     </label>
                     <div class="col-sm-8">
-                        <input format type="text" class="form-control" ng-model="formData.AREA_WA" id="AREA_WA" name="AREA_WA" />
+                        <input ng-disabled="inputDisabled" format type="text" class="form-control" ng-model="formData.AREA_WA" id="AREA_WA" name="AREA_WA" decimal="1"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -299,7 +299,7 @@
                         {{'รวมพื้นที่ตารางเมตรทั้งหมด'|translate}}
                     </label>
                     <div class="col-sm-8">
-                        <input format type="text" class="form-control" ng-model="formData.AREA_METER" id="AREA_METER" name="AREA_METER" />
+                        <input ng-disabled="inputDisabled" format type="text" class="form-control" ng-model="formData.AREA_METER" id="AREA_METER" name="AREA_METER" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -307,7 +307,7 @@
                         {{'NPA_NO'|translate}}
                     </label>
                     <div class="col-sm-8">
-                        <input type="text" maxlength="50" class="form-control" ng-model="formData.NPA_NO" id="NPA_NO" name="NPA_NO" />
+                        <input ng-disabled="inputDisabled" type="text" maxlength="50" class="form-control" ng-model="formData.NPA_NO" id="NPA_NO" name="NPA_NO" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -315,13 +315,13 @@
                     <div class="col-sm-8">
                         <div class="col-sm-3 no-padding">
                             <div class="radio clip-radio radio-primary">
-                                <input type="radio" name="NPA_STATUS" ng-value="'Y'" ng-model="formData.NPA_STATUS" id="NPA_STATUS_Y" />
+                                <input ng-disabled="inputDisabled" type="radio" name="NPA_STATUS" ng-value="'Y'" ng-model="formData.NPA_STATUS" id="NPA_STATUS_Y" />
                                 <label for="NPA_STATUS_Y">{{ 'ขายแล้ว'|translate }}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="radio clip-radio radio-primary">
-                                <input type="radio" name="NPA_STATUS" ng-value="'N'" ng-model="formData.NPA_STATUS" id="NPA_STATUS_N" />
+                                <input ng-disabled="inputDisabled" type="radio" name="NPA_STATUS" ng-value="'N'" ng-model="formData.NPA_STATUS" id="NPA_STATUS_N" />
                                 <label for="NPA_STATUS_N">{{ 'ยังไม่ขาย'|translate }}</label>
                             </div>
                         </div>
@@ -339,23 +339,23 @@
                     <label ng-class="labelControlCss" for="LOCATION_LAT">
                     </label>
                     <div ng-class="formControlCss">
-                        <a class="btn btn-wide btn-squared btn-orange" href="#" ng-click="openMap()"><i class="glyphicon glyphicon-map-marker"></i> {{'MAP'|translate}}</a>
+                        <a ng-if="!inputDisabled" class="btn btn-wide btn-squared btn-orange" href="#" ng-click="openMap()"><i class="glyphicon glyphicon-map-marker"></i> {{'MAP'|translate}}</a>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-class="{'has-error':form.LOCATION_LAT.$dirty && form.LOCATION_LAT.$invalid,'has-successx':form.LOCATION_LAT.$valid}">
                     <label ng-class="labelControlCss" for="LOCATION_LAT">
-                        {{'LAT'|translate}}
+                        {{'LAT'|translate}} <span class="required symbol"></span>
                     </label>
                     <div ng-class="formControlCss">
-                        <input type="text" readonly class="form-control" id="LOCATION_LAT" name="LOCATION_LAT" ng-model="formData.LOCATION_LAT">
+                        <input ng-disabled="inputDisabled" type="text" readonly class="form-control" id="LOCATION_LAT" name="LOCATION_LAT" ng-model="formData.LOCATION_LAT">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-class="{'has-error':form.LOCATION_LONG.$dirty && form.LOCATION_LONG.$invalid,'has-successx':form.LOCATION_LONG.$valid}">
                     <label ng-class="labelControlCss" for="LOCATION_LONG">
-                        {{'LONG'|translate}}
+                        {{'LONG'|translate}} <span class="required symbol"></span>
                     </label>
                     <div ng-class="formControlCss">
-                        <input type="text" readonly class="form-control" id="LOCATION_LONG" name="LOCATION_LONG" ng-model="formData.LOCATION_LONG">
+                        <input ng-disabled="inputDisabled" type="text" readonly class="form-control" id="LOCATION_LONG" name="LOCATION_LONG" ng-model="formData.LOCATION_LONG">
                     </div>
                 </div>
                 <div class="form-group">
@@ -363,7 +363,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="checkbox clip-check check-primary checkbox-inline">
-                            <input type="checkbox" id="LOCATION_CONFIG" ng-model="formData.LOCATION_CONFIG" checked="">
+                            <input ng-disabled="inputDisabled" type="checkbox" id="LOCATION_CONFIG" ng-model="formData.LOCATION_CONFIG" checked="">
                             <label for="LOCATION_CONFIG">
                                 {{'LOCATION_CONFIRMED'|translate}}
                             </label>
@@ -374,7 +374,7 @@
         </div>
         <fieldset class="no-radius">
             <legend>{{'REMARK'|translate}}</legend>
-            <textarea class="form-control" id="HEAD_COL_REMARK" name="HEAD_COL_REMARK" ng-model="formData.HEAD_COL_REMARK"></textarea>
+            <textarea ng-disabled="inputDisabled" class="form-control" id="HEAD_COL_REMARK" name="HEAD_COL_REMARK" ng-model="formData.HEAD_COL_REMARK"></textarea>
         </fieldset>
     </form>
 </div>

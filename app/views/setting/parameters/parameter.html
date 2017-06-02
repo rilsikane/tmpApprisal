@@ -4,6 +4,13 @@
             <div class="panel panel-white no-radius">
                 <div class="panel-heading no-radius bg-deep-pink border-light">
                     <h4 class="panel-title">{{MAJOR_CODE|translate}}</h4>
+                    <ul class="panel-heading-tabs border-light">
+                        <li>
+                            <button type="button" class="btn btn-o btn-squared border-white" ng-click="add()">
+                                {{'BUTTON.ADD'|translate}}
+                            </button>
+                        </li>
+                    </ul>
                 </div>
                 <div class="panel-body border-light">
                     <div class="col-md-12">
@@ -14,25 +21,26 @@
                                 </a>
                                 <div class="form-group">
                                     <input type="text" placeholder="{{'SEARCH'|translate}}" class="form-control" ng-keypress="searchEnter($event)" ng-model="searchKeyword" />
-                                    <button class="btn search-button" type="button" style="right:20px;" tooltip="{{'BUTTON.SEARCH'|translate}}" ng-click="searchClick()">
+                                    <button class="btn search-button" type="button" tooltip="{{'BUTTON.SEARCH'|translate}}" ng-click="searchClick()">
                                         <i class="ti-search"></i>
                                     </button>
-                                    <button class="btn search-button" type="button" style="right:-5px;" tooltip="{{'BUTTON.ADD'|translate}}" ng-click="add()">
+                                    <!--<button class="btn search-button" type="button" style="right:-5px;" tooltip="{{'BUTTON.ADD'|translate}}" ng-click="add()">
                                         <i class="ti-plus"></i>
-                                    </button>
+                                    </button>-->
                                 </div>
                             </form>
                         </div>
                         <ul class="list-group">
                             <li ng-repeat="item in parameters" class="list-group-item no-radius">
                                 <div>
-                                    <h4 class="text-info">{{item.CODE_MINOR}} {{item.CODE_MINOR_NAME}}</h4>
-                                    <i class="text-extra-small">{{'E_DATE'|translate}} : {{item.E_DATE | date:'dd/MM/yyyy HH:mm'}} {{'E_BY'|translate}} : {{item.E_BY}}</i>
+                                    <h5 class="text-info">{{'CODE_MINOR'|translate}} : {{item.CODE_MINOR}}</h5>
+                                    <h5 class="text-info">{{'CODE_MINOR_NAME'|translate}} : {{item.CODE_MINOR_NAME}}</h5>
+                                    <span class="text-extra-small">{{'E_DATE'|translate}} : {{item.E_DATE | date:'dd/MM/yyyy HH:mm'}} {{'E_BY'|translate}} : {{item.E_BY}}</span>
                                     <span style="cursor:pointer;" class="pull-right" ng-click="edit(item)"><i class="fa fa-pencil"></i></span>
                                 </div>
                             </li>
                         </ul>
-                        <!--<pager total-items="provinceTotalItems" ng-model="currentProvincePage" ng-change="getProvince()"></pager>-->
+                        <pagination boundary-links="true" items-per-page="app.itemsPerPage" ng-change="getParameter()" max-size="5" total-items="paging1Total" ng-model="paging1CurrentPage" class="pagination-sm  no-padding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
                     </div>
 
                 </div>

@@ -42,7 +42,7 @@
                                     <!--<td ng-class="item.TFL |sla">{{item.ACT_TIME_TEXT}}</td>-->
                                     <td><i class="fa fa-circle" ng-class="item.TFL | sla2"></i> {{item.ACT_TIME_TEXT}}</td>
                                     
-                                    <td ng-if="item.CHANGE_MODE==1"><a ui-sref="app.testform({ACT_HIST_ID:item.ACT_HIST_ID,H:0})">{{item.REQUEST_NO}}</a></td>
+                                    <td ng-if="item.CHANGE_MODE==1"><a ui-sref="app.testform({ACT_HIST_ID:item.ACT_HIST_ID,H:0,S:'I'})">{{item.REQUEST_NO}}</a></td>
                                     <td ng-if="!(item.CHANGE_MODE==1)">{{item.REQUEST_NO}}</td>
                                     <td>{{item.CA_NO}}</td>
                                     <td>{{item.REQ_TYPE}}</td>
