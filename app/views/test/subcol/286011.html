@@ -100,15 +100,15 @@
             <label  ng-class="labelControlCss" for="SERIAL_NO_FROM">
                 {{'SERIAL_NO_FROM'|translate}}
             </label>
-            <div class="col-sm-4" ng-class="formControlCss">
+            <div ng-class="formControlCss">
                 <input type="text" maxlength="50"  ng-disabled="inputDisabled" class="form-control" id="SERIAL_NO_FROM" name="SERIAL_NO_FROM" ng-model="formData.SERIAL_NO_FROM">
             </div>
-            <label class="col-sm-1" ng-class="labelControlCss" for="SERIAL_NO_TO">
+            <!-- <label class="col-sm-1" ng-class="labelControlCss" for="SERIAL_NO_TO">
                 {{'SERIAL_NO_TO'|translate}}
             </label>
             <div class="col-sm-3" ng-class="formControlCss">
                 <input type="text" maxlength="50"  ng-disabled="inputDisabled" class="form-control" id="SERIAL_NO_TO" name="SERIAL_NO_TO" ng-model="formData.SERIAL_NO_TO">
-            </div>
+            </div> -->
         </div>
         <div ng-if="isAppraiser" class="form-group">
             <label ng-class="labelControlCss" for="MACHINE_USAGE">
@@ -216,7 +216,7 @@
                 {{'DETAIL'|translate}}
             </label>
             <div ng-class="formControlCss">
-                <textarea class="form-control" ng-disabled="inputDisabled" style="max-width:100%;" maxlength="1000" ng-model="formData.DETAIL" id="DETAIL" name="DETAIL"></textarea>
+                <textarea rows="5" class="form-control" ng-disabled="inputDisabled" style="max-width:100%;" maxlength="1000" ng-model="formData.DETAIL" id="DETAIL" name="DETAIL"></textarea>
             </div>
         </div>
         <div ng-if="isAppraiser" class="form-group" ng-class="{'has-error':form.AGE_USED_YEAR.$invalid}">
@@ -270,7 +270,7 @@
                 </div>
             </div>
         </div>
-        <div ng-if="isAppraiser" class="form-group" ng-class="{'has-error':form.ES_SALE_MONTH.$invalid}">
+        <!-- <div ng-if="isAppraiser" class="form-group" ng-class="{'has-error':form.ES_SALE_MONTH.$invalid}">
             <label ng-class="labelControlCss" for="ES_SALE_YEAR">
                 {{'ES_SALE'|translate}}<span class="symbol"></span>
             </label>
@@ -290,7 +290,7 @@
                     </label>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="form-group" ng-class="{'has-error':form.REMARK.$dirty && form.REMARK.$invalid, 'has-success':form.REMARK.$valid}">
             <label ng-class="labelControlCss" for="REMARK">
                 {{'REMARK'|translate}}
