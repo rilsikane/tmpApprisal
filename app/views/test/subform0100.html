@@ -153,7 +153,8 @@
                 </div>
                 <div class="form-group" ng-class="{'has-error':form.CREDIT_REQUEST.$dirty && form.CREDIT_REQUEST.$invalid, 'has-success':form.CREDIT_REQUEST.$valid}">
                     <label class="col-sm-3 control-label" for="CREDIT_REQUEST">
-                        {{'CREDIT_REQUEST'|translate}} <span ng-class="{'valid-error': (!formData.NPA_TYPE && formData.CREDIT_REQUEST < 1)||form.CREDIT_REQUEST.$invalid,'valid-success': !(!formData.NPA_TYPE && formData.CREDIT_REQUEST < 1) && form.CREDIT_REQUEST.$valid}"></span>
+                        {{'CREDIT_REQUEST'|translate}} <!-- <span ng-class="{'valid-error': (!formData.NPA_TYPE && formData.CREDIT_REQUEST < 1)||form.CREDIT_REQUEST.$invalid,'valid-success': !(!formData.NPA_TYPE && formData.CREDIT_REQUEST < 1) && form.CREDIT_REQUEST.$valid}"></span> -->
+                        <span class="symbol required" ></span>
                     </label>
                     <div class="col-sm-8 no-padding">
                         <input format ng-disabled="inputDisabled" ng-required="true" ng-model="$parent.formData.CREDIT_REQUEST" type="text" ng-change="calDebt()" class="form-control" id="CREDIT_REQUEST" name="CREDIT_REQUEST" />
@@ -169,7 +170,7 @@
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="CREDIT_LIMIT">
-                        {{'CREDIT_LIMIT'|translate}}
+                        {{'CREDIT_LIMIT'|translate}}<span ng-class="{'valid-error': (!formData.NPA_TYPE && formData.CREDIT_LIMIT < 1),'valid-success': !(!formData.NPA_TYPE && formData.CREDIT_LIMIT < 1)}"></span>
                     </label>
                     <div class="col-sm-8 no-padding">
                         <input format ng-model="$parent.formData.CREDIT_LIMIT" disabled type="text" class="form-control" id="CREDIT_LIMIT" name="CREDIT_LIMIT" />
@@ -259,7 +260,7 @@
         </div>
     </div>
     <div class="pull-right">
-        <button class="btn btn-primary btn-o" ng-click="submit(form,'expand-left')" ng-disabled="(($parent.formData.$invalid) || inputDisabled) || (!formData.NPA_TYPE && formData.CREDIT_REQUEST < 1) || (!formData.NPA_TYPE && $parent.formData.CUSTOMERS.length < 1)">
+        <button class="btn btn-primary btn-o" ng-click="submit(form,'expand-left')" ng-disabled="(($parent.formData.$invalid) || inputDisabled) || (!formData.NPA_TYPE && formData.CREDIT_LIMIT < 1) || (!formData.NPA_TYPE && $parent.formData.CUSTOMERS.length < 1)">
             <i class="glyphicon glyphicon-floppy-save"></i>{{'BUTTON.SAVE'|translate}}
         </button>
     </div>

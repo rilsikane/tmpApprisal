@@ -510,4 +510,49 @@
             }
         });
     }
+    $scope.copyHeadCol = function (colleteral) {
+        $scope.confirmCopyAndSave(function (inputValue) {
+            if (inputValue) {
+                radasoft.copyHeadCol({ JOB_RUNNING_ID :colleteral.JOB_RUNNING_ID ,HEAD_COL_RUNNING_ID: colleteral.HEAD_COL_RUNNING_ID, sCopy:inputValue}).then(function (response) {
+                    if(response.data.IsPass){
+                        $scope.getHeadColl();
+                        radasoft.success();
+                    }else{
+                        radasoft.error(undefined,response.data.MsgError,undefined);
+                    }
+                });
+            }
+        });
+    }
+    $scope.confirmCopyAndSave = function (callback) {
+        swal({
+          title: "คัดลอก",
+          text: "จำนวนรายการ:",
+          type: "input",
+          showCancelButton: true,
+          closeOnConfirm: false,
+          animation: "slide-from-top",
+          inputPlaceholder: "ระบุจำนวนรายการ",
+          inputType:"number",
+          confirmButtonColor: '#007AFF',
+          confirmButtonText: $translate.instant('BUTTON.YES'),
+          cancelButtonText: $translate.instant('BUTTON.NO'),
+        },
+        function(inputValue){
+          if (inputValue === false) return false;
+          
+          if (inputValue === "") {
+            swal.showInputError("กรุณาระบุจำนวนรายการ");
+            return false
+          }else{
+            var val = parseInt(inputValue);
+            if(val >0 && val <= 100){
+                callback(inputValue);
+            }else{
+                swal.showInputError("จำนวนรายการต้องมากกว่า 0 และน้อยกว่า 100");
+                return false
+            }
+          }
+        });
+    }
 }]);

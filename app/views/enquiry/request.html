@@ -92,13 +92,20 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="pull-right">
+                            
+
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="control-label">{{'REQUEST_NO'|translate}}</label>
+                                <input type="text"  class="form-control" id="REQUEST_NO" name="REQUEST_NO" ng-model="myFilter.REQUEST_NO">
+                            </div>
+                            <div class="pull-right" style="margin-top: 25px;">
                                 <button type="button" class="btn btn-primary btn-o" ng-click="onSearchClick()">ค้นหา</button>
                                 <button type="button" class="btn btn-o btn-primary" ng-click="onResetSearch()">
                                     ล้างเงื่อนไขการค้นหา
                                 </button>
                             </div>
-
                         </div>
 
                     </fieldset>
