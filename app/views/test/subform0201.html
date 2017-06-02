@@ -248,7 +248,7 @@
                         {{'USE_CITY_PLAN'|translate}}
                     </label>
                     <div ng-class="formControlCss">
-                        <ui-select theme="selectize" ng-model="formData.USE_CITY_PLAN" id="USE_CITY_PLAN" name="USE_CITY_PLAN">
+                        <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.USE_CITY_PLAN" id="USE_CITY_PLAN" name="USE_CITY_PLAN">
                             <ui-select-match>
                                 {{$select.selected.NAME}}
                             </ui-select-match>

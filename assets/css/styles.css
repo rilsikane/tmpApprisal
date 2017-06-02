@@ -1,4 +1,4 @@
-/* ---------------------------------------------------------------------- 
+/* ----------------------------------------------------------------------
 >>> TABLE OF CONTENT
 -------------------------------------------------------------------------
 1 - Basic Elements & Classes
@@ -5105,6 +5105,7 @@ textarea, select, input[type="text"], input[type="password"], input[type="dateti
     textarea[disabled], input[disabled], select[disabled] {
         background: #f7f7f8 !important;
         border-color: #F8F8F8 !important;
+        color: #B4B4B4 !important;
     }
 
         textarea[disabled]:hover, textarea[disabled]:focus, input[disabled]:hover, input[disabled]:focus, select[disabled]:hover, select[disabled]:focus {
@@ -12664,4 +12665,13 @@ fieldset {
 }
 .redBG{
     background: red;
+}
+.disabled-table{
+    background: #F7F7F8;
+}
+.disabled-table > thead > tr > th, .disabled-table > tbody > tr > th{
+    color: #858585 !important;
+}
+.disabled-table > thead > tr > td, .disabled-table > tbody > tr > td{
+    color: #B4B4B4 !important;
 }
