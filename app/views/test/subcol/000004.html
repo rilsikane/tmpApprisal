@@ -5,7 +5,7 @@
     <div class="panel-body">
         <fieldset ng-if="isAppraiser" class="no-radius">
             <legend>ใบอนุญาตปลูกสร้างอาคาร</legend>
-            <table class="table table-bordered table-hover" id="sample-table-4">
+            <table ng-class="{'disabled-table':inputDisabled}" class="table table-bordered table-hover" id="sample-table-4">
                 <thead>
                     <tr>
                         <th class="col-md-2">{{'PERMIT_LICENSE_CNT'|translate}}</th>
@@ -14,7 +14,7 @@
                         <th class="col-md-2">{{'PERMIT_START'|translate}}</th>
                         <th class="col-md-2">{{'PERMIT_END'|translate}}</th>
                         <th class="col-md-1">
-                            <button type="button" class="btn btn-primary" ng-click="addRentPermit()">
+                            <button ng-disabled="inputDisabled" type="button" class="btn btn-primary" ng-click="addRentPermit()">
                                 <i class="ti-plus"></i> {{'BUTTON.ADD'|translate}}
                             </button>
                         </th>
@@ -29,15 +29,15 @@
                         <td>{{item.PERMIT_END | thaiDate:'dd/MM/yyyy'}}</td>
                         <td class="center">
                             <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                <a href="#" ng-click="modRentPermit(item)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i class="fa fa-pencil"></i></a>
-                                <a href="#" ng-click="delRentPermit(item)" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i class="fa fa-times fa fa-white"></i></a>
+                                <a ng-if="tab.update" href="#" ng-click="modRentPermit(item)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i class="fa fa-pencil"></i></a>
+                                <a ng-if="tab.delete" href="#" ng-click="delRentPermit(item)" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i class="fa fa-times fa fa-white"></i></a>
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </fieldset>
-        
+
         <fieldset class="no-radius">
             <legend>ข้อมูลอาคาร</legend>
             <div class="form-group">
@@ -45,7 +45,7 @@
                     {{'PROJECT_NAME'|translate}}
                 </label>
                 <div class="col-sm-9">
-                    <input type="text" placeholder="" class="form-control" id="PROJECT_NAME" name="PROJECT_NAME" ng-model="formData.PROJECT_NAME">
+                    <input ng-disabled="inputDisabled" type="text" placeholder="" class="form-control" id="PROJECT_NAME" name="PROJECT_NAME" ng-model="formData.PROJECT_NAME">
                 </div>
             </div>
             <div class="form-group">
@@ -53,7 +53,7 @@
                     {{'FLOOR_NO'|translate}}
                 </label>
                 <div class="col-sm-9">
-                    <input type="text" placeholder="" class="form-control" id="FLOOR_NO" name="FLOOR_NO" ng-model="formData.FLOOR_NO">
+                    <input ng-disabled="inputDisabled" type="text" placeholder="" class="form-control" id="FLOOR_NO" name="FLOOR_NO" ng-model="formData.FLOOR_NO">
                 </div>
             </div>
             <div class="form-group">
@@ -61,7 +61,7 @@
                     ขนาดพื้นที่ (ตร.ม.)
                 </label>
                 <div class="col-sm-9">
-                    <input usespace type="text" class="form-control" id="AREA_METER" name="AREA_METER" ng-model="formData.AREA_METER">
+                    <input ng-disabled="inputDisabled" usespace type="text" class="form-control" id="AREA_METER" name="AREA_METER" ng-model="formData.AREA_METER">
                 </div>
             </div>
             <div class="form-group">
@@ -69,7 +69,7 @@
                     พื้นที่ใช้สอย (ตร.ม.)
                 </label>
                 <div class="col-sm-9">
-                    <input usespace type="text" class="form-control" id="USAGE_AREA" name="USAGE_AREA" ng-model="formData.USAGE_AREA">
+                    <input ng-disabled="inputDisabled" usespace type="text" class="form-control" id="USAGE_AREA" name="USAGE_AREA" ng-model="formData.USAGE_AREA">
                 </div>
             </div>
         </fieldset>
@@ -80,7 +80,7 @@
                     แบบแปลนที่ใช้ประเมิน
                 </label>
                 <div class="col-sm-9">
-                    <ui-select theme="selectize" ng-model="formData.EVALUATE_PLAN" id="EVALUATE_PLAN" name="EVALUATE_PLAN">
+                    <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.EVALUATE_PLAN" id="EVALUATE_PLAN" name="EVALUATE_PLAN">
                         <ui-select-match>
                             {{$select.selected.NAME}} {{$select.selected.NAME}}
                         </ui-select-match>
@@ -95,7 +95,7 @@
                     ความสมบูรณ์ในการก่อสร้าง
                 </label>
                 <div class="col-sm-9">
-                    <ui-select theme="selectize" ng-model="formData.ONST_COMPLETE" id="ONST_COMPLETE" name="ONST_COMPLETE">
+                    <ui-select ng-disabled="inputDisabled"theme="selectize" ng-model="formData.ONST_COMPLETE" id="ONST_COMPLETE" name="ONST_COMPLETE">
                         <ui-select-match>
                             {{$select.selected.NAME}} {{$select.selected.NAME}}
                         </ui-select-match>
@@ -110,7 +110,7 @@
                     การเข้าสำรวจตรวจสอบอาคาร
                 </label>
                 <div class="col-sm-9">
-                    <ui-select theme="selectize" ng-model="formData.SURVEY_CHKBUILD" id="SURVEY_CHKBUILD" name="SURVEY_CHKBUILD">
+                    <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.SURVEY_CHKBUILD" id="SURVEY_CHKBUILD" name="SURVEY_CHKBUILD">
                         <ui-select-match>
                             {{$select.selected.NAME}} {{$select.selected.NAME}}
                         </ui-select-match>
