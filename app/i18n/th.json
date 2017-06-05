@@ -696,5 +696,8 @@
     "MACHINE_ENERGY4" :"น้ำมัน",
     "MACHINE_OTHER" :"อื่นๆ"
   },
-  "BRAND_MODEL":"ยี่ห้อ"
+  "BRAND_MODEL":"ยี่ห้อ",
+  "SHIP": {
+    "REGIS_YN" : "เรือจดทะเบียนหรือไม่"
+  }
 }

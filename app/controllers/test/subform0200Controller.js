@@ -704,6 +704,7 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
                 break;//รถยนต์
             case 286039:
                 $scope.initShipMasterData();
+                $scope.initDepliciation();
                 break;//เรือ
             case 999999:
                 $scope.initOtherMasterData();
@@ -739,15 +740,22 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
         $scope.formData.REPLACEMENT_COST =  $scope.formData.REPLACEMENT_COST|0.0;
         $scope.formData.DEPLICIATIONPERCENT =  $scope.formData.DEPLICIATIONPERCENT|0.0;
         $scope.formData.DEPLICIATIONPRICE = $scope.formData.DEPLICIATIONPRICE|0.0;
-        $scope.formData.APPR_CUR_OTHER_AMOUNT = $scope.formData.APPR_CUR_OTHER_AMOUNT|0.0;
+        $scope.formData.APPR_CUR_NET_TOTAL = $scope.formData.APPR_CUR_NET_TOTAL|0.0;
         $scope.calDepliciation();
 
     }
     $scope.calDepliciation = function(){
-        $scope.formData.APPR_CUR_OTHER_AMOUNT = $scope.formData.REPLACEMENT_COST - $scope.formData.DEPLICIATIONPRICE;
+        $scope.formData.APPR_CUR_NET_TOTAL = $scope.formData.REPLACEMENT_COST - $scope.formData.DEPLICIATIONPRICE;
     }
     $scope.initMachine = function(){
         $scope.radioMachineOperation = [{ VALUE: 'S', NAME: 'Stand alone' }, { VALUE: 'L', NAME: 'Line ผลิต' }];
+    }
+    $scope.onShipRegisChange = function(){
+        if('N'==$scope.formData.REGIS_YN){
+            $scope.formData.REGIS_NO = "-";
+        }else{
+            $scope.formData.REGIS_NO = "";
+        }
     }
 
     $scope.init();

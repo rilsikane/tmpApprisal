@@ -19,14 +19,14 @@
                 <input format maxlength="24" ng-disabled="inputDisabled" type="text" class="form-control" ng-model="formData.REPLACEMENT_COST" />
             </div>
         </div> -->
-        <div ng-if="isAppraiser" class="form-group" ng-class="{'has-error':form.APPR_CUR_NET_TOTAL.$dirty && form.APPR_CUR_NET_TOTAL.$invalid, 'has-success':form.APPR_CUR_NET_TOTAL.$valid}">
+        <!-- <div ng-if="isAppraiser" class="form-group" ng-class="{'has-error':form.APPR_CUR_NET_TOTAL.$dirty && form.APPR_CUR_NET_TOTAL.$invalid, 'has-success':form.APPR_CUR_NET_TOTAL.$valid}">
             <label ng-class="labelControlCss" for="APPR_CUR_NET_TOTAL">
                 ราคาประเมินหลักทรัพย์ <span class="symbol required"></span>
             </label>
             <div ng-class="formControlCss">
                 <input format required type="text" maxlength="24" ng-disabled="inputDisabled" class="form-control" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" ng-model="formData.APPR_CUR_NET_TOTAL">
             </div>
-        </div>
+        </div> -->
         <div ng-if="isAppraiser" class="form-group" ng-class="{'has-error':form.MACHINE_LOCATION.$dirty && form.MACHINE_LOCATION.$invalid, 'has-success':form.MACHINE_LOCATION.$valid}">
             <label ng-class="labelControlCss" for="MACHINE_LOCATION">
                 {{'MACHINE_LOCATION'|translate}}<span class="symbol required"></span>
@@ -384,7 +384,7 @@
                     {{'CAR.APPR_CUR_OTHER_AMOUNT'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.APPR_CUR_OTHER_AMOUNT" id="APPR_CUR_OTHER_AMOUNT" name="APPR_CUR_OTHER_AMOUNT" ng-readonly="true"/>
+                    <input format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.APPR_CUR_NET_TOTAL" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" ng-readonly="true"/>
                 </div>
             </div>
         </fieldset>
