@@ -293,6 +293,7 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
     }
 
     $scope.initCarMasterData = function () {
+
         $scope.getInsuredCode().then(function () {
             radasoft.getProvince({}).then(function (response) {
                 $scope.selectProvince = response.data;
@@ -697,6 +698,7 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
                 break;//เครื่องจักร
             case 286038:
                 $scope.initCarMasterData();
+                $scope.initCarPrice();
                 break;//รถยนต์
             case 286039:
                 $scope.initShipMasterData();
@@ -730,6 +732,17 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
                 });
             });
         });
+    }
+    $scope.initCarPrice = function(){
+        $scope.formData.REPLACEMENT_COST =  $scope.formData.REPLACEMENT_COST|0.0;
+        $scope.formData.DEPLICIATIONPERCENT =  $scope.formData.DEPLICIATIONPERCENT|0.0;
+        $scope.formData.DEPLICIATIONPRICE = $scope.formData.DEPLICIATIONPRICE|0.0;
+        $scope.formData.APPR_CUR_OTHER_AMOUNT = $scope.formData.APPR_CUR_OTHER_AMOUNT|0.0;
+        $scope.calCarPrice();
+
+    }
+    $scope.calCarPrice = function(){
+        $scope.formData.APPR_CUR_OTHER_AMOUNT = $scope.formData.REPLACEMENT_COST - $scope.formData.DEPLICIATIONPRICE;
     }
 
     $scope.init();
