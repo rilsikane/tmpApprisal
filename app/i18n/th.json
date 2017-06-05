@@ -688,5 +688,13 @@
     "DISTANCE":"ระยะทาง (กม.)",
     "OWNER":"ผู้ครอบครอง"
   },
+  "MACHINE": {
+    "RESPOND" : "ภาระผูกพันมีภาระจำยอม",
+    "MACHINE_ENERGY1" :"พลังงานไฟฟ้า",
+    "MACHINE_ENERGY2" :"พลังงานกล",
+    "MACHINE_ENERGY3" :"พลังงานลม",
+    "MACHINE_ENERGY4" :"น้ำมัน",
+    "MACHINE_OTHER" :"อื่นๆ"
+  },
   "BRAND_MODEL":"ยี่ห้อ"
 }

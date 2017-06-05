@@ -695,10 +695,12 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
                 $scope.initCondoMasterData();
                 break;//คอนโดมิเนียม/อาคารชุด/ห้องชุด
             case 286011:
+                $scope.initMachine();
+                $scope.initDepliciation();
                 break;//เครื่องจักร
             case 286038:
                 $scope.initCarMasterData();
-                $scope.initCarPrice();
+                $scope.initDepliciation();
                 break;//รถยนต์
             case 286039:
                 $scope.initShipMasterData();
@@ -733,16 +735,19 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
             });
         });
     }
-    $scope.initCarPrice = function(){
+    $scope.initDepliciation = function(){
         $scope.formData.REPLACEMENT_COST =  $scope.formData.REPLACEMENT_COST|0.0;
         $scope.formData.DEPLICIATIONPERCENT =  $scope.formData.DEPLICIATIONPERCENT|0.0;
         $scope.formData.DEPLICIATIONPRICE = $scope.formData.DEPLICIATIONPRICE|0.0;
         $scope.formData.APPR_CUR_OTHER_AMOUNT = $scope.formData.APPR_CUR_OTHER_AMOUNT|0.0;
-        $scope.calCarPrice();
+        $scope.calDepliciation();
 
     }
-    $scope.calCarPrice = function(){
+    $scope.calDepliciation = function(){
         $scope.formData.APPR_CUR_OTHER_AMOUNT = $scope.formData.REPLACEMENT_COST - $scope.formData.DEPLICIATIONPRICE;
+    }
+    $scope.initMachine = function(){
+        $scope.radioMachineOperation = [{ VALUE: 'S', NAME: 'Stand alone' }, { VALUE: 'L', NAME: 'Line ผลิต' }];
     }
 
     $scope.init();
