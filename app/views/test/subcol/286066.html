@@ -8,7 +8,7 @@
                 {{'SURVEY_APPR_DATE'|translate}}
             </label>
             <div class="col-sm-8">
-                <input datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.SURVEY_APPR_DATE" ng-click="openDatePicker($event,'SURVEY_APPR_DATE')" type="text" class="form-control" ng-model="formData.SURVEY_APPR_DATE" />
+                <input ng-disabled="inputDisabled" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.SURVEY_APPR_DATE" ng-click="openDatePicker($event,'SURVEY_APPR_DATE')" type="text" class="form-control" ng-model="formData.SURVEY_APPR_DATE" />
             </div>
         </div>
         <div class="form-group">
@@ -16,7 +16,7 @@
                 <i class="fa fa-bolt"></i> {{'ROOM_NO'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" maxlength="30" placeholder="" class="form-control" id="ROOM_NO" name="ROOM_NO" ng-model="formData.ROOM_NO">
+                <input ng-disabled="inputDisabled" type="text" maxlength="30" placeholder="" class="form-control" id="ROOM_NO" name="ROOM_NO" ng-model="formData.ROOM_NO">
             </div>
         </div>
         <div class="form-group" ng-class="{'has-error':form.FLOOR_NO.$dirty && form.FLOOR_NO.$invalid}">
@@ -24,7 +24,7 @@
                 {{'FLOOR_NO'|translate}} <span class="symbol"></span>
             </label>
             <div class="col-sm-8">
-                <input numberonly type="text" maxlength="5" class="form-control" id="FLOOR_NO" name="FLOOR_NO" ng-model="formData.FLOOR_NO">
+                <input ng-disabled="inputDisabled" numberonly type="text" maxlength="5" class="form-control" id="FLOOR_NO" name="FLOOR_NO" ng-model="formData.FLOOR_NO">
             </div>
         </div>
         <div class="form-group">
@@ -32,7 +32,7 @@
                 {{'BUILDING_NO'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" maxlength="20" placeholder="" class="form-control" id="BUILDING_NO" name="BUILDING_NO" ng-model="formData.BUILDING_NO">
+                <input ng-disabled="inputDisabled" type="text" maxlength="20" placeholder="" class="form-control" id="BUILDING_NO" name="BUILDING_NO" ng-model="formData.BUILDING_NO">
             </div>
         </div>
         <div class="form-group">
@@ -40,7 +40,7 @@
                 {{'BUILDING_NAME'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" maxlength="80" placeholder="" class="form-control" id="BUILDING_NAME" name="BUILDING_NAME" ng-model="formData.BUILDING_NAME">
+                <input ng-disabled="inputDisabled" type="text" maxlength="80" placeholder="" class="form-control" id="BUILDING_NAME" name="BUILDING_NAME" ng-model="formData.BUILDING_NAME">
             </div>
         </div>
         <div ng-if="isAppraiser" class="form-group">
@@ -48,7 +48,7 @@
                 {{'CONDO_NO'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" maxlength="20" placeholder="" class="form-control" id="CONDO_NO" name="CONDO_NO" ng-model="formData.CONDO_NO">
+                <input ng-disabled="inputDisabled" type="text" maxlength="20" placeholder="" class="form-control" id="CONDO_NO" name="CONDO_NO" ng-model="formData.CONDO_NO">
             </div>
         </div>
         <div ng-if="isAppraiser" class="form-group">
@@ -56,7 +56,7 @@
                 {{'NO_OF_FLOOR'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" maxlength="5" placeholder="" class="form-control" id="NO_OF_FLOOR" name="NO_OF_FLOOR" ng-model="formData.NO_OF_FLOOR">
+                <input ng-disabled="inputDisabled" type="text" maxlength="5" placeholder="" class="form-control" id="NO_OF_FLOOR" name="NO_OF_FLOOR" ng-model="formData.NO_OF_FLOOR">
             </div>
         </div>
         <div class="form-group">
@@ -64,7 +64,7 @@
                 สร้างอยู่บนโฉนดเลขที่
             </label>
             <div class="col-sm-8">
-                <input type="text" maxlength="100" placeholder="" class="form-control" id="DEED_NO" name="DEED_NO" ng-model="formData.DEED_NO">
+                <input ng-disabled="inputDisabled" type="text" maxlength="100" placeholder="" class="form-control" id="DEED_NO" name="DEED_NO" ng-model="formData.DEED_NO">
             </div>
         </div>
         <div class="form-group">
@@ -72,7 +72,7 @@
                 {{'COL_NO'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" maxlength="500" placeholder="" class="form-control" id="COL_NO" name="COL_NO" ng-model="formData.COL_NO">
+                <input ng-disabled="inputDisabled" type="text" maxlength="500" placeholder="" class="form-control" id="COL_NO" name="COL_NO" ng-model="formData.COL_NO">
             </div>
         </div>
         <div class="form-group">
@@ -80,7 +80,7 @@
                 {{'AREA_METER'|translate}}
             </label>
             <div class="col-sm-8">
-                <input usespace type="text" maxlength="24" class="form-control" id="AREA_METER" name="AREA_METER" ng-model="formData.AREA_METER">
+                <input ng-disabled="inputDisabled" usespace type="text" maxlength="24" class="form-control" id="AREA_METER" name="AREA_METER" ng-model="formData.AREA_METER">
             </div>
         </div>
         <div ng-if="isAppraiser" class="form-group">
@@ -88,7 +88,7 @@
                 {{'BALCONY_METER'|translate}}
             </label>
             <div class="col-sm-8">
-                <input usespace type="text" maxlength="24" class="form-control" id="BALCONY_METER" name="BALCONY_METER" ng-model="formData.BALCONY_METER">
+                <input ng-disabled="inputDisabled" usespace type="text" maxlength="24" class="form-control" id="BALCONY_METER" name="BALCONY_METER" ng-model="formData.BALCONY_METER">
             </div>
         </div>
         <div class="form-group">
@@ -96,7 +96,7 @@
                 {{'PROVINCE'|translate}}
             </label>
             <div class="col-sm-8">
-                <ui-select theme="selectize" ng-model="formData.CONDO_PROVINCE" id="CONDO_PROVINCE" name="CONDO_PROVINCE" on-select="getDistrictDOL($item,$model)">
+                <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.CONDO_PROVINCE" id="CONDO_PROVINCE" name="CONDO_PROVINCE" on-select="getDistrictDOL($item,$model)">
                     <ui-select-match placeholder="">
                         {{$select.selected.PROV_NAME}}
                     </ui-select-match>
@@ -111,7 +111,7 @@
                 {{'DISTRICT'|translate}}
             </label>
             <div class="col-sm-8">
-                <ui-select theme="selectize" ng-model="formData.CONDO_CITY" id="CONDO_CITY" name="CONDO_CITY" on-select="getSubDistrictDOL($item,$model)">
+                <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.CONDO_CITY" id="CONDO_CITY" name="CONDO_CITY" on-select="getSubDistrictDOL($item,$model)">
                     <ui-select-match placeholder="">
                         {{$select.selected.CITY}}
                     </ui-select-match>
@@ -126,7 +126,7 @@
                 {{'SUBDISTRICT'|translate}}
             </label>
             <div class="col-sm-8">
-                <ui-select theme="selectize" ng-model="formData.CONDO_DISTRICT" id="CONDO_DISTRICT" name="CONDO_DISTRICT">
+                <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.CONDO_DISTRICT" id="CONDO_DISTRICT" name="CONDO_DISTRICT">
                     <ui-select-match placeholder="">
                         {{$select.selected.DISTRICT}}
                     </ui-select-match>
@@ -141,7 +141,7 @@
                 {{'SUBDISTRICT_OLD'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" maxlength="100" placeholder="" class="form-control" id="DEED_DISTRICT_OLD" name="DEED_DISTRICT_OLD" ng-model="formData.DEED_DISTRICT_OLD">
+                <input ng-disabled="inputDisabled" type="text" maxlength="100" placeholder="" class="form-control" id="DEED_DISTRICT_OLD" name="DEED_DISTRICT_OLD" ng-model="formData.DEED_DISTRICT_OLD">
             </div>
         </div>
         <fieldset ng-if="isAppraiser" class="no-radius">
@@ -149,7 +149,7 @@
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="APPR_CUR_OTHER_PRICE">ราคาต่อตารางเมตร (บาท)</label>
                 <div class="col-sm-8">
-                    <input format type="text" maxlength="17" class="form-control" id="APPR_CUR_OTHER_PRICE" name="APPR_CUR_OTHER_PRICE" ng-model="formData.APPR_CUR_OTHER_PRICE" />
+                    <input ng-disabled="inputDisabled" format type="text" maxlength="17" class="form-control" id="APPR_CUR_OTHER_PRICE" name="APPR_CUR_OTHER_PRICE" ng-model="formData.APPR_CUR_OTHER_PRICE" />
                 </div>
             </div>
             <div class="form-group">
@@ -157,7 +157,7 @@
                     {{'APPR_CUR_LAND_AMOUNT'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input format type="text" maxlength="17" class="form-control" ng-model="formData.APPR_CUR_OTHER_AMOUNT" />
+                    <input ng-disabled="inputDisabled" format type="text" maxlength="17" class="form-control" ng-model="formData.APPR_CUR_OTHER_AMOUNT" />
                 </div>
             </div>
             <div class="form-group">
@@ -165,7 +165,7 @@
                     {{'APPR_GOV_PRICE'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input format type="text" maxlength="22" class="form-control" ng-model="formData.APPR_GOV_PRICE" />
+                    <input ng-disabled="inputDisabled" format type="text" maxlength="22" class="form-control" ng-model="formData.APPR_GOV_PRICE" />
                 </div>
             </div>
             <div class="form-group">
@@ -173,7 +173,7 @@
                     {{'APPR_GOV_AMOUNT'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input format type="text" maxlength="17" class="form-control" ng-model="formData.APPR_GOV_AMOUNT" />
+                    <input ng-disabled="inputDisabled" format type="text" maxlength="17" class="form-control" ng-model="formData.APPR_GOV_AMOUNT" />
                 </div>
             </div>
         </fieldset>
@@ -189,7 +189,7 @@
                 {{'DEED_ADD_NO'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" maxlength="10" placeholder="" class="form-control" id="DEED_ADD_NO" name="DEED_ADD_NO" ng-model="formData.DEED_ADD_NO">
+                <input ng-disabled="inputDisabled" type="text" maxlength="10" placeholder="" class="form-control" id="DEED_ADD_NO" name="DEED_ADD_NO" ng-model="formData.DEED_ADD_NO">
             </div>
         </div>
         <div class="form-group">
@@ -197,7 +197,7 @@
                 {{'DEED_ADD_MOO'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" maxlength="5" placeholder="" class="form-control" id="DEED_ADD_MOO" name="DEED_ADD_MOO" ng-model="formData.DEED_ADD_MOO">
+                <input ng-disabled="inputDisabled" type="text" maxlength="5" placeholder="" class="form-control" id="DEED_ADD_MOO" name="DEED_ADD_MOO" ng-model="formData.DEED_ADD_MOO">
             </div>
         </div>
         <div class="form-group">
@@ -205,7 +205,7 @@
                 {{'DEED_ADD_BANN'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" maxlength="100" placeholder="" class="form-control" id="DEED_ADD_BANN" name="DEED_ADD_BANN" ng-model="formData.DEED_ADD_BANN">
+                <input ng-disabled="inputDisabled" type="text" maxlength="100" placeholder="" class="form-control" id="DEED_ADD_BANN" name="DEED_ADD_BANN" ng-model="formData.DEED_ADD_BANN">
             </div>
         </div>
         <div class="form-group">
@@ -213,7 +213,7 @@
                 {{'SOI'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" maxlength="50" placeholder="" class="form-control" id="DEED_ADD_SOI" name="DEED_ADD_SOI" ng-model="formData.DEED_ADD_SOI">
+                <input ng-disabled="inputDisabled" type="text" maxlength="50" placeholder="" class="form-control" id="DEED_ADD_SOI" name="DEED_ADD_SOI" ng-model="formData.DEED_ADD_SOI">
             </div>
         </div>
         <div class="form-group">
@@ -221,7 +221,7 @@
                 {{'ROAD'|translate}}
             </label>
             <div class="col-sm-8">
-                <input type="text" maxlength="50" placeholder="" class="form-control" id="DEED_ADD_ROAD" name="DEED_ADD_ROAD" ng-model="formData.DEED_ADD_ROAD">
+                <input ng-disabled="inputDisabled" type="text" maxlength="50" placeholder="" class="form-control" id="DEED_ADD_ROAD" name="DEED_ADD_ROAD" ng-model="formData.DEED_ADD_ROAD">
             </div>
         </div>
         <div class="form-group">
@@ -229,7 +229,7 @@
                 {{'PROVINCE'|translate}}
             </label>
             <div class="col-sm-8">
-                <ui-select theme="selectize" ng-model="formData.DEED_PROVINCE" id="DEED_PROVINCE" name="DEED_PROVINCE" on-select="getDistrict($item,$model)">
+                <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.DEED_PROVINCE" id="DEED_PROVINCE" name="DEED_PROVINCE" on-select="getDistrict($item,$model)">
                     <ui-select-match placeholder="">
                         {{$select.selected.PROV_NAME}}
                     </ui-select-match>
@@ -244,7 +244,7 @@
                 {{'DISTRICT'|translate}}
             </label>
             <div class="col-sm-8">
-                <ui-select theme="selectize" ng-model="formData.DEED_CITY" id="DEED_CITY" name="DEED_CITY" on-select="getSubDistrict($item,$model)">
+                <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.DEED_CITY" id="DEED_CITY" name="DEED_CITY" on-select="getSubDistrict($item,$model)">
                     <ui-select-match placeholder="">
                         {{$select.selected.CITY}}
                     </ui-select-match>
@@ -259,7 +259,7 @@
                 {{'SUBDISTRICT'|translate}}
             </label>
             <div class="col-sm-8">
-                <ui-select theme="selectize" ng-model="formData.DEED_DISTRICT" id="DEED_DISTRICT" name="DEED_DISTRICT">
+                <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.DEED_DISTRICT" id="DEED_DISTRICT" name="DEED_DISTRICT">
                     <ui-select-match placeholder="">
                         {{$select.selected.DISTRICT}}
                     </ui-select-match>
@@ -305,7 +305,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="LAND_STATUS1" ng-model="formData.LAND_STATUS1" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="LAND_STATUS1" ng-model="formData.LAND_STATUS1" checked="">
                         <label for="LAND_STATUS1">
                             {{'LAND_STATUS1'|translate}}
                         </label>
@@ -317,7 +317,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="LAND_STATUS2" ng-model="formData.LAND_STATUS2" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="LAND_STATUS2" ng-model="formData.LAND_STATUS2" checked="">
                         <label for="LAND_STATUS2">
                             {{'LAND_STATUS2'|translate}}
                         </label>
@@ -329,7 +329,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="LAND_STATUS3" ng-model="formData.LAND_STATUS3" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="LAND_STATUS3" ng-model="formData.LAND_STATUS3" checked="">
                         <label for="LAND_STATUS3">
                             {{'LAND_STATUS3'|translate}}
                         </label>
@@ -343,7 +343,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="LAND_STATUS4" ng-model="formData.LAND_STATUS4" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="LAND_STATUS4" ng-model="formData.LAND_STATUS4" checked="">
                         <label for="LAND_STATUS4">
                             {{'LAND_STATUS4'|translate}}
                         </label>
@@ -355,7 +355,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="LAND_STATUS5" ng-model="formData.LAND_STATUS5" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="LAND_STATUS5" ng-model="formData.LAND_STATUS5" checked="">
                         <label for="LAND_STATUS5">
                             {{'LAND_STATUS5'|translate}}
                         </label>
@@ -367,7 +367,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="LAND_STATUS6" ng-model="formData.LAND_STATUS6" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="LAND_STATUS6" ng-model="formData.LAND_STATUS6" checked="">
                         <label for="LAND_STATUS6">
                             {{'LAND_STATUS6'|translate}}
                         </label>
@@ -381,7 +381,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="LAND_STATUS7" ng-model="formData.LAND_STATUS7" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="LAND_STATUS7" ng-model="formData.LAND_STATUS7" checked="">
                         <label for="LAND_STATUS7">
                             {{'LAND_STATUS7'|translate}}
                         </label>
@@ -389,7 +389,7 @@
                 </div>
             </div>
             <div class="col-sm-9">
-                <input type="text" placeholder="" class="form-control" id="LAND_OTHER" name="LAND_OTHER" ng-model="formData.LAND_OTHER">
+                <input ng-disabled="inputDisabled" type="text" placeholder="" class="form-control" id="LAND_OTHER" name="LAND_OTHER" ng-model="formData.LAND_OTHER">
             </div>
         </div>
     </div>
@@ -405,7 +405,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="LOCATION1" ng-model="formData.LOCATION1" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="LOCATION1" ng-model="formData.LOCATION1" checked="">
                         <label for="LOCATION1">
                             {{'LOCATION1'|translate}}
                         </label>
@@ -417,7 +417,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="LOCATION2" ng-model="formData.LOCATION2" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="LOCATION2" ng-model="formData.LOCATION2" checked="">
                         <label for="LOCATION2">
                             {{'LOCATION2'|translate}}
                         </label>
@@ -429,7 +429,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="LOCATION7" ng-model="formData.LOCATION7" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="LOCATION7" ng-model="formData.LOCATION7" checked="">
                         <label for="LOCATION7">
                             {{'LOCATION7'|translate}}
                         </label>
@@ -443,7 +443,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="LOCATION3" ng-model="formData.LOCATION3" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="LOCATION3" ng-model="formData.LOCATION3" checked="">
                         <label for="LOCATION3">
                             {{'LOCATION3'|translate}}
                         </label>
@@ -455,7 +455,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="LOCATION4" ng-model="formData.LOCATION4" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="LOCATION4" ng-model="formData.LOCATION4" checked="">
                         <label for="LOCATION4">
                             {{'LOCATION4'|translate}}
                         </label>
@@ -467,7 +467,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="LOCATION5" ng-model="formData.LOCATION5" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="LOCATION5" ng-model="formData.LOCATION5" checked="">
                         <label for="LOCATION5">
                             {{'LOCATION5'|translate}}
                         </label>
@@ -481,7 +481,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="LOCATION6" ng-model="formData.LOCATION6" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="LOCATION6" ng-model="formData.LOCATION6" checked="">
                         <label for="LOCATION6">
                             {{'LOCATION6'|translate}}
                         </label>
@@ -489,7 +489,7 @@
                 </div>
             </div>
             <div class="form-group col-sm-9">
-                <input type="text" placeholder="" class="form-control" id="LOCATION_OTHER" name="LOCATION_OTHER" ng-model="formData.LOCATION_OTHER">
+                <input ng-disabled="inputDisabled" type="text" placeholder="" class="form-control" id="LOCATION_OTHER" name="LOCATION_OTHER" ng-model="formData.LOCATION_OTHER">
             </div>
         </div>
     </div>
@@ -507,7 +507,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="checkbox clip-check check-primary">
-                            <input type="checkbox" id="POSITION1" ng-model="formData.POSITION1" checked="">
+                            <input ng-disabled="inputDisabled" type="checkbox" id="POSITION1" ng-model="formData.POSITION1" checked="">
                             <label for="POSITION1">
                                 {{'POSITION1'|translate}}
                             </label>
@@ -519,7 +519,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="checkbox clip-check check-primary">
-                            <input type="checkbox" id="POSITION2" ng-model="formData.POSITION2" checked="">
+                            <input ng-disabled="inputDisabled" type="checkbox" id="POSITION2" ng-model="formData.POSITION2" checked="">
                             <label for="POSITION2">
                                 {{'POSITION2'|translate}}
                             </label>
@@ -531,7 +531,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="checkbox clip-check check-primary">
-                            <input type="checkbox" id="POSITION3" ng-model="formData.POSITION3" checked="">
+                            <input ng-disabled="inputDisabled" type="checkbox" id="POSITION3" ng-model="formData.POSITION3" checked="">
                             <label for="POSITION3">
                                 {{'POSITION3'|translate}}
                             </label>
@@ -545,7 +545,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="checkbox clip-check check-primary">
-                            <input type="checkbox" id="POSITION4" ng-model="formData.POSITION4" checked="">
+                            <input ng-disabled="inputDisabled" type="checkbox" id="POSITION4" ng-model="formData.POSITION4" checked="">
                             <label for="POSITION4">
                                 {{'POSITION4'|translate}}
                             </label>
@@ -557,7 +557,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="checkbox clip-check check-primary">
-                            <input type="checkbox" id="POSITION5" ng-model="formData.POSITION5" checked="">
+                            <input ng-disabled="inputDisabled" type="checkbox" id="POSITION5" ng-model="formData.POSITION5" checked="">
                             <label for="POSITION5">
                                 {{'POSITION5'|translate}}
                             </label>
@@ -573,7 +573,7 @@
                     {{'ROAD_NAME'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input type="text" maxlength="50" class="form-control" id="ROAD_NAME" name="ROAD_NAME" ng-model="formData.ROAD_NAME">
+                    <input ng-disabled="inputDisabled" type="text" maxlength="50" class="form-control" id="ROAD_NAME" name="ROAD_NAME" ng-model="formData.ROAD_NAME">
                 </div>
             </div>
             <div class="form-group">
@@ -581,7 +581,7 @@
                     {{'ROAD_CODE'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <ui-select theme="selectize" ng-model="formData.ROAD_TYPE" id="ROAD_CODE" name="ROAD_CODE">
+                    <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.ROAD_TYPE" id="ROAD_CODE" name="ROAD_CODE">
                         <ui-select-match placeholder="">
                             {{$select.selected.NAME}}
                         </ui-select-match>
@@ -596,7 +596,7 @@
                     {{'ROAD_WIDTH'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input type="text" count maxlength="24" min="0" class="form-control" id="ROAD_WIDTH" name="ROAD_WIDTH" ng-model="formData.ROAD_WIDTH">
+                    <input ng-disabled="inputDisabled" type="text" count maxlength="24" min="0" class="form-control" id="ROAD_WIDTH" name="ROAD_WIDTH" ng-model="formData.ROAD_WIDTH">
                 </div>
             </div>
             <div class="form-group">
@@ -604,7 +604,7 @@
                     {{'LANE_NO'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input type="text" count maxlength="24" min="0" class="form-control" id="LANE_NO" name="LANE_NO" ng-model="formData.LANE_NO">
+                    <input ng-disabled="inputDisabled" type="text" count maxlength="24" min="0" class="form-control" id="LANE_NO" name="LANE_NO" ng-model="formData.LANE_NO">
                 </div>
             </div>
             <div class="form-group">
@@ -612,7 +612,7 @@
                     {{'LANE_WIDTH'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input type="text" count maxlength="24" min="0" class="form-control" id="LANE_WIDTH" name="LANE_WIDTH" ng-model="formData.LANE_WIDTH">
+                    <input ng-disabled="inputDisabled" type="text" count maxlength="24" min="0" class="form-control" id="LANE_WIDTH" name="LANE_WIDTH" ng-model="formData.LANE_WIDTH">
                 </div>
             </div>
             <div class="form-group">
@@ -620,7 +620,7 @@
                     {{'WAY_WIDTH'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input type="text" count maxlength="24" min="0" class="form-control" id="WAY_WIDTH" name="WAY_WIDTH" ng-model="formData.WAY_WIDTH">
+                    <input ng-disabled="inputDisabled" type="text" count maxlength="24" min="0" class="form-control" id="WAY_WIDTH" name="WAY_WIDTH" ng-model="formData.WAY_WIDTH">
                 </div>
             </div>
             <div class="form-group">
@@ -628,7 +628,7 @@
                 </label>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="ROAD1" ng-model="formData.ROAD1" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="ROAD1" ng-model="formData.ROAD1" checked="">
                         <label for="ROAD1">
                             {{'ROAD1'|translate}}
                         </label>
@@ -636,7 +636,7 @@
                 </div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="ROAD2" ng-model="formData.ROAD2" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="ROAD2" ng-model="formData.ROAD2" checked="">
                         <label for="ROAD2">
                             {{'ROAD2'|translate}}
                         </label>
@@ -644,7 +644,7 @@
                 </div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="ROAD3" ng-model="formData.ROAD3" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="ROAD3" ng-model="formData.ROAD3" checked="">
                         <label for="ROAD3">
                             {{'ROAD3'|translate}}
                         </label>
@@ -656,7 +656,7 @@
                 </label>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="ROAD4" ng-model="formData.ROAD4" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="ROAD4" ng-model="formData.ROAD4" checked="">
                         <label for="ROAD4">
                             {{'ROAD4'|translate}}
                         </label>
@@ -671,7 +671,7 @@
                     {{'REMARK'|translate}}
                 </label>
                 <div>
-                    <textarea rows="3" style="max-width:100%;" class="form-control" ng-maxlength="500" ng-model="formData.ROAD_REMARK"></textarea>
+                    <textarea ng-disabled="inputDisabled" rows="3" style="max-width:100%;" class="form-control" ng-maxlength="500" ng-model="formData.ROAD_REMARK"></textarea>
                 </div>
             </div>
         </fieldset>
@@ -686,7 +686,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="checkbox clip-check check-primary checkbox-inline">
-                            <input type="checkbox" id="UTILITY6" ng-model="formData.UTILITY6" checked="">
+                            <input ng-disabled="inputDisabled" type="checkbox" id="UTILITY6" ng-model="formData.UTILITY6" checked="">
                             <label for="UTILITY6">
                                 {{'UTILITY6'|translate}}
                             </label>
@@ -698,7 +698,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="checkbox clip-check check-primary checkbox-inline">
-                            <input type="checkbox" id="UTILITY1" ng-model="formData.UTILITY1" checked="">
+                            <input ng-disabled="inputDisabled" type="checkbox" id="UTILITY1" ng-model="formData.UTILITY1" checked="">
                             <label for="UTILITY1">
                                 {{'UTILITY1'|translate}}
                             </label>
@@ -710,7 +710,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="checkbox clip-check check-primary checkbox-inline">
-                            <input type="checkbox" id="UTILITY2" ng-model="formData.UTILITY2" checked="">
+                            <input ng-disabled="inputDisabled" type="checkbox" id="UTILITY2" ng-model="formData.UTILITY2" checked="">
                             <label for="UTILITY2">
                                 {{'UTILITY2'|translate}}
                             </label>
@@ -722,7 +722,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="checkbox clip-check check-primary checkbox-inline">
-                            <input type="checkbox" id="UTILITY3" ng-model="formData.UTILITY3" checked="">
+                            <input ng-disabled="inputDisabled" type="checkbox" id="UTILITY3" ng-model="formData.UTILITY3" checked="">
                             <label for="UTILITY3">
                                 {{'UTILITY3'|translate}}
                             </label>
@@ -734,7 +734,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="checkbox clip-check check-primary checkbox-inline">
-                            <input type="checkbox" id="UTILITY4" ng-model="formData.UTILITY4" checked="">
+                            <input ng-disabled="inputDisabled" type="checkbox" id="UTILITY4" ng-model="formData.UTILITY4" checked="">
                             <label for="UTILITY4">
                                 {{'UTILITY4'|translate}}
                             </label>
@@ -755,7 +755,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="radio clip-radio radio-primary">
-                            <input type="radio" id="GUTTER1" name="GUTTER" ng-model="formData.GUTTER" ng-value="'Y'" />
+                            <input ng-disabled="inputDisabled" type="radio" id="GUTTER1" name="GUTTER" ng-model="formData.GUTTER" ng-value="'Y'" />
                             <label for="GUTTER1">
                                 {{'GUTTER1'|translate}}
                             </label>
@@ -767,7 +767,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="radio clip-radio radio-primary">
-                            <input type="radio" id="GUTTER2" name="GUTTER" ng-model="formData.GUTTER" ng-value="'N'" />
+                            <input ng-disabled="inputDisabled" type="radio" id="GUTTER2" name="GUTTER" ng-model="formData.GUTTER" ng-value="'N'" />
                             <label for="GUTTER2">
                                 {{'GUTTER2'|translate}}
                             </label>
@@ -787,7 +787,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="radio clip-radio radio-primary">
-                            <input type="radio" id="TELE_Y" name="TELE" ng-model="formData.TELE" ng-value="'Y'" />
+                            <input ng-disabled="inputDisabled" type="radio" id="TELE_Y" name="TELE" ng-model="formData.TELE" ng-value="'Y'" />
                             <label for="TELE_Y">
                                 {{'GUTTER1'|translate}}
                             </label>
@@ -799,7 +799,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="radio clip-radio radio-primary">
-                            <input type="radio" id="TELE_N" name="TELE" ng-model="formData.TELE" ng-value="'N'" />
+                            <input ng-disabled="inputDisabled" type="radio" id="TELE_N" name="TELE" ng-model="formData.TELE" ng-value="'N'" />
                             <label for="TELE_N">
                                 {{'GUTTER2'|translate}}
                             </label>
@@ -819,7 +819,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="radio clip-radio radio-primary">
-                            <input type="radio" id="ELEC_Y" name="ELEC" ng-model="formData.ELEC" ng-value="'Y'" />
+                            <input ng-disabled="inputDisabled" type="radio" id="ELEC_Y" name="ELEC" ng-model="formData.ELEC" ng-value="'Y'" />
                             <label for="ELEC_Y">
                                 {{'GUTTER1'|translate}}
                             </label>
@@ -831,7 +831,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="radio clip-radio radio-primary">
-                            <input type="radio" id="ELEC_N" name="ELEC" ng-model="formData.ELEC" ng-value="'N'" />
+                            <input ng-disabled="inputDisabled" type="radio" id="ELEC_N" name="ELEC" ng-model="formData.ELEC" ng-value="'N'" />
                             <label for="ELEC_N">
                                 {{'GUTTER2'|translate}}
                             </label>
@@ -851,7 +851,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="radio clip-radio radio-primary">
-                            <input type="radio" id="SIDEWALK_Y" name="SIDEWALK" ng-model="formData.SIDEWALK" ng-value="'Y'" />
+                            <input ng-disabled="inputDisabled" type="radio" id="SIDEWALK_Y" name="SIDEWALK" ng-model="formData.SIDEWALK" ng-value="'Y'" />
                             <label for="SIDEWALK_Y">
                                 {{'GUTTER1'|translate}}
                             </label>
@@ -863,7 +863,7 @@
                     </label>
                     <div class="col-sm-8">
                         <div class="radio clip-radio radio-primary">
-                            <input type="radio" id="SIDEWALK_N" name="SIDEWALK" ng-model="formData.SIDEWALK" ng-value="'N'" />
+                            <input ng-disabled="inputDisabled" type="radio" id="SIDEWALK_N" name="SIDEWALK" ng-model="formData.SIDEWALK" ng-value="'N'" />
                             <label for="SIDEWALK_N">
                                 {{'GUTTER2'|translate}}
                             </label>
@@ -878,7 +878,7 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="USE1" ng-model="formData.USE1" checked="" />
+                        <input ng-disabled="inputDisabled" type="checkbox" id="USE1" ng-model="formData.USE1" checked="" />
                         <label for="USE1">
                             {{'USE1'|translate}}
                         </label>
@@ -889,7 +889,7 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="USE2" ng-model="formData.USE2" checked="" />
+                        <input ng-disabled="inputDisabled" type="checkbox" id="USE2" ng-model="formData.USE2" checked="" />
                         <label for="USE2">
                             {{'USE2'|translate}}
                         </label>
@@ -900,7 +900,7 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="USE3" ng-model="formData.USE3" checked="" />
+                        <input ng-disabled="inputDisabled" type="checkbox" id="USE3" ng-model="formData.USE3" checked="" />
                         <label for="USE3">
                             {{'USE3'|translate}}
                         </label>
@@ -911,7 +911,7 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="USE4" ng-model="formData.USE4" checked="" />
+                        <input ng-disabled="inputDisabled" type="checkbox" id="USE4" ng-model="formData.USE4" checked="" />
                         <label for="USE4">
                             {{'USE4'|translate}}
                         </label>
@@ -922,14 +922,14 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="USE5" ng-model="formData.USE5" />
+                        <input ng-disabled="inputDisabled" type="checkbox" id="USE5" ng-model="formData.USE5" />
                         <label for="USE5">
                             {{'USE5'|translate}}
                         </label>
                     </div>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" placeholder="" class="form-control" id="USE_OTHER" name="USE_OTHER" ng-model="formData.USE_OTHER">
+                    <input ng-disabled="inputDisabled" type="text" placeholder="" class="form-control" id="USE_OTHER" name="USE_OTHER" ng-model="formData.USE_OTHER">
                 </div>
             </div>
         </fieldset>
@@ -939,7 +939,7 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="WEED_Y" ng-model="formData.WEED_Y" ng-true-value="'Y'" ng-false-value="'N'" />
+                        <input ng-disabled="inputDisabled" type="checkbox" id="WEED_Y" ng-model="formData.WEED_Y" ng-true-value="'Y'" ng-false-value="'N'" />
                         <label for="WEED_Y">
                             {{'WEED_Y'|translate}}
                         </label>
@@ -950,14 +950,14 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="WEED_OTHER" ng-model="formData.WEED_OTHER" ng-true-value="'Y'" ng-false-value="'N'" />
+                        <input ng-disabled="inputDisabled" type="checkbox" id="WEED_OTHER" ng-model="formData.WEED_OTHER" ng-true-value="'Y'" ng-false-value="'N'" />
                         <label for="WEED_OTHER">
                             {{'OTHER'|translate}}
                         </label>
                     </div>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="WEED_OTHER_REMARK" name="WEED_OTHER_REMARK" ng-model="formData.WEED_OTHER_REMARK" />
+                    <input ng-disabled="inputDisabled" type="text" class="form-control" id="WEED_OTHER_REMARK" name="WEED_OTHER_REMARK" ng-model="formData.WEED_OTHER_REMARK" />
                 </div>
             </div>
         </fieldset>
@@ -981,7 +981,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="RESPOND1" ng-model="formData.RESPOND1" checked="" />
+                        <input ng-disabled="inputDisabled" type="checkbox" id="RESPOND1" ng-model="formData.RESPOND1" checked="" />
                         <label for="RESPOND1">
                             {{'RESPOND1'|translate}}
                         </label>
@@ -993,7 +993,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="RESPOND2" ng-model="formData.RESPOND2" checked="" / />
+                        <input ng-disabled="inputDisabled" type="checkbox" id="RESPOND2" ng-model="formData.RESPOND2" checked="" / />
                         <label for="RESPOND2">
                             {{'RESPOND2'|translate}}
                         </label>
@@ -1005,7 +1005,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="RESPOND3" ng-model="formData.RESPOND3" checked="">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="RESPOND3" ng-model="formData.RESPOND3" checked="">
                         <label for="RESPOND3">
                             {{'RESPOND3'|translate}}
                         </label>
@@ -1019,7 +1019,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="RESPOND4" ng-model="formData.RESPOND4" checked="" />
+                        <input ng-disabled="inputDisabled" type="checkbox" id="RESPOND4" ng-model="formData.RESPOND4" checked="" />
                         <label for="RESPOND4">
                             {{'RESPOND4'|translate}}
                         </label>
@@ -1031,7 +1031,7 @@
                     {{'RESPOND_OTHER'|translate}}
                 </label>
                 <div class="col-sm-10">
-                    <input type="text" placeholder="" class="form-control" id="RESPOND_OTHER" name="RESPOND_OTHER" ng-model="formData.RESPOND_OTHER" />
+                    <input ng-disabled="inputDisabled" type="text" placeholder="" class="form-control" id="RESPOND_OTHER" name="RESPOND_OTHER" ng-model="formData.RESPOND_OTHER" />
                 </div>
             </div>
         </div>
@@ -1048,7 +1048,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="CAPACITY1" ng-model="formData.CAPACITY1" checked="" />
+                        <input ng-disabled="inputDisabled" type="checkbox" id="CAPACITY1" ng-model="formData.CAPACITY1" checked="" />
                         <label for="CAPACITY1">
                             {{'CAPACITY1'|translate}}
                         </label>
@@ -1060,7 +1060,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="CAPACITY2" ng-model="formData.CAPACITY2" checked="" />
+                        <input ng-disabled="inputDisabled" type="checkbox" id="CAPACITY2" ng-model="formData.CAPACITY2" checked="" />
                         <label for="CAPACITY2">
                             {{'CAPACITY2'|translate}}
                         </label>
@@ -1072,7 +1072,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="CAPACITY3" ng-model="formData.CAPACITY3" checked="" />
+                        <input ng-disabled="inputDisabled" type="checkbox" id="CAPACITY3" ng-model="formData.CAPACITY3" checked="" />
                         <label for="CAPACITY3">
                             {{'CAPACITY3'|translate}}
                         </label>
@@ -1086,7 +1086,7 @@
                 </label>
                 <div class="col-sm-8">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="CAPACITY4" ng-model="formData.CAPACITY4" checked="" />
+                        <input ng-disabled="inputDisabled" type="checkbox" id="CAPACITY4" ng-model="formData.CAPACITY4" checked="" />
                         <label for="CAPACITY4">
                             {{'CAPACITY4'|translate}}
                         </label>
@@ -1094,7 +1094,7 @@
                 </div>
             </div>
             <div class="form-group col-sm-9">
-                <input type="text" placeholder="" class="form-control" id="CAPACITY_OTHER" name="CAPACITY_OTHER" ng-model="formData.CAPACITY_OTHER" />
+                <input ng-disabled="inputDisabled" type="text" placeholder="" class="form-control" id="CAPACITY_OTHER" name="CAPACITY_OTHER" ng-model="formData.CAPACITY_OTHER" />
             </div>
         </div>
     </div>
@@ -1110,7 +1110,7 @@
             </label>
             <div class="col-sm-8">
                 <div ng-repeat="item in radioDecorated" class="radio clip-radio radio-primary">
-                    <input type="radio" name="DECORATED" ng-value="item.VALUE" ng-model="formData.DECORATED" id="DECORATED{{item.VALUE}}" />
+                    <input ng-disabled="inputDisabled" type="radio" name="DECORATED" ng-value="item.VALUE" ng-model="formData.DECORATED" id="DECORATED{{item.VALUE}}" />
                     <label for="DECORATED{{item.VALUE}}">{{ item.NAME }}</label>
                 </div>
             </div>
@@ -1121,7 +1121,7 @@
             </label>
             <div class="col-sm-8">
                 <div ng-repeat="item in radioDeveloper" class="radio clip-radio radio-primary">
-                    <input type="radio" name="DEVELOPER_DUMMY" ng-value="item.VALUE" ng-model="formData.DEVELOPER_DUMMY" id="DEVELOPER_DUMMY{{item.VALUE}}" />
+                    <input ng-disabled="inputDisabled" type="radio" name="DEVELOPER_DUMMY" ng-value="item.VALUE" ng-model="formData.DEVELOPER_DUMMY" id="DEVELOPER_DUMMY{{item.VALUE}}" />
                     <label for="DEVELOPER_DUMMY{{item.VALUE}}">{{ item.NAME }}</label>
                 </div>
             </div>
@@ -1132,7 +1132,7 @@
             </label>
             <div class="col-sm-8">
                 <div ng-repeat="item in radioContructComplete" class="radio clip-radio radio-primary">
-                    <input type="radio" name="CONSTRUCT_COMPLETE" ng-value="item.VALUE" ng-model="formData.CONSTRUCT_COMPLETE" id="CONSTRUCT_COMPLETE{{item.VALUE}}" />
+                    <input ng-disabled="inputDisabled" type="radio" name="CONSTRUCT_COMPLETE" ng-value="item.VALUE" ng-model="formData.CONSTRUCT_COMPLETE" id="CONSTRUCT_COMPLETE{{item.VALUE}}" />
                     <label for="CONSTRUCT_COMPLETE{{item.VALUE}}">{{ item.NAME }}</label>
                 </div>
             </div>
@@ -1143,7 +1143,7 @@
             </label>
             <div class="col-sm-8">
                 <div ng-repeat="item in radioInsureYN" class="radio clip-radio radio-primary">
-                    <input type="radio" name="INSURE_FLAG" ng-value="item.VALUE" ng-model="formData.INSURE_FLAG" id="INSURE_FLAG{{item.VALUE}}" />
+                    <input ng-disabled="inputDisabled" type="radio" name="INSURE_FLAG" ng-value="item.VALUE" ng-model="formData.INSURE_FLAG" id="INSURE_FLAG{{item.VALUE}}" />
                     <label for="INSURE_FLAG{{item.VALUE}}">{{ item.NAME }}</label>
                 </div>
             </div>
@@ -1153,7 +1153,7 @@
                 {{'CONSTRUCT_YEAR'|translate}}
             </label>
             <div class="col-sm-8">
-                <input year type="text" minlength="4" maxlength="4" class="form-control" id="CONSTRUCT_YEAR" name="CONSTRUCT_YEAR" ng-model="formData.CONSTRUCT_YEAR">
+                <input ng-disabled="inputDisabled" year type="text" minlength="4" maxlength="4" class="form-control" id="CONSTRUCT_YEAR" name="CONSTRUCT_YEAR" ng-model="formData.CONSTRUCT_YEAR">
             </div>
         </div>
         <div class="form-group">
@@ -1161,7 +1161,7 @@
                 {{'CONSTRUCT_AGE'|translate}}
             </label>
             <div class="col-sm-8">
-                <input year type="text" maxlength="10" class="form-control" id="CONSTRUCT_AGE" name="CONSTRUCT_AGE" ng-model="formData.CONSTRUCT_AGE">
+                <input ng-disabled="inputDisabled" year type="text" maxlength="10" class="form-control" id="CONSTRUCT_AGE" name="CONSTRUCT_AGE" ng-model="formData.CONSTRUCT_AGE">
             </div>
         </div>
     </div>

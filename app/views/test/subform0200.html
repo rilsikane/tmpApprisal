@@ -22,7 +22,7 @@
                         </a>
                     </li>
                 </ul>
-            </div> 
+            </div>
             <div class="btn-group padding-left-5" dropdown>
                 <button type="button" class="btn btn-primary dropdown-toggle btn-squared" dropdown-toggle ng-disabled="inputDisabled||($parent.formData.JOB_TYPE && ($parent.formData.PROJECT==undefined || $parent.formData.PROJECT.PROJECT_RUNNING_ID==0))">
                     {{'BUTTON.ADD_HEAD_COLL'|translate}} <span class="caret"></span>
@@ -34,7 +34,7 @@
                         </a>
                     </li>
                 </ul>
-            </div>                        
+            </div>
         </div>
     </div>
     <div class="row padding-10" ng-repeat="colleteral in colleterals">
@@ -70,7 +70,7 @@
                             </div>
                             <button class="btn btn-o border-white btn-squared" ng-disabled="!tab.read" ng-click="editHeadCol(colleteral)">{{'BUTTON.EDIT'|translate}}</button>
                             <button class="btn btn-o border-white btn-squared" ng-disabled="!tab.delete" ng-click="deleteHeadCol(colleteral)">{{'BUTTON.DELETE'|translate}}</button>
-                            <button class="btn btn-o border-white btn-squared" ng-click="copyHeadCol(colleteral)">{{'BUTTON.COPY'|translate}}</button>
+                            <button class="btn btn-o border-white btn-squared" ng-disabled="!tab.delete" ng-click="copyHeadCol(colleteral)">{{'BUTTON.COPY'|translate}}</button>
                         </div>
                     </li>
                 </ul>
