@@ -12675,3 +12675,7 @@ fieldset {
 .disabled-table > thead > tr > td, .disabled-table > tbody > tr > td{
     color: #B4B4B4 !important;
 }
+.label-after{
+    padding-left: 5px;
+    text-align: left !important;
+}
