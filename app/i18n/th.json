@@ -287,7 +287,7 @@
   "DOC_CERT_TYPE": "ปรเภทเอกสารสิทธิ์",
   "PICTURE": "ภาพถ่ายแสดง",
   "AREA_LAND": "เนื้อที่ดินประมาณ (ตร.ว.)",
-  "PROPERTY_NAME": "ชื่ออาคารชุด",
+  "PROPERTY_NAME": "ชื่อโครงการ",
   "PROPERTY_FLOOR": "ชั้นที่ตั้งทรัพย์สิน",
   "GEO_BOUND": "Geo boundary",
   "CODE_REF": "เลขอ้างอิง",
@@ -369,7 +369,7 @@
   "USAGE_TYPE": "ประเภทการใช้ประโยชน์",
 
   "NORTH_LENGTH": "ยาว (เมตร)",
-  "NORTH_BORDER": "ติดต่อ",
+  "NORTH_BORDER": "ติดต่อกับ",
 
   "BOUND": "หลักเขต",
   "BOUND_FOUND": "หลักเขตและหมายเลข",
