@@ -315,6 +315,13 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
                 $scope.selectProjectZone = response.data;
             });
         }
+        $scope.getHeadColSubType({"VALUE":"286003"}).then(function(data){         
+            $scope.colCertTypes = data.filter(function(x) { return x.VALUE != ""; });
+            if(!$scope.formData.COL_CERT_TYPE || $scope.formData.COL_CERT_TYPE ==null || !$scope.formData.COL_CERT_TYPE.VALUE){
+                $scope.formData.COL_CERT_TYPE = data.filter(function(x) { return x.VALUE == "1"; })[0];
+            }
+            $scope.initLandMasterData();
+        });
     }
 
     $scope.delRentPermit = function (item) {
@@ -708,6 +715,7 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
                 break;//เรือ
             case 999999:
                 $scope.initOtherMasterData();
+                $scope.initDepliciation();
                 break;//อื่นๆ 
         }
     }
@@ -756,6 +764,27 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
         }else{
             $scope.formData.REGIS_NO = "";
         }
+    }
+    $scope.getHeadColSubType = function (headColType) {
+        var deferred = $q.defer();
+        radasoft.getHeadColSubTypeForFilter({ MAIN_CODE: headColType.VALUE }).then(function (response) {
+             deferred.resolve(response.data);
+        })
+
+        return deferred.promise;
+    }
+    $scope.onColCertTypesChange = function(){
+        $scope.formData.COL_NO = undefined;
+        $scope.formData.SCHOLAR_NO = undefined;
+        $scope.formData.RAWANG = undefined;
+        $scope.formData.BOOK_NO = undefined;
+        $scope.formData.PAGE_NO = undefined;
+        $scope.formData.LAND_NO = undefined;
+        $scope.formData.AIRIAL_PHOTO_NO = undefined;
+        $scope.formData.AIRIAL_CODE_NO = undefined;
+        $scope.formData.AIRIAL_SHEET_NO = undefined;
+        $scope.formData.SURVEY_NO = undefined;
+        $scope.formData.SURVEY_NO = undefined;
     }
 
     $scope.init();
