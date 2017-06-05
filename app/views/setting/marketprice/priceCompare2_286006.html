@@ -50,7 +50,7 @@
             </tr>
             <tr>
                 <td class="text-right">เนื้อที่ดินประมาณ</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.AREA_LAND}},{{market.AREA_LAND_RAI}}</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.AREA_LAND|number:1}}</td>
             </tr>
             <tr>
                 <td class="text-right">ทำเล/ที่ตั้ง</td>

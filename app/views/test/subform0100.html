@@ -4,7 +4,7 @@
             <h4 class="panel-title">รายละเอียด</h4>
         </div>
         <div class="panel-body">
-            <form name="form" role="form" class="form-horizontal" novalidate >
+            <form name="form" role="form" class="form-horizontal" novalidate>
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="NPA_TYPE">
                     </label>
@@ -51,7 +51,7 @@
                     <div class="col-sm-8 no-padding">
                         <input type="text" readonly class="form-control" id="REQUEST_NO" name="REQUEST_NO" ng-model="$parent.formData.REQUEST_NO">
                     </div>
-                </div>                
+                </div>
                 <div class="form-group" ng-class="{'has-error':form.DATE_REQ.$dirty && form.DATE_REQ.$invalid, 'has-success':form.DATE_REQ.$valid}">
                     <label class="col-sm-3 control-label" for="DATE_REQ">
                         {{'DATE_REQ'|translate}}<span class="symbol required"></span>
@@ -154,15 +154,15 @@
                 <div class="form-group" ng-class="{'has-error':form.CREDIT_REQUEST.$dirty && form.CREDIT_REQUEST.$invalid, 'has-success':form.CREDIT_REQUEST.$valid}">
                     <label class="col-sm-3 control-label" for="CREDIT_REQUEST">
                         {{'CREDIT_REQUEST'|translate}} <!-- <span ng-class="{'valid-error': (!formData.NPA_TYPE && formData.CREDIT_REQUEST < 1)||form.CREDIT_REQUEST.$invalid,'valid-success': !(!formData.NPA_TYPE && formData.CREDIT_REQUEST < 1) && form.CREDIT_REQUEST.$valid}"></span> -->
-                        <span class="symbol required" ></span>
+                        <span class="symbol required"></span>
                     </label>
                     <div class="col-sm-8 no-padding">
                         <input format ng-disabled="inputDisabled" ng-required="true" ng-model="$parent.formData.CREDIT_REQUEST" type="text" ng-change="calDebt()" class="form-control" id="CREDIT_REQUEST" name="CREDIT_REQUEST" />
                     </div>
                 </div>
-                <div class="form-group"  ng-class="{'has-error':form.CREDIT_BALANCE.$dirty && form.CREDIT_BALANCE.$invalid, 'has-success':form.CREDIT_BALANCE.$valid}">
+                <div class="form-group" ng-class="{'has-error':form.CREDIT_BALANCE.$dirty && form.CREDIT_BALANCE.$invalid, 'has-success':form.CREDIT_BALANCE.$valid}">
                     <label class="col-sm-3 control-label" for="CREDIT_BALANCE">
-                        {{'CREDIT_BALANCE'|translate}}<span class="symbol required" ></span>
+                        {{'CREDIT_BALANCE'|translate}}<span class="symbol required"></span>
                     </label>
                     <div class="col-sm-8 no-padding">
                         <input format ng-disabled="inputDisabled" ng-required="true" ng-model="$parent.formData.CREDIT_BALANCE" type="text" ng-change="calDebt()" class="form-control" id="CREDIT_BALANCE" name="CREDIT_BALANCE" />
@@ -194,7 +194,6 @@
                     </div>
                 </li>
             </ul>
-
         </div>
         <div class="panel-body">
             <table class="table table-bordered table-hover" id="sample-table-4">

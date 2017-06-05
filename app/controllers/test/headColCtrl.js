@@ -1,6 +1,7 @@
 ﻿app.controller('headColCtrl', ['$scope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', 'radasoft', '$filter', '$log', function ($scope, $state, toaster, $modal, $translate, SweetAlert, radasoft, $filter, $log) {
     $scope.colleteralUsageType = [];
     $scope.collType = [];
+    $scope.collTypeProject = [];
     $scope.colleterals = [];
     $scope.riskcde = [];
     $scope.energyType = [];
@@ -74,9 +75,9 @@
                                     radasoft.getMaterialFloor({}).then(function (response) {
                                         $scope.materialFloor = response.data;
 
-                                        //radasoft.getBrand({}).then(function (response) {
-                                        //    $scope.brand = response.data;
-                                        //});
+                                        radasoft.getColleteralTypeForProject({}).then(function (response) {
+                                            $scope.collTypeProject = response.data;
+                                        });
                                     });
                                 });
                             });
@@ -248,6 +249,13 @@
             DEED_COUNTRY: {
                 CODE: 'TH',
                 NAME_THAI: 'ไทย'
+            }, PROJECT_UNIT_TYPE: {
+                AREA_WA: 0,
+                AREA_METER: 0,
+                UNIT_PROJ_PRICE: 0,
+                UNIT_PRICE_WA: 0,
+                UNIT_PRICE_METER: 0,
+                UNIT_PRICE_OTHER: 0
             }
         });
     }
@@ -294,7 +302,8 @@
                         showButtonSave: args.showButtonSave || false,
                         headCol: args.colleteral,
                         colAct: args.colAct,
-                        tab: $scope.tab
+                        tab: $scope.tab,
+                        IS_PROJECT: args.IS_PROJECT || false
                     };
                 }
             }
@@ -418,7 +427,8 @@
             colAct: colAct,
             controller: 'subform0210Controller',
             includeUrl: '/app/views/test/subform0210.html',
-            showButtonSave: false
+            showButtonSave: false,
+            IS_PROJECT: $scope.$parent.formData.JOB_TYPE
         });
     }
 
@@ -432,7 +442,7 @@
         });
     }
 
-    $scope.openProjectCollteral = function () {
+    $scope.openProjectCollteral = function (HEAD_COL_TYPE_ID) {
         radasoft.openDialog({
             templateUrl: '/app/views/project/completedProjectModal.html',
             controller: 'completedProjectDialogCtrl',
@@ -441,7 +451,8 @@
                 params: function () {
                     return {
                         formData: {
-                            JOB_RUNNING_ID: $scope.$parent.formData.JOB_RUNNING_ID
+                            JOB_RUNNING_ID: $scope.$parent.formData.JOB_RUNNING_ID,
+                            HEAD_COL_TYPE_ID: HEAD_COL_TYPE_ID
                         }
                     };
                 }
@@ -513,12 +524,12 @@
     $scope.copyHeadCol = function (colleteral) {
         $scope.confirmCopyAndSave(function (inputValue) {
             if (inputValue) {
-                radasoft.copyHeadCol({ JOB_RUNNING_ID :colleteral.JOB_RUNNING_ID ,HEAD_COL_RUNNING_ID: colleteral.HEAD_COL_RUNNING_ID, sCopy:inputValue}).then(function (response) {
-                    if(response.data.IsPass){
+                radasoft.copyHeadCol({ JOB_RUNNING_ID: colleteral.JOB_RUNNING_ID, HEAD_COL_RUNNING_ID: colleteral.HEAD_COL_RUNNING_ID, sCopy: inputValue }).then(function (response) {
+                    if (response.data.IsPass) {
                         $scope.getHeadColl();
                         radasoft.success();
-                    }else{
-                        radasoft.error(undefined,response.data.MsgError,undefined);
+                    } else {
+                        radasoft.error(undefined, response.data.MsgError, undefined);
                     }
                 });
             }
@@ -526,33 +537,33 @@
     }
     $scope.confirmCopyAndSave = function (callback) {
         swal({
-          title: "คัดลอก",
-          text: "จำนวนรายการ:",
-          type: "input",
-          showCancelButton: true,
-          closeOnConfirm: false,
-          animation: "slide-from-top",
-          inputPlaceholder: "ระบุจำนวนรายการ",
-          inputType:"number",
-          confirmButtonColor: '#007AFF',
-          confirmButtonText: $translate.instant('BUTTON.YES'),
-          cancelButtonText: $translate.instant('BUTTON.NO'),
+            title: "คัดลอก",
+            text: "จำนวนรายการ:",
+            type: "input",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            animation: "slide-from-top",
+            inputPlaceholder: "ระบุจำนวนรายการ",
+            inputType: "number",
+            confirmButtonColor: '#007AFF',
+            confirmButtonText: $translate.instant('BUTTON.YES'),
+            cancelButtonText: $translate.instant('BUTTON.NO'),
         },
-        function(inputValue){
-          if (inputValue === false) return false;
-          
-          if (inputValue === "") {
-            swal.showInputError("กรุณาระบุจำนวนรายการ");
-            return false
-          }else{
-            var val = parseInt(inputValue);
-            if(val >0 && val <= 100){
-                callback(inputValue);
-            }else{
-                swal.showInputError("จำนวนรายการต้องมากกว่า 0 และน้อยกว่า 100");
+        function (inputValue) {
+            if (inputValue === false) return false;
+
+            if (inputValue === "") {
+                swal.showInputError("กรุณาระบุจำนวนรายการ");
                 return false
+            } else {
+                var val = parseInt(inputValue);
+                if (val > 0 && val <= 100) {
+                    callback(inputValue);
+                } else {
+                    swal.showInputError("จำนวนรายการต้องมากกว่า 0 และน้อยกว่า 100");
+                    return false
+                }
             }
-          }
         });
     }
 }]);

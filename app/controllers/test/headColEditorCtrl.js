@@ -1,4 +1,4 @@
-﻿app.controller('headColEditorCtrl', ['$scope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', '$modalInstance', 'radasoft', 'params', '$q', function ($scope, $state, toaster, $modal, $translate, SweetAlert, $modalInstance, radasoft, params, $q) {
+﻿app.controller('headColEditorCtrl', ['$scope', '$state', 'toaster', '$modal', '$translate', 'SweetAlert', '$modalInstance', 'radasoft', 'params', '$q', '$filter', function ($scope, $state, toaster, $modal, $translate, SweetAlert, $modalInstance, radasoft, params, $q, $filter) {
     $scope.keyId = params.formData.HEAD_COL_RUNNING_ID;
     $scope.ldloading = {};
     //$scope.btnDisabled = true;
@@ -166,12 +166,28 @@
             DEED_DISTRICT: DEED_DISTRICT,// HEAD_COL_RUNNING_ID == '' ? {} : DEED_DISTRICT,
             DEED_NO: DEED_NO //HEAD_COL_RUNNING_ID == '' ? '' : DEED_NO
         }, function (args) {
+
             $scope.mapReturnArgs = args;
             $scope.formData.LOCATION_LAT = args.location.lat;
             $scope.formData.LOCATION_LONG = args.location.lon;
+
+            var tmpLocation = JSON.parse(args.response.graphic[0].attributes);
+
+            $scope.formData.LOC_PROVINCE = $filter('filter')($scope.selectLocProvince, { PROV_ID: tmpLocation.PROV_CODE })[0];
+
+            radasoft.getDistrict({ PROVINCE_ID: $scope.formData.LOC_PROVINCE.PROV_ID }).then(function (response) {
+                $scope.selectLocDistrict = response.data;
+                $scope.formData.LOC_CITY = $filter('filter')($scope.selectLocDistrict, { CITY_ID: $scope.formData.LOC_PROVINCE.PROV_ID + tmpLocation.AMP_CODE })[0];
+                radasoft.getSubDistrict({ PROVINCE_ID: $scope.formData.LOC_PROVINCE.PROV_ID, DISTRICT_ID: $scope.formData.LOC_CITY.CITY_ID }).then(function (responseSub) {
+                    $scope.selectLocSubDistrict = responseSub.data;
+                    $scope.formData.LOC_DISTRICT = $filter('filter')($scope.selectLocSubDistrict, { CODE: $scope.formData.LOC_CITY.CITY_ID + tmpLocation.TAM_CODE })[0];
+                });
+
+            });
             $scope.$apply();
         });
     }
+
 
     $scope.onDeedDistrictChange = function ($item, $model) {
         if ($scope.formData.HEAD_COL_RUNNING_ID == 0) {
@@ -285,6 +301,5 @@
             });
         });
     }
-
     $scope.init();
 }]);

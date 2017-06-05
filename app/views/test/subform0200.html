@@ -5,25 +5,36 @@
         </div>
         <div class="pull-left" ng-if="$parent.formData.JOB_TYPE==false"><h4 class="panel-title margin-top-10">{{'TOTAL_COLLETERAL'|translate}} : {{colleterals.length}}</h4></div>
         <div class="btn-group pull-right" dropdown>
-            <button ng-disabled="colleterals.length > 0" type="button" class="btn btn-primary" ng-click="openProject()" ng-disabled="inputDisabled" ng-if="$parent.formData.JOB_TYPE">
+            <button ng-disabled="colleterals.length > 0 || inputDisabled" type="button" class="btn btn-primary" ng-click="openProject()" ng-if="$parent.formData.JOB_TYPE">
                 {{'PROJECT'|translate}}
             </button>
             <button type="button" class="btn btn-primary" ng-click="openPhaseZone()" ng-if="$parent.formData.JOB_TYPE" ng-disabled="inputDisabled||($parent.formData.PROJECT==undefined||$parent.formData.PROJECT.PROJECT_RUNNING_ID==0)">
                 {{'PHASE_ZONE'|translate}}
             </button>
-            <button type="button" class="btn btn-primary" ng-click="openProjectCollteral()" ng-disabled="inputDisabled" ng-hide="$parent.formData.JOB_TYPE">
-                {{'PROJECT_COLLETERAL'|translate}}
-            </button>
-            <button type="button" class="btn btn-primary dropdown-toggle btn-squared" dropdown-toggle ng-disabled="inputDisabled||($parent.formData.JOB_TYPE && ($parent.formData.PROJECT==undefined || $parent.formData.PROJECT.PROJECT_RUNNING_ID==0))">
-                {{'BUTTON.ADD_HEAD_COLL'|translate}} <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li ng-repeat="headColType in collType">
-                    <a href="#" ng-click="addHeadCol(headColType.CODE,headColType.COL_TYPE,headColType.GRADE_QNR_ID)">
-                        {{headColType.COL_TYPE}}
-                    </a>
-                </li>
-            </ul>
+            <div class="btn-group padding-left-5" dropdown>
+                <button type="button" class="btn btn-primary dropdown-toggle btn-squared" dropdown-toggle ng-disabled="inputDisabled||($parent.formData.JOB_TYPE && ($parent.formData.PROJECT==undefined || $parent.formData.PROJECT.PROJECT_RUNNING_ID==0))">
+                    {{'PROJECT_COLLETERAL'|translate}} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                    <li ng-repeat="colType in collTypeProject">
+                        <a href="#" ng-click="openProjectCollteral(colType.CODE,colType.COL_TYPE,colType.GRADE_QNR_ID)">
+                            {{colType.COL_TYPE}}
+                        </a>
+                    </li>
+                </ul>
+            </div> 
+            <div class="btn-group padding-left-5" dropdown>
+                <button type="button" class="btn btn-primary dropdown-toggle btn-squared" dropdown-toggle ng-disabled="inputDisabled||($parent.formData.JOB_TYPE && ($parent.formData.PROJECT==undefined || $parent.formData.PROJECT.PROJECT_RUNNING_ID==0))">
+                    {{'BUTTON.ADD_HEAD_COLL'|translate}} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                    <li ng-repeat="headColType in collType">
+                        <a href="#" ng-click="addHeadCol(headColType.CODE,headColType.COL_TYPE,headColType.GRADE_QNR_ID)">
+                            {{headColType.COL_TYPE}}
+                        </a>
+                    </li>
+                </ul>
+            </div>                        
         </div>
     </div>
     <div class="row padding-10" ng-repeat="colleteral in colleterals">
@@ -112,7 +123,7 @@
                                 <th class="col-sm-2" ng-show="$parent.formData.JOB_TYPE">{{'ZONE'|translate}}</th>
                                 <!--<th class="col-sm-2" ng-show="$parent.formData.JOB_TYPE">{{'AREA_WA'|translate}}</th>-->
 
-                                <th class="col-sm-2" >{{'SUB_COLL_OWNER'|translate}}</th>
+                                <th class="col-sm-2">{{'SUB_COLL_OWNER'|translate}}</th>
                                 <th class="col-sm-1" ng-if="tab.read"></th>
                             </tr>
                         </thead>

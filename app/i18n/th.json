@@ -1,5 +1,5 @@
 ﻿{
-  "INPUT_VALIDATION_FAILED": "กรุณาบันทึกข้อมูลให้ครบถ้วน", 
+  "INPUT_VALIDATION_FAILED": "กรุณาบันทึกข้อมูลให้ครบถ้วน",
   "VERSION": "version",
   "REFRESH_JOBMARKETPRICE": "อัพเดทข้อมูลตลาด",
   "INVALID_DATE_REQ": "วันที่ใบคำขอประเมิน ต้องมีค่าน้อยกว่าหรือเท่ากับวันที่ปัจจุบัน",
@@ -263,7 +263,7 @@
   "INFO_FROM_CHOOSE": "แหล่งที่มาข้อมูล",
   "INFO_STATUS": "สถานะ",
   "PRICE_SELL": "ราคาเสนอขาย",
-  "PRICE_SELL_METER": "ราคาขายต่อตารางวา",
+  "PRICE_SELL_METER": "ราคาเสนอขาย (บาท/ตร.ว.)",
   "PROPERTY_SELL": "สภาพคล่อง",
   "AREA_COLOR": "ข้อบังคับทางกฏหมาย",
   "MAINTAIN_LEVEL": "การบำรุงรักษา",

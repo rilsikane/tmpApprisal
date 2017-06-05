@@ -9,6 +9,7 @@ app.controller('subform0210Controller', ['$scope', '$state', '$stateParams', 'ra
     $scope.includeUrl = '/app/views/test/subform0210.html';
     $scope.showButtonSave = true;
     $scope.tab = params.tab;
+    $scope.IS_PROJECT = params.IS_PROJECT;
 
     if ($scope.tab.update) {
         $scope.btnSubmitDisabled = false;
@@ -17,12 +18,21 @@ app.controller('subform0210Controller', ['$scope', '$state', '$stateParams', 'ra
 
     $scope.methodChange = function (item) {
         $scope.formData.ASSPA_METH = item.NAME;
-        $scope.formData.APPR_CUR_NET_TOTAL = item.AMOUNT;
+
+        if ($scope.IS_PROJECT) {
+            $scope.formData.APPR_CUR_NET_TOTAL = item.AMOUNT + $scope.formData.PROJECT_UNIT_PRICE_UPDOWN;
+        } else {
+            $scope.formData.APPR_CUR_NET_TOTAL = item.AMOUNT;
+        }
     }
 
     $scope.methodAmountChange = function ($event, item) {
         if ($scope.formData.ASSPA_METH_ID == '3') {
-            $scope.formData.APPR_CUR_NET_TOTAL = item.AMOUNT;
+            if ($scope.IS_PROJECT) {
+                $scope.formData.APPR_CUR_NET_TOTAL = item.AMOUNT + $scope.formData.PROJECT_UNIT_PRICE_UPDOWN;
+            } else {
+                $scope.formData.APPR_CUR_NET_TOTAL = item.AMOUNT;
+            }
         }
     }
 

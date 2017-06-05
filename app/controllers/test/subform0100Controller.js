@@ -251,7 +251,7 @@
     //}
 
     $scope.init();
-    $scope.isNaN = function(num){
+    $scope.isNaN = function (num) {
         return isNaN(num);
     }
     //$scope.loadFormData();

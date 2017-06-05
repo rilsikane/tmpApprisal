@@ -12,7 +12,7 @@
                     <span ng-if="market.MARKETPRICE_SET==3" class="text-white">{{'DATA_SET_3'|translate}}</span>
                     <span ng-if="market.MARKETPRICE_SET==4" class="text-white">{{'DATA_SET_4'|translate}}</span>
                     <span ng-if="market.MARKETPRICE_SET==5" class="text-white">{{'DATA_SET_5'|translate}}</span>
-                    <span class="pull-right">                        
+                    <span class="pull-right">
                         <a ng-if="market.MARKETPRICE_SET > 0 && dataMode==1 && tab.update && market.JMP_RUNNING_ID > 0" ng-click="refreshJobMarketPrice(market.JMP_RUNNING_ID)" tooltip="{{'REFRESH'|translate}}"><span class="text-white"><i class="fa fa-refresh"></i></span></a>
                         <a ng-if="market.MARKETPRICE_SET > 0 && dataMode==1 && tab.update" ng-click="selectMarketPrice($index,market)" tooltip="{{'SELECT_MARKET_PRICE'|translate}}"><span class="text-white"><i class="fa fa-search"></i></span></a>
                         <a ng-if="dataMode==1 && tab.delete && market.JMP_RUNNING_ID > 0" ng-click="deleteJobMarketPrice($index,market)" tooltip="{{'DELETE_MARKET_PRICE'|translate}}"><span class="text-white"><i class="fa fa-remove"></i></span></a>
@@ -41,7 +41,7 @@
             </tr>
             <tr>
                 <td class="text-right">เนื้อที่ดินประมาณ</td>
-                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.AREA_LAND}},{{market.AREA_LAND_RAI}}</td>
+                <td ng-show="market.DISPLAY" ng-repeat="market in jobMarketPrice">{{market.AREA_LAND|number:1}}</td>
             </tr>
             <tr>
                 <td class="text-right">ทำเล/ที่ตั้ง</td>

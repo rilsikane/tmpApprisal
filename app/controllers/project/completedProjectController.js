@@ -48,7 +48,8 @@ app.controller('completedProjectCtrl', ['$scope', '$state', '$stateParams', 'rad
             limit: $rootScope.app.itemsPerPage,
             page: $scope.paging1CurrentPage,
             filters: [
-                { NAME: 'FILTER', VALUE: $scope.projectSearchKeyword }
+                { NAME: 'FILTER', VALUE: $scope.projectSearchKeyword },
+                { NAME: 'HEAD_COL_TYPE_ID', VALUE: $scope.$parent.formData.HEAD_COL_TYPE_ID }
             ]
         }).then(function (response) {
             $scope.projects = response.data.data;
@@ -62,7 +63,8 @@ app.controller('completedProjectCtrl', ['$scope', '$state', '$stateParams', 'rad
             page: $scope.paging2CurrentPage,
             filters: [
                 { NAME: 'PROJECT_RUNNING_ID', VALUE: $scope.selectedProject.PROJECT_RUNNING_ID || 0 },
-                { NAME: 'FILTER', VALUE: $scope.unitSearchKeyword }
+                { NAME: 'FILTER', VALUE: $scope.unitSearchKeyword },
+                { NAME: 'HEAD_COL_TYPE_ID', VALUE: $scope.$parent.formData.HEAD_COL_TYPE_ID }
             ]
         }).then(function (response) {
             $scope.units = response.data.data;

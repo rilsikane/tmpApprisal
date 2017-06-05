@@ -20,7 +20,7 @@
                 $log.debug(msg);
             }
             this.httpPost = function (action, params, httpConfig) {
-                 var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/api/Values/' + action;
+                var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/api/Values/' + action;
                 return this.http('POST', url, params, httpConfig || {});
             }
             this.httpGet = function (action, params, httpConfig) {
@@ -28,7 +28,7 @@
                 for (var p in params) {
                     str.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p]));
                 }
-                 var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/api/Values/' + action + (params ? '?' + str.join("&") : '');
+                var url = 'https://gsbappraisal.cdg.co.th/rdsdWeb/api/Values/' + action + (params ? '?' + str.join("&") : '');
                 return this.http('GET', url, {}, httpConfig || {});
             }
             this.httpLogout = function () {
@@ -269,7 +269,6 @@
                     showLoaderOnConfirm: true
                 }, callback);
             }
-
 
             this.getLoggedUserRole = function () {
                 var deferred = $q.defer();
@@ -1325,7 +1324,10 @@
             this.getBOT_COL_ACT_VALID = function (params) {
                 return this.httpGet('getBOT_COL_ACT_VALID', params);
             }
-            this.copyHeadCol = function(params) {
+            this.copyHeadCol = function (params) {
                 return this.httpPost('copyHeadCol', params);
+            }
+            this.getColleteralTypeForProject = function (params) {
+                return this.httpGet('getColleteralTypeForProject', params);
             }
         }]);

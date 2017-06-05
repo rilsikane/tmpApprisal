@@ -89,7 +89,11 @@
                         <input ng-disabled="inputDisabled" ng-if="wqs.WQS_FACTOR_ID <= -4 && wqs.WQS_FACTOR_ID > -14" type="text" class="form-control input-sm center" readonly value="{{wqs.MKT5_VALUE|number:2}}" ng-style="inputStyle" numeric maxlength="24" />
                     </td>
                     <td ng-style="tdValue" class="no-padding">
-                        <input ng-disabled="inputDisabled" ng-hide="wqs.WQS_FACTOR_ID == -5 || wqs.WQS_FACTOR_ID == -6" ng-if="wqs.WQS_FACTOR_ID <= -4" type="text" class="form-control input-sm center" value="{{wqs.COL_VALUE|number:2}}" ng-style="inputStyle" numeric maxlength="24" />
+                        <input ng-disabled="inputDisabled"
+                               ng-hide="wqs.WQS_FACTOR_ID == -5 || wqs.WQS_FACTOR_ID == -6"
+                               ng-readonly="wqs.WQS_FACTOR_ID != -14"
+                               ng-if="wqs.WQS_FACTOR_ID <= -4" type="text" class="form-control input-sm center" ng-model="wqs.COL_VALUE"
+                               ng-style="inputStyle" numeric maxlength="24" decimal="2" />
                     </td>
                 </tr>
             </tbody>
@@ -106,45 +110,46 @@
             <thead>
                 <tr class="bg-light-azure">
                     <th><span class="text-white">{{'WQS_FACTOR'|translate}}</span></th>
-                    <th ng-style="tdValue" class="center"></th>
+                    <th ng-style="tdValue" class="center"><span class="text-white">{{'WEIGHT'|translate}}</span></th>
                     <th ng-style="tdValue" class="center"><span class="text-white">{{'DATA_SET_1'|translate}}</span></th>
                     <th ng-style="tdValue" class="center"><span class="text-white">{{'DATA_SET_2'|translate}}</span></th>
                     <th ng-style="tdValue" class="center"><span class="text-white">{{'DATA_SET_3'|translate}}</span></th>
                     <th ng-style="tdValue" class="center"><span class="text-white">{{'DATA_SET_4'|translate}}</span></th>
                     <th ng-if="MARKET_COMPAIR==5" ng-style="tdValue" class="center"><span class="text-white">{{'DATA_SET_5'|translate}}</span></th>
-                    <th ng-style="tdValue" class="center"></th>
+                    <th ng-style="tdValue" class="center"><span class="text-white">{{'DATA_SET_0'|translate}}</span></th>
+
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="wqs in WQS.WQS_FACTOR" ng-if="wqs.WQS_FACTOR_ID!=-1 && wqs.FACTOR_WEIGHT > 0">
                     <td class="no-padding"><span class="margin-left-5">{{wqs.FACTOR_NAME}}</span></td>
-                    <td class="no-padding"></td>
+                    <td class="no-padding center">{{wqs.FACTOR_WEIGHT}}</td>
                     <td class="no-padding center">
-                        <span ng-if="wqs.MKT1_SCORE>wqs.COL_SCORE" class="label label-success no-radius block">{{'COMPAIR_H'|translate}}</span>
-                        <span ng-if="wqs.MKT1_SCORE==wqs.COL_SCORE" class="label label-warning no-radius block">{{'COMPAIR_M'|translate}}</span>
-                        <span ng-if="wqs.MKT1_SCORE<wqs.COL_SCORE" class="label label-danger no-radius block">{{'COMPAIR_L'|translate}}</span>
+                        <span ng-if="wqs.MKT1_SCORE>wqs.COL_SCORE" class="label label-success no-radius block">{{'COMPAIR_H'|translate}}({{wqs.MKT1_SCORE}})</span>
+                        <span ng-if="wqs.MKT1_SCORE==wqs.COL_SCORE" class="label label-warning no-radius block">{{'COMPAIR_M'|translate}}({{wqs.MKT1_SCORE}})</span>
+                        <span ng-if="wqs.MKT1_SCORE<wqs.COL_SCORE" class="label label-danger no-radius block">{{'COMPAIR_L'|translate}}({{wqs.MKT1_SCORE}})</span>
                     </td>
                     <td class="no-padding center">
-                        <span ng-if="wqs.MKT2_SCORE>wqs.COL_SCORE" class="label label-success no-radius block">{{'COMPAIR_H'|translate}}</span>
-                        <span ng-if="wqs.MKT2_SCORE==wqs.COL_SCORE" class="label label-warning no-radius block">{{'COMPAIR_M'|translate}}</span>
-                        <span ng-if="wqs.MKT2_SCORE<wqs.COL_SCORE" class="label label-danger no-radius block">{{'COMPAIR_L'|translate}}</span>
+                        <span ng-if="wqs.MKT2_SCORE>wqs.COL_SCORE" class="label label-success no-radius block">{{'COMPAIR_H'|translate}}({{wqs.MKT2_SCORE}})</span>
+                        <span ng-if="wqs.MKT2_SCORE==wqs.COL_SCORE" class="label label-warning no-radius block">{{'COMPAIR_M'|translate}}({{wqs.MKT2_SCORE}})</span>
+                        <span ng-if="wqs.MKT2_SCORE<wqs.COL_SCORE" class="label label-danger no-radius block">{{'COMPAIR_L'|translate}}({{wqs.MKT2_SCORE}})</span>
                     </td>
                     <td class="no-padding center">
-                        <span ng-if="wqs.MKT3_SCORE>wqs.COL_SCORE" class="label label-success no-radius block">{{'COMPAIR_H'|translate}}</span>
-                        <span ng-if="wqs.MKT3_SCORE==wqs.COL_SCORE" class="label label-warning no-radius block">{{'COMPAIR_M'|translate}}</span>
-                        <span ng-if="wqs.MKT3_SCORE<wqs.COL_SCORE" class="label label-danger no-radius block">{{'COMPAIR_L'|translate}}</span>
+                        <span ng-if="wqs.MKT3_SCORE>wqs.COL_SCORE" class="label label-success no-radius block">{{'COMPAIR_H'|translate}}({{wqs.MKT3_SCORE}})</span>
+                        <span ng-if="wqs.MKT3_SCORE==wqs.COL_SCORE" class="label label-warning no-radius block">{{'COMPAIR_M'|translate}}({{wqs.MKT3_SCORE}})</span>
+                        <span ng-if="wqs.MKT3_SCORE<wqs.COL_SCORE" class="label label-danger no-radius block">{{'COMPAIR_L'|translate}}({{wqs.MKT3_SCORE}})</span>
                     </td>
                     <td class="no-padding center">
-                        <span ng-if="wqs.MKT4_SCORE>wqs.COL_SCORE" class="label label-success no-radius block">{{'COMPAIR_H'|translate}}</span>
-                        <span ng-if="wqs.MKT4_SCORE==wqs.COL_SCORE" class="label label-warning no-radius block">{{'COMPAIR_M'|translate}}</span>
-                        <span ng-if="wqs.MKT4_SCORE<wqs.COL_SCORE" class="label label-danger no-radius block">{{'COMPAIR_L'|translate}}</span>
+                        <span ng-if="wqs.MKT4_SCORE>wqs.COL_SCORE" class="label label-success no-radius block">{{'COMPAIR_H'|translate}}({{wqs.MKT4_SCORE}})</span>
+                        <span ng-if="wqs.MKT4_SCORE==wqs.COL_SCORE" class="label label-warning no-radius block">{{'COMPAIR_M'|translate}}({{wqs.MKT4_SCORE}})</span>
+                        <span ng-if="wqs.MKT4_SCORE<wqs.COL_SCORE" class="label label-danger no-radius block">{{'COMPAIR_L'|translate}}({{wqs.MKT4_SCORE}})</span>
                     </td>
                     <td class="no-padding center" ng-if="MARKET_COMPAIR==5">
-                        <span ng-if="wqs.MKT5_SCORE>wqs.COL_SCORE" class="label label-success no-radius block">{{'COMPAIR_H'|translate}}</span>
-                        <span ng-if="wqs.MKT5_SCORE==wqs.COL_SCORE" class="label label-warning no-radius block">{{'COMPAIR_M'|translate}}</span>
-                        <span ng-if="wqs.MKT5_SCORE<wqs.COL_SCORE" class="label label-danger no-radius block">{{'COMPAIR_L'|translate}}</span>
+                        <span ng-if="wqs.MKT5_SCORE>wqs.COL_SCORE" class="label label-success no-radius block">{{'COMPAIR_H'|translate}}({{wqs.MKT5_SCORE}})</span>
+                        <span ng-if="wqs.MKT5_SCORE==wqs.COL_SCORE" class="label label-warning no-radius block">{{'COMPAIR_M'|translate}}({{wqs.MKT5_SCORE}})</span>
+                        <span ng-if="wqs.MKT5_SCORE<wqs.COL_SCORE" class="label label-danger no-radius block">{{'COMPAIR_L'|translate}}({{wqs.MKT5_SCORE}})</span>
                     </td>
-                    <td class="no-padding"></td>
+                    <td class="no-padding center">{{wqs.COL_SCORE}}</td>
                 </tr>
             </tbody>
         </table>

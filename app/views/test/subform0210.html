@@ -15,13 +15,21 @@
                         <input ng-if="formData.ASSPA_METH_ID==3" format ng-switch-when="3" type="text" class="form-control text-right" ng-model="item.AMOUNT" ng-disabled="formData.ASSPA_METH_ID != '3'" ng-change="methodAmountChange($event,item)" />
                         <input ng-if="formData.ASSPA_METH_ID==2" format ng-switch-when="2" type="text" class="form-control text-right" ng-model="item.AMOUNT" readonly />
                         <input ng-if="formData.ASSPA_METH_ID==1" format ng-switch-when="1" type="text" class="form-control text-right" ng-model="item.AMOUNT" readonly />
-                    </div>                    
+                    </div>
                 </div>
             </div>
             <br />
         </fieldset>
         <fieldset class="no-radius">
             <legend>{{'APPRAISAL_METHOD_DETAIL'|translate}}</legend>
+            <div class="form-group" ng-if="IS_PROJECT">
+                <label class="col-sm-4 control-label" for="APPR_CUR_BUILD_AMOUNT">
+                    ราคาเพิ่มลดงานโครงการ
+                </label>
+                <div class="col-sm-6 no-padding">
+                    <input format ng-readonly="true" type="text" class="form-control" ng-model="formData.PROJECT_UNIT_PRICE_UPDOWN" id="PROJECT_UNIT_PRICE_UPDOWN" name="PROJECT_UNIT_PRICE_UPDOWN" />
+                </div>
+            </div>
             <!--<div class="form-group">
                 <label class="col-sm-4 control-label" for="APPR_CUR_LAND_AMOUNT">
                     {{'APPR_CUR_LAND_AMOUNT'|translate}}
@@ -72,7 +80,7 @@
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="APPR_CUR_FIRE_INSURE">
-                   {{'REMARK'|translate}}
+                    {{'REMARK'|translate}}
                 </label>
                 <div class="col-sm-6 no-padding">
                     <textarea ng-disabled="inputDisabled" rows="5" class="form-control" id="HEAD_COL_REMARK" name="HEAD_COL_REMARK" ng-model="formData.APPR_CUR_REMARK"></textarea>
