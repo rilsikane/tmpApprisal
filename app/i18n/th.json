@@ -204,7 +204,7 @@
   "LOAN_TYPE_ID": "ประเภทสินเชื่อที่ขอกู้",
   "AMOUNT": "จำนวนเงิน",
   "CREDIT_BALANCE": "ภาระหนี้คงเหลือ",
-  "CREDIT_LIMIT": "ภาระสินเชื้อรวม",
+  "CREDIT_LIMIT": "ภาระสินเชื่อรวม",
   "CREDIT_REQUEST": "วงเงินกู้",
   "BANK_EMPLOYEE": "เจ้าหน้าที่ธนาคาร",
   "REQUEST_OU": "หน่วยงานต้นเรื่อง",
