@@ -6,6 +6,8 @@
     $scope.debtType = [];
     $scope.custType = [];
     $scope.dept = [];
+    $scope.loanGroup = [];
+    $scope.loanType = [];
 
     $scope.btnDisabled = true;
     $scope.inputDisabled = true;
@@ -35,6 +37,14 @@
         $scope.$parent.formData.CUST_TYPE = undefined;
     }
 
+    $scope.onLoadGroupChange = function (item) {
+        $scope.loanType = [];
+        $scope.$parent.formData.LOAN_TYPE_ID = undefined;
+        radasoft.getLoanType({ LOAN_GROUP_ID: item.LOAN_GROUP_ID }).then(function (response) {
+            $scope.loanType = response.data;
+        });
+    }
+
     $scope.init = function () {
         radasoft.getRequestType({}).then(function (response) {
             $scope.requestType = response.data;
@@ -51,9 +61,15 @@
                         radasoft.getCustType({}).then(function (response) {
                             $scope.custType = response.data;
 
-                            //radasoft.getDept({}).then(function (response) {
-                            //    $scope.dept = response.data;
-                            //});
+                            radasoft.getLoanGroup({}).then(function (response) {
+                                $scope.loanGroup = response.data;
+
+                                if ($scope.$parent.formData.LOAN_GROUP_ID != null) {
+                                    radasoft.getLoanType({ LOAN_GROUP_ID: $scope.$parent.formData.LOAN_GROUP_ID.LOAN_GROUP_ID }).then(function (response) {
+                                        $scope.loanType = response.data;
+                                    });
+                                }
+                            });
                         });
                     });
                 });

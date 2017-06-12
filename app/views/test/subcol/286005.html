@@ -1,4 +1,4 @@
-﻿<div class="panel panel-white">
+﻿<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">สิทธิการเช่า</h5>
     </div>
@@ -11,218 +11,216 @@
                 <input ng-disabled="inputDisabled" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.SURVEY_DATE" ng-click="openDatePicker($event,'SURVEY_DATE')" type="text" class="form-control" ng-model="formData.SURVEY_DATE" />
             </div>
         </div>
-
-        <fieldset ng-if="isAppraiser" class="no-radius">
-            <legend>ราคา</legend>
-            <div class="form-group">
-                <label class="col-sm-4 control-label" for="APPR_CUR_OTHER_PRICE">
-                    ราคาต่อตารางเมตร/วา (บาท)
-                </label>
-                <div class="col-sm-8">
-                    <input format ng-disabled="inputDisabled" type="text" class="form-control" ng-model="formData.APPR_CUR_OTHER_PRICE" id="APPR_CUR_OTHER_PRICE" name="APPR_CUR_OTHER_PRICE" maxlength="25" />
-                </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="TRANSFER_NO">
+                {{'TRANSFER_NO'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input ng-disabled="inputDisabled" type="text" class="form-control" id="TRANSFER_NO" name="TRANSFER_NO" ng-model="formData.TRANSFER_NO" ng-maxlength="10">
             </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label" for="APPR_CUR_NET_TOTAL">
-                    ราคารวม
-                </label>
-                <div class="col-sm-8">
-                    <input format ng-disabled="inputDisabled" type="text" class="form-control" ng-model="formData.APPR_CUR_NET_TOTAL" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" maxlength="25" />
-                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">{{'RENT_COL'|translate}}</label>
+            <div class="col-sm-8">
+                <textarea ng-disabled="inputDisabled" class="form-control" id="RENT_COL" name="RENT_COL" ng-model="formData.RENT_COL" style="max-width:100%;"></textarea>
             </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label" for="APPR_CUR_OTHER_AREA">
-                    พื้นที่รวม
-                </label>
-                <div class="col-sm-8">
-                    <input format ng-disabled="inputDisabled" type="text" class="form-control" ng-model="formData.APPR_CUR_OTHER_AREA" id="APPR_CUR_OTHER_AREA" name="APPR_CUR_OTHER_AREA" maxlength="25" />
-                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="TRANSFER_DATE">
+                {{'TRANSFER_DATE'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input type="text" ng-disabled="inputDisabled" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TRANSFER_DATE" ng-click="openDatePicker($event,'TRANSFER_DATE')" class="form-control" id="TRANSFER_DATE" name="TRANSFER_DATE" ng-model="formData.TRANSFER_DATE">
             </div>
-        </fieldset>
-
-
-        <fieldset ng-if="isAppraiser" class="no-radius">
-            <legend>รายละเอียดสิทธิการเช่า</legend>
-            <div class="form-group" ng-class="{'has-error':form.TRANSFER_NO.$dirty && form.TRANSFER_NO.$invalid, 'has-success':form.TRANSFER_NO.$valid}">
-                <label class="col-sm-3 control-label" for="TRANSFER_NO">
-                    {{'TRANSFER_NO'|translate}}<span class="symbol required"></span>
-                </label>
-                <div class="col-sm-9">
-                    <input required ng-disabled="inputDisabled" type="text" class="form-control" id="TRANSFER_NO" name="TRANSFER_NO" ng-model="formData.TRANSFER_NO" ng-maxlength="10">
-                </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.TRANSFER_AGE_YEAR.$dirty && form.TRANSFER_AGE_YEAR.$invalid, 'has-success':form.TRANSFER_AGE_YEAR.$valid}">
+            <label class="col-sm-4 control-label">
+                {{'TRANSFER_AGE'|translate}}
+            </label>
+            <div class="col-sm-2">
+                <input type="text" ng-disabled="inputDisabled" min="0" class="form-control" id="TRANSFER_AGE_YEAR" name="TRANSFER_AGE_YEAR" ng-model="formData.TRANSFER_AGE_YEAR" count ng-max="9999">
             </div>
-            <div class="form-group">
-                <label class="control-label col-sm-3">{{'RENT_COL'|translate}}</label>
-                <div class="col-sm-9">
-                    <textarea ng-disabled="inputDisabled" class="form-control" id="RENT_COL" name="RENT_COL" ng-model="formData.RENT_COL" style="max-width:100%;"></textarea>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="TRANSFER_DATE">
-                    {{'TRANSFER_DATE'|translate}}
-                </label>
-                <div class="col-sm-9">
-                    <input type="text" ng-disabled="inputDisabled" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TRANSFER_DATE" ng-click="openDatePicker($event,'TRANSFER_DATE')" class="form-control" id="TRANSFER_DATE" name="TRANSFER_DATE" ng-model="formData.TRANSFER_DATE">
-                </div>
-            </div>
-            <div class="form-group" ng-class="{'has-error':form.TRANSFER_AGE_YEAR.$dirty && form.TRANSFER_AGE_YEAR.$invalid, 'has-success':form.TRANSFER_AGE_YEAR.$valid}">
-                <label class="control-label col-sm-3">
-                    {{'TRANSFER_AGE'|translate}}
-                </label>
-                <div class="col-sm-2">
-                    <input type="text" ng-disabled="inputDisabled" min="0" class="form-control" id="TRANSFER_AGE_YEAR" name="TRANSFER_AGE_YEAR" ng-model="formData.TRANSFER_AGE_YEAR" count ng-max="9999">
-                </div>
-                <div class="col-sm-1 no-padding">
-                    <label class="control-label" for="TRANSFER_AGE_YEAR">
-                        {{'YEAR'|translate}}
-                    </label>
-                </div>
-                <div class="col-sm-2">
-                    <input type="text" ng-disabled="inputDisabled" min="0" max="11" class="form-control" id="TRANSFER_AGE_MONTH" name="TRANSFER_AGE_MONTH" ng-model="formData.TRANSFER_AGE_MONTH" count ng-max="11">
-                </div>
-                <label class="control-label" for="TRANSFER_AGE_MONTH">
-                    {{'MONTH'|translate}}
+            <div class="col-sm-1 no-padding">
+                <label class="control-label" for="TRANSFER_AGE_YEAR">
+                    {{'YEAR'|translate}}
                 </label>
             </div>
-            <div class="form-group" ng-disabled="inputDisabled" ng-class="{'has-error':form.TRANSFER_DATE_BEGIN.$dirty && form.TRANSFER_DATE_BEGIN.$invalid, 'has-success':form.TRANSFER_DATE_BEGIN.$valid}">
-                <label class="col-sm-3 control-label" for="TRANSFER_DATE_BEGIN">
-                    {{'TRANSFER_DATE_BEGIN'|translate}}<span class="symbol required"></span>
-                </label>
-                <div class="col-sm-2">
-                    <input required ng-disabled="inputDisabled" type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TRANSFER_DATE_BEGIN" ng-click="openDatePicker($event,'TRANSFER_DATE_BEGIN')" class="form-control" id="TRANSFER_DATE_BEGIN" name="TRANSFER_DATE_BEGIN" ng-model="formData.TRANSFER_DATE_BEGIN" max-date="formData.TRANSFER_DATE_DUE">
-                </div>
+            <div class="col-sm-2">
+                <input type="text" ng-disabled="inputDisabled" min="0" max="11" class="form-control" id="TRANSFER_AGE_MONTH" name="TRANSFER_AGE_MONTH" ng-model="formData.TRANSFER_AGE_MONTH" count ng-max="11">
             </div>
-            <div class="form-group" ng-class="{'has-error':form.TRANSFER_DATE_DUE.$dirty && form.TRANSFER_DATE_DUE.$invalid, 'has-success':form.TRANSFER_DATE_DUE.$valid}">
-                <label class="col-sm-3 control-label" for="TRANSFER_DATE_DUE">
-                    {{'TRANSFER_DATE_DUE'|translate}}<span class="symbol required"></span>
-                </label>
-                <div class="col-sm-2">
-                    <input required ng-disabled="inputDisabled" type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TRANSFER_DATE_DUE" ng-click="openDatePicker($event,'TRANSFER_DATE_DUE')" class="form-control" id="TRANSFER_DATE_DUE" name="TRANSFER_DATE_DUE" ng-model="formData.TRANSFER_DATE_DUE" min-date="formData.TRANSFER_DATE_BEGIN">
-                </div>
+            <label class="control-label" for="TRANSFER_AGE_MONTH">
+                {{'MONTH'|translate}}
+            </label>
+        </div>
+        <div class="form-group" ng-disabled="inputDisabled" ng-class="{'has-error':form.TRANSFER_DATE_BEGIN.$dirty && form.TRANSFER_DATE_BEGIN.$invalid, 'has-success':form.TRANSFER_DATE_BEGIN.$valid}">
+            <label class="col-sm-4 control-label" for="TRANSFER_DATE_BEGIN">
+                {{'TRANSFER_DATE_BEGIN'|translate}}<span class="symbol required"></span>
+            </label>
+            <div class="col-sm-2">
+                <input required ng-disabled="inputDisabled" type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TRANSFER_DATE_BEGIN" ng-click="openDatePicker($event,'TRANSFER_DATE_BEGIN')" class="form-control" id="TRANSFER_DATE_BEGIN" name="TRANSFER_DATE_BEGIN" ng-model="formData.TRANSFER_DATE_BEGIN" max-date="formData.TRANSFER_DATE_DUE">
             </div>
-            <div class="form-group" ng-class="{'has-error':form.RENTAL_PERIOD_YEAR.$dirty && form.RENTAL_PERIOD_YEAR.$invalid, 'has-success':form.RENTAL_PERIOD_YEAR.$valid}">
-                <label class="col-sm-3 control-label" for="RENTAL_PERIOD_YEAR">
-                    {{'RENTAL_PERIOD'|translate}}
-                </label>
-                <div class="col-sm-2">
-                    <input type="text" ng-disabled="inputDisabled" min="0" class="form-control" id="RENTAL_PERIOD_YEAR" name="RENTAL_PERIOD_YEAR" ng-model="formData.RENTAL_PERIOD_YEAR" count ng-max="9999">
-                </div>
-                <div class="col-sm-1 no-padding">
-                    <label class="control-label" for="RENTAL_PERIOD_YEAR">
-                        {{'YEAR'|translate}}
-                    </label>
-                </div>
-                <div class="col-sm-2">
-                    <input type="text" ng-disabled="inputDisabled" min="0" max="12" class="form-control" id="RENTAL_PERIOD_MONTH" name="RENTAL_PERIOD_MONTH" ng-model="formData.RENTAL_PERIOD_MONTH" count ng-max="11">
-                </div>
-                <label class="control-label" for="RENTAL_PERIOD_MONTH">
-                    {{'MONTH'|translate}}
-                </label>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.TRANSFER_DATE_DUE.$dirty && form.TRANSFER_DATE_DUE.$invalid, 'has-success':form.TRANSFER_DATE_DUE.$valid}">
+            <label class="col-sm-4 control-label" for="TRANSFER_DATE_DUE">
+                {{'TRANSFER_DATE_DUE'|translate}}<span class="symbol required"></span>
+            </label>
+            <div class="col-sm-2">
+                <input required ng-disabled="inputDisabled" type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.TRANSFER_DATE_DUE" ng-click="openDatePicker($event,'TRANSFER_DATE_DUE')" class="form-control" id="TRANSFER_DATE_DUE" name="TRANSFER_DATE_DUE" ng-model="formData.TRANSFER_DATE_DUE" min-date="formData.TRANSFER_DATE_BEGIN">
             </div>
-            <div class="form-group" ng-class="{'has-error':form.RENTAL_AVAILABLE_YEAR.$dirty && form.RENTAL_AVAILABLE_YEAR.$invalid, 'has-success':form.RENTAL_AVAILABLE_YEAR.$valid}">
-                <label class="col-sm-3 control-label" for="RENTAL_AVAILABLE_YEAR">
-                    {{'RENTAL_AVAILABLE'|translate}}
-                </label>
-                <div class="col-sm-2">
-                    <input type="text" ng-disabled="inputDisabled" min="0" class="form-control" id="RENTAL_AVAILABLE_YEAR" name="RENTAL_AVAILABLE_YEAR" ng-model="formData.RENTAL_AVAILABLE_YEAR" count ng-max="9999">
-                </div>
-                <div class="col-sm-1 no-padding">
-                    <label class="control-label" for="RENTAL_AVAILABLE_YEAR">
-                        {{'YEAR'|translate}}
-                    </label>
-                </div>
-                <div class="col-sm-2">
-                    <input type="text" ng-disabled="inputDisabled" min="0" max="11" class="form-control" id="RENTAL_AVAILABLE_MONTH" name="RENTAL_AVAILABLE_MONTH" ng-model="formData.RENTAL_AVAILABLE_MONTH" count ng-max="11">
-                </div>
-                <label class="control-label" for="RENTAL_AVAILABLE_MONTH">
-                    {{'MONTH'|translate}}
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.RENTAL_PERIOD_YEAR.$dirty && form.RENTAL_PERIOD_YEAR.$invalid, 'has-success':form.RENTAL_PERIOD_YEAR.$valid}">
+            <label class="col-sm-4 control-label" for="RENTAL_PERIOD_YEAR">
+                {{'RENTAL_PERIOD'|translate}}
+            </label>
+            <div class="col-sm-2">
+                <input type="text" ng-disabled="inputDisabled" min="0" class="form-control" id="RENTAL_PERIOD_YEAR" name="RENTAL_PERIOD_YEAR" ng-model="formData.RENTAL_PERIOD_YEAR" count ng-max="9999">
+            </div>
+            <div class="col-sm-1 no-padding">
+                <label class="control-label" for="RENTAL_PERIOD_YEAR">
+                    {{'YEAR'|translate}}
                 </label>
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="RENTAL_DATE_BEGIN">
-                    {{'RENTAL_DATE_BEGIN'|translate}}
-                </label>
-                <div class="col-sm-2">
-                    <input type="text" ng-disabled="inputDisabled" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.RENTAL_DATE_BEGIN" ng-click="openDatePicker($event,'RENTAL_DATE_BEGIN')" class="form-control" id="RENTAL_DATE_BEGIN" name="RENTAL_DATE_BEGIN" ng-model="formData.RENTAL_DATE_BEGIN">
-                </div>
+            <div class="col-sm-2">
+                <input type="text" ng-disabled="inputDisabled" min="0" max="12" class="form-control" id="RENTAL_PERIOD_MONTH" name="RENTAL_PERIOD_MONTH" ng-model="formData.RENTAL_PERIOD_MONTH" count ng-max="11">
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="RENTAL_OWNER_NAME">
-                    {{'RENTAL_OWNER_NAME'|translate}}
-                </label>
-                <div class="col-sm-9">
-                    <input type="text" ng-disabled="inputDisabled" class="form-control" id="RENTAL_OWNER_NAME" name="RENTAL_OWNER_NAME" ng-model="formData.RENTAL_OWNER_NAME" maxlength="200">
-                </div>
+            <label class="control-label" for="RENTAL_PERIOD_MONTH">
+                {{'MONTH'|translate}}
+            </label>
+        </div>
+        <div class="form-group" ng-class="{'has-error':form.RENTAL_AVAILABLE_YEAR.$dirty && form.RENTAL_AVAILABLE_YEAR.$invalid, 'has-success':form.RENTAL_AVAILABLE_YEAR.$valid}">
+            <label class="col-sm-4 control-label" for="RENTAL_AVAILABLE_YEAR">
+                {{'RENTAL_AVAILABLE'|translate}}
+            </label>
+            <div class="col-sm-2">
+                <input type="text" ng-disabled="inputDisabled" min="0" class="form-control" id="RENTAL_AVAILABLE_YEAR" name="RENTAL_AVAILABLE_YEAR" ng-model="formData.RENTAL_AVAILABLE_YEAR" count ng-max="9999">
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="RENTER_NAME">
-                    {{'RENTER_NAME'|translate}}
+            <div class="col-sm-1 no-padding">
+                <label class="control-label" for="RENTAL_AVAILABLE_YEAR">
+                    {{'YEAR'|translate}}
                 </label>
-                <div class="col-sm-9">
-                    <input type="text" ng-disabled="inputDisabled" class="form-control" id="RENTER_NAME" name="RENTER_NAME" ng-model="formData.RENTER_NAME" maxlength="200">
-                </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="RENTAL_ALLOWING_NO">
-                    {{'RENTAL_ALLOWING_NO'|translate}}
-                </label>
-                <div class="col-sm-9">
-                    <input type="text" ng-disabled="inputDisabled" class="form-control" id="RENTAL_ALLOWING_NO" name="RENTAL_ALLOWING_NO" ng-model="formData.RENTAL_ALLOWING_NO" maxlength="30">
-                </div>
+            <div class="col-sm-2">
+                <input type="text" ng-disabled="inputDisabled" min="0" max="11" class="form-control" id="RENTAL_AVAILABLE_MONTH" name="RENTAL_AVAILABLE_MONTH" ng-model="formData.RENTAL_AVAILABLE_MONTH" count ng-max="11">
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="RENTAL_NO">
-                    {{'RENTAL_NO'|translate}}
-                </label>
-                <div class="col-sm-9">
-                    <input type="text" ng-disabled="inputDisabled" class="form-control" id="RENTAL_NO" name="RENTAL_NO" ng-model="formData.RENTAL_NO" maxlength="30">
-                </div>
+            <label class="control-label" for="RENTAL_AVAILABLE_MONTH">
+                {{'MONTH'|translate}}
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="RENTAL_DATE_BEGIN">
+                {{'RENTAL_DATE_BEGIN'|translate}}
+            </label>
+            <div class="col-sm-2">
+                <input type="text" ng-disabled="inputDisabled" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.RENTAL_DATE_BEGIN" ng-click="openDatePicker($event,'RENTAL_DATE_BEGIN')" class="form-control" id="RENTAL_DATE_BEGIN" name="RENTAL_DATE_BEGIN" ng-model="formData.RENTAL_DATE_BEGIN">
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="DEED_OFFICE">
-                    {{'DEED_OFFICE'|translate}}
-                </label>
-                <div class="col-sm-9">
-                    <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.DEED_OFFICE" id="DEED_OFFICE" name="DEED_OFFICE">
-                        <ui-select-match>
-                            {{$select.selected.CODE}} {{$select.selected.NAME}}
-                        </ui-select-match>
-                        <ui-select-choices repeat="item in selectDeedOffice | filter: $select.search">
-                            <div ng-bind-html="item.CODE+' '+item.NAME | highlight: $select.search"></div>
-                        </ui-select-choices>
-                    </ui-select>
-                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="RENTAL_OWNER_NAME">
+                {{'RENTAL_OWNER_NAME'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input type="text" ng-disabled="inputDisabled" class="form-control" id="RENTAL_OWNER_NAME" name="RENTAL_OWNER_NAME" ng-model="formData.RENTAL_OWNER_NAME" maxlength="200">
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="RENTAL_DATE">
-                    {{'RENTAL_DATE'|translate}}
-                </label>
-                <div class="col-sm-3">
-                    <input type="text" ng-disabled="inputDisabled" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.RENTAL_DATE" ng-click="openDatePicker($event,'RENTAL_DATE')" class="form-control" id="RENTAL_DATE" name="RENTAL_DATE" ng-model="formData.RENTAL_DATE" />
-                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="RENTER_NAME">
+                {{'RENTER_NAME'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input type="text" ng-disabled="inputDisabled" class="form-control" id="RENTER_NAME" name="RENTER_NAME" ng-model="formData.RENTER_NAME" maxlength="200">
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="MARGET_PRICE">
-                    {{'MARGET_PRICE'|translate}}
-                </label>
-                <div class="col-sm-9">
-                    <input count type="text" ng-disabled="inputDisabled" maxlength="22" class="form-control" id="MARGET_PRICE" name="MARGET_PRICE" ng-model="formData.MARGET_PRICE">
-                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="RENTAL_ALLOWING_NO">
+                {{'RENTAL_ALLOWING_NO'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input type="text" ng-disabled="inputDisabled" class="form-control" id="RENTAL_ALLOWING_NO" name="RENTAL_ALLOWING_NO" ng-model="formData.RENTAL_ALLOWING_NO" maxlength="30">
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="RENTAL_PRICE">
-                    {{'RENTAL_PRICE'|translate}}
-                </label>
-                <div class="col-sm-9">
-                    <input format type="text" ng-disabled="inputDisabled" maxlength="22" class="form-control" id="RENTAL_PRICE" name="RENTAL_PRICE" ng-model="formData.RENTAL_PRICE">
-                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="RENTAL_NO">
+                {{'RENTAL_NO'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input type="text" ng-disabled="inputDisabled" class="form-control" id="RENTAL_NO" name="RENTAL_NO" ng-model="formData.RENTAL_NO" maxlength="30">
             </div>
-        </fieldset>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DEED_OFFICE">
+                {{'DEED_OFFICE'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.DEED_OFFICE" id="DEED_OFFICE" name="DEED_OFFICE">
+                    <ui-select-match>
+                        {{$select.selected.CODE}} {{$select.selected.NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectDeedOffice | filter: $select.search">
+                        <div ng-bind-html="item.CODE+' '+item.NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="RENTAL_DATE">
+                {{'RENTAL_DATE'|translate}}
+            </label>
+            <div class="col-sm-3">
+                <input type="text" ng-disabled="inputDisabled" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.RENTAL_DATE" ng-click="openDatePicker($event,'RENTAL_DATE')" class="form-control" id="RENTAL_DATE" name="RENTAL_DATE" ng-model="formData.RENTAL_DATE" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="MARGET_PRICE">
+                ค่าเช่าตลอดอายุสัญญาเช่าทั้งหมด (บาท)
+            </label>
+            <div class="col-sm-8">
+                <input format decimal="2" type="text" ng-disabled="inputDisabled" maxlength="22" class="form-control" id="RENT_CONTRACT_AMOUNT" name="RENT_CONTRACT_AMOUNT" ng-model="formData.RENT_CONTRACT_AMOUNT">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="MARGET_PRICE">
+                สิทธิการเช่าช่วง
+            </label>
+            <div class="col-sm-8">
+                <input type="text" ng-disabled="inputDisabled" maxlength="100" class="form-control" id="SUBLEASE_DESC" name="SUBLEASE_DESC" ng-model="formData.SUBLEASE_DESC">
+            </div>
+        </div>
+        <div class="form-group">
+            <label ng-class="labelControlCss" for="USE_CITY_PLAN">
+                {{'USE_CITY_PLAN'|translate}}
+            </label>
+            <div ng-class="formControlCss">
+                <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.USE_CITY_PLAN" id="USE_CITY_PLAN" name="USE_CITY_PLAN">
+                    <ui-select-match>
+                        {{$select.selected.NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectUseCityPlan | filter: $select.search">
+                        <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="MARGET_PRICE">
+                {{'MARGET_PRICE'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input count type="text" ng-disabled="inputDisabled" maxlength="22" class="form-control" id="MARGET_PRICE" name="MARGET_PRICE" ng-model="formData.MARGET_PRICE">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="RENTAL_PRICE">
+                {{'RENTAL_PRICE'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input format type="text" ng-disabled="inputDisabled" maxlength="22" class="form-control" id="RENTAL_PRICE" name="RENTAL_PRICE" ng-model="formData.RENTAL_PRICE">
+            </div>
+        </div>
         <!--<div class="form-group" ng-class="{'has-error':form.RENT_TYPE.$dirty && form.RENT_TYPE.$viewValue==undefined, 'has-success':form.RENT_TYPE.$viewValue!=undefined}">
-            <label class="col-sm-3 control-label">
+            <label class="col-sm-4 control-label">
                 รูปแบบการเช่า <span class="symbol required"></span>
             </label>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
                 <div class="radio clip-radio radio-primary" ng-repeat="item in radioRentType">
                     <input required ng-disabled="inputDisabled" type="radio" name="RENT_TYPE" ng-value="item.VALUE" ng-model="formData.RENT_TYPE" id="RENT_TYPE{{item.VALUE}}" />
                     <label for="RENT_TYPE{{item.VALUE}}">{{ item.NAME }}</label>
@@ -237,41 +235,93 @@
         <h5 class="panel-title">เช่าที่ดิน</h5>
     </div>
     <div class="panel-body">
-        <div class="form-group" ng-class="{'has-error':form.DEED_NO.$dirty && form.DEED_NO.$invalid && formData.RENT_TYPE=='L', 'has-success':form.DEED_NO.$valid && formData.RENT_TYPE=='L'}">
-            <label class="col-sm-3 control-label" for="DEED_NO">
-                เลขที่เอกสารสิทธิ์ <span class="symbol required" ng-if="formData.RENT_TYPE=='L'"></span>
+        <div class="form-group">
+            <label class="control-label col-sm-4" for="COL_CERT_TYPE">
+                ประเภทเอกสารสิทธิ์
             </label>
-            <div class="col-sm-9">
-                <input ng-required="formData.RENT_TYPE=='L'" type="text"  ng-disabled="inputDisabled" class="form-control" id="DEED_NO" name="DEED_NO" ng-model="formData.DEED_NO" />
+            <div class="col-sm-8">
+                <ui-select theme="selectize" ng-model="formData.COL_CERT_TYPE" id="COL_CERT_TYPE" name="COL_CERT_TYPE" on-select="onRentColCertTypeChange($item)">
+                    <ui-select-match>
+                        {{$select.selected.NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in colCertTypes | filter: $select.search">
+                        <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
             </div>
         </div>
-        <div class="form-group" ng-class="{'has-error':form.RAWANG.$dirty && form.RAWANG.$invalid && formData.RENT_TYPE=='L', 'has-success':form.RAWANG.$valid && formData.RENT_TYPE=='L'}">
-            <label class="col-sm-3 control-label" for="RAWANG">
-                {{'RAWANG'|translate}}<span class="symbol required" ng-if="formData.RENT_TYPE=='L'"></span>
+        <div ng-include="colCertTypeUrl"></div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DEED_PROVINCE">
+                {{'PROVINCE'|translate}}
             </label>
-            <div class="col-sm-9">
-                <input ng-required="formData.RENT_TYPE=='L'" ng-disabled="inputDisabled" type="text" class="form-control" id="RAWANG" name="RAWANG" ng-model="formData.RAWANG" />
-            </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error':form.LAND_NO.$dirty && form.LAND_NO.$invalid && formData.RENT_TYPE=='L', 'has-success':form.LAND_NO.$valid && formData.RENT_TYPE=='L'}">
-            <label class="col-sm-3 control-label" for="LAND_NO">
-                {{'LAND_NO'|translate}}<span class="symbol required" ng-if="formData.RENT_TYPE=='L'"></span>
-            </label>
-            <div class="col-sm-9">
-                <input ng-required="formData.RENT_TYPE=='L'" type="text"  ng-disabled="inputDisabled" class="form-control" id="LAND_NO" name="LAND_NO" ng-model="formData.LAND_NO">
-            </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error':form.SURVEY_NO.$dirty && form.SURVEY_NO.$invalid && formData.RENT_TYPE=='L', 'has-success':form.SURVEY_NO.$valid && formData.RENT_TYPE=='L'}">
-            <label class="col-sm-3 control-label" for="SURVEY_NO">
-                {{'SURVEY_NO'|translate}}<span class="symbol required" ng-if="formData.RENT_TYPE=='L'"></span>
-            </label>
-            <div class="col-sm-9">
-                <input ng-required="formData.RENT_TYPE=='L'" type="text"  ng-disabled="inputDisabled" class="form-control" id="SURVEY_NO" name="SURVEY_NO" ng-model="formData.SURVEY_NO">
+            <div class="col-sm-8">
+                <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.DEED_PROVINCE" id="DEED_PROVINCE" name="DEED_PROVINCE" on-select="onProvinceDOLChange($item, $model)">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.PROV_NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectProvinceDOL | filter: $select.search">
+                        <div ng-bind-html="item.PROV_NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">เนื้อที่</label>
-            <div class="col-sm-9">
+            <label class="col-sm-4 control-label" for="DEED_CITY">
+                {{'DISTRICT'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.DEED_CITY" id="DEED_CITY" name="DEED_CITY" on-select="getSubDistrictDOL($item, $model)">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.CITY}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectDistrictDOL | filter: $select.search">
+                        <div ng-bind-html="item.CITY | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DEED_DISTRICT">
+                {{'SUBDISTRICT'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.DEED_DISTRICT" id="DEED_DISTRICT" name="DEED_DISTRICT">
+                    <ui-select-match placeholder="">
+                        {{$select.selected.DISTRICT}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectSubDistrictDOL | filter: $select.search">
+                        <div ng-bind-html="item.DISTRICT | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="DEED_DISTRICT_OLD">
+                {{'DEED_DISTRICT_OLD'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input ng-disabled="inputDisabled" type="text" class="form-control" ng-model="formData.DEED_DISTRICT_OLD" id="DEED_DISTRICT_OLD" name="DEED_DISTRICT_OLD" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4" for="LAND_RENT_TYPE">
+                ประเภทที่ดินให้เช่า
+            </label>
+            <div class="col-sm-8">
+                <ui-select theme="selectize" ng-model="formData.LAND_RENT_TYPE" id="LAND_RENT_TYPE" name="LAND_RENT_TYPE">
+                    <ui-select-match>
+                        {{$select.selected.NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectLandRentType | filter: $select.search">
+                        <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">เนื้อที่</label>
+            <div class="col-sm-8">
                 <div class="form-group">
                     <div class="col-sm-3">
                         <input type="text" count ng-change="calLandArea()" ng-disabled="inputDisabled" class="form-control" id="RAI" name="RAI" ng-model="formData.RAI" maxlength="22">
@@ -299,11 +349,11 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label" for="AREA_WA">
+            <label class="col-sm-4 control-label" for="AREA_WA">
                 {{'AREA_WA'|translate}}
             </label>
             <div class="col-sm-3">
-                <input readonly type="text" class="form-control" ng-disabled="inputDisabled" id="AREA_WA" name="AREA_WA" ng-model="formData.AREA_WA" ng-model="formData.AREA_WA" format decimal="1">
+                <input readonly type="text" class="form-control" ng-disabled="inputDisabled" id="AREA_WA" name="AREA_WA" ng-model="formData.AREA_WA" format decimal="1">
             </div>
         </div>
     </div>
@@ -311,7 +361,7 @@
 
 <div ng-if="formData.RENT_TYPE=='B'" ng-include="'/app/views/test/subcol/000004.html'"></div>
 
-<div class="panel panel-white" ng-if="isAppraiser">
+<!--<div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ข้อมูลสำหรับ BOT Report</h5>
     </div>
@@ -359,7 +409,35 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
+
+<fieldset ng-if="isAppraiser" class="no-radius">
+    <legend>ราคา</legend>
+    <div class="form-group">
+        <label class="col-sm-4 control-label" for="APPR_CUR_OTHER_PRICE">
+            ราคาต่อ ตร.ว./ตร.ม. (บาท)
+        </label>
+        <div class="col-sm-8">
+            <input format ng-disabled="inputDisabled" type="text" class="form-control" ng-model="formData.APPR_CUR_OTHER_PRICE" id="APPR_CUR_OTHER_PRICE" name="APPR_CUR_OTHER_PRICE" maxlength="25" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label" for="APPR_CUR_NET_TOTAL">
+            ราคารวม
+        </label>
+        <div class="col-sm-8">
+            <input format ng-disabled="inputDisabled" type="text" class="form-control" ng-model="formData.APPR_CUR_NET_TOTAL" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" maxlength="25" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label" for="APPR_CUR_OTHER_AREA">
+            พื้นที่รวม (ตร.ว./ตร.ม.)
+        </label>
+        <div class="col-sm-8">
+            <input format ng-disabled="inputDisabled" ng-readonly="true" type="text" class="form-control" ng-model="formData.APPR_CUR_OTHER_AREA" id="APPR_CUR_OTHER_AREA" name="APPR_CUR_OTHER_AREA" maxlength="25" />
+        </div>
+    </div>
+</fieldset>
 
 <fieldset class="no-radius">
     <legend>{{'REMARK'|translate}}</legend>

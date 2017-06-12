@@ -276,7 +276,8 @@
                     return {
                         formData: data,
                         IS_PROJECT: IS_PROJECT,
-                        tab: $scope.tab
+                        tab: $scope.tab,
+                        requestData: $scope.$parent.formData
                     };
                 }
             }
@@ -356,24 +357,40 @@
     }
 
     $scope.editMAP = function (colleteral, colAct) {
-        if ($scope.tab.update) {
-            var HEAD_COL_RUNNING_ID = '';
-            if (colleteral.LOCATION_LAT != null
-                && colleteral.LOCATION_LAT != undefined
-                && colleteral.LOCATION_LAT != ''
-                && colleteral.LOCATION_LONG != null
-                && colleteral.LOCATION_LONG != undefined
-                && colleteral.LOCATION_LONG != '') {
-                HEAD_COL_RUNNING_ID = colleteral.HEAD_COL_RUNNING_ID;
-            }
-            radasoft.openMapEdit({
-                page: 'MapEdit',
-                HEAD_COL_RUNNING_ID: HEAD_COL_RUNNING_ID,
-                HEAD_COL_CODE: colleteral.HEAD_COL_CODE
-            }, function (args) {
-                $scope.mapReturnArgs = args;
-            });
+        var HEAD_COL_RUNNING_ID = '';
+        if (colleteral.LOCATION_LAT != null
+            && colleteral.LOCATION_LAT != undefined
+            && colleteral.LOCATION_LAT != ''
+            && colleteral.LOCATION_LONG != null
+            && colleteral.LOCATION_LONG != undefined
+            && colleteral.LOCATION_LONG != '') {
+            HEAD_COL_RUNNING_ID = colleteral.HEAD_COL_RUNNING_ID;
         }
+        radasoft.openMapEdit({
+            page: $scope.tab.create || $scope.tab.update ? 'MapEdit' : 'MapDisplay',
+            HEAD_COL_RUNNING_ID: HEAD_COL_RUNNING_ID,
+            HEAD_COL_CODE: colleteral.HEAD_COL_CODE
+        }, function (args) {
+            $scope.mapReturnArgs = args;
+        });
+        //if ($scope.tab.update) {
+        //    var HEAD_COL_RUNNING_ID = '';
+        //    if (colleteral.LOCATION_LAT != null
+        //        && colleteral.LOCATION_LAT != undefined
+        //        && colleteral.LOCATION_LAT != ''
+        //        && colleteral.LOCATION_LONG != null
+        //        && colleteral.LOCATION_LONG != undefined
+        //        && colleteral.LOCATION_LONG != '') {
+        //        HEAD_COL_RUNNING_ID = colleteral.HEAD_COL_RUNNING_ID;
+        //    }
+        //    radasoft.openMapEdit({
+        //        page: 'MapEdit',
+        //        HEAD_COL_RUNNING_ID: HEAD_COL_RUNNING_ID,
+        //        HEAD_COL_CODE: colleteral.HEAD_COL_CODE
+        //    }, function (args) {
+        //        $scope.mapReturnArgs = args;
+        //    });
+        //}
     }
 
     $scope.editGrade = function (colleteral, colAct) {
@@ -543,7 +560,7 @@
             showCancelButton: true,
             closeOnConfirm: false,
             animation: "slide-from-top",
-            inputPlaceholder: "ระบุจำนวนรายการ",
+            inputPlaceholder: "ระบุจำนวนรายการ (ไม่เกิน 50 ชุด)",
             inputType: "number",
             confirmButtonColor: '#007AFF',
             confirmButtonText: $translate.instant('BUTTON.YES'),
@@ -557,10 +574,10 @@
                 return false
             } else {
                 var val = parseInt(inputValue);
-                if (val > 0 && val <= 100) {
+                if (val > 0 && val <= 50) {
                     callback(inputValue);
                 } else {
-                    swal.showInputError("จำนวนรายการต้องมากกว่า 0 และน้อยกว่า 100");
+                    swal.showInputError("จำนวนรายการต้องมากกว่า 0 และไม่เกิน 50");
                     return false
                 }
             }

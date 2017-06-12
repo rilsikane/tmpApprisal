@@ -175,7 +175,7 @@
             {{'SUBDISTRICT'|translate}}
         </label>
         <div class="col-sm-8">
-            <ui-select theme="selectize" ng-model="formData.ADD_DISTRICT" id="ADD_DISTRICT" name="ADD_DISTRICT">
+            <ui-select theme="selectize" ng-model="formData.ADD_DISTRICT" id="ADD_DISTRICT" name="ADD_DISTRICT" on-select="onSubDistrictChange($item)">
                 <ui-select-match>
                     {{$select.selected.DISTRICT}}
                 </ui-select-match>

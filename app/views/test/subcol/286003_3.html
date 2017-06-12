@@ -1,0 +1,53 @@
+﻿<div class="form-group" ng-class="{'has-error':form.COL_NO.$dirty && form.COL_NO.$invalid, 'has-success':form.COL_NO.$valid}">
+    <label class="col-sm-4 control-label" for="COL_NO">
+        <i class="fa fa-bolt"></i> ตราจองเลขที่ <span class="symbol required"></span>
+    </label>
+    <div class="col-sm-8">
+        <input ng-disabled="inputDisabled" ng-required="true" type="text" maxlength="1000" class="form-control" id="COL_NO" name="COL_NO" ng-model="formData.COL_NO">
+    </div>
+</div>
+<div ng-if="isAppraiser" ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.BOOK_NO.$dirty && form.BOOK_NO.$invalid, 'has-success':form.BOOK_NO.$dirty && form.BOOK_NO.$valid}">
+    <label class="col-sm-4 control-label" for="BOOK_NO">
+        {{'BOOK_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
+    </label>
+    <div class="col-sm-8">
+        <input ng-disabled="inputDisabled" ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" type="text" maxlength="20" placeholder="" class="form-control" id="BOOK_NO" name="BOOK_NO" ng-model="formData.BOOK_NO">
+        <span class="error text-small block" ng-if="form.BOOK_NO.$dirty && form.BOOK_NO.$invalid">{{requireNotificationPrefix}} {{'BOOK_NO'|translate}}</span>
+    </div>
+</div>
+<div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.LAND_NO.$dirty && form.LAND_NO.$invalid, 'has-success':form.LAND_NO.$dirty && form.LAND_NO.$valid}">
+    <label class="col-sm-4 control-label" for="LAND_NO">
+        {{'LAND_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
+    </label>
+    <div class="col-sm-8">
+        <input ng-disabled="inputDisabled" ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" type="text" maxlength="20" placeholder="" class="form-control" id="LAND_NO" name="LAND_NO" ng-model="formData.LAND_NO">
+        <span class="error text-small block" ng-if="form.LAND_NO.$dirty && form.LAND_NO.$invalid">{{requireNotificationPrefix}} {{'LAND_NO'|translate}}</span>
+    </div>
+</div>
+<div ng-if="isAppraiser" ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='03' && formData.SUB_TYPE.CODE!='02' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.PAGE_NO.$dirty && form.PAGE_NO.$invalid, 'has-success':form.PAGE_NO.$dirty && form.PAGE_NO.$valid}">
+    <label class="col-sm-4 control-label" for="PAGE_NO">
+        {{'PAGE_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
+    </label>
+    <div class="col-sm-8">
+        <input ng-disabled="inputDisabled" ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='03' || formData.SUB_TYPE.CODE=='02' || formData.SUB_TYPE.CODE=='01')" type="text" maxlength="20" placeholder="" class="form-control" id="PAGE_NO" name="PAGE_NO" ng-model="formData.PAGE_NO">
+        <span class="error text-small block" ng-if="form.PAGE_NO.$dirty && form.PAGE_NO.$invalid">{{requireNotificationPrefix}} {{'PAGE_NO'|translate}}</span>
+    </div>
+</div>
+<div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='01' && formData.SUB_TYPE.CODE!='04'))" class="form-group" ng-class="{'has-error':form.SURVEY_NO.$dirty && form.SURVEY_NO.$invalid, 'has-success':form.SURVEY_NO.$dirty && form.SURVEY_NO.$valid}">
+    <label class="col-sm-4 control-label" for="SURVEY_NO">
+        {{'SURVEY_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
+    </label>
+    <div class="col-sm-8">
+        <input ng-disabled="inputDisabled" ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='01')" type="text" placeholder="" maxlength="20" class="form-control" id="SURVEY_NO" name="SURVEY_NO" ng-model="formData.SURVEY_NO">
+        <span class="error text-small block" ng-if="form.SURVEY_NO.$dirty && form.SURVEY_NO.$invalid">{{requireNotificationPrefix}} {{'SURVEY_NO'|translate}}</span>
+    </div>
+</div>
+<div ng-hide="!displayAllFiled && (formData.SUB_TYPE==undefined || (formData.SUB_TYPE.CODE!='04' && formData.SUB_TYPE.CODE!='01'))" class="form-group" ng-class="{'has-error':form.RAWANG.$dirty && form.RAWANG.$invalid, 'has-success':form.RAWANG.$dirty && form.RAWANG.$valid}">
+    <label class="col-sm-4 control-label" for="RAWANG">
+        {{'RAWANG'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
+    </label>
+    <div class="col-sm-8">
+        <input ng-disabled="inputDisabled" ng-required="!displayAllFiled && (formData.SUB_TYPE.CODE=='04' || formData.SUB_TYPE.CODE=='01')" type="text" maxlength="200" placeholder="" class="form-control" id="RAWANG" name="RAWANG" ng-model="formData.RAWANG">
+        <span class="error text-small block" ng-if="form.RAWANG.$dirty && form.RAWANG.$invalid">{{requireNotificationPrefix}} {{'RAWANG'|translate}}</span>
+    </div>
+</div>

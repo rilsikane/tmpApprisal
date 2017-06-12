@@ -162,7 +162,7 @@
 $rootScope.app = {
 	name: 'Clip-Two', // name of your project
 	author: 'ClipTheme', // author's name or company name
-	logo: 'assets/images/logo.png', // relative path of the project logo
+	logo: '/assets/images/logo.png', // relative path of the project logo
 	description: 'Angular Bootstrap Admin Template', // brief description
 	version: '1.0', // current version
 	year: ((new Date()).getFullYear()), // automatic current year (for copyright information)
@@ -227,11 +227,11 @@ $rootScope.app = {
 			</p>
 			<pre>$stateProvider.state('app', {
 	url: "/app",
-	templateUrl: "assets/views/app.html",
+	templateUrl: "/assets/views/app.html",
 	abstract: true
 }).state('app.dashboard', {
 	url: "/dashboard",
-	templateUrl: "assets/views/dashboard.html",
+	templateUrl: "/assets/views/dashboard.html",
 	title: 'Dashboard'
 })</pre>
 			<p>
@@ -287,11 +287,11 @@ scripts: {
 			</p>
 			<pre>$stateProvider.state('app', {
 	url: "/app",
-	templateUrl: "assets/views/app.html",
+	templateUrl: "/assets/views/app.html",
 	abstract: true 
 }).state('app.dashboard', {
 	url: "/dashboard",
-	templateUrl: "assets/views/dashboard.html",
+	templateUrl: "/assets/views/dashboard.html",
 	<mark>resolve: loadSequence('modernizr', 'toaster'),</mark>
 	title: 'Dashboard'
 })</pre>
@@ -308,12 +308,12 @@ scripts: {
 			</p>
 			<pre>$stateProvider.state('app', {
 	url: "/app",
-	templateUrl: "assets/views/app.html",
+	templateUrl: "/assets/views/app.html",
 	resolve: loadSequence('modernizr', 'toaster'),
 	abstract: true
 }).state('app.dashboard', {
 	url: "/dashboard",
-	templateUrl: "assets/views/dashboard.html",
+	templateUrl: "/assets/views/dashboard.html",
 	resolve: loadSequence('chartjs', 'tc.chartjs'),
 	title: 'Dashboard',
 	<mark>ncyBreadcrumb: {
@@ -1734,7 +1734,7 @@ app.controller('ChatCtrl', function($scope) {
 
 	$scope.chat = [{
 		"user": "Peter Clark",
-		"avatar": "assets/images/avatar-1.jpg",
+		"avatar": "/assets/images/avatar-1.jpg",
 		"to": "Nicole Bell",
 		"date": exampleDate,
 		"content": "Hi, Nicole",
@@ -1742,7 +1742,7 @@ app.controller('ChatCtrl', function($scope) {
 		"idOther": 50223457
 	}, {
 		"user": "Peter Clark",
-		"avatar": "assets/images/avatar-1.jpg",
+		"avatar": "/assets/images/avatar-1.jpg",
 		"to": "Nicole Bell",
 		"date": new Date(exampleDate).setTime(new Date(exampleDate).getTime() + 1000 * 60),
 		"content": "How are you?",
@@ -1754,7 +1754,7 @@ app.controller('ChatCtrl', function($scope) {
 	$scope.sendMessage = function() {
 		var newMessage = {
 			"user": "Peter Clark",
-			"avatar": "assets/images/avatar-1.jpg",
+			"avatar": "/assets/images/avatar-1.jpg",
 			"date": new Date(),
 			"content": $scope.chatMessage,
 			"idUser": $scope.selfIdUser,

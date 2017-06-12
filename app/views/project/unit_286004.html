@@ -11,7 +11,7 @@
         {{'ZONE'|translate}}<span class="symbol required"></span>
     </label>
     <div class="col-sm-8">
-        <ui-select ng-disabled="inputDisabled" ng-required="true" theme="selectize" ng-model="formData.PROJECT_ZONE_RUNNING_ID" id="PROJECT_ZONE_RUNNING_ID" name="PROJECT_ZONE_RUNNING_ID" on-select="zoneChange($item,$index)">
+        <ui-select ng-disabled="inputDisabled" ng-required="true" theme="selectize" ng-model="formData.PROJECT_UNIT_TYPE.PROJECT_ZONE_RUNNING_ID" id="PROJECT_ZONE_RUNNING_ID" name="PROJECT_ZONE_RUNNING_ID" on-select="zoneChange($item,$index)">
             <ui-select-match placeholder="">
                 {{$select.selected.ZONE_NAME}}
             </ui-select-match>
@@ -26,7 +26,7 @@
         {{'PHASE'|translate}}
     </label>
     <div class="col-sm-8">
-        <input ng-disabled="inputDisabled" type="text" readonly class="form-control" ng-model="formData.PROJECT_ZONE_RUNNING_ID.PHASE_NAME" />
+        <input ng-disabled="inputDisabled" type="text" readonly class="form-control" ng-model="formData.PROJECT_UNIT_TYPE.PROJECT_ZONE_RUNNING_ID.PHASE_NAME" />
     </div>
 </div>
 <!--<div class="form-group" ng-class="{'has-error':form.UNIT_TYPE.$dirty && form.UNIT_TYPE.$viewValue==undefined, 'has-success':form.UNIT_TYPE.$viewValue!=undefined && form.UNIT_TYPE.$viewValue.VALUE!=undefined}">
@@ -49,15 +49,7 @@
         {{'DETAIL'|translate}}
     </label>
     <div class="col-sm-8">
-        <input type="text"  ng-disabled="inputDisabled" class="form-control" id="UNIT_DETAIL" name="UNIT_DETAIL" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_DETAIL">
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-sm-4 control-label" for="AREA_WA">
-        {{'AREA_WA'|translate}}
-    </label>
-    <div class="col-sm-8">
-        <input type="text" format ng-disabled="inputDisabled" class="form-control" id="AREA_WA" name="AREA_WA" ng-model="formData.PROJECT_UNIT_TYPE.AREA_WA" decimal="1">
+        <input type="text" ng-disabled="inputDisabled" class="form-control" id="UNIT_DETAIL" name="UNIT_DETAIL" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_DETAIL">
     </div>
 </div>
 <div class="form-group">
@@ -73,16 +65,7 @@
         {{'UNIT_PROJ_PRICE'|translate}}
     </label>
     <div class="col-sm-8">
-        <input type="text" format  ng-disabled="inputDisabled" class="form-control" id="UNIT_PROJ_PRICE" name="UNIT_PROJ_PRICE" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_PROJ_PRICE">
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="col-sm-4 control-label" for="UNIT_PRICE_WA">
-        ราคาเพิ่ม-ลด เนื้อที่(บาท/ตร.ว.)
-    </label>
-    <div class="col-sm-8">
-        <input type="text" format ng-disabled="inputDisabled" class="form-control" id="UNIT_PRICE_WA" name="UNIT_PRICE_WA" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_PRICE_WA" />
+        <input type="text" format ng-disabled="inputDisabled" class="form-control" id="UNIT_PROJ_PRICE" name="UNIT_PROJ_PRICE" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_PROJ_PRICE">
     </div>
 </div>
 <div class="form-group">

@@ -3,14 +3,14 @@
   * controller for Messages
 */
 app.controller('InboxCtrl', function ($scope, $state) {
-    $scope.noAvatarImg = "assets/images/default-user.png";
+    $scope.noAvatarImg = "/assets/images/default-user.png";
 
     $scope.messages = [{
         "from": "John Stark",
         "date": 1400956671914,
         "subject": "Reference Request - Nicole Bell",
         "email": "stark@example.com",
-        "avatar": "assets/images/avatar-6.jpg",
+        "avatar": "/assets/images/avatar-6.jpg",
         "starred": false,
         "sent": false,
         "spam": false,
@@ -21,7 +21,7 @@ app.controller('InboxCtrl', function ($scope, $state) {
         "date": 1400956671914,
         "subject": "Position requirements",
         "email": "patterson@example.com",
-        "avatar": "assets/images/avatar-9.jpg",
+        "avatar": "/assets/images/avatar-9.jpg",
         "starred": true,
         "sent": false,
         "spam": false,
@@ -32,7 +32,7 @@ app.controller('InboxCtrl', function ($scope, $state) {
         "date": 1400956671914,
         "subject": "Employer's job requirements",
         "email": "mary@example.com",
-        "avatar": "assets/images/avatar-8.jpg",
+        "avatar": "/assets/images/avatar-8.jpg",
         "starred": false,
         "sent": false,
         "spam": false,
@@ -53,7 +53,7 @@ app.controller('InboxCtrl', function ($scope, $state) {
         "date": 1400956671914,
         "subject": "Personal invitation",
         "email": "thompson@example.com",
-        "avatar": "assets/images/avatar-3.jpg",
+        "avatar": "/assets/images/avatar-3.jpg",
         "starred": false,
         "sent": false,
         "spam": false,
@@ -74,7 +74,7 @@ app.controller('InboxCtrl', function ($scope, $state) {
         "date": 1400956671914,
         "subject": "Congratulations ",
         "email": "nicole@example.com",
-        "avatar": "assets/images/avatar-2.jpg",
+        "avatar": "/assets/images/avatar-2.jpg",
         "starred": false,
         "sent": false,
         "spam": false,
@@ -105,7 +105,7 @@ app.controller('InboxCtrl', function ($scope, $state) {
         "date": new Date(),
         "subject": "Sincere request to keep in touch.",
         "email": "kenneth@example.com",
-        "avatar": "assets/images/avatar-5.jpg",
+        "avatar": "/assets/images/avatar-5.jpg",
         "starred": false,
         "sent": false,
         "spam": false,

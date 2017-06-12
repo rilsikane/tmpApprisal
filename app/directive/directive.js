@@ -593,7 +593,7 @@
             }
         };
     }])
-    .directive('onlyChar',function(){
+    .directive('onlyChar', function () {
         return {
             require: '?ngModel',
             link: function (scope, element, attrs, ngModelCtrl) {

@@ -11,15 +11,6 @@
                 <input ng-disabled="inputDisabled" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.SURVEY_APPR_DATE" ng-click="openDatePicker($event,'SURVEY_APPR_DATE')" type="text" class="form-control" ng-model="formData.SURVEY_DATE" />
             </div>
         </div>
-
-        <!-- <div ng-if="isAppraiser" class="form-group" ng-class="{'has-error':form.APPR_CUR_NET_TOTAL.$dirty && form.APPR_CUR_NET_TOTAL.$invalid, 'has-success': form.APPR_CUR_NET_TOTAL.$valid}">
-            <label class="col-sm-4 control-label" for="APPR_CUR_NET_TOTAL">
-                {{'ราคาหลักทรัพย์'|translate}}
-            </label>
-            <div class="col-sm-8">
-                <input ng-disabled="inputDisabled" format type="text" maxlength="24" class="form-control" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" ng-model="formData.APPR_CUR_NET_TOTAL">
-            </div>
-        </div> -->
         <div class="form-group" ng-class="{'has-error':form.OTHERS_COL.$dirty && form.OTHERS_COL.$invalid, 'has-success': form.OTHERS_COL.$valid}">
             <label class="col-sm-4 control-label" for="OTHERS_COL">
                 {{'OTHERS_COL'|translate}}<span class="symbol required"></span>
@@ -41,19 +32,19 @@
                 {{'จำนวนรายการ'|translate}}<span class="symbol required"></span>
             </label>
             <div class="col-sm-8">
-                <input ng-disabled="inputDisabled" count type="text" maxlength="22" required class="form-control" id="OTHERS_AMOUNT" name="OTHERS_AMOUNT" ng-model="formData.OTHERS_AMOUNT">
+                <input ng-disabled="inputDisabled" format decimal="0" type="text" ng-min="1" maxlength="22" required class="form-control" id="OTHERS_AMOUNT" name="OTHERS_AMOUNT" ng-model="formData.OTHERS_AMOUNT" />
             </div>
         </div>
     </div>
 </div>
 <fieldset class="no-radius" ng-if="isAppraiser">
-    <legend>{{'OTHER.DOC_CERT_DTL'|translate}}</legend>
+    <legend>{{'DOC_CERT_DTL'|translate}}</legend>
     <div class="form-group">
         <label class="col-sm-4 control-label" for="COL_CERT_TYPE">
-           {{'ประเภทเอกสารสิทธิ์'|translate}} <span class="symbol required"></span>
+            {{'ประเภทเอกสารสิทธิ์'|translate}} <span class="symbol required"></span>
         </label>
         <div class="col-sm-8">
-           <ui-select ng-disabled="inputDisabled" ng-required="true" theme="selectize" ng-model="formData.COL_CERT_TYPE " name="COL_CERT_TYPE " id="COL_CERT_TYPE" on-select="onColCertTypesChange()">
+            <ui-select ng-disabled="inputDisabled" ng-required="true" theme="selectize" ng-model="formData.COL_CERT_TYPE " name="COL_CERT_TYPE " id="COL_CERT_TYPE" on-select="onColCertTypesChange()">
                 <ui-select-match placeholder="">
                     {{$select.selected.NAME}}
                 </ui-select-match>
@@ -63,9 +54,9 @@
             </ui-select>
         </div>
     </div>
-     <div class="form-group">
+    <div class="form-group">
         <label class="col-sm-4 control-label" for="COL_NO">
-            {{'OTHER.COL_NO_'+formData.COL_CERT_TYPE.VALUE|translate}} <span class="symbol required"></span>
+            {{'COL_NO_'+formData.COL_CERT_TYPE.VALUE|translate}} <span class="symbol required"></span>
         </label>
         <div class="col-sm-8">
             <input ng-disabled="inputDisabled" required type="text" maxlength="500" class="form-control" id="COL_NO" name="COL_NO" ng-model="formData.COL_NO">
@@ -81,15 +72,15 @@
         </div>
     </div>
     <div class="form-group" ng-show="formData.COL_CERT_TYPE.VALUE=='1'">
-         <label class="col-sm-4 control-label" for="RAWANG">
+        <label class="col-sm-4 control-label" for="RAWANG">
             {{'RAWANG'|translate}}<span class="symbol required"></span>
-         </label>
+        </label>
         <div class="col-sm-8">
             <input ng-disabled="inputDisabled" ng-required="formData.COL_CERT_TYPE.VALUE=='1'" type="text" maxlength="200" placeholder="" class="form-control" id="RAWANG" name="RAWANG" ng-model="formData.RAWANG">
         </div>
     </div>
     <div class="form-group" ng-show="formData.COL_CERT_TYPE.VALUE=='2' || formData.COL_CERT_TYPE.VALUE=='3' || formData.COL_CERT_TYPE.VALUE=='4' || formData.COL_CERT_TYPE.VALUE=='5'">
-       <label class="col-sm-4 control-label" for="BOOK_NO">
+        <label class="col-sm-4 control-label" for="BOOK_NO">
             {{'BOOK_NO'|translate}}
         </label>
         <div class="col-sm-8">
@@ -97,9 +88,9 @@
             <span class="error text-small block" ng-if="form.BOOK_NO.$dirty && form.BOOK_NO.$invalid">{{requireNotificationPrefix}} {{'BOOK_NO'|translate}}</span>
         </div>
     </div>
-     <div class="form-group" ng-show="formData.COL_CERT_TYPE.VALUE=='2' || formData.COL_CERT_TYPE.VALUE=='4' || formData.COL_CERT_TYPE.VALUE=='5'">
+    <div class="form-group" ng-show="formData.COL_CERT_TYPE.VALUE=='2' || formData.COL_CERT_TYPE.VALUE=='4' || formData.COL_CERT_TYPE.VALUE=='5'">
         <label class="col-sm-4 control-label" for="PAGE_NO">
-            {{'OTHER.PAGE_NO'|translate}}
+            {{'PAGE_NO'|translate}}
         </label>
         <div class="col-sm-8">
             <input ng-disabled="inputDisabled" ng-required="!displayAllFiled && (formData.COL_CERT_TYPE.VALUE=='04' || formData.COL_CERT_TYPE.VALUE=='03' || formData.COL_CERT_TYPE.VALUE=='2' || formData.COL_CERT_TYPE.VALUE=='1')" type="text" maxlength="20" placeholder="" class="form-control" id="PAGE_NO" name="PAGE_NO" ng-model="formData.PAGE_NO">
@@ -111,12 +102,12 @@
             {{'LAND_NO'|translate}}
         </label>
         <div class="col-sm-8">
-            <input ng-disabled="inputDisabled"  type="text" maxlength="20" placeholder="" class="form-control" id="LAND_NO" name="LAND_NO" ng-model="formData.LAND_NO">
+            <input ng-disabled="inputDisabled" type="text" maxlength="20" placeholder="" class="form-control" id="LAND_NO" name="LAND_NO" ng-model="formData.LAND_NO">
         </div>
     </div>
     <div class="form-group" ng-show="formData.COL_CERT_TYPE.VALUE=='3'">
         <label class="col-sm-4 control-label" for="PAGE_NO">
-            {{'OTHER.PAGE_NO'|translate}}
+            {{'PAGE_NO'|translate}}
         </label>
         <div class="col-sm-8">
             <input ng-disabled="inputDisabled" ng-required="!displayAllFiled && (formData.COL_CERT_TYPE.VALUE=='04' || formData.COL_CERT_TYPE.VALUE=='03' || formData.COL_CERT_TYPE.VALUE=='2' || formData.COL_CERT_TYPE.VALUE=='1')" type="text" maxlength="20" placeholder="" class="form-control" id="PAGE_NO" name="PAGE_NO" ng-model="formData.PAGE_NO">
@@ -160,15 +151,15 @@
         </div>
     </div>
     <div class="form-group" ng-show="formData.COL_CERT_TYPE.VALUE=='3'">
-         <label class="col-sm-4 control-label" for="RAWANG">
+        <label class="col-sm-4 control-label" for="RAWANG">
             {{'RAWANG'|translate}}
-         </label>
+        </label>
         <div class="col-sm-8">
             <input ng-disabled="inputDisabled" type="text" maxlength="200" placeholder="" class="form-control" id="RAWANG" name="RAWANG" ng-model="formData.RAWANG">
         </div>
     </div>
     <div class="form-group" ng-show="formData.COL_CERT_TYPE.VALUE=='1'">
-       <label class="col-sm-4 control-label" for="BOOK_NO">
+        <label class="col-sm-4 control-label" for="BOOK_NO">
             {{'BOOK_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
         </label>
         <div class="col-sm-8">
@@ -176,9 +167,9 @@
             <span class="error text-small block" ng-if="form.BOOK_NO.$dirty && form.BOOK_NO.$invalid">{{requireNotificationPrefix}} {{'BOOK_NO'|translate}}</span>
         </div>
     </div>
-     <div class="form-group" ng-show="formData.COL_CERT_TYPE.VALUE=='1'">
+    <div class="form-group" ng-show="formData.COL_CERT_TYPE.VALUE=='1'">
         <label class="col-sm-4 control-label" for="PAGE_NO">
-                {{'OTHER.PAGE_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
+            {{'PAGE_NO'|translate}}<span class="symbol required" ng-hide="displayAllFiled"></span>
         </label>
         <div class="col-sm-8">
             <input ng-disabled="inputDisabled" ng-required="!displayAllFiled && (formData.COL_CERT_TYPE.VALUE=='04' || formData.COL_CERT_TYPE.VALUE=='03' || formData.COL_CERT_TYPE.VALUE=='2' || formData.COL_CERT_TYPE.VALUE=='1')" type="text" maxlength="20" placeholder="" class="form-control" id="PAGE_NO" name="PAGE_NO" ng-model="formData.PAGE_NO">
@@ -187,7 +178,7 @@
     </div>
     <div class="form-group">
         <label class="col-sm-4 control-label" for="DEED_PROVINCE">
-                {{'PROVINCE'|translate}}
+            {{'PROVINCE'|translate}}
         </label>
         <div class="col-sm-8">
             <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.DEED_PROVINCE" id="DEED_PROVINCE" name="DEED_PROVINCE" on-select="onProvinceDOLChange($item, $model)">
@@ -202,7 +193,7 @@
     </div>
     <div class="form-group">
         <label class="col-sm-4 control-label" for="DEED_CITY">
-                {{'DISTRICT'|translate}}
+            {{'DISTRICT'|translate}}
         </label>
         <div class="col-sm-8">
             <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.DEED_CITY" id="DEED_CITY" name="DEED_CITY" on-select="getSubDistrictDOL($item, $model)">
@@ -217,7 +208,7 @@
     </div>
     <div class="form-group">
         <label class="col-sm-4 control-label" for="DEED_DISTRICT">
-                {{'SUBDISTRICT'|translate}}
+            {{'SUBDISTRICT'|translate}}
         </label>
         <div class="col-sm-8">
             <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.DEED_DISTRICT" id="DEED_DISTRICT" name="DEED_DISTRICT">
@@ -238,10 +229,18 @@
             <input ng-disabled="inputDisabled" type="text" class="form-control" ng-model="formData.DEED_DISTRICT_OLD" id="DEED_DISTRICT_OLD" name="DEED_DISTRICT_OLD" />
         </div>
     </div>
-</fieldset>
- <fieldset class="no-radius" ng-if="isAppraiser">
-    <legend>{{'PRICE'|translate}}</legend>
     <div class="form-group">
+        <label class="col-sm-4 control-label" for="AREA_WA">
+            {{'AREA_WA'|translate}}
+        </label>
+        <div class="col-sm-8">
+            <input ng-disabled="inputDisabled" format type="text" class="form-control" id="AREA_WA" name="AREA_WA" ng-model="formData.AREA_WA" decimal="1">
+        </div>
+    </div>
+</fieldset>
+<fieldset class="no-radius" ng-if="isAppraiser">
+    <legend>{{'PRICE'|translate}}</legend>
+    <!--<div class="form-group">
         <label class="col-sm-4 control-label" for="REPLACEMENT_COST">
             {{'CAR.REPLACEMENT_COST'|translate}}<span class="symbol required"></span>
         </label>
@@ -262,15 +261,15 @@
             {{'CAR.DEPLICIATIONPRICE'|translate}}
         </label>
         <div class="col-sm-8">
-            <input format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.DEPLICIATIONPRICE" id="DEPLICIATIONPRICE" name="DEPLICIATIONPRICE" ng-max="formData.REPLACEMENT_COST" ng-change="calDepliciation()"/>
+            <input format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.DEPLICIATIONPRICE" id="DEPLICIATIONPRICE" name="DEPLICIATIONPRICE" ng-max="formData.REPLACEMENT_COST" ng-change="calDepliciation()" />
         </div>
-    </div>
-     <div ng-if="isAppraiser" class="form-group">
+    </div>-->
+    <div ng-if="isAppraiser" class="form-group">
         <label class="col-sm-4 control-label" for="APPR_CUR_OTHER_AMOUNT">
             {{'CAR.APPR_CUR_OTHER_AMOUNT'|translate}}
         </label>
         <div class="col-sm-8">
-            <input format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.APPR_CUR_NET_TOTAL" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" ng-readonly="true"/>
+            <input format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.APPR_CUR_NET_TOTAL" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" />
         </div>
     </div>
 </fieldset>

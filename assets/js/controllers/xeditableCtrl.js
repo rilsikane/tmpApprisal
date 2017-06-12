@@ -48,7 +48,7 @@ app.controller('SelectRemoteCtrl', function ($scope, $filter, $http) {
     $scope.groups = [];
 
     $scope.loadGroups = function () {
-        return $scope.groups.length ? null : $http.get('assets/api/groups.js').success(function (data) {
+        return $scope.groups.length ? null : $http.get('/assets/api/groups.js').success(function (data) {
             $scope.groups = data.groups;
         });
     };

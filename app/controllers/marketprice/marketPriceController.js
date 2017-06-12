@@ -280,7 +280,7 @@ app.controller('marketPriceDetailController', ['$scope', '$rootScope', '$state',
     $scope.showBtnSave = true;
     $scope.showBtnDelete = params.showBtnDelete || false;
 
-    $scope.headColType = $rootScope.headColType || [];
+    $scope.headColType = [];//$rootScope.headColType || [];
     $scope.headColSubType = [];
     $scope.colCertType = $rootScope.colCertType || [];
     $scope.colUsage = $rootScope.colUsage || [];
@@ -314,6 +314,10 @@ app.controller('marketPriceDetailController', ['$scope', '$rootScope', '$state',
         $event.stopPropagation();
 
         $scope.dpOpenState[elementOpened] = !$scope.dpOpenState[elementOpened];
+    }
+
+    $scope.onSubDistrictChange = function (item) {
+        $scope.formData.ADD_ZIPCODE = item.ZIPCODE;
     }
 
     $scope.openMap = function () {
@@ -419,17 +423,25 @@ app.controller('marketPriceDetailController', ['$scope', '$rootScope', '$state',
     $scope.getHeadColType = function () {
         var deferred = $q.defer();
 
-        if ($rootScope.headColType == undefined) {
-            radasoft.getHeadColType({}).then(function (response) {
-                $rootScope.headColType = response.data;
+        radasoft.getHeadColType({}).then(function (response) {
+            //$rootScope.headColType = response.data;
 
-                $scope.headColType = $rootScope.headColType;
-            }).finally(function () {
-                deferred.resolve();
-            });
-        } else {
+            $scope.headColType = response.data; // $rootScope.headColType;
+        }).finally(function () {
             deferred.resolve();
-        }
+        });
+
+        //if ($rootScope.headColType == undefined) {
+        //    radasoft.getHeadColType({}).then(function (response) {
+        //        $rootScope.headColType = response.data;
+
+        //        $scope.headColType = $rootScope.headColType;
+        //    }).finally(function () {
+        //        deferred.resolve();
+        //    });
+        //} else {
+        //    deferred.resolve();
+        //}
 
         return deferred.promise;
     }
@@ -734,13 +746,13 @@ app.controller('marketPriceDetailController', ['$scope', '$rootScope', '$state',
         $scope.subDistrict = [];
         $scope.formData.ADD_CITY = null;
         $scope.formData.ADD_DISTRICT = null;
-
+        $scope.formData.ADD_ZIPCODE = '';
         $scope.getDistrict(data);
     }
     $scope.onDistrictChange = function (data) {
         $scope.subDistrict = [];
         $scope.formData.ADD_DISTRICT = null;
-
+        $scope.formData.ADD_ZIPCODE = '';
         $scope.getSubDistrict($scope.formData.ADD_PROVINCE, data);
     }
     $scope.getRoadType = function () {

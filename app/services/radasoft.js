@@ -567,7 +567,9 @@
                         response.data.IS_PROJECT = params.formData.IS_PROJECT || false;
                         switch (params.COL_FORM_ID) {
                             case 286003:
-                                //response.data.PROJECT_PRICE.ZONE = undefined;
+                                response.data.AREA_WA_TOTAL = 0;
+                                response.data.AREA_WA_UNUSE = 0;
+                                response.data.AREA_WA = 0;
                                 break;//ที่ดิน
                             case 286004:
                                 //response.data.PROJECT_PRICE.ZONE = undefined;
@@ -583,6 +585,8 @@
                                 response.data.AGE_MONTH = undefined;
                                 response.data.APPR_CUR_NET_TOTAL = undefined;
                                 response.data.REGIS_YN = 'Y';
+                                response.data.MADE_IN_COUNTRY = { CODE: 'TH', NAME_THAI: 'ไทย' };
+                                response.data.GUARANTEE_COUNTRY = { CODE: 'TH', NAME_THAI: 'ไทย' };
                                 break;//เครื่องจักร
                             case 286038:
                                 response.data.AGE_STD_MONTH = undefined;
@@ -591,6 +595,7 @@
                                 response.data.AGE_MONTH = undefined;
                                 response.data.APPR_CUR_NET_TOTAL = undefined;
                                 response.data.REGIS_PROVINCE = undefined;
+                                response.data.REGIS_COUNTRY = { CODE: 'TH', NAME_THAI: 'ไทย' };
                                 break;//รถยนต์
                             case 286039:
                                 response.data.AGE_STD_MONTH = undefined;
@@ -598,6 +603,7 @@
                                 response.data.AGE_YEAR = undefined;
                                 response.data.AGE_MONTH = undefined;
                                 response.data.APPR_CUR_NET_TOTAL = undefined;
+                                response.data.REGIS_COUNTRY = { CODE: 'TH', NAME_THAI: 'ไทย' };
                                 break;//เรือ
                             case 999999:
                                 break;//อื่นๆ 
@@ -965,27 +971,17 @@
                 }, callback);
             }
             this.openMap = function (params, callback) {
-                $log.info(params);
-
                 var str = [];
 
                 for (var p in params) {
                     str.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p] == undefined ? '' : params[p]));
                 }
 
-                //var url = 'api/Values/' + action + (params ? '?' + str.join("&") : '');
-                //var url0 = 'https://10.254.30.85/GSBAppraisal/MainPage.aspx?page=DefineHeadColLocation&HEAD_COL_RUNNING_ID=823371&HEAD_COL_CODE=';
-                //var url = '/GSBAppraisal/MainPage.aspx?page=DefineHeadColLocation&HEAD_COL_RUNNING_ID=&Deed_Province=&Deed_City=&Deed_District=&Deed_No=';
-                //var url2 = 'htmlpage1.html';
-                //var url = '/GSBAppraisalWeb/MainPage.aspx?' + str.join("&");
-
                 var url = $rootScope.appConfig.mapUrl + '/MainPage.aspx?' + str.join("&");
 
                 window.openMapCallback = callback;
 
                 window.open(url, 'abc', 'location=1,status=1,scrollbars=1, width=1024,height=768', true);
-
-                //return deferred.promise;
             }
             this.gisPostFeatureUrl = function (params) {
                 var deferred = $q.defer();
@@ -1329,5 +1325,64 @@
             }
             this.getColleteralTypeForProject = function (params) {
                 return this.httpGet('getColleteralTypeForProject', params);
+            }
+            this.getCalendarForMobile = function (params) {
+                return this.httpGet('getCalendarForMobile', params);
+            }
+            this.getLoanGroup = function (params) {
+                return this.httpGet('getLoanGroup', params);
+            }
+            this.getLoanType = function (params) {
+                return this.httpGet('getLoanType', params);
+            }
+            this.getBuildType = function (params) {
+                return this.httpGet('getBuildType', params);
+            }
+            this.getLandRentType = function (params) {
+                return this.httpGet('getLandRentType', params);
+            }
+            this.transformColCertType = function (code) {
+                var value = '286003_';
+
+                switch (code) {
+                    case '1':
+                        value += '1';
+                        break;
+                    case '2':
+                        value += '2';
+                        break;
+                    case '3':
+                        value += '3';
+                        break;
+                    case '4':
+                        value += '4';
+                        break;
+                    case '5':
+                        value += '5';
+                        break;
+                    case '6':
+                        value += '1';
+                        break;
+                    case '7':
+                        value += '2';
+                        break;
+                    case '8':
+                        value += '3';
+                        break;
+                    case '9':
+                        value += '4';
+                        break;
+                    case '10':
+                        value += '5';
+                        break;
+                    default:
+                        value += '1';
+                        break;
+                }
+
+                return value;
+            }
+            this.getDepreciationValue = function (params) {
+                return this.httpGet('getDepreciationValue', params);
             }
         }]);

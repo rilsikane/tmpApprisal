@@ -79,8 +79,6 @@ app.controller('parameterEditor', ['$scope', 'radasoft', '$state', '$stateParams
         radasoft.getParameterDetail({ P_RUNNING_ID: data.P_RUNNING_ID }).then(function (response) {
             if (response.data != null) {
                 $scope.formData = response.data;
-
-                $scope.showBtnDelete = true;
             } else {
                 $scope.formData = params.formData;
             }
@@ -228,7 +226,7 @@ app.controller('lookMstEditorCtrl', ['$scope', 'radasoft', '$state', '$statePara
             }
 
             if ($scope.formData.L_ID != '') {
-                $scope.showBtnDelete = true;
+
             }
         }).finally(function () {
             deferred.resolve();

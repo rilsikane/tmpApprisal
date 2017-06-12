@@ -86,23 +86,31 @@
                 <label ng-class="labelControlCss" for="YEAR">
                     {{'CAR.AGE_RUNNING'|translate}}
                 </label>
-               <div class="col-sm-8 no-padding"> 
-                   <div class="col-sm-6 no-padding" >
+                <div class="col-sm-8 no-padding">
+                    <div class="col-sm-6 no-padding">
                         <div class="col-sm-9">
-                            <input  type="text" ng-disabled="inputDisabled" count maxlength="22" ng-max="999" class="form-control" id="AGE_RUNNING_YEAR" name="AGE_RUNNING_YEAR" ng-model="formData.AGE_RUNNING_YEAR">
+                            <input type="text" ng-disabled="inputDisabled" count maxlength="22" ng-max="999" class="form-control" id="AGE_RUNNING_YEAR" name="AGE_RUNNING_YEAR" ng-model="formData.AGE_RUNNING_YEAR">
                         </div>
-                         <label class="control-label col-sm-3 label-after" ng-class="labelControlCss" for="AGE_STD_YEAR">
+                        <label class="control-label col-sm-3 label-after" ng-class="labelControlCss" for="AGE_STD_YEAR">
                             {{'YEAR'|translate}}
                         </label>
                     </div>
                     <div class="col-sm-6 no-padding">
                         <div class="col-sm-9 no-padding">
-                            <input type="text" count maxlength="22" min="0" ng-max="11"  class="form-control" id="AGE_RUNNING_MONTH" name="AGE_RUNNING_MONTH" ng-model="formData.AGE_RUNNING_MONTH">
+                            <input type="text" count maxlength="22" min="0" ng-max="11" class="form-control" id="AGE_RUNNING_MONTH" name="AGE_RUNNING_MONTH" ng-model="formData.AGE_RUNNING_MONTH">
                         </div>
-                         <label class="control-label col-sm-3" for="AGE_RUNNING_MONTH">
+                        <label class="control-label col-sm-3" for="AGE_RUNNING_MONTH">
                             {{'MONTH'|translate}}
                         </label>
                     </div>
+                </div>
+            </div>
+            <div ng-if="isAppraiser" class="form-group" ng-class="{'has-error':form.DISTANCE.$invalid}">
+                <label ng-class="labelControlCss" for="DISTANCE">
+                    {{'DISTANCE'|translate}} <span class="symbol"></span>
+                </label>
+                <div ng-class="formControlCss">
+                    <input ng-disabled="inputDisabled" type="text" format decimal="0" class="form-control" id="DISTANCE" name="DISTANCE" ng-model="formData.DISTANCE">
                 </div>
             </div>
             <div ng-if="isAppraiser" class="form-group">
@@ -152,7 +160,7 @@
                     <input ng-disabled="inputDisabled" type="text" class="form-control" id="CAR_TYPE" name="CAR_TYPE" ng-model="formData.CAR_TYPE" maxlength="100" only-char>
                 </div>
             </div>
-             <div ng-if="isAppraiser" class="form-group">
+            <div ng-if="isAppraiser" class="form-group">
                 <label ng-class="labelControlCss" for="SERIES">
                     {{'CAR.SERIES'|translate}}
                 </label>
@@ -165,15 +173,15 @@
                     {{'BRAND_NAME'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text" ng-disabled="inputDisabled" maxlength="50" class="form-control" id="BRAND_NAME" name="BRAND_NAME" ng-model="formData.BRAND_NAME">
-                    <!--<ui-select theme="selectize" ng-model="formData.BRAND_NAME" id="BRAND_NAME" name="BRAND_NAME">
-                        <ui-select-match placeholder="">
+                    <!--<input type="text" ng-disabled="inputDisabled" maxlength="50" class="form-control" id="BRAND_NAME" name="BRAND_NAME" ng-model="formData.BRAND_NAME">-->
+                    <ui-select theme="selectize" ng-model="formData.BRAND_NAME" id="BRAND_NAME" name="BRAND_NAME">
+                        <ui-select-match>
                             {{$select.selected.NAME}}
                         </ui-select-match>
                         <ui-select-choices repeat="item in selectBrand | filter: $select.search">
                             <div ng-bind-html="item.NAME | highlight: $select.search"></div>
                         </ui-select-choices>
-                    </ui-select>-->
+                    </ui-select>
                 </div>
             </div>
             <div class="form-group">
@@ -205,7 +213,7 @@
                     {{'CHASSIS_NO'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text"  ng-disabled="inputDisabled" maxlength="50" class="form-control" id="CHASSIS_NO" name="CHASSIS_NO" ng-model="formData.CHASSIS_NO">
+                    <input type="text" ng-disabled="inputDisabled" maxlength="50" class="form-control" id="CHASSIS_NO" name="CHASSIS_NO" ng-model="formData.CHASSIS_NO">
                 </div>
             </div>
             <div class="form-group">
@@ -213,7 +221,7 @@
                     {{'ENGINE_NO'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text"  ng-disabled="inputDisabled" maxlength="50" class="form-control" id="ENGINE_NO" name="ENGINE_NO" ng-model="formData.ENGINE_NO">
+                    <input type="text" ng-disabled="inputDisabled" maxlength="50" class="form-control" id="ENGINE_NO" name="ENGINE_NO" ng-model="formData.ENGINE_NO">
                 </div>
             </div>
             <div class="form-group">
@@ -221,7 +229,7 @@
                     {{'COLOR'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input type="text"  ng-disabled="inputDisabled" maxlength="30" class="form-control" id="COLOR" name="COLOR" ng-model="formData.COLOR">
+                    <input type="text" ng-disabled="inputDisabled" maxlength="30" class="form-control" id="COLOR" name="COLOR" ng-model="formData.COLOR">
                 </div>
             </div>
             <div ng-if="isAppraiser" class="form-group" ng-class="{'has-error':form.MARKET_NEED.$dirty && form.MARKET_NEED.$viewValue==undefined, 'has-success':form.MARKET_NEED.$viewValue!=undefined}">
@@ -236,7 +244,7 @@
                 </div>
             </div>
         </fieldset>
-        <div ng-if="isAppraiser" class="form-group">
+        <!--<div ng-if="isAppraiser" class="form-group">
             <div class="col-sm-4">
                 <fieldset class="no-radius">
                     <legend>{{'AGE_STD'|translate}}</legend>
@@ -302,7 +310,7 @@
                     </div>
                 </fieldset>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 
@@ -324,7 +332,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-if="formData.IS_INSURANCE=='Y'">
             <label ng-class="labelControlCss" for="INSURED_CODE">
                 {{'INSURED_CODE'|translate}}
             </label>
@@ -339,7 +347,7 @@
                 </ui-select>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-if="formData.IS_INSURANCE=='Y'">
             <label ng-class="labelControlCss" for="POLICY_NO">
                 {{'POLICY_NO'|translate}}
             </label>
@@ -347,7 +355,7 @@
                 <input type="text" ng-disabled="inputDisabled" class="form-control" id="POLICY_NO" name="POLICY_NO" ng-model="formData.POLICY_NO">
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-if="formData.IS_INSURANCE=='Y'">
             <label ng-class="labelControlCss" for="INSURED_AMT">
                 {{'INSURED_AMT'|translate}}
             </label>
@@ -355,7 +363,7 @@
                 <input count type="text" ng-disabled="inputDisabled" class="form-control" id="INSURED_AMT" name="INSURED_AMT" ng-model="formData.INSURED_AMT">
             </div>
         </div>
-        <div class="form-group">
+        <!--<div class="form-group">
             <label ng-class="labelControlCss" for="INSURED_ISSUE_DATE">
                 {{'INSURED_ISSUE_DATE'|translate}}
             </label>
@@ -370,17 +378,17 @@
             <div ng-class="formControlCss">
                 <input type="text" ng-disabled="inputDisabled" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.INSURED_EXP_DATE" ng-click="openDatePicker($event,'INSURED_EXP_DATE')" class="form-control" id="INSURED_EXP_DATE" name="INSURED_EXP_DATE" ng-model="formData.INSURED_EXP_DATE">
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 <fieldset class="no-radius" ng-if="isAppraiser">
     <legend>{{'PRICE'|translate}}</legend>
-   <div class="form-group">
+    <div class="form-group">
         <label class="col-sm-4 control-label" for="REPLACEMENT_COST">
             {{'CAR.REPLACEMENT_COST'|translate}}<span class="symbol required"></span>
         </label>
         <div class="col-sm-8">
-            <input required format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.REPLACEMENT_COST" id="REPLACEMENT_COST" name="REPLACEMENT_COST" ng-change="calDepliciation()" />
+            <input required format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.REPLACEMENT_COST" id="REPLACEMENT_COST" name="REPLACEMENT_COST" ng-change="calCarDepliciation()" />
         </div>
     </div>
     <div class="form-group">
@@ -388,7 +396,7 @@
             {{'CAR.DEPLICIATIONPERCENT'|translate}}
         </label>
         <div class="col-sm-8">
-            <input format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.DEPLICIATIONPERCENT" id="DEPLICIATIONPERCENT" name="DEPLICIATIONPERCENT" ng-max="99.99" />
+            <input format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.DEPLICIATIONPERCENT" id="DEPLICIATIONPERCENT" name="DEPLICIATIONPERCENT" ng-max="99.99" ng-change="calCarDepliciation()" />
         </div>
     </div>
     <div class="form-group">
@@ -396,15 +404,15 @@
             {{'CAR.DEPLICIATIONPRICE'|translate}}
         </label>
         <div class="col-sm-8">
-            <input format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.DEPLICIATIONPRICE" id="DEPLICIATIONPRICE" name="DEPLICIATIONPRICE" ng-max="formData.REPLACEMENT_COST" ng-change="calDepliciation()"/>
+            <input format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.DEPLICIATIONPRICE" id="DEPLICIATIONPRICE" name="DEPLICIATIONPRICE" ng-max="formData.REPLACEMENT_COST" ng-change="calCarDepliciation()" />
         </div>
     </div>
-     <div ng-if="isAppraiser" class="form-group">
+    <div ng-if="isAppraiser" class="form-group">
         <label class="col-sm-4 control-label" for="APPR_CUR_OTHER_AMOUNT">
             {{'CAR.APPR_CUR_OTHER_AMOUNT'|translate}}
         </label>
         <div class="col-sm-8">
-            <input format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.APPR_CUR_NET_TOTAL" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" ng-readonly="true"/>
+            <input format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.APPR_CUR_OTHER_AMOUNT" id="APPR_CUR_OTHER_AMOUNT" name="APPR_CUR_OTHER_AMOUNT" ng-readonly="true" />
         </div>
     </div>
 </fieldset>

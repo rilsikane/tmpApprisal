@@ -58,7 +58,6 @@
     $scope.init();
 }]);
 
-
 app.controller('orgRoleEditor', ['$scope', 'radasoft', '$state', '$stateParams', '$modalInstance', 'params', '$translate', function ($scope, radasoft, $state, $stateParams, $modalInstance, params, $translate) {
     $scope.includeUrl = '/app/views/setting/orgRoleEditor.html';
     $scope.title = $translate.instant('ORG_ROLE');
@@ -84,12 +83,27 @@ app.controller('orgRoleEditor', ['$scope', 'radasoft', '$state', '$stateParams',
         });
     }
 
-    $scope.save = function () {
-        radasoft.confirmAndSave($translate.instant('CONFIRM.SAVE'), '', function (isconfirmed) {
-            if (isconfirmed) {
-                $scope.setMasterOrgRoles();
+    $scope.save = function (form) {
+        if (form.$invalid) {
+            var field = null, firstError = null;
+            for (field in form) {
+                if (field[0] != '$') {
+                    if (firstError === null && !form[field].$valid) {
+                        firstError = form[field].$name;
+                    }
+
+                    if (form[field].$pristine) {
+                        form[field].$dirty = true;
+                    }
+                }
             }
-        });
+        } else {
+            radasoft.confirmAndSave($translate.instant('CONFIRM.SAVE'), '', function (isconfirmed) {
+                if (isconfirmed) {
+                    $scope.setMasterOrgRoles();
+                }
+            });
+        }
     }
 
     $scope.init = function () {

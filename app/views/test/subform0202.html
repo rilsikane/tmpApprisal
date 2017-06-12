@@ -3,27 +3,24 @@
 </div>
 <div class="modal-body bg-light-grey">
     <form name="form" role="form" class="form-horizontal" novalidate ng-submit="submit(form)">
-        <div class="panel panel-white" ng-if="IS_PROJECT">
+        <!--<div class="panel panel-white" ng-if="IS_PROJECT">
             <div class="panel-heading bg-light-orange no-radius">
                 <h5 class="panel-title">{{'PROJECT'|translate}}</h5>
             </div>
             <div class="panel-body">
                 <div ng-include="'/app/views/project/price.html'"></div>
             </div>
-        </div>
-
+        </div>-->
         <div class="form-group" ng-class="{'has-error':form.SUB_TYPE.$dirty && form.SUB_TYPE.$viewValue.CODE==undefined, 'has-success':form.SUB_TYPE.$dirty && form.SUB_TYPE.$viewValue.CODE!=undefined}">
-
             <label ng-class="labelControlCss" control-label" for="SUB_TYPE" ng-if="botColForm.COL_FORM_ID!='286003'">
                 {{'SUB_TYPE'|translate}} <span class="symbol required"></span>
             </label>
-            <label ng-class="labelControlCss" control-label" for="SUB_TYPE" ng-if="botColForm.COL_FORM_ID=='286003'">
+            <label ng-class="labelControlCss" for="SUB_TYPE" ng-if="botColForm.COL_FORM_ID=='286003'">
                 {{'ประเภทเอกสารสิทธิ์'|translate}} <span class="symbol required"></span>
             </label>
-
             <div ng-class="formControlCss">
                 <ui-select ng-disabled="inputDisabled" ng-required="true" theme="selectize" ng-model="formData.SUB_TYPE" name="SUB_TYPE" id="SUB_TYPE" on-select="onSubTypeChange($item,$model)">
-                    <ui-select-match placeholder="">
+                    <ui-select-match>
                         {{$select.selected.SUB_TYPE}}
                     </ui-select-match>
                     <ui-select-choices repeat="sub in botColForm.SUB_TYPE | filter: $select.search">

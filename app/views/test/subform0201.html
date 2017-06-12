@@ -8,10 +8,10 @@
                 <h5 class="panel-title">{{'PROJECT'|translate}}</h5>
             </div>
             <div class="panel-body">
-                <div ng-include="'/app/views/project/unit.html'"></div>
+                <div ng-if="IS_PROJECT" ng-include="includeProjectUrl"></div>
             </div>
         </div>
-        <div class="panel panel-white" ng-if="formData.HEAD_COL_TYPE_ID=='286011'">
+        <div class="panel panel-white" ng-if="formData.HEAD_COL_TYPE_ID=='286011aaa'">
             <div class="panel-heading bg-light-azure no-radius">
                 <h5 class="panel-title">รายละเอียดหลักทรัพย์</h5>
             </div>
@@ -141,7 +141,55 @@
             <div class="panel-heading bg-light-azure no-radius">
                 <h5 class="panel-title">{{'DOPA_ADDRESS'|translate}}</h5>
             </div>
-            <div class="panel-body">
+
+            <div class="panel-body" ng-if="formData.DEED_COUNTRY.CODE!='TH'">
+                <div class="form-group" ng-class="{'has-error':form.DEED_COUNTRY.$dirty && form.DEED_COUNTRY.$viewValue==undefined, 'has-success':form.DEED_COUNTRY.$viewValue!=undefined && form.DEED_COUNTRY.$viewValue.CODE!=undefined}">
+                    <label ng-class="labelControlCss" for="DEED_COUNTRY">
+                        {{'COUNTRY'|translate}}<span class="symbol required"></span>
+                    </label>
+                    <div ng-class="formControlCss">
+                        <ui-select ng-required="true" theme="selectize" ng-model="formData.DEED_COUNTRY" id="DEED_COUNTRY" name="DEED_COUNTRY">
+                            <ui-select-match>
+                                {{$select.selected.NAME_THAI}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in selectCountry | filter: $select.search">
+                                <div ng-bind-html="item.NAME_THAI | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label ng-class="labelControlCss" for="ADDRESS1">ที่อยู่ 1</label>
+                    <div ng-class="formControlCss">
+                        <!--<input type="text" maxlength="300" ng-disabled="inputDisabled" class="form-control" id="ADDRESS1" name="ADDRESS1" ng-model="formData.ADDRESS1">-->
+                        <textarea ng-disabled="inputDisabled" rows="5" class="form-control" id="ADDRESS1" name="ADDRESS1" ng-model="formData.ADDRESS1"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label ng-class="labelControlCss" for="ADDRESS2">ที่อยู่ 2</label>
+                    <div ng-class="formControlCss">
+                        <!--<input type="text" maxlength="300" ng-disabled="inputDisabled" class="form-control" id="ADDRESS2" name="ADDRESS2" ng-model="formData.ADDRESS2">-->
+                        <textarea ng-disabled="inputDisabled" rows="5" class="form-control" id="ADDRESS2" name="ADDRESS2" ng-model="formData.ADDRESS2"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body" ng-if="formData.DEED_COUNTRY.CODE=='TH'">
+                <div class="form-group" ng-class="{'has-error':form.DEED_COUNTRY.$dirty && form.DEED_COUNTRY.$viewValue==undefined, 'has-success':form.DEED_COUNTRY.$viewValue!=undefined && form.DEED_COUNTRY.$viewValue.CODE!=undefined}">
+                    <label ng-class="labelControlCss" for="DEED_COUNTRY">
+                        {{'COUNTRY'|translate}}<span class="symbol required"></span>
+                    </label>
+                    <div ng-class="formControlCss">
+                        <ui-select ng-required="true" theme="selectize" ng-model="formData.DEED_COUNTRY" id="DEED_COUNTRY" name="DEED_COUNTRY">
+                            <ui-select-match>
+                                {{$select.selected.NAME_THAI}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in selectCountry | filter: $select.search">
+                                <div ng-bind-html="item.NAME_THAI | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label ng-class="labelControlCss" for="LOC_CODE">
                         {{'LOC_CODE'|translate}}
@@ -243,7 +291,7 @@
                         <input type="text" maxlength="50" ng-disabled="inputDisabled" class="form-control" id="LOC_ADD_ROAD" name="LOC_ADD_ROAD" ng-model="formData.LOC_ADD_ROAD">
                     </div>
                 </div>
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label ng-class="labelControlCss" for="USE_CITY_PLAN">
                         {{'USE_CITY_PLAN'|translate}}
                     </label>
@@ -257,7 +305,7 @@
                             </ui-select-choices>
                         </ui-select>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
         <div ng-if="false" class="panel panel-white">

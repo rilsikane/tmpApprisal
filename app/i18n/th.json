@@ -1,4 +1,15 @@
 ﻿{
+  "AREA_WA_TOTAL": "",
+  "AREA_WA_UNUSE": "เนื้อที่ดินไม่ประเมินมูลค่า(ตร.ว.)",
+  "PROPERTY_RATIO": "อัตราส่วนกรรมสิทธิ์ในทรัพย์สินส่วนกลาง",
+  "DISTANCE": "ระยะทาง (กม.)",
+  "DOC_CERT_DTL": "รายละเอียดเอกสารสิทธิ์",
+  "COL_NO_1": "เลขที่ฉโนด",
+  "COL_NO_2": "เลขที่",
+  "COL_NO_3": "ตราจองเลขที่",
+  "COL_NO_4": "นส.3 เลขที่",
+  "COL_NO_5": "นส.3ข เลขที่",
+  "PAGE_NO": "หน้า",
   "INPUT_VALIDATION_FAILED": "กรุณาบันทึกข้อมูลให้ครบถ้วน",
   "VERSION": "version",
   "REFRESH_JOBMARKETPRICE": "อัพเดทข้อมูลตลาด",
@@ -97,9 +108,10 @@
   "DEEP_SHAPE": "ความลึกสูงสุด (เมตร)",
   "WIDTH_SHAPE": "หน้ากว้างประมาณ (เมตร)",
   "SURVEY_APPR_DATE": "วันที่สำรวจและประเมิน",
-  "APPR_GOV_AMOUNT": "ราคารวมประเมินที่ดินราชการ(บาท)",
-  "APPR_GOV_PRICE": "ราคาประเมินที่ดินราชการ(บาท/ตร.ว.)",
-  "APPR_CUR_LAND_AMOUNT": "ราคารวม",
+  "APPR_GOV_AMOUNT": "ราคารวมประเมินราชการ(บาท)",
+  "APPR_GOV_PRICE": "ราคาประเมินราชการ(บาท/ตร.ว.)",
+  "APPR_CUR_OTHER_PRICE": "ราคาต่อตารางเมตร (บาท)",
+  "APPR_CUR_LAND_AMOUNT": "ราคารวม (บาท)",
   "APPR_CUR_LAND_PRICE": "ราคาต่อตารางวา(บาท)",
   "DEED_DISTRICT_OLD": "ตำบลเดิม",
   "FIND_REQUEST": "ค้นหาใบคำขอ",
@@ -188,6 +200,8 @@
   "SEGMENT": "Segment",
   "OBJECTIVE": "วัตถุประสงค์",
   "DEBT_TYPE": "ประเภทสินเชื่อที่ขอกู้",
+  "LOAN_GROUP_ID": "กลุ่มสินเชื่อที่ขอกู้",
+  "LOAN_TYPE_ID": "ประเภทสินเชื่อที่ขอกู้",
   "AMOUNT": "จำนวนเงิน",
   "CREDIT_BALANCE": "ภาระหนี้คงเหลือ",
   "CREDIT_LIMIT": "ภาระสินเชื้อรวม",
@@ -344,7 +358,7 @@
   "DSC_FLOOR3SZ": "ชั้น 3 ขนาด (เมตร)",
 
   "DSC_GUEST_ROOM": "จำนวน (ห้อง)",
-  "DSC_GUEST_SZ": "ขนาด (ตร.ม.)",
+  "DSC_GUEST_SZ": "ขนาด กว้าง x ยาว (เมตร)",
   "DSC_GUEST_FLOOR": "ลักษณะพื้น",
 
   "FLAG_BUILDING": "กรรมสิทธิ์สิ่งปลูกสร้าง",
@@ -360,7 +374,6 @@
   "AIRIAL_SHEET_NO": "แผ่นที่",
   "AIRIAL_CODE_NO": "หมายเลข",
   "BOOK_NO": "เล่ม",
-  "PAGE_NO": "หน้าที่",
   "RAI": "ไร่",
   "NGAN": "งาน",
   "WA": "ตารางวา",
@@ -377,22 +390,26 @@
   "LEVEL_LANDFILL_CODE": "ระดับการถม",
   "LEVEL_LANDFILL_METER": "ถม (เมตร)",
 
-  "LOCATION1": "ย่านการค้า",
-  "LOCATION2": "ที่อยู่อาศัย",
+  "LOCATION1": "ย่านพาณิชยกรรม",
+  "LOCATION2": "ย่านพักอาศัย",
   "LOCATION7": "ย่านการค้าและที่อยู่อาศัย",
-  "LOCATION3": "เกษตรกรรม",
+  "LOCATION3": "ย่านเกษตรกรรม",
   "LOCATION4": "ย่านอุตสหกรรม",
   "LOCATION5": "ห่างไกลชุมชน",
   "LOCATION6": "อื่นๆ",
 
   "POSITION1": "ไม่มีทางเข้าออก",
-  "POSITION2": "มีภาระจำยอม",
+  "POSITION2": "ภาระจำยอม",
   "POSITION3": "ติดแม่น้ำ/คลอง/ลำธาร",
   "POSITION4": "รถยนต์เข้าถึง",
   "POSITION5": "ทางเดิน",
-
-  "ROAD_NAME": "ชื่อถนน",
-  "ROAD_CODE": "สภาพ",
+  "POSITION6": "ทางสาธารณประโยชน์",
+  "POSITION7": "ถนนส่วนบุคคล",
+  "POSITION8": "ทางอยู่ใต้พระราชบัญญัติอาคารชุด",
+  "POSITION9": "ทางภายในโครงการจัดสรรที่ดิน",
+  "POSITION10": "อื่นๆ",
+  "ROAD_NAME": "ติดถนน / ซอย ชื่อ",
+  "ROAD_CODE": "สภาพถนน",
   "ROAD_WIDTH": "ขนาดสภาพถนน (เมตร)",
 
   "ROAD1": "ทางสาธารณะ",
@@ -486,7 +503,9 @@
   "RESPOND2": "ติดจำนอง",
   "RESPOND3": "ให้เช่า",
   "RESPOND4": "ติดขายฝาก",
-  "RESPOND_OTHER": "คู่สัญญา",
+  "RESPOND5": "ภาระจำยอมทั้งแปลง/บางส่วน",
+  "RESPOND6": "อื่น",
+  "RESPOND_OTHER": "ระบุ",
 
   "CAPACITY1": "สูง",
   "CAPACITY2": "กลาง",
@@ -533,7 +552,8 @@
   "BUILDING_NO": "อาคารเลขที่",
 
   "BUILDING_REG_NO": "ทะเบียนอาคารชุดเลขที่",
-  "BALCONY_METER": "ระเบียง (ตร.ม.)",
+  "BALCONY_METER": "ระเบียง/ที่วางแอร์ (ตร.ม.)",
+  "PARK_METER": "พื้นที่จอดรถ (ตร.ม.)",
   "PROJ_NM": "ชื่อโครงการ",
   "PHASE": "เฟส",
 
@@ -603,6 +623,11 @@
   "ATTACH": "ไฟล์แนบ",
   "TOTAL_COLLETERAL": "จำนวนหลักประกัน",
 
+  "PHOTO_POINT": "จุดถ่ายรูป",
+  "APPR_BUILD_EVA_LIST": "การประเมิน-รายการ",
+  "MARKET_INFO": "ข้อมูลตลาด-แหล่งที่มาของข้อมูล",
+  "APPR_PURPOSE": "จุดประสงค์การประเมิน",
+
   "COPYRIGHT": "All rights reserved",
   "SEQ": "ลำดับ",
   "TITLE": {
@@ -647,7 +672,8 @@
     "SPLITSUBCOL": "คุณต้องการแจกแจงหลักประกันใช่หรือไม่",
     "CONFIRM": "ยืนยัน",
     "GEN_COMMITTEE_REPORT": "จัดทำแบบฟอร์มเอกสารสรุปผล",
-    "HEAD_COL_ACT_INVALID": "การจัดทำข้อมูลยังไม่ครบถ้วน คุณต้องการดำเนินการจัดทำรายงานต่อหรือไม่"
+    "HEAD_COL_ACT_INVALID": "การจัดทำข้อมูลยังไม่ครบถ้วน คุณต้องการดำเนินการจัดทำรายงานต่อหรือไม่",
+    "GEN_REPORT": "ยืนยันการจัดทำรายงาน"
   },
 
   "BPM": {
@@ -676,37 +702,28 @@
     "COLLETERAL": "หลักประกัน"
   },
   "CAR": {
-    "REPLACEMENT_COST":"ราคาต้นทุนทดแทนใหม่ (บาท/หน่วย) ",
-    "DEPLICIATIONPERCENT":"ค่าเสื่อม (%)",
-    "DEPLICIATIONPRICE":"ค่าเสื่อม (บาท)",
-    "APPR_CUR_OTHER_AMOUNT":"ราคาประเมินหลักประกัน (บาท)",
-    "CAR_SEGMENT":"ประเภท",
-    "ENGINE":"เชื้อเพลิง",
-    "CAR_TYPE":"ลักษณะ",
-    "SERIES":"แบบ",
-    "AGE_RUNNING":"อายุการใช้งาน",
-    "DISTANCE":"ระยะทาง (กม.)",
-    "OWNER":"ผู้ครอบครอง"
+    "REPLACEMENT_COST": "ราคาต้นทุนทดแทนใหม่ (บาท/หน่วย) ",
+    "DEPLICIATIONPERCENT": "ค่าเสื่อม (%)",
+    "DEPLICIATIONPRICE": "ค่าเสื่อม (บาท)",
+    "APPR_CUR_OTHER_AMOUNT": "ราคาประเมินหลักประกัน (บาท)",
+    "CAR_SEGMENT": "ประเภท",
+    "ENGINE": "เชื้อเพลิง",
+    "CAR_TYPE": "ลักษณะ",
+    "SERIES": "แบบ",
+    "AGE_RUNNING": "อายุการใช้งาน",
+    "DISTANCE": "ระยะทาง (กม.)",
+    "OWNER": "ผู้ครอบครอง"
   },
   "MACHINE": {
-    "RESPOND" : "ภาระผูกพันมีภาระจำยอม",
-    "MACHINE_ENERGY1" :"พลังงานไฟฟ้า",
-    "MACHINE_ENERGY2" :"พลังงานกล",
-    "MACHINE_ENERGY3" :"พลังงานลม",
-    "MACHINE_ENERGY4" :"น้ำมัน",
-    "MACHINE_OTHER" :"อื่นๆ"
+    "RESPOND": "ภาระผูกพัน",
+    "MACHINE_ENERGY1": "พลังงานไฟฟ้า",
+    "MACHINE_ENERGY2": "พลังงานกล",
+    "MACHINE_ENERGY3": "พลังงานลม",
+    "MACHINE_ENERGY4": "น้ำมัน",
+    "MACHINE_OTHER": "อื่นๆ"
   },
-  "BRAND_MODEL":"ยี่ห้อ",
+  "BRAND_MODEL": "รุ่นปี ค.ศ.",
   "SHIP": {
-    "REGIS_YN" : "เรือจดทะเบียนหรือไม่"
-  },
-  "OTHER":{
-    "DOC_CERT_DTL" :"รายละเอียดเอกสารสิทธิ์",
-    "COL_NO_1":"เลขที่ฉโนด",
-    "COL_NO_2":"เลขที่",
-    "COL_NO_3":"ตราจองเลขที่",
-    "COL_NO_4":"นส.3 เลขที่",
-    "COL_NO_5":"นส.3ข เลขที่",
-    "PAGE_NO":"หน้า"
+    "REGIS_YN": "เรือจดทะเบียนหรือไม่"
   }
 }

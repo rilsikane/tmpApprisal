@@ -1,4 +1,17 @@
-﻿<div ng-if="isAppraiser" class="panel panel-white">
+﻿<div class="form-group">
+    <label class="control-label col-sm-4">ประเภทสิ่งปลูกสร้าง</label>
+    <div class="col-sm-8">
+        <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.BUILD_TYPE" name="BUILD_TYPE" id="BUILD_TYPE">
+            <ui-select-match>
+                {{$select.selected.NAME}}
+            </ui-select-match>
+            <ui-select-choices repeat="sub in selectBuildType | filter: $select.search">
+                <div ng-bind-html="sub.NAME | highlight: $select.search"></div>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+</div>
+<div ng-if="isAppraiser" class="panel panel-white">
     <div class="panel-heading bg-light-azure no-radius">
         <h5 class="panel-title">ข้อมูลสิ่งปลูกสร้าง</h5>
     </div>
@@ -95,6 +108,14 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-sm-4 control-label" for="AREA_WA">
+                {{'AREA_WA'|translate}}
+            </label>
+            <div class="col-sm-8">
+                <input type="text" format maxlength="20" ng-disabled="inputDisabled" class="form-control" id="AREA_WA" name="AREA_WA" ng-model="formData.AREA_WA">
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-4 control-label" for="USAGES">
                 {{'USAGES'|translate}}
             </label>
@@ -124,33 +145,19 @@
                 </ui-select>
             </div>
         </div>
-        <fieldset class="no-radius">
-            <legend>ราคา</legend>
-            <div class="form-group">
-                <label class="col-sm-4 control-label" for="APPR_CUR_BUILD_PRICE">
-                    {{'APPR_CUR_BUILD_PRICE'|translate}}
-                </label>
-                <div class="col-sm-8 form-group">
-                    <input ng-disabled="inputDisabled" format type="text" class="form-control" id="APPR_CUR_BUILD_PRICE" name="APPR_CUR_BUILD_PRICE" ng-model="formData.APPR_CUR_BUILD_PRICE" />
-                </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4">ข้อกำหนดผังเมือง</label>
+            <div class="col-sm-8">
+                <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.USE_CITY_PLAN" id="USE_CITY_PLAN" name="USE_CITY_PLAN">
+                    <ui-select-match>
+                        {{$select.selected.NAME}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in selectUseCityPlan | filter: $select.search">
+                        <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
             </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label" for="APPR_CUR_BUILD_AMOUNT">
-                    {{'TOTAL_PRICE'|translate}}
-                </label>
-                <div class="col-sm-8 form-group">
-                    <input ng-disabled="inputDisabled" format type="text" class="form-control" id="APPR_CUR_BUILD_AMOUNT" name="APPR_CUR_BUILD_AMOUNT" ng-model="formData.APPR_CUR_BUILD_AMOUNT" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label" for="APPR_CUR_BUILD_AMOUNT">
-                    {{'FIRE_INSURE_AMOUNT'|translate}}
-                </label>
-                <div class="col-sm-8 form-group">
-                    <input ng-disabled="inputDisabled" format type="text" class="form-control" id="APPR_CUR_FIRE_INSURE" name="APPR_CUR_FIRE_INSURE" ng-model="formData.APPR_CUR_FIRE_INSURE" />
-                </div>
-            </div>
-        </fieldset>
+        </div>
     </div>
 </div>
 <div class="panel panel-white">
@@ -163,7 +170,7 @@
                 <i class="fa fa-bolt"></i> {{'DEED_ADD_NO'|translate}}
             </label>
             <div class="col-sm-8">
-                <input ng-disabled="inputDisabled" type="text" maxlength="200" class="form-control" id="DEED_ADD_NO" name="DEED_ADD_NO" ng-model="formData.DEED_ADD_NO">
+                <input ng-disabled="inputDisabled" type="text" maxlength="1000" class="form-control" id="DEED_ADD_NO" name="DEED_ADD_NO" ng-model="formData.DEED_ADD_NO">
             </div>
         </div>
         <div class="form-group">
@@ -259,95 +266,125 @@
     </div>
     <div class="panel-body">
         <div class="form-group">
-            <div class="form-group col-sm-3">
-                <label class="col-sm-4 control-label" for="BTYP_THOUSE">
-                </label>
-                <div class="col-sm-8">
-                    <div class="checkbox clip-check check-primary">
-                        <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_THOUSE" ng-model="formData.BTYP_THOUSE" checked="">
-                        <label for="BTYP_THOUSE">
-                            {{'BTYP_THOUSE'|translate}}
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-sm-3">
-                <label class="col-sm-4 control-label" for="BTYP_HOUSESINGLE">
-                </label>
-                <div class="col-sm-8">
-                    <div class="checkbox clip-check check-primary">
-                        <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_HOUSESINGLE" ng-model="formData.BTYP_HOUSESINGLE" checked="">
-                        <label for="BTYP_HOUSESINGLE">
-                            {{'BTYP_HOUSESINGLE'|translate}}
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-sm-3">
-                <label class="col-sm-4 control-label" for="BTYP_HOUSEDOUBLE">
-                </label>
-                <div class="col-sm-8">
-                    <div class="checkbox clip-check check-primary">
-                        <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_HOUSEDOUBLE" ng-model="formData.BTYP_HOUSEDOUBLE" checked="">
-                        <label for="BTYP_HOUSEDOUBLE">
-                            {{'BTYP_HOUSEDOUBLE'|translate}}
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-sm-3">
-                <label class="col-sm-4 control-label" for="BTYP_ROW">
-                </label>
-                <div class="col-sm-8">
-                    <div class="checkbox clip-check check-primary">
-                        <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_ROW" ng-model="formData.BTYP_ROW" checked="">
-                        <label for="BTYP_ROW">
-                            {{'BTYP_ROW'|translate}}
-                        </label>
-                    </div>
+            <label class="col-sm-4 control-label" for="BTYP_HOUSE">
+            </label>
+            <div class="col-sm-8">
+                <div class="checkbox clip-check check-primary">
+                    <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_HOUSE" ng-model="formData.BTYP_HOUSE" checked="">
+                    <label for="BTYP_HOUSE">บ้าน</label>
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <div class="form-group col-sm-3">
-                <label class="col-sm-4 control-label" for="BTYP_OFFICE">
-                </label>
-                <div class="col-sm-8">
-                    <div class="checkbox clip-check check-primary">
-                        <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_OFFICE" ng-model="formData.BTYP_OFFICE" checked="">
-                        <label for="BTYP_OFFICE">
-                            {{'BTYP_OFFICE'|translate}}
-                        </label>
-                    </div>
+            <label class="col-sm-4 control-label" for="BTYP_THOUSE">
+            </label>
+            <div class="col-sm-8">
+                <div class="checkbox clip-check check-primary">
+                    <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_THOUSE" ng-model="formData.BTYP_THOUSE" checked="">
+                    <label for="BTYP_THOUSE">ทาวเฮ้าส์</label>
                 </div>
             </div>
-            <div class="form-group col-sm-3">
-                <label class="col-sm-4 control-label" for="BTYP_FACTORY">
-                </label>
-                <div class="col-sm-8">
-                    <div class="checkbox clip-check check-primary">
-                        <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_FACTORY" ng-model="formData.BTYP_FACTORY" checked="">
-                        <label for="BTYP_FACTORY">
-                            {{'BTYP_FACTORY'|translate}}
-                        </label>
-                    </div>
-                </div>
-            </div>   
         </div>
         <div class="form-group">
-            <div class="form-group col-sm-3">
-                <label class="col-sm-4 control-label" for="BTYP_OTH">
-                </label>
-                <div class="col-sm-8">
-                    <div class="checkbox clip-check check-primary">
-                        <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_OTH" ng-model="formData.BTYP_OTH" checked="">
-                        <label for="BTYP_OTH">
-                            {{'BTYP_OTH'|translate}}
-                        </label>
-                    </div>
+            <label class="col-sm-4 control-label" for="BTYP_ROW">
+            </label>
+            <div class="col-sm-8">
+                <div class="checkbox clip-check check-primary">
+                    <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_ROW" ng-model="formData.BTYP_ROW" checked="">
+                    <label for="BTYP_ROW">ตึกแถว</label>
                 </div>
             </div>
-            <div class="form-group col-sm-8">
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="BTYP_OFFICE">
+            </label>
+            <div class="col-sm-8">
+                <div class="checkbox clip-check check-primary">
+                    <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_OFFICE" ng-model="formData.BTYP_OFFICE" checked="">
+                    <label for="BTYP_OFFICE">อาคารสำนักงาน</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="BTYP_FACTORY">
+            </label>
+            <div class="col-sm-8">
+                <div class="checkbox clip-check check-primary">
+                    <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_FACTORY" ng-model="formData.BTYP_FACTORY" checked="">
+                    <label for="BTYP_FACTORY">โรงงาน</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="BTYP_BLD">
+            </label>
+            <div class="col-sm-8">
+                <div class="checkbox clip-check check-primary">
+                    <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_BLD" ng-model="formData.BTYP_BLD" checked="">
+                    <label for="BTYP_BLD">ตึก</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="BTYP_BLDWOOD">
+            </label>
+            <div class="col-sm-8">
+                <div class="checkbox clip-check check-primary">
+                    <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_BLDWOOD" ng-model="formData.BTYP_BLDWOOD" checked="">
+                    <label for="BTYP_BLDWOOD">ตึกครึ่งไม้</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="BTYP_BLDTILE">
+            </label>
+            <div class="col-sm-8">
+                <div class="checkbox clip-check check-primary">
+                    <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_BLDTILE" ng-model="formData.BTYP_BLDTILE" checked="">
+                    <label for="BTYP_BLDTILE">ตึกครึ่งกระเบื้องเรียบ</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="BTYP_WOOD">
+            </label>
+            <div class="col-sm-8">
+                <div class="checkbox clip-check check-primary">
+                    <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_WOOD" ng-model="formData.BTYP_WOOD" checked="">
+                    <label for="BTYP_WOOD">ไม้</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="BTYP_HOUSESINGLE">
+            </label>
+            <div class="col-sm-8">
+                <div class="checkbox clip-check check-primary">
+                    <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_HOUSESINGLE" ng-model="formData.BTYP_HOUSESINGLE" checked="">
+                    <label for="BTYP_HOUSESINGLE">บ้านเดี่ยว</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="BTYP_HOUSEDOUBLE">
+            </label>
+            <div class="col-sm-8">
+                <div class="checkbox clip-check check-primary">
+                    <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_HOUSEDOUBLE" ng-model="formData.BTYP_HOUSEDOUBLE" checked="">
+                    <label for="BTYP_HOUSEDOUBLE">บ้านแฝด</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="BTYP_OTH">
+            </label>
+            <div class="col-sm-2">
+                <div class="checkbox clip-check check-primary">
+                    <input ng-disabled="inputDisabled" type="checkbox" id="BTYP_OTH" ng-model="formData.BTYP_OTH" checked="">
+                    <label for="BTYP_OTH">อื่นๆ</label>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
                 <input type="text" ng-disabled="inputDisabled" class="form-control" id="BTYP_OTH_DESC" name="BTYP_OTH_DESC" ng-model="formData.BTYP_OTH_DESC">
             </div>
         </div>
@@ -361,7 +398,7 @@
         </div>
         <div class="form-group">
             <label class="col-sm-4 control-label" for="BUILD_SIZE_X">
-                ขนาดสิ่งปลูกสร้าง กว้าง  x ยาว (ตร.ม.)
+                ขนาดสิ่งปลูกสร้าง กว้าง x ยาว (เมตร)
             </label>
             <div class="col-sm-8">
                 <div class="col-sm-2 no-padding">
@@ -380,7 +417,7 @@
                 จำนวนชั้น (ชั้น) <span class="symbol"></span>
             </label>
             <div class="col-sm-8">
-                <input ng-disabled="inputDisabled" required numberonly type="text" min="0" class="form-control" id="NO_OF_FLOOR" name="NO_OF_FLOOR" ng-model="formData.NO_OF_FLOOR">
+                <input ng-disabled="inputDisabled" required type="text" min="0" class="form-control" id="NO_OF_FLOOR" name="NO_OF_FLOOR" ng-model="formData.NO_OF_FLOOR">
             </div>
         </div>
         <div class="form-group" ng-class="{'has-error':form.CONSTRUCT_YEAR.$invalid}">
@@ -399,14 +436,14 @@
                 <input ng-disabled="inputDisabled" required numberonly type="text" min="0" class="form-control" id="CONSTRUCT_AGE" name="CONSTRUCT_AGE" ng-model="formData.CONSTRUCT_AGE">
             </div>
         </div>
-        <div class="form-group" ng-class="{'has-error':form.AREA_METER.$invalid}">
+        <!--<div class="form-group" ng-class="{'has-error':form.AREA_METER.$invalid}">
             <label class="col-sm-4 control-label" for="AREA_METER">
                 คิดเป็นพื้นที่ก่อสร้างโดยประมาณ (ตร.ม.) <span class="symbol"></span>
             </label>
             <div class="col-sm-8">
                 <input ng-disabled="inputDisabled" type="text" min="0" class="form-control" id="AREA_METER" name="AREA_METER" ng-model="formData.AREA_METER" format>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 <div class="panel panel-white" ng-if="isAppraiser">
@@ -425,7 +462,7 @@
                 </div>
                 <div class="col-md-2">
                     <div class="form-group padding-right-5">
-                        <label class="control-label">กว้าง x ยาว (ตร.ม.)</label>
+                        <label class="control-label">กว้าง x ยาว (เมตร)</label>
                         <input ng-disabled="inputDisabled" type="text" maxlength="30" class="form-control" id="FLOOR_{{item.ORDER_LIST}}" name="FLOOR_{{item.ORDER_LIST}}" ng-model="item.DSC_FLOORXSZ">
                     </div>
                 </div>
@@ -446,26 +483,26 @@
                 <fieldset class="no-radius">
                     <legend>ห้องนั่งเล่น</legend>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="DSC_GUEST_ROOM">
+                        <label class="col-sm-5 control-label" for="DSC_GUEST_ROOM">
                             {{'DSC_GUEST_ROOM'|translate}}
                         </label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-7">
                             <input count type="text" maxlength="10" ng-disabled="inputDisabled" class="form-control" id="DSC_GUEST_ROOM" name="DSC_GUEST_ROOM" ng-model="formData.DSC_GUEST_ROOM">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="DSC_GUEST_SZ">
+                        <label class="col-sm-5 control-label" for="DSC_GUEST_SZ">
                             {{'DSC_GUEST_SZ'|translate}}
                         </label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-7">
                             <input format type="text" ng-disabled="inputDisabled" class="form-control" id="DSC_GUEST_SZ" name="DSC_GUEST_SZ" ng-model="formData.DSC_GUEST_SZ">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="DSC_GUEST_FLOOR">
+                        <label class="col-sm-5 control-label" for="DSC_GUEST_FLOOR">
                             {{'DSC_GUEST_FLOOR'|translate}}
                         </label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-7">
                             <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.DSC_GUEST_FLOOR" id="DSC_GUEST_FLOOR" name="DSC_GUEST_FLOOR">
                                 <ui-select-match>
                                     {{$select.selected.NAME}}
@@ -482,26 +519,26 @@
                 <fieldset class="no-radius">
                     <legend>ห้องโถง</legend>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="DSC_HALL_ROOM">
+                        <label class="col-sm-5 control-label" for="DSC_HALL_ROOM">
                             {{'DSC_GUEST_ROOM'|translate}}
                         </label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-7">
                             <input count type="text" maxlength="10" ng-disabled="inputDisabled" class="form-control" id="DSC_HALL_ROOM" name="DSC_HALL_ROOM" ng-model="formData.DSC_HALL_ROOM">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="DSC_HALL_SZ">
+                        <label class="col-sm-5 control-label" for="DSC_HALL_SZ">
                             {{'DSC_GUEST_SZ'|translate}}
                         </label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-7">
                             <input format type="text" ng-disabled="inputDisabled" class="form-control" id="DSC_HALL_SZ" name="DSC_HALL_SZ" ng-model="formData.DSC_HALL_SZ">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="DSC_HALL_FLOOR">
+                        <label class="col-sm-5 control-label" for="DSC_HALL_FLOOR">
                             {{'DSC_GUEST_FLOOR'|translate}}
                         </label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-7">
                             <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.DSC_HALL_FLOOR" id="DSC_HALL_FLOOR" name="DSC_HALL_FLOOR">
                                 <ui-select-match>
                                     {{$select.selected.NAME}}
@@ -520,26 +557,26 @@
                 <fieldset class="no-radius">
                     <legend>ห้องน้ำ</legend>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="DSC_BATH_ROOM">
+                        <label class="col-sm-5 control-label" for="DSC_BATH_ROOM">
                             {{'DSC_GUEST_ROOM'|translate}}
                         </label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-7">
                             <input count type="text" maxlength="10" ng-disabled="inputDisabled" class="form-control" id="DSC_BATH_ROOM" name="DSC_BATH_ROOM" ng-model="formData.DSC_BATH_ROOM">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="DSC_BATH_SZ">
+                        <label class="col-sm-5 control-label" for="DSC_BATH_SZ">
                             {{'DSC_GUEST_SZ'|translate}}
                         </label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-7">
                             <input format type="text" ng-disabled="inputDisabled" class="form-control" id="DSC_BATH_SZ" name="DSC_BATH_SZ" ng-model="formData.DSC_BATH_SZ">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="DSC_BATH_FLOOR">
+                        <label class="col-sm-5 control-label" for="DSC_BATH_FLOOR">
                             {{'DSC_GUEST_FLOOR'|translate}}
                         </label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-7">
                             <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.DSC_BATH_FLOOR" id="DSC_BATH_FLOOR" name="DSC_BATH_FLOOR">
                                 <ui-select-match>
                                     {{$select.selected.NAME}}
@@ -556,26 +593,26 @@
                 <fieldset class="no-radius">
                     <legend>ห้องนอน</legend>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="DSC_BED_ROOM">
+                        <label class="col-sm-5 control-label" for="DSC_BED_ROOM">
                             {{'DSC_GUEST_ROOM'|translate}}
                         </label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-7">
                             <input count type="text" maxlength="10" ng-disabled="inputDisabled" class="form-control" id="DSC_BED_ROOM" name="DSC_BED_ROOM" ng-model="formData.DSC_BED_ROOM">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="DSC_BED_SZ">
+                        <label class="col-sm-5 control-label" for="DSC_BED_SZ">
                             {{'DSC_GUEST_SZ'|translate}}
                         </label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-7">
                             <input format type="text" ng-disabled="inputDisabled" class="form-control" id="DSC_BED_SZ" name="DSC_BED_SZ" ng-model="formData.DSC_BED_SZ">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="DSC_BED_FLOOR">
+                        <label class="col-sm-5 control-label" for="DSC_BED_FLOOR">
                             {{'DSC_GUEST_FLOOR'|translate}}
                         </label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-7">
                             <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="formData.DSC_BED_FLOOR" id="DSC_BED_FLOOR" name="DSC_BED_FLOOR">
                                 <ui-select-match>
                                     {{$select.selected.NAME}}
@@ -650,6 +687,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_BLD_WOOD" ng-model="formData.STRU_BLD_WOOD" ng-true-value="'Y'" ng-false-value="'N'">
@@ -658,6 +698,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_BLD_IRON" ng-model="formData.STRU_BLD_IRON" ng-true-value="'Y'" ng-false-value="'N'">
@@ -666,6 +709,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_BLD_HWOOD" ng-model="formData.STRU_BLD_HWOOD" ng-true-value="'Y'" ng-false-value="'N'">
@@ -674,6 +720,7 @@
                         </label>
                     </div>
                 </div>
+
             </div>
             <div class="form-group">
                 <div class="col-sm-1"></div>
@@ -685,7 +732,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="col-sm-9 form-group">
+                <div class="col-sm-9">
                     <input type="text" ng-disabled="formData.STRU_BLD_OTH!='Y' || inputDisabled" class="form-control" style="max-width:100%;" id="STRU_BLD_OTHDESC" name="STRU_BLD_OTHDESC" ng-model="formData.STRU_BLD_OTHDESC">
                 </div>
             </div>
@@ -702,6 +749,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_PILLAR_WOOD" ng-model="formData.STRU_PILLAR_WOOD" checked="">
@@ -710,6 +760,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_PILLAR_IRON" ng-model="formData.STRU_PILLAR_IRON" checked="">
@@ -746,6 +799,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_BEAM_WOOD" ng-model="formData.STRU_BEAM_WOOD" checked="">
@@ -754,6 +810,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_BEAM_IRON" ng-model="formData.STRU_BEAM_IRON" checked="">
@@ -790,6 +849,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_FLOOR_WOOD" ng-model="formData.STRU_FLOOR_WOOD" checked="">
@@ -798,6 +860,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_FLOOR_CONG" ng-model="formData.STRU_FLOOR_CONG" checked="">
@@ -834,6 +899,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_STAIR_WOOD" ng-model="formData.STRU_STAIR_WOOD" checked="">
@@ -842,6 +910,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_STAIR_IRON" ng-model="formData.STRU_STAIR_IRON" checked="">
@@ -878,6 +949,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_WALL_CONG" ng-model="formData.STRU_WALL_CONG" checked="">
@@ -886,6 +960,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_WALL_WOOD" ng-model="formData.STRU_WALL_WOOD" checked="">
@@ -894,6 +971,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_WALL_CONG2" ng-model="formData.STRU_WALL_CONG2" checked="">
@@ -930,6 +1010,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_CEIL_YIBSOM" ng-model="formData.STRU_CEIL_YIBSOM" checked="">
@@ -938,6 +1021,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_CEIL_TBAR" ng-model="formData.STRU_CEIL_TBAR" checked="">
@@ -974,6 +1060,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_FMROOF_WOOD" ng-model="formData.STRU_FMROOF_WOOD" checked="">
@@ -982,6 +1071,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_FMROOF_IRON" ng-model="formData.STRU_FMROOF_IRON" checked="">
@@ -1018,6 +1110,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_ROOF_CPACK" ng-model="formData.STRU_ROOF_CPACK" checked="">
@@ -1026,6 +1121,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_ROOF_CONG" ng-model="formData.STRU_ROOF_CONG" checked="">
@@ -1034,6 +1132,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_ROOF_ZINC" ng-model="formData.STRU_ROOF_ZINC" checked="">
@@ -1070,6 +1171,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_FENCE_WOOD" ng-model="formData.STRU_FENCE_WOOD" checked="">
@@ -1078,6 +1182,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_FENCE_WIRE" ng-model="formData.STRU_FENCE_WIRE" checked="">
@@ -1086,6 +1193,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_FENCE_NO" ng-model="formData.STRU_FENCE_NO" checked="">
@@ -1110,7 +1220,7 @@
                 </div>
             </div>
         </fieldset>
-        
+
         <fieldset class="no-radius">
             <legend>ผิวผนังภายนอก</legend>
             <div class="form-group">
@@ -1123,6 +1233,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_EXTWALL_BRICK1" ng-model="formData.STRU_EXTWALL_BRICK1" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1131,6 +1244,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_EXTWALL_BRICK2" ng-model="formData.STRU_EXTWALL_BRICK2" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1167,6 +1283,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_INTWALL_PAPER" ng-model="formData.STRU_INTWALL_PAPER" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1175,6 +1294,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_INTWALL_WOOD" ng-model="formData.STRU_INTWALL_WOOD" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1211,6 +1333,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_DOOR_MULMIRROR" ng-model="formData.STRU_DOOR_MULMIRROR" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1219,6 +1344,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_DOOR_PLYWOOD" ng-model="formData.STRU_DOOR_PLYWOOD" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1255,6 +1383,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_WD_MIRROR" ng-model="formData.STRU_WD_MIRROR" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1263,6 +1394,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_WD_LOUVER" ng-model="formData.STRU_WD_LOUVER" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1299,6 +1433,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_JAMB_ALLUMINIUM" ng-model="formData.STRU_JAMB_ALLUMINIUM" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1307,6 +1444,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_JAMB_IRON" ng-model="formData.STRU_JAMB_IRON" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1343,6 +1483,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_BATH_WALL" ng-model="formData.STRU_BATH_WALL" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1371,7 +1514,7 @@
             <legend>สุขภัณฑ์</legend>
             <div class="form-group">
                 <div class="col-sm-1"></div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_BWARE_TOILET" ng-model="formData.STRU_BWARE_TOILET" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="STRU_BWARE_TOILET">
@@ -1379,7 +1522,10 @@
                         </label>
                     </div>
                 </div>
-                <div class="col-sm-3">
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_BWARE_SQUAT" ng-model="formData.STRU_BWARE_SQUAT" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="STRU_BWARE_SQUAT">
@@ -1387,6 +1533,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_BWARE_PLANE" ng-model="formData.STRU_BWARE_PLANE" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1395,6 +1544,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_BWARE_SHOWER" ng-model="formData.STRU_BWARE_SHOWER" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1414,6 +1566,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_BWARE_SINK" ng-model="formData.STRU_BWARE_SINK" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1422,6 +1577,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_BWARE_MIRROR" ng-model="formData.STRU_BWARE_MIRROR" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1430,6 +1588,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="STRU_BWARE_BIDET" ng-model="formData.STRU_BWARE_BIDET" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1466,6 +1627,9 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="SYS_INT_WATER" ng-model="formData.SYS_INT_WATER" ng-true-value="'Y'" ng-false-value="'N'">
@@ -1474,19 +1638,14 @@
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
                         <input ng-disabled="inputDisabled" type="checkbox" id="SYS_INT_PHONE" ng-model="formData.SYS_INT_PHONE" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="SYS_INT_PHONE">
                             {{'SYS_INT_PHONE'|translate}}
-                        </label>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="checkbox clip-check check-primary">
-                        <input ng-disabled="inputDisabled" type="checkbox" id="SYS_INT_NETWORK" ng-model="formData.SYS_INT_NETWORK" ng-true-value="'Y'" ng-false-value="'N'">
-                        <label for="SYS_INT_NETWORK">
-                            {{'SYS_INT_NETWORK'|translate}}
                         </label>
                     </div>
                 </div>
@@ -1654,7 +1813,7 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     <div class="checkbox clip-check check-primary">
-                        <input  ng-disabled="inputDisabled"type="checkbox" id="MA_MEDIUM" ng-model="formData.MA_MEDIUM" ng-true-value="'Y'" ng-false-value="'N'">
+                        <input ng-disabled="inputDisabled" type="checkbox" id="MA_MEDIUM" ng-model="formData.MA_MEDIUM" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="MA_MEDIUM">
                             {{'MA_MEDIUM'|translate}}
                         </label>
@@ -1748,6 +1907,7 @@
                 </div>
             </div>
         </fieldset>
+
     </div>
 </div>
 <div class="panel panel-white" ng-if="isAppraiser">
@@ -1809,54 +1969,33 @@
 </div>
 <div class="panel panel-white" ng-if="isAppraiser">
     <div class="panel-heading bg-light-azure no-radius">
-        <h5 class="panel-title">ข้อมูลสำหรับ BOT Report</h5>
+        <h5 class="panel-title">ราคา</h5>
     </div>
     <div class="panel-body">
-        <fieldset class="no-radius">
-            <legend>{{'DECORATED'|translate}}</legend>
-            <div ng-repeat="item in radioDecorated" class="radio clip-radio radio-primary radio-inline">
-                <input ng-disabled="inputDisabled" type="radio" name="DECORATED" ng-value="item.VALUE" ng-model="formData.DECORATED" id="DECORATED{{item.VALUE}}" />
-                <label for="DECORATED{{item.VALUE}}">{{ item.NAME }}</label>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="APPR_CUR_BUILD_PRICE">
+                {{'APPR_CUR_BUILD_PRICE'|translate}}
+            </label>
+            <div class="col-sm-8 form-group">
+                <input ng-disabled="inputDisabled" format maxlength="15" type="text" class="form-control" id="APPR_CUR_BUILD_PRICE" name="APPR_CUR_BUILD_PRICE" ng-model="formData.APPR_CUR_BUILD_PRICE" />
             </div>
-        </fieldset>
-        <fieldset class="no-radius">
-            <legend>{{'DEVELOPER_DUMMY'|translate}}</legend>
-            <div ng-repeat="item in radioDeveloper" class="radio clip-radio radio-primary radio-inline">
-                <input ng-disabled="inputDisabled" type="radio" name="DEVELOPER_DUMMY" ng-value="item.VALUE" ng-model="formData.DEVELOPER_DUMMY" id="DEVELOPER_DUMMY{{item.VALUE}}" />
-                <label for="DEVELOPER_DUMMY{{item.VALUE}}">{{ item.NAME }}</label>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="APPR_CUR_BUILD_AMOUNT">
+                {{'TOTAL_PRICE'|translate}}
+            </label>
+            <div class="col-sm-8 form-group">
+                <input ng-disabled="inputDisabled" format maxlength="15" type="text" class="form-control" id="APPR_CUR_BUILD_AMOUNT" name="APPR_CUR_BUILD_AMOUNT" ng-model="formData.APPR_CUR_BUILD_AMOUNT" />
             </div>
-        </fieldset>
-        <fieldset class="no-radius">
-            <legend>{{'CONSTRUCT_COMPLETE'|translate}}</legend>
-            <div class="form-group">
-                <div ng-repeat="item in radioContructComplete" class="radio clip-radio radio-primary radio-inline">
-                    <input ng-disabled="inputDisabled" type="radio" name="CONSTRUCT_COMPLETE" ng-value="item.VALUE" ng-model="formData.CONSTRUCT_COMPLETE" id="CONSTRUCT_COMPLETE{{item.VALUE}}" />
-                    <label for="CONSTRUCT_COMPLETE{{item.VALUE}}">{{ item.NAME }}</label>
-                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="APPR_CUR_BUILD_AMOUNT">
+                {{'FIRE_INSURE_AMOUNT'|translate}}
+            </label>
+            <div class="col-sm-8 form-group">
+                <input ng-disabled="inputDisabled" format maxlength="15" type="text" class="form-control" id="APPR_CUR_FIRE_INSURE" name="APPR_CUR_FIRE_INSURE" ng-model="formData.APPR_CUR_FIRE_INSURE" />
             </div>
-            <div class="form-group" ng-class="{'has-error':form.CONSTR_PERCENT_COMPLETE.$invalid}">
-                <label class="col-sm-3 control-label" for="CONSTR_PERCENT_COMPLETE">
-                    อาคารก่อสร้างแล้วเสร็จ (%) <span class="symbol"></span>
-                </label>
-                <div class="col-sm-8">
-                    <input ng-disabled="formData.CONSTRUCT_COMPLETE!='2' || inputDisabled" type="text" format ng-min="0" ng-max="100" class="form-control" ng-model="formData.CONSTR_PERCENT_COMPLETE" id="CONSTR_PERCENT_COMPLETE" name="CONSTR_PERCENT_COMPLETE" />
-                </div>
-            </div>
-            <div class="form-group" ng-class="{'has-error':form.CONSTR_PERCENT_REMAIN.$invalid}">
-                <label class="col-sm-3 control-label" for="CONSTR_PERCENT_REMAIN">
-                    ยังคงเหลืองาน (%) <span class="symbol"></span>
-                </label>
-                <div class="col-sm-8">
-                    <input ng-disabled="formData.CONSTRUCT_COMPLETE!='2' || inputDisabled" type="text" format ng-min="0" ng-max="100" class="form-control" ng-model="formData.CONSTR_PERCENT_REMAIN" id="CONSTR_PERCENT_REMAIN" name="CONSTR_PERCENT_REMAIN" />
-                </div>
-            </div>
-        </fieldset>
-        <fieldset class="no-radius">
-            <legend>{{'INSURE_YN'|translate}}</legend>
-            <div class="radio clip-radio radio-primary radio-inline" ng-repeat="item in radioInsureYN">
-                <input ng-disabled="inputDisabled" type="radio" name="INSURE_YN" ng-value="item.VALUE" ng-model="formData.INSURE_YN" id="INSURE_YN{{item.VALUE}}" />
-                <label for="INSURE_YN{{item.VALUE}}">{{ item.NAME }}</label>
-            </div>
-        </fieldset>
+        </div>
     </div>
 </div>
+

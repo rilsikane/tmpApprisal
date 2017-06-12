@@ -1,9 +1,15 @@
 ﻿var app = angular.module('AppraisalWebApp', ['Application']);
 
-app.run(['$rootScope', '$state', '$stateParams', '$http', 'radasoft', 'datepickerPopupConfig', '$templateCache', '$filter', function ($rootScope, $state, $stateParams, $http, radasoft, datepickerPopupConfig, $templateCache, $filter) {
+app.run(['$rootScope', '$state', '$stateParams', '$http', 'radasoft', 'datepickerPopupConfig', '$templateCache', '$filter', '$document', function ($rootScope, $state, $stateParams, $http, radasoft, datepickerPopupConfig, $templateCache, $filter, $document) {
     //$templateCache.removeAll();
     // Attach Fastclick for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers
     FastClick.attach(document.body);
+
+    $document.on('keydown', function (e) {
+        if (e.which === 8 && (e.target.nodeName !== "INPUT" && e.target.nodeName !== "SELECT" && e.target.nodeName !== "TEXTAREA")) { // you can add others here inside brackets.
+            e.preventDefault();
+        }
+    });
 
     // Set some reference to access them from any scope
     $rootScope.$state = $state;

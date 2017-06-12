@@ -98,7 +98,6 @@ function ($rootScope, $scope, $state, $translate, $localStorage, $window, $docum
     $scope.changeRole = function (item) {
         sessionStorage.setItem('role', angular.toJson(item));
         radasoft.initApp().then(function () {
-            //$state.reload();
             $state.go('app.inbox');
         });
     }

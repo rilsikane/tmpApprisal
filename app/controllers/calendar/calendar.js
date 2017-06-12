@@ -2,7 +2,6 @@
 
 var app = angular.module('appraisalCalendar', ['ngRoute', 'ngAnimate', 'ngCookies', 'ngStorage', 'ngSanitize', 'ngTouch', 'ui.bootstrap', 'oc.lazyLoad', 'cfp.loadingBar', 'duScroll', 'pascalprecht.translate', 'angular-loading-bar', 'mwl.calendar']);
 
-//var app = angular.module('appraisalCalendar', ['Application']);
 app.config(['$translateProvider', '$httpProvider', '$routeProvider', function ($translateProvider, $httpProvider, $routeProvider) {
     $routeProvider.when('/a/:OU_ID/:AP_CODE', {
         templateUrl: '/app/views/test/subform0552.html',
@@ -14,77 +13,46 @@ app.controller('calendarCtrl', ['$scope', '$route', function ($scope, $route) {
 
 }]);
 
-app.controller('cc', ['$scope', '$routeParams', function ($scope, $routeParams) {
-    //console.log($routeParams);
+app.filter('sla2', function () {
+    return function (sla) {
+        if (sla === undefined) {
+            return;
+        }
+        var value = '';
+        if (sla > 0) {
+            value = 'SLA_GREEN'
+        } else if (sla == 0) {
+            value = 'SLA_YELLOW'
+        } else {
+            value = 'SLA_RED'
+        }
+        return value;
+    };
+});
 
-    //$scope.includeUrl = '/app/views/test/subform0552.html';
-    //$scope.JOB_RUNNING_ID = params.JOB_RUNNING_ID || $stateParams.JOB_RUNNING_ID;
+app.controller('cc', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
 
     $scope.events = [];
 
-    $scope.getCalendar = function () {
-        radasoft.getCalendar({ JOB_RUNNING_ID: $scope.JOB_RUNNING_ID }).then(function (response) {
+    $scope.getCalendarForMobile = function () {
+        var config = {
+            method: 'GET',
+            url: 'api/values/getCalendarForMobile?OU_ID=' + $routeParams.OU_ID + '&APPRAISER_CODE=' + $routeParams.AP_CODE,
+            responseType: 'json'
+        };
+        $http(config).then(function (response) {
             $scope.events = response.data;
+        }, function (response) {
+            if (typeof (response.data) == 'object' && response.data != null) {
+                alert(response.data.Message || response.data.ExceptionMessage);
+            } else {
+                alert(response.status + ' : ' + response.statusText, url);
+            }
         });
     }
 
     $scope.calendarView = 'month';
     $scope.calendarDay = new Date();
-
-    $scope.openEventEditor = function (data) {
-        //radasoft.debug(action);
-        radasoft.debug(data);
-
-        radasoft.openDialog({
-            controller: 'subform0551Controller',
-            resolve: {
-                params: function () {
-                    return {
-                        formData: data
-                    };
-                }
-            }
-        }).result.then(function (data) {
-            radasoft.success();
-            $scope.getCalendar();
-
-            //var existing = $filter('filter')($scope.events, data.CALENDAR_RUNNING_ID, null, 'CALENDAR_RUNNING_ID')[0];
-
-            //if (existing == undefined) {
-            //    $scope.events.push(data);
-            //} else {
-            //    existing = data;
-            //}
-        });
-    }
-
-
-    $scope.eventClicked = function (event) {
-        $scope.openEventEditor(event);
-    };
-
-    $scope.addEvent = function () {
-        $scope.openEventEditor({
-            CALENDAR_RUNNING_ID: 0,
-            JOB_RUNNING_ID: $scope.$parent.formData.JOB_RUNNING_ID,
-            EVALUATE_DATE_TIME: new Date()
-        });
-    };
-
-    $scope.eventEdited = function (data) {
-        $scope.openEventEditor(data);
-    };
-
-    $scope.eventDeleted = function (data) {
-        radasoft.confirmAndSave($translate.instant('CONFIRM.DELETE'), '', function (isconfirmed) {
-            if (isconfirmed) {
-                radasoft.deleteCalendar(data).then(function (response) {
-                    radasoft.success();
-                    $scope.getCalendar();
-                });
-            }
-        });
-    };
 
     $scope.setCalendarToToday = function () {
         $scope.calendarDay = new Date();
@@ -96,4 +64,6 @@ app.controller('cc', ['$scope', '$routeParams', function ($scope, $routeParams) 
 
         event[field] = !event[field];
     };
+
+    $scope.getCalendarForMobile();
 }]);

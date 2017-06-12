@@ -15,7 +15,6 @@
             <button ladda="ldloading.expand_left" data-style="expand-left" class="btn btn-primary" ng-click="findRequest()">
                 <i class="glyphicon glyphicon-search"></i> {{'SEARCH'|translate}}
             </button>
-
         </div>
     </div>
 </fieldset>
@@ -24,7 +23,6 @@
 </div>
 <fieldset class="no-radius" ng-if="foundFormData.REQUEST_RUNNING_ID > 0">
     <legend>{{'DETAIL'|translate}}</legend>
-
     <div class="form-group no-padding">
         <label class="col-sm-3 control-label" for="NPA_TYPE">
         </label>
@@ -117,9 +115,39 @@
             </ui-select>
         </div>
     </div>
-    <div class="form-group no-padding">
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="LOAN_GROUP_ID">
+            {{'LOAN_GROUP_ID'|translate}} <span class="symbol required"></span>
+        </label>
+        <div class="col-sm-8 no-padding">
+            <ui-select ng-required="true" ng-disabled="inputDisabled" theme="selectize" ng-model="foundFormData.LOAN_GROUP_ID" name="LOAN_GROUP_ID" id="LOAN_GROUP_ID" on-select="onLoadGroupChange($item)">
+                <ui-select-match>
+                    {{$select.selected.LOAN_GROUP_NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in loanGroup | filter: $select.search">
+                    <div ng-bind-html="item.LOAN_GROUP_NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="LOAN_TYPE_ID">
+            {{'LOAN_TYPE_ID'|translate}} <span class="symbol required"></span>
+        </label>
+        <div class="col-sm-8 no-padding">
+            <ui-select ng-required="true" ng-disabled="inputDisabled" theme="selectize" ng-model="foundFormData.LOAN_TYPE_ID" name="LOAN_TYPE_ID" id="LOAN_TYPE_ID">
+                <ui-select-match>
+                    {{$select.selected.LOAN_TYPE_NAME}}
+                </ui-select-match>
+                <ui-select-choices repeat="item in loanType | filter: $select.search">
+                    <div ng-bind-html="item.LOAN_TYPE_NAME | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <!--<div class="form-group no-padding">
         <label class="col-sm-3 control-label" for="DEBT_TYPE">
-            {{'DEBT_TYPE'|translate}}lllllll
+            {{'DEBT_TYPE'|translate}}
         </label>
         <div class="col-sm-8 no-padding">
             <ui-select ng-disabled="inputDisabled" ng-required="!foundFormData.NPA_TYPE" theme="selectize" ng-model="foundFormData.DEBT_TYPE" name="DEBT_TYPE" id="DEBT_TYPE">
@@ -131,7 +159,7 @@
                 </ui-select-choices>
             </ui-select>
         </div>
-    </div>
+    </div>-->
     <div class="form-group no-padding">
         <label class="col-sm-3 control-label" for="CUST_TYPE">
             {{'CUSTOMER_TYPE'|translate}}
@@ -194,5 +222,4 @@
             <input format ng-model="foundFormData.CREDIT_LIMIT" readonly type="text" class="form-control" id="CREDIT_LIMIT" name="CREDIT_LIMIT" />
         </div>
     </div>
-
 </fieldset>

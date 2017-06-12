@@ -1,60 +1,69 @@
 ﻿<div class="container-fluid container-fullw">
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr class="bg-light-azure">
-                    <th style="width:150px;"><span class="text-white">{{'DETAIL'|translate}}</span></th>
-                    <th style="width:120px;" class="center"><span class="text-white">{{'SPACE'|translate}}</span></th>
-                    <th style="width:120px;" class="center"><span class="text-white">{{'UNITPRICE'|translate}}</span></th>
-                    <th style="width:120px;" class="text-right"><span class="text-white">{{'TOTALPRICE'|translate}}</span></th>
-                    <th style="width:70px;" class="center"><span class="text-white">{{'AGE'|translate}}</span></th>
-                    <th style="width:140px;"><span class="text-white">{{'DEPLICIATIONSET'|translate}}</span></th>
-                    <th style="width:100px;" class="center"><span class="text-white">{{'DEPLICIATIONPERYEAR'|translate}}</span></th>
-                    <th style="width:100px;" class="center"><span class="text-white">{{'DEPLICIATIONPERCENT'|translate}}</span></th>
-                    <th style="width:120px;" class="text-right"><span class="text-white">{{'TOTALPRICE'|translate}}</span></th> <!--DEPLICIATIONPRICE-->
-                    <th style="width:140px;" class="text-right"><span class="text-white">{{'AFTERDEPLICIATIONPRICE'|translate}}</span></th>
-                    <th style="width:140px;" class="text-right"><span class="text-white">{{'DEPLICIATIONPRICEUNIT'|translate}}</span></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="cost in subcolCost">
-                    <td>{{cost.DETAIL}}</td>
-                    <td><input ng-disabled="inputDisabled" type="text" numeric decimal="0" maxlength="24" ng-model="cost.AREA" class="form-control input-sm center" ng-change="calSubColCost(cost)" /></td>
-                    <td><input ng-disabled="inputDisabled" type="text" numeric decimal="0" maxlength="24" ng-model="cost.UNITPRICE" class="form-control input-sm center" ng-change="calSubColCost(cost)" /></td>
-                    <td class="text-right">{{cost.TOTALPRICE|number:2}}</td>
-                    <td><input ng-disabled="inputDisabled" type="text" numeric decimal="0" maxlength="24" ng-model="cost.AGE" class="form-control input-sm center" ng-change="calSubColCost(cost)" /></td>
-                    <td>
-                        <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="cost.DEPLICIATIONSET">
-                            <ui-select-match>
-                                {{$select.selected.NAME}}
-                            </ui-select-match>
-                            <ui-select-choices repeat="item in depreciation | filter: $select.search">
-                                <div ng-bind-html="item.NAME | highlight: $select.search"></div>
-                            </ui-select-choices>
-                        </ui-select>
-                    </td>
-                    <td><input ng-disabled="inputDisabled" type="text" numeric="0-100" decimal="0" maxlength="24" min="0" ng-max="100" ng-model="cost.DEPLICIATIONPERYEAR" class="form-control input-sm center" ng-change="calSubColCost(cost)" /></td>
-                    <td><input ng-disabled="inputDisabled" type="text" numeric="0-100" decimal="0" maxlength="24" min="0" ng-max="100" ng-model="cost.DEPLICIATIONPERCENT" class="form-control input-sm center" ng-change="calSubColCost(cost)" /></td>
-                    <td class="text-right">{{cost.DEPLICIATIONPRICE|number:2}}</td>
-                    <td class="text-right">{{cost.AFTERDEPLICIATIONPRICE|number:2}}</td>
-                    <td class="text-right">{{cost.DEPLICIATIONPRICEUNIT|number:2}}</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td class="text-right">{{'SUMMARY'|translate}}</td>
-                    <td class="text-right">{{sumAREA|number:2}}</td>
-                    <td></td>
-                    <td class="text-right">{{sumTOTALPRICE|number:2}}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="text-right">{{sumDEPLICIATIONPRICE|number:2}}</td>
-                    <td class="text-right">{{sumAFTERDEPLICIATIONPRICE|number:2}}</td>
-                    <td class="text-right">{{sumDEPLICIATIONPRICEUNIT|number:2}}</td>
-                </tr>
-            </tfoot>
-        </table>
+    <div class="col-md-12">
+        <button ng-disabled="inputDisabled" class="btn btn-o btn-primary pull-right" ng-click="add()">
+            {{'BUTTON.ADD'|translate}}
+        </button>
+    </div>
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="bg-light-azure">
+                        <th style="width:150px;"><span class="text-white">{{'DETAIL'|translate}}</span></th>
+                        <th style="width:120px;" class="center"><span class="text-white">{{'SPACE'|translate}}</span></th>
+                        <th style="width:120px;" class="center"><span class="text-white">{{'UNITPRICE'|translate}}</span></th>
+                        <th style="width:120px;" class="text-right"><span class="text-white">{{'TOTALPRICE'|translate}}</span></th>
+                        <th style="width:70px;" class="center"><span class="text-white">{{'AGE'|translate}}</span></th>
+                        <th style="width:140px;"><span class="text-white">{{'DEPLICIATIONSET'|translate}}</span></th>
+                        <!--<th style="width:100px;" class="center"><span class="text-white">{{'DEPLICIATIONPERYEAR'|translate}}</span></th>-->
+                        <th style="width:100px;" class="center"><span class="text-white">{{'DEPLICIATIONPERCENT'|translate}}</span></th>
+                        <th style="width:120px;" class="text-right"><span class="text-white">{{'TOTALPRICE'|translate}}</span></th> <!--DEPLICIATIONPRICE-->
+                        <th style="width:140px;" class="text-right"><span class="text-white">{{'AFTERDEPLICIATIONPRICE'|translate}}</span></th>
+                        <th style="width:140px;" class="text-right"><span class="text-white">{{'DEPLICIATIONPRICEUNIT'|translate}}</span></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="cost in subcolCost" ng-if="!cost.IS_DELETE">
+                        <td>{{cost.DETAIL}}</td>
+                        <td><input ng-disabled="inputDisabled" type="text" format decimal="2" maxlength="24" ng-model="cost.AREA" class="form-control input-sm center" ng-change="calSubColCost(cost)" /></td>
+                        <td><input ng-disabled="inputDisabled" type="text" format decimal="2" maxlength="24" ng-model="cost.UNITPRICE" class="form-control input-sm center" ng-change="calSubColCost(cost)" /></td>
+                        <td class="text-right">{{cost.TOTALPRICE|number:2}}</td>
+                        <td><input ng-disabled="inputDisabled" type="text" format decimal="0" maxlength="24" ng-model="cost.AGE" class="form-control input-sm center" ng-change="getDepreciationValue(cost)" /></td>
+                        <td>
+                            <ui-select ng-disabled="inputDisabled" theme="selectize" ng-model="cost.DEPLICIATIONSET" on-select="getDepreciationValue(cost,$item)">
+                                <ui-select-match>
+                                    {{$select.selected.NAME}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in depreciation | filter: $select.search">
+                                    <div ng-bind-html="item.NAME | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </td>
+                        <!--<td><input ng-disabled="inputDisabled" type="text" numeric="0-100" decimal="0" maxlength="24" min="0" ng-max="100" ng-model="cost.DEPLICIATIONPERYEAR" class="form-control input-sm center" ng-change="calSubColCost(cost)" /></td>-->
+                        <td><input ng-disabled="inputDisabled" type="text" numeric="0-100" decimal="0" maxlength="24" min="0" ng-max="100" ng-model="cost.DEPLICIATIONPERCENT" class="form-control input-sm center" ng-change="calSubColCost(cost)" /></td>
+                        <td class="text-right">{{cost.DEPLICIATIONPRICE|number:2}}</td>
+                        <td class="text-right">{{cost.AFTERDEPLICIATIONPRICE|number:2}}</td>
+                        <td class="text-right">{{cost.DEPLICIATIONPRICEUNIT|number:2}}</td>
+                        <td><a ng-if="cost.MANUAL" ng-click="delete(cost)" tooltip="{{'DELETE'|translate}}"><i class="fa fa-remove text-red"></i></a></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="text-right">{{'SUMMARY'|translate}}</td>
+                        <td class="text-right">{{sumAREA|number:2}}</td>
+                        <td></td>
+                        <td class="text-right">{{sumTOTALPRICE|number:2}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-right">{{sumDEPLICIATIONPRICE|number:2}}</td>
+                        <td class="text-right">{{sumAFTERDEPLICIATIONPRICE|number:2}}</td>
+                        <td class="text-right">{{sumDEPLICIATIONPRICEUNIT|number:2}}</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
 </div>

@@ -4430,7 +4430,7 @@ a.text-light:hover {
 .pagination > li > a, .pagination > li > span {
     margin-left: 5px;
     padding: 5px 10px;
-    border-radius: 5px;
+    border-radius: 0px;
     cursor: pointer;
     color: #007AFF;
 }
@@ -12645,34 +12645,70 @@ fieldset {
     border-radius: 0 !important;
 }
 
-.valid-error:before{
+.valid-error:before {
     content: "\f00d";
     display: inline;
     font-family: FontAwesome;
     color: #C82E29;
 }
-.valid-success:before{
+
+.valid-success:before {
     content: "\f00c";
     display: inline;
     font-family: FontAwesome;
     color: #468847;
 }
-.greenBG{
+
+.calendarEventText {
+    font-size: 10px !important;
+}
+
+.customEventBox {
+    position: absolute;
+    bottom: 0;
+}
+
+.greenBG {
     background: #22de22;
 }
-.yellowBG{
+
+.yellowBG {
     background: yellow;
 }
-.redBG{
+
+.redBG {
     background: red;
 }
-.disabled-table{
+
+.SLA_GREEN {
+    color: green;
+}
+
+.SLA_YELLOW {
+    color: yellow;
+}
+
+.SLA_RED {
+    color: red;
+}
+
+.dev-item {
+    left: 15px;
+    bottom: 0px;
+    position: absolute;
+    color: silver;
+    font-size: 8px;
+}
+
+.disabled-table {
     background: #F7F7F8;
 }
-.disabled-table > thead > tr > th, .disabled-table > tbody > tr > th{
+
+.disabled-table > thead > tr > th, .disabled-table > tbody > tr > th {
     color: #858585 !important;
 }
-.disabled-table > thead > tr > td, .disabled-table > tbody > tr > td{
+
+.disabled-table > thead > tr > td, .disabled-table > tbody > tr > td {
     color: #B4B4B4 !important;
 }
 .label-after{

@@ -11,7 +11,7 @@
             <button type="button" class="btn btn-primary" ng-click="openPhaseZone()" ng-if="$parent.formData.JOB_TYPE" ng-disabled="inputDisabled||($parent.formData.PROJECT==undefined||$parent.formData.PROJECT.PROJECT_RUNNING_ID==0)">
                 {{'PHASE_ZONE'|translate}}
             </button>
-            <div class="btn-group padding-left-5" dropdown>
+            <div class="btn-group padding-left-5" dropdown ng-if="$parent.formData.JOB_TYPE==false">
                 <button type="button" class="btn btn-primary dropdown-toggle btn-squared" dropdown-toggle ng-disabled="inputDisabled||($parent.formData.JOB_TYPE && ($parent.formData.PROJECT==undefined || $parent.formData.PROJECT.PROJECT_RUNNING_ID==0))">
                     {{'PROJECT_COLLETERAL'|translate}} <span class="caret"></span>
                 </button>
@@ -70,7 +70,7 @@
                             </div>
                             <button class="btn btn-o border-white btn-squared" ng-disabled="!tab.read" ng-click="editHeadCol(colleteral)">{{'BUTTON.EDIT'|translate}}</button>
                             <button class="btn btn-o border-white btn-squared" ng-disabled="!tab.delete" ng-click="deleteHeadCol(colleteral)">{{'BUTTON.DELETE'|translate}}</button>
-                            <button class="btn btn-o border-white btn-squared" ng-disabled="!tab.delete" ng-click="copyHeadCol(colleteral)">{{'BUTTON.COPY'|translate}}</button>
+                            <button ng-if="colleteral.HEAD_COL_TYPE_ID!='286005'" class="btn btn-o border-white btn-squared" ng-disabled="!tab.delete" ng-click="copyHeadCol(colleteral)">{{'BUTTON.COPY'|translate}}</button>
                         </div>
                     </li>
                 </ul>
@@ -113,16 +113,13 @@
                         <thead>
                             <tr class="bg-light-grey">
                                 <th class="col-sm-1">{{'SEQ'|translate}}</th>
-
                                 <th class="col-sm-2" ng-hide="$parent.formData.JOB_TYPE">{{'SUB_COL_TYPE'|translate}}</th>
                                 <th class="col-sm-2" ng-hide="$parent.formData.JOB_TYPE">{{'SUBDISTRICT'|translate}}</th>
                                 <th class="col-sm-2" ng-hide="$parent.formData.JOB_TYPE">{{'PROVINCE'|translate}}</th>
                                 <th class="col-sm-2" ng-hide="$parent.formData.JOB_TYPE">{{'AREA_METER'|translate}}</th>
-
                                 <th class="col-sm-2" ng-show="$parent.formData.JOB_TYPE">{{'PHASE'|translate}}</th>
                                 <th class="col-sm-2" ng-show="$parent.formData.JOB_TYPE">{{'ZONE'|translate}}</th>
                                 <!--<th class="col-sm-2" ng-show="$parent.formData.JOB_TYPE">{{'AREA_WA'|translate}}</th>-->
-
                                 <th class="col-sm-2">{{'SUB_COLL_OWNER'|translate}}</th>
                                 <th class="col-sm-1" ng-if="tab.read"></th>
                             </tr>
@@ -167,7 +164,7 @@
                             <tr ng-repeat="subcol in colleteral.SUB_COL_CAR">
                                 <td>{{$index + 1}}</td>
                                 <td>{{subcol.SUB_TYPE.SUB_TYPE}}</td>
-                                <td>{{subcol.BRAND_NAME}}</td>
+                                <td>{{subcol.BRAND_NAME.NAME}}</td>
                                 <td>{{subcol.REGIS_PROVINCE.PROV_NAME}}</td>
                                 <td>{{subcol.REGIS_NO}}</td>
                                 <td>{{subcol.COL_CUS[0].CUS_NAME}}</td>

@@ -4,14 +4,14 @@
     </div>
     <div class="panel-body">
         <fieldset class="no-radius">
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error':form.REGIS_YN.$dirty && form.REGIS_YN.$invalid,'has-success':form.REGIS_YN.$valid}">
                 <label class="col-sm-4 control-label" for="REGIS_YN">
-                    {{'SHIP.REGIS_YN'|translate}}
+                    {{'SHIP.REGIS_YN'|translate}} <span class="required symbol"></span>
                 </label>
                 <div class="col-sm-8">
                     <div class="col-sm-4" ng-repeat="item in radioRegisYN">
                         <div class="form-group radio clip-radio radio-primary">
-                            <input type="radio" name="REGIS_YN" ng-disabled="inputDisabled" ng-value="item.VALUE" ng-model="formData.REGIS_YN" id="REGIS_YN{{item.VALUE}}" ng-change="onShipRegisChange()"/>
+                            <input ng-required="true" type="radio" name="REGIS_YN" ng-disabled="inputDisabled" ng-value="item.VALUE" ng-model="formData.REGIS_YN" id="REGIS_YN{{item.VALUE}}" ng-change="onShipRegisChange()" />
                             <label for="REGIS_YN{{item.VALUE}}">{{ item.NAME }}</label>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                     <input ng-disabled="inputDisabled || 'N'==formData.REGIS_YN" ng-required="'Y'==formData.REGIS_YN" type="text" placeholder="" class="form-control" id="REGIS_NO" name="REGIS_NO" ng-model="formData.REGIS_NO" maxlength="30">
                 </div>
             </div>
-            
+
             <div ng-if="isAppraiser" class="form-group">
                 <label class="col-sm-4 control-label" for="SURVEY_APPR_DATE">
                     {{'SURVEY_APPR_DATE'|translate}}
@@ -243,7 +243,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-if="formData.IS_INSURANCE=='Y'">
             <label ng-class="labelControlCss" for="INSURED_CODE">
                 {{'INSURED_CODE'|translate}}
             </label>
@@ -258,7 +258,7 @@
                 </ui-select>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-if="formData.IS_INSURANCE=='Y'">
             <label ng-class="labelControlCss" for="POLICY_NO">
                 {{'POLICY_NO'|translate}}
             </label>
@@ -266,7 +266,7 @@
                 <input ng-disabled="inputDisabled" type="text" class="form-control" id="POLICY_NO" name="POLICY_NO" ng-model="formData.POLICY_NO" maxlength="50">
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-if="formData.IS_INSURANCE=='Y'">
             <label ng-class="labelControlCss" for="INSURED_AMT">
                 {{'INSURED_AMT'|translate}}
             </label>
@@ -274,7 +274,7 @@
                 <input ng-disabled="inputDisabled" count type="text" class="form-control" id="INSURED_AMT" name="INSURED_AMT" ng-model="formData.INSURED_AMT" maxlength="22">
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-if="formData.IS_INSURANCE=='Y'">
             <label ng-class="labelControlCss" for="INSURED_ISSUE_DATE">
                 {{'INSURED_ISSUE_DATE'|translate}}
             </label>
@@ -282,7 +282,7 @@
                 <input ng-disabled="inputDisabled" type="text" datepicker-popup="dd/MM/yyyy" is-open="dpOpenState.INSURED_ISSUE_DATE" ng-click="openDatePicker($event,'INSURED_ISSUE_DATE')" class="form-control" id="INSURED_ISSUE_DATE" name="INSURED_ISSUE_DATE" ng-model="formData.INSURED_ISSUE_DATE">
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-if="formData.IS_INSURANCE=='Y'">
             <label ng-class="labelControlCss" for="INSURED_EXP_DATE">
                 {{'INSURED_EXP_DATE'|translate}}
             </label>
@@ -292,7 +292,7 @@
         </div>
     </div>
 </div>
- <fieldset class="no-radius" ng-if="isAppraiser">
+<fieldset class="no-radius" ng-if="isAppraiser">
     <legend>{{'PRICE'|translate}}</legend>
     <div class="form-group">
         <label class="col-sm-4 control-label" for="REPLACEMENT_COST">
@@ -315,15 +315,15 @@
             {{'CAR.DEPLICIATIONPRICE'|translate}}
         </label>
         <div class="col-sm-8">
-            <input format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.DEPLICIATIONPRICE" id="DEPLICIATIONPRICE" name="DEPLICIATIONPRICE" ng-max="formData.REPLACEMENT_COST" ng-change="calDepliciation()"/>
+            <input format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.DEPLICIATIONPRICE" id="DEPLICIATIONPRICE" name="DEPLICIATIONPRICE" ng-max="formData.REPLACEMENT_COST" ng-change="calDepliciation()" />
         </div>
     </div>
-     <div ng-if="isAppraiser" class="form-group">
+    <div ng-if="isAppraiser" class="form-group">
         <label class="col-sm-4 control-label" for="APPR_CUR_NET_TOTAL">
             {{'CAR.APPR_CUR_OTHER_AMOUNT'|translate}}
         </label>
         <div class="col-sm-8">
-            <input format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.APPR_CUR_NET_TOTAL" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" ng-readonly="true"/>
+            <input format type="text" ng-disabled="inputDisabled" class="form-control" ng-model="formData.APPR_CUR_NET_TOTAL" id="APPR_CUR_NET_TOTAL" name="APPR_CUR_NET_TOTAL" ng-readonly="true" />
         </div>
     </div>
 </fieldset>
