@@ -39,6 +39,7 @@
                 }
             }
         }).result.then(function (response) {
+            $scope.init();
             radasoft.success();
         });
     }
@@ -61,7 +62,7 @@
 app.controller('orgRoleEditor', ['$scope', 'radasoft', '$state', '$stateParams', '$modalInstance', 'params', '$translate', function ($scope, radasoft, $state, $stateParams, $modalInstance, params, $translate) {
     $scope.includeUrl = '/app/views/setting/orgRoleEditor.html';
     $scope.title = $translate.instant('ORG_ROLE');
-    $scope.formData = undefined;
+    $scope.formData = {};
     $scope.showBtnSave = true;
     $scope.orgRoles = [];
 
@@ -72,6 +73,15 @@ app.controller('orgRoleEditor', ['$scope', 'radasoft', '$state', '$stateParams',
     $scope.getMasterOrgRoles = function () {
         radasoft.getMasterOrgRoles({ OU_ID: params.formData.OU_ID }).then(function (response) {
             $scope.formData = response.data;
+            if($scope.formData.OU_ID==0){
+                $scope.formData.OU_NAME = undefined;
+                $scope.formData.COST_CENTER = undefined;
+                $scope.formData.OU_TYPE = "E";
+                $scope.formData.RECORD_STATUS = "N";
+                angular.forEach($scope.formData.ORGROLES, function(value, key){
+                    value.ISALLOW = false;
+                });
+            }
         });
     }
 
@@ -80,6 +90,7 @@ app.controller('orgRoleEditor', ['$scope', 'radasoft', '$state', '$stateParams',
             $scope.formData = response.data;
 
             radasoft.success();
+            $modalInstance.close($scope.formData);
         });
     }
 

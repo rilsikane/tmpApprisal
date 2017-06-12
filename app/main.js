@@ -6,7 +6,7 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', 'radasoft', 'datepicke
     FastClick.attach(document.body);
 
     $document.on('keydown', function (e) {
-        if (e.which === 8 && (e.target.nodeName !== "INPUT" && e.target.nodeName !== "SELECT" && e.target.nodeName !== "TEXTAREA")) { // you can add others here inside brackets.
+        if (e.which === 8 && ((e.target.nodeName !== "INPUT" && e.target.nodeName !== "SELECT" && e.target.nodeName !== "TEXTAREA") || e.target.readOnly)) { // you can add others here inside brackets.
             e.preventDefault();
         }
     });
