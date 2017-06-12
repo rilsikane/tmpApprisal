@@ -3,7 +3,7 @@
         <div class="panel-body border-light">
             <div class="padding-5">
                 <div class="row">
-                    <div class="form-group col-md-3">
+                    <div class="col-md-3">
                         <label class="control-label" for="HEAD_COL_TYPE_ID">
                             {{'HEAD_COL_TYPE'|translate}}
                         </label>
@@ -18,7 +18,7 @@
                             </ui-select>
                         </div>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="col-md-3">
                         <label class="control-label" for="HEAD_COL_SUB_TYPE">
                             {{'HEAD_COL_SUB_TYPE'|translate}}
                         </label>
@@ -33,7 +33,7 @@
                             </ui-select>
                         </div>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="col-md-3">
                         <label class="control-label" for="FROM_AGE">
                             อายุข้อมูล
                         </label>
@@ -41,7 +41,7 @@
                             <input type="number" class="form-control" min="0" ng-model="myFilter.FROM_AGE" id="FROM_AGE" name="FROM_AGE" />
                         </div>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="col-md-3">
                         <label class="control-label" for="THRU_AGE">
                             ถึง
                         </label>
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-3">
+                    <div class="col-md-3">
                         <label class="control-label" for="PROVINCE">
                             จังหวัด
                         </label>
@@ -66,7 +66,7 @@
                             </ui-select>
                         </div>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="col-md-3">
                         <label class="control-label" for="DISTRICT">
                             อำเภอ
                         </label>
@@ -81,7 +81,7 @@
                             </ui-select>
                         </div>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="col-md-3">
                         <label class="control-label" for="SUBDISTRUCT">
                             ตำบล
                         </label>
@@ -96,8 +96,9 @@
                             </ui-select>
                         </div>
                     </div>
-                    <div class="col-md-3 form-group">
-                        <div style="position:absolute;bottom:-55px;">
+                    <div class="col-md-3">
+                        <label class="control-label"> &nbsp; </label>
+                        <div>
                             <button type="button" class="btn btn-o btn-primary" ng-click="onSearchClick()">
                                 ค้นหา
                             </button>
