@@ -15,6 +15,7 @@
                 <th class="col-md-2"><span class="text-white">{{'CONTACT_RESULT'|translate}}</span></th>
                 <!--<th class="col-md-2 center"><span class="text-white">{{'CONFIRM_FLAG'|translate}}</span></th>-->
                 <th class="col-md-2"><span class="text-white">{{'DATE_CUST_APPOINTMENT'|translate}}</span></th>
+                <th class="col-md-2"><span class="text-white">{{'REMARK'|translate}}</span></th>
                 <th class="col-sm-1" ng-if="!inputDisabled"></th>
             </tr>
         </thead>
@@ -25,6 +26,7 @@
                 <td>{{item.CONTACT_RESULT.NAME}}</td>
                 <!--<td class="center"><i ng-if="item.CONFIRM_FLAG=='Y'" class="glyphicon glyphicon-ok"></i></td>-->
                 <td>{{item.DATE_CUST_APPOINTMENT_TEXT}}</td>
+                <td>{{item.REMARK}}</td>
                 <td class="center" ng-if="!inputDisabled">
                     <div class="visible-md visible-lg hidden-sm hidden-xs">
                         <a href="#" ng-click="edit(item)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i class="fa fa-pencil"></i></a>
