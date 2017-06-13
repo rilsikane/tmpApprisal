@@ -981,6 +981,12 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
         $scope.formData.SURVEY_NO = undefined;
         $scope.formData.SURVEY_NO = undefined;
     }
+    $scope.onCarInsureChange = function(){
+        $scope.formData.INSURED_CODE = undefined;
+        $scope.formData.POLICY_NO = undefined;
+        $scope.formData.INSURED_AMT = undefined;
+        $scope.formData.INSURED_AMT = undefined;
+    }
 
     $scope.init();
 }]);

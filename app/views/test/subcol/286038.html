@@ -326,7 +326,7 @@
             <div ng-class="formControlCss">
                 <div class="col-sm-3" ng-repeat="item in radioYN">
                     <div class="form-group radio clip-radio radio-primary">
-                        <input type="radio" ng-disabled="inputDisabled" name="IS_INSURANCE" ng-value="item.VALUE" ng-model="formData.IS_INSURANCE" id="IS_INSURANCE{{item.VALUE}}" />
+                        <input type="radio" ng-disabled="inputDisabled" name="IS_INSURANCE" ng-value="item.VALUE" ng-model="formData.IS_INSURANCE" id="IS_INSURANCE{{item.VALUE}}" ng-change="onCarInsureChange()"/>
                         <label for="IS_INSURANCE{{item.VALUE}}">{{ item.NAME }}</label>
                     </div>
                 </div>
