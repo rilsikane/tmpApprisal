@@ -255,7 +255,8 @@
                 UNIT_PROJ_PRICE: 0,
                 UNIT_PRICE_WA: 0,
                 UNIT_PRICE_METER: 0,
-                UNIT_PRICE_OTHER: 0
+                UNIT_PRICE_OTHER: 0,
+                QUANTITY: 1
             }
         });
     }

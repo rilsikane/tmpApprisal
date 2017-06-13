@@ -99,7 +99,8 @@ app.constant('JS_REQUIRES', {
         'wqsFactorListCtrl': '/app/controllers/test/wqsFactorListCtrl.js',
         'enquiry': '/app/controllers/enquiry/enquiryCtrl.js',
         'enquiryReport': '/app/controllers/enquiry/enquiryReportCtrl.js',
-        'logoutCtrl': '/app/controllers/tools/logoutCtrl.js'
+        'logoutCtrl': '/app/controllers/tools/logoutCtrl.js',
+        'loanMstCtrl': '/app/controllers/setting/loan/loanMstCtrl.js'
     },
     //*** angularJS Modules
     modules: [{

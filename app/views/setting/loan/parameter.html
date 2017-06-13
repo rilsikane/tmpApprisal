@@ -1,0 +1,86 @@
+﻿<div class="container-fluid container-fullw" ng-controller="loanMstCtrl">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-white no-radius">
+                <div class="panel-heading no-radius bg-deep-pink border-light">
+                    <h4 class="panel-title">{{'LOAN_GROUP'|translate}}</h4>
+                    <ul class="panel-heading-tabs border-light">
+                        <li>
+                            <button type="button" class="btn btn-o btn-squared border-white" ng-click="addLoanGroup()">
+                                {{'BUTTON.ADD'|translate}}
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-body border-light">
+                    <div class="col-md-12">
+                        <div class="search-form">
+                            <form class="navbar-form" role="search">
+                                <a class="s-remove" href="#" ng-toggle-class="search-open" target=".navbar-form">
+                                    <i class="ti-close"></i>
+                                </a>
+                                <div class="form-group">
+                                    <input type="text" placeholder="{{'SEARCH'|translate}}" class="form-control" ng-keypress="searchEnter1($event)" ng-model="searchKeyword1" />
+                                    <button class="btn search-button" type="button" tooltip="{{'BUTTON.SEARCH'|translate}}" ng-click="searchClick1()">
+                                        <i class="ti-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <ul class="list-group">
+                            <li ng-repeat="item in loanGroup" class="list-group-item no-radius" ng-class="{'bg-light-primary':item.LOAN_GROUP_ID==LOAN_GROUP_ID}">
+                                <div>
+                                    <a ng-click="onLoadGroupSelect(item)"><h5 class="text-info" ng-class="{'text-white':item.LOAN_GROUP_ID==LOAN_GROUP_ID}">{{item.LOAN_GROUP_NAME}}</h5></a>
+                                    <span class="text-extra-small">{{'E_DATE'|translate}} : {{item.E_DATE | date:'dd/MM/yyyy HH:mm'}} {{'E_BY'|translate}} : {{item.E_BY}}</span>
+                                    <span style="cursor:pointer;" class="pull-right" ng-click="editLoanGroup(item)"><i class="fa fa-pencil"></i></span>
+                                </div>
+                            </li>
+                        </ul>
+                        <pagination boundary-links="true" items-per-page="app.itemsPerPage" ng-change="getLoanGroup()" max-size="5" total-items="paging1Total" ng-model="paging1CurrentPage" class="pagination-sm  no-padding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-white no-radius">
+                <div class="panel-heading no-radius bg-deep-pink border-light">
+                    <h4 class="panel-title">{{'LOAN_TYPE'|translate}}</h4>
+                    <ul class="panel-heading-tabs border-light">
+                        <li>
+                            <button type="button" class="btn btn-o btn-squared border-white" ng-click="addLoanType()">
+                                {{'BUTTON.ADD'|translate}}
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-body border-light">
+                    <div class="col-md-12">
+                        <div class="search-form">
+                            <form class="navbar-form" role="search">
+                                <a class="s-remove" href="#" ng-toggle-class="search-open" target=".navbar-form">
+                                    <i class="ti-close"></i>
+                                </a>
+                                <div class="form-group">
+                                    <input type="text" placeholder="{{'SEARCH'|translate}}" class="form-control" ng-keypress="searchEnter2($event)" ng-model="searchKeyword2" />
+                                    <button class="btn search-button" type="button" tooltip="{{'BUTTON.SEARCH'|translate}}" ng-click="searchClick2()">
+                                        <i class="ti-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <ul class="list-group">
+                            <li ng-repeat="item in loanType" class="list-group-item no-radius">
+                                <div>
+                                    <h5 class="text-info">{{item.LOAN_TYPE_NAME}}</h5>
+                                    <span class="text-extra-small">{{'E_DATE'|translate}} : {{item.E_DATE | date:'dd/MM/yyyy HH:mm'}} {{'E_BY'|translate}} : {{item.E_BY}}</span>
+                                    <span style="cursor:pointer;" class="pull-right" ng-click="editLoanType(item)"><i class="fa fa-pencil"></i></span>
+                                </div>
+                            </li>
+                        </ul>
+                        <pagination boundary-links="true" items-per-page="app.itemsPerPage" ng-change="getLoanType()" max-size="5" total-items="paging2Total" ng-model="paging2CurrentPage" class="pagination-sm  no-padding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -423,25 +423,11 @@ app.controller('marketPriceDetailController', ['$scope', '$rootScope', '$state',
     $scope.getHeadColType = function () {
         var deferred = $q.defer();
 
-        radasoft.getHeadColType({}).then(function (response) {
-            //$rootScope.headColType = response.data;
-
-            $scope.headColType = response.data; // $rootScope.headColType;
+        radasoft.getHeadColTypeForMarketPrice({}).then(function (response) {
+            $scope.headColType = response.data;
         }).finally(function () {
             deferred.resolve();
         });
-
-        //if ($rootScope.headColType == undefined) {
-        //    radasoft.getHeadColType({}).then(function (response) {
-        //        $rootScope.headColType = response.data;
-
-        //        $scope.headColType = $rootScope.headColType;
-        //    }).finally(function () {
-        //        deferred.resolve();
-        //    });
-        //} else {
-        //    deferred.resolve();
-        //}
 
         return deferred.promise;
     }

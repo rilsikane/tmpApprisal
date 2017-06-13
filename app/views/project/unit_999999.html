@@ -6,6 +6,14 @@
         <input type="text" ng-disabled="inputDisabled" required class="form-control" id="UNIT_NAME" name="UNIT_NAME" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_NAME">
     </div>
 </div>
+<div class="form-group">
+    <label class="col-sm-4 control-label" for="UNIT_DETAIL">
+        {{'DETAIL'|translate}}
+    </label>
+    <div class="col-sm-8">
+        <input type="text" ng-disabled="inputDisabled" class="form-control" id="UNIT_DETAIL" name="UNIT_DETAIL" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_DETAIL">
+    </div>
+</div>
 <div class="form-group" ng-class="{'has-error':form.PROJECT_ZONE_RUNNING_ID.$dirty && form.PROJECT_ZONE_RUNNING_ID.$viewValue==undefined, 'has-success':form.PROJECT_ZONE_RUNNING_ID.$viewValue!=undefined && form.PROJECT_ZONE_RUNNING_ID.$viewValue.ZONE_NAME!=undefined}">
     <label class="col-sm-4 control-label" for="ZONE">
         {{'ZONE'|translate}}<span class="symbol required"></span>
@@ -27,14 +35,6 @@
     </label>
     <div class="col-sm-8">
         <input ng-disabled="inputDisabled" type="text" readonly class="form-control" ng-model="formData.PROJECT_UNIT_TYPE.PROJECT_ZONE_RUNNING_ID.PHASE_NAME" />
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-sm-4 control-label" for="UNIT_DETAIL">
-        {{'DETAIL'|translate}}
-    </label>
-    <div class="col-sm-8">
-        <input type="text"  ng-disabled="inputDisabled" class="form-control" id="UNIT_DETAIL" name="UNIT_DETAIL" ng-model="formData.PROJECT_UNIT_TYPE.UNIT_DETAIL">
     </div>
 </div>
 <div class="form-group">

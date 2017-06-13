@@ -201,7 +201,7 @@
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="CREDIT_LIMIT">
-                        {{'CREDIT_LIMIT'|translate}}<span ng-class="{'valid-error': (!formData.NPA_TYPE && formData.CREDIT_LIMIT < 1)||isNaN(formData.CREDIT_LIMIT),'valid-success': !((!formData.NPA_TYPE && formData.CREDIT_LIMIT < 1)) && !isNaN(formData.CREDIT_LIMIT)}"></span>
+                        {{'CREDIT_LIMIT'|translate}}<span ng-class="{'valid-error': ((!formData.NPA_TYPE && formData.PROJECT_TYPE != 'A') && formData.CREDIT_LIMIT < 1)||isNaN(formData.CREDIT_LIMIT),'valid-success': !(((!formData.NPA_TYPE && formData.PROJECT_TYPE != 'A') && formData.CREDIT_LIMIT < 1)) && !isNaN(formData.CREDIT_LIMIT)}"></span>
                     </label>
                     <div class="col-sm-8 no-padding">
                         <input format ng-model="$parent.formData.CREDIT_LIMIT" disabled type="text" class="form-control" id="CREDIT_LIMIT" name="CREDIT_LIMIT" />
@@ -210,7 +210,7 @@
             </form>
         </div>
     </div>
-    <alert ng-if="$parent.formData.CUSTOMERS.length==0 && !$parent.formData.NPA_TYPE" type="danger" class="no-radius">
+    <alert ng-if="$parent.formData.CUSTOMERS.length==0 && (!$parent.formData.NPA_TYPE && $parent.formData.PROJECT_TYPE != 'A')" type="danger" class="no-radius">
         {{'FORM.REQUIRE_PREFIX'|translate}} {{'LENDER_NAME'|translate}}
     </alert>
     <div class="panel panel-white no-radius">
@@ -290,7 +290,7 @@
         </div>
     </div>
     <div class="pull-right">
-        <button class="btn btn-primary btn-o" ng-click="submit(form,'expand-left')" ng-disabled="((form.$invalid) || inputDisabled) || (!formData.NPA_TYPE && formData.CREDIT_LIMIT < 1) || (!formData.NPA_TYPE && $parent.formData.CUSTOMERS.length < 1)">
+        <button class="btn btn-primary btn-o" ng-click="submit(form,'expand-left')" ng-disabled="((form.$invalid) || inputDisabled) || ((!formData.NPA_TYPE && $parent.formData.PROJECT_TYPE != 'A') && formData.CREDIT_LIMIT < 1) || ((!formData.NPA_TYPE && $parent.formData.PROJECT_TYPE != 'A') && $parent.formData.CUSTOMERS.length < 1)">
             <i class="glyphicon glyphicon-floppy-save"></i>{{'BUTTON.SAVE'|translate}}
         </button>
     </div>

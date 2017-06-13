@@ -52,7 +52,7 @@
             </ui-select>
         </div>
     </div>
-    <div class="form-group">
+    <!--<div class="form-group">
         <label class="col-sm-3 control-label" for="DOC_CERT_TYPE">
             {{'DOC_CERT_TYPE'|translate}}
         </label>
@@ -66,7 +66,7 @@
                 </ui-select-choices>
             </ui-select>
         </div>
-    </div>
+    </div>-->
 </fieldset>
 
 <!-- ทำเลที่ตั้ง -->
@@ -512,6 +512,14 @@
                     <div ng-bind-html="item.NAME | highlight: $select.search"></div>
                 </ui-select-choices>
             </ui-select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="REFERENCE_TEL">
+            ชื่อผู้ขาย/ผู้ให้ข้อมูล
+        </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" ng-model="formData.REFERENCE_NAME" maxlength="200" />
         </div>
     </div>
     <div class="form-group">

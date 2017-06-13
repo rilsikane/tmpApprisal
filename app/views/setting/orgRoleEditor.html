@@ -1,11 +1,11 @@
-﻿<!-- <div class="form-group" ng-class="{'has-error':form.OU_ID.$invalid && form.OU_ID.$dirty,'has-success':form.OU_ID.$valid}" >
+﻿<div class="form-group" ng-class="{'has-error':form.OU_ID.$invalid && form.OU_ID.$dirty,'has-success':form.OU_ID.$valid}">
     <label class="col-sm-3 control-label" for="OU_ID">
         {{'OU_ID'|translate}} <span class="symbol required"></span>
     </label>
     <div class="col-sm-8">
         <input ng-required="true" ng-readonly="formData.OU_TYPE=='I' || formData.OU_ID != ''" type="text" required class="form-control" id="OU_ID" name="OU_ID" ng-model="formData.OU_ID">
     </div>
-</div> -->
+</div>
 <div class="form-group" ng-class="{'has-error':form.OU_NAME.$invalid && form.OU_NAME.$dirty,'has-success':form.OU_NAME.$valid}">
     <label class="col-sm-3 control-label" for="OU_NAME">
         {{'OU_NAME'|translate}} <span class="symbol required"></span>
@@ -14,12 +14,12 @@
         <input ng-required="true" ng-readonly="formData.OU_TYPE=='I'" type="text" required class="form-control" id="OU_NAME" name="OU_NAME" ng-model="formData.OU_NAME">
     </div>
 </div>
-<div class="form-group" ng-class="{'has-error':form.COST_CENTER.$invalid && form.COST_CENTER.$dirty,'has-success':form.COST_CENTER.$valid}" ng-if="formData.OU_ID!=0">
+<div class="form-group" ng-class="{'has-error':form.COST_CENTER.$invalid && form.COST_CENTER.$dirty,'has-success':form.COST_CENTER.$valid}">
     <label class="col-sm-3 control-label" for="OU_ID">
         {{'COST_CENTER'|translate}} <span class="symbol required"></span>
     </label>
     <div class="col-sm-8">
-        <input ng-readonly="true" type="text" required class="form-control" id="COST_CENTER" name="COST_CENTER" ng-model="formData.COST_CENTER">
+        <input ng-required="true" ng-readonly="formData.OU_TYPE=='I'" type="text" required class="form-control" id="COST_CENTER" name="COST_CENTER" ng-model="formData.COST_CENTER">
     </div>
 </div>
 <div class="form-group">

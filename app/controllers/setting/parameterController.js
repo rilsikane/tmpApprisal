@@ -48,7 +48,7 @@
     }
 
     $scope.add = function () {
-        $scope.openParameterEditor({ P_RUNNING_ID: -1, CODE_MAJOR: $scope.MAJOR_CODE });
+        $scope.openParameterEditor({ P_RUNNING_ID: -1, CODE_MAJOR: $scope.MAJOR_CODE, IS_NEW: true });
     }
 
     $scope.edit = function (item) {
@@ -186,7 +186,7 @@ app.controller('lookMstCtrl', ['$scope', 'radasoft', '$state', '$stateParams', '
     }
 
     $scope.add = function () {
-        $scope.openParameterEditor({ L_TYPE: $scope.L_TYPE, L_ID: '' });
+        $scope.openParameterEditor({ L_TYPE: $scope.L_TYPE, L_ID: '', IS_NEW: true });
     }
 
     $scope.edit = function (item) {

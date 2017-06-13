@@ -231,6 +231,22 @@
         adjustPrice.MKT4_VALUE = (1 - (netPrice.MKT4_VALUE / offerPrice.MKT4_VALUE)) * 100;
         adjustPrice.MKT5_VALUE = $scope.MARKET_COMPAIR == 4 ? 0 : (1 - (netPrice.MKT5_VALUE / offerPrice.MKT5_VALUE)) * 100;
 
+        if (Math.abs(adjustPrice.MKT1_VALUE) > 999) {
+            adjustPrice.MKT1_VALUE = 0;
+        }
+        if (Math.abs(adjustPrice.MKT2_VALUE) > 999) {
+            adjustPrice.MKT2_VALUE = 0;
+        }
+        if (Math.abs(adjustPrice.MKT3_VALUE) > 999) {
+            adjustPrice.MKT3_VALUE = 0;
+        }
+        if (Math.abs(adjustPrice.MKT4_VALUE) > 999) {
+            adjustPrice.MKT4_VALUE = 0;
+        }
+        if (Math.abs(adjustPrice.MKT5_VALUE) > 999) {
+            adjustPrice.MKT5_VALUE = 0;
+        }
+
         wqs.MKT1_VALUE = sum.MKT1_SCORE;
         wqs.MKT2_VALUE = sum.MKT2_SCORE;
         wqs.MKT3_VALUE = sum.MKT3_SCORE;

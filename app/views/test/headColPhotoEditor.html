@@ -14,12 +14,12 @@
         </ui-select>
     </div>
 </div>
-<div class="form-group">
+<div class="form-group" ng-class="{'has-error':form.REMARK.$dirty && form.REMARK.$invalid}">
     <label class="col-sm-2 control-label" for="REMARK">
-        {{'REMARK'|translate}}
+        {{'REMARK'|translate}} <span class="symbol"></span>
     </label>
     <div class="col-sm-9 no-padding">
-        <input type="text" class="form-control" ng-maxlength="300" ng-model="formData.REMARK" />
+        <input type="text" class="form-control" maxlength="50" ng-model="formData.REMARK" id="REMARK" name="REMARK" />
     </div>
 </div>
 <div class="thumbnail">

@@ -267,14 +267,14 @@ $rootScope.app = {
 			</p>
 			<pre>
 scripts: {
-	'modernizr': ['vendor/modernizr/modernizr.js']
+	'modernizr': ['/vendor/modernizr/modernizr.js']
 }</pre>
 			<p>
 				Similarly, if we want to use an angularJS module, we will indicate in the array <code>modules</code> the name of the module (usually assigned by the author of the library) and its associated files:
 			</p>
 			<pre>modules: [{
 	name: 'toaster',
-	files: ['vendor/toaster/toaster.js', 'vendor/toaster/toaster.css']
+	files: ['/vendor/toaster/toaster.js', '/vendor/toaster/toaster.css']
 }]</pre>
 			<p>
 				Now we want to dynamically load them on-the-fly at runtime when we change states.

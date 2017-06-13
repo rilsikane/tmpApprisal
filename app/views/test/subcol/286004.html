@@ -495,7 +495,7 @@
                             {{'DSC_GUEST_SZ'|translate}}
                         </label>
                         <div class="col-sm-7">
-                            <input format type="text" ng-disabled="inputDisabled" class="form-control" id="DSC_GUEST_SZ" name="DSC_GUEST_SZ" ng-model="formData.DSC_GUEST_SZ">
+                            <input type="text" maxlength="30" ng-disabled="inputDisabled" class="form-control" id="DSC_GUEST_SZ" name="DSC_GUEST_SZ" ng-model="formData.DSC_GUEST_SZ">
                         </div>
                     </div>
                     <div class="form-group">
@@ -531,7 +531,7 @@
                             {{'DSC_GUEST_SZ'|translate}}
                         </label>
                         <div class="col-sm-7">
-                            <input format type="text" ng-disabled="inputDisabled" class="form-control" id="DSC_HALL_SZ" name="DSC_HALL_SZ" ng-model="formData.DSC_HALL_SZ">
+                            <input type="text" maxlength="30" ng-disabled="inputDisabled" class="form-control" id="DSC_HALL_SZ" name="DSC_HALL_SZ" ng-model="formData.DSC_HALL_SZ">
                         </div>
                     </div>
                     <div class="form-group">
@@ -569,7 +569,7 @@
                             {{'DSC_GUEST_SZ'|translate}}
                         </label>
                         <div class="col-sm-7">
-                            <input format type="text" ng-disabled="inputDisabled" class="form-control" id="DSC_BATH_SZ" name="DSC_BATH_SZ" ng-model="formData.DSC_BATH_SZ">
+                            <input type="text" maxlength="30" ng-disabled="inputDisabled" class="form-control" id="DSC_BATH_SZ" name="DSC_BATH_SZ" ng-model="formData.DSC_BATH_SZ">
                         </div>
                     </div>
                     <div class="form-group">
@@ -605,7 +605,7 @@
                             {{'DSC_GUEST_SZ'|translate}}
                         </label>
                         <div class="col-sm-7">
-                            <input format type="text" ng-disabled="inputDisabled" class="form-control" id="DSC_BED_SZ" name="DSC_BED_SZ" ng-model="formData.DSC_BED_SZ">
+                            <input type="text" maxlength="30" ng-disabled="inputDisabled" class="form-control" id="DSC_BED_SZ" name="DSC_BED_SZ" ng-model="formData.DSC_BED_SZ">
                         </div>
                     </div>
                     <div class="form-group">
@@ -649,7 +649,7 @@
                     {{'DSC_GUEST_SZ'|translate}}
                 </label>
                 <div class="col-sm-8">
-                    <input format type="text" ng-disabled="inputDisabled" class="form-control" id="DSC_OTH_SZ" name="DSC_OTH_SZ" ng-model="formData.DSC_OTH_SZ" maxlength="30">
+                    <input type="text" maxlength="30" ng-disabled="inputDisabled" class="form-control" id="DSC_OTH_SZ" name="DSC_OTH_SZ" ng-model="formData.DSC_OTH_SZ">
                 </div>
             </div>
             <div class="form-group">
@@ -1926,25 +1926,25 @@
             <label class="control-label col-sm-3">ให้เช่า</label>
             <div class="col-sm-8">
                 <div class="checkbox clip-check check-primary">
-                    <input ng-disabled="formData.HOUSING_TYPE!='2' || inputDisabled" type="checkbox" id="RESPON_NO" ng-model="formData.RESPON_NO" ng-true-value="'Y'" ng-false-value="'N'" ng-disabled="formData.HOUSING_TYPE!='2'" />
+                    <input ng-disabled="formData.HOUSING_TYPE!='2' || inputDisabled" type="checkbox" id="RESPON_NO" ng-model="formData.RESPON_NO" ng-true-value="'Y'" ng-false-value="'N'" />
                     <label for="RESPON_NO">
                         {{'RESPON_NO'|translate}}
                     </label>
                 </div>
                 <div class="checkbox clip-check check-primary">
-                    <input ng-disabled="formData.HOUSING_TYPE!='2' || inputDisabled" type="checkbox" id="RESPON_LIVE" ng-model="formData.RESPON_LIVE" ng-true-value="'Y'" ng-false-value="'N'" ng-disabled="formData.HOUSING_TYPE!='2'" />
+                    <input ng-disabled="formData.HOUSING_TYPE!='2' || inputDisabled" type="checkbox" id="RESPON_LIVE" ng-model="formData.RESPON_LIVE" ng-true-value="'Y'" ng-false-value="'N'" />
                     <label for="RESPON_LIVE">
                         {{'RESPON_LIVE'|translate}}
                     </label>
                 </div>
                 <div class="checkbox clip-check check-primary">
-                    <input ng-disabled="formData.HOUSING_TYPE!='2' || inputDisabled" type="checkbox" id="RESPON_RENT" ng-model="formData.RESPON_RENT" ng-true-value="'Y'" ng-false-value="'N'" ng-disabled="formData.HOUSING_TYPE!='2'" />
+                    <input ng-disabled="formData.HOUSING_TYPE!='2' || inputDisabled" type="checkbox" id="RESPON_RENT" ng-model="formData.RESPON_RENT" ng-true-value="'Y'" ng-false-value="'N'" />
                     <label for="RESPON_RENT">
                         {{'RESPON_RENT'|translate}}
                     </label>
                 </div>
                 <div class="checkbox clip-check check-primary">
-                    <input ng-disabled="formData.HOUSING_TYPE!='2' || inputDisabled" type="checkbox" id="RESPON_RENT2" ng-model="formData.RESPON_RENT2" ng-true-value="'Y'" ng-false-value="'N'" ng-disabled="formData.HOUSING_TYPE!='2'" />
+                    <input ng-disabled="formData.HOUSING_TYPE!='2' || inputDisabled" type="checkbox" id="RESPON_RENT2" ng-model="formData.RESPON_RENT2" ng-true-value="'Y'" ng-false-value="'N'" />
                     <label for="RESPON_RENT2">
                         {{'RESPON_RENT2'|translate}}
                     </label>
@@ -1962,7 +1962,7 @@
                 {{'REMARK'|translate}}
             </label>
             <div class="col-sm-8">
-                <textarea ng-disabled="inputDisabled" rows="5" style="max-width:100%;" class="form-control" id="REMARK" name="REMARK" ng-model="formData.REMARK"></textarea>
+                <textarea ng-disabled="inputDisabled" rows="5" maxlength="300" style="max-width:100%;" class="form-control" id="REMARK" name="REMARK" ng-model="formData.REMARK"></textarea>
             </div>
         </div>
     </div>

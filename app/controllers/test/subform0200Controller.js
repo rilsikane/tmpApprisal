@@ -306,6 +306,9 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
 
         $scope.colCertTypeUrl = '/app/views/test/subcol/' + radasoft.transformColCertType(item.VALUE) + '.html';
     }
+    $scope.onMachineRegisChange = function () {
+        $scope.formData.REGIS_NO = '';
+    }
     $scope.initCondoMasterData = function () {
         radasoft.getProvinceDOL({}).then(function (response) {
             $scope.selectProvinceDOL = response.data;
@@ -946,6 +949,15 @@ app.controller('subform0202Controller', ['$scope', '$state', 'toaster', '$modal'
             $scope.formData.REGIS_NO = "-";
         } else {
             $scope.formData.REGIS_NO = "";
+        }
+    }
+    $scope.onShipInsureChange = function () {
+        if ($scope.formData.IS_INSURANCE == 'N') {
+            $scope.formData.INSURED_CODE = undefined;
+            $scope.formData.POLICY_NO = '';
+            $scope.formData.INSURED_AMT = 0;
+            $scope.formData.INSURED_ISSUE_DATE = undefined;
+            $scope.formData.INSURED_EXP_DATE = undefined;
         }
     }
     $scope.getHeadColSubType = function (headColType) {

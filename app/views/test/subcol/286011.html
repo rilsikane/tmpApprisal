@@ -37,10 +37,10 @@
         </div>
         <div class="form-group" ng-class="{'has-error':form.REGIS_NO.$dirty && form.REGIS_NO.$invalid, 'has-success':form.REGIS_NO.$valid}">
             <label ng-class="labelControlCss" for="REGIS_NO">
-                {{'MACHINE_NO'|translate}}
+                {{'MACHINE_NO'|translate}} <span class="required symbol"></span>
             </label>
             <div ng-class="formControlCss">
-                <input type="text" maxlength="30" ng-disabled="inputDisabled" class="form-control" id="REGIS_NO" name="REGIS_NO" ng-model="formData.REGIS_NO" model-view-value="true" ui-mask="99-999-999-9999" ui-mask-placeholder-char="_" />
+                <input type="text" maxlength="30" ng-required="formData.REGIS_YN=='Y'" ng-disabled="inputDisabled" class="form-control" id="REGIS_NO" name="REGIS_NO" ng-model="formData.REGIS_NO" model-view-value="true" ui-mask="99-999-999-9999" ui-mask-placeholder-char="_" />
             </div>
         </div>
         <div class="form-group">
@@ -50,7 +50,7 @@
             <div class="col-sm-8">
                 <div class="col-sm-4" ng-repeat="item in radioRegisYN">
                     <div class="form-group radio clip-radio radio-primary">
-                        <input type="radio" name="REGIS_YN" ng-disabled="inputDisabled" ng-value="item.VALUE" ng-model="formData.REGIS_YN" id="REGIS_YN{{item.VALUE}}" />
+                        <input type="radio" name="REGIS_YN" ng-disabled="inputDisabled" ng-value="item.VALUE" ng-model="formData.REGIS_YN" id="REGIS_YN{{item.VALUE}}" ng-change="onMachineRegisChange()" />
                         <label for="REGIS_YN{{item.VALUE}}">{{ item.NAME }}</label>
                     </div>
                 </div>
@@ -292,7 +292,7 @@
                     <label class="control-label">{{'YEAR'|translate}}</label>
                 </div>
                 <div class="col-sm-3">
-                    <input type="text" ng-disabled="inputDisabled" numeric min="0" ng-max="11" class="form-control" id="AGE_MONTH" name="AGE_MONTH" ng-model="formData.AGE_MONTH">
+                    <input type="text" ng-disabled="inputDisabled" numeric="0-11" class="form-control" id="AGE_MONTH" name="AGE_MONTH" ng-model="formData.AGE_MONTH" />
                 </div>
                 <div class="col-sm-1">
                     <label class="control-label">{{'MONTH'|translate}}</label>
@@ -318,7 +318,7 @@
             </label>
             <div ng-class="formControlCss">
                 <div class="col-sm-3 no-padding">
-                    <input required ng-disabled="inputDisabled" type="text" numeric="1-999" class="form-control" id="AGE_STD_YEAR" name="AGE_STD_YEAR" ng-model="formData.AGE_STD_YEAR">
+                    <input required ng-disabled="inputDisabled" type="text" numeric class="form-control" id="AGE_STD_YEAR" name="AGE_STD_YEAR" ng-model="formData.AGE_STD_YEAR">
                 </div>
                 <div class="col-sm-1">
                     <label class="control-label">{{'YEAR'|translate}}</label>
@@ -392,5 +392,5 @@
 </fieldset>
 <fieldset class="no-radius">
     <legend>{{'REMARK'|translate}}</legend>
-    <textarea rows="10" class="form-control" ng-disabled="inputDisabled" id="REMARK" name="REMARK" style="max-width:100%;" ng-model="formData.REMARK"></textarea>
+    <textarea rows="10" class="form-control" maxlength="300" ng-disabled="inputDisabled" id="REMARK" name="REMARK" style="max-width:100%;" ng-model="formData.REMARK"></textarea>
 </fieldset>

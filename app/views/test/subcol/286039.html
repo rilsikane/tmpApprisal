@@ -101,7 +101,7 @@
                     {{'HORSE_POWER'|translate}} <span class="symbol"></span>
                 </label>
                 <div ng-class="formControlCss">
-                    <input ng-disabled="inputDisabled" type="text" class="form-control" id="HORSE_POWER" name="HORSE_POWER" ng-model="formData.HORSE_POWER" count maxlength="10">
+                    <input ng-disabled="inputDisabled" type="text" class="form-control" id="HORSE_POWER" name="HORSE_POWER" ng-model="formData.HORSE_POWER" format decimal="0" ng-maxlength="10">
                 </div>
             </div>
             <div class="form-group">
@@ -109,7 +109,7 @@
                     {{'SHIP_BODY'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input ng-disabled="inputDisabled" type="text" placeholder="" class="form-control" id="BODY" name="BODY" ng-model="formData.BODY" maxlength="50">
+                    <input ng-disabled="inputDisabled" type="text" placeholder="" class="form-control" id="BODY" name="BODY" ng-model="formData.BODY" ng-maxlength="50">
                 </div>
             </div>
             <div class="form-group">
@@ -117,7 +117,7 @@
                     {{'TONNAGE'|translate}}
                 </label>
                 <div ng-class="formControlCss">
-                    <input ng-disabled="inputDisabled" count type="text" maxlength="10" class="form-control" id="TONNAGE" name="TONNAGE" ng-model="formData.TONNAGE">
+                    <input ng-disabled="inputDisabled" count type="text" ng-maxlength="10" class="form-control" id="TONNAGE" name="TONNAGE" ng-model="formData.TONNAGE">
                 </div>
             </div>
             <div class="form-group" ng-class="{'has-error':form.YEAR.$dirty && form.YEAR.$invalid}">
@@ -237,7 +237,7 @@
             <div ng-class="formControlCss">
                 <div ng-repeat="item in radioYN" class="col-sm-3">
                     <div class="form-group radio clip-radio radio-primary">
-                        <input ng-disabled="inputDisabled" type="radio" name="IS_INSURANCE" ng-value="item.VALUE" ng-model="formData.IS_INSURANCE" id="IS_INSURANCE{{item.VALUE}}" />
+                        <input ng-disabled="inputDisabled" type="radio" name="IS_INSURANCE" ng-value="item.VALUE" ng-model="formData.IS_INSURANCE" id="IS_INSURANCE{{item.VALUE}}" ng-change="onShipInsureChange()" />
                         <label for="IS_INSURANCE{{item.VALUE}}">{{ item.NAME }}</label>
                     </div>
                 </div>
@@ -329,5 +329,5 @@
 </fieldset>
 <fieldset class="no-radius">
     <legend>{{'REMARK'|translate}}</legend>
-    <textarea ng-disabled="inputDisabled" rows="5" class="form-control" id="REMARK" name="REMARK" style="max-width:100%;" ng-model="formData.REMARK"></textarea>
+    <textarea ng-disabled="inputDisabled" rows="5" maxlength="300" class="form-control" id="REMARK" name="REMARK" style="max-width:100%;" ng-model="formData.REMARK"></textarea>
 </fieldset>

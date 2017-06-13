@@ -1385,4 +1385,32 @@
             this.getDepreciationValue = function (params) {
                 return this.httpGet('getDepreciationValue', params);
             }
+            this.setMasterLoanGroup = function (params) {
+                return this.httpPost('setMasterLoanGroup', params);
+            }
+            this.delMasterLoanGroup = function (params) {
+                return this.httpPost('delMasterLoanGroup', params);
+            }
+            this.setMasterLoanType = function (params) {
+                return this.httpPost('setMasterLoanType', params);
+            }
+            this.delMasterLoanType = function (params) {
+                return this.httpPost('delMasterLoanType', params);
+            }
+            this.getMasterLoanGroup = function (params) {
+                return this.httpPost('getMasterLoanGroup', params);
+            }
+            this.getMasterLoanType = function (params) {
+                return this.httpPost('getMasterLoanType', params);
+            }
+            this.getLoanGroupDetail = function (params) {
+                return this.httpGet('getLoanGroupDetail', params);
+            }
+            this.getLoanTypeDetail = function (params) {
+                return this.httpGet('getLoanTypeDetail', params);
+            }
+            this.getHeadColTypeForMarketPrice = function (params) {
+                return this.httpGet('getHeadColTypeForMarketPrice', params);
+            }
+
         }]);

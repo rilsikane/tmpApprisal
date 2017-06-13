@@ -16,11 +16,11 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', 'radasoft', 'datepicke
     $rootScope.$stateParams = $stateParams;
     // GLOBAL APP SCOPE
     // set below basic information
-    //$rootScope.$on('$locationChangeStart', function (event, newUrl, oldUrl) {
-    //    if (true /* inject your logic here */) {
-    //        event.preventDefault();
-    //    }
-    //});
+    $rootScope.$on('$locationChangeStart', function (event, newUrl, oldUrl) {
+        if (true /* inject your logic here */) {
+            event.preventDefault();
+        }
+    });
     $rootScope.app = {
         name: 'GSB Appraisal', // name of your project
         author: 'บริษัท จีไอเอส จำกัด', // author's name or company name

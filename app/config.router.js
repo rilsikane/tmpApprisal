@@ -180,26 +180,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             url: '/user',
             templateUrl: '/app/views/setting/user.html',
             resolve: loadSequence('userController'),
-        }).state('app.formtemplate', {
-            url: '/formtemplate',
-            templateUrl: '/app/views/templates/formtemplate.html',
-            resolve: loadSequence('formtemplateController'),
-        }).state('app.testChart', {
-            url: "/testChart",
-            templateUrl: "/app/views/test/chart.html",
-            resolve: loadSequence('chartjs', 'tc.chartjs'),
-            title: "Test Charts",
-            ncyBreadcrumb: {
-                label: 'Test Charts'
-            }
-        }).state('app.charts', {
-            url: "/charts",
-            templateUrl: "/assets/views/charts.html",
-            resolve: loadSequence('chartjs', 'tc.chartjs', 'chartsCtrl'),
-            title: "Charts",
-            ncyBreadcrumb: {
-                label: 'Charts'
-            }
+        }).state('app.loan', {
+            url: '/loan',
+            templateUrl: '/app/views/setting/loan/parameter.html',
+            resolve: loadSequence('loanMstCtrl'),
+        }).state('app.download', {
+            url: '/download',
+            templateUrl: '/app/views/test/subform1100.html'
         }).state('login', {
             url: '/login',
             template: '<div ui-view class="fade-in-right-big smooth"></div>',
