@@ -240,7 +240,7 @@
                 ประเภทเอกสารสิทธิ์
             </label>
             <div class="col-sm-8">
-                <ui-select theme="selectize" ng-model="formData.COL_CERT_TYPE" id="COL_CERT_TYPE" name="COL_CERT_TYPE" on-select="onRentColCertTypeChange($item)">
+                <ui-select theme="selectize" ng-model="formData.COL_CERT_TYPE" id="COL_CERT_TYPE" name="COL_CERT_TYPE" on-select="onRentColCertTypeChange($item)" ng-disabled="inputDisabled">
                     <ui-select-match>
                         {{$select.selected.NAME}}
                     </ui-select-match>
@@ -309,7 +309,7 @@
                 ประเภทที่ดินให้เช่า
             </label>
             <div class="col-sm-8">
-                <ui-select theme="selectize" ng-model="formData.LAND_RENT_TYPE" id="LAND_RENT_TYPE" name="LAND_RENT_TYPE">
+                <ui-select theme="selectize" ng-model="formData.LAND_RENT_TYPE" id="LAND_RENT_TYPE" name="LAND_RENT_TYPE" ng-disabled="inputDisabled">
                     <ui-select-match>
                         {{$select.selected.NAME}}
                     </ui-select-match>

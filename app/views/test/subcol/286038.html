@@ -97,7 +97,7 @@
                     </div>
                     <div class="col-sm-6 no-padding">
                         <div class="col-sm-9 no-padding">
-                            <input type="text" count maxlength="22" min="0" ng-max="11" class="form-control" id="AGE_RUNNING_MONTH" name="AGE_RUNNING_MONTH" ng-model="formData.AGE_RUNNING_MONTH">
+                            <input type="text" ng-disabled="inputDisabled" count maxlength="22" min="0" ng-max="11" class="form-control" id="AGE_RUNNING_MONTH" name="AGE_RUNNING_MONTH" ng-model="formData.AGE_RUNNING_MONTH">
                         </div>
                         <label class="control-label col-sm-3" for="AGE_RUNNING_MONTH">
                             {{'MONTH'|translate}}
@@ -174,7 +174,7 @@
                 </label>
                 <div ng-class="formControlCss">
                     <!--<input type="text" ng-disabled="inputDisabled" maxlength="50" class="form-control" id="BRAND_NAME" name="BRAND_NAME" ng-model="formData.BRAND_NAME">-->
-                    <ui-select theme="selectize" ng-model="formData.BRAND_NAME" id="BRAND_NAME" name="BRAND_NAME">
+                    <ui-select theme="selectize" ng-disabled="inputDisabled" ng-model="formData.BRAND_NAME" id="BRAND_NAME" name="BRAND_NAME">
                         <ui-select-match>
                             {{$select.selected.NAME}}
                         </ui-select-match>
