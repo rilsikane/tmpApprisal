@@ -162,7 +162,7 @@
             <div class="col-sm-8">
                 <div class="col-sm-3 no-padding">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="MACHINE_ENERGY1" ng-model="formData.MACHINE_ENERGY1" ng-true-value="'Y'" ng-false-value="'N'">
+                        <input type="checkbox" id="MACHINE_ENERGY1" ng-disabled="inputDisabled" ng-model="formData.MACHINE_ENERGY1" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="MACHINE_ENERGY1">
                             {{'MACHINE.MACHINE_ENERGY1'|translate}}
                         </label>
@@ -170,7 +170,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="MACHINE_ENERGY2" ng-model="formData.MACHINE_ENERGY2" ng-true-value="'Y'" ng-false-value="'N'">
+                        <input type="checkbox" id="MACHINE_ENERGY2" ng-disabled="inputDisabled" ng-model="formData.MACHINE_ENERGY2" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="MACHINE_ENERGY2">
                             {{'MACHINE.MACHINE_ENERGY2'|translate}}
                         </label>
@@ -178,7 +178,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="MACHINE_ENERGY3" ng-model="formData.MACHINE_ENERGY3" ng-true-value="'Y'" ng-false-value="'N'">
+                        <input type="checkbox" id="MACHINE_ENERGY3" ng-disabled="inputDisabled" ng-model="formData.MACHINE_ENERGY3" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="MACHINE_ENERGY3">
                             {{'MACHINE.MACHINE_ENERGY3'|translate}}
                         </label>
@@ -186,7 +186,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="MACHINE_ENERGY4" ng-model="formData.MACHINE_ENERGY4" ng-true-value="'Y'" ng-false-value="'N'">
+                        <input type="checkbox" id="MACHINE_ENERGY4" ng-disabled="inputDisabled" ng-model="formData.MACHINE_ENERGY4" ng-true-value="'Y'" ng-false-value="'N'">
                         <label for="MACHINE_ENERGY4">
                             {{'MACHINE.MACHINE_ENERGY4'|translate}}
                         </label>
@@ -199,11 +199,11 @@
             </label>
             <div class="col-sm-8">
                 <div class="checkbox clip-check check-primary">
-                    <input class="col-sm-1" type="checkbox" id="MACHINE_ENERGY5" ng-model="formData.MACHINE_ENERGY5" ng-true-value="'Y'" ng-false-value="'N'">
+                    <input class="col-sm-1" type="checkbox" id="MACHINE_ENERGY5" ng-disabled="inputDisabled" ng-model="formData.MACHINE_ENERGY5" ng-true-value="'Y'" ng-false-value="'N'">
                     <label class="col-sm-1" for="MACHINE_ENERGY5">
                         {{'MACHINE.MACHINE_OTHER'|translate}}
                     </label>
-                    <input class="col-sm-10" ng-disabled="'Y' != formData.MACHINE_ENERGY5" type="text" id="MACHINE_OTHER" ng-model="formData.MACHINE_OTHER" only-char ng-maxlength="100" />
+                    <input class="col-sm-10" ng-disabled="'Y' != formData.MACHINE_ENERGY5 || inputDisabled" type="text" id="MACHINE_OTHER" ng-model="formData.MACHINE_OTHER" only-char ng-maxlength="100" />
                 </div>
             </div>
         </div>

@@ -148,7 +148,7 @@
                         {{'COUNTRY'|translate}}<span class="symbol required"></span>
                     </label>
                     <div ng-class="formControlCss">
-                        <ui-select ng-required="true" theme="selectize" ng-model="formData.DEED_COUNTRY" id="DEED_COUNTRY" name="DEED_COUNTRY">
+                        <ui-select ng-disabled="inputDisabled" ng-required="true" theme="selectize" ng-model="formData.DEED_COUNTRY" id="DEED_COUNTRY" name="DEED_COUNTRY">
                             <ui-select-match>
                                 {{$select.selected.NAME_THAI}}
                             </ui-select-match>
@@ -180,7 +180,7 @@
                         {{'COUNTRY'|translate}}<span class="symbol required"></span>
                     </label>
                     <div ng-class="formControlCss">
-                        <ui-select ng-required="true" theme="selectize" ng-model="formData.DEED_COUNTRY" id="DEED_COUNTRY" name="DEED_COUNTRY">
+                        <ui-select ng-disabled="inputDisabled" ng-required="true" theme="selectize" ng-model="formData.DEED_COUNTRY" id="DEED_COUNTRY" name="DEED_COUNTRY">
                             <ui-select-match>
                                 {{$select.selected.NAME_THAI}}
                             </ui-select-match>

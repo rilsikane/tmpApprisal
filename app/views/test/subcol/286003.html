@@ -631,7 +631,7 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-11">
                     <label>ปัญหาในการใช้ทางเข้าออก</label>
-                    <input type="text" class="form-control" ng-model="formData.POSITION_PROBLEM" />
+                    <input type="text" class="form-control" ng-disabled="inputDisabled" ng-model="formData.POSITION_PROBLEM" />
                 </div>
             </div>
         </fieldset>
@@ -944,7 +944,7 @@
                     </div>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" ng-model="formData.EXPROPRIATION_OTHER_DESC" />
+                    <input type="text" class="form-control" ng-disabled="inputDisabled" ng-model="formData.EXPROPRIATION_OTHER_DESC" />
                 </div>
             </div>
         </fieldset>
@@ -964,7 +964,7 @@
                     </div>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" ng-disabled="formData.RAWANG_NO=='N'" class="form-control" ng-model="formData.RAWANG_NO_DETAIL" />
+                    <input type="text" ng-disabled="formData.RAWANG_NO=='N' || inputDisabled" class="form-control" ng-model="formData.RAWANG_NO_DETAIL" />
                 </div>
             </div>
             <div class="form-group">
@@ -977,7 +977,7 @@
                     </div>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" ng-disabled="formData.CHANODE_NO=='N'" class="form-control" ng-model="formData.CHANODE_NO_DETAIL" />
+                    <input type="text" ng-disabled="formData.CHANODE_NO=='N' || inputDisabled" class="form-control" ng-model="formData.CHANODE_NO_DETAIL" />
                 </div>
             </div>
             <div class="form-group">
@@ -990,7 +990,7 @@
                     </div>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" ng-disabled="formData.BOUNDARY_MARK_NO=='N'" class="form-control" ng-model="formData.BOUNDARY_MARK_NO_DETAIL" />
+                    <input type="text" ng-disabled="formData.BOUNDARY_MARK_NO=='N' || inputDisabled" class="form-control" ng-model="formData.BOUNDARY_MARK_NO_DETAIL" />
                 </div>
             </div>
             <div class="form-group">
@@ -1013,7 +1013,7 @@
                     </div>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" ng-disabled="formData.SURVEY_HUMAN=='N'" class="form-control" ng-model="formData.SURVEY_HUMAN_DETAIL" />
+                    <input type="text" ng-disabled="formData.SURVEY_HUMAN=='N' || inputDisabled" class="form-control" ng-model="formData.SURVEY_HUMAN_DETAIL" />
                 </div>
             </div>
             <div class="form-group">

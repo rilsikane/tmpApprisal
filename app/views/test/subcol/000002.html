@@ -3,7 +3,7 @@
         <h5 class="panel-title">สถานที่สำคัญใกล้เคียง</h5>
         <ul class="panel-heading-tabs border-light">
             <li>
-                <button type="button" class="btn btn-o btn-squared border-white" ng-click="addLandMark()">
+                <button ng-disabled="inputDisabled" type="button" class="btn btn-o btn-squared border-white" ng-click="addLandMark()">
                     <i class="ti-plus"></i> {{'BUTTON.ADD'|translate}}
                 </button>
             </li>
@@ -24,8 +24,8 @@
                     <td>{{item.LANDMARK_LENGTH}}</td>
                     <td class="center">
                         <div class="visible-md visible-lg hidden-sm hidden-xs">
-                            <a href="#" ng-click="modLandMark(item)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i class="fa fa-pencil"></i></a>
-                            <a href="#" ng-click="item.DELETE=true" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i class="fa fa-times fa fa-white"></i></a>
+                            <a ng-if="!inputDisabled" href="#" ng-click="modLandMark(item)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="{{'EDIT'|translate}}"><i class="fa fa-pencil"></i></a>
+                            <a ng-if="!inputDisabled" href="#" ng-click="item.DELETE=true" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="{{'DELETE'|translate}}"><i class="fa fa-times fa fa-white"></i></a>
                         </div>
                     </td>
                 </tr>
