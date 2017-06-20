@@ -38,6 +38,13 @@
                     $element.val(value);
                     $element.select();
                 });
+                $element.bind('keydown', function (event) {
+                    var regNum = /[^^\d*\.?\d*$]/;
+                    var value = $element.val().replace(regNum, '');
+                    if(isNaN(value) && decimalPlaces(value) > decimal){
+                        event.preventDefault();
+                    }
+                }
 
                 $element.bind('keyup', function (event) {
                     var max = $attrs.ngMax;
@@ -47,9 +54,9 @@
 
                     if (!isValid) {
                         var value = $element.val().replace(regNum, '');
-                        if(decimalPlaces(value) > decimal){
-                            value = value.slice(0, -1);
-                        }
+                        // if(decimalPlaces(value) > decimal){
+                        //     value = value.slice(0, -1);
+                        // }
                         $element.val(value);
                     }
                     else {
