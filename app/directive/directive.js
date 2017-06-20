@@ -40,8 +40,9 @@
                 });
                 $element.bind('keydown', function (event) {
                     var value = $element.val();
-                    if(isNaN(value) && decimalPlaces(value) == decimal){
-                        if(event.keyCode != 8) {
+                    if(!isNaN(value) && decimalPlaces(value) == decimal){
+                        if((event.keyCode != 8 && event.keyCode != 13 && event.keyCode != 8) 
+                            && (event.keyCode >= 37 && event.keyCode <= 40)) {
                               event.preventDefault();
                          }
                        
