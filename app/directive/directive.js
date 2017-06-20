@@ -21,8 +21,8 @@
 
                 // This runs when we update the text field
                 ngModelCtrl.$parsers.push(function (viewValue) {
-
-                    return parseFloat(viewValue.replace(/,/g, ''));
+                    
+                    return parseFloat(viewValue.replace(/,/g, '')).toFixed(decimal);
                 })
 
                 // This runs when the model gets updated on the scope directly and keeps our view in sync
