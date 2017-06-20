@@ -40,8 +40,11 @@
                 });
                 $element.bind('keydown', function (event) {
                     var value = $element.val();
-                    if(isNaN(value) && decimalPlaces(value) > decimal){
-                        event.preventDefault();
+                    if(isNaN(value) && decimalPlaces(value) == decimal){
+                        if(event.keyCode != 8) {
+                              event.preventDefault();
+                         }
+                       
                     }
                 });
 
