@@ -43,7 +43,7 @@
                     if(isNaN(value) && decimalPlaces(value) > decimal){
                         event.preventDefault();
                     }
-                }
+                });
 
                 $element.bind('keyup', function (event) {
                     var max = $attrs.ngMax;
