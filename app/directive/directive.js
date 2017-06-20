@@ -21,7 +21,7 @@
 
                 // This runs when we update the text field
                 ngModelCtrl.$parsers.push(function (viewValue) {
-                    
+
                     return parseFloat(viewValue.replace(/,/g, '')).toFixed(decimal);
                 })
 
@@ -47,7 +47,9 @@
 
                     if (!isValid) {
                         var value = $element.val().replace(regNum, '');
-
+                        if(decimalPlaces(value) > decimal){
+                            value = value.slice(0, -1);
+                        }
                         $element.val(value);
                     }
                     else {
@@ -59,7 +61,16 @@
                         }
                     }
                 });
-
+                function decimalPlaces(num) {
+                      var match = (''+num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+                      if (!match) { return 0; }
+                      return Math.max(
+                           0,
+                           // Number of digits right of decimal point.
+                           (match[1] ? match[1].length : 0)
+                           // Adjust for scientific notation.
+                           - (match[2] ? +match[2] : 0));
+                }  
             }
         };
     }])
