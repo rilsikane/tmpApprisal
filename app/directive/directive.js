@@ -39,8 +39,7 @@
                     $element.select();
                 });
                 $element.bind('keydown', function (event) {
-                    var regNum = /[^^\d*\.?\d*$]/;
-                    var value = $element.val().replace(regNum, '');
+                    var value = $element.val();
                     if(isNaN(value) && decimalPlaces(value) > decimal){
                         event.preventDefault();
                     }
